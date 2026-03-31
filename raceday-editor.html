@@ -626,7 +626,8 @@ function renderSession(s, ri, si) {
       dateVal = raw; // date only string
     }
   }
-  if (isTBC && s._date) dateVal = s._date; // stashed date
+  if (isTBC && s._date) dateVal = s._date;
+  else if (isTBC && s.tbcDate) dateVal = s.tbcDate; // from loaded JSON
 
   const kindOptions = KIND_OPTIONS.map(k =>
     `<option value="${k.value}" ${s.kind === k.value ? 'selected' : ''}>${k.label}</option>`
@@ -798,6 +799,7 @@ function buildJSON(seriesId) {
       name: s.name,
       kind: s.kind || 'race',
       dateUTC: (s.dateUTC && s.dateUTC !== '') ? s.dateUTC : null,
+      ...((!s.dateUTC && s._date) ? { tbcDate: s._date } : {}),
       durationMinutes: s.durationMinutes || 60
     }))
   }));
