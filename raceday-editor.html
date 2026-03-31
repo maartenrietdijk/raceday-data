@@ -859,23 +859,38 @@ async function publishToGitHub() {
   const content = buildJSON(state.activeSeries);
   const encoded = btoa(unescape(encodeURIComponent(content)));
 
+  // Validate inputs before trying
+  if (!token.startsWith('gh')) {
+    return showStatus('Token looks wrong — should start with ghp_ or github_pat_', 'error');
+  }
+  if (!repo.includes('/')) {
+    return showStatus('Repo should be "owner/reponame", e.g. maartenrietdijk/raceday-data', 'error');
+  }
+
   showStatus('Pushing to GitHub…', 'loading');
 
-  try {
-    const apiBase = `https://api.github.com/repos/${repo}/contents/${filePath}`;
-    const headers = {
-      'Authorization': `Bearer ${token}`,
-      'Accept': 'application/vnd.github+json',
-      'Content-Type': 'application/json',
-      'X-GitHub-Api-Version': '2022-11-28'
-    };
+  const apiBase = `https://api.github.com/repos/${repo}/contents/${filePath}`;
+  const headers = {
+    'Authorization': `token ${token}`,
+    'Accept': 'application/vnd.github+json',
+    'Content-Type': 'application/json',
+  };
 
+  try {
     // Get current SHA if file exists (needed for update)
     let sha = null;
-    const getRes = await fetch(`${apiBase}?ref=${branch}`, { headers });
-    if (getRes.ok) {
-      const existing = await getRes.json();
-      sha = existing.sha;
+    try {
+      const getRes = await fetch(`${apiBase}?ref=${branch}`, { headers });
+      if (getRes.ok) {
+        const existing = await getRes.json();
+        sha = existing.sha;
+      } else if (getRes.status === 401) {
+        return showStatus('Token invalid or expired — check your token', 'error');
+      } else if (getRes.status === 404) {
+        // File doesn't exist yet — that's fine, we'll create it
+      }
+    } catch (e) {
+      return showStatus(`Network error: ${e.message} — are you online?`, 'error');
     }
 
     const body = {
@@ -890,14 +905,20 @@ async function publishToGitHub() {
       body: JSON.stringify(body)
     });
 
-    if (putRes.ok) {
+    if (putRes.status === 201 || putRes.status === 200) {
       showStatus(`✓ ${filename} pushed to ${repo}`, 'success');
+    } else if (putRes.status === 401) {
+      showStatus('Token invalid or expired', 'error');
+    } else if (putRes.status === 403) {
+      showStatus('Token has no write access to this repo — check token scope (needs repo)', 'error');
+    } else if (putRes.status === 404) {
+      showStatus(`Repo not found: ${repo} — check the name`, 'error');
     } else {
-      const err = await putRes.json();
-      showStatus(`GitHub error: ${err.message}`, 'error');
+      const err = await putRes.json().catch(() => ({}));
+      showStatus(`GitHub error ${putRes.status}: ${err.message || 'unknown'}`, 'error');
     }
   } catch (e) {
-    showStatus(`Error: ${e.message}`, 'error');
+    showStatus(`Failed: ${e.message}`, 'error');
   }
 }
 
