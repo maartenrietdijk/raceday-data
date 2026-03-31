@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RaceDay Calendar Editor</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:        #0a0a0c;
+    --surface:   #111114;
+    --card:      #18181d;
+    --border:    #2a2a32;
+    --border2:   #1e1e26;
+    --red:       #e8001a;
+    --red-dim:   rgba(232,0,26,.12);
+    --red-glow:  rgba(232,0,26,.25);
+    --text:      #f0f0f4;
+    --muted:     #6b6b7a;
+    --subtle:    #3a3a46;
+    --green:     #00c96e;
+    --amber:     #f5a623;
+    --mono:      'DM Mono', monospace;
+    --sans:      'DM Sans', sans-serif;
+    --display:   'Syne', sans-serif;
+    --radius:    12px;
+    --radius-sm: 7px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    font-size: 14px;
+  }
+
+  /* ── Header ── */
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 32px;
+    border-bottom: 1px solid var(--border2);
+    background: var(--surface);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(12px);
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 18px;
+    letter-spacing: -0.3px;
+  }
+  .logo-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--red);
+    box-shadow: 0 0 8px var(--red-glow);
+  }
+  .header-actions { display: flex; gap: 10px; align-items: center; }
+
+  /* ── Buttons ── */
+  .btn {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 8px 16px; border-radius: var(--radius-sm);
+    font-family: var(--sans); font-size: 13px; font-weight: 500;
+    cursor: pointer; border: none; transition: all .15s;
+    white-space: nowrap;
+  }
+  .btn-primary {
+    background: var(--red); color: #fff;
+  }
+  .btn-primary:hover { background: #ff1a2e; box-shadow: 0 0 16px var(--red-glow); }
+  .btn-ghost {
+    background: transparent; color: var(--muted);
+    border: 1px solid var(--border);
+  }
+  .btn-ghost:hover { color: var(--text); border-color: var(--subtle); }
+  .btn-surface {
+    background: var(--card); color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .btn-surface:hover { border-color: var(--subtle); }
+  .btn-sm { padding: 5px 11px; font-size: 12px; }
+  .btn-icon {
+    width: 28px; height: 28px; padding: 0;
+    display: inline-flex; align-items: center; justify-content: center;
+    border-radius: 6px; font-size: 14px;
+    background: transparent; color: var(--muted); border: none; cursor: pointer;
+    transition: all .15s;
+  }
+  .btn-icon:hover { background: var(--border); color: var(--text); }
+  .btn-icon.danger:hover { background: var(--red-dim); color: var(--red); }
+
+  /* ── Layout ── */
+  .layout { display: flex; height: calc(100vh - 57px); }
+
+  /* Sidebar */
+  .sidebar {
+    width: 260px; min-width: 260px;
+    background: var(--surface);
+    border-right: 1px solid var(--border2);
+    display: flex; flex-direction: column;
+    overflow: hidden;
+  }
+  .sidebar-header {
+    padding: 16px 16px 12px;
+    border-bottom: 1px solid var(--border2);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .sidebar-title {
+    font-family: var(--display); font-size: 11px; font-weight: 700;
+    letter-spacing: .08em; text-transform: uppercase; color: var(--muted);
+  }
+  .series-list { overflow-y: auto; flex: 1; padding: 8px; }
+  .series-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 9px 10px; border-radius: var(--radius-sm);
+    cursor: pointer; transition: all .12s; margin-bottom: 2px;
+    position: relative;
+  }
+  .series-item:hover { background: var(--card); }
+  .series-item.active { background: var(--red-dim); }
+  .series-item.active::before {
+    content: ''; position: absolute; left: 0; top: 4px; bottom: 4px;
+    width: 3px; border-radius: 2px; background: var(--red);
+  }
+  .series-dot {
+    width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+  }
+  .series-name { font-weight: 500; font-size: 13px; flex: 1; }
+  .series-count {
+    font-family: var(--mono); font-size: 11px; color: var(--muted);
+  }
+
+  /* Main */
+  .main { flex: 1; overflow-y: auto; }
+  .main-inner { padding: 28px 32px; max-width: 900px; }
+
+  /* ── Section heading ── */
+  .section-heading {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  .section-title {
+    font-family: var(--display); font-size: 22px; font-weight: 800;
+    letter-spacing: -.4px;
+  }
+  .section-meta { font-size: 12px; color: var(--muted); }
+
+  /* ── GitHub config ── */
+  .config-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 20px; margin-bottom: 28px;
+  }
+  .config-card h3 {
+    font-family: var(--display); font-size: 13px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: .07em; color: var(--muted);
+    margin-bottom: 14px;
+  }
+  .config-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  .field { display: flex; flex-direction: column; gap: 5px; }
+  .field label { font-size: 11px; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+  .field input, .field select {
+    background: var(--surface); border: 1px solid var(--border);
+    color: var(--text); padding: 8px 11px; border-radius: var(--radius-sm);
+    font-family: var(--mono); font-size: 12px;
+    outline: none; transition: border-color .15s;
+  }
+  .field input:focus, .field select:focus { border-color: var(--red); }
+  .field input::placeholder { color: var(--subtle); }
+
+  /* ── Round card ── */
+  .round-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius); margin-bottom: 12px;
+    overflow: hidden; transition: border-color .15s;
+  }
+  .round-card:hover { border-color: var(--subtle); }
+  .round-header {
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 16px; cursor: pointer;
+    user-select: none;
+  }
+  .round-num {
+    font-family: var(--mono); font-size: 11px; color: var(--muted);
+    background: var(--surface); border: 1px solid var(--border);
+    padding: 2px 7px; border-radius: 4px; min-width: 36px; text-align: center;
+  }
+  .round-name { font-weight: 600; font-size: 14px; flex: 1; }
+  .round-meta { font-size: 12px; color: var(--muted); }
+  .round-chevron { color: var(--muted); font-size: 12px; transition: transform .2s; }
+  .round-card.open .round-chevron { transform: rotate(90deg); }
+
+  .round-body { display: none; border-top: 1px solid var(--border2); }
+  .round-card.open .round-body { display: block; }
+
+  /* Round fields */
+  .round-fields {
+    display: grid; grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 10px; padding: 16px;
+    background: var(--surface); border-bottom: 1px solid var(--border2);
+  }
+
+  /* Sessions */
+  .sessions-wrap { padding: 0 16px 16px; }
+  .sessions-label {
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: .07em; color: var(--muted); margin: 14px 0 8px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .session-row {
+    display: grid;
+    grid-template-columns: 160px 120px 1fr 100px 28px;
+    gap: 8px; align-items: center;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border2);
+  }
+  .session-row:last-child { border-bottom: none; }
+
+  .session-row input, .session-row select {
+    background: var(--surface); border: 1px solid var(--border);
+    color: var(--text); padding: 6px 9px; border-radius: 6px;
+    font-family: var(--mono); font-size: 12px;
+    outline: none; transition: border-color .15s; width: 100%;
+  }
+  .session-row input:focus, .session-row select:focus { border-color: var(--red); }
+  .session-row input::placeholder { color: var(--subtle); }
+
+  /* TBC checkbox pill */
+  .tbc-wrap {
+    display: flex; align-items: center; gap: 5px;
+  }
+  .tbc-label {
+    font-size: 11px; color: var(--muted); cursor: pointer;
+    font-family: var(--mono);
+  }
+  input[type=checkbox].tbc-check {
+    accent-color: var(--amber); width: 13px; height: 13px; cursor: pointer;
+  }
+
+  /* ── Status banner ── */
+  .status-bar {
+    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 100px; padding: 10px 20px;
+    display: none; align-items: center; gap: 10px;
+    font-size: 13px; box-shadow: 0 8px 32px rgba(0,0,0,.5);
+    z-index: 999; min-width: 280px; justify-content: center;
+  }
+  .status-bar.show { display: flex; }
+  .status-bar.success { border-color: var(--green); color: var(--green); }
+  .status-bar.error   { border-color: var(--red); color: var(--red); }
+  .status-bar.loading { border-color: var(--amber); color: var(--amber); }
+
+  /* ── Empty state ── */
+  .empty {
+    text-align: center; padding: 60px 20px;
+    color: var(--muted);
+  }
+  .empty svg { opacity: .2; margin-bottom: 14px; }
+  .empty h3 { font-family: var(--display); font-size: 16px; margin-bottom: 6px; color: var(--text); }
+
+  /* ── Modal ── */
+  .modal-backdrop {
+    position: fixed; inset: 0; background: rgba(0,0,0,.7);
+    backdrop-filter: blur(4px); z-index: 500;
+    display: none; align-items: center; justify-content: center;
+  }
+  .modal-backdrop.show { display: flex; }
+  .modal {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 28px; width: 460px; max-width: 95vw;
+  }
+  .modal h2 { font-family: var(--display); font-size: 18px; font-weight: 800; margin-bottom: 6px; }
+  .modal p  { color: var(--muted); font-size: 13px; margin-bottom: 20px; line-height: 1.5; }
+  .modal-fields { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
+  .modal-actions { display: flex; justify-content: flex-end; gap: 8px; }
+
+  /* ── Scrollbar ── */
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+  /* ── Spinner ── */
+  .spin {
+    width: 14px; height: 14px; border: 2px solid currentColor;
+    border-top-color: transparent; border-radius: 50%;
+    animation: spin .6s linear infinite; display: inline-block;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  select option { background: var(--card); }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <div class="logo">
+    <div class="logo-dot"></div>
+    RaceDay Editor
+  </div>
+  <div class="header-actions">
+    <button class="btn btn-ghost btn-sm" onclick="exportJSON()">⬇ Export JSON</button>
+    <button class="btn btn-primary btn-sm" onclick="publishToGitHub()">
+      <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+      Push to GitHub
+    </button>
+  </div>
+</header>
+
+<!-- Layout -->
+<div class="layout">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <span class="sidebar-title">Series</span>
+      <button class="btn-icon" onclick="showAddSeries()" title="Add series">+</button>
+    </div>
+    <div class="series-list" id="seriesList"></div>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+    <div class="main-inner" id="mainContent">
+      <div class="empty">
+        <svg width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M3 7h18M3 12h18M3 17h12"/></svg>
+        <h3>Select a series</h3>
+        <p>Choose a series from the sidebar to start editing its calendar.</p>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- Status bar -->
+<div class="status-bar" id="statusBar"></div>
+
+<!-- Add Series Modal -->
+<div class="modal-backdrop" id="addSeriesModal">
+  <div class="modal">
+    <h2>Add Series</h2>
+    <p>Create a new racing series. The file will be saved as <code style="font-family:var(--mono);color:var(--amber)">{id}_2026.json</code> in your GitHub repo.</p>
+    <div class="modal-fields">
+      <div class="field">
+        <label>Series ID (lowercase, no spaces)</label>
+        <input type="text" id="newSeriesId" placeholder="e.g. motogp" />
+      </div>
+      <div class="field">
+        <label>Display Name</label>
+        <input type="text" id="newSeriesName" placeholder="e.g. MotoGP" />
+      </div>
+      <div class="field">
+        <label>Color (hex)</label>
+        <input type="text" id="newSeriesColor" placeholder="#e8001a" value="#e8001a" />
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeModal('addSeriesModal')">Cancel</button>
+      <button class="btn btn-primary" onclick="confirmAddSeries()">Add Series</button>
+    </div>
+  </div>
+</div>
+
+<!-- GitHub Settings Modal -->
+<div class="modal-backdrop" id="githubModal">
+  <div class="modal">
+    <h2>GitHub Settings</h2>
+    <p>Your token is stored locally in this browser only. Create a token at github.com → Settings → Developer settings → Personal access tokens with <strong>repo</strong> scope.</p>
+    <div class="modal-fields">
+      <div class="field">
+        <label>Personal Access Token</label>
+        <input type="password" id="ghToken" placeholder="ghp_..." />
+      </div>
+      <div class="field">
+        <label>Repository (owner/repo)</label>
+        <input type="text" id="ghRepo" placeholder="yourname/raceday-data" />
+      </div>
+      <div class="field">
+        <label>Branch</label>
+        <input type="text" id="ghBranch" placeholder="main" value="main" />
+      </div>
+      <div class="field">
+        <label>Path in repo (folder for JSON files)</label>
+        <input type="text" id="ghPath" placeholder="data" value="data" />
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeModal('githubModal')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveGitHubSettings()">Save</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── State ──────────────────────────────────────────────────────────────────────
+
+const KIND_OPTIONS = [
+  { value: 'practice',        label: 'Practice' },
+  { value: 'qualifying',      label: 'Qualifying' },
+  { value: 'hyperpole',       label: 'Hyperpole' },
+  { value: 'sprintQualifying',label: 'Sprint Qualifying' },
+  { value: 'sprintRace',      label: 'Sprint Race' },
+  { value: 'featureRace',     label: 'Feature Race' },
+  { value: 'shakedown',       label: 'Shakedown' },
+  { value: 'stage',           label: 'Stage' },
+  { value: 'testing',         label: 'Testing' },
+  { value: 'race',            label: 'Race' },
+];
+
+const DEFAULT_SERIES = [
+  { id: 'f1',      name: 'Formula 1',  color: '#e8001a' },
+  { id: 'f2',      name: 'Formula 2',  color: '#0065ff' },
+  { id: 'f3',      name: 'Formula 3',  color: '#00b0ff' },
+  { id: 'indycar', name: 'IndyCar',    color: '#002d72' },
+  { id: 'nascar',  name: 'NASCAR',     color: '#ffd700' },
+  { id: 'wec',     name: 'WEC',        color: '#9b59b6' },
+];
+
+let state = {
+  series: [],           // [{id, name, color}]
+  data: {},             // {seriesId: [RaceRound]}
+  activeSeries: null,
+  github: { token: '', repo: '', branch: 'main', path: 'data' }
+};
+
+// ── Persistence ────────────────────────────────────────────────────────────────
+
+function load() {
+  try {
+    const saved = localStorage.getItem('raceday_editor');
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      state.series  = parsed.series  || DEFAULT_SERIES;
+      state.data    = parsed.data    || {};
+      state.github  = parsed.github  || state.github;
+    } else {
+      state.series = DEFAULT_SERIES;
+    }
+  } catch { state.series = DEFAULT_SERIES; }
+  // Load GitHub credentials separately
+  const gh = localStorage.getItem('raceday_gh');
+  if (gh) try { state.github = { ...state.github, ...JSON.parse(gh) }; } catch {}
+}
+
+function save() {
+  localStorage.setItem('raceday_editor', JSON.stringify({
+    series: state.series,
+    data:   state.data,
+  }));
+  localStorage.setItem('raceday_gh', JSON.stringify(state.github));
+}
+
+// ── Render Sidebar ─────────────────────────────────────────────────────────────
+
+function renderSidebar() {
+  const list = document.getElementById('seriesList');
+  list.innerHTML = state.series.map(s => {
+    const rounds = (state.data[s.id] || []).length;
+    const active = s.id === state.activeSeries ? ' active' : '';
+    return `
+      <div class="series-item${active}" onclick="selectSeries('${s.id}')">
+        <div class="series-dot" style="background:${s.color}"></div>
+        <span class="series-name">${s.name}</span>
+        <span class="series-count">${rounds}r</span>
+      </div>`;
+  }).join('');
+}
+
+// ── Select Series ──────────────────────────────────────────────────────────────
+
+function selectSeries(id) {
+  state.activeSeries = id;
+  renderSidebar();
+  renderMain();
+}
+
+// ── Render Main ────────────────────────────────────────────────────────────────
+
+function renderMain() {
+  const series = state.series.find(s => s.id === state.activeSeries);
+  if (!series) return;
+  const rounds = state.data[series.id] || [];
+
+  const content = document.getElementById('mainContent');
+  content.innerHTML = `
+    <!-- GitHub config -->
+    <div class="config-card">
+      <h3>⚙ GitHub Configuration</h3>
+      <div class="config-grid">
+        <div class="field">
+          <label>Token</label>
+          <input type="password" id="cfg_token" placeholder="ghp_..." value="${esc(state.github.token)}"/>
+        </div>
+        <div class="field">
+          <label>Repository (owner/repo)</label>
+          <input type="text" id="cfg_repo" placeholder="yourname/raceday-data" value="${esc(state.github.repo)}"/>
+        </div>
+        <div class="field">
+          <label>Branch</label>
+          <input type="text" id="cfg_branch" placeholder="main" value="${esc(state.github.branch)}"/>
+        </div>
+      </div>
+      <div style="margin-top:10px;display:flex;align-items:flex-end;gap:12px">
+        <div class="field">
+          <label>Path in repo (folder for JSON files)</label>
+          <input type="text" style="max-width:260px" id="cfg_path" placeholder="data" value="${esc(state.github.path)}"/>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="saveGitHubConfig()" style="margin-bottom:1px">Save settings</button>
+      </div>
+    </div>
+
+    <!-- Section heading -->
+    <div class="section-heading">
+      <div>
+        <div class="section-title">${series.name}</div>
+        <div class="section-meta">${rounds.length} rounds · ${series.id}_2026.json</div>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-ghost btn-sm" onclick="importJSON()">⬆ Import JSON</button>
+        <button class="btn btn-surface btn-sm" onclick="addRound()">+ Add Round</button>
+      </div>
+    </div>
+
+    <!-- Rounds -->
+    <div id="roundsList">
+      ${rounds.length === 0
+        ? `<div class="empty" style="padding:40px 0">
+            <h3>No rounds yet</h3>
+            <p>Click "Add Round" to start building the calendar.</p>
+           </div>`
+        : rounds.map((r, i) => renderRound(r, i, series)).join('')}
+    </div>
+  `;
+}
+
+function renderRound(r, i, series) {
+  const sessionRows = (r.sessions || []).map((s, si) => renderSession(s, i, si)).join('');
+  return `
+    <div class="round-card" id="round_${i}">
+      <div class="round-header" onclick="toggleRound(${i})">
+        <span class="round-num">R${r.roundNumber || i+1}</span>
+        <span class="round-name">${r.raceName || 'Unnamed Round'}</span>
+        <span class="round-meta">${r.city ? r.city + ', ' + r.country : ''}</span>
+        <div style="display:flex;gap:4px;margin-left:8px">
+          <button class="btn-icon danger" onclick="event.stopPropagation();deleteRound(${i})" title="Delete round">🗑</button>
+        </div>
+        <span class="round-chevron">▶</span>
+      </div>
+      <div class="round-body">
+        <div class="round-fields">
+          <div class="field">
+            <label>Round #</label>
+            <input type="number" value="${r.roundNumber||i+1}" min="1"
+              oninput="updateRound(${i},'roundNumber',+this.value)"/>
+          </div>
+          <div class="field">
+            <label>Race Name</label>
+            <input type="text" value="${esc(r.raceName||'')}" placeholder="Australian Grand Prix"
+              oninput="updateRound(${i},'raceName',this.value)"/>
+          </div>
+          <div class="field">
+            <label>Circuit Name</label>
+            <input type="text" value="${esc(r.circuitName||'')}" placeholder="Albert Park Circuit"
+              oninput="updateRound(${i},'circuitName',this.value)"/>
+          </div>
+          <div class="field">
+            <label>City</label>
+            <input type="text" value="${esc(r.city||'')}" placeholder="Melbourne"
+              oninput="updateRound(${i},'city',this.value)"/>
+          </div>
+          <div class="field">
+            <label>Country</label>
+            <input type="text" value="${esc(r.country||'')}" placeholder="Australia"
+              oninput="updateRound(${i},'country',this.value)"/>
+          </div>
+          <div class="field">
+            <label>Country Code</label>
+            <input type="text" value="${esc(r.countryCode||'')}" placeholder="AU" maxlength="2"
+              oninput="updateRound(${i},'countryCode',this.value.toUpperCase())"/>
+          </div>
+          <div class="field">
+            <label>Round ID</label>
+            <input type="text" value="${esc(r.id||'')}" placeholder="f1-2026-r01" style="font-family:var(--mono)"
+              oninput="updateRound(${i},'id',this.value)"/>
+          </div>
+        </div>
+        <div class="sessions-wrap">
+          <div class="sessions-label">
+            Sessions
+            <button class="btn btn-surface btn-sm" onclick="addSession(${i})">+ Add Session</button>
+          </div>
+          <div style="display:grid;grid-template-columns:160px 130px 1fr 120px 28px;gap:8px;padding:4px 0 6px;border-bottom:1px solid var(--border2)">
+            <span style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em">Name</span>
+            <span style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em">Kind</span>
+            <span style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em">Date (UTC) · Time · TBC</span>
+            <span style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em">Duration (min)</span>
+            <span></span>
+          </div>
+          <div id="sessions_${i}">${sessionRows}</div>
+        </div>
+      </div>
+    </div>`;
+}
+
+function renderSession(s, ri, si) {
+  const isTBC = s.dateUTC === null || (typeof s.dateUTC === 'string' && s.dateUTC.endsWith('TBC'));
+  // Parse existing date/time parts
+  let dateVal = '', timeVal = '';
+  if (s.dateUTC && s.dateUTC !== null) {
+    const raw = s.dateUTC.replace('Z','');
+    if (raw.includes('T')) {
+      dateVal = raw.split('T')[0];
+      const t = raw.split('T')[1];
+      // If time is 00:00:00 and TBC, treat time as unknown
+      timeVal = (isTBC || t === '00:00:00') ? '' : t.substring(0,5);
+    } else {
+      dateVal = raw; // date only string
+    }
+  }
+  if (isTBC && s._date) dateVal = s._date; // stashed date
+
+  const kindOptions = KIND_OPTIONS.map(k =>
+    `<option value="${k.value}" ${s.kind === k.value ? 'selected' : ''}>${k.label}</option>`
+  ).join('');
+
+  return `
+    <div class="session-row" id="session_${ri}_${si}">
+      <input type="text" value="${esc(s.name||'')}" placeholder="Practice 1"
+        oninput="updateSession(${ri},${si},'name',this.value)"/>
+      <select onchange="updateSession(${ri},${si},'kind',this.value)">
+        <option value="">— select —</option>
+        ${kindOptions}
+      </select>
+      <div style="display:flex;align-items:center;gap:6px;min-width:0">
+        <input type="date" value="${esc(dateVal)}" style="flex:1;min-width:0"
+          id="date_${ri}_${si}"
+          onchange="updateDateTime(${ri},${si})"/>
+        <input type="time" value="${esc(timeVal)}" style="width:82px"
+          id="time_${ri}_${si}"
+          ${isTBC ? 'disabled placeholder="TBC" style="opacity:.4;width:82px"' : ''}
+          onchange="updateDateTime(${ri},${si})"/>
+        <div class="tbc-wrap">
+          <input type="checkbox" class="tbc-check" id="tbc_${ri}_${si}"
+            ${isTBC ? 'checked' : ''}
+            onchange="toggleTBC(${ri},${si},this.checked)"/>
+          <label class="tbc-label" for="tbc_${ri}_${si}">TBC</label>
+        </div>
+      </div>
+      <input type="number" value="${s.durationMinutes||60}" min="1"
+        oninput="updateSession(${ri},${si},'durationMinutes',+this.value)"/>
+      <button class="btn-icon danger" onclick="deleteSession(${ri},${si})" title="Delete">🗑</button>
+    </div>`;
+}
+
+// ── Data mutations ─────────────────────────────────────────────────────────────
+
+function updateRound(i, key, val) {
+  const rounds = state.data[state.activeSeries];
+  rounds[i][key] = val;
+  // Auto-generate ID if empty
+  if (key === 'roundNumber' && !rounds[i].id) {
+    rounds[i].id = `${state.activeSeries}-2026-r${String(val).padStart(2,'0')}`;
+  }
+  save();
+  // Refresh round header without full re-render
+  const header = document.querySelector(`#round_${i} .round-name`);
+  if (header && key === 'raceName') header.textContent = val || 'Unnamed Round';
+  const num = document.querySelector(`#round_${i} .round-num`);
+  if (num && key === 'roundNumber') num.textContent = `R${val}`;
+}
+
+function updateSession(ri, si, key, val) {
+  const rounds = state.data[state.activeSeries];
+  rounds[ri].sessions[si][key] = val;
+  save();
+}
+
+function toggleTBC(ri, si, tbc) {
+  const rounds = state.data[state.activeSeries];
+  const session = rounds[ri].sessions[si];
+  const dateInput = document.getElementById(`date_${ri}_${si}`);
+  const timeInput = document.getElementById(`time_${ri}_${si}`);
+  const dateVal = dateInput ? dateInput.value : '';
+
+  if (tbc) {
+    // Stash the date so we keep it, clear time
+    session._date = dateVal;
+    session.dateUTC = null;
+    if (timeInput) { timeInput.disabled = true; timeInput.value = ''; timeInput.style.opacity = '.4'; }
+  } else {
+    // Restore: if we have a stashed date, use it
+    if (session._date && dateInput) dateInput.value = session._date;
+    delete session._date;
+    if (timeInput) { timeInput.disabled = false; timeInput.style.opacity = '1'; }
+    updateDateTime(ri, si);
+  }
+  save();
+}
+
+function updateDateTime(ri, si) {
+  const rounds = state.data[state.activeSeries];
+  const session = rounds[ri].sessions[si];
+  const isTBC = document.getElementById(`tbc_${ri}_${si}`)?.checked;
+  const dateVal = document.getElementById(`date_${ri}_${si}`)?.value || '';
+  const timeVal = document.getElementById(`time_${ri}_${si}`)?.value || '';
+
+  if (isTBC) {
+    // Has date but no time — store null (TBC), stash date
+    session._date = dateVal;
+    session.dateUTC = null;
+  } else if (dateVal && timeVal) {
+    session.dateUTC = `${dateVal}T${timeVal}:00Z`;
+  } else if (dateVal) {
+    // Date known, no time yet — treat as TBC
+    session._date = dateVal;
+    session.dateUTC = null;
+  } else {
+    session.dateUTC = null;
+  }
+  save();
+}
+
+function toggleRound(i) {
+  const card = document.getElementById(`round_${i}`);
+  card.classList.toggle('open');
+}
+
+function addRound() {
+  if (!state.activeSeries) return;
+  const rounds = state.data[state.activeSeries] || [];
+  const num = rounds.length + 1;
+  const id = `${state.activeSeries}-2026-r${String(num).padStart(2,'0')}`;
+  rounds.push({
+    id, seriesId: state.activeSeries, roundNumber: num,
+    raceName: '', circuitName: '', city: '', country: '', countryCode: '',
+    sessions: []
+  });
+  state.data[state.activeSeries] = rounds;
+  save();
+  renderMain();
+  // Auto-open new round
+  setTimeout(() => {
+    const card = document.getElementById(`round_${rounds.length-1}`);
+    if (card) card.classList.add('open');
+  }, 50);
+}
+
+function deleteRound(i) {
+  if (!confirm('Delete this round?')) return;
+  state.data[state.activeSeries].splice(i, 1);
+  save();
+  renderMain();
+  renderSidebar();
+}
+
+function addSession(ri) {
+  const rounds = state.data[state.activeSeries];
+  const si = rounds[ri].sessions.length;
+  rounds[ri].sessions.push({ id: `${rounds[ri].id}-s${si+1}`, name: '', kind: 'practice', dateUTC: null, durationMinutes: 60 });
+  save();
+  const container = document.getElementById(`sessions_${ri}`);
+  if (container) {
+    const div = document.createElement('div');
+    div.innerHTML = renderSession(rounds[ri].sessions[si], ri, si);
+    container.appendChild(div.firstElementChild);
+  }
+}
+
+function deleteSession(ri, si) {
+  state.data[state.activeSeries][ri].sessions.splice(si, 1);
+  save();
+  renderMain(); // simple re-render
+}
+
+// ── JSON Export ────────────────────────────────────────────────────────────────
+
+function buildJSON(seriesId) {
+  const rounds = (state.data[seriesId] || []).map(r => ({
+    id: r.id,
+    seriesId: r.seriesId || seriesId,
+    roundNumber: r.roundNumber,
+    raceName: r.raceName,
+    circuitName: r.circuitName,
+    city: r.city,
+    country: r.country,
+    countryCode: r.countryCode,
+    sessions: (r.sessions || []).map(s => ({
+      id: s.id || `${r.id}-s`,
+      name: s.name,
+      kind: s.kind || 'race',
+      dateUTC: (s.dateUTC && s.dateUTC !== '') ? s.dateUTC : null,
+      durationMinutes: s.durationMinutes || 60
+    }))
+  }));
+  return JSON.stringify(rounds, null, 2);
+}
+
+function exportJSON() {
+  if (!state.activeSeries) return showStatus('Select a series first', 'error');
+  const json = buildJSON(state.activeSeries);
+  const blob = new Blob([json], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `${state.activeSeries}_2026.json`;
+  a.click();
+}
+
+// ── JSON Import ────────────────────────────────────────────────────────────────
+
+function importJSON() {
+  const input = document.createElement('input');
+  input.type = 'file'; input.accept = '.json';
+  input.onchange = async e => {
+    const file = e.target.files[0];
+    if (!file) return;
+    try {
+      const text = await file.text();
+      const data = JSON.parse(text);
+      state.data[state.activeSeries] = data;
+      save();
+      renderMain();
+      renderSidebar();
+      showStatus(`Imported ${data.length} rounds`, 'success');
+    } catch {
+      showStatus('Invalid JSON file', 'error');
+    }
+  };
+  input.click();
+}
+
+// ── GitHub Push ────────────────────────────────────────────────────────────────
+
+function saveGitHubConfig() {
+  state.github.token  = document.getElementById('cfg_token').value.trim();
+  state.github.repo   = document.getElementById('cfg_repo').value.trim();
+  state.github.branch = document.getElementById('cfg_branch').value.trim() || 'main';
+  state.github.path   = document.getElementById('cfg_path').value.trim();
+  save();
+  showStatus('GitHub settings saved ✓', 'success');
+}
+
+async function publishToGitHub() {
+  const { token, repo, branch, path } = state.github;
+  if (!token) return showStatus('Enter your GitHub token in the config panel', 'error');
+  if (!repo)  return showStatus('Enter your GitHub repo (owner/repo)', 'error');
+  if (!state.activeSeries) return showStatus('Select a series first', 'error');
+
+  const filename = `${state.activeSeries}_2026.json`;
+  const filePath = path ? `${path.replace(/\/$/,'')}/${filename}` : filename;
+  const content = buildJSON(state.activeSeries);
+  const encoded = btoa(unescape(encodeURIComponent(content)));
+
+  showStatus('Pushing to GitHub…', 'loading');
+
+  try {
+    const apiBase = `https://api.github.com/repos/${repo}/contents/${filePath}`;
+    const headers = {
+      'Authorization': `Bearer ${token}`,
+      'Accept': 'application/vnd.github+json',
+      'Content-Type': 'application/json',
+      'X-GitHub-Api-Version': '2022-11-28'
+    };
+
+    // Get current SHA if file exists (needed for update)
+    let sha = null;
+    const getRes = await fetch(`${apiBase}?ref=${branch}`, { headers });
+    if (getRes.ok) {
+      const existing = await getRes.json();
+      sha = existing.sha;
+    }
+
+    const body = {
+      message: `Update ${filename} via RaceDay Editor`,
+      content: encoded,
+      branch: branch,
+      ...(sha ? { sha } : {})
+    };
+
+    const putRes = await fetch(apiBase, {
+      method: 'PUT', headers,
+      body: JSON.stringify(body)
+    });
+
+    if (putRes.ok) {
+      showStatus(`✓ ${filename} pushed to ${repo}`, 'success');
+    } else {
+      const err = await putRes.json();
+      showStatus(`GitHub error: ${err.message}`, 'error');
+    }
+  } catch (e) {
+    showStatus(`Error: ${e.message}`, 'error');
+  }
+}
+
+// ── Add Series ─────────────────────────────────────────────────────────────────
+
+function showAddSeries() {
+  document.getElementById('addSeriesModal').classList.add('show');
+}
+
+function confirmAddSeries() {
+  const id    = document.getElementById('newSeriesId').value.trim().toLowerCase();
+  const name  = document.getElementById('newSeriesName').value.trim();
+  const color = document.getElementById('newSeriesColor').value.trim() || '#e8001a';
+  if (!id || !name) return showStatus('Fill in ID and name', 'error');
+  if (state.series.find(s => s.id === id)) return showStatus('Series ID already exists', 'error');
+  state.series.push({ id, name, color });
+  state.data[id] = [];
+  save();
+  closeModal('addSeriesModal');
+  renderSidebar();
+  selectSeries(id);
+}
+
+// ── Utilities ──────────────────────────────────────────────────────────────────
+
+function esc(s) {
+  if (s === null || s === undefined) return '';
+  return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
+}
+
+function closeModal(id) {
+  document.getElementById(id).classList.remove('show');
+}
+
+let statusTimer;
+function showStatus(msg, type = 'success') {
+  const bar = document.getElementById('statusBar');
+  bar.className = 'status-bar show ' + type;
+  bar.innerHTML = type === 'loading'
+    ? `<span class="spin"></span> ${msg}`
+    : msg;
+  clearTimeout(statusTimer);
+  if (type !== 'loading') statusTimer = setTimeout(() => bar.classList.remove('show'), 3500);
+}
+
+// Close modals on backdrop click
+document.querySelectorAll('.modal-backdrop').forEach(el => {
+  el.addEventListener('click', e => { if (e.target === el) el.classList.remove('show'); });
+});
+
+// ── Init ───────────────────────────────────────────────────────────────────────
+load();
+renderSidebar();
+</script>
+</body>
+</html>
