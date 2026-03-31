@@ -686,25 +686,13 @@ function updateSession(ri, si, key, val) {
 }
 
 function toggleTBC(ri, si, tbc) {
-  const rounds = state.data[state.activeSeries];
-  const session = rounds[ri].sessions[si];
-  const dateInput = document.getElementById(`date_${ri}_${si}`);
   const timeInput = document.getElementById(`time_${ri}_${si}`);
-  const dateVal = dateInput ? dateInput.value : '';
-
   if (tbc) {
-    // Stash the date so we keep it, clear time
-    session._date = dateVal;
-    session.dateUTC = null;
     if (timeInput) { timeInput.disabled = true; timeInput.value = ''; timeInput.style.opacity = '.4'; }
   } else {
-    // Restore: if we have a stashed date, use it
-    if (session._date && dateInput) dateInput.value = session._date;
-    delete session._date;
     if (timeInput) { timeInput.disabled = false; timeInput.style.opacity = '1'; }
-    updateDateTime(ri, si);
   }
-  save();
+  updateDateTime(ri, si);
 }
 
 function updateDateTime(ri, si) {
@@ -714,19 +702,11 @@ function updateDateTime(ri, si) {
   const dateVal = document.getElementById(`date_${ri}_${si}`)?.value || '';
   const timeVal = document.getElementById(`time_${ri}_${si}`)?.value || '';
 
-  if (isTBC) {
-    // Has date but no time — store null (TBC), stash date
-    session._date = dateVal;
-    session.dateUTC = null;
-  } else if (dateVal && timeVal) {
-    session.dateUTC = `${dateVal}T${timeVal}:00Z`;
-  } else if (dateVal) {
-    // Date known, no time yet — treat as TBC
-    session._date = dateVal;
-    session.dateUTC = null;
-  } else {
-    session.dateUTC = null;
-  }
+  session._date = dateVal || null;
+  session._tbcMode = isTBC || !timeVal;
+  // Clear old format fields
+  delete session.dateUTC;
+  delete session.tbcDate;
   save();
 }
 
@@ -798,8 +778,8 @@ function buildJSON(seriesId) {
       id: s.id || `${r.id}-s`,
       name: s.name,
       kind: s.kind || 'race',
-      dateUTC: (s.dateUTC && s.dateUTC !== '') ? s.dateUTC : null,
-      ...((!s.dateUTC && s._date) ? { tbcDate: s._date } : {}),
+      date: s._date || (s.dateUTC ? s.dateUTC.split('T')[0] : null),
+      timeUTC: (!s._tbcMode && s.dateUTC && s.dateUTC.includes('T')) ? s.dateUTC.split('T')[1].substring(0,5) : null,
       durationMinutes: s.durationMinutes || 60
     }))
   }));
