@@ -966,38 +966,48 @@ function showAIModal() {
   document.getElementById('aiPreview').style.display = 'none';
   document.getElementById('aiError').style.display = 'none';
   document.getElementById('aiImportBtn').style.display = 'none';
-  document.getElementById('aiFetchBtn').textContent = '✦ Extract data';
+  document.getElementById('aiFetchBtn').innerHTML = '✦ Extract data';
+  resetAIProgress();
   aiExtractedData = null;
   document.getElementById('aiModal').classList.add('show');
 }
 
 
 function repairJSON(str) {
-  // Count open brackets/braces and close them
-  let open = 0;
+  // Track open structure stack
+  const stack = [];
   let inString = false;
   let escaped = false;
-  
+  let lastValidPos = 0;
+
   for (let i = 0; i < str.length; i++) {
     const c = str[i];
-    if (escaped) { escaped = false; continue; }
-    if (c === '\\') { escaped = true; continue; }
-    if (c === '"' && !escaped) { inString = !inString; continue; }
+    if (escaped) { escaped = false; lastValidPos = i; continue; }
+    if (c === '\\' && inString) { escaped = true; continue; }
+    if (c === '"') { inString = !inString; if (!inString) lastValidPos = i; continue; }
     if (inString) continue;
-    if (c === '{' || c === '[') open++;
-    if (c === '}' || c === ']') open--;
+    if (c === '{') { stack.push('}'); }
+    else if (c === '[') { stack.push(']'); }
+    else if (c === '}' || c === ']') {
+      if (stack.length && stack[stack.length-1] === c) stack.pop();
+    }
+    if (!inString && c !== ',' && c !== ' ' && c !== '\n' && c !== '\r' && c !== '\t') {
+      lastValidPos = i;
+    }
+  }
+
+  // Cut off at last valid position and close structures
+  let result = str.substring(0, lastValidPos + 1).trimEnd();
+  
+  // Remove trailing comma
+  result = result.replace(/,\s*$/, '');
+  
+  // Close all open structures in reverse order
+  while (stack.length) {
+    result += stack.pop();
   }
   
-  // Remove trailing comma if present
-  str = str.trimEnd().replace(/,\s*$/, '');
-  
-  // Close open structures
-  for (let i = 0; i < open; i++) {
-    // Determine what to close based on last open char
-    str += i === open - 1 ? '}]' : '}';
-  }
-  
-  return str;
+  return result;
 }
 
 async function aiFetch() {
@@ -1014,7 +1024,8 @@ async function aiFetch() {
   errorEl.style.display = 'none';
   previewEl.style.display = 'none';
   document.getElementById('aiImportBtn').style.display = 'none';
-  setAIStatus('Fetching schedule from URL…');
+  resetAIProgress();
+  setAIStep(1, 10);
 
   const series = state.series.find(s => s.id === state.activeSeries);
   const seriesName = series?.name || state.activeSeries;
@@ -1060,7 +1071,7 @@ Rules:
 - Return ONLY the JSON array. No markdown, no explanation, no backticks.`;
 
   try {
-    setAIStatus('Calling Claude API with web search…');
+    setAIStep(1, 20);
     const response = await fetch('https://raceday-ai-proxy.gentle-meadow-2bdd.workers.dev', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -1081,8 +1092,9 @@ Rules:
       throw new Error(`API error ${response.status}: ${errData.error?.message || response.statusText}`);
     }
 
-    setAIStatus('Parsing response…');
+    setAIStep(2, 45);
     const data = await response.json();
+    setAIStep(3, 65);
     
     // Extract text from response (may have tool use blocks)
     let text = '';
@@ -1094,6 +1106,7 @@ Rules:
     
     if (!text) throw new Error('Empty response from Claude. Stop_reason: ' + data.stop_reason);
 
+    setAIStep(4, 80);
     // Parse JSON from response — handle possible truncation
     const jsonStart = text.indexOf('[');
     if (jsonStart === -1) throw new Error('No JSON array found in response. Raw: ' + text.substring(0, 200));
@@ -1116,17 +1129,18 @@ Rules:
     }
     
     if (!Array.isArray(parsed) || parsed.length === 0) throw new Error('Empty or invalid data returned');
+    setAIStep(5, 95);
 
     aiExtractedData = parsed;
-    setAIStatus('');
-    showAIPreview(parsed);
+    setAIStep(5, 100);
+    setTimeout(() => { resetAIProgress(); showAIPreview(parsed); }, 400);
 
   } catch (err) {
     const msg = err.message || String(err);
     errorEl.innerHTML = '<strong>Error:</strong> ' + msg + 
       '<br><small style="opacity:.7">Check the browser console (F12) for details.</small>';
     errorEl.style.display = 'block';
-    setAIStatus('');
+    resetAIProgress();
     console.error('AI fetch error:', err);
   }
 
@@ -1135,19 +1149,31 @@ Rules:
 }
 
 function setAIStatus(msg) {
-  let el = document.getElementById('aiStatus');
-  if (!el) {
-    el = document.createElement('div');
-    el.id = 'aiStatus';
-    el.style.cssText = 'font-size:12px;color:var(--amber);margin-bottom:8px;display:flex;align-items:center;gap:6px;min-height:20px';
-    const errorEl = document.getElementById('aiError');
-    errorEl.parentNode.insertBefore(el, errorEl);
+  // kept for compatibility but now uses progress
+}
+
+function setAIStep(stepNum, pct) {
+  const progress = document.getElementById('aiProgress');
+  const bar = document.getElementById('aiProgressBar');
+  if (progress) progress.style.display = 'block';
+  if (bar) bar.style.width = pct + '%';
+  for (let i = 1; i <= 5; i++) {
+    const el = document.getElementById('step' + i);
+    if (!el) continue;
+    if (i < stepNum) { el.className = 'ai-step done'; }
+    else if (i === stepNum) { el.className = 'ai-step active'; }
+    else { el.className = 'ai-step'; }
   }
-  if (msg) {
-    el.innerHTML = '<span class="spin"></span> ' + msg;
-    el.style.display = 'flex';
-  } else {
-    el.style.display = 'none';
+}
+
+function resetAIProgress() {
+  const progress = document.getElementById('aiProgress');
+  if (progress) progress.style.display = 'none';
+  const bar = document.getElementById('aiProgressBar');
+  if (bar) bar.style.width = '0%';
+  for (let i = 1; i <= 5; i++) {
+    const el = document.getElementById('step' + i);
+    if (el) el.className = 'ai-step';
   }
 }
 
@@ -1237,6 +1263,20 @@ renderSidebar();
       </div>
     </div>
 
+    <!-- Progress -->
+    <div class="ai-progress" id="aiProgress">
+      <div class="ai-progress-bar-wrap">
+        <div class="ai-progress-bar" id="aiProgressBar"></div>
+      </div>
+      <div class="ai-progress-steps">
+        <div class="ai-step" id="step1">Connecting to Claude API</div>
+        <div class="ai-step" id="step2">Fetching schedule page</div>
+        <div class="ai-step" id="step3">Extracting rounds and sessions</div>
+        <div class="ai-step" id="step4">Converting times to UTC</div>
+        <div class="ai-step" id="step5">Parsing and validating JSON</div>
+      </div>
+    </div>
+
     <!-- Preview area -->
     <div id="aiPreview" style="display:none;margin-bottom:16px">
       <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:8px">Preview — <span id="aiPreviewCount"></span> rounds found</div>
@@ -1277,6 +1317,31 @@ renderSidebar();
 }
 .ai-round-preview .sess-tag.has-time { border-color: var(--green); color: var(--green); }
 .ai-round-preview .sess-tag.tbc { border-color: var(--amber); color: var(--amber); }
+
+.ai-progress {
+  margin-bottom: 14px;
+  display: none;
+}
+.ai-progress-bar-wrap {
+  height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; margin-bottom: 8px;
+}
+.ai-progress-bar {
+  height: 100%; background: linear-gradient(90deg, #6366f1, #818cf8);
+  border-radius: 2px; transition: width 0.6s ease; width: 0%;
+}
+.ai-progress-steps {
+  display: flex; flex-direction: column; gap: 4px;
+}
+.ai-step {
+  font-size: 11px; font-family: var(--mono);
+  color: var(--muted); display: flex; align-items: center; gap: 6px;
+  transition: color .3s;
+}
+.ai-step.active { color: #818cf8; }
+.ai-step.done { color: var(--green); }
+.ai-step::before { content: '○'; font-size: 10px; }
+.ai-step.active::before { content: '◉'; }
+.ai-step.done::before { content: '✓'; }
 </style>
 
 </body>
