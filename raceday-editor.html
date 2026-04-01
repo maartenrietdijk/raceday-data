@@ -971,6 +971,35 @@ function showAIModal() {
   document.getElementById('aiModal').classList.add('show');
 }
 
+
+function repairJSON(str) {
+  // Count open brackets/braces and close them
+  let open = 0;
+  let inString = false;
+  let escaped = false;
+  
+  for (let i = 0; i < str.length; i++) {
+    const c = str[i];
+    if (escaped) { escaped = false; continue; }
+    if (c === '\\') { escaped = true; continue; }
+    if (c === '"' && !escaped) { inString = !inString; continue; }
+    if (inString) continue;
+    if (c === '{' || c === '[') open++;
+    if (c === '}' || c === ']') open--;
+  }
+  
+  // Remove trailing comma if present
+  str = str.trimEnd().replace(/,\s*$/, '');
+  
+  // Close open structures
+  for (let i = 0; i < open; i++) {
+    // Determine what to close based on last open char
+    str += i === open - 1 ? '}]' : '}';
+  }
+  
+  return str;
+}
+
 async function aiFetch() {
   const url = document.getElementById('aiUrl').value.trim();
   const context = document.getElementById('aiContext').value.trim();
@@ -1035,7 +1064,7 @@ Rules:
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         model: 'claude-sonnet-4-20250514',
-        max_tokens: 8000,
+        max_tokens: 16000,
         tools: [{ type: 'web_search_20250305', name: 'web_search' }],
         system: systemPrompt,
         messages: [{
@@ -1063,11 +1092,27 @@ Rules:
     
     if (!text) throw new Error('Empty response from Claude. Stop_reason: ' + data.stop_reason);
 
-    // Parse JSON from response
-    const jsonMatch = text.match(/\[\s*\{[\s\S]*\}\s*\]/);
-    if (!jsonMatch) throw new Error('No valid JSON array found in response');
+    // Parse JSON from response — handle possible truncation
+    const jsonStart = text.indexOf('[');
+    if (jsonStart === -1) throw new Error('No JSON array found in response. Raw: ' + text.substring(0, 200));
     
-    const parsed = JSON.parse(jsonMatch[0]);
+    let jsonStr = text.substring(jsonStart);
+    
+    // Try parsing as-is first
+    let parsed;
+    try {
+      parsed = JSON.parse(jsonStr);
+    } catch (e) {
+      // JSON is truncated — try to repair it by closing open structures
+      setAIStatus('Repairing truncated JSON…');
+      jsonStr = repairJSON(jsonStr);
+      try {
+        parsed = JSON.parse(jsonStr);
+      } catch (e2) {
+        throw new Error('JSON parse failed: ' + e2.message + '. Try with fewer rounds or add context.');
+      }
+    }
+    
     if (!Array.isArray(parsed) || parsed.length === 0) throw new Error('Empty or invalid data returned');
 
     aiExtractedData = parsed;
