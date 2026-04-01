@@ -977,15 +977,15 @@ async function aiFetch() {
   if (!url) return;
 
   const btn = document.getElementById('aiFetchBtn');
-  const spin = document.getElementById('aiSpinFetch');
   const errorEl = document.getElementById('aiError');
   const previewEl = document.getElementById('aiPreview');
 
   btn.disabled = true;
-  spin.style.display = 'inline-block';
-  btn.childNodes[btn.childNodes.length - 1].textContent = ' Extracting…';
+  btn.innerHTML = '<span class="spin"></span> Reading page…';
   errorEl.style.display = 'none';
   previewEl.style.display = 'none';
+  document.getElementById('aiImportBtn').style.display = 'none';
+  setAIStatus('Fetching schedule from URL…');
 
   const series = state.series.find(s => s.id === state.activeSeries);
   const seriesName = series?.name || state.activeSeries;
@@ -1029,6 +1029,7 @@ Rules:
 - Return ONLY the JSON array. No markdown, no explanation, no backticks.`;
 
   try {
+    setAIStatus('Calling Claude API with web search…');
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -1044,6 +1045,12 @@ Rules:
       })
     });
 
+    if (!response.ok) {
+      const errData = await response.json().catch(() => ({}));
+      throw new Error(`API error ${response.status}: ${errData.error?.message || response.statusText}`);
+    }
+
+    setAIStatus('Parsing response…');
     const data = await response.json();
     
     // Extract text from response (may have tool use blocks)
@@ -1053,6 +1060,8 @@ Rules:
         if (block.type === 'text') text += block.text;
       }
     }
+    
+    if (!text) throw new Error('Empty response from Claude. Stop_reason: ' + data.stop_reason);
 
     // Parse JSON from response
     const jsonMatch = text.match(/\[\s*\{[\s\S]*\}\s*\]/);
@@ -1062,16 +1071,37 @@ Rules:
     if (!Array.isArray(parsed) || parsed.length === 0) throw new Error('Empty or invalid data returned');
 
     aiExtractedData = parsed;
+    setAIStatus('');
     showAIPreview(parsed);
 
   } catch (err) {
-    errorEl.textContent = 'Error: ' + err.message;
+    const msg = err.message || String(err);
+    errorEl.innerHTML = '<strong>Error:</strong> ' + msg + 
+      '<br><small style="opacity:.7">Check the browser console (F12) for details.</small>';
     errorEl.style.display = 'block';
+    setAIStatus('');
+    console.error('AI fetch error:', err);
   }
 
   btn.disabled = false;
-  spin.style.display = 'none';
-  btn.childNodes[btn.childNodes.length - 1].textContent = ' Extract data';
+  btn.innerHTML = '✦ Extract data';
+}
+
+function setAIStatus(msg) {
+  let el = document.getElementById('aiStatus');
+  if (!el) {
+    el = document.createElement('div');
+    el.id = 'aiStatus';
+    el.style.cssText = 'font-size:12px;color:var(--amber);margin-bottom:8px;display:flex;align-items:center;gap:6px;min-height:20px';
+    const errorEl = document.getElementById('aiError');
+    errorEl.parentNode.insertBefore(el, errorEl);
+  }
+  if (msg) {
+    el.innerHTML = '<span class="spin"></span> ' + msg;
+    el.style.display = 'flex';
+  } else {
+    el.style.display = 'none';
+  }
 }
 
 function showAIPreview(rounds) {
