@@ -973,40 +973,81 @@ function showAIModal() {
 }
 
 
-function repairJSON(str) {
-  // Track open structure stack
-  const stack = [];
+function extractJSONArray(text) {
+  // Find the start of the JSON array
+  const start = text.indexOf('[');
+  if (start === -1) throw new Error('No JSON array found in response');
+
+  // Walk character by character to find the matching closing bracket
+  let depth = 0;
   let inString = false;
   let escaped = false;
-  let lastValidPos = 0;
+  let end = -1;
 
-  for (let i = 0; i < str.length; i++) {
-    const c = str[i];
-    if (escaped) { escaped = false; lastValidPos = i; continue; }
+  for (let i = start; i < text.length; i++) {
+    const c = text[i];
+    if (escaped) { escaped = false; continue; }
     if (c === '\\' && inString) { escaped = true; continue; }
-    if (c === '"') { inString = !inString; if (!inString) lastValidPos = i; continue; }
+    if (c === '"') { inString = !inString; continue; }
     if (inString) continue;
-    if (c === '{') { stack.push('}'); }
-    else if (c === '[') { stack.push(']'); }
-    else if (c === '}' || c === ']') {
-      if (stack.length && stack[stack.length-1] === c) stack.pop();
-    }
-    if (!inString && c !== ',' && c !== ' ' && c !== '\n' && c !== '\r' && c !== '\t') {
-      lastValidPos = i;
+    if (c === '[' || c === '{') depth++;
+    if (c === ']' || c === '}') {
+      depth--;
+      if (depth === 0) { end = i; break; }
     }
   }
 
-  // Cut off at last valid position and close structures
-  let result = str.substring(0, lastValidPos + 1).trimEnd();
-  
-  // Remove trailing comma
-  result = result.replace(/,\s*$/, '');
-  
-  // Close all open structures in reverse order
-  while (stack.length) {
-    result += stack.pop();
+  // Try complete JSON first
+  if (end !== -1) {
+    const candidate = text.substring(start, end + 1);
+    try {
+      return JSON.parse(candidate);
+    } catch(e) {
+      // Fall through to repair
+    }
   }
+
+  // JSON is incomplete — collect complete objects
+  const result = [];
+  let i = start + 1; // skip opening [
   
+  while (i < text.length) {
+    // Skip whitespace and commas
+    while (i < text.length && (text[i] === ',' || text[i] === ' ' || text[i] === '\n' || text[i] === '\r' || text[i] === '\t')) i++;
+    if (i >= text.length || text[i] !== '{') break;
+
+    // Find the end of this complete object
+    let objDepth = 0;
+    let objInString = false;
+    let objEscaped = false;
+    let objEnd = -1;
+
+    for (let j = i; j < text.length; j++) {
+      const c = text[j];
+      if (objEscaped) { objEscaped = false; continue; }
+      if (c === '\\' && objInString) { objEscaped = true; continue; }
+      if (c === '"') { objInString = !objInString; continue; }
+      if (objInString) continue;
+      if (c === '{' || c === '[') objDepth++;
+      if (c === '}' || c === ']') {
+        objDepth--;
+        if (objDepth === 0) { objEnd = j; break; }
+      }
+    }
+
+    if (objEnd === -1) break; // incomplete object — stop here
+
+    const objStr = text.substring(i, objEnd + 1);
+    try {
+      const obj = JSON.parse(objStr);
+      result.push(obj);
+      i = objEnd + 1;
+    } catch(e) {
+      break; // can't parse this object
+    }
+  }
+
+  if (result.length === 0) throw new Error('Could not extract any complete rounds from response');
   return result;
 }
 
@@ -1107,28 +1148,9 @@ Rules:
     if (!text) throw new Error('Empty response from Claude. Stop_reason: ' + data.stop_reason);
 
     setAIStep(4, 80);
-    // Parse JSON from response — handle possible truncation
-    const jsonStart = text.indexOf('[');
-    if (jsonStart === -1) throw new Error('No JSON array found in response. Raw: ' + text.substring(0, 200));
-    
-    let jsonStr = text.substring(jsonStart);
-    
-    // Try parsing as-is first
-    let parsed;
-    try {
-      parsed = JSON.parse(jsonStr);
-    } catch (e) {
-      // JSON is truncated — try to repair it by closing open structures
-      setAIStatus('Repairing truncated JSON…');
-      jsonStr = repairJSON(jsonStr);
-      try {
-        parsed = JSON.parse(jsonStr);
-      } catch (e2) {
-        throw new Error('JSON parse failed: ' + e2.message + '. Try with fewer rounds or add context.');
-      }
-    }
-    
-    if (!Array.isArray(parsed) || parsed.length === 0) throw new Error('Empty or invalid data returned');
+    // Extract exactly one JSON array from response
+    const parsed = extractJSONArray(text);
+    if (!parsed || parsed.length === 0) throw new Error('No valid rounds found in response.');
     setAIStep(5, 95);
 
     aiExtractedData = parsed;
