@@ -1226,15 +1226,48 @@ function showAIPreview(rounds) {
 function aiImport() {
   if (!aiExtractedData) return;
   
-  // Convert to internal format
+  const offset = parseFloat(document.getElementById('aiUtcOffset')?.value || '0');
+
+  // Convert to internal format, applying UTC offset correction
   const converted = aiExtractedData.map(r => ({
     ...r,
-    sessions: (r.sessions || []).map(s => ({
-      ...s,
-      _date: s.date || null,
-      _tbcMode: !s.timeUTC,
-      dateUTC: s.date && s.timeUTC ? `${s.date}T${s.timeUTC}:00Z` : (s.date || null)
-    }))
+    sessions: (r.sessions || []).map(s => {
+      if (!s.date || !s.timeUTC) {
+        return { ...s, _date: s.date || null, _tbcMode: true, dateUTC: s.date || null };
+      }
+      // Apply offset: subtract offset hours to get UTC
+      const [h, m] = s.timeUTC.split(':').map(Number);
+      const localMinutes = h * 60 + m;
+      const utcMinutes = localMinutes - Math.round(offset * 60);
+      
+      // Handle day rollover
+      let date = s.date;
+      let finalMinutes = utcMinutes;
+      if (finalMinutes < 0) {
+        finalMinutes += 24 * 60;
+        // Subtract one day
+        const d = new Date(date + 'T00:00:00Z');
+        d.setUTCDate(d.getUTCDate() - 1);
+        date = d.toISOString().split('T')[0];
+      } else if (finalMinutes >= 24 * 60) {
+        finalMinutes -= 24 * 60;
+        // Add one day
+        const d = new Date(date + 'T00:00:00Z');
+        d.setUTCDate(d.getUTCDate() + 1);
+        date = d.toISOString().split('T')[0];
+      }
+      
+      const uh = String(Math.floor(finalMinutes / 60)).padStart(2, '0');
+      const um = String(finalMinutes % 60).padStart(2, '0');
+      const utcTime = `${uh}:${um}`;
+
+      return {
+        ...s,
+        _date: date,
+        _tbcMode: false,
+        dateUTC: `${date}T${utcTime}:00Z`
+      };
+    })
   }));
 
   // Merge with existing rounds (keep existing, add new ones)
@@ -1268,7 +1301,15 @@ renderSidebar();
       </div>
       <div class="field">
         <label>Additional context (optional)</label>
-        <input type="text" id="aiContext" placeholder="e.g. Times are in local time, circuit is in GMT+1" style="font-size:12px"/>
+        <input type="text" id="aiContext" placeholder="e.g. source language, special notes" style="font-size:12px"/>
+      </div>
+      <div class="field">
+        <label>Source timezone offset (hours from UTC)</label>
+        <div style="display:flex;align-items:center;gap:8px">
+          <input type="number" id="aiUtcOffset" value="0" min="-12" max="14" step="0.5"
+            style="font-family:var(--mono);width:80px"/>
+          <span style="font-size:12px;color:var(--muted)">e.g. +2 for GMT+2, -5 for GMT-5, 0 if already UTC</span>
+        </div>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
         <div class="field">
