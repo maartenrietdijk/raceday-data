@@ -1018,6 +1018,8 @@ async function aiFetch() {
 
   const series = state.series.find(s => s.id === state.activeSeries);
   const seriesName = series?.name || state.activeSeries;
+  const fromRound = parseInt(document.getElementById('aiFromRound')?.value || '1');
+  const toRound = parseInt(document.getElementById('aiToRound')?.value || '12');
 
   const systemPrompt = `You are a racing calendar data extractor. Extract race schedule data from web pages and return ONLY valid JSON.
 
@@ -1069,7 +1071,7 @@ Rules:
         system: systemPrompt,
         messages: [{
           role: 'user',
-          content: `Please fetch and extract the complete 2026 race schedule from this URL: ${url}\n\nReturn the full season calendar as JSON.`
+          content: `Please fetch and extract the 2026 race schedule from this URL: ${url}\n\nExtract only rounds ${fromRound} through ${toRound}. Return as JSON array.`
         }]
       })
     });
@@ -1187,12 +1189,18 @@ function aiImport() {
     }))
   }));
 
-  state.data[state.activeSeries] = converted;
+  // Merge with existing rounds (keep existing, add new ones)
+  const existing = state.data[state.activeSeries] || [];
+  const existingIds = new Set(existing.map(r => r.id));
+  const newRounds = converted.filter(r => !existingIds.has(r.id));
+  const merged = [...existing, ...newRounds].sort((a, b) => a.roundNumber - b.roundNumber);
+
+  state.data[state.activeSeries] = merged;
   save();
   renderMain();
   renderSidebar();
   closeModal('aiModal');
-  showStatus(`✓ Imported ${converted.length} rounds from AI`, 'success');
+  showStatus(`✓ Added ${newRounds.length} rounds (${merged.length} total)`, 'success');
 }
 
 // ── Init ───────────────────────────────────────────────────────────────────────
@@ -1213,6 +1221,19 @@ renderSidebar();
       <div class="field">
         <label>Additional context (optional)</label>
         <input type="text" id="aiContext" placeholder="e.g. Times are in local time, circuit is in GMT+1" style="font-size:12px"/>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div class="field">
+          <label>From round #</label>
+          <input type="number" id="aiFromRound" value="1" min="1" style="font-family:var(--mono)"/>
+        </div>
+        <div class="field">
+          <label>To round #</label>
+          <input type="number" id="aiToRound" value="12" min="1" style="font-family:var(--mono)"/>
+        </div>
+      </div>
+      <div style="font-size:11px;color:var(--muted);margin-top:-4px">
+        💡 For large series like F1 (24 rounds), extract in two batches: rounds 1–12, then 13–24. Use "Import" to merge.
       </div>
     </div>
 
