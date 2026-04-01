@@ -620,9 +620,13 @@ function renderSession(s, ri, si) {
     const raw = s.dateUTC.replace('Z','');
     if (raw.includes('T')) {
       // Convert UTC datetime to local time
-      const utcDate = new Date(s.dateUTC.endsWith('Z') ? s.dateUTC : s.dateUTC + 'Z');
-      const localDate = new Date(utcDate.getTime());
-      dateVal = localDate.toLocaleDateString('en-CA'); // YYYY-MM-DD in local time
+      const utcStr = s.dateUTC.endsWith('Z') ? s.dateUTC : s.dateUTC + 'Z';
+      const localDate = new Date(utcStr);
+      // Format date as YYYY-MM-DD in local timezone
+      const ly = localDate.getFullYear();
+      const lmo = String(localDate.getMonth()+1).padStart(2,'0');
+      const ld = String(localDate.getDate()).padStart(2,'0');
+      dateVal = `${ly}-${lmo}-${ld}`;
       const lh = String(localDate.getHours()).padStart(2,'0');
       const lm = String(localDate.getMinutes()).padStart(2,'0');
       timeVal = (isTBC || (lh === '00' && lm === '00')) ? '' : `${lh}:${lm}`;
@@ -823,7 +827,24 @@ function importJSON() {
     if (!file) return;
     try {
       const text = await file.text();
-      const data = JSON.parse(text);
+      const raw = JSON.parse(text);
+      // Normalize: convert date+timeUTC fields to internal dateUTC format
+      const data = raw.map(r => ({
+        ...r,
+        sessions: (r.sessions || []).map(s => {
+          // Support both old format (dateUTC string) and new format (date + timeUTC)
+          let dateUTC = s.dateUTC;
+          if (!dateUTC && s.date) {
+            dateUTC = s.timeUTC ? `${s.date}T${s.timeUTC}:00Z` : s.date;
+          }
+          return {
+            ...s,
+            _date: s.date || (dateUTC ? dateUTC.split('T')[0] : null),
+            _tbcMode: !s.timeUTC,
+            dateUTC: dateUTC || null
+          };
+        })
+      }));
       state.data[state.activeSeries] = data;
       save();
       renderMain();
@@ -1392,19 +1413,15 @@ function showAIPreview(rounds) {
 function aiImport() {
   if (!aiExtractedData) return;
   
-  const mode = document.getElementById('aiTimezoneMode')?.value || 'auto';
-  const manualOffset = parseFloat(document.getElementById('aiUtcOffset')?.value || '0');
-
-  // Convert to internal format with per-circuit timezone detection
+  // Convert to internal format — JSON from Claude is already in UTC, no conversion needed
   const converted = aiExtractedData.map(r => ({
     ...r,
-    sessions: applyTimezoneConversion(
-      r.sessions || [],
-      r.city || '',
-      r.country || '',
-      mode,
-      manualOffset
-    )
+    sessions: (r.sessions || []).map(s => ({
+      ...s,
+      _date: s.date || null,
+      _tbcMode: !s.timeUTC,
+      dateUTC: s.date && s.timeUTC ? `${s.date}T${s.timeUTC}:00Z` : (s.date || null)
+    }))
   }));
 
   // Merge with existing rounds (keep existing, add new ones)
