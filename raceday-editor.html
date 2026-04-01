@@ -602,7 +602,7 @@ function renderRound(r, i, series) {
           <div style="display:grid;grid-template-columns:160px 130px 1fr 120px 28px;gap:8px;padding:4px 0 6px;border-bottom:1px solid var(--border2)">
             <span style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em">Name</span>
             <span style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em">Kind</span>
-            <span style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em">Date (UTC) · Time · TBC</span>
+            <span style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em">Date · Local Time · TBC</span>
             <span style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em">Duration (min)</span>
             <span></span>
           </div>
@@ -614,15 +614,18 @@ function renderRound(r, i, series) {
 
 function renderSession(s, ri, si) {
   const isTBC = s.dateUTC === null || (typeof s.dateUTC === 'string' && s.dateUTC.endsWith('TBC'));
-  // Parse existing date/time parts
+  // Parse existing date/time parts — convert UTC to local time for display
   let dateVal = '', timeVal = '';
   if (s.dateUTC && s.dateUTC !== null) {
     const raw = s.dateUTC.replace('Z','');
     if (raw.includes('T')) {
-      dateVal = raw.split('T')[0];
-      const t = raw.split('T')[1];
-      // If time is 00:00:00 and TBC, treat time as unknown
-      timeVal = (isTBC || t === '00:00:00') ? '' : t.substring(0,5);
+      // Convert UTC datetime to local time
+      const utcDate = new Date(s.dateUTC.endsWith('Z') ? s.dateUTC : s.dateUTC + 'Z');
+      const localDate = new Date(utcDate.getTime());
+      dateVal = localDate.toLocaleDateString('en-CA'); // YYYY-MM-DD in local time
+      const lh = String(localDate.getHours()).padStart(2,'0');
+      const lm = String(localDate.getMinutes()).padStart(2,'0');
+      timeVal = (isTBC || (lh === '00' && lm === '00')) ? '' : `${lh}:${lm}`;
     } else {
       dateVal = raw; // date only string
     }
@@ -706,11 +709,17 @@ function updateDateTime(ri, si) {
   session._date = dateVal || null;
   session._tbcMode = isTBC || !timeVal;
 
-  // Store complete dateUTC so it survives page reload
   if (dateVal && timeVal && !isTBC) {
-    session.dateUTC = `${dateVal}T${timeVal}:00Z`;
+    // Convert local time to UTC for storage
+    const localDate = new Date(`${dateVal}T${timeVal}:00`);
+    const utcDate = dateVal + 'T' +
+      String(localDate.getUTCHours()).padStart(2,'0') + ':' +
+      String(localDate.getUTCMinutes()).padStart(2,'0') + ':00Z';
+    // Also store UTC date in case it rolls over midnight
+    session._date = localDate.toISOString().split('T')[0]; // UTC date
+    session.dateUTC = utcDate;
   } else if (dateVal) {
-    session.dateUTC = dateVal; // date only, no time
+    session.dateUTC = dateVal;
   } else {
     session.dateUTC = null;
   }
@@ -786,7 +795,7 @@ function buildJSON(seriesId) {
       id: s.id || `${r.id}-s`,
       name: s.name,
       kind: s.kind || 'race',
-      date: s._date || (s.dateUTC ? s.dateUTC.split('T')[0] : null),
+      date: s._date || (s.dateUTC ? s.dateUTC.replace('Z','').split('T')[0] : null),
       timeUTC: (!s._tbcMode && s.dateUTC && s.dateUTC.includes('T')) ? s.dateUTC.split('T')[1].substring(0,5) : null,
       durationMinutes: s.durationMinutes || 60
     }))
