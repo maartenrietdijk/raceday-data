@@ -14,31 +14,31 @@
         "name": "Practice 1",
         "kind": "practice",
         "date": "2026-03-06",
-        "timeUTC": null,
-        "durationMinutes": 90
+        "timeUTC": "01:30",
+        "durationMinutes": 60
       },
       {
         "id": "f1-2026-r01-s2",
         "name": "Practice 2",
         "kind": "practice",
-        "date": "2026-03-07",
-        "timeUTC": null,
-        "durationMinutes": 90
+        "date": "2026-03-06",
+        "timeUTC": "05:00",
+        "durationMinutes": 60
       },
       {
         "id": "f1-2026-r01-s3",
         "name": "Practice 3",
         "kind": "practice",
-        "date": "2026-03-08",
-        "timeUTC": null,
+        "date": "2026-03-07",
+        "timeUTC": "01:30",
         "durationMinutes": 60
       },
       {
         "id": "f1-2026-r01-s4",
         "name": "Qualifying",
         "kind": "qualifying",
-        "date": "2026-03-08",
-        "timeUTC": null,
+        "date": "2020-03-07",
+        "timeUTC": "05:00",
         "durationMinutes": 60
       },
       {
@@ -66,39 +66,39 @@
         "name": "Practice 1",
         "kind": "practice",
         "date": "2026-03-13",
-        "timeUTC": null,
+        "timeUTC": "03:30",
         "durationMinutes": 60
       },
       {
         "id": "f1-2026-r02-s2",
         "name": "Sprint Qualifying",
         "kind": "sprintQualifying",
-        "date": "2026-03-14",
-        "timeUTC": null,
+        "date": "2026-03-13",
+        "timeUTC": "07:30",
         "durationMinutes": 45
       },
       {
         "id": "f1-2026-r02-s3",
         "name": "Sprint Race",
         "kind": "sprintRace",
-        "date": "2026-03-14",
-        "timeUTC": null,
+        "date": "2026-03-13",
+        "timeUTC": "03:00",
         "durationMinutes": 45
       },
       {
         "id": "f1-2026-r02-s4",
         "name": "Qualifying",
         "kind": "qualifying",
-        "date": "2026-03-15",
-        "timeUTC": null,
+        "date": "2026-03-13",
+        "timeUTC": "07:00",
         "durationMinutes": 60
       },
       {
         "id": "f1-2026-r02-s5",
         "name": "Race",
         "kind": "race",
-        "date": "2026-03-15",
-        "timeUTC": null,
+        "date": "2026-03-14",
+        "timeUTC": "07:00",
         "durationMinutes": 120
       }
     ]
@@ -410,6 +410,214 @@
         "name": "Race",
         "kind": "race",
         "date": "2026-06-28",
+        "timeUTC": null,
+        "durationMinutes": 120
+      }
+    ]
+  },
+  {
+    "id": "f1-2026-r09",
+    "seriesId": "f1",
+    "roundNumber": 9,
+    "raceName": "British Grand Prix",
+    "circuitName": "Silverstone Circuit",
+    "city": "Silverstone",
+    "country": "United Kingdom",
+    "countryCode": "GB",
+    "sessions": [
+      {
+        "id": "f1-2026-r09-s1",
+        "name": "Practice 1",
+        "kind": "practice",
+        "date": "2026-07-03",
+        "timeUTC": null,
+        "durationMinutes": 60
+      },
+      {
+        "id": "f1-2026-r09-s2",
+        "name": "Sprint Qualifying",
+        "kind": "sprintQualifying",
+        "date": "2026-07-03",
+        "timeUTC": null,
+        "durationMinutes": 60
+      },
+      {
+        "id": "f1-2026-r09-s3",
+        "name": "Sprint",
+        "kind": "sprintRace",
+        "date": "2026-07-04",
+        "timeUTC": null,
+        "durationMinutes": 30
+      },
+      {
+        "id": "f1-2026-r09-s4",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-07-04",
+        "timeUTC": null,
+        "durationMinutes": 60
+      },
+      {
+        "id": "f1-2026-r09-s5",
+        "name": "Race",
+        "kind": "race",
+        "date": "2026-07-05",
+        "timeUTC": null,
+        "durationMinutes": 120
+      }
+    ]
+  },
+  {
+    "id": "f1-2026-r10",
+    "seriesId": "f1",
+    "roundNumber": 10,
+    "raceName": "Belgian Grand Prix",
+    "circuitName": "Circuit de Spa-Francorchamps",
+    "city": "Spa",
+    "country": "Belgium",
+    "countryCode": "BE",
+    "sessions": [
+      {
+        "id": "f1-2026-r10-s1",
+        "name": "Practice 1",
+        "kind": "practice",
+        "date": "2026-07-17",
+        "timeUTC": null,
+        "durationMinutes": 60
+      },
+      {
+        "id": "f1-2026-r10-s2",
+        "name": "Practice 2",
+        "kind": "practice",
+        "date": "2026-07-17",
+        "timeUTC": null,
+        "durationMinutes": 60
+      },
+      {
+        "id": "f1-2026-r10-s3",
+        "name": "Practice 3",
+        "kind": "practice",
+        "date": "2026-07-18",
+        "timeUTC": null,
+        "durationMinutes": 60
+      },
+      {
+        "id": "f1-2026-r10-s4",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-07-18",
+        "timeUTC": null,
+        "durationMinutes": 60
+      },
+      {
+        "id": "f1-2026-r10-s5",
+        "name": "Race",
+        "kind": "race",
+        "date": "2026-07-19",
+        "timeUTC": null,
+        "durationMinutes": 120
+      }
+    ]
+  },
+  {
+    "id": "f1-2026-r11",
+    "seriesId": "f1",
+    "roundNumber": 11,
+    "raceName": "Hungarian Grand Prix",
+    "circuitName": "Hungaroring",
+    "city": "Budapest",
+    "country": "Hungary",
+    "countryCode": "HU",
+    "sessions": [
+      {
+        "id": "f1-2026-r11-s1",
+        "name": "Practice 1",
+        "kind": "practice",
+        "date": "2026-07-24",
+        "timeUTC": null,
+        "durationMinutes": 60
+      },
+      {
+        "id": "f1-2026-r11-s2",
+        "name": "Practice 2",
+        "kind": "practice",
+        "date": "2026-07-24",
+        "timeUTC": null,
+        "durationMinutes": 60
+      },
+      {
+        "id": "f1-2026-r11-s3",
+        "name": "Practice 3",
+        "kind": "practice",
+        "date": "2026-07-25",
+        "timeUTC": null,
+        "durationMinutes": 60
+      },
+      {
+        "id": "f1-2026-r11-s4",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-07-25",
+        "timeUTC": null,
+        "durationMinutes": 60
+      },
+      {
+        "id": "f1-2026-r11-s5",
+        "name": "Race",
+        "kind": "race",
+        "date": "2026-07-26",
+        "timeUTC": null,
+        "durationMinutes": 120
+      }
+    ]
+  },
+  {
+    "id": "f1-2026-r12",
+    "seriesId": "f1",
+    "roundNumber": 12,
+    "raceName": "Dutch Grand Prix",
+    "circuitName": "Circuit Zandvoort",
+    "city": "Zandvoort",
+    "country": "Netherlands",
+    "countryCode": "NL",
+    "sessions": [
+      {
+        "id": "f1-2026-r12-s1",
+        "name": "Practice 1",
+        "kind": "practice",
+        "date": "2026-08-21",
+        "timeUTC": null,
+        "durationMinutes": 60
+      },
+      {
+        "id": "f1-2026-r12-s2",
+        "name": "Sprint Qualifying",
+        "kind": "sprintQualifying",
+        "date": "2026-08-21",
+        "timeUTC": null,
+        "durationMinutes": 60
+      },
+      {
+        "id": "f1-2026-r12-s3",
+        "name": "Sprint",
+        "kind": "sprintRace",
+        "date": "2026-08-22",
+        "timeUTC": null,
+        "durationMinutes": 30
+      },
+      {
+        "id": "f1-2026-r12-s4",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-08-22",
+        "timeUTC": null,
+        "durationMinutes": 60
+      },
+      {
+        "id": "f1-2026-r12-s5",
+        "name": "Race",
+        "kind": "race",
+        "date": "2026-08-23",
         "timeUTC": null,
         "durationMinutes": 120
       }
