@@ -1051,6 +1051,152 @@ function extractJSONArray(text) {
   return result;
 }
 
+
+function updateTimezoneUI() {
+  const mode = document.getElementById('aiTimezoneMode').value;
+  document.getElementById('aiManualOffsetWrap').style.display = mode === 'manual' ? 'flex' : 'none';
+}
+
+// Circuit timezone database — city/country → IANA timezone
+const CIRCUIT_TIMEZONES = {
+  // Australia
+  'melbourne': 'Australia/Melbourne',
+  'australia': 'Australia/Melbourne',
+  // Asia
+  'shanghai': 'Asia/Shanghai',
+  'china': 'Asia/Shanghai',
+  'suzuka': 'Asia/Tokyo',
+  'japan': 'Asia/Tokyo',
+  'singapore': 'Asia/Singapore',
+  'baku': 'Asia/Baku',
+  'azerbaijan': 'Asia/Baku',
+  // Middle East
+  'bahrain': 'Asia/Bahrain',
+  'jeddah': 'Asia/Riyadh',
+  'saudi': 'Asia/Riyadh',
+  'abu dhabi': 'Asia/Dubai',
+  'abu_dhabi': 'Asia/Dubai',
+  'qatar': 'Asia/Qatar',
+  'lusail': 'Asia/Qatar',
+  // Europe
+  'monaco': 'Europe/Monaco',
+  'barcelona': 'Europe/Madrid',
+  'madrid': 'Europe/Madrid',
+  'spain': 'Europe/Madrid',
+  'spielberg': 'Europe/Vienna',
+  'austria': 'Europe/Vienna',
+  'silverstone': 'Europe/London',
+  'great britain': 'Europe/London',
+  'uk': 'Europe/London',
+  'britain': 'Europe/London',
+  'spa': 'Europe/Brussels',
+  'belgium': 'Europe/Brussels',
+  'budapest': 'Europe/Budapest',
+  'hungary': 'Europe/Budapest',
+  'zandvoort': 'Europe/Amsterdam',
+  'netherlands': 'Europe/Amsterdam',
+  'monza': 'Europe/Rome',
+  'italy': 'Europe/Rome',
+  'imola': 'Europe/Rome',
+  // Americas
+  'miami': 'America/New_York',
+  'montreal': 'America/Toronto',
+  'canada': 'America/Toronto',
+  'austin': 'America/Chicago',
+  'texas': 'America/Chicago',
+  'united states': 'America/Chicago',
+  'mexico': 'America/Mexico_City',
+  'mexico city': 'America/Mexico_City',
+  'sao paulo': 'America/Sao_Paulo',
+  'brazil': 'America/Sao_Paulo',
+  'las vegas': 'America/Los_Angeles',
+  'nevada': 'America/Los_Angeles',
+};
+
+function getCircuitTimezone(city, country) {
+  const search = [city, country].map(s => (s || '').toLowerCase());
+  for (const term of search) {
+    for (const [key, tz] of Object.entries(CIRCUIT_TIMEZONES)) {
+      if (term.includes(key) || key.includes(term)) return tz;
+    }
+  }
+  return null;
+}
+
+function getUTCOffset(timezone, dateStr) {
+  // Get UTC offset in hours for a given timezone and date
+  try {
+    const date = new Date(dateStr + 'T12:00:00');
+    const utcDate = new Date(date.toLocaleString('en-US', { timeZone: 'UTC' }));
+    const tzDate = new Date(date.toLocaleString('en-US', { timeZone: timezone }));
+    return (utcDate - tzDate) / (1000 * 60 * 60); // offset in hours (positive = behind UTC)
+  } catch(e) {
+    return 0;
+  }
+}
+
+function applyTimezoneConversion(sessions, city, country, mode, manualOffset) {
+  return sessions.map(s => {
+    if (!s.date || !s.timeUTC) {
+      return { ...s, _date: s.date || null, _tbcMode: true, dateUTC: s.date || null };
+    }
+
+    let offsetHours = 0;
+
+    if (mode === 'utc') {
+      offsetHours = 0;
+    } else if (mode === 'manual') {
+      offsetHours = manualOffset;
+    } else {
+      // Auto-detect
+      const tz = getCircuitTimezone(city, country);
+      if (tz) {
+        const rawOffset = getUTCOffset(tz, s.date); // returns negative of offset (behind UTC)
+        offsetHours = -rawOffset; // convert: if TZ is UTC+2, offset is +2
+      } else {
+        offsetHours = 0; // fallback: assume UTC
+      }
+    }
+
+    if (offsetHours === 0) {
+      return {
+        ...s,
+        _date: s.date,
+        _tbcMode: false,
+        dateUTC: `${s.date}T${s.timeUTC}:00Z`
+      };
+    }
+
+    const [h, m] = s.timeUTC.split(':').map(Number);
+    const localMinutes = h * 60 + m;
+    const utcMinutes = localMinutes - Math.round(offsetHours * 60);
+
+    let date = s.date;
+    let finalMinutes = utcMinutes;
+    if (finalMinutes < 0) {
+      finalMinutes += 24 * 60;
+      const d = new Date(date + 'T00:00:00Z');
+      d.setUTCDate(d.getUTCDate() - 1);
+      date = d.toISOString().split('T')[0];
+    } else if (finalMinutes >= 24 * 60) {
+      finalMinutes -= 24 * 60;
+      const d = new Date(date + 'T00:00:00Z');
+      d.setUTCDate(d.getUTCDate() + 1);
+      date = d.toISOString().split('T')[0];
+    }
+
+    const uh = String(Math.floor(finalMinutes / 60)).padStart(2, '0');
+    const um = String(finalMinutes % 60).padStart(2, '0');
+
+    return {
+      ...s,
+      _date: date,
+      _tbcMode: false,
+      dateUTC: `${date}T${uh}:${um}:00Z`
+    };
+  });
+}
+
 async function aiFetch() {
   const url = document.getElementById('aiUrl').value.trim();
   const context = document.getElementById('aiContext').value.trim();
@@ -1226,48 +1372,19 @@ function showAIPreview(rounds) {
 function aiImport() {
   if (!aiExtractedData) return;
   
-  const offset = parseFloat(document.getElementById('aiUtcOffset')?.value || '0');
+  const mode = document.getElementById('aiTimezoneMode')?.value || 'auto';
+  const manualOffset = parseFloat(document.getElementById('aiUtcOffset')?.value || '0');
 
-  // Convert to internal format, applying UTC offset correction
+  // Convert to internal format with per-circuit timezone detection
   const converted = aiExtractedData.map(r => ({
     ...r,
-    sessions: (r.sessions || []).map(s => {
-      if (!s.date || !s.timeUTC) {
-        return { ...s, _date: s.date || null, _tbcMode: true, dateUTC: s.date || null };
-      }
-      // Apply offset: subtract offset hours to get UTC
-      const [h, m] = s.timeUTC.split(':').map(Number);
-      const localMinutes = h * 60 + m;
-      const utcMinutes = localMinutes - Math.round(offset * 60);
-      
-      // Handle day rollover
-      let date = s.date;
-      let finalMinutes = utcMinutes;
-      if (finalMinutes < 0) {
-        finalMinutes += 24 * 60;
-        // Subtract one day
-        const d = new Date(date + 'T00:00:00Z');
-        d.setUTCDate(d.getUTCDate() - 1);
-        date = d.toISOString().split('T')[0];
-      } else if (finalMinutes >= 24 * 60) {
-        finalMinutes -= 24 * 60;
-        // Add one day
-        const d = new Date(date + 'T00:00:00Z');
-        d.setUTCDate(d.getUTCDate() + 1);
-        date = d.toISOString().split('T')[0];
-      }
-      
-      const uh = String(Math.floor(finalMinutes / 60)).padStart(2, '0');
-      const um = String(finalMinutes % 60).padStart(2, '0');
-      const utcTime = `${uh}:${um}`;
-
-      return {
-        ...s,
-        _date: date,
-        _tbcMode: false,
-        dateUTC: `${date}T${utcTime}:00Z`
-      };
-    })
+    sessions: applyTimezoneConversion(
+      r.sessions || [],
+      r.city || '',
+      r.country || '',
+      mode,
+      manualOffset
+    )
   }));
 
   // Merge with existing rounds (keep existing, add new ones)
@@ -1304,11 +1421,21 @@ renderSidebar();
         <input type="text" id="aiContext" placeholder="e.g. source language, special notes" style="font-size:12px"/>
       </div>
       <div class="field">
-        <label>Source timezone offset (hours from UTC)</label>
+        <label>Source timezone</label>
+        <div style="display:flex;align-items:center;gap:8px">
+          <select id="aiTimezoneMode" style="font-size:12px;padding:6px 9px" onchange="updateTimezoneUI()">
+            <option value="auto">Auto-detect per circuit (recommended)</option>
+            <option value="manual">Manual offset</option>
+            <option value="utc">Already UTC — no conversion</option>
+          </select>
+        </div>
+      </div>
+      <div id="aiManualOffsetWrap" style="display:none" class="field">
+        <label>Manual offset (hours from UTC)</label>
         <div style="display:flex;align-items:center;gap:8px">
           <input type="number" id="aiUtcOffset" value="0" min="-12" max="14" step="0.5"
             style="font-family:var(--mono);width:80px"/>
-          <span style="font-size:12px;color:var(--muted)">e.g. +2 for GMT+2, -5 for GMT-5, 0 if already UTC</span>
+          <span style="font-size:12px;color:var(--muted)">e.g. +2 for GMT+2, -5 for GMT-5</span>
         </div>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
