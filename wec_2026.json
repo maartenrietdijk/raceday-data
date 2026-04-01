@@ -1,10 +1,162 @@
 [
   {
+    "id": "wec-2026-r01",
+    "seriesId": "wec",
+    "roundNumber": 1,
+    "raceName": "6 Hours of Imola",
+    "circuitName": "Autodromo Internazionale Enzo e Dino Ferrari",
+    "city": "Imola",
+    "country": "Italy",
+    "countryCode": "IT",
+    "sessions": [
+      {
+        "id": "wec-2026-r01-s3",
+        "name": "Free Practice 1",
+        "kind": "practice",
+        "date": "2026-04-17",
+        "timeUTC": "09:15",
+        "durationMinutes": 90
+      },
+      {
+        "id": "wec-2026-r01-s4",
+        "name": "Free Practice 2",
+        "kind": "practice",
+        "date": "2026-04-17",
+        "timeUTC": "14:15",
+        "durationMinutes": 90
+      },
+      {
+        "id": "wec-2026-r01-s5",
+        "name": "Free Practice 3",
+        "kind": "practice",
+        "date": "2026-04-18",
+        "timeUTC": "09:30",
+        "durationMinutes": 60
+      },
+      {
+        "id": "wec-2026-r01-s6",
+        "name": "Qualifying - LMGT3",
+        "kind": "qualifying",
+        "date": "2026-04-18",
+        "timeUTC": "13:30",
+        "durationMinutes": 20
+      },
+      {
+        "id": "wec-2026-r01-s7",
+        "name": "Hyperpole - LMGT3",
+        "kind": "hyperpole",
+        "date": "2026-04-18",
+        "timeUTC": "13:50",
+        "durationMinutes": 10
+      },
+      {
+        "id": "wec-2026-r01-s8",
+        "name": "Qualifying - Hypercar",
+        "kind": "qualifying",
+        "date": "2026-04-18",
+        "timeUTC": "14:10",
+        "durationMinutes": 20
+      },
+      {
+        "id": "wec-2026-r01-s9",
+        "name": "Hyperpole - Hypercar",
+        "kind": "hyperpole",
+        "date": "2026-04-18",
+        "timeUTC": "14:30",
+        "durationMinutes": 10
+      },
+      {
+        "id": "wec-2026-r01-s10",
+        "name": "6 Hours of Imola",
+        "kind": "race",
+        "date": "2026-04-19",
+        "timeUTC": "12:00",
+        "durationMinutes": 360
+      }
+    ]
+  },
+  {
+    "id": "wec-2026-r02",
+    "seriesId": "wec",
+    "roundNumber": 2,
+    "raceName": "TotalEnergies 6 Hours of Spa-Francorchamps",
+    "circuitName": "Circuit de Spa-Francorchamps",
+    "city": "Stavelot",
+    "country": "Belgium",
+    "countryCode": "BE",
+    "sessions": [
+      {
+        "id": "wec-2026-r02-s1",
+        "name": "Free Practice 1",
+        "kind": "practice",
+        "date": "2026-05-07",
+        "timeUTC": "10:00",
+        "durationMinutes": 90
+      },
+      {
+        "id": "wec-2026-r02-s2",
+        "name": "Free Practice 2",
+        "kind": "practice",
+        "date": "2026-05-07",
+        "timeUTC": "14:40",
+        "durationMinutes": 90
+      },
+      {
+        "id": "wec-2026-r02-s3",
+        "name": "Free Practice 3",
+        "kind": "practice",
+        "date": "2026-05-08",
+        "timeUTC": "09:10",
+        "durationMinutes": 60
+      },
+      {
+        "id": "wec-2026-r02-s4",
+        "name": "Qualifying - LMGT3",
+        "kind": "qualifying",
+        "date": "2026-05-08",
+        "timeUTC": "13:30",
+        "durationMinutes": 20
+      },
+      {
+        "id": "wec-2026-r02-s5",
+        "name": "Hyperpole - LMGT3",
+        "kind": "hyperpole",
+        "date": "2026-05-08",
+        "timeUTC": "13:55",
+        "durationMinutes": 10
+      },
+      {
+        "id": "wec-2026-r02-s6",
+        "name": "Qualifying - Hypercar",
+        "kind": "qualifying",
+        "date": "2026-05-08",
+        "timeUTC": "14:20",
+        "durationMinutes": 20
+      },
+      {
+        "id": "wec-2026-r02-s7",
+        "name": "Hyperpole - Hypercar",
+        "kind": "hyperpole",
+        "date": "2026-05-08",
+        "timeUTC": "14:45",
+        "durationMinutes": 10
+      },
+      {
+        "id": "wec-2026-r02-s8",
+        "name": "6 Hours of Spa-Francorchamps",
+        "kind": "race",
+        "date": "2026-05-09",
+        "timeUTC": "13:00",
+        "durationMinutes": 360
+      }
+    ]
+  },
+  {
     "id": "wec-2026-r03",
     "seriesId": "wec",
     "roundNumber": 3,
-    "raceName": "24 Hours of Le Mans",
-    "circuitName": "Circuit des 24 Heures du Mans",
+    "raceName": "24 Heures du Mans",
+    "circuitName": "Circuit de la Sarthe",
     "city": "Le Mans",
     "country": "France",
     "countryCode": "FR",
@@ -13,7 +165,7 @@
         "id": "wec-2026-r03-s1",
         "name": "Free Practice 1",
         "kind": "practice",
-        "date": "2026-06-10",
+        "date": "2026-06-11",
         "timeUTC": null,
         "durationMinutes": 90
       },
@@ -21,7 +173,7 @@
         "id": "wec-2026-r03-s2",
         "name": "Free Practice 2",
         "kind": "practice",
-        "date": "2026-06-10",
+        "date": "2026-06-11",
         "timeUTC": null,
         "durationMinutes": 90
       },
@@ -29,7 +181,7 @@
         "id": "wec-2026-r03-s3",
         "name": "Free Practice 3",
         "kind": "practice",
-        "date": "2026-06-11",
+        "date": "2026-06-12",
         "timeUTC": null,
         "durationMinutes": 60
       },
@@ -37,40 +189,40 @@
         "id": "wec-2026-r03-s4",
         "name": "Qualifying - LMGT3",
         "kind": "qualifying",
-        "date": "2026-06-11",
+        "date": "2026-06-12",
         "timeUTC": null,
-        "durationMinutes": 12
+        "durationMinutes": 20
       },
       {
         "id": "wec-2026-r03-s5",
         "name": "Hyperpole - LMGT3",
         "kind": "hyperpole",
-        "date": "2026-06-11",
+        "date": "2026-06-12",
         "timeUTC": null,
         "durationMinutes": 10
       },
       {
         "id": "wec-2026-r03-s6",
-        "name": "Qualifying - HYPERCAR",
+        "name": "Qualifying - Hypercar",
         "kind": "qualifying",
-        "date": "2026-06-11",
+        "date": "2026-06-12",
         "timeUTC": null,
-        "durationMinutes": 12
+        "durationMinutes": 20
       },
       {
         "id": "wec-2026-r03-s7",
-        "name": "Hyperpole - HYPERCAR",
+        "name": "Hyperpole - Hypercar",
         "kind": "hyperpole",
-        "date": "2026-06-11",
+        "date": "2026-06-12",
         "timeUTC": null,
         "durationMinutes": 10
       },
       {
         "id": "wec-2026-r03-s8",
-        "name": "Race",
+        "name": "24 Hours of Le Mans",
         "kind": "race",
         "date": "2026-06-13",
-        "timeUTC": "13:00",
+        "timeUTC": null,
         "durationMinutes": 1440
       }
     ]
@@ -79,7 +231,7 @@
     "id": "wec-2026-r04",
     "seriesId": "wec",
     "roundNumber": 4,
-    "raceName": "Rolex 6 Hours of São Paulo",
+    "raceName": "6 Hours of São Paulo",
     "circuitName": "Autódromo José Carlos Pace",
     "city": "São Paulo",
     "country": "Brazil",
@@ -89,7 +241,7 @@
         "id": "wec-2026-r04-s1",
         "name": "Free Practice 1",
         "kind": "practice",
-        "date": "2026-07-10",
+        "date": "2026-07-11",
         "timeUTC": null,
         "durationMinutes": 90
       },
@@ -97,7 +249,7 @@
         "id": "wec-2026-r04-s2",
         "name": "Free Practice 2",
         "kind": "practice",
-        "date": "2026-07-10",
+        "date": "2026-07-11",
         "timeUTC": null,
         "durationMinutes": 90
       },
@@ -105,7 +257,7 @@
         "id": "wec-2026-r04-s3",
         "name": "Free Practice 3",
         "kind": "practice",
-        "date": "2026-07-11",
+        "date": "2026-07-12",
         "timeUTC": null,
         "durationMinutes": 60
       },
@@ -113,40 +265,40 @@
         "id": "wec-2026-r04-s4",
         "name": "Qualifying - LMGT3",
         "kind": "qualifying",
-        "date": "2026-07-11",
+        "date": "2026-07-12",
         "timeUTC": null,
-        "durationMinutes": 12
+        "durationMinutes": 20
       },
       {
         "id": "wec-2026-r04-s5",
         "name": "Hyperpole - LMGT3",
         "kind": "hyperpole",
-        "date": "2026-07-11",
+        "date": "2026-07-12",
         "timeUTC": null,
         "durationMinutes": 10
       },
       {
         "id": "wec-2026-r04-s6",
-        "name": "Qualifying - HYPERCAR",
+        "name": "Qualifying - Hypercar",
         "kind": "qualifying",
-        "date": "2026-07-11",
+        "date": "2026-07-12",
         "timeUTC": null,
-        "durationMinutes": 12
+        "durationMinutes": 20
       },
       {
         "id": "wec-2026-r04-s7",
-        "name": "Hyperpole - HYPERCAR",
+        "name": "Hyperpole - Hypercar",
         "kind": "hyperpole",
-        "date": "2026-07-11",
+        "date": "2026-07-12",
         "timeUTC": null,
         "durationMinutes": 10
       },
       {
         "id": "wec-2026-r04-s8",
-        "name": "Race",
+        "name": "6 Hours of São Paulo",
         "kind": "race",
         "date": "2026-07-12",
-        "timeUTC": "14:30",
+        "timeUTC": null,
         "durationMinutes": 360
       }
     ]
@@ -191,7 +343,7 @@
         "kind": "qualifying",
         "date": "2026-09-05",
         "timeUTC": null,
-        "durationMinutes": 12
+        "durationMinutes": 20
       },
       {
         "id": "wec-2026-r05-s5",
@@ -203,15 +355,15 @@
       },
       {
         "id": "wec-2026-r05-s6",
-        "name": "Qualifying - HYPERCAR",
+        "name": "Qualifying - Hypercar",
         "kind": "qualifying",
         "date": "2026-09-05",
         "timeUTC": null,
-        "durationMinutes": 12
+        "durationMinutes": 20
       },
       {
         "id": "wec-2026-r05-s7",
-        "name": "Hyperpole - HYPERCAR",
+        "name": "Hyperpole - Hypercar",
         "kind": "hyperpole",
         "date": "2026-09-05",
         "timeUTC": null,
@@ -219,7 +371,7 @@
       },
       {
         "id": "wec-2026-r05-s8",
-        "name": "Race",
+        "name": "Lone Star Le Mans",
         "kind": "race",
         "date": "2026-09-06",
         "timeUTC": null,
@@ -232,7 +384,7 @@
     "seriesId": "wec",
     "roundNumber": 6,
     "raceName": "6 Hours of Fuji",
-    "circuitName": "Fuji Speedway",
+    "circuitName": "Fuji International Speedway",
     "city": "Oyama",
     "country": "Japan",
     "countryCode": "JP",
@@ -267,7 +419,7 @@
         "kind": "qualifying",
         "date": "2026-09-26",
         "timeUTC": null,
-        "durationMinutes": 12
+        "durationMinutes": 20
       },
       {
         "id": "wec-2026-r06-s5",
@@ -279,15 +431,15 @@
       },
       {
         "id": "wec-2026-r06-s6",
-        "name": "Qualifying - HYPERCAR",
+        "name": "Qualifying - Hypercar",
         "kind": "qualifying",
         "date": "2026-09-26",
         "timeUTC": null,
-        "durationMinutes": 12
+        "durationMinutes": 20
       },
       {
         "id": "wec-2026-r06-s7",
-        "name": "Hyperpole - HYPERCAR",
+        "name": "Hyperpole - Hypercar",
         "kind": "hyperpole",
         "date": "2026-09-26",
         "timeUTC": null,
@@ -295,7 +447,7 @@
       },
       {
         "id": "wec-2026-r06-s8",
-        "name": "Race",
+        "name": "6 Hours of Fuji",
         "kind": "race",
         "date": "2026-09-27",
         "timeUTC": null,
@@ -343,7 +495,7 @@
         "kind": "qualifying",
         "date": "2026-10-23",
         "timeUTC": null,
-        "durationMinutes": 12
+        "durationMinutes": 20
       },
       {
         "id": "wec-2026-r07-s5",
@@ -355,15 +507,15 @@
       },
       {
         "id": "wec-2026-r07-s6",
-        "name": "Qualifying - HYPERCAR",
+        "name": "Qualifying - Hypercar",
         "kind": "qualifying",
         "date": "2026-10-23",
         "timeUTC": null,
-        "durationMinutes": 12
+        "durationMinutes": 20
       },
       {
         "id": "wec-2026-r07-s7",
-        "name": "Hyperpole - HYPERCAR",
+        "name": "Hyperpole - Hypercar",
         "kind": "hyperpole",
         "date": "2026-10-23",
         "timeUTC": null,
@@ -371,11 +523,11 @@
       },
       {
         "id": "wec-2026-r07-s8",
-        "name": "Race",
+        "name": "Qatar 1812km",
         "kind": "race",
         "date": "2026-10-24",
         "timeUTC": null,
-        "durationMinutes": 60
+        "durationMinutes": 360
       }
     ]
   },
@@ -383,7 +535,7 @@
     "id": "wec-2026-r08",
     "seriesId": "wec",
     "roundNumber": 8,
-    "raceName": "Bapco Energies 8 Hours of Bahrain",
+    "raceName": "8 Hours of Bahrain",
     "circuitName": "Bahrain International Circuit",
     "city": "Sakhir",
     "country": "Bahrain",
@@ -393,7 +545,7 @@
         "id": "wec-2026-r08-s1",
         "name": "Free Practice 1",
         "kind": "practice",
-        "date": "2026-11-05",
+        "date": "2026-11-06",
         "timeUTC": null,
         "durationMinutes": 90
       },
@@ -401,7 +553,7 @@
         "id": "wec-2026-r08-s2",
         "name": "Free Practice 2",
         "kind": "practice",
-        "date": "2026-11-05",
+        "date": "2026-11-06",
         "timeUTC": null,
         "durationMinutes": 90
       },
@@ -409,7 +561,7 @@
         "id": "wec-2026-r08-s3",
         "name": "Free Practice 3",
         "kind": "practice",
-        "date": "2026-11-06",
+        "date": "2026-11-07",
         "timeUTC": null,
         "durationMinutes": 60
       },
@@ -417,37 +569,37 @@
         "id": "wec-2026-r08-s4",
         "name": "Qualifying - LMGT3",
         "kind": "qualifying",
-        "date": "2026-11-06",
+        "date": "2026-11-07",
         "timeUTC": null,
-        "durationMinutes": 12
+        "durationMinutes": 20
       },
       {
         "id": "wec-2026-r08-s5",
         "name": "Hyperpole - LMGT3",
         "kind": "hyperpole",
-        "date": "2026-11-06",
+        "date": "2026-11-07",
         "timeUTC": null,
         "durationMinutes": 10
       },
       {
         "id": "wec-2026-r08-s6",
-        "name": "Qualifying - HYPERCAR",
+        "name": "Qualifying - Hypercar",
         "kind": "qualifying",
-        "date": "2026-11-06",
+        "date": "2026-11-07",
         "timeUTC": null,
-        "durationMinutes": 12
+        "durationMinutes": 20
       },
       {
         "id": "wec-2026-r08-s7",
-        "name": "Hyperpole - HYPERCAR",
+        "name": "Hyperpole - Hypercar",
         "kind": "hyperpole",
-        "date": "2026-11-06",
+        "date": "2026-11-07",
         "timeUTC": null,
         "durationMinutes": 10
       },
       {
         "id": "wec-2026-r08-s8",
-        "name": "Race",
+        "name": "8 Hours of Bahrain",
         "kind": "race",
         "date": "2026-11-07",
         "timeUTC": null,
