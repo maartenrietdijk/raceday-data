@@ -705,8 +705,15 @@ function updateDateTime(ri, si) {
 
   session._date = dateVal || null;
   session._tbcMode = isTBC || !timeVal;
-  // Clear old format fields
-  delete session.dateUTC;
+
+  // Store complete dateUTC so it survives page reload
+  if (dateVal && timeVal && !isTBC) {
+    session.dateUTC = `${dateVal}T${timeVal}:00Z`;
+  } else if (dateVal) {
+    session.dateUTC = dateVal; // date only, no time
+  } else {
+    session.dateUTC = null;
+  }
   delete session.tbcDate;
   save();
 }
@@ -1294,6 +1301,10 @@ Rules:
     if (!text) throw new Error('Empty response from Claude. Stop_reason: ' + data.stop_reason);
 
     setAIStep(4, 80);
+    // Log raw response for debugging
+    console.log('Claude raw response:', text.substring(0, 500));
+    if (!text || text.trim().length === 0) throw new Error('Empty response from Claude');
+    
     // Extract exactly one JSON array from response
     const parsed = extractJSONArray(text);
     if (!parsed || parsed.length === 0) throw new Error('No valid rounds found in response.');
