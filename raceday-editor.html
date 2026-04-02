@@ -218,11 +218,19 @@
   }
   .session-row {
     display: grid;
-    grid-template-columns: 160px 120px 1fr 100px 28px;
+    grid-template-columns: 20px 160px 120px 1fr 100px 28px 28px 28px;
     gap: 8px; align-items: center;
     padding: 6px 0;
     border-bottom: 1px solid var(--border2);
   }
+  .drag-handle {
+    color: var(--subtle); cursor: grab; font-size: 14px;
+    display: flex; align-items: center; justify-content: center;
+    user-select: none;
+  }
+  .drag-handle:active { cursor: grabbing; }
+  .session-row.drag-over { background: var(--red-dim); border-radius: 6px; }
+  .session-row.dragging { opacity: 0.4; }
   .session-row:last-child { border-bottom: none; }
 
   .session-row input, .session-row select {
@@ -310,7 +318,6 @@
   </div>
   <div class="header-actions">
     <button class="btn btn-ghost btn-sm" onclick="exportJSON()">⬇ Export JSON</button>
-    <button class="btn btn-surface btn-sm" onclick="showAIModal()" style="border-color:#6366f1;color:#818cf8">✦ Fill with AI</button>
     <button class="btn btn-primary btn-sm" onclick="publishToGitHub()">
       <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
       Push to GitHub
@@ -599,12 +606,13 @@ function renderRound(r, i, series) {
             Sessions
             <button class="btn btn-surface btn-sm" onclick="addSession(${i})">+ Add Session</button>
           </div>
-          <div style="display:grid;grid-template-columns:160px 130px 1fr 120px 28px;gap:8px;padding:4px 0 6px;border-bottom:1px solid var(--border2)">
+          <div style="display:grid;grid-template-columns:20px 160px 120px 1fr 100px 28px 28px 28px;gap:8px;padding:4px 0 6px;border-bottom:1px solid var(--border2)">
+            <span></span>
             <span style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em">Name</span>
             <span style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em">Kind</span>
             <span style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em">Date · Local Time · TBC</span>
-            <span style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em">Duration (min)</span>
-            <span></span>
+            <span style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em">Min</span>
+            <span></span><span></span><span></span>
           </div>
           <div id="sessions_${i}">${sessionRows}</div>
         </div>
@@ -614,22 +622,15 @@ function renderRound(r, i, series) {
 
 function renderSession(s, ri, si) {
   const isTBC = s.dateUTC === null || (typeof s.dateUTC === 'string' && s.dateUTC.endsWith('TBC'));
-  // Parse existing date/time parts — convert UTC to local time for display
+  // Parse existing date/time parts
   let dateVal = '', timeVal = '';
   if (s.dateUTC && s.dateUTC !== null) {
     const raw = s.dateUTC.replace('Z','');
     if (raw.includes('T')) {
-      // Convert UTC datetime to local time
-      const utcStr = s.dateUTC.endsWith('Z') ? s.dateUTC : s.dateUTC + 'Z';
-      const localDate = new Date(utcStr);
-      // Format date as YYYY-MM-DD in local timezone
-      const ly = localDate.getFullYear();
-      const lmo = String(localDate.getMonth()+1).padStart(2,'0');
-      const ld = String(localDate.getDate()).padStart(2,'0');
-      dateVal = `${ly}-${lmo}-${ld}`;
-      const lh = String(localDate.getHours()).padStart(2,'0');
-      const lm = String(localDate.getMinutes()).padStart(2,'0');
-      timeVal = (isTBC || (lh === '00' && lm === '00')) ? '' : `${lh}:${lm}`;
+      dateVal = raw.split('T')[0];
+      const t = raw.split('T')[1];
+      // If time is 00:00:00 and TBC, treat time as unknown
+      timeVal = (isTBC || t === '00:00:00') ? '' : t.substring(0,5);
     } else {
       dateVal = raw; // date only string
     }
@@ -641,8 +642,15 @@ function renderSession(s, ri, si) {
     `<option value="${k.value}" ${s.kind === k.value ? 'selected' : ''}>${k.label}</option>`
   ).join('');
 
+  const total = state.data[state.activeSeries]?.[ri]?.sessions?.length || 0;
   return `
-    <div class="session-row" id="session_${ri}_${si}">
+    <div class="session-row" id="session_${ri}_${si}"
+      draggable="true"
+      ondragstart="dragSessionStart(event,${ri},${si})"
+      ondragover="dragSessionOver(event,${ri},${si})"
+      ondrop="dragSessionDrop(event,${ri},${si})"
+      ondragend="dragSessionEnd(event)">
+      <span class="drag-handle" title="Drag to reorder">⠿</span>
       <input type="text" value="${esc(s.name||'')}" placeholder="Practice 1"
         oninput="updateSession(${ri},${si},'name',this.value)"/>
       <select onchange="updateSession(${ri},${si},'kind',this.value)">
@@ -666,6 +674,7 @@ function renderSession(s, ri, si) {
       </div>
       <input type="number" value="${s.durationMinutes||60}" min="1"
         oninput="updateSession(${ri},${si},'durationMinutes',+this.value)"/>
+      <button class="btn-icon" onclick="duplicateSession(${ri},${si})" title="Duplicate">⎘</button>
       <button class="btn-icon danger" onclick="deleteSession(${ri},${si})" title="Delete">🗑</button>
     </div>`;
 }
@@ -712,21 +721,8 @@ function updateDateTime(ri, si) {
 
   session._date = dateVal || null;
   session._tbcMode = isTBC || !timeVal;
-
-  if (dateVal && timeVal && !isTBC) {
-    // Convert local time to UTC for storage
-    const localDate = new Date(`${dateVal}T${timeVal}:00`);
-    const utcDate = dateVal + 'T' +
-      String(localDate.getUTCHours()).padStart(2,'0') + ':' +
-      String(localDate.getUTCMinutes()).padStart(2,'0') + ':00Z';
-    // Also store UTC date in case it rolls over midnight
-    session._date = localDate.toISOString().split('T')[0]; // UTC date
-    session.dateUTC = utcDate;
-  } else if (dateVal) {
-    session.dateUTC = dateVal;
-  } else {
-    session.dateUTC = null;
-  }
+  // Clear old format fields
+  delete session.dateUTC;
   delete session.tbcDate;
   save();
 }
@@ -777,6 +773,59 @@ function addSession(ri) {
   }
 }
 
+function duplicateSession(ri, si) {
+  const rounds = state.data[state.activeSeries];
+  const orig = rounds[ri].sessions[si];
+  const copy = JSON.parse(JSON.stringify(orig));
+  const newSi = si + 1;
+  copy.id = `${rounds[ri].id}-s${Date.now()}`;
+  copy.name = orig.name ? orig.name + ' (copy)' : '';
+  rounds[ri].sessions.splice(newSi, 0, copy);
+  save();
+  renderMain();
+}
+
+function moveSession(ri, from, to) {
+  const sessions = state.data[state.activeSeries][ri].sessions;
+  if (to < 0 || to >= sessions.length) return;
+  const [moved] = sessions.splice(from, 1);
+  sessions.splice(to, 0, moved);
+  save();
+  renderMain();
+}
+
+// Drag and drop
+let dragSrc = null;
+
+function dragSessionStart(e, ri, si) {
+  dragSrc = { ri, si };
+  e.dataTransfer.effectAllowed = 'move';
+  document.getElementById(`session_${ri}_${si}`)?.classList.add('dragging');
+}
+
+function dragSessionOver(e, ri, si) {
+  e.preventDefault();
+  e.dataTransfer.dropEffect = 'move';
+  document.querySelectorAll('.session-row').forEach(r => r.classList.remove('drag-over'));
+  document.getElementById(`session_${ri}_${si}`)?.classList.add('drag-over');
+}
+
+function dragSessionDrop(e, ri, si) {
+  e.preventDefault();
+  if (!dragSrc || (dragSrc.ri === ri && dragSrc.si === si)) return;
+  if (dragSrc.ri !== ri) return; // only within same round
+  moveSession(ri, dragSrc.si, si);
+  dragSrc = null;
+}
+
+function dragSessionEnd(e) {
+  document.querySelectorAll('.session-row').forEach(r => {
+    r.classList.remove('drag-over');
+    r.classList.remove('dragging');
+  });
+  dragSrc = null;
+}
+
 function deleteSession(ri, si) {
   state.data[state.activeSeries][ri].sessions.splice(si, 1);
   save();
@@ -799,7 +848,7 @@ function buildJSON(seriesId) {
       id: s.id || `${r.id}-s`,
       name: s.name,
       kind: s.kind || 'race',
-      date: s._date || (s.dateUTC ? s.dateUTC.replace('Z','').split('T')[0] : null),
+      date: s._date || (s.dateUTC ? s.dateUTC.split('T')[0] : null),
       timeUTC: (!s._tbcMode && s.dateUTC && s.dateUTC.includes('T')) ? s.dateUTC.split('T')[1].substring(0,5) : null,
       durationMinutes: s.durationMinutes || 60
     }))
@@ -827,24 +876,7 @@ function importJSON() {
     if (!file) return;
     try {
       const text = await file.text();
-      const raw = JSON.parse(text);
-      // Normalize: convert date+timeUTC fields to internal dateUTC format
-      const data = raw.map(r => ({
-        ...r,
-        sessions: (r.sessions || []).map(s => {
-          // Support both old format (dateUTC string) and new format (date + timeUTC)
-          let dateUTC = s.dateUTC;
-          if (!dateUTC && s.date) {
-            dateUTC = s.timeUTC ? `${s.date}T${s.timeUTC}:00Z` : s.date;
-          }
-          return {
-            ...s,
-            _date: s.date || (dateUTC ? dateUTC.split('T')[0] : null),
-            _tbcMode: !s.timeUTC,
-            dateUTC: dateUTC || null
-          };
-        })
-      }));
+      const data = JSON.parse(text);
       state.data[state.activeSeries] = data;
       save();
       renderMain();
@@ -989,587 +1021,9 @@ document.querySelectorAll('.modal-backdrop').forEach(el => {
   el.addEventListener('click', e => { if (e.target === el) el.classList.remove('show'); });
 });
 
-
-// ── AI Fill ────────────────────────────────────────────────────────────────────
-
-let aiExtractedData = null;
-
-function showAIModal() {
-  if (!state.activeSeries) return showStatus('Select a series first', 'error');
-  document.getElementById('aiSeriesName').textContent = 
-    state.series.find(s => s.id === state.activeSeries)?.name || state.activeSeries;
-  document.getElementById('aiUrl').value = '';
-  document.getElementById('aiContext').value = '';
-  document.getElementById('aiPreview').style.display = 'none';
-  document.getElementById('aiError').style.display = 'none';
-  document.getElementById('aiImportBtn').style.display = 'none';
-  document.getElementById('aiFetchBtn').innerHTML = '✦ Extract data';
-  resetAIProgress();
-  aiExtractedData = null;
-  document.getElementById('aiModal').classList.add('show');
-}
-
-
-function extractJSONArray(text) {
-  // Find the start of the JSON array
-  const start = text.indexOf('[');
-  if (start === -1) throw new Error('No JSON array found in response');
-
-  // Walk character by character to find the matching closing bracket
-  let depth = 0;
-  let inString = false;
-  let escaped = false;
-  let end = -1;
-
-  for (let i = start; i < text.length; i++) {
-    const c = text[i];
-    if (escaped) { escaped = false; continue; }
-    if (c === '\\' && inString) { escaped = true; continue; }
-    if (c === '"') { inString = !inString; continue; }
-    if (inString) continue;
-    if (c === '[' || c === '{') depth++;
-    if (c === ']' || c === '}') {
-      depth--;
-      if (depth === 0) { end = i; break; }
-    }
-  }
-
-  // Try complete JSON first
-  if (end !== -1) {
-    const candidate = text.substring(start, end + 1);
-    try {
-      return JSON.parse(candidate);
-    } catch(e) {
-      // Fall through to repair
-    }
-  }
-
-  // JSON is incomplete — collect complete objects
-  const result = [];
-  let i = start + 1; // skip opening [
-  
-  while (i < text.length) {
-    // Skip whitespace and commas
-    while (i < text.length && (text[i] === ',' || text[i] === ' ' || text[i] === '\n' || text[i] === '\r' || text[i] === '\t')) i++;
-    if (i >= text.length || text[i] !== '{') break;
-
-    // Find the end of this complete object
-    let objDepth = 0;
-    let objInString = false;
-    let objEscaped = false;
-    let objEnd = -1;
-
-    for (let j = i; j < text.length; j++) {
-      const c = text[j];
-      if (objEscaped) { objEscaped = false; continue; }
-      if (c === '\\' && objInString) { objEscaped = true; continue; }
-      if (c === '"') { objInString = !objInString; continue; }
-      if (objInString) continue;
-      if (c === '{' || c === '[') objDepth++;
-      if (c === '}' || c === ']') {
-        objDepth--;
-        if (objDepth === 0) { objEnd = j; break; }
-      }
-    }
-
-    if (objEnd === -1) break; // incomplete object — stop here
-
-    const objStr = text.substring(i, objEnd + 1);
-    try {
-      const obj = JSON.parse(objStr);
-      result.push(obj);
-      i = objEnd + 1;
-    } catch(e) {
-      break; // can't parse this object
-    }
-  }
-
-  if (result.length === 0) throw new Error('Could not extract any complete rounds from response');
-  return result;
-}
-
-
-function updateTimezoneUI() {
-  const mode = document.getElementById('aiTimezoneMode').value;
-  document.getElementById('aiManualOffsetWrap').style.display = mode === 'manual' ? 'flex' : 'none';
-}
-
-// Circuit timezone database — city/country → IANA timezone
-const CIRCUIT_TIMEZONES = {
-  // Australia
-  'melbourne': 'Australia/Melbourne',
-  'australia': 'Australia/Melbourne',
-  // Asia
-  'shanghai': 'Asia/Shanghai',
-  'china': 'Asia/Shanghai',
-  'suzuka': 'Asia/Tokyo',
-  'japan': 'Asia/Tokyo',
-  'singapore': 'Asia/Singapore',
-  'baku': 'Asia/Baku',
-  'azerbaijan': 'Asia/Baku',
-  // Middle East
-  'bahrain': 'Asia/Bahrain',
-  'jeddah': 'Asia/Riyadh',
-  'saudi': 'Asia/Riyadh',
-  'abu dhabi': 'Asia/Dubai',
-  'abu_dhabi': 'Asia/Dubai',
-  'qatar': 'Asia/Qatar',
-  'lusail': 'Asia/Qatar',
-  // Europe
-  'monaco': 'Europe/Monaco',
-  'barcelona': 'Europe/Madrid',
-  'madrid': 'Europe/Madrid',
-  'spain': 'Europe/Madrid',
-  'spielberg': 'Europe/Vienna',
-  'austria': 'Europe/Vienna',
-  'silverstone': 'Europe/London',
-  'great britain': 'Europe/London',
-  'uk': 'Europe/London',
-  'britain': 'Europe/London',
-  'spa': 'Europe/Brussels',
-  'belgium': 'Europe/Brussels',
-  'budapest': 'Europe/Budapest',
-  'hungary': 'Europe/Budapest',
-  'zandvoort': 'Europe/Amsterdam',
-  'netherlands': 'Europe/Amsterdam',
-  'monza': 'Europe/Rome',
-  'italy': 'Europe/Rome',
-  'imola': 'Europe/Rome',
-  // Americas
-  'miami': 'America/New_York',
-  'montreal': 'America/Toronto',
-  'canada': 'America/Toronto',
-  'austin': 'America/Chicago',
-  'texas': 'America/Chicago',
-  'united states': 'America/Chicago',
-  'mexico': 'America/Mexico_City',
-  'mexico city': 'America/Mexico_City',
-  'sao paulo': 'America/Sao_Paulo',
-  'brazil': 'America/Sao_Paulo',
-  'las vegas': 'America/Los_Angeles',
-  'nevada': 'America/Los_Angeles',
-};
-
-function getCircuitTimezone(city, country) {
-  const search = [city, country].map(s => (s || '').toLowerCase());
-  for (const term of search) {
-    for (const [key, tz] of Object.entries(CIRCUIT_TIMEZONES)) {
-      if (term.includes(key) || key.includes(term)) return tz;
-    }
-  }
-  return null;
-}
-
-function getUTCOffset(timezone, dateStr) {
-  // Get UTC offset in hours for a given timezone and date
-  try {
-    const date = new Date(dateStr + 'T12:00:00');
-    const utcDate = new Date(date.toLocaleString('en-US', { timeZone: 'UTC' }));
-    const tzDate = new Date(date.toLocaleString('en-US', { timeZone: timezone }));
-    return (utcDate - tzDate) / (1000 * 60 * 60); // offset in hours (positive = behind UTC)
-  } catch(e) {
-    return 0;
-  }
-}
-
-function applyTimezoneConversion(sessions, city, country, mode, manualOffset) {
-  return sessions.map(s => {
-    if (!s.date || !s.timeUTC) {
-      return { ...s, _date: s.date || null, _tbcMode: true, dateUTC: s.date || null };
-    }
-
-    let offsetHours = 0;
-
-    if (mode === 'utc') {
-      offsetHours = 0;
-    } else if (mode === 'manual') {
-      offsetHours = manualOffset;
-    } else {
-      // Auto-detect
-      const tz = getCircuitTimezone(city, country);
-      if (tz) {
-        const rawOffset = getUTCOffset(tz, s.date); // returns negative of offset (behind UTC)
-        offsetHours = -rawOffset; // convert: if TZ is UTC+2, offset is +2
-      } else {
-        offsetHours = 0; // fallback: assume UTC
-      }
-    }
-
-    if (offsetHours === 0) {
-      return {
-        ...s,
-        _date: s.date,
-        _tbcMode: false,
-        dateUTC: `${s.date}T${s.timeUTC}:00Z`
-      };
-    }
-
-    const [h, m] = s.timeUTC.split(':').map(Number);
-    const localMinutes = h * 60 + m;
-    const utcMinutes = localMinutes - Math.round(offsetHours * 60);
-
-    let date = s.date;
-    let finalMinutes = utcMinutes;
-    if (finalMinutes < 0) {
-      finalMinutes += 24 * 60;
-      const d = new Date(date + 'T00:00:00Z');
-      d.setUTCDate(d.getUTCDate() - 1);
-      date = d.toISOString().split('T')[0];
-    } else if (finalMinutes >= 24 * 60) {
-      finalMinutes -= 24 * 60;
-      const d = new Date(date + 'T00:00:00Z');
-      d.setUTCDate(d.getUTCDate() + 1);
-      date = d.toISOString().split('T')[0];
-    }
-
-    const uh = String(Math.floor(finalMinutes / 60)).padStart(2, '0');
-    const um = String(finalMinutes % 60).padStart(2, '0');
-
-    return {
-      ...s,
-      _date: date,
-      _tbcMode: false,
-      dateUTC: `${date}T${uh}:${um}:00Z`
-    };
-  });
-}
-
-async function aiFetch() {
-  const url = document.getElementById('aiUrl').value.trim();
-  const context = document.getElementById('aiContext').value.trim();
-  if (!url) return;
-
-  const btn = document.getElementById('aiFetchBtn');
-  const errorEl = document.getElementById('aiError');
-  const previewEl = document.getElementById('aiPreview');
-
-  btn.disabled = true;
-  btn.innerHTML = '<span class="spin"></span> Reading page…';
-  errorEl.style.display = 'none';
-  previewEl.style.display = 'none';
-  document.getElementById('aiImportBtn').style.display = 'none';
-  resetAIProgress();
-  setAIStep(1, 10);
-
-  const series = state.series.find(s => s.id === state.activeSeries);
-  const seriesName = series?.name || state.activeSeries;
-  const fromRound = parseInt(document.getElementById('aiFromRound')?.value || '1');
-  const toRound = parseInt(document.getElementById('aiToRound')?.value || '12');
-
-  const systemPrompt = `You are a racing calendar data extractor. Extract race schedule data from web pages and return ONLY valid JSON.
-
-The series is: ${seriesName} (id: ${state.activeSeries})
-${context ? 'Additional context: ' + context : ''}
-
-Return a JSON array of rounds. Each round must have this exact structure:
-{
-  "id": "${state.activeSeries}-2026-r01",
-  "seriesId": "${state.activeSeries}",
-  "roundNumber": 1,
-  "raceName": "Australian Grand Prix",
-  "circuitName": "Albert Park Circuit",
-  "city": "Melbourne",
-  "country": "Australia",
-  "countryCode": "AU",
-  "sessions": [
-    {
-      "id": "${state.activeSeries}-2026-r01-s1",
-      "name": "Practice 1",
-      "kind": "practice",
-      "date": "2026-03-13",
-      "timeUTC": "01:30",
-      "durationMinutes": 60
-    }
-  ]
-}
-
-Rules:
-- Convert ALL times to UTC. Use the circuit's local timezone to convert.
-- If a time is unknown, set timeUTC to null (TBC).
-- date is always "YYYY-MM-DD" format.
-- timeUTC is always "HH:MM" in 24h UTC format, or null.
-- kind must be one of: practice, qualifying, hyperpole, sprintQualifying, sprintRace, featureRace, shakedown, stage, testing, race
-- countryCode is the 2-letter ISO country code.
-- Round IDs follow pattern: ${state.activeSeries}-2026-r01, r02, etc.
-- Session IDs follow pattern: ${state.activeSeries}-2026-r01-s1, s2, etc.
-- Return ONLY the JSON array. No markdown, no explanation, no backticks.`;
-
-  try {
-    setAIStep(1, 20);
-    const response = await fetch('https://raceday-ai-proxy.gentle-meadow-2bdd.workers.dev', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 16000,
-        tools: [{ type: 'web_search_20250305', name: 'web_search' }],
-        system: systemPrompt,
-        messages: [{
-          role: 'user',
-          content: `Please fetch and extract the 2026 race schedule from this URL: ${url}\n\nExtract only rounds ${fromRound} through ${toRound}. Return as JSON array.`
-        }]
-      })
-    });
-
-    if (!response.ok) {
-      const errData = await response.json().catch(() => ({}));
-      throw new Error(`API error ${response.status}: ${errData.error?.message || response.statusText}`);
-    }
-
-    setAIStep(2, 45);
-    const data = await response.json();
-    setAIStep(3, 65);
-    
-    // Extract text from response (may have tool use blocks)
-    let text = '';
-    if (data.content) {
-      for (const block of data.content) {
-        if (block.type === 'text') text += block.text;
-      }
-    }
-    
-    if (!text) throw new Error('Empty response from Claude. Stop_reason: ' + data.stop_reason);
-
-    setAIStep(4, 80);
-    // Log raw response for debugging
-    console.log('Claude raw response:', text.substring(0, 500));
-    if (!text || text.trim().length === 0) throw new Error('Empty response from Claude');
-    
-    // Extract exactly one JSON array from response
-    const parsed = extractJSONArray(text);
-    if (!parsed || parsed.length === 0) throw new Error('No valid rounds found in response.');
-    setAIStep(5, 95);
-
-    aiExtractedData = parsed;
-    setAIStep(5, 100);
-    setTimeout(() => { resetAIProgress(); showAIPreview(parsed); }, 400);
-
-  } catch (err) {
-    const msg = err.message || String(err);
-    errorEl.innerHTML = '<strong>Error:</strong> ' + msg + 
-      '<br><small style="opacity:.7">Check the browser console (F12) for details.</small>';
-    errorEl.style.display = 'block';
-    resetAIProgress();
-    console.error('AI fetch error:', err);
-  }
-
-  btn.disabled = false;
-  btn.innerHTML = '✦ Extract data';
-}
-
-function setAIStatus(msg) {
-  // kept for compatibility but now uses progress
-}
-
-function setAIStep(stepNum, pct) {
-  const progress = document.getElementById('aiProgress');
-  const bar = document.getElementById('aiProgressBar');
-  if (progress) progress.style.display = 'block';
-  if (bar) bar.style.width = pct + '%';
-  for (let i = 1; i <= 5; i++) {
-    const el = document.getElementById('step' + i);
-    if (!el) continue;
-    if (i < stepNum) { el.className = 'ai-step done'; }
-    else if (i === stepNum) { el.className = 'ai-step active'; }
-    else { el.className = 'ai-step'; }
-  }
-}
-
-function resetAIProgress() {
-  const progress = document.getElementById('aiProgress');
-  if (progress) progress.style.display = 'none';
-  const bar = document.getElementById('aiProgressBar');
-  if (bar) bar.style.width = '0%';
-  for (let i = 1; i <= 5; i++) {
-    const el = document.getElementById('step' + i);
-    if (el) el.className = 'ai-step';
-  }
-}
-
-function showAIPreview(rounds) {
-  const previewEl = document.getElementById('aiPreview');
-  const listEl = document.getElementById('aiPreviewList');
-  const countEl = document.getElementById('aiPreviewCount');
-  
-  countEl.textContent = rounds.length;
-  listEl.innerHTML = rounds.map(r => {
-    const sessions = (r.sessions || []).map(s => {
-      const cls = !s.date ? 'tbc' : s.timeUTC ? 'has-time' : 'tbc';
-      const time = s.timeUTC ? ` ${s.timeUTC}` : ' TBC';
-      return `<span class="sess-tag ${cls}">${s.name}${time}</span>`;
-    }).join('');
-    return `
-      <div class="ai-round-preview">
-        <div class="rname">R${r.roundNumber} · ${r.raceName}</div>
-        <div class="rmeta">${r.circuitName || ''} · ${r.city || ''}, ${r.country || ''}</div>
-        <div class="sessions-mini">${sessions}</div>
-      </div>`;
-  }).join('');
-
-  previewEl.style.display = 'block';
-  document.getElementById('aiImportBtn').style.display = 'inline-flex';
-}
-
-function aiImport() {
-  if (!aiExtractedData) return;
-  
-  // Convert to internal format — JSON from Claude is already in UTC, no conversion needed
-  const converted = aiExtractedData.map(r => ({
-    ...r,
-    sessions: (r.sessions || []).map(s => ({
-      ...s,
-      _date: s.date || null,
-      _tbcMode: !s.timeUTC,
-      dateUTC: s.date && s.timeUTC ? `${s.date}T${s.timeUTC}:00Z` : (s.date || null)
-    }))
-  }));
-
-  // Merge with existing rounds (keep existing, add new ones)
-  const existing = state.data[state.activeSeries] || [];
-  const existingIds = new Set(existing.map(r => r.id));
-  const newRounds = converted.filter(r => !existingIds.has(r.id));
-  const merged = [...existing, ...newRounds].sort((a, b) => a.roundNumber - b.roundNumber);
-
-  state.data[state.activeSeries] = merged;
-  save();
-  renderMain();
-  renderSidebar();
-  closeModal('aiModal');
-  showStatus(`✓ Added ${newRounds.length} rounds (${merged.length} total)`, 'success');
-}
-
 // ── Init ───────────────────────────────────────────────────────────────────────
 load();
 renderSidebar();
 </script>
-
-<!-- AI Fill Modal -->
-<div class="modal-backdrop" id="aiModal">
-  <div class="modal" style="width:540px">
-    <h2>✦ Fill with AI</h2>
-    <p>Paste a URL to the official schedule page for <strong id="aiSeriesName"></strong>. Claude will read the page, extract all rounds and sessions, convert times to UTC, and fill the editor automatically.</p>
-    <div class="modal-fields">
-      <div class="field">
-        <label>Schedule URL</label>
-        <input type="url" id="aiUrl" placeholder="https://www.formula1.com/en/racing/2026" style="font-family:var(--mono);font-size:12px"/>
-      </div>
-      <div class="field">
-        <label>Additional context (optional)</label>
-        <input type="text" id="aiContext" placeholder="e.g. source language, special notes" style="font-size:12px"/>
-      </div>
-      <div class="field">
-        <label>Source timezone</label>
-        <div style="display:flex;align-items:center;gap:8px">
-          <select id="aiTimezoneMode" style="font-size:12px;padding:6px 9px" onchange="updateTimezoneUI()">
-            <option value="auto">Auto-detect per circuit (recommended)</option>
-            <option value="manual">Manual offset</option>
-            <option value="utc">Already UTC — no conversion</option>
-          </select>
-        </div>
-      </div>
-      <div id="aiManualOffsetWrap" style="display:none" class="field">
-        <label>Manual offset (hours from UTC)</label>
-        <div style="display:flex;align-items:center;gap:8px">
-          <input type="number" id="aiUtcOffset" value="0" min="-12" max="14" step="0.5"
-            style="font-family:var(--mono);width:80px"/>
-          <span style="font-size:12px;color:var(--muted)">e.g. +2 for GMT+2, -5 for GMT-5</span>
-        </div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-        <div class="field">
-          <label>From round #</label>
-          <input type="number" id="aiFromRound" value="1" min="1" style="font-family:var(--mono)"/>
-        </div>
-        <div class="field">
-          <label>To round #</label>
-          <input type="number" id="aiToRound" value="12" min="1" style="font-family:var(--mono)"/>
-        </div>
-      </div>
-      <div style="font-size:11px;color:var(--muted);margin-top:-4px">
-        💡 For large series like F1 (24 rounds), extract in two batches: rounds 1–12, then 13–24. Use "Import" to merge.
-      </div>
-    </div>
-
-    <!-- Progress -->
-    <div class="ai-progress" id="aiProgress">
-      <div class="ai-progress-bar-wrap">
-        <div class="ai-progress-bar" id="aiProgressBar"></div>
-      </div>
-      <div class="ai-progress-steps">
-        <div class="ai-step" id="step1">Connecting to Claude API</div>
-        <div class="ai-step" id="step2">Fetching schedule page</div>
-        <div class="ai-step" id="step3">Extracting rounds and sessions</div>
-        <div class="ai-step" id="step4">Converting times to UTC</div>
-        <div class="ai-step" id="step5">Parsing and validating JSON</div>
-      </div>
-    </div>
-
-    <!-- Preview area -->
-    <div id="aiPreview" style="display:none;margin-bottom:16px">
-      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:8px">Preview — <span id="aiPreviewCount"></span> rounds found</div>
-      <div id="aiPreviewList" style="max-height:260px;overflow-y:auto;display:flex;flex-direction:column;gap:6px"></div>
-    </div>
-
-    <div id="aiError" style="display:none;color:var(--red);font-size:12px;margin-bottom:12px;padding:10px;background:var(--red-dim);border-radius:8px;border:1px solid var(--red)"></div>
-
-    <div class="modal-actions">
-      <button class="btn btn-ghost" onclick="closeModal('aiModal')">Cancel</button>
-      <button class="btn btn-surface btn-sm" id="aiFetchBtn" onclick="aiFetch()" style="border-color:#6366f1;color:#818cf8">
-        <span class="spin" id="aiSpinFetch" style="display:none"></span>
-        ✦ Extract data
-      </button>
-      <button class="btn btn-primary" id="aiImportBtn" onclick="aiImport()" style="display:none">
-        Import into editor
-      </button>
-    </div>
-  </div>
-</div>
-
-<!-- AI CSS -->
-<style>
-.ai-round-preview {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 10px 12px;
-  font-size: 12px;
-}
-.ai-round-preview .rname { font-weight: 600; margin-bottom: 4px; }
-.ai-round-preview .rmeta { color: var(--muted); font-size: 11px; margin-bottom: 6px; }
-.ai-round-preview .sessions-mini { display: flex; flex-wrap: wrap; gap: 4px; }
-.ai-round-preview .sess-tag {
-  background: var(--card); border: 1px solid var(--border);
-  border-radius: 4px; padding: 2px 7px; font-size: 10px;
-  font-family: var(--mono); color: var(--muted);
-}
-.ai-round-preview .sess-tag.has-time { border-color: var(--green); color: var(--green); }
-.ai-round-preview .sess-tag.tbc { border-color: var(--amber); color: var(--amber); }
-
-.ai-progress {
-  margin-bottom: 14px;
-  display: none;
-}
-.ai-progress-bar-wrap {
-  height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; margin-bottom: 8px;
-}
-.ai-progress-bar {
-  height: 100%; background: linear-gradient(90deg, #6366f1, #818cf8);
-  border-radius: 2px; transition: width 0.6s ease; width: 0%;
-}
-.ai-progress-steps {
-  display: flex; flex-direction: column; gap: 4px;
-}
-.ai-step {
-  font-size: 11px; font-family: var(--mono);
-  color: var(--muted); display: flex; align-items: center; gap: 6px;
-  transition: color .3s;
-}
-.ai-step.active { color: #818cf8; }
-.ai-step.done { color: var(--green); }
-.ai-step::before { content: '○'; font-size: 10px; }
-.ai-step.active::before { content: '◉'; }
-.ai-step.done::before { content: '✓'; }
-</style>
-
 </body>
 </html>
