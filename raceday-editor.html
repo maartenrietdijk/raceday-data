@@ -624,19 +624,26 @@ function renderSession(s, ri, si) {
   const isTBC = s.dateUTC === null || (typeof s.dateUTC === 'string' && s.dateUTC.endsWith('TBC'));
   // Parse existing date/time parts
   let dateVal = '', timeVal = '';
-  if (s.dateUTC && s.dateUTC !== null) {
+  // Prefer explicit _date/_time fields (set by updateDateTime)
+  if (s._date) {
+    dateVal = s._date;
+    timeVal = s._time || '';
+  } else if (s.date) {
+    // Imported JSON with date + timeUTC fields
+    dateVal = s.date;
+    timeVal = (isTBC || !s.timeUTC) ? '' : s.timeUTC;
+  } else if (s.dateUTC && s.dateUTC !== null) {
+    // Legacy dateUTC string format
     const raw = s.dateUTC.replace('Z','');
     if (raw.includes('T')) {
       dateVal = raw.split('T')[0];
       const t = raw.split('T')[1];
-      // If time is 00:00:00 and TBC, treat time as unknown
       timeVal = (isTBC || t === '00:00:00') ? '' : t.substring(0,5);
     } else {
-      dateVal = raw; // date only string
+      dateVal = raw;
     }
   }
-  if (isTBC && s._date) dateVal = s._date;
-  else if (isTBC && s.tbcDate) dateVal = s.tbcDate; // from loaded JSON
+  if (!dateVal && s.tbcDate) dateVal = s.tbcDate;
 
   const kindOptions = KIND_OPTIONS.map(k =>
     `<option value="${k.value}" ${s.kind === k.value ? 'selected' : ''}>${k.label}</option>`
@@ -719,9 +726,11 @@ function updateDateTime(ri, si) {
   const dateVal = document.getElementById(`date_${ri}_${si}`)?.value || '';
   const timeVal = document.getElementById(`time_${ri}_${si}`)?.value || '';
 
+  // Store date and time directly — these map 1:1 to JSON output fields
   session._date = dateVal || null;
+  session._time = (timeVal && !isTBC) ? timeVal : null;
   session._tbcMode = isTBC || !timeVal;
-  // Clear old format fields
+  // Clear legacy field
   delete session.dateUTC;
   delete session.tbcDate;
   save();
@@ -848,8 +857,14 @@ function buildJSON(seriesId) {
       id: s.id || `${r.id}-s`,
       name: s.name,
       kind: s.kind || 'race',
-      date: s._date || (s.dateUTC ? s.dateUTC.split('T')[0] : null),
-      timeUTC: (!s._tbcMode && s.dateUTC && s.dateUTC.includes('T')) ? s.dateUTC.split('T')[1].substring(0,5) : null,
+      date: s._date || s.date || (s.dateUTC ? s.dateUTC.split('T')[0] : null),
+      timeUTC: (() => {
+        if (s._tbcMode) return null;
+        if (s._time) return s._time;
+        if (s.timeUTC) return s.timeUTC;
+        if (s.dateUTC && s.dateUTC.includes('T')) return s.dateUTC.split('T')[1].substring(0,5);
+        return null;
+      })(),
       durationMinutes: s.durationMinutes || 60
     }))
   }));
