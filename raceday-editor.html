@@ -610,7 +610,7 @@ function renderRound(r, i, series) {
             <span></span>
             <span style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em">Name</span>
             <span style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em">Kind</span>
-            <span style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em">Date · Time (UTC) · TBC</span>
+            <span style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em">Date · Time (local) · TBC</span>
             <span style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em">Min</span>
             <span></span><span></span><span></span>
           </div>
@@ -631,7 +631,7 @@ function renderSession(s, ri, si) {
   } else if (s.date) {
     // Imported JSON with date + timeUTC fields
     dateVal = s.date;
-    timeVal = (isTBC || !s.timeUTC) ? '' : s.timeUTC;
+    timeVal = (isTBC || (!s.timeLocal && !s.timeUTC)) ? '' : (s.timeLocal || s.timeUTC || '');
   } else if (s.dateUTC && s.dateUTC !== null) {
     // Legacy dateUTC string format
     const raw = s.dateUTC.replace('Z','');
@@ -772,7 +772,7 @@ function deleteRound(i) {
 function addSession(ri) {
   const rounds = state.data[state.activeSeries];
   const si = rounds[ri].sessions.length;
-  rounds[ri].sessions.push({ id: `${rounds[ri].id}-s${si+1}`, name: '', kind: 'practice', dateUTC: null, durationMinutes: 60 });
+  rounds[ri].sessions.push({ id: `${rounds[ri].id}-s${si+1}`, name: '', kind: 'practice', timeLocal: null, durationMinutes: 60 });
   save();
   const container = document.getElementById(`sessions_${ri}`);
   if (container) {
@@ -858,10 +858,11 @@ function buildJSON(seriesId) {
       name: s.name,
       kind: s.kind || 'race',
       date: s._date || s.date || (s.dateUTC ? s.dateUTC.split('T')[0] : null),
-      timeUTC: (() => {
+      timeLocal: (() => {
         if (s._tbcMode) return null;
         if (s._time) return s._time;
-        if (s.timeUTC) return s.timeUTC;
+        if (s.timeLocal) return s.timeLocal;
+        if (s.timeUTC) return s.timeUTC;  // backwards compat
         if (s.dateUTC && s.dateUTC.includes('T')) return s.dateUTC.split('T')[1].substring(0,5);
         return null;
       })(),
