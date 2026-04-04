@@ -4,73 +4,49 @@
     "seriesId": "wec",
     "roundNumber": 1,
     "raceName": "6 Hours of Imola",
-    "circuitName": "Autodromo Internazionale Enzo e Dino Ferrari",
+    "circuitName": "Autodromo Enzo e Dino Ferrari",
     "city": "Imola",
     "country": "Italy",
     "countryCode": "IT",
     "sessions": [
       {
-        "id": "wec-2026-r01-s3",
-        "name": "Free Practice 1",
+        "id": "wec-2026-r01-s1",
+        "name": "Practice 1",
         "kind": "practice",
         "date": "2026-04-17",
-        "timeLocal": "09:15",
-        "durationMinutes": 90
-      },
-      {
-        "id": "wec-2026-r01-s4",
-        "name": "Free Practice 2",
-        "kind": "practice",
-        "date": "2026-04-17",
-        "timeLocal": "14:15",
-        "durationMinutes": 90
-      },
-      {
-        "id": "wec-2026-r01-s5",
-        "name": "Free Practice 3",
-        "kind": "practice",
-        "date": "2026-04-18",
-        "timeLocal": "09:30",
+        "timeLocal": "11:15",
         "durationMinutes": 60
       },
       {
-        "id": "wec-2026-r01-s6",
-        "name": "Qualifying - LMGT3",
+        "id": "wec-2026-r01-s2",
+        "name": "Practice 2",
+        "kind": "practice",
+        "date": "2026-04-17",
+        "timeLocal": "16:00",
+        "durationMinutes": 60
+      },
+      {
+        "id": "wec-2026-r01-s3",
+        "name": "Practice 3",
+        "kind": "practice",
+        "date": "2026-04-18",
+        "timeLocal": "10:40",
+        "durationMinutes": 60
+      },
+      {
+        "id": "wec-2026-r01-s4",
+        "name": "Qualifying",
         "kind": "qualifying",
-        "date": "2026-04-18",
-        "timeLocal": "13:30",
-        "durationMinutes": 20
-      },
-      {
-        "id": "wec-2026-r01-s7",
-        "name": "Hyperpole - LMGT3",
-        "kind": "hyperpole",
-        "date": "2026-04-18",
-        "timeLocal": "13:50",
-        "durationMinutes": 10
-      },
-      {
-        "id": "wec-2026-r01-s8",
-        "name": "Qualifying - Hypercar",
-        "kind": "qualifying",
-        "date": "2026-04-18",
-        "timeLocal": "14:10",
-        "durationMinutes": 20
-      },
-      {
-        "id": "wec-2026-r01-s9",
-        "name": "Hyperpole - Hypercar",
-        "kind": "hyperpole",
         "date": "2026-04-18",
         "timeLocal": "14:30",
-        "durationMinutes": 10
+        "durationMinutes": 30
       },
       {
-        "id": "wec-2026-r01-s10",
-        "name": "Race",
+        "id": "wec-2026-r01-s5",
+        "name": "6 Hour Race",
         "kind": "race",
         "date": "2026-04-19",
-        "timeLocal": "17:00",
+        "timeLocal": "13:00",
         "durationMinutes": 360
       }
     ]
@@ -81,72 +57,48 @@
     "roundNumber": 2,
     "raceName": "6 Hours of Spa-Francorchamps",
     "circuitName": "Circuit de Spa-Francorchamps",
-    "city": "Stavelot",
+    "city": "Spa-Francorchamps",
     "country": "Belgium",
     "countryCode": "BE",
     "sessions": [
       {
         "id": "wec-2026-r02-s1",
-        "name": "Free Practice 1",
+        "name": "Practice 1",
         "kind": "practice",
         "date": "2026-05-07",
-        "timeLocal": "10:00",
-        "durationMinutes": 90
+        "timeLocal": "10:30",
+        "durationMinutes": 60
       },
       {
         "id": "wec-2026-r02-s2",
-        "name": "Free Practice 2",
+        "name": "Practice 2",
         "kind": "practice",
         "date": "2026-05-07",
-        "timeLocal": "14:40",
-        "durationMinutes": 90
+        "timeLocal": "15:50",
+        "durationMinutes": 60
       },
       {
         "id": "wec-2026-r02-s3",
-        "name": "Free Practice 3",
+        "name": "Practice 3",
         "kind": "practice",
         "date": "2026-05-08",
-        "timeLocal": "09:10",
+        "timeLocal": "10:00",
         "durationMinutes": 60
       },
       {
         "id": "wec-2026-r02-s4",
-        "name": "Qualifying - LMGT3",
+        "name": "Qualifying",
         "kind": "qualifying",
         "date": "2026-05-08",
-        "timeLocal": "13:30",
-        "durationMinutes": 20
+        "timeLocal": "14:40",
+        "durationMinutes": 30
       },
       {
         "id": "wec-2026-r02-s5",
-        "name": "Hyperpole - LMGT3",
-        "kind": "hyperpole",
-        "date": "2026-05-08",
-        "timeLocal": "13:55",
-        "durationMinutes": 10
-      },
-      {
-        "id": "wec-2026-r02-s6",
-        "name": "Qualifying - Hypercar",
-        "kind": "qualifying",
-        "date": "2026-05-08",
-        "timeLocal": "14:20",
-        "durationMinutes": 20
-      },
-      {
-        "id": "wec-2026-r02-s7",
-        "name": "Hyperpole - Hypercar",
-        "kind": "hyperpole",
-        "date": "2026-05-08",
-        "timeLocal": "14:45",
-        "durationMinutes": 10
-      },
-      {
-        "id": "wec-2026-r02-s8",
-        "name": "6 Hours of Spa-Francorchamps",
+        "name": "6 Hour Race",
         "kind": "race",
         "date": "2026-05-09",
-        "timeLocal": "13:00",
+        "timeLocal": "14:00",
         "durationMinutes": 360
       }
     ]
@@ -155,7 +107,7 @@
     "id": "wec-2026-r03",
     "seriesId": "wec",
     "roundNumber": 3,
-    "raceName": "24 Heures du Mans",
+    "raceName": "24 Hours of Le Mans",
     "circuitName": "Circuit de la Sarthe",
     "city": "Le Mans",
     "country": "France",
@@ -163,66 +115,58 @@
     "sessions": [
       {
         "id": "wec-2026-r03-s1",
-        "name": "Free Practice 1",
+        "name": "Practice 1",
         "kind": "practice",
-        "date": "2026-06-11",
-        "timeLocal": null,
-        "durationMinutes": 90
+        "date": "2026-06-10",
+        "timeLocal": "14:00",
+        "durationMinutes": 120
       },
       {
         "id": "wec-2026-r03-s2",
-        "name": "Free Practice 2",
-        "kind": "practice",
-        "date": "2026-06-11",
-        "timeLocal": null,
-        "durationMinutes": 90
-      },
-      {
-        "id": "wec-2026-r03-s3",
-        "name": "Free Practice 3",
-        "kind": "practice",
-        "date": "2026-06-12",
-        "timeLocal": null,
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-06-10",
+        "timeLocal": "18:45",
         "durationMinutes": 60
       },
       {
+        "id": "wec-2026-r03-s3",
+        "name": "Practice 2",
+        "kind": "practice",
+        "date": "2026-06-10",
+        "timeLocal": "22:00",
+        "durationMinutes": 120
+      },
+      {
         "id": "wec-2026-r03-s4",
-        "name": "Qualifying - LMGT3",
-        "kind": "qualifying",
-        "date": "2026-06-12",
-        "timeLocal": null,
-        "durationMinutes": 20
+        "name": "Practice 3",
+        "kind": "practice",
+        "date": "2026-06-11",
+        "timeLocal": "14:45",
+        "durationMinutes": 120
       },
       {
         "id": "wec-2026-r03-s5",
-        "name": "Hyperpole - LMGT3",
+        "name": "Hyperpole",
         "kind": "hyperpole",
-        "date": "2026-06-12",
-        "timeLocal": null,
-        "durationMinutes": 10
+        "date": "2026-06-11",
+        "timeLocal": "20:00",
+        "durationMinutes": 30
       },
       {
         "id": "wec-2026-r03-s6",
-        "name": "Qualifying - Hypercar",
-        "kind": "qualifying",
-        "date": "2026-06-12",
-        "timeLocal": null,
-        "durationMinutes": 20
+        "name": "Practice 4",
+        "kind": "practice",
+        "date": "2026-06-11",
+        "timeLocal": "23:00",
+        "durationMinutes": 60
       },
       {
         "id": "wec-2026-r03-s7",
-        "name": "Hyperpole - Hypercar",
-        "kind": "hyperpole",
-        "date": "2026-06-12",
-        "timeLocal": null,
-        "durationMinutes": 10
-      },
-      {
-        "id": "wec-2026-r03-s8",
-        "name": "24 Hours of Le Mans",
+        "name": "24 Hour Race",
         "kind": "race",
         "date": "2026-06-13",
-        "timeLocal": "13:00",
+        "timeLocal": "16:00",
         "durationMinutes": 1440
       }
     ]
@@ -239,66 +183,42 @@
     "sessions": [
       {
         "id": "wec-2026-r04-s1",
-        "name": "Free Practice 1",
+        "name": "Practice 1",
         "kind": "practice",
-        "date": "2026-07-11",
-        "timeLocal": null,
-        "durationMinutes": 90
+        "date": "2026-07-10",
+        "timeLocal": "16:00",
+        "durationMinutes": 60
       },
       {
         "id": "wec-2026-r04-s2",
-        "name": "Free Practice 2",
+        "name": "Practice 2",
         "kind": "practice",
-        "date": "2026-07-11",
-        "timeLocal": null,
-        "durationMinutes": 90
+        "date": "2026-07-10",
+        "timeLocal": "20:45",
+        "durationMinutes": 60
       },
       {
         "id": "wec-2026-r04-s3",
-        "name": "Free Practice 3",
+        "name": "Practice 3",
         "kind": "practice",
-        "date": "2026-07-12",
-        "timeLocal": null,
+        "date": "2026-07-11",
+        "timeLocal": "15:10",
         "durationMinutes": 60
       },
       {
         "id": "wec-2026-r04-s4",
-        "name": "Qualifying - LMGT3",
+        "name": "Qualifying",
         "kind": "qualifying",
-        "date": "2026-07-12",
-        "timeLocal": null,
-        "durationMinutes": 20
+        "date": "2026-07-11",
+        "timeLocal": "19:45",
+        "durationMinutes": 30
       },
       {
         "id": "wec-2026-r04-s5",
-        "name": "Hyperpole - LMGT3",
-        "kind": "hyperpole",
-        "date": "2026-07-12",
-        "timeLocal": null,
-        "durationMinutes": 10
-      },
-      {
-        "id": "wec-2026-r04-s6",
-        "name": "Qualifying - Hypercar",
-        "kind": "qualifying",
-        "date": "2026-07-12",
-        "timeLocal": null,
-        "durationMinutes": 20
-      },
-      {
-        "id": "wec-2026-r04-s7",
-        "name": "Hyperpole - Hypercar",
-        "kind": "hyperpole",
-        "date": "2026-07-12",
-        "timeLocal": null,
-        "durationMinutes": 10
-      },
-      {
-        "id": "wec-2026-r04-s8",
-        "name": "6 Hours of São Paulo",
+        "name": "6 Hour Race",
         "kind": "race",
         "date": "2026-07-12",
-        "timeLocal": null,
+        "timeLocal": "16:30",
         "durationMinutes": 360
       }
     ]
@@ -315,66 +235,42 @@
     "sessions": [
       {
         "id": "wec-2026-r05-s1",
-        "name": "Free Practice 1",
+        "name": "Practice 1",
         "kind": "practice",
         "date": "2026-09-04",
-        "timeLocal": null,
-        "durationMinutes": 90
+        "timeLocal": "18:30",
+        "durationMinutes": 60
       },
       {
         "id": "wec-2026-r05-s2",
-        "name": "Free Practice 2",
+        "name": "Practice 2",
         "kind": "practice",
         "date": "2026-09-04",
-        "timeLocal": null,
-        "durationMinutes": 90
+        "timeLocal": "23:00",
+        "durationMinutes": 60
       },
       {
         "id": "wec-2026-r05-s3",
-        "name": "Free Practice 3",
+        "name": "Practice 3",
         "kind": "practice",
         "date": "2026-09-05",
-        "timeLocal": null,
+        "timeLocal": "18:00",
         "durationMinutes": 60
       },
       {
         "id": "wec-2026-r05-s4",
-        "name": "Qualifying - LMGT3",
+        "name": "Qualifying",
         "kind": "qualifying",
         "date": "2026-09-05",
-        "timeLocal": null,
-        "durationMinutes": 20
+        "timeLocal": "22:00",
+        "durationMinutes": 30
       },
       {
         "id": "wec-2026-r05-s5",
-        "name": "Hyperpole - LMGT3",
-        "kind": "hyperpole",
-        "date": "2026-09-05",
-        "timeLocal": null,
-        "durationMinutes": 10
-      },
-      {
-        "id": "wec-2026-r05-s6",
-        "name": "Qualifying - Hypercar",
-        "kind": "qualifying",
-        "date": "2026-09-05",
-        "timeLocal": null,
-        "durationMinutes": 20
-      },
-      {
-        "id": "wec-2026-r05-s7",
-        "name": "Hyperpole - Hypercar",
-        "kind": "hyperpole",
-        "date": "2026-09-05",
-        "timeLocal": null,
-        "durationMinutes": 10
-      },
-      {
-        "id": "wec-2026-r05-s8",
-        "name": "Lone Star Le Mans",
+        "name": "6 Hour Race",
         "kind": "race",
         "date": "2026-09-06",
-        "timeLocal": null,
+        "timeLocal": "20:00",
         "durationMinutes": 360
       }
     ]
@@ -384,73 +280,49 @@
     "seriesId": "wec",
     "roundNumber": 6,
     "raceName": "6 Hours of Fuji",
-    "circuitName": "Fuji International Speedway",
+    "circuitName": "Fuji Speedway",
     "city": "Oyama",
     "country": "Japan",
     "countryCode": "JP",
     "sessions": [
       {
         "id": "wec-2026-r06-s1",
-        "name": "Free Practice 1",
+        "name": "Practice 1",
         "kind": "practice",
         "date": "2026-09-25",
-        "timeLocal": null,
-        "durationMinutes": 90
+        "timeLocal": "03:15",
+        "durationMinutes": 60
       },
       {
         "id": "wec-2026-r06-s2",
-        "name": "Free Practice 2",
+        "name": "Practice 2",
         "kind": "practice",
         "date": "2026-09-25",
-        "timeLocal": null,
-        "durationMinutes": 90
+        "timeLocal": "07:30",
+        "durationMinutes": 60
       },
       {
         "id": "wec-2026-r06-s3",
-        "name": "Free Practice 3",
+        "name": "Practice 3",
         "kind": "practice",
         "date": "2026-09-26",
-        "timeLocal": null,
+        "timeLocal": "02:50",
         "durationMinutes": 60
       },
       {
         "id": "wec-2026-r06-s4",
-        "name": "Qualifying - LMGT3",
+        "name": "Qualifying",
         "kind": "qualifying",
         "date": "2026-09-26",
-        "timeLocal": null,
-        "durationMinutes": 20
+        "timeLocal": "07:20",
+        "durationMinutes": 30
       },
       {
         "id": "wec-2026-r06-s5",
-        "name": "Hyperpole - LMGT3",
-        "kind": "hyperpole",
-        "date": "2026-09-26",
-        "timeLocal": null,
-        "durationMinutes": 10
-      },
-      {
-        "id": "wec-2026-r06-s6",
-        "name": "Qualifying - Hypercar",
-        "kind": "qualifying",
-        "date": "2026-09-26",
-        "timeLocal": null,
-        "durationMinutes": 20
-      },
-      {
-        "id": "wec-2026-r06-s7",
-        "name": "Hyperpole - Hypercar",
-        "kind": "hyperpole",
-        "date": "2026-09-26",
-        "timeLocal": null,
-        "durationMinutes": 10
-      },
-      {
-        "id": "wec-2026-r06-s8",
-        "name": "6 Hours of Fuji",
+        "name": "6 Hour Race",
         "kind": "race",
         "date": "2026-09-27",
-        "timeLocal": null,
+        "timeLocal": "04:00",
         "durationMinutes": 360
       }
     ]
@@ -460,74 +332,50 @@
     "seriesId": "wec",
     "roundNumber": 7,
     "raceName": "Qatar 1812km",
-    "circuitName": "Lusail International Circuit",
+    "circuitName": "Losail International Circuit",
     "city": "Lusail",
     "country": "Qatar",
     "countryCode": "QA",
     "sessions": [
       {
         "id": "wec-2026-r07-s1",
-        "name": "Free Practice 1",
+        "name": "Practice 1",
         "kind": "practice",
         "date": "2026-10-22",
-        "timeLocal": null,
-        "durationMinutes": 90
+        "timeLocal": "10:00",
+        "durationMinutes": 60
       },
       {
         "id": "wec-2026-r07-s2",
-        "name": "Free Practice 2",
+        "name": "Practice 2",
         "kind": "practice",
         "date": "2026-10-22",
-        "timeLocal": null,
-        "durationMinutes": 90
+        "timeLocal": "14:45",
+        "durationMinutes": 60
       },
       {
         "id": "wec-2026-r07-s3",
-        "name": "Free Practice 3",
+        "name": "Practice 3",
         "kind": "practice",
         "date": "2026-10-23",
-        "timeLocal": null,
+        "timeLocal": "09:30",
         "durationMinutes": 60
       },
       {
         "id": "wec-2026-r07-s4",
-        "name": "Qualifying - LMGT3",
+        "name": "Qualifying",
         "kind": "qualifying",
         "date": "2026-10-23",
-        "timeLocal": null,
-        "durationMinutes": 20
+        "timeLocal": "13:15",
+        "durationMinutes": 30
       },
       {
         "id": "wec-2026-r07-s5",
-        "name": "Hyperpole - LMGT3",
-        "kind": "hyperpole",
-        "date": "2026-10-23",
-        "timeLocal": null,
-        "durationMinutes": 10
-      },
-      {
-        "id": "wec-2026-r07-s6",
-        "name": "Qualifying - Hypercar",
-        "kind": "qualifying",
-        "date": "2026-10-23",
-        "timeLocal": null,
-        "durationMinutes": 20
-      },
-      {
-        "id": "wec-2026-r07-s7",
-        "name": "Hyperpole - Hypercar",
-        "kind": "hyperpole",
-        "date": "2026-10-23",
-        "timeLocal": null,
-        "durationMinutes": 10
-      },
-      {
-        "id": "wec-2026-r07-s8",
-        "name": "Qatar 1812km",
+        "name": "Race",
         "kind": "race",
         "date": "2026-10-24",
-        "timeLocal": null,
-        "durationMinutes": 360
+        "timeLocal": "13:00",
+        "durationMinutes": 300
       }
     ]
   },
@@ -543,66 +391,42 @@
     "sessions": [
       {
         "id": "wec-2026-r08-s1",
-        "name": "Free Practice 1",
+        "name": "Practice 1",
         "kind": "practice",
-        "date": "2026-11-06",
-        "timeLocal": null,
-        "durationMinutes": 90
+        "date": "2026-11-05",
+        "timeLocal": "10:15",
+        "durationMinutes": 60
       },
       {
         "id": "wec-2026-r08-s2",
-        "name": "Free Practice 2",
+        "name": "Practice 2",
         "kind": "practice",
-        "date": "2026-11-06",
-        "timeLocal": null,
-        "durationMinutes": 90
+        "date": "2026-11-05",
+        "timeLocal": "15:00",
+        "durationMinutes": 60
       },
       {
         "id": "wec-2026-r08-s3",
-        "name": "Free Practice 3",
+        "name": "Practice 3",
         "kind": "practice",
-        "date": "2026-11-07",
-        "timeLocal": null,
+        "date": "2026-11-06",
+        "timeLocal": "10:00",
         "durationMinutes": 60
       },
       {
         "id": "wec-2026-r08-s4",
-        "name": "Qualifying - LMGT3",
+        "name": "Qualifying",
         "kind": "qualifying",
-        "date": "2026-11-07",
-        "timeLocal": null,
-        "durationMinutes": 20
+        "date": "2026-11-06",
+        "timeLocal": "14:00",
+        "durationMinutes": 30
       },
       {
         "id": "wec-2026-r08-s5",
-        "name": "Hyperpole - LMGT3",
-        "kind": "hyperpole",
-        "date": "2026-11-07",
-        "timeLocal": null,
-        "durationMinutes": 10
-      },
-      {
-        "id": "wec-2026-r08-s6",
-        "name": "Qualifying - Hypercar",
-        "kind": "qualifying",
-        "date": "2026-11-07",
-        "timeLocal": null,
-        "durationMinutes": 20
-      },
-      {
-        "id": "wec-2026-r08-s7",
-        "name": "Hyperpole - Hypercar",
-        "kind": "hyperpole",
-        "date": "2026-11-07",
-        "timeLocal": null,
-        "durationMinutes": 10
-      },
-      {
-        "id": "wec-2026-r08-s8",
-        "name": "8 Hours of Bahrain",
+        "name": "8 Hour Race",
         "kind": "race",
         "date": "2026-11-07",
-        "timeLocal": null,
+        "timeLocal": "12:00",
         "durationMinutes": 480
       }
     ]
