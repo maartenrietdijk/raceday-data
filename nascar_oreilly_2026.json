@@ -190,12 +190,28 @@
     "countryCode": "US",
     "sessions": [
       {
+        "id": "nascar_oreilly-2026-10-s1776086900444",
+        "name": "Practice",
+        "kind": "practice",
+        "date": "2026-04-17",
+        "timeLocal": "19:00",
+        "durationMinutes": 60
+      },
+      {
+        "id": "nascar_oreilly-2026-10-s1776086808199",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-04-17",
+        "timeLocal": "20:00",
+        "durationMinutes": 60
+      },
+      {
         "id": "nascar_oreilly-2026-10-race",
         "name": "Race",
         "kind": "race",
         "date": "2026-04-18",
         "timeLocal": "19:00",
-        "durationMinutes": 60
+        "durationMinutes": 240
       }
     ]
   },
@@ -210,7 +226,7 @@
     "countryCode": "US",
     "sessions": [
       {
-        "id": "nascar_oreilly-2026-11-race",
+        "id": "nascar_oreilly-2026-11-s1776086810955",
         "name": "Race",
         "kind": "race",
         "date": "2026-04-25",
