@@ -510,5 +510,33 @@
         "durationMinutes": 120
       }
     ]
+  },
+  {
+    "id": "indycar-2026-r19",
+    "seriesId": "indycar",
+    "roundNumber": 19,
+    "raceName": "Indy 500 Open Test",
+    "circuitName": "Indianapolis Motor Speedway",
+    "city": "Indianapolis",
+    "country": "United States",
+    "countryCode": "US",
+    "sessions": [
+      {
+        "id": "indycar-2026-r19-s1",
+        "name": "Test 1",
+        "kind": "practice",
+        "date": "2026-04-28",
+        "timeLocal": "10:00",
+        "durationMinutes": 480
+      },
+      {
+        "id": "indycar-2026-r19-s1776713231648",
+        "name": "Test 2",
+        "kind": "practice",
+        "date": "2026-04-29",
+        "timeLocal": "10:00",
+        "durationMinutes": 480
+      }
+    ]
   }
 ]
