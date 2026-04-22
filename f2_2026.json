@@ -526,5 +526,49 @@
         "durationMinutes": 60
       }
     ]
+  },
+  {
+    "id": "f2-2026-r13",
+    "seriesId": "f2",
+    "roundNumber": 13,
+    "raceName": "Miami Grand Prix",
+    "circuitName": "Miami International Autodrome",
+    "city": "Miami",
+    "country": "United States",
+    "countryCode": "US",
+    "sessions": [
+      {
+        "id": "f2-2026-r13-s1",
+        "name": "Practice",
+        "kind": "practice",
+        "date": "2026-05-01",
+        "timeLocal": "16:00",
+        "durationMinutes": 45
+      },
+      {
+        "id": "f2-2026-r13-s1776845873468",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-05-01",
+        "timeLocal": "20:30",
+        "durationMinutes": 45
+      },
+      {
+        "id": "f2-2026-r13-s1776845928882",
+        "name": "Sprint Race",
+        "kind": "sprintRace",
+        "date": "2026-05-02",
+        "timeLocal": "16:00",
+        "durationMinutes": 50
+      },
+      {
+        "id": "f2-2026-r13-s1776845931141",
+        "name": "Feature Race",
+        "kind": "featureRace",
+        "date": "2026-05-03",
+        "timeLocal": "18:30",
+        "durationMinutes": 60
+      }
+    ]
   }
 ]
