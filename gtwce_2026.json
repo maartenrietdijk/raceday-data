@@ -49,16 +49,24 @@
     "roundNumber": 2,
     "raceName": "Brands Hatch",
     "circuitName": "Brands Hatch Circuit",
-    "city": "Brands Hatch",
+    "city": "Kent",
     "country": "United Kingdom",
     "countryCode": "GB",
     "sessions": [
       {
         "id": "gtwce-2026-r02-s1",
-        "name": "Practice",
+        "name": "Practice 1",
         "kind": "practice",
         "date": "2026-05-02",
-        "timeLocal": "10:00",
+        "timeLocal": "10:35",
+        "durationMinutes": 60
+      },
+      {
+        "id": "gtwce-2026-r02-s1777314136221",
+        "name": "Practice 2",
+        "kind": "practice",
+        "date": "2026-05-02",
+        "timeLocal": "13:00",
         "durationMinutes": 60
       },
       {
@@ -66,15 +74,15 @@
         "name": "Qualifying",
         "kind": "qualifying",
         "date": "2026-05-02",
-        "timeLocal": "14:30",
+        "timeLocal": "17:40",
         "durationMinutes": 30
       },
       {
         "id": "gtwce-2026-r02-s3",
         "name": "Race 1",
         "kind": "race",
-        "date": "2026-05-02",
-        "timeLocal": "16:00",
+        "date": "2026-05-03",
+        "timeLocal": "12:15",
         "durationMinutes": 60
       },
       {
@@ -82,7 +90,7 @@
         "name": "Race 2",
         "kind": "race",
         "date": "2026-05-03",
-        "timeLocal": "14:45",
+        "timeLocal": "16:45",
         "durationMinutes": 60
       }
     ]
