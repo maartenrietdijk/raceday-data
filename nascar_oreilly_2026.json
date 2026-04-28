@@ -255,11 +255,27 @@
     "sessions": [
       {
         "id": "nascar_oreilly-2026-12-race",
+        "name": "Practice",
+        "kind": "practice",
+        "date": "2026-05-01",
+        "timeLocal": "17:00",
+        "durationMinutes": 60
+      },
+      {
+        "id": "nascar_oreilly-2026-12-s1777405472744",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-05-01",
+        "timeLocal": "18:00",
+        "durationMinutes": 60
+      },
+      {
+        "id": "nascar_oreilly-2026-12-s1777405467843",
         "name": "Race",
         "kind": "race",
         "date": "2026-05-02",
         "timeLocal": "15:30",
-        "durationMinutes": 60
+        "durationMinutes": 180
       }
     ]
   },
