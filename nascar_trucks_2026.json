@@ -130,12 +130,28 @@
     "countryCode": "US",
     "sessions": [
       {
+        "id": "nascar_trucks-2026-07-s1777405596027",
+        "name": "Practice",
+        "kind": "practice",
+        "date": "2026-05-01",
+        "timeLocal": "14:30",
+        "durationMinutes": 60
+      },
+      {
+        "id": "nascar_trucks-2026-07-s1777405605376",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-05-01",
+        "timeLocal": "15:30",
+        "durationMinutes": 60
+      },
+      {
         "id": "nascar_trucks-2026-07-race",
         "name": "Race",
         "kind": "race",
         "date": "2026-05-01",
         "timeLocal": "20:00",
-        "durationMinutes": 60
+        "durationMinutes": 150
       }
     ]
   },
