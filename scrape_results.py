@@ -99,108 +99,136 @@ def session_already_has_results(session: dict) -> bool:
 
 def get_all_event_slugs(ms_slug: str) -> list:
     """
-    Get all event slugs with their date ranges from a results page sidebar.
-    Returns list of (slug, date_range_text) tuples.
+    Get all event slugs with dates by fetching a known results page.
+    The sidebar of any results page contains the full calendar with dates.
+    Returns list of (slug, start_date) tuples where start_date is a datetime.
     """
-    # Use a known working URL to get the full sidebar
+    # Fetch the main results page — if it redirects to a specific event, that's fine
     url = f"https://www.motorsport.com/{ms_slug}/results/2026/"
     try:
         resp = requests.get(url, headers=HEADERS, timeout=15)
         resp.raise_for_status()
+        actual_url = resp.url
     except Exception as e:
         print(f"⚠️  Could not fetch results page: {e}")
         return []
 
     soup = BeautifulSoup(resp.text, "html.parser")
+    page_text = soup.get_text(separator=" ")
 
-    results = []
-    seen = set()
-
-    # Find all links matching the results pattern
+    # Find all event links
     links = soup.find_all("a", href=re.compile(rf"/{ms_slug}/results/2026/[^/?]+"))
+    seen = set()
+    slugs_found = []
     for link in links:
         href = link.get("href", "")
-        slug_match = re.search(rf"/{ms_slug}/results/2026/([^/?]+)", href)
-        if not slug_match:
-            continue
-        slug = slug_match.group(1)
-        if slug in seen:
-            continue
-        seen.add(slug)
+        m = re.search(rf"/{ms_slug}/results/2026/([^/?]+)", href)
+        if m:
+            slug = m.group(1)
+            if slug not in seen:
+                seen.add(slug)
+                slugs_found.append(slug)
 
-        # Get surrounding text including dates
-        # Walk up to find the container with date info
-        date_range = ""
+    # Parse date ranges from page text
+    # Pattern: "EventName · MMM D, 2026 to MMM D, 2026 TrackName"
+    # or just find dates near slug names in the full text
+    month_map = {"jan": 1, "feb": 2, "mar": 3, "apr": 4, "may": 5, "jun": 6,
+                 "jul": 7, "aug": 8, "sep": 9, "oct": 10, "nov": 11, "dec": 12}
+
+    # Extract all date ranges from page text with pattern "MMM DD, 2026 to MMM DD, 2026"
+    date_pattern = re.compile(
+        r'(\w{3})\s+(\d{1,2}),?\s+2026\s+to\s+(\w{3})\s+(\d{1,2}),?\s+2026'
+    )
+    date_ranges = date_pattern.findall(page_text)
+
+    # Also find slug+date pairs by looking at link href and surrounding text
+    results = []
+    for link in soup.find_all("a", href=re.compile(rf"/{ms_slug}/results/2026/[^/?]+")):
+        href = link.get("href", "")
+        m = re.search(rf"/{ms_slug}/results/2026/([^/?]+)", href)
+        if not m:
+            continue
+        slug = m.group(1)
+
+        # Get surrounding text
+        surrounding = ""
         node = link.parent
-        for _ in range(6):
+        for _ in range(8):
             if node is None:
                 break
-            text = node.get_text(separator=" ", strip=True)
-            # Look for date pattern like "Apr 23, 2026 to Apr 26, 2026"
-            date_match = re.search(r'(\w{3})\s+(\d+),?\s+2026', text)
-            if date_match:
-                date_range = text[:150]
+            t = node.get_text(separator=" ", strip=True)
+            if re.search(r'\w{3}\s+\d{1,2}', t):
+                surrounding = t
                 break
             node = node.parent
 
-        results.append((slug, date_range))
+        # Find date in surrounding text
+        dm = re.search(r'(\w{3})\s+(\d{1,2}),?\s+2026', surrounding)
+        if dm:
+            month_str = dm.group(1).lower()
+            day = int(dm.group(2))
+            month_num = month_map.get(month_str)
+            if month_num:
+                try:
+                    dt = datetime(2026, month_num, day)
+                    results.append((slug, dt))
+                    continue
+                except ValueError:
+                    pass
 
-    return results
+        results.append((slug, None))
+
+    # Deduplicate keeping first occurrence
+    seen2 = set()
+    final = []
+    for slug, dt in results:
+        if slug not in seen2:
+            seen2.add(slug)
+            final.append((slug, dt))
+
+    print(f"📋 Found {len(final)} events with dates: {[(s, d.strftime('%b %d') if d else 'no date') for s, d in final]}")
+    return final
 
 
 def get_event_slug(ms_slug: str, race_date: str, round_name: str) -> str | None:
     """
-    Find the correct event slug by matching race date against event date ranges.
+    Find the correct event slug by matching race date against event dates.
     """
     candidates = get_all_event_slugs(ms_slug)
-    print(f"📋 Found {len(candidates)} events")
-
     if not candidates:
         return None
 
-    # Parse race date
     try:
         race_dt = datetime.strptime(race_date, "%Y-%m-%d")
     except ValueError:
         race_dt = None
 
-    month_names = {"jan": 1, "feb": 2, "mar": 3, "apr": 4, "may": 5, "jun": 6,
-                   "jul": 7, "aug": 8, "sep": 9, "oct": 10, "nov": 11, "dec": 12}
-
-    best_slug = None
-    best_diff = 999
-
-    for slug, date_range in candidates:
-        if not date_range or not race_dt:
-            continue
-
-        # Extract all dates from date_range text
-        date_matches = re.findall(r'(\w{3})\s+(\d+)', date_range)
-        for month_str, day_str in date_matches:
-            month_num = month_names.get(month_str.lower())
-            if not month_num:
+    # Find best match by date
+    if race_dt:
+        best_slug = None
+        best_diff = 999
+        for slug, event_dt in candidates:
+            if event_dt is None:
                 continue
-            try:
-                event_dt = datetime(2026, month_num, int(day_str))
-                diff = abs((race_dt - event_dt).days)
-                if diff < best_diff:
-                    best_diff = diff
-                    best_slug = slug
-            except ValueError:
-                continue
+            diff = abs((race_dt - event_dt).days)
+            if diff < best_diff:
+                best_diff = diff
+                best_slug = slug
 
-    if best_slug and best_diff <= 7:
-        print(f"📍 Matched by date: {best_slug} (diff: {best_diff} days)")
-        return best_slug
+        if best_slug and best_diff <= 7:
+            print(f"📍 Matched by date: {best_slug} (diff: {best_diff} days)")
+            return best_slug
 
     # Fallback: match by name against slug
     stop_words = {"the", "at", "of", "for", "and", "race", "grand", "prix",
                   "hours", "hour", "500", "400", "300", "200", "series", "cup",
-                  "jack", "links", "wurth", "goodyear"}
+                  "jack", "links", "wurth", "goodyear", "food", "city",
+                  "pennzoil", "autotrader", "straight", "talk", "duramax"}
     name_words = [w for w in re.split(r'\W+', round_name.lower())
                   if w and len(w) > 2 and w not in stop_words]
 
     best_score = 0
+    best_slug = None
     for slug, _ in candidates:
         score = sum(1 for w in name_words if w in slug.lower())
         if score > best_score:
