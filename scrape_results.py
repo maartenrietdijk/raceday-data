@@ -97,25 +97,27 @@ def session_already_has_results(session: dict) -> bool:
 
 # ── Motorsport.com scraping ───────────────────────────────────────────────────
 
-def get_event_slug(ms_slug: str, race_date: str, round_name: str) -> str | None:
+def get_all_event_slugs(ms_slug: str) -> list:
     """
-    Find the event slug on Motorsport.com results page.
-    Handles tracks that appear twice per year (e.g. Talladega I and II).
+    Get all event slugs with their date ranges from a results page sidebar.
+    Returns list of (slug, date_range_text) tuples.
     """
+    # Use a known working URL to get the full sidebar
     url = f"https://www.motorsport.com/{ms_slug}/results/2026/"
     try:
         resp = requests.get(url, headers=HEADERS, timeout=15)
         resp.raise_for_status()
     except Exception as e:
-        print(f"⚠️  Could not fetch results index: {e}")
-        return None
+        print(f"⚠️  Could not fetch results page: {e}")
+        return []
 
     soup = BeautifulSoup(resp.text, "html.parser")
-    links = soup.find_all("a", href=re.compile(rf"/{ms_slug}/results/2026/[^/]+/?$"))
 
-    # Build unique candidate list with slug and surrounding date text
+    results = []
     seen = set()
-    candidates = []
+
+    # Find all links matching the results pattern
+    links = soup.find_all("a", href=re.compile(rf"/{ms_slug}/results/2026/[^/?]+"))
     for link in links:
         href = link.get("href", "")
         slug_match = re.search(rf"/{ms_slug}/results/2026/([^/?]+)", href)
@@ -126,86 +128,91 @@ def get_event_slug(ms_slug: str, race_date: str, round_name: str) -> str | None:
             continue
         seen.add(slug)
 
-        # Get surrounding date text from parent elements
-        date_text = ""
-        parent = link.parent
-        for _ in range(5):
-            if parent is None:
+        # Get surrounding text including dates
+        # Walk up to find the container with date info
+        date_range = ""
+        node = link.parent
+        for _ in range(6):
+            if node is None:
                 break
-            t = parent.get_text(separator=" ", strip=True)
-            # Look for month abbreviations
-            if any(m in t for m in ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-                                     "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]):
-                date_text = t[:100]
+            text = node.get_text(separator=" ", strip=True)
+            # Look for date pattern like "Apr 23, 2026 to Apr 26, 2026"
+            date_match = re.search(r'(\w{3})\s+(\d+),?\s+2026', text)
+            if date_match:
+                date_range = text[:150]
                 break
-            parent = parent.parent
+            node = node.parent
 
-        candidates.append((slug, slug.lower(), date_text))
+        results.append((slug, date_range))
 
-    print(f"📋 Found {len(candidates)} events: {[s for s, _, _ in candidates]}")
+    return results
 
-    # Normalize race name to keywords
+
+def get_event_slug(ms_slug: str, race_date: str, round_name: str) -> str | None:
+    """
+    Find the correct event slug by matching race date against event date ranges.
+    """
+    candidates = get_all_event_slugs(ms_slug)
+    print(f"📋 Found {len(candidates)} events")
+
+    if not candidates:
+        return None
+
+    # Parse race date
+    try:
+        race_dt = datetime.strptime(race_date, "%Y-%m-%d")
+    except ValueError:
+        race_dt = None
+
+    month_names = {"jan": 1, "feb": 2, "mar": 3, "apr": 4, "may": 5, "jun": 6,
+                   "jul": 7, "aug": 8, "sep": 9, "oct": 10, "nov": 11, "dec": 12}
+
+    best_slug = None
+    best_diff = 999
+
+    for slug, date_range in candidates:
+        if not date_range or not race_dt:
+            continue
+
+        # Extract all dates from date_range text
+        date_matches = re.findall(r'(\w{3})\s+(\d+)', date_range)
+        for month_str, day_str in date_matches:
+            month_num = month_names.get(month_str.lower())
+            if not month_num:
+                continue
+            try:
+                event_dt = datetime(2026, month_num, int(day_str))
+                diff = abs((race_dt - event_dt).days)
+                if diff < best_diff:
+                    best_diff = diff
+                    best_slug = slug
+            except ValueError:
+                continue
+
+    if best_slug and best_diff <= 7:
+        print(f"📍 Matched by date: {best_slug} (diff: {best_diff} days)")
+        return best_slug
+
+    # Fallback: match by name against slug
     stop_words = {"the", "at", "of", "for", "and", "race", "grand", "prix",
                   "hours", "hour", "500", "400", "300", "200", "series", "cup",
                   "jack", "links", "wurth", "goodyear"}
-    name_lower = round_name.lower()
-    name_words = [w for w in re.split(r'\W+', name_lower)
+    name_words = [w for w in re.split(r'\W+', round_name.lower())
                   if w and len(w) > 2 and w not in stop_words]
 
-    print(f"🔑 Matching keywords: {name_words}")
+    best_score = 0
+    for slug, _ in candidates:
+        score = sum(1 for w in name_words if w in slug.lower())
+        if score > best_score:
+            best_score = score
+            best_slug = slug
 
-    # Find all slugs that match by name
-    matches = []
-    for slug, slug_lower, date_text in candidates:
-        score = sum(1 for w in name_words if w in slug_lower)
-        if score > 0:
-            matches.append((slug, score, date_text))
+    if best_slug and best_score > 0:
+        print(f"📍 Fallback name match: {best_slug} (score: {best_score})")
+        return best_slug
 
-    if not matches:
-        print(f"⚠️  No slug match for '{round_name}'")
-        return None
-
-    # If only one match, use it
-    if len(matches) == 1:
-        print(f"📍 Matched: {matches[0][0]}")
-        return matches[0][0]
-
-    # Multiple matches (e.g. talladega-664425 and talladega-ii-664xxx)
-    # Use date to pick the right one
-    if race_date:
-        try:
-            race_dt = datetime.strptime(race_date, "%Y-%m-%d")
-            race_month = race_dt.month
-            month_names = ["", "jan", "feb", "mar", "apr", "may", "jun",
-                           "jul", "aug", "sep", "oct", "nov", "dec"]
-            race_month_str = month_names[race_month]
-
-            # Prefer slug whose surrounding date text contains the race month
-            for slug, score, date_text in matches:
-                if race_month_str in date_text.lower():
-                    print(f"📍 Matched by name+date: {slug} (month: {race_month_str})")
-                    return slug
-
-            # Fallback: check if slug contains "ii" for second occurrence
-            # If race is in second half of year, prefer slug with "ii"
-            if race_dt.month >= 7:
-                for slug, score, date_text in matches:
-                    if "-ii-" in slug or slug.endswith("-ii"):
-                        print(f"📍 Matched second occurrence: {slug}")
-                        return slug
-            else:
-                for slug, score, date_text in matches:
-                    if "-ii-" not in slug and not slug.endswith("-ii"):
-                        print(f"📍 Matched first occurrence: {slug}")
-                        return slug
-
-        except ValueError:
-            pass
-
-    # Final fallback: highest score
-    best = sorted(matches, key=lambda x: x[1], reverse=True)[0]
-    print(f"📍 Fallback match: {best[0]}")
-    return best[0]
+    print(f"⚠️  No match for '{round_name}' on {race_date}")
+    return None
 
 
 def scrape_results(ms_slug: str, event_slug: str, session_kind: str) -> list:
