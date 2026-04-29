@@ -1,7 +1,6 @@
 name: Scrape Race Results
 
 on:
-  # Handmatig triggeren via GitHub UI
   workflow_dispatch:
     inputs:
       series:
@@ -12,9 +11,11 @@ on:
         description: 'Specific session ID (optional, e.g. nascar-2026-r10-s3)'
         required: false
 
-  # Automatisch elk uur draaien
   schedule:
-    - cron: '0 * * * *'  # Elk uur op het hele uur
+    - cron: '0 * * * *'
+
+permissions:
+  contents: write
 
 jobs:
   scrape:
@@ -32,13 +33,11 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: |
-          pip install requests beautifulsoup4
+        run: pip install requests beautifulsoup4
 
       - name: Run scraper — all finished sessions
         if: github.event_name == 'schedule'
         run: |
-          # Draai voor alle actieve series
           for series in nascar nascar_oreilly nascar_trucks indycar wec imsa f1 f2 f3 motogp moto2 moto3 formulae wrc dtm supercars elms gtwce british_gt; do
             echo "🏁 Processing $series..."
             python scrape_results.py --series $series --all-finished || echo "⚠️ Failed for $series, continuing..."
