@@ -149,6 +149,7 @@ def get_event_slug(ms_slug: str, race_date: str, round_name: str) -> str | None:
 def scrape_results(ms_slug: str, event_slug: str, session_kind: str) -> list:
     """
     Scrape results table from Motorsport.com.
+    Table columns: Cla | Driver+Team | # | (flag) | Manufacturer | Laps | Time | Interval | Pits | Points | Retirement
     Returns list of result dicts.
     """
     st_param = "RACE" if session_kind == "race" else "EL"
@@ -164,13 +165,17 @@ def scrape_results(ms_slug: str, event_slug: str, session_kind: str) -> list:
 
     soup = BeautifulSoup(resp.text, "html.parser")
 
-    # Find the results table
     table = soup.find("table")
     if not table:
         print("⚠️  No results table found on page")
         return []
 
-    rows = table.find_all("tr")[1:]  # skip header
+    # Read header to determine column indices
+    header_row = table.find("tr")
+    headers = [th.get_text(strip=True).upper() for th in header_row.find_all(["th", "td"])] if header_row else []
+    print(f"📋 Columns: {headers}")
+
+    rows = table.find_all("tr")[1:]
     results = []
 
     for row in rows:
@@ -179,38 +184,75 @@ def scrape_results(ms_slug: str, event_slug: str, session_kind: str) -> list:
             continue
 
         try:
+            # Col 0: Position
             position_text = cols[0].get_text(strip=True)
             position = int(position_text) if position_text.isdigit() else None
 
-            # Driver name — strip nationality flag text
-            driver_cell = cols[1].get_text(separator=" ", strip=True)
-            # Clean up: remove country names (they appear as text from flag images)
-            driver_parts = driver_cell.split()
-            # Driver name is usually "F. LastName Team"
-            # Try to extract just the driver name
-            driver_name = extract_driver_name(driver_cell)
-            team_name = extract_team_name(driver_cell)
+            # Col 1: Driver + Team (combined cell)
+            driver_cell = cols[1]
+            driver_links = driver_cell.find_all("a")
+            cell_text = driver_cell.get_text(separator="|", strip=True)
+            parts = [p.strip() for p in cell_text.split("|") if p.strip()]
 
-            car_number = cols[2].get_text(strip=True) if len(cols) > 2 else ""
+            # Extract driver name and team separately
+            # Format is typically: "Country  Abbreviated.Name  Team Name"
+            driver_name = ""
+            team_name = ""
+            if len(parts) >= 2:
+                # Last part that looks like a team (contains Racing, Motorsports, etc.)
+                for i, part in enumerate(parts):
+                    if any(w in part.lower() for w in ["racing", "motorsports", "motorsport",
+                                                        "penske", "gibbs", "hendrick", "ferrari",
+                                                        "porsche", "toyota", "ford", "chevrolet",
+                                                        "spire", "trackhouse", "legacy", "front row",
+                                                        "haas", "kaulig", "hyak", "23xi", "rfk", "jgr",
+                                                        "wood brothers", "rick ware", "live fast"]):
+                        team_name = part
+                        # Driver is the part before team
+                        driver_candidates = parts[:i]
+                        if driver_candidates:
+                            driver_name = driver_candidates[-1]
+                        break
+
+                if not driver_name and parts:
+                    # Fallback: second part is usually the driver abbreviated name
+                    driver_name = parts[1] if len(parts) > 1 else parts[0]
+                    team_name = parts[-1] if len(parts) > 2 else ""
+
+            # Col 2: Car number
+            number = cols[2].get_text(strip=True) if len(cols) > 2 else ""
+
+            # Col 4: Manufacturer (col 3 is usually a flag/image)
+            manufacturer = cols[4].get_text(strip=True) if len(cols) > 4 else ""
+
+            # Col 5: Laps
+            laps = cols[5].get_text(strip=True) if len(cols) > 5 else ""
+
+            # Col 6: Time
+            time_val = cols[6].get_text(strip=True) if len(cols) > 6 else ""
+
+            # Col 7: Interval
+            interval = cols[7].get_text(strip=True) if len(cols) > 7 else ""
+            # Clean up interval — remove the absolute time that's sometimes appended
+            if interval and len(interval) > 15:
+                # Keep only the gap part (e.g. "+1.752" from "+1.75257'21.526")
+                interval = re.sub(r'(\+[\d.]+)[\d\'"]+.*', r'\1', interval)
 
             result = {
                 "position": position,
                 "driver": driver_name,
                 "team": team_name,
-                "number": car_number,
+                "number": number,
+                "manufacturer": manufacturer,
+                "laps": laps,
+                "time": time_val,
+                "interval": interval,
             }
-
-            # Add extra fields if available
-            if len(cols) > 4:
-                result["laps"] = cols[4].get_text(strip=True)
-            if len(cols) > 5:
-                result["time"] = cols[5].get_text(strip=True)
-            if len(cols) > 6:
-                result["interval"] = cols[6].get_text(strip=True)
 
             results.append(result)
 
         except Exception as e:
+            print(f"⚠️  Row parse error: {e}")
             continue
 
     print(f"✅ Found {len(results)} results")
