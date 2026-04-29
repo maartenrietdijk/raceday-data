@@ -287,7 +287,7 @@ def extract_team_name(cell_text: str) -> str:
 
 # ── Main logic ────────────────────────────────────────────────────────────────
 
-def process_series(series_id: str, target_session_id: str = None, all_finished: bool = False):
+def process_series(series_id: str, target_session_id: str = None, all_finished: bool = False, force: bool = False):
     config = SERIES_CONFIG.get(series_id)
     if not config:
         print(f"❌ Unknown series: {series_id}")
@@ -318,7 +318,7 @@ def process_series(series_id: str, target_session_id: str = None, all_finished: 
                 continue
 
             # Skip if already has results (unless forced)
-            if session_already_has_results(session) and not target_session_id:
+            if session_already_has_results(session) and not target_session_id and not force:
                 continue
 
             print(f"\n🏁 Processing: {session_id} ({session.get('name')})")
@@ -361,10 +361,13 @@ if __name__ == "__main__":
     parser.add_argument("--session-id", help="Specific session ID to update")
     parser.add_argument("--all-finished", action="store_true",
                         help="Update all finished sessions without results")
+    parser.add_argument("--force", action="store_true",
+                        help="Overwrite existing results")
     args = parser.parse_args()
 
     process_series(
         series_id=args.series,
         target_session_id=args.session_id,
-        all_finished=args.all_finished
+        all_finished=args.all_finished,
+        force=args.force
     )
