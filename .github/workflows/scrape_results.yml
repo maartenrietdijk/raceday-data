@@ -10,6 +10,10 @@ on:
       session_id:
         description: 'Specific session ID (optional, e.g. nascar-2026-r10-s3)'
         required: false
+      force:
+        description: 'Overwrite existing results (true/false)'
+        required: false
+        default: 'false'
 
   schedule:
     - cron: '0 * * * *'
@@ -48,10 +52,14 @@ jobs:
       - name: Run scraper — specific series/session
         if: github.event_name == 'workflow_dispatch'
         run: |
+          FORCE_FLAG=""
+          if [ "${{ github.event.inputs.force }}" = "true" ]; then
+            FORCE_FLAG="--force"
+          fi
           if [ -n "${{ github.event.inputs.session_id }}" ]; then
-            python scrape_results.py --series ${{ github.event.inputs.series }} --session-id ${{ github.event.inputs.session_id }}
+            python scrape_results.py --series ${{ github.event.inputs.series }} --session-id ${{ github.event.inputs.session_id }} $FORCE_FLAG
           else
-            python scrape_results.py --series ${{ github.event.inputs.series }} --all-finished
+            python scrape_results.py --series ${{ github.event.inputs.series }} --all-finished $FORCE_FLAG
           fi
 
       - name: Commit and push results
