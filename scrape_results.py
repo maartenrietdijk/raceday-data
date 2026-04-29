@@ -99,7 +99,7 @@ def session_already_has_results(session: dict) -> bool:
 
 def get_event_slug(ms_slug: str, race_date: str, round_name: str) -> str | None:
     """
-    Find the event slug on Motorsport.com results page by matching race date/name.
+    Find the event slug on Motorsport.com results page by matching race date.
     Returns slug like 'talladega-664425' or None if not found.
     """
     url = f"https://www.motorsport.com/{ms_slug}/results/2026/"
@@ -112,14 +112,14 @@ def get_event_slug(ms_slug: str, race_date: str, round_name: str) -> str | None:
 
     soup = BeautifulSoup(resp.text, "html.parser")
 
-    # Find all result event links
+    # Find all event blocks — they contain date ranges and links
+    # Each event has a date range text and a link to results
     links = soup.find_all("a", href=re.compile(rf"/{ms_slug}/results/2026/[^/]+/?$"))
 
-    # Extract year from race_date
-    race_year = race_date[:4] if race_date else "2026"
-
-    # Try to match by date or name
     race_name_lower = round_name.lower()
+
+    # Build a list of (slug, text, href) for debugging
+    candidates = []
     for link in links:
         href = link.get("href", "")
         slug_match = re.search(rf"/{ms_slug}/results/2026/([^/]+)/?$", href)
@@ -127,22 +127,52 @@ def get_event_slug(ms_slug: str, race_date: str, round_name: str) -> str | None:
             continue
         slug = slug_match.group(1)
         link_text = link.get_text(strip=True).lower()
+        candidates.append((slug, link_text))
 
-        # Check if any word from the round name appears in the link text
+    print(f"📋 Found {len(candidates)} events on results page")
+
+    # Match by date — look for date in surrounding HTML context
+    # Parse the full page to find date ranges near each link
+    if race_date:
+        race_dt = datetime.strptime(race_date, "%Y-%m-%d")
+        race_month = race_dt.month
+        race_day = race_dt.day
+
+        # Try to find slug by matching month and day in page text near link
+        page_text = soup.get_text()
+        month_names = ["", "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                       "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+        month_str = month_names[race_month]
+
+        # Find all links with surrounding text
+        for link in links:
+            href = link.get("href", "")
+            slug_match = re.search(rf"/{ms_slug}/results/2026/([^/]+)/?$", href)
+            if not slug_match:
+                continue
+            slug = slug_match.group(1)
+
+            # Get surrounding text (parent elements)
+            parent = link.parent
+            for _ in range(4):  # Walk up 4 levels
+                if parent is None:
+                    break
+                parent_text = parent.get_text(separator=" ", strip=True)
+                # Check if this parent contains the race date
+                if month_str in parent_text and str(race_day) in parent_text:
+                    print(f"📍 Matched by date: {slug} (date: {month_str} {race_day})")
+                    return slug
+                parent = parent.parent
+
+    # Fallback: match by name
+    for slug, link_text in candidates:
         name_words = [w for w in race_name_lower.split() if len(w) > 3]
         if any(w in link_text for w in name_words):
-            print(f"📍 Matched event slug: {slug} (via name '{link_text}')")
+            print(f"📍 Matched by name: {slug} ('{link_text}')")
             return slug
 
-    # Fallback: return first slug that contains a numeric ID (most recent events)
-    for link in links:
-        href = link.get("href", "")
-        slug_match = re.search(rf"/{ms_slug}/results/2026/([a-z0-9-]+-\d+)/?$", href)
-        if slug_match:
-            slug = slug_match.group(1)
-            print(f"📍 Fallback slug: {slug}")
-            return slug
-
+    print(f"⚠️  No match found for '{round_name}' on {race_date}")
+    print(f"    Available: {[s for s, _ in candidates[:5]]}")
     return None
 
 
@@ -323,10 +353,16 @@ def process_series(series_id: str, target_session_id: str = None, all_finished: 
 
             print(f"\n🏁 Processing: {session_id} ({session.get('name')})")
 
-            # Get event slug
+            # Get event slug — gebruik race sessie datum
+            race_sessions = round_data.get("sessions", [])
+            race_date = next(
+                (s.get("date", "") for s in race_sessions if s.get("kind") == "race"),
+                race_sessions[0].get("date", "") if race_sessions else ""
+            )
+
             event_slug = get_event_slug(
                 ms_slug,
-                round_data.get("sessions", [{}])[0].get("date", ""),
+                race_date,
                 round_data.get("raceName", "")
             )
 
