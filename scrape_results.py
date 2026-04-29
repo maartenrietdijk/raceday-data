@@ -99,8 +99,8 @@ def session_already_has_results(session: dict) -> bool:
 
 def get_event_slug(ms_slug: str, race_date: str, round_name: str) -> str | None:
     """
-    Find the event slug on Motorsport.com results page by matching race date.
-    Returns slug like 'talladega-664425' or None if not found.
+    Find the event slug on Motorsport.com results page.
+    Handles tracks that appear twice per year (e.g. Talladega I and II).
     """
     url = f"https://www.motorsport.com/{ms_slug}/results/2026/"
     try:
@@ -111,69 +111,101 @@ def get_event_slug(ms_slug: str, race_date: str, round_name: str) -> str | None:
         return None
 
     soup = BeautifulSoup(resp.text, "html.parser")
-
-    # Find all event blocks — they contain date ranges and links
-    # Each event has a date range text and a link to results
     links = soup.find_all("a", href=re.compile(rf"/{ms_slug}/results/2026/[^/]+/?$"))
 
-    race_name_lower = round_name.lower()
-
-    # Build a list of (slug, text, href) for debugging
+    # Build unique candidate list with slug and surrounding date text
+    seen = set()
     candidates = []
     for link in links:
         href = link.get("href", "")
-        slug_match = re.search(rf"/{ms_slug}/results/2026/([^/]+)/?$", href)
+        slug_match = re.search(rf"/{ms_slug}/results/2026/([^/?]+)", href)
         if not slug_match:
             continue
         slug = slug_match.group(1)
-        link_text = link.get_text(strip=True).lower()
-        candidates.append((slug, link_text))
+        if slug in seen:
+            continue
+        seen.add(slug)
 
-    print(f"📋 Found {len(candidates)} events on results page")
+        # Get surrounding date text from parent elements
+        date_text = ""
+        parent = link.parent
+        for _ in range(5):
+            if parent is None:
+                break
+            t = parent.get_text(separator=" ", strip=True)
+            # Look for month abbreviations
+            if any(m in t for m in ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                                     "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]):
+                date_text = t[:100]
+                break
+            parent = parent.parent
 
-    # Match by date — look for date in surrounding HTML context
-    # Parse the full page to find date ranges near each link
+        candidates.append((slug, slug.lower(), date_text))
+
+    print(f"📋 Found {len(candidates)} events: {[s for s, _, _ in candidates]}")
+
+    # Normalize race name to keywords
+    stop_words = {"the", "at", "of", "for", "and", "race", "grand", "prix",
+                  "hours", "hour", "500", "400", "300", "200", "series", "cup",
+                  "jack", "links", "wurth", "goodyear"}
+    name_lower = round_name.lower()
+    name_words = [w for w in re.split(r'\W+', name_lower)
+                  if w and len(w) > 2 and w not in stop_words]
+
+    print(f"🔑 Matching keywords: {name_words}")
+
+    # Find all slugs that match by name
+    matches = []
+    for slug, slug_lower, date_text in candidates:
+        score = sum(1 for w in name_words if w in slug_lower)
+        if score > 0:
+            matches.append((slug, score, date_text))
+
+    if not matches:
+        print(f"⚠️  No slug match for '{round_name}'")
+        return None
+
+    # If only one match, use it
+    if len(matches) == 1:
+        print(f"📍 Matched: {matches[0][0]}")
+        return matches[0][0]
+
+    # Multiple matches (e.g. talladega-664425 and talladega-ii-664xxx)
+    # Use date to pick the right one
     if race_date:
-        race_dt = datetime.strptime(race_date, "%Y-%m-%d")
-        race_month = race_dt.month
-        race_day = race_dt.day
+        try:
+            race_dt = datetime.strptime(race_date, "%Y-%m-%d")
+            race_month = race_dt.month
+            month_names = ["", "jan", "feb", "mar", "apr", "may", "jun",
+                           "jul", "aug", "sep", "oct", "nov", "dec"]
+            race_month_str = month_names[race_month]
 
-        # Try to find slug by matching month and day in page text near link
-        page_text = soup.get_text()
-        month_names = ["", "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-                       "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-        month_str = month_names[race_month]
-
-        # Find all links with surrounding text
-        for link in links:
-            href = link.get("href", "")
-            slug_match = re.search(rf"/{ms_slug}/results/2026/([^/]+)/?$", href)
-            if not slug_match:
-                continue
-            slug = slug_match.group(1)
-
-            # Get surrounding text (parent elements)
-            parent = link.parent
-            for _ in range(4):  # Walk up 4 levels
-                if parent is None:
-                    break
-                parent_text = parent.get_text(separator=" ", strip=True)
-                # Check if this parent contains the race date
-                if month_str in parent_text and str(race_day) in parent_text:
-                    print(f"📍 Matched by date: {slug} (date: {month_str} {race_day})")
+            # Prefer slug whose surrounding date text contains the race month
+            for slug, score, date_text in matches:
+                if race_month_str in date_text.lower():
+                    print(f"📍 Matched by name+date: {slug} (month: {race_month_str})")
                     return slug
-                parent = parent.parent
 
-    # Fallback: match by name
-    for slug, link_text in candidates:
-        name_words = [w for w in race_name_lower.split() if len(w) > 3]
-        if any(w in link_text for w in name_words):
-            print(f"📍 Matched by name: {slug} ('{link_text}')")
-            return slug
+            # Fallback: check if slug contains "ii" for second occurrence
+            # If race is in second half of year, prefer slug with "ii"
+            if race_dt.month >= 7:
+                for slug, score, date_text in matches:
+                    if "-ii-" in slug or slug.endswith("-ii"):
+                        print(f"📍 Matched second occurrence: {slug}")
+                        return slug
+            else:
+                for slug, score, date_text in matches:
+                    if "-ii-" not in slug and not slug.endswith("-ii"):
+                        print(f"📍 Matched first occurrence: {slug}")
+                        return slug
 
-    print(f"⚠️  No match found for '{round_name}' on {race_date}")
-    print(f"    Available: {[s for s, _ in candidates[:5]]}")
-    return None
+        except ValueError:
+            pass
+
+    # Final fallback: highest score
+    best = sorted(matches, key=lambda x: x[1], reverse=True)[0]
+    print(f"📍 Fallback match: {best[0]}")
+    return best[0]
 
 
 def scrape_results(ms_slug: str, event_slug: str, session_kind: str) -> list:
