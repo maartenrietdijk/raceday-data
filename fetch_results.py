@@ -239,7 +239,9 @@ def parse_results(html: str, url: str = "") -> list:
             else:
                 # Practice/Qualifying: store absolute lap time + gap to leader
                 if time_val:
-                    abs_time_match = re.search(r"\b(\d{1,2}'\d{2}\.\d+)", time_val)
+                    # Extract absolute lap time — pattern: 1-2 digits + ' + exactly 2 digits + . + digits
+                    # Must not be preceded by digits (to avoid matching "2971'29.607")
+                    abs_time_match = re.search(r'(?<!\d)(\d{1,2}\'\d{2}\.\d+)', time_val)
                     if abs_time_match:
                         result["time"] = abs_time_match.group(1).replace("'", ":")
                     else:
