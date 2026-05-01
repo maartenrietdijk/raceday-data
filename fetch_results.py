@@ -261,16 +261,16 @@ def parse_results(html: str, url: str = "") -> list:
                     if time_val:
                         if combined_format:
                             # Gap embedded: "+0.2971'29.607" → "+0.297"
-                            m = re.search(r"^([+\-]?\d+\.\d+?)(\d)'", time_val)
+                            m = re.search(r"^([+\-]?\d+\.\d{1,3})\d'", time_val)
                             if m:
                                 gap = m.group(1)
                         else:
-                            # Gap is directly in TIME: "+0.297"
-                            m = re.match(r"^([+\-]\d+[\.\:]\d+)", time_val)
+                            # Max 3 decimals: "+13.722" from "+13.7221"
+                            m = re.match(r"^([+\-]\d+\.\d{1,3})", time_val)
                             if m:
                                 gap = m.group(1)
                             elif time_val.startswith(('+', '-')):
-                                gap = time_val
+                                gap = time_val[:time_val.index('.')+4] if '.' in time_val else time_val
                     if gap:
                         if not gap.startswith(('+', '-')):
                             gap = '+' + gap
