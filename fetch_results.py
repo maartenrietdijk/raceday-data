@@ -160,7 +160,7 @@ def parse_results(html: str) -> list:
                         text = driver_cell.get_text(separator="/", strip=True)
                         drivers = [d.strip() for d in text.split("/") if d.strip()]
             else:
-                # Single driver style: col 1 = driver+team
+                # Single driver style: col 1 = driver cell
                 driver_cell = cols[1] if len(cols) > 1 else None
                 drivers = []
                 team = ""
@@ -169,11 +169,22 @@ def parse_results(html: str) -> list:
                     all_links = [l for l in driver_cell.find_all("a") if l.get_text(strip=True)]
                     for link in all_links:
                         href = link.get("href", "")
-                        text = link.get_text(strip=True)
-                        if "/teams/" in href or "/constructors/" in href:
-                            team = text
-                        elif "/drivers/" in href or "/rider/" in href:
+                        # Extract name from nested span.name if present
+                        name_span = link.find("span", class_="name")
+                        if name_span:
+                            # Get only direct text, not nested spans
+                            inner = name_span.find("span")
+                            text = inner.get_text(strip=True) if inner else name_span.get_text(strip=True)
+                        else:
+                            text = link.get_text(strip=True)
+
+                        if not text:
+                            continue
+
+                        if "/driver/" in href or "/rider/" in href:
                             drivers.append(text)
+                        elif "/team/" in href or "/constructor/" in href:
+                            team = text
                         else:
                             if any(k in text.lower() for k in team_keywords):
                                 team = text
