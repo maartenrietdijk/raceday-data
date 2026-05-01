@@ -122,6 +122,7 @@ def parse_results(html: str, url: str = "") -> list:
                 combined_format = True
                 break
     print(f"📋 Combined time format: {combined_format}")
+    is_race = False  # Always use gap logic
 
     # Debug first 2 rows
     for i, row in enumerate(table.find_all("tr")[1:3]):
