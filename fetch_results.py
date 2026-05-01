@@ -75,18 +75,6 @@ def fetch_page(url: str) -> str:
 
 
 def parse_results(html: str, url: str = "") -> list:
-    # Detect time format from first few data rows
-    # Combined format: TIME column contains gap+laptime like "+0.2971'29.607"
-    # Normal format: TIME column has absolute time, INTERVAL column has gap
-    combined_format = False
-    for row in table.find_all("tr")[2:5]:  # Skip P1, check P2-P4
-        cols = row.find_all("td")
-        if time_idx > 0 and len(cols) > time_idx:
-            tv = cols[time_idx].get_text(strip=True)
-            if "'" in tv and re.search(r"[+\-]\d+\.\d+\d'", tv):
-                combined_format = True
-                break
-    print(f"📋 Combined time format: {combined_format}")
     soup = BeautifulSoup(html, "html.parser")
     table = soup.find("table")
     if not table:
@@ -123,6 +111,17 @@ def parse_results(html: str, url: str = "") -> list:
     is_multi_driver = team_col == 1 and driver_col > 1
 
     print(f"📋 Multi-driver format: {is_multi_driver}, team_col={team_col}, driver_col={driver_col}")
+
+    # Detect combined time format from P2-P4 rows
+    combined_format = False
+    for row in table.find_all("tr")[2:5]:
+        cols = row.find_all("td")
+        if time_idx > 0 and len(cols) > time_idx:
+            tv = cols[time_idx].get_text(strip=True)
+            if "'" in tv and re.search(r"[+\-]\d+\.\d+\d'", tv):
+                combined_format = True
+                break
+    print(f"📋 Combined time format: {combined_format}")
 
     # Debug first 2 rows
     for i, row in enumerate(table.find_all("tr")[1:3]):
