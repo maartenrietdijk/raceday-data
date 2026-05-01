@@ -169,27 +169,29 @@ def parse_results(html: str) -> list:
                     all_links = [l for l in driver_cell.find_all("a") if l.get_text(strip=True)]
                     for link in all_links:
                         href = link.get("href", "")
-                        # Extract name from nested span.name if present
-                        name_span = link.find("span", class_="name")
+
+                        # Extract driver name from span.name-short
+                        name_span = link.find("span", class_="name-short")
                         if name_span:
-                            # Get only direct text, not nested spans
-                            inner = name_span.find("span")
-                            text = inner.get_text(strip=True) if inner else name_span.get_text(strip=True)
-                        else:
-                            text = link.get_text(strip=True)
+                            drivers.append(name_span.get_text(strip=True))
+                        
+                        # Extract team from span.team
+                        team_span = link.find("span", class_="team")
+                        if team_span:
+                            team = team_span.get_text(strip=True)
 
-                        if not text:
-                            continue
-
-                        if "/driver/" in href or "/rider/" in href:
-                            drivers.append(text)
-                        elif "/team/" in href or "/constructor/" in href:
-                            team = text
-                        else:
-                            if any(k in text.lower() for k in team_keywords):
-                                team = text
+                        # Fallback if no specific spans found
+                        if not drivers and not team:
+                            if "/driver/" in href or "/rider/" in href:
+                                drivers.append(link.get_text(strip=True))
+                            elif "/team/" in href or "/constructor/" in href:
+                                team = link.get_text(strip=True)
                             else:
-                                drivers.append(text)
+                                text = link.get_text(strip=True)
+                                if any(k in text.lower() for k in team_keywords):
+                                    team = text
+                                else:
+                                    drivers.append(text)
 
                     if not drivers and not team:
                         text = driver_cell.get_text(separator="|", strip=True)
