@@ -242,6 +242,32 @@
   .session-row input:focus, .session-row select:focus { border-color: var(--red); }
   .session-row input::placeholder { color: var(--subtle); }
 
+  .results-url-row {
+    display: flex; align-items: center; gap: 6px;
+    padding: 6px 16px 10px 36px;
+    border-bottom: 1px solid var(--border2);
+  }
+  .results-url-row input {
+    flex: 1; background: var(--surface); border: 1px solid var(--border);
+    color: var(--text); padding: 5px 9px; border-radius: 6px;
+    font-family: var(--mono); font-size: 11px; outline: none;
+    transition: border-color .15s;
+  }
+  .results-url-row input:focus { border-color: var(--red); }
+  .results-url-row input::placeholder { color: var(--subtle); }
+  .btn-fetch {
+    background: var(--red-dim); color: var(--red); border: 1px solid var(--red);
+    padding: 5px 10px; border-radius: 6px; font-size: 11px; font-weight: 600;
+    cursor: pointer; white-space: nowrap; transition: all .15s;
+  }
+  .btn-fetch:hover { background: var(--red); color: #fff; }
+  .btn-fetch:disabled { opacity: 0.4; cursor: not-allowed; }
+  .results-badge {
+    font-size: 10px; padding: 2px 7px; border-radius: 4px;
+    background: rgba(0,201,110,.12); color: var(--green);
+    border: 1px solid rgba(0,201,110,.3); white-space: nowrap;
+  }
+
   /* TBC checkbox pill */
   .tbc-wrap {
     display: flex; align-items: center; gap: 5px;
@@ -683,6 +709,14 @@ function renderSession(s, ri, si) {
         oninput="updateSession(${ri},${si},'durationMinutes',+this.value)"/>
       <button class="btn-icon" onclick="duplicateSession(${ri},${si})" title="Duplicate">⎘</button>
       <button class="btn-icon danger" onclick="deleteSession(${ri},${si})" title="Delete">🗑</button>
+    </div>
+    <div class="results-url-row">
+      <input type="url" value="${esc(s.resultsUrl||'')}" placeholder="https://www.motorsport.com/…/?st=RACE"
+        id="resultsUrl_${ri}_${si}"
+        oninput="updateSession(${ri},${si},'resultsUrl',this.value)"/>
+      ${s.results && s.results.length > 0 ? `<span class="results-badge">✓ ${s.results.length} results</span>` : ''}
+      <button class="btn-fetch" id="fetchBtn_${ri}_${si}"
+        onclick="fetchResults(${ri},${si})">Fetch</button>
     </div>`;
 }
 
@@ -866,10 +900,150 @@ function buildJSON(seriesId) {
         if (s.dateUTC && s.dateUTC.includes('T')) return s.dateUTC.split('T')[1].substring(0,5);
         return null;
       })(),
-      durationMinutes: s.durationMinutes || 60
+      durationMinutes: s.durationMinutes || 60,
+      ...(s.resultsUrl ? { resultsUrl: s.resultsUrl } : {}),
+      ...(s.results && s.results.length > 0 ? { results: s.results } : {}),
     }))
   }));
   return JSON.stringify(rounds, null, 2);
+}
+
+// ── Fetch Results from Motorsport.com ─────────────────────────────────────────
+
+async function fetchResults(ri, si) {
+  const rounds = state.data[state.activeSeries];
+  const session = rounds[ri].sessions[si];
+  const url = session.resultsUrl || document.getElementById(`resultsUrl_${ri}_${si}`)?.value;
+
+  if (!url || !url.includes('motorsport.com')) {
+    showStatus('Please enter a valid motorsport.com URL', 'error');
+    return;
+  }
+
+  const btn = document.getElementById(`fetchBtn_${ri}_${si}`);
+  if (btn) { btn.disabled = true; btn.textContent = '…'; }
+
+  try {
+    // Use a CORS proxy to fetch the page
+    const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
+    const resp = await fetch(proxyUrl);
+    if (!resp.ok) throw new Error('Failed to fetch page');
+    const html = await resp.text();
+
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+    const table = doc.querySelector('table');
+
+    if (!table) throw new Error('No results table found');
+
+    const headers = [...table.querySelectorAll('tr:first-child th, tr:first-child td')]
+      .map(th => th.textContent.trim().toUpperCase());
+
+    console.log('Headers:', headers);
+
+    const rows = [...table.querySelectorAll('tr')].slice(1);
+    const results = [];
+
+    for (const row of rows) {
+      const cols = [...row.querySelectorAll('td')];
+      if (cols.length < 3) continue;
+
+      const posText = cols[0]?.textContent.trim();
+      const position = /^\d+$/.test(posText) ? parseInt(posText) : null;
+
+      // Driver cell — extract driver(s) and team via links
+      const driverCell = cols[1];
+      const links = [...driverCell.querySelectorAll('a')];
+
+      let drivers = [];
+      let team = '';
+
+      if (links.length >= 2) {
+        // Multi-driver (WEC style): multiple driver links + team link
+        const teamKeywords = ['racing', 'motorsports', 'penske', 'gibbs', 'ferrari',
+                              'porsche', 'toyota', 'bmw', 'alpine', 'cadillac', 'af corse',
+                              'jota', 'proton', 'united', 'prema', 'hypercar'];
+        for (const link of links) {
+          const text = link.textContent.trim();
+          if (teamKeywords.some(k => text.toLowerCase().includes(k))) {
+            team = text;
+          } else if (text) {
+            drivers.push(text);
+          }
+        }
+        // If no team found, last link is team
+        if (!team && links.length > 1) {
+          team = links[links.length - 1].textContent.trim();
+          drivers = links.slice(0, -1).map(l => l.textContent.trim()).filter(Boolean);
+        }
+      } else if (links.length === 1) {
+        drivers = [links[0].textContent.trim()];
+      } else {
+        const text = driverCell.textContent.trim().split('\n').map(s => s.trim()).filter(Boolean);
+        drivers = [text[0] || ''];
+        team = text[1] || '';
+      }
+
+      const number = cols[2]?.textContent.trim() || '';
+
+      // Find laps, time, interval by header index
+      const cla_idx = headers.indexOf('CLA');
+      const mfr_idx = headers.findIndex(h => h === 'MANUFACTURER' || h === 'CAR');
+      const laps_idx = headers.indexOf('LAPS');
+      const time_idx = headers.indexOf('TIME');
+      const int_idx  = headers.indexOf('INTERVAL');
+
+      const laps     = laps_idx > 0 ? cols[laps_idx]?.textContent.trim() : '';
+      const time     = time_idx > 0 ? cols[time_idx]?.textContent.trim() : '';
+      let interval   = int_idx  > 0 ? cols[int_idx]?.textContent.trim()  : '';
+
+      // Clean interval — remove appended absolute time
+      if (interval && interval.length > 12) {
+        const m = interval.match(/^([+\-]?[\d.:]+\s*(?:lap[s]?)?)/i);
+        if (m) interval = m[1].trim();
+      }
+
+      const result = {
+        position,
+        drivers: drivers.length === 1 ? undefined : drivers,
+        driver: drivers.length === 1 ? drivers[0] : undefined,
+        team: team || undefined,
+        number: number || undefined,
+        laps: laps || undefined,
+        time: (position === 1 && time) ? time : undefined,
+        interval: (position !== 1 && interval) ? interval : undefined,
+      };
+
+      // Clean up undefined fields
+      Object.keys(result).forEach(k => result[k] === undefined && delete result[k]);
+      results.push(result);
+    }
+
+    if (results.length < 3) throw new Error(`Only ${results.length} results found — page may not have loaded correctly`);
+
+    // Save to session
+    session.resultsUrl = url;
+    session.results = results;
+    updateSession(ri, si, 'resultsUrl', url);
+    rounds[ri].sessions[si] = session;
+    save();
+
+    // Re-render session row to show badge
+    const container = document.getElementById(`session_${ri}_${si}`);
+    if (container) {
+      const div = document.createElement('div');
+      div.innerHTML = renderSession(session, ri, si);
+      container.replaceWith(div.firstElementChild);
+    }
+
+    showStatus(`✓ Fetched ${results.length} results for ${session.name}`, 'success');
+  } catch (err) {
+    showStatus(`Error: ${err.message}`, 'error');
+    console.error(err);
+  } finally {
+    const btn2 = document.getElementById(`fetchBtn_${ri}_${si}`);
+    if (btn2) { btn2.disabled = false; btn2.textContent = 'Fetch'; }
+  }
 }
 
 function exportJSON() {
