@@ -75,7 +75,7 @@ def fetch_page(url: str) -> str:
 
 
 def parse_results(html: str, url: str = "") -> list:
-    is_race = "st=race" in url.lower() or url.lower().endswith("/")
+    is_race = False  # Always use gap from TIME column for all session types
     soup = BeautifulSoup(html, "html.parser")
     table = soup.find("table")
     if not table:
