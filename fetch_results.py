@@ -74,7 +74,8 @@ def fetch_page(url: str) -> str:
     return resp.text
 
 
-def parse_results(html: str) -> list:
+def parse_results(html: str, url: str = "") -> list:
+    is_race = "st=race" in url.lower() or url.lower().endswith("/")
     soup = BeautifulSoup(html, "html.parser")
     table = soup.find("table")
     if not table:
@@ -214,6 +215,10 @@ def parse_results(html: str) -> list:
                 if m:
                     interval = m.group(1).strip()
 
+            # Add + prefix if missing
+            if interval and not interval.startswith(('+', '-')) and 'lap' not in interval.lower():
+                interval = '+' + interval
+
             result = {"position": position}
 
             # Single driver vs multi-driver
@@ -226,11 +231,16 @@ def parse_results(html: str) -> list:
             if number:    result["number"]   = number
             if laps:      result["laps"]     = laps
 
-            # Winner gets time, others get interval
-            if position == 1 and time_val:
-                result["time"] = time_val
-            elif interval:
-                result["interval"] = interval
+            if is_race:
+                # Race: winner gets time, others get interval
+                if position == 1 and time_val:
+                    result["time"] = time_val
+                elif interval:
+                    result["interval"] = interval
+            else:
+                # Practice/Qualifying: everyone gets their own lap time
+                if time_val:
+                    result["time"] = time_val
 
             results.append(result)
 
@@ -261,7 +271,7 @@ def main():
     html = fetch_page(args.url)
 
     print("📊 Parsing results...")
-    results = parse_results(html)
+    results = parse_results(html, args.url)
 
     if len(results) < 3:
         print(f"❌ Too few results ({len(results)}), aborting")
