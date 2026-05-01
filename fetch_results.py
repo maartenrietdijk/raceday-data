@@ -88,6 +88,13 @@ def parse_results(html: str) -> list:
                    for th in header_row.find_all(["th", "td"])]
     print(f"📋 Columns: {headers}")
 
+    # Debug: print first 2 data rows raw
+    debug_rows = table.find_all("tr")[1:3]
+    for i, row in enumerate(debug_rows):
+        cols = row.find_all("td")
+        if len(cols) > 1:
+            print(f"\n🔍 Row {i+1} driver cell HTML:\n{cols[1]}\n")
+
     # Column index helpers
     def col_idx(names):
         for name in names:
