@@ -237,16 +237,18 @@ def parse_results(html: str, url: str = "") -> list:
                 elif interval:
                     result["interval"] = interval
             else:
-                # Practice/Qualifying: extract absolute lap time from TIME column
-                # TIME column sometimes contains interval+time concatenated e.g. "+0.2971'29.607"
-                # Extract the absolute time (contains ' separator like 1'29.607)
+                # Practice/Qualifying: store absolute lap time + gap to leader
                 if time_val:
-                    # Find absolute time pattern: digits + ' + digits e.g. "1'29.607"
-                    abs_time_match = re.search(r"\d+'\d+\.\d+", time_val)
+                    abs_time_match = re.search(r"\b(\d{1,2}'\d{2}\.\d+)", time_val)
                     if abs_time_match:
-                        result["time"] = abs_time_match.group(0).replace("'", ":")
+                        result["time"] = abs_time_match.group(1).replace("'", ":")
                     else:
                         result["time"] = time_val.replace("'", ":")
+                # Gap to leader from INTERVAL column (already relative to previous)
+                if interval and position != 1:
+                    if not interval.startswith(('+', '-')):
+                        interval = '+' + interval
+                    result["interval"] = interval
 
             results.append(result)
 
