@@ -112,6 +112,12 @@ def parse_results(html: str) -> list:
 
     print(f"📋 Multi-driver format: {is_multi_driver}, team_col={team_col}, driver_col={driver_col}")
 
+    # Debug first 2 rows
+    for i, row in enumerate(table.find_all("tr")[1:3]):
+        dbg_cols = row.find_all("td")
+        if len(dbg_cols) > 1:
+            print(f"🔍 Row {i+1} col1: {str(dbg_cols[1])[:300]}")
+
     rows = table.find_all("tr")[1:]
     results = []
     team_keywords = [
