@@ -116,7 +116,7 @@ def parse_results(html: str) -> list:
     for i, row in enumerate(table.find_all("tr")[1:3]):
         dbg_cols = row.find_all("td")
         if len(dbg_cols) > 1:
-            print(f"🔍 Row {i+1} col1: {str(dbg_cols[1])[:300]}")
+            print(f"🔍 Row {i+1} col1: {str(dbg_cols[1])[:600]}")
 
     rows = table.find_all("tr")[1:]
     results = []
