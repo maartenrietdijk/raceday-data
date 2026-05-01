@@ -122,30 +122,33 @@ def parse_results(html: str) -> list:
             pos_text = cols[0].get_text(strip=True)
             position = int(pos_text) if pos_text.isdigit() else None
 
-            # Driver cell — extract drivers and team via links
+            # Driver cell — use href patterns to distinguish drivers from teams
+            # Driver links: /wec/drivers/... or /f1/drivers/...
+            # Team links:   /wec/teams/...  or /f1/teams/...
             driver_cell = cols[1]
-            links = [l for l in driver_cell.find_all("a") if l.get_text(strip=True)]
+            all_links = [l for l in driver_cell.find_all("a") if l.get_text(strip=True)]
 
             drivers = []
             team = ""
 
-            if links:
-                for link in links:
-                    text = link.get_text(strip=True)
+            for link in all_links:
+                href = link.get("href", "")
+                text = link.get_text(strip=True)
+                if not text:
+                    continue
+                if "/drivers/" in href or "/rider/" in href:
+                    drivers.append(text)
+                elif "/teams/" in href or "/constructors/" in href:
+                    team = text
+                else:
+                    # No href pattern — use keywords to guess
                     if any(k in text.lower() for k in team_keywords):
                         team = text
-                    elif text:
+                    else:
                         drivers.append(text)
 
-                # Fallback: if no team found via keywords, last link is team
-                if not team and len(links) > 1:
-                    team = links[-1].get_text(strip=True)
-                    drivers = [l.get_text(strip=True) for l in links[:-1] if l.get_text(strip=True)]
-
-                if not drivers and links:
-                    drivers = [links[0].get_text(strip=True)]
-            else:
-                # No links — plain text
+            # Fallback if no links
+            if not drivers and not team:
                 text = driver_cell.get_text(separator="|", strip=True)
                 parts = [p.strip() for p in text.split("|") if p.strip()]
                 drivers = [parts[0]] if parts else [""]
