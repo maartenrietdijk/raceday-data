@@ -237,19 +237,23 @@ def parse_results(html: str, url: str = "") -> list:
                 elif interval:
                     result["interval"] = interval
             else:
-                # Practice/Qualifying: P1 gets lap time, rest gets gap from TIME column
+                # Practice/Qualifying: P1 gets lap time, rest gets gap to leader
                 if position == 1 and time_val:
                     m = re.search(r"(\d)'(\d{2}\.\d+)", time_val)
                     result["time"] = f"{m.group(1)}:{m.group(2)}" if m else time_val.replace("'", ":")
                 elif time_val:
-                    # Gap is the part before the apostrophe e.g. "+0.297" from "+0.2971'29.607"
-                    m = re.search(r'^([+\-][\d.]+)', time_val)
+                    # TIME column: gap to leader + lap time concatenated
+                    # e.g. "+0.2971'29.607" (F1, 3 decimals) or "+1.23451'29.6789" (NASCAR, 4-5 decimals)
+                    # The lap time starts with a single digit (minutes) followed by apostrophe
+                    # So gap = everything before the last digit before the apostrophe
+                    m = re.search(r"^([+\-]?\d+\.\d+?)(\d)'", time_val)
                     if m:
-                        result["interval"] = m.group(1)
+                        gap = m.group(1)
+                        if not gap.startswith('-'):
+                            gap = '+' + gap.lstrip('+')
+                        result["interval"] = gap
                     elif interval:
-                        if not interval.startswith(('+', '-')):
-                            interval = '+' + interval
-                        result["interval"] = interval
+                        result["interval"] = ('+' if not interval.startswith(('+','-')) else '') + interval
 
             results.append(result)
 
