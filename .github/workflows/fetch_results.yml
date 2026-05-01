@@ -1,0 +1,56 @@
+name: Fetch Session Results
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: 'Motorsport.com results URL'
+        required: true
+      session_id:
+        description: 'Session ID (e.g. wec-2026-r01-s5)'
+        required: true
+      series:
+        description: 'Series ID (e.g. wec, f1, indycar)'
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4
+
+      - name: Fetch results
+        run: |
+          python fetch_results.py \
+            --url "${{ github.event.inputs.url }}" \
+            --session-id "${{ github.event.inputs.session_id }}" \
+            --series "${{ github.event.inputs.series }}"
+
+      - name: Commit and push
+        run: |
+          git config user.name "RaceDay Bot"
+          git config user.email "bot@raceday.app"
+          git add *.json
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "🏁 Results: ${{ github.event.inputs.session_id }}"
+            git push
+          fi
