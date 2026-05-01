@@ -239,13 +239,20 @@ def parse_results(html: str, url: str = "") -> list:
             else:
                 # Practice/Qualifying: store absolute lap time + gap to leader
                 if time_val:
-                    # Extract absolute lap time — pattern: 1-2 digits + ' + exactly 2 digits + . + digits
-                    # Must not be preceded by digits (to avoid matching "2971'29.607")
-                    abs_time_match = re.search(r'(?<!\d)(\d{1,2}\'\d{2}\.\d+)', time_val)
-                    if abs_time_match:
-                        result["time"] = abs_time_match.group(1).replace("'", ":")
+                    # Split on apostrophe — lap time is always X'XX.XXX format
+                    # In concatenated strings like "+0.2971'29.607", find the last occurrence
+                    # by looking for pattern: up to 2 digits before ' and exactly 2 digits after
+                    if "'" in time_val:
+                        apos_idx = time_val.rfind("'")
+                        # Get up to 2 digits before apostrophe
+                        before = re.search(r'(\d{1,2})$', time_val[:apos_idx])
+                        after = time_val[apos_idx+1:]
+                        if before:
+                            result["time"] = f"{before.group(1)}:{after}"
+                        else:
+                            result["time"] = time_val.replace("'", ":")
                     else:
-                        result["time"] = time_val.replace("'", ":")
+                        result["time"] = time_val
                 # Gap to leader from INTERVAL column (already relative to previous)
                 if interval and position != 1:
                     if not interval.startswith(('+', '-')):
