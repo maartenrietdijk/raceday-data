@@ -88,13 +88,6 @@ def parse_results(html: str) -> list:
                    for th in header_row.find_all(["th", "td"])]
     print(f"📋 Columns: {headers}")
 
-    # Debug: print first 2 data rows raw
-    debug_rows = table.find_all("tr")[1:3]
-    for i, row in enumerate(debug_rows):
-        cols = row.find_all("td")
-        if len(cols) > 1:
-            print(f"\n🔍 Row {i+1} driver cell HTML:\n{cols[1]}\n")
-
     # Column index helpers
     def col_idx(names):
         for name in names:
@@ -104,10 +97,20 @@ def parse_results(html: str) -> list:
                 pass
         return -1
 
-    laps_idx = col_idx(["LAPS"])
-    time_idx = col_idx(["TIME"])
-    int_idx  = col_idx(["INTERVAL", "GAP"])
-    mfr_idx  = col_idx(["MANUFACTURER", "CAR"])
+    # WEC has: CLA | TEAM | # | DRIVERS | CAR | LAPS | TIME | INTERVAL | PITS | RETIREMENT | POINTS
+    # NASCAR:  CLA | DRIVER | # | (flag) | MANUFACTURER | LAPS | TIME | INTERVAL | PITS | POINTS | RETIREMENT
+    team_col    = col_idx(["TEAM"])
+    driver_col  = col_idx(["DRIVER", "DRIVERS"])
+    number_col  = col_idx(["#"])
+    laps_idx    = col_idx(["LAPS"])
+    time_idx    = col_idx(["TIME"])
+    int_idx     = col_idx(["INTERVAL", "GAP"])
+
+    # If TEAM is col 1 and DRIVERS is col 3 → WEC style
+    # If DRIVER is col 1 → single driver style (NASCAR, F1 etc)
+    is_multi_driver = team_col == 1 and driver_col > 1
+
+    print(f"📋 Multi-driver format: {is_multi_driver}, team_col={team_col}, driver_col={driver_col}")
 
     rows = table.find_all("tr")[1:]
     results = []
@@ -125,51 +128,68 @@ def parse_results(html: str) -> list:
             continue
 
         try:
-            # Position
+            # Position (col 0)
             pos_text = cols[0].get_text(strip=True)
             position = int(pos_text) if pos_text.isdigit() else None
 
-            # Driver cell — use href patterns to distinguish drivers from teams
-            # Driver links: /wec/drivers/... or /f1/drivers/...
-            # Team links:   /wec/teams/...  or /f1/teams/...
-            driver_cell = cols[1]
-            all_links = [l for l in driver_cell.find_all("a") if l.get_text(strip=True)]
+            if is_multi_driver:
+                # WEC style: col 1 = team, col 3 = drivers
+                team_cell = cols[team_col] if team_col >= 0 and len(cols) > team_col else None
+                driver_cell = cols[driver_col] if driver_col >= 0 and len(cols) > driver_col else None
 
-            drivers = []
-            team = ""
+                # Extract team name (span.name)
+                team = ""
+                if team_cell:
+                    name_span = team_cell.find("span", class_="name")
+                    team = name_span.get_text(strip=True) if name_span else team_cell.get_text(strip=True)
 
-            for link in all_links:
-                href = link.get("href", "")
-                text = link.get_text(strip=True)
-                if not text:
-                    continue
-                if "/drivers/" in href or "/rider/" in href:
-                    drivers.append(text)
-                elif "/teams/" in href or "/constructors/" in href:
-                    team = text
-                else:
-                    # No href pattern — use keywords to guess
-                    if any(k in text.lower() for k in team_keywords):
-                        team = text
+                # Extract drivers (multiple links or spans)
+                drivers = []
+                if driver_cell:
+                    driver_links = driver_cell.find_all("a")
+                    if driver_links:
+                        drivers = [l.get_text(strip=True) for l in driver_links if l.get_text(strip=True)]
                     else:
-                        drivers.append(text)
+                        # Plain text separated by / or newline
+                        text = driver_cell.get_text(separator="/", strip=True)
+                        drivers = [d.strip() for d in text.split("/") if d.strip()]
+            else:
+                # Single driver style: col 1 = driver+team
+                driver_cell = cols[1] if len(cols) > 1 else None
+                drivers = []
+                team = ""
 
-            # Fallback if no links
-            if not drivers and not team:
-                text = driver_cell.get_text(separator="|", strip=True)
-                parts = [p.strip() for p in text.split("|") if p.strip()]
-                drivers = [parts[0]] if parts else [""]
-                team = parts[-1] if len(parts) > 1 else ""
+                if driver_cell:
+                    all_links = [l for l in driver_cell.find_all("a") if l.get_text(strip=True)]
+                    for link in all_links:
+                        href = link.get("href", "")
+                        text = link.get_text(strip=True)
+                        if "/teams/" in href or "/constructors/" in href:
+                            team = text
+                        elif "/drivers/" in href or "/rider/" in href:
+                            drivers.append(text)
+                        else:
+                            if any(k in text.lower() for k in team_keywords):
+                                team = text
+                            else:
+                                drivers.append(text)
+
+                    if not drivers and not team:
+                        text = driver_cell.get_text(separator="|", strip=True)
+                        parts = [p.strip() for p in text.split("|") if p.strip()]
+                        drivers = [parts[0]] if parts else [""]
+                        team = parts[-1] if len(parts) > 1 else ""
 
             # Number
-            number = cols[2].get_text(strip=True) if len(cols) > 2 else ""
+            num_col = number_col if number_col >= 0 else 2
+            number = cols[num_col].get_text(strip=True) if len(cols) > num_col else ""
 
             # Laps, time, interval
             laps     = cols[laps_idx].get_text(strip=True) if laps_idx > 0 and len(cols) > laps_idx else ""
             time_val = cols[time_idx].get_text(strip=True) if time_idx > 0 and len(cols) > time_idx else ""
             interval = cols[int_idx].get_text(strip=True)  if int_idx  > 0 and len(cols) > int_idx  else ""
 
-            # Clean interval — strip appended absolute time
+            # Clean interval
             if interval and len(interval) > 12:
                 m = re.match(r'^([+\-]?[\d.:\']+(?:\s*[Ll]ap[s]?)?)', interval)
                 if m:
