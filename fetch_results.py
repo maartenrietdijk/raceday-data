@@ -232,15 +232,21 @@ def parse_results(html: str, url: str = "") -> list:
             if laps:      result["laps"]     = laps
 
             if is_race:
-                # Race: winner gets time, others get interval
                 if position == 1 and time_val:
-                    result["time"] = time_val
+                    result["time"] = time_val.replace("'", ":")
                 elif interval:
                     result["interval"] = interval
             else:
-                # Practice/Qualifying: everyone gets their own lap time
+                # Practice/Qualifying: extract absolute lap time from TIME column
+                # TIME column sometimes contains interval+time concatenated e.g. "+0.2971'29.607"
+                # Extract the absolute time (contains ' separator like 1'29.607)
                 if time_val:
-                    result["time"] = time_val
+                    # Find absolute time pattern: digits + ' + digits e.g. "1'29.607"
+                    abs_time_match = re.search(r"\d+'\d+\.\d+", time_val)
+                    if abs_time_match:
+                        result["time"] = abs_time_match.group(0).replace("'", ":")
+                    else:
+                        result["time"] = time_val.replace("'", ":")
 
             results.append(result)
 
