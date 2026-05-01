@@ -75,12 +75,11 @@ def fetch_page(url: str) -> str:
 
 
 def parse_results(html: str, url: str = "") -> list:
-    is_race = False  # Use gap logic where possible, fallback to interval
-
-    # Detect time format from first data row
-    first_rows = table.find_all("tr")[1:3]
-    combined_format = False  # True if TIME column contains gap+laptime concatenated
-    for row in first_rows:
+    # Detect time format from first few data rows
+    # Combined format: TIME column contains gap+laptime like "+0.2971'29.607"
+    # Normal format: TIME column has absolute time, INTERVAL column has gap
+    combined_format = False
+    for row in table.find_all("tr")[2:5]:  # Skip P1, check P2-P4
         cols = row.find_all("td")
         if time_idx > 0 and len(cols) > time_idx:
             tv = cols[time_idx].get_text(strip=True)
@@ -249,28 +248,33 @@ def parse_results(html: str, url: str = "") -> list:
                 elif interval:
                     result["interval"] = interval
             else:
-                # Practice/Qualifying/Race
                 if position == 1 and time_val:
-                    # P1 always gets lap time
+                    # P1: absolute time
                     if "'" in time_val:
                         m = re.search(r"(\d)'(\d{2}\.\d+)", time_val)
                         result["time"] = f"{m.group(1)}:{m.group(2)}" if m else time_val.replace("'", ":")
                     else:
-                        result["time"] = time_val
-                elif combined_format and time_val:
-                    # F1/NASCAR style: gap embedded in TIME column
-                    m = re.search(r"^([+\-]?\d+\.\d+?)(\d)'", time_val)
-                    if m:
-                        gap = m.group(1)
-                        if not gap.startswith('-'):
-                            gap = '+' + gap.lstrip('+')
-                        result["interval"] = gap
-                    elif interval:
-                        result["interval"] = ('+' if not interval.startswith(('+','-')) else '') + interval
+                        result["time"] = time_val.replace("'", ":")
                 else:
-                    # Normal format (Formula E etc): use INTERVAL column
-                    if interval:
-                        result["interval"] = ('+' if not interval.startswith(('+','-')) else '') + interval
+                    # P2+: gap to P1 — always from TIME column
+                    gap = ""
+                    if time_val:
+                        if combined_format:
+                            # Gap embedded: "+0.2971'29.607" → "+0.297"
+                            m = re.search(r"^([+\-]?\d+\.\d+?)(\d)'", time_val)
+                            if m:
+                                gap = m.group(1)
+                        else:
+                            # Gap is directly in TIME: "+0.297"
+                            m = re.match(r"^([+\-]\d+[\.\:]\d+)", time_val)
+                            if m:
+                                gap = m.group(1)
+                            elif time_val.startswith(('+', '-')):
+                                gap = time_val
+                    if gap:
+                        if not gap.startswith(('+', '-')):
+                            gap = '+' + gap
+                        result["interval"] = gap
 
             results.append(result)
 
