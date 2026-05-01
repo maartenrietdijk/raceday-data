@@ -913,130 +913,55 @@ function buildJSON(seriesId) {
 async function fetchResults(ri, si) {
   const rounds = state.data[state.activeSeries];
   const session = rounds[ri].sessions[si];
-  const url = session.resultsUrl || document.getElementById(`resultsUrl_${ri}_${si}`)?.value;
+  const url = (session.resultsUrl || document.getElementById(`resultsUrl_${ri}_${si}`)?.value || '').trim();
 
   if (!url || !url.includes('motorsport.com')) {
     showStatus('Please enter a valid motorsport.com URL', 'error');
     return;
   }
 
+  // Save URL to session
+  session.resultsUrl = url;
+  updateSession(ri, si, 'resultsUrl', url);
+  save();
+
+  // Need GitHub token and repo to trigger Action
+  if (!state.github?.token || !state.github?.repo) {
+    showStatus('Configure GitHub token and repo in settings first', 'error');
+    return;
+  }
+
   const btn = document.getElementById(`fetchBtn_${ri}_${si}`);
-  if (btn) { btn.disabled = true; btn.textContent = '…'; }
+  if (btn) { btn.disabled = true; btn.textContent = '⏳'; }
 
   try {
-    // Use a CORS proxy to fetch the page
-    const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
-    const resp = await fetch(proxyUrl);
-    if (!resp.ok) throw new Error('Failed to fetch page');
-    const html = await resp.text();
+    const [owner, repo] = state.github.repo.split('/');
+    const apiUrl = `https://api.github.com/repos/${owner}/${repo}/actions/workflows/fetch_results.yml/dispatches`;
 
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, 'text/html');
-    const table = doc.querySelector('table');
-
-    if (!table) throw new Error('No results table found');
-
-    const headers = [...table.querySelectorAll('tr:first-child th, tr:first-child td')]
-      .map(th => th.textContent.trim().toUpperCase());
-
-    console.log('Headers:', headers);
-
-    const rows = [...table.querySelectorAll('tr')].slice(1);
-    const results = [];
-
-    for (const row of rows) {
-      const cols = [...row.querySelectorAll('td')];
-      if (cols.length < 3) continue;
-
-      const posText = cols[0]?.textContent.trim();
-      const position = /^\d+$/.test(posText) ? parseInt(posText) : null;
-
-      // Driver cell — extract driver(s) and team via links
-      const driverCell = cols[1];
-      const links = [...driverCell.querySelectorAll('a')];
-
-      let drivers = [];
-      let team = '';
-
-      if (links.length >= 2) {
-        // Multi-driver (WEC style): multiple driver links + team link
-        const teamKeywords = ['racing', 'motorsports', 'penske', 'gibbs', 'ferrari',
-                              'porsche', 'toyota', 'bmw', 'alpine', 'cadillac', 'af corse',
-                              'jota', 'proton', 'united', 'prema', 'hypercar'];
-        for (const link of links) {
-          const text = link.textContent.trim();
-          if (teamKeywords.some(k => text.toLowerCase().includes(k))) {
-            team = text;
-          } else if (text) {
-            drivers.push(text);
-          }
+    const resp = await fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${state.github.token}`,
+        'Accept': 'application/vnd.github+json',
+        'Content-Type': 'application/json',
+        'X-GitHub-Api-Version': '2022-11-28',
+      },
+      body: JSON.stringify({
+        ref: 'main',
+        inputs: {
+          url: url,
+          session_id: session.id,
+          series: state.activeSeries,
         }
-        // If no team found, last link is team
-        if (!team && links.length > 1) {
-          team = links[links.length - 1].textContent.trim();
-          drivers = links.slice(0, -1).map(l => l.textContent.trim()).filter(Boolean);
-        }
-      } else if (links.length === 1) {
-        drivers = [links[0].textContent.trim()];
-      } else {
-        const text = driverCell.textContent.trim().split('\n').map(s => s.trim()).filter(Boolean);
-        drivers = [text[0] || ''];
-        team = text[1] || '';
-      }
+      })
+    });
 
-      const number = cols[2]?.textContent.trim() || '';
-
-      // Find laps, time, interval by header index
-      const cla_idx = headers.indexOf('CLA');
-      const mfr_idx = headers.findIndex(h => h === 'MANUFACTURER' || h === 'CAR');
-      const laps_idx = headers.indexOf('LAPS');
-      const time_idx = headers.indexOf('TIME');
-      const int_idx  = headers.indexOf('INTERVAL');
-
-      const laps     = laps_idx > 0 ? cols[laps_idx]?.textContent.trim() : '';
-      const time     = time_idx > 0 ? cols[time_idx]?.textContent.trim() : '';
-      let interval   = int_idx  > 0 ? cols[int_idx]?.textContent.trim()  : '';
-
-      // Clean interval — remove appended absolute time
-      if (interval && interval.length > 12) {
-        const m = interval.match(/^([+\-]?[\d.:]+\s*(?:lap[s]?)?)/i);
-        if (m) interval = m[1].trim();
-      }
-
-      const result = {
-        position,
-        drivers: drivers.length === 1 ? undefined : drivers,
-        driver: drivers.length === 1 ? drivers[0] : undefined,
-        team: team || undefined,
-        number: number || undefined,
-        laps: laps || undefined,
-        time: (position === 1 && time) ? time : undefined,
-        interval: (position !== 1 && interval) ? interval : undefined,
-      };
-
-      // Clean up undefined fields
-      Object.keys(result).forEach(k => result[k] === undefined && delete result[k]);
-      results.push(result);
+    if (resp.status === 204) {
+      showStatus(`✓ Fetch started for ${session.name} — results will appear in JSON within ~30 seconds`, 'success');
+    } else {
+      const err = await resp.json().catch(() => ({}));
+      throw new Error(err.message || `GitHub API error ${resp.status}`);
     }
-
-    if (results.length < 3) throw new Error(`Only ${results.length} results found — page may not have loaded correctly`);
-
-    // Save to session
-    session.resultsUrl = url;
-    session.results = results;
-    updateSession(ri, si, 'resultsUrl', url);
-    rounds[ri].sessions[si] = session;
-    save();
-
-    // Re-render session row to show badge
-    const container = document.getElementById(`session_${ri}_${si}`);
-    if (container) {
-      const div = document.createElement('div');
-      div.innerHTML = renderSession(session, ri, si);
-      container.replaceWith(div.firstElementChild);
-    }
-
-    showStatus(`✓ Fetched ${results.length} results for ${session.name}`, 'success');
   } catch (err) {
     showStatus(`Error: ${err.message}`, 'error');
     console.error(err);
@@ -1045,6 +970,7 @@ async function fetchResults(ri, si) {
     if (btn2) { btn2.disabled = false; btn2.textContent = 'Fetch'; }
   }
 }
+
 
 function exportJSON() {
   if (!state.activeSeries) return showStatus('Select a series first', 'error');
