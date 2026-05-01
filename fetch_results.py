@@ -237,27 +237,19 @@ def parse_results(html: str, url: str = "") -> list:
                 elif interval:
                     result["interval"] = interval
             else:
-                # Practice/Qualifying: store absolute lap time + gap to leader
-                if time_val:
-                    # Split on apostrophe — lap time is always X'XX.XXX format
-                    # In concatenated strings like "+0.2971'29.607", find the last occurrence
-                    # by looking for pattern: up to 2 digits before ' and exactly 2 digits after
-                    if "'" in time_val:
-                        apos_idx = time_val.rfind("'")
-                        # Get up to 2 digits before apostrophe
-                        before = re.search(r'(\d{1,2})$', time_val[:apos_idx])
-                        after = time_val[apos_idx+1:]
-                        if before:
-                            result["time"] = f"{before.group(1)}:{after}"
-                        else:
-                            result["time"] = time_val.replace("'", ":")
-                    else:
-                        result["time"] = time_val
-                # Gap to leader from INTERVAL column (already relative to previous)
-                if interval and position != 1:
-                    if not interval.startswith(('+', '-')):
-                        interval = '+' + interval
-                    result["interval"] = interval
+                # Practice/Qualifying: P1 gets lap time, rest gets gap from TIME column
+                if position == 1 and time_val:
+                    m = re.search(r"(\d)'(\d{2}\.\d+)", time_val)
+                    result["time"] = f"{m.group(1)}:{m.group(2)}" if m else time_val.replace("'", ":")
+                elif time_val:
+                    # Gap is the part before the apostrophe e.g. "+0.297" from "+0.2971'29.607"
+                    m = re.search(r'^([+\-][\d.]+)', time_val)
+                    if m:
+                        result["interval"] = m.group(1)
+                    elif interval:
+                        if not interval.startswith(('+', '-')):
+                            interval = '+' + interval
+                        result["interval"] = interval
 
             results.append(result)
 
