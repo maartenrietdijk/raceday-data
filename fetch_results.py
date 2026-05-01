@@ -75,7 +75,19 @@ def fetch_page(url: str) -> str:
 
 
 def parse_results(html: str, url: str = "") -> list:
-    is_race = False  # Always use gap from TIME column for all session types
+    is_race = False  # Use gap logic where possible, fallback to interval
+
+    # Detect time format from first data row
+    first_rows = table.find_all("tr")[1:3]
+    combined_format = False  # True if TIME column contains gap+laptime concatenated
+    for row in first_rows:
+        cols = row.find_all("td")
+        if time_idx > 0 and len(cols) > time_idx:
+            tv = cols[time_idx].get_text(strip=True)
+            if "'" in tv and re.search(r"[+\-]\d+\.\d+\d'", tv):
+                combined_format = True
+                break
+    print(f"📋 Combined time format: {combined_format}")
     soup = BeautifulSoup(html, "html.parser")
     table = soup.find("table")
     if not table:
@@ -237,15 +249,16 @@ def parse_results(html: str, url: str = "") -> list:
                 elif interval:
                     result["interval"] = interval
             else:
-                # Practice/Qualifying: P1 gets lap time, rest gets gap to leader
+                # Practice/Qualifying/Race
                 if position == 1 and time_val:
-                    m = re.search(r"(\d)'(\d{2}\.\d+)", time_val)
-                    result["time"] = f"{m.group(1)}:{m.group(2)}" if m else time_val.replace("'", ":")
-                elif time_val:
-                    # TIME column: gap to leader + lap time concatenated
-                    # e.g. "+0.2971'29.607" (F1, 3 decimals) or "+1.23451'29.6789" (NASCAR, 4-5 decimals)
-                    # The lap time starts with a single digit (minutes) followed by apostrophe
-                    # So gap = everything before the last digit before the apostrophe
+                    # P1 always gets lap time
+                    if "'" in time_val:
+                        m = re.search(r"(\d)'(\d{2}\.\d+)", time_val)
+                        result["time"] = f"{m.group(1)}:{m.group(2)}" if m else time_val.replace("'", ":")
+                    else:
+                        result["time"] = time_val
+                elif combined_format and time_val:
+                    # F1/NASCAR style: gap embedded in TIME column
                     m = re.search(r"^([+\-]?\d+\.\d+?)(\d)'", time_val)
                     if m:
                         gap = m.group(1)
@@ -253,6 +266,10 @@ def parse_results(html: str, url: str = "") -> list:
                             gap = '+' + gap.lstrip('+')
                         result["interval"] = gap
                     elif interval:
+                        result["interval"] = ('+' if not interval.startswith(('+','-')) else '') + interval
+                else:
+                    # Normal format (Formula E etc): use INTERVAL column
+                    if interval:
                         result["interval"] = ('+' if not interval.startswith(('+','-')) else '') + interval
 
             results.append(result)
