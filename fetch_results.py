@@ -298,8 +298,9 @@ def parse_results(html: str, url: str = "", series: str = "", is_oval: bool = Fa
                     gap = ""
                     if time_val:
                         if combined_format:
-                            # Gap embedded: "+0.2971'29.607" → "+0.297" (3 dec) or "+0.29714'29.607" → "+0.2971" (4 dec)
-                            m = re.search(rf"^([+\-]?\d+\.\d{{1,{decimals}}})\d'", time_val)
+                            # Gap embedded: "+4.79841'42.649" → "+4.798"
+                            # Minutes can be 1 or 2 digits before apostrophe
+                            m = re.search(rf"^([+\-]?\d+\.\d{{1,{decimals}}})\d{{1,2}}'", time_val)
                             if m:
                                 gap = m.group(1)
                         else:
