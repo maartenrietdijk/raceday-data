@@ -321,7 +321,7 @@ def main():
     for round_data in rounds:
         for session in round_data.get("sessions", []):
             if session.get("id") == args.session_id:
-                session["resultsUrl"] = args.url
+                session.pop("resultsUrl", None)  # Remove URL reference
                 session["results"] = results
                 found = True
                 print(f"✅ Updated session: {args.session_id}")
