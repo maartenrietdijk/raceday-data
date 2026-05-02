@@ -200,12 +200,10 @@ def parse_results(html: str, url: str = "", series: str = "", is_oval: bool = Fa
                     # WRC: DRIVER/CODRIVER column has two /driver/ links — collect both
                     if is_wrc:
                         for link in all_links:
-                            href = link.get("href", "")
-                            if "/driver/" in href:
-                                name_span = link.find("span", class_="name-short")
-                                name = name_span.get_text(strip=True) if name_span else link.get_text(strip=True)
-                                if name:
-                                    drivers.append(name)
+                            name_span = link.find("span", class_="name-short")
+                            name = name_span.get_text(strip=True) if name_span else link.get_text(strip=True)
+                            if name:
+                                drivers.append(name)
                         # Team from CAR column
                         if car_idx >= 0 and len(cols) > car_idx:
                             team = cols[car_idx].get_text(strip=True)
