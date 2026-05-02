@@ -139,7 +139,7 @@ def parse_results(html: str, url: str = "", series: str = "", is_oval: bool = Fa
     for i, row in enumerate(table.find_all("tr")[1:3]):
         dbg_cols = row.find_all("td")
         if len(dbg_cols) > 1:
-            print(f"🔍 Row {i+1} col1: {str(dbg_cols[1])[:600]}")
+            print(f"🔍 Row {i+1} col1: {str(dbg_cols[1])[:800]}")
 
     rows = table.find_all("tr")[1:]
     results = []
@@ -206,6 +206,9 @@ def parse_results(html: str, url: str = "", series: str = "", is_oval: bool = Fa
                                 name = name_span.get_text(strip=True) if name_span else link.get_text(strip=True)
                                 if name:
                                     drivers.append(name)
+                        # Team from CAR column
+                        if car_idx >= 0 and len(cols) > car_idx:
+                            team = cols[car_idx].get_text(strip=True)
                     else:
                         for link in all_links:
                             href = link.get("href", "")
