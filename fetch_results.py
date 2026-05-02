@@ -109,12 +109,16 @@ def parse_results(html: str, url: str = "", series: str = "") -> list:
     laps_idx    = col_idx(["LAPS"])
     time_idx    = col_idx(["TIME"])
     int_idx     = col_idx(["INTERVAL", "GAP"])
+    speed_idx   = col_idx(["KM/H", "MPH", "SPEED"])
 
     # If TEAM is col 1 and DRIVERS is col 3 → WEC style
     # If DRIVER is col 1 → single driver style (NASCAR, F1 etc)
     is_multi_driver = team_col == 1 and driver_col > 1
 
-    print(f"📋 Multi-driver format: {is_multi_driver}, team_col={team_col}, driver_col={driver_col}")
+    speed_idx   = col_idx(["MPH", "KM/H", "AVG", "SPEED"])
+    is_speed_based = speed_idx > 0 and time_idx < 0  # No TIME column, only speed
+
+    print(f"📋 Speed based: {is_speed_based}, speed_idx={speed_idx}")
 
     # Detect combined time format from P2-P4 rows
     combined_format = False
@@ -223,6 +227,8 @@ def parse_results(html: str, url: str = "", series: str = "") -> list:
             laps     = cols[laps_idx].get_text(strip=True) if laps_idx > 0 and len(cols) > laps_idx else ""
             time_val = cols[time_idx].get_text(strip=True) if time_idx > 0 and len(cols) > time_idx else ""
             interval = cols[int_idx].get_text(strip=True)  if int_idx  > 0 and len(cols) > int_idx  else ""
+            speed    = cols[speed_idx].get_text(strip=True) if speed_idx > 0 and len(cols) > speed_idx else ""
+            speed_unit = "km/h" if "KM/H" in headers else ("mph" if "MPH" in headers else "")
 
             # Clean interval
             if interval and len(interval) > 12:
@@ -245,8 +251,13 @@ def parse_results(html: str, url: str = "", series: str = "") -> list:
             if team:      result["team"]     = team
             if number:    result["number"]   = number
             if laps:      result["laps"]     = laps
+            if speed:     result["speed"]    = f"{speed} {speed_unit}".strip()
 
-            if is_race:
+            if is_speed_based:
+                # Oval qualifying: store speed as primary, time if available
+                if time_val:
+                    result["time"] = time_val
+            elif is_race:
                 if position == 1 and time_val:
                     result["time"] = time_val.replace("'", ":")
                 elif interval:
