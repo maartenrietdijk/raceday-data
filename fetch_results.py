@@ -74,7 +74,7 @@ def fetch_page(url: str) -> str:
     return resp.text
 
 
-def parse_results(html: str, url: str = "", series: str = "") -> list:
+def parse_results(html: str, url: str = "", series: str = "", is_oval: bool = False) -> list:
     # Series with 4 decimal places in gap
     four_decimal_series = {"indycar", "nascar", "nascar_oreilly", "nascar_trucks"}
     decimals = 4 if series in four_decimal_series else 3
@@ -116,7 +116,7 @@ def parse_results(html: str, url: str = "", series: str = "") -> list:
     is_multi_driver = team_col == 1 and driver_col > 1
 
     speed_idx   = col_idx(["MPH", "KM/H", "AVG", "SPEED"])
-    is_speed_based = speed_idx > 0 and time_idx < 0  # No TIME column, only speed
+    is_speed_based = is_oval and speed_idx > 0 and time_idx < 0
 
     print(f"📋 Speed based: {is_speed_based}, speed_idx={speed_idx}")
 
@@ -251,7 +251,7 @@ def parse_results(html: str, url: str = "", series: str = "") -> list:
             if team:      result["team"]     = team
             if number:    result["number"]   = number
             if laps:      result["laps"]     = laps
-            if speed:     result["speed"]    = f"{speed} {speed_unit}".strip()
+            if speed and is_oval: result["speed"] = f"{speed} {speed_unit}".strip()
 
             if is_speed_based:
                 # Oval qualifying: store speed as primary, time if available
@@ -320,7 +320,18 @@ def main():
     html = fetch_page(args.url)
 
     print("📊 Parsing results...")
-    results = parse_results(html, args.url, args.series)
+    # Check if session is oval from JSON
+    is_oval = False
+    with open(json_file, "r", encoding="utf-8") as f:
+        rounds_check = json.load(f)
+    for round_data in rounds_check:
+        for s in round_data.get("sessions", []):
+            if s.get("id") == args.session_id:
+                is_oval = s.get("isOval", False)
+                break
+
+    print(f"📋 Is oval: {is_oval}")
+    results = parse_results(html, args.url, args.series, is_oval)
 
     if len(results) < 3:
         print(f"❌ Too few results ({len(results)}), aborting")
