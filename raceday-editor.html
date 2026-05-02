@@ -242,6 +242,32 @@
   .session-row input:focus, .session-row select:focus { border-color: var(--red); }
   .session-row input::placeholder { color: var(--subtle); }
 
+  .results-url-row {
+    display: flex; align-items: center; gap: 6px;
+    padding: 6px 16px 10px 36px;
+    border-bottom: 1px solid var(--border2);
+  }
+  .results-url-row input {
+    flex: 1; background: var(--surface); border: 1px solid var(--border);
+    color: var(--text); padding: 5px 9px; border-radius: 6px;
+    font-family: var(--mono); font-size: 11px; outline: none;
+    transition: border-color .15s;
+  }
+  .results-url-row input:focus { border-color: var(--red); }
+  .results-url-row input::placeholder { color: var(--subtle); }
+  .btn-fetch {
+    background: var(--red-dim); color: var(--red); border: 1px solid var(--red);
+    padding: 5px 10px; border-radius: 6px; font-size: 11px; font-weight: 600;
+    cursor: pointer; white-space: nowrap; transition: all .15s;
+  }
+  .btn-fetch:hover { background: var(--red); color: #fff; }
+  .btn-fetch:disabled { opacity: 0.4; cursor: not-allowed; }
+  .results-badge {
+    font-size: 10px; padding: 2px 7px; border-radius: 4px;
+    background: rgba(0,201,110,.12); color: #00c96e;
+    border: 1px solid rgba(0,201,110,.3); white-space: nowrap;
+  }
+
   /* TBC checkbox pill */
   .tbc-wrap {
     display: flex; align-items: center; gap: 5px;
@@ -690,6 +716,14 @@ function renderSession(s, ri, si) {
       </div>` : ''}
       <button class="btn-icon" onclick="duplicateSession(${ri},${si})" title="Duplicate">⎘</button>
       <button class="btn-icon danger" onclick="deleteSession(${ri},${si})" title="Delete">🗑</button>
+    </div>
+    <div class="results-url-row">
+      <input type="url" value="${esc(s.resultsUrl||'')}" placeholder="https://www.motorsport.com/…"
+        id="resultsUrl_${ri}_${si}"
+        oninput="updateSession(${ri},${si},'resultsUrl',this.value)"/>
+      ${s.results && s.results.length > 0 ? `<span class="results-badge">✓ ${s.results.length} results</span>` : ''}
+      <button class="btn-fetch" id="fetchBtn_${ri}_${si}"
+        onclick="fetchResults(${ri},${si})">Fetch</button>
     </div>`;
 }
 
@@ -875,9 +909,72 @@ function buildJSON(seriesId) {
       })(),
       durationMinutes: s.durationMinutes || 60,
       ...(s.isOval ? { isOval: true } : {}),
+      ...(s.resultsUrl ? { resultsUrl: s.resultsUrl } : {}),
+      ...(s.results && s.results.length > 0 ? { results: s.results } : {}),
     }))
   }));
   return JSON.stringify(rounds, null, 2);
+}
+
+// ── Fetch Results via GitHub Action ───────────────────────────────────────────
+
+async function fetchResults(ri, si) {
+  const rounds = state.data[state.activeSeries];
+  const session = rounds[ri].sessions[si];
+  const url = (session.resultsUrl || document.getElementById(`resultsUrl_${ri}_${si}`)?.value || '').trim();
+
+  if (!url) {
+    showStatus('Please enter a results URL first', 'error');
+    return;
+  }
+
+  // Save URL to session
+  session.resultsUrl = url;
+  updateSession(ri, si, 'resultsUrl', url);
+  save();
+
+  if (!state.github?.token || !state.github?.repo) {
+    showStatus('Configure GitHub token and repo in settings first', 'error');
+    return;
+  }
+
+  const btn = document.getElementById(`fetchBtn_${ri}_${si}`);
+  if (btn) { btn.disabled = true; btn.textContent = '⏳'; }
+
+  try {
+    const [owner, repo] = state.github.repo.split('/');
+    const apiUrl = `https://api.github.com/repos/${owner}/${repo}/actions/workflows/fetch_results.yml/dispatches`;
+
+    const resp = await fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${state.github.token}`,
+        'Accept': 'application/vnd.github+json',
+        'Content-Type': 'application/json',
+        'X-GitHub-Api-Version': '2022-11-28',
+      },
+      body: JSON.stringify({
+        ref: 'main',
+        inputs: {
+          url: url,
+          session_id: session.id,
+          series: state.activeSeries,
+        }
+      })
+    });
+
+    if (resp.status === 204) {
+      showStatus(`✓ Fetch started for ${session.name} — results appear in ~30s`, 'success');
+    } else {
+      const err = await resp.json().catch(() => ({}));
+      throw new Error(err.message || `GitHub API error ${resp.status}`);
+    }
+  } catch (err) {
+    showStatus(`Error: ${err.message}`, 'error');
+  } finally {
+    const btn2 = document.getElementById(`fetchBtn_${ri}_${si}`);
+    if (btn2) { btn2.disabled = false; btn2.textContent = 'Fetch'; }
+  }
 }
 
 function exportJSON() {
