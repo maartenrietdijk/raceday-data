@@ -247,9 +247,9 @@ def parse_results(html: str, url: str = "", series: str = "", is_oval: bool = Fa
             # Laps, time, interval
             laps     = cols[laps_idx].get_text(strip=True) if laps_idx > 0 and len(cols) > laps_idx else ""
             time_val = cols[time_idx].get_text(strip=True) if time_idx > 0 and len(cols) > time_idx else ""
+            interval = cols[int_idx].get_text(strip=True)  if int_idx  > 0 and len(cols) > int_idx  else ""
             if position and position <= 3:
                 print(f"🕐 P{position} time_val: '{time_val}' interval: '{interval}'")
-            interval = cols[int_idx].get_text(strip=True)  if int_idx  > 0 and len(cols) > int_idx  else ""
             speed    = cols[speed_idx].get_text(strip=True) if speed_idx > 0 and len(cols) > speed_idx else ""
             speed_unit = "km/h" if "KM/H" in headers else ("mph" if "MPH" in headers else "")
 
