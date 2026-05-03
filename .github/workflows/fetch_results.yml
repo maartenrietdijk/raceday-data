@@ -37,6 +37,9 @@ jobs:
       - name: Install dependencies
         run: pip install requests beautifulsoup4
 
+      - name: Pull latest
+        run: git pull --rebase origin main
+
       - name: Fetch results
         run: |
           python fetch_results.py \
@@ -51,7 +54,6 @@ jobs:
         run: |
           git config user.name "RaceDay Bot"
           git config user.email "bot@raceday.app"
-          git pull --rebase origin main
           git add *.json
           if git diff --staged --quiet; then
             echo "No changes to commit"
