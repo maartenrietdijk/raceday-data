@@ -304,7 +304,13 @@ def parse_results(html: str, url: str = "", series: str = "", is_oval: bool = Fa
                     # P2+: gap to P1 — always from TIME column
                     gap = ""
                     if time_val:
-                        if combined_format:
+                        # Check for lap interval first: "+1 Lap...", "+2 Laps..."
+                        lap_match = re.match(r'^([+\-]?\d+\s+Laps?)', time_val, re.IGNORECASE)
+                        if lap_match:
+                            gap = lap_match.group(1)
+                            if not gap.startswith(('+', '-')):
+                                gap = '+' + gap
+                        elif combined_format:
                             # Gap embedded in TIME: "+4.79841'42.649" → "+4.798"
                             # Also handles minute gaps: "+1'02.3451'29.607" → "+1'02.345"
                             # Try decimal gap first
@@ -330,6 +336,12 @@ def parse_results(html: str, url: str = "", series: str = "", is_oval: bool = Fa
                     if gap:
                         if not gap.startswith(('+', '-')):
                             gap = '+' + gap
+                        # Clean lap intervals: "+1 Lap1:24'03.974" → "+1 Lap"
+                        lap_match = re.match(r'^([+\-]?\d+\s+Laps?)', gap, re.IGNORECASE)
+                        if lap_match:
+                            gap = lap_match.group(1)
+                            if not gap.startswith(('+', '-')):
+                                gap = '+' + gap
                         result["interval"] = gap
                     elif interval and series == "formulae":
                         result["interval"] = interval
