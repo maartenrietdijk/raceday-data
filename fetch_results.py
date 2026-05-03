@@ -110,6 +110,7 @@ def parse_results(html: str, url: str = "", series: str = "", is_oval: bool = Fa
     driver_col  = col_idx(["DRIVER", "DRIVERS"])
     number_col  = col_idx(["#"])
     laps_idx    = col_idx(["LAPS"])
+    ret_idx     = col_idx(["RETIREMENT", "RET", "STATUS"])
     time_idx    = col_idx(["TIME"])
     int_idx     = col_idx(["INTERVAL", "GAP"])
     speed_idx   = col_idx(["KM/H", "MPH", "SPEED"])
@@ -160,6 +161,14 @@ def parse_results(html: str, url: str = "", series: str = "", is_oval: bool = Fa
             # Position (col 0)
             pos_text = cols[0].get_text(strip=True)
             position = int(pos_text) if pos_text.isdigit() else None
+
+            # DNF/DNS detection
+            retirement = cols[ret_idx].get_text(strip=True) if ret_idx > 0 and len(cols) > ret_idx else ""
+            if position is None:
+                if "DNS" in retirement.upper() or (laps_idx > 0 and len(cols) > laps_idx and cols[laps_idx].get_text(strip=True) == "0"):
+                    position = "DNS"
+                else:
+                    position = "DNF"
 
             # WRC: filter on Rally1 cars only
             if is_wrc and car_idx >= 0 and len(cols) > car_idx:
@@ -248,8 +257,6 @@ def parse_results(html: str, url: str = "", series: str = "", is_oval: bool = Fa
             laps     = cols[laps_idx].get_text(strip=True) if laps_idx > 0 and len(cols) > laps_idx else ""
             time_val = cols[time_idx].get_text(strip=True) if time_idx > 0 and len(cols) > time_idx else ""
             interval = cols[int_idx].get_text(strip=True)  if int_idx  > 0 and len(cols) > int_idx  else ""
-            if position and position <= 3:
-                print(f"🕐 P{position} time_val: '{time_val}' interval: '{interval}'")
             speed    = cols[speed_idx].get_text(strip=True) if speed_idx > 0 and len(cols) > speed_idx else ""
             speed_unit = "km/h" if "KM/H" in headers else ("mph" if "MPH" in headers else "")
 
@@ -298,13 +305,23 @@ def parse_results(html: str, url: str = "", series: str = "", is_oval: bool = Fa
                     gap = ""
                     if time_val:
                         if combined_format:
-                            # Gap embedded: "+4.79841'42.649" → "+4.798"
-                            # Minutes can be 1 or 2 digits before apostrophe
+                            # Gap embedded in TIME: "+4.79841'42.649" → "+4.798"
+                            # Also handles minute gaps: "+1'02.3451'29.607" → "+1'02.345"
+                            # Try decimal gap first
                             m = re.search(rf"^([+\-]?\d+\.\d{{1,{decimals}}})\d{{1,2}}'", time_val)
                             if m:
                                 gap = m.group(1)
+                            else:
+                                # Try minute:second gap format: "+1'02.345..."
+                                m = re.search(r"^([+\-]?\d+'\d{2}\.\d+)\d'", time_val)
+                                if m:
+                                    gap = m.group(1).replace("'", ":")
+                                elif re.match(r"^[+\-]\d+'", time_val):
+                                    # Gap is entire minute format: "+1'02.345"
+                                    m2 = re.match(r"^([+\-]\d+'\d{2}\.\d+)", time_val)
+                                    if m2:
+                                        gap = m2.group(1).replace("'", ":")
                         else:
-                            # Max decimals from TIME column
                             m = re.match(gap_pattern, time_val)
                             if m:
                                 gap = m.group(1)
@@ -315,7 +332,6 @@ def parse_results(html: str, url: str = "", series: str = "", is_oval: bool = Fa
                             gap = '+' + gap
                         result["interval"] = gap
                     elif interval and series == "formulae":
-                        # Formula E race: gap is in INTERVAL column, not TIME
                         result["interval"] = interval
 
             results.append(result)
