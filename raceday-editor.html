@@ -546,7 +546,8 @@ async function loadFromGitHub() {
     }
 
     save();
-    render();
+    renderSidebar();
+    renderMain();
     showStatus(`✓ Loaded ${loaded} series from GitHub`, 'success');
   } catch (e) {
     showStatus(`Error: ${e.message}`, 'error');
