@@ -289,7 +289,12 @@ def parse_results(html: str, url: str = "", series: str = "", is_oval: bool = Fa
                     result["time"] = time_val
             elif is_race:
                 if position == 1 and time_val:
-                    result["time"] = time_val.replace("'", ":")
+                    print(f"🕐 P1 raw time_val: '{time_val}'")
+                    if "'" in time_val:
+                        # Format: "4:01'49.660" → "4:01:49.660" or "1'49.660" → "1:49.660"
+                        result["time"] = time_val.replace("'", ":")
+                    else:
+                        result["time"] = time_val
                 elif interval:
                     result["interval"] = interval
             else:
