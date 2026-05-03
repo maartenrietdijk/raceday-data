@@ -299,10 +299,17 @@ def parse_results(html: str, url: str = "", series: str = "", is_oval: bool = Fa
                     result["interval"] = interval
             else:
                 if position == 1 and time_val:
+                    print(f"🕐 P1 raw time_val: '{time_val}'")
                     # P1: absolute time
                     if "'" in time_val:
-                        m = re.search(r"(\d)'(\d{2}\.\d+)", time_val)
-                        result["time"] = f"{m.group(1)}:{m.group(2)}" if m else time_val.replace("'", ":")
+                        m = re.search(r"(\d{1,2}:\d{2})'(\d{2}\.\d+)|(\d{1,2})'(\d{2}\.\d+)", time_val)
+                        if m:
+                            if m.group(1):
+                                result["time"] = f"{m.group(1)}:{m.group(2)}"
+                            else:
+                                result["time"] = f"{m.group(3)}:{m.group(4)}"
+                        else:
+                            result["time"] = time_val.replace("'", ":")
                     else:
                         result["time"] = time_val.replace("'", ":")
                 else:
