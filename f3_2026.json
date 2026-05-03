@@ -1,394 +1,620 @@
 [
   {
-    "countryCode" : "AU",
-    "id" : "f3-2026-r01",
-    "country" : "Australia",
-    "circuitName" : "Albert Park Circuit",
-    "sessions" : [
+    "countryCode": "AU",
+    "id": "f3-2026-r01",
+    "country": "Australia",
+    "circuitName": "Albert Park Circuit",
+    "sessions": [
       {
-        "date" : "2026-03-05",
-        "durationMinutes" : 45,
-        "name" : "Practice",
-        "id" : "f3-2026-r01-s1",
-        "timeLocal" : "22:50"
+        "date": "2026-03-05",
+        "durationMinutes": 45,
+        "name": "Practice",
+        "id": "f3-2026-r01-s1",
+        "timeLocal": "22:50"
       },
       {
-        "date" : "2026-03-06",
-        "durationMinutes" : 30,
-        "name" : "Qualifying",
-        "id" : "f3-2026-r01-s2",
-        "timeLocal" : "04:00"
+        "date": "2026-03-06",
+        "durationMinutes": 30,
+        "name": "Qualifying",
+        "id": "f3-2026-r01-s2",
+        "timeLocal": "04:00"
       },
       {
-        "date" : "2026-03-07",
-        "durationMinutes" : 40,
-        "name" : "Sprint Race",
-        "id" : "f3-2026-r01-s3",
-        "timeLocal" : "01:15"
+        "date": "2026-03-07",
+        "durationMinutes": 40,
+        "name": "Sprint Race",
+        "id": "f3-2026-r01-s3",
+        "timeLocal": "01:15"
       },
       {
-        "date" : "2026-03-07",
-        "durationMinutes" : 50,
-        "name" : "Feature Race",
-        "id" : "f3-2026-r01-s4",
-        "timeLocal" : "22:50"
+        "date": "2026-03-07",
+        "durationMinutes": 50,
+        "name": "Feature Race",
+        "id": "f3-2026-r01-s4",
+        "timeLocal": "22:50",
+        "results": [
+          {
+            "position": 1,
+            "driver": "U. Ugochukwu",
+            "team": "Campos Racing",
+            "number": "2",
+            "laps": "23",
+            "time": "2:59.653"
+          },
+          {
+            "position": 2,
+            "driver": "F. Slater",
+            "team": "Trident",
+            "number": "5",
+            "laps": "23",
+            "interval": "+0.693"
+          },
+          {
+            "position": 3,
+            "driver": "T. Kato",
+            "team": "ART Grand Prix",
+            "number": "10",
+            "laps": "23",
+            "interval": "+2.272"
+          },
+          {
+            "position": 4,
+            "driver": "B. del Pino",
+            "team": "Van Amersfoort Racing",
+            "number": "16",
+            "laps": "23",
+            "interval": "+2.716"
+          },
+          {
+            "position": 5,
+            "driver": "M. Gładysz",
+            "team": "ART Grand Prix",
+            "number": "11",
+            "laps": "23",
+            "interval": "+3.253"
+          },
+          {
+            "position": 6,
+            "driver": "E. Deligny",
+            "team": "Van Amersfoort Racing",
+            "number": "15",
+            "laps": "23",
+            "interval": "+3.576"
+          },
+          {
+            "position": 7,
+            "driver": "B. Benavides",
+            "team": "AIX Racing",
+            "number": "26",
+            "laps": "23",
+            "interval": "+4.716"
+          },
+          {
+            "position": 8,
+            "driver": "P. Clerot",
+            "team": "Rodin Motorsport",
+            "number": "17",
+            "laps": "23",
+            "interval": "+4.963"
+          },
+          {
+            "position": 9,
+            "driver": "J. Nakamura",
+            "team": "HitechGP",
+            "number": "25",
+            "laps": "23",
+            "interval": "+5.346"
+          },
+          {
+            "position": 10,
+            "driver": "M. Colnaghi",
+            "team": "MP Motorsport",
+            "number": "7",
+            "laps": "23",
+            "interval": "+5.784"
+          },
+          {
+            "position": 11,
+            "driver": "H. Yamakoshi",
+            "team": "Van Amersfoort Racing",
+            "number": "14",
+            "laps": "23",
+            "interval": "+5.983"
+          },
+          {
+            "position": 12,
+            "driver": "T. Naël",
+            "team": "Campos Racing",
+            "number": "1",
+            "laps": "23",
+            "interval": "+6.290"
+          },
+          {
+            "position": 13,
+            "driver": "T. Taponen",
+            "team": "MP Motorsport",
+            "number": "8",
+            "laps": "23",
+            "interval": "+6.529"
+          },
+          {
+            "position": 14,
+            "driver": "F. McLaughlin",
+            "team": "HitechGP",
+            "number": "24",
+            "laps": "23",
+            "interval": "+6.802"
+          },
+          {
+            "position": 15,
+            "driver": "A. Giusti",
+            "team": "MP Motorsport",
+            "number": "9",
+            "laps": "23",
+            "interval": "+7.218"
+          },
+          {
+            "position": 16,
+            "driver": "B. Badoer",
+            "team": "Rodin Motorsport",
+            "number": "18",
+            "laps": "23",
+            "interval": "+7.778"
+          },
+          {
+            "position": 17,
+            "driver": "P. Heuzenroeder",
+            "team": "Campos Racing",
+            "number": "3",
+            "laps": "23",
+            "interval": "+8.483"
+          },
+          {
+            "position": 18,
+            "driver": "F. Barrichello",
+            "team": "AIX Racing",
+            "number": "28",
+            "laps": "23",
+            "interval": "+8.836"
+          },
+          {
+            "position": 19,
+            "driver": "G. Xie",
+            "team": "DAMS Lucas Oil",
+            "number": "31",
+            "laps": "23",
+            "interval": "+9.401"
+          },
+          {
+            "position": 20,
+            "driver": "Y. David",
+            "team": "AIX Racing",
+            "number": "27",
+            "laps": "23",
+            "interval": "+9.977"
+          },
+          {
+            "position": 21,
+            "driver": "C. Ho",
+            "team": "Rodin Motorsport",
+            "number": "19",
+            "laps": "23",
+            "interval": "+10.473"
+          },
+          {
+            "position": 22,
+            "driver": "M. De Palo",
+            "team": "Trident",
+            "number": "6",
+            "laps": "23",
+            "interval": "+11.182"
+          },
+          {
+            "position": 23,
+            "driver": "N. Strømsted",
+            "team": "Trident",
+            "number": "4",
+            "laps": "23",
+            "interval": "+11.621"
+          },
+          {
+            "position": 24,
+            "driver": "J. Garfias",
+            "team": "Prema Powerteam",
+            "number": "22",
+            "laps": "23",
+            "interval": "+11.871"
+          },
+          {
+            "position": 25,
+            "driver": "N. Lacorte",
+            "team": "DAMS Lucas Oil",
+            "number": "29",
+            "laps": "23",
+            "interval": "+19.142"
+          },
+          {
+            "position": "DNF",
+            "driver": "M. Shin",
+            "team": "HitechGP",
+            "number": "23",
+            "laps": "19",
+            "interval": "+4 Laps"
+          },
+          {
+            "position": "DNF",
+            "driver": "N. Bhirombhakdi",
+            "team": "DAMS Lucas Oil",
+            "number": "30",
+            "laps": "7",
+            "interval": "+16 Laps"
+          },
+          {
+            "position": "DNF",
+            "driver": "K. Le",
+            "team": "ART Grand Prix",
+            "number": "12",
+            "laps": "1",
+            "interval": "+22 Laps"
+          }
+        ]
       }
     ],
-    "roundNumber" : 1,
-    "city" : "Melbourne",
-    "seriesId" : "f3",
-    "raceName" : "Australian Grand Prix"
+    "roundNumber": 1,
+    "city": "Melbourne",
+    "seriesId": "f3",
+    "raceName": "Australian Grand Prix"
   },
   {
-    "countryCode" : "MC",
-    "id" : "f3-2026-r02",
-    "country" : "Monaco",
-    "circuitName" : "Circuit de Monaco",
-    "sessions" : [
+    "countryCode": "MC",
+    "id": "f3-2026-r02",
+    "country": "Monaco",
+    "circuitName": "Circuit de Monaco",
+    "sessions": [
       {
-        "date" : "2026-06-04",
-        "durationMinutes" : 45,
-        "kind" : "practice",
-        "name" : "Practice",
-        "id" : "f3-2026-r02-s1",
-        "timeLocal" : "15:00"
+        "date": "2026-06-04",
+        "durationMinutes": 45,
+        "kind": "practice",
+        "name": "Practice",
+        "id": "f3-2026-r02-s1",
+        "timeLocal": "15:00"
       },
       {
-        "date" : "2026-06-05",
-        "durationMinutes" : 30,
-        "kind" : "qualifying",
-        "name" : "Qualifying",
-        "id" : "f3-2026-r02-s2",
-        "timeLocal" : "13:35"
+        "date": "2026-06-05",
+        "durationMinutes": 30,
+        "kind": "qualifying",
+        "name": "Qualifying",
+        "id": "f3-2026-r02-s2",
+        "timeLocal": "13:35"
       },
       {
-        "date" : "2026-06-06",
-        "durationMinutes" : 40,
-        "kind" : "sprintRace",
-        "name" : "Sprint Race",
-        "id" : "f3-2026-r02-s3",
-        "timeLocal" : "12:30"
+        "date": "2026-06-06",
+        "durationMinutes": 40,
+        "kind": "sprintRace",
+        "name": "Sprint Race",
+        "id": "f3-2026-r02-s3",
+        "timeLocal": "12:30"
       },
       {
-        "date" : "2026-06-07",
-        "durationMinutes" : 50,
-        "kind" : "race",
-        "name" : "Feature Race",
-        "id" : "f3-2026-r02-s4",
-        "timeLocal" : "08:00"
+        "date": "2026-06-07",
+        "durationMinutes": 50,
+        "kind": "race",
+        "name": "Feature Race",
+        "id": "f3-2026-r02-s4",
+        "timeLocal": "08:00"
       }
     ],
-    "roundNumber" : 2,
-    "city" : "Monte Carlo",
-    "seriesId" : "f3",
-    "raceName" : "Monaco Grand Prix"
+    "roundNumber": 2,
+    "city": "Monte Carlo",
+    "seriesId": "f3",
+    "raceName": "Monaco Grand Prix"
   },
   {
-    "countryCode" : "ES",
-    "id" : "f3-2026-r03",
-    "country" : "Spain",
-    "circuitName" : "Circuit de Barcelona-Catalunya",
-    "sessions" : [
+    "countryCode": "ES",
+    "id": "f3-2026-r03",
+    "country": "Spain",
+    "circuitName": "Circuit de Barcelona-Catalunya",
+    "sessions": [
       {
-        "date" : "2026-06-12",
-        "durationMinutes" : 45,
-        "kind" : "practice",
-        "name" : "Practice",
-        "id" : "f3-2026-r03-s1",
-        "timeLocal" : "09:30"
+        "date": "2026-06-12",
+        "durationMinutes": 45,
+        "kind": "practice",
+        "name": "Practice",
+        "id": "f3-2026-r03-s1",
+        "timeLocal": "09:30"
       },
       {
-        "date" : "2026-06-12",
-        "durationMinutes" : 30,
-        "kind" : "qualifying",
-        "name" : "Qualifying",
-        "id" : "f3-2026-r03-s2",
-        "timeLocal" : "14:25"
+        "date": "2026-06-12",
+        "durationMinutes": 30,
+        "kind": "qualifying",
+        "name": "Qualifying",
+        "id": "f3-2026-r03-s2",
+        "timeLocal": "14:25"
       },
       {
-        "date" : "2026-06-13",
-        "durationMinutes" : 40,
-        "kind" : "sprintRace",
-        "name" : "Sprint Race",
-        "id" : "f3-2026-r03-s3",
-        "timeLocal" : "12:35"
+        "date": "2026-06-13",
+        "durationMinutes": 40,
+        "kind": "sprintRace",
+        "name": "Sprint Race",
+        "id": "f3-2026-r03-s3",
+        "timeLocal": "12:35"
       },
       {
-        "date" : "2026-06-14",
-        "durationMinutes" : 50,
-        "kind" : "race",
-        "name" : "Feature Race",
-        "id" : "f3-2026-r03-s4",
-        "timeLocal" : "10:00"
+        "date": "2026-06-14",
+        "durationMinutes": 50,
+        "kind": "race",
+        "name": "Feature Race",
+        "id": "f3-2026-r03-s4",
+        "timeLocal": "10:00"
       }
     ],
-    "roundNumber" : 3,
-    "city" : "Barcelona",
-    "seriesId" : "f3",
-    "raceName" : "Spanish Grand Prix"
+    "roundNumber": 3,
+    "city": "Barcelona",
+    "seriesId": "f3",
+    "raceName": "Spanish Grand Prix"
   },
   {
-    "countryCode" : "AT",
-    "id" : "f3-2026-r04",
-    "country" : "Austria",
-    "circuitName" : "Red Bull Ring",
-    "sessions" : [
+    "countryCode": "AT",
+    "id": "f3-2026-r04",
+    "country": "Austria",
+    "circuitName": "Red Bull Ring",
+    "sessions": [
       {
-        "date" : "2026-06-26",
-        "durationMinutes" : 45,
-        "kind" : "practice",
-        "name" : "Practice",
-        "id" : "f3-2026-r04-s1",
-        "timeLocal" : "09:30"
+        "date": "2026-06-26",
+        "durationMinutes": 45,
+        "kind": "practice",
+        "name": "Practice",
+        "id": "f3-2026-r04-s1",
+        "timeLocal": "09:30"
       },
       {
-        "date" : "2026-06-26",
-        "durationMinutes" : 30,
-        "kind" : "qualifying",
-        "name" : "Qualifying",
-        "id" : "f3-2026-r04-s2",
-        "timeLocal" : "14:25"
+        "date": "2026-06-26",
+        "durationMinutes": 30,
+        "kind": "qualifying",
+        "name": "Qualifying",
+        "id": "f3-2026-r04-s2",
+        "timeLocal": "14:25"
       },
       {
-        "date" : "2026-06-27",
-        "durationMinutes" : 40,
-        "kind" : "sprintRace",
-        "name" : "Sprint Race",
-        "id" : "f3-2026-r04-s3",
-        "timeLocal" : "12:30"
+        "date": "2026-06-27",
+        "durationMinutes": 40,
+        "kind": "sprintRace",
+        "name": "Sprint Race",
+        "id": "f3-2026-r04-s3",
+        "timeLocal": "12:30"
       },
       {
-        "date" : "2026-06-28",
-        "durationMinutes" : 50,
-        "kind" : "race",
-        "name" : "Feature Race",
-        "id" : "f3-2026-r04-s4",
-        "timeLocal" : "08:30"
+        "date": "2026-06-28",
+        "durationMinutes": 50,
+        "kind": "race",
+        "name": "Feature Race",
+        "id": "f3-2026-r04-s4",
+        "timeLocal": "08:30"
       }
     ],
-    "roundNumber" : 4,
-    "city" : "Spielberg",
-    "seriesId" : "f3",
-    "raceName" : "Austrian Grand Prix"
+    "roundNumber": 4,
+    "city": "Spielberg",
+    "seriesId": "f3",
+    "raceName": "Austrian Grand Prix"
   },
   {
-    "countryCode" : "GB",
-    "id" : "f3-2026-r05",
-    "country" : "United Kingdom",
-    "circuitName" : "Silverstone Circuit",
-    "sessions" : [
+    "countryCode": "GB",
+    "id": "f3-2026-r05",
+    "country": "United Kingdom",
+    "circuitName": "Silverstone Circuit",
+    "sessions": [
       {
-        "date" : "2026-07-03",
-        "durationMinutes" : 45,
-        "kind" : "practice",
-        "name" : "Practice",
-        "id" : "f3-2026-r05-s1",
-        "timeLocal" : "09:25"
+        "date": "2026-07-03",
+        "durationMinutes": 45,
+        "kind": "practice",
+        "name": "Practice",
+        "id": "f3-2026-r05-s1",
+        "timeLocal": "09:25"
       },
       {
-        "date" : "2026-07-03",
-        "durationMinutes" : 30,
-        "kind" : "qualifying",
-        "name" : "Qualifying",
-        "id" : "f3-2026-r05-s2",
-        "timeLocal" : "14:20"
+        "date": "2026-07-03",
+        "durationMinutes": 30,
+        "kind": "qualifying",
+        "name": "Qualifying",
+        "id": "f3-2026-r05-s2",
+        "timeLocal": "14:20"
       },
       {
-        "date" : "2026-07-04",
-        "durationMinutes" : 40,
-        "kind" : "sprintRace",
-        "name" : "Sprint Race",
-        "id" : "f3-2026-r05-s3",
-        "timeLocal" : "12:30"
+        "date": "2026-07-04",
+        "durationMinutes": 40,
+        "kind": "sprintRace",
+        "name": "Sprint Race",
+        "id": "f3-2026-r05-s3",
+        "timeLocal": "12:30"
       },
       {
-        "date" : "2026-07-05",
-        "durationMinutes" : 50,
-        "kind" : "race",
-        "name" : "Feature Race",
-        "id" : "f3-2026-r05-s4",
-        "timeLocal" : "10:30"
+        "date": "2026-07-05",
+        "durationMinutes": 50,
+        "kind": "race",
+        "name": "Feature Race",
+        "id": "f3-2026-r05-s4",
+        "timeLocal": "10:30"
       }
     ],
-    "roundNumber" : 5,
-    "city" : "Silverstone",
-    "seriesId" : "f3",
-    "raceName" : "British Grand Prix"
+    "roundNumber": 5,
+    "city": "Silverstone",
+    "seriesId": "f3",
+    "raceName": "British Grand Prix"
   },
   {
-    "countryCode" : "BE",
-    "id" : "f3-2026-r06",
-    "country" : "Belgium",
-    "circuitName" : "Circuit de Spa-Francorchamps",
-    "sessions" : [
+    "countryCode": "BE",
+    "id": "f3-2026-r06",
+    "country": "Belgium",
+    "circuitName": "Circuit de Spa-Francorchamps",
+    "sessions": [
       {
-        "date" : "2026-07-17",
-        "durationMinutes" : 45,
-        "kind" : "practice",
-        "name" : "Practice",
-        "id" : "f3-2026-r06-s1",
-        "timeLocal" : "08:35"
+        "date": "2026-07-17",
+        "durationMinutes": 45,
+        "kind": "practice",
+        "name": "Practice",
+        "id": "f3-2026-r06-s1",
+        "timeLocal": "08:35"
       },
       {
-        "date" : "2026-07-17",
-        "durationMinutes" : 30,
-        "kind" : "qualifying",
-        "name" : "Qualifying",
-        "id" : "f3-2026-r06-s2",
-        "timeLocal" : "13:25"
+        "date": "2026-07-17",
+        "durationMinutes": 30,
+        "kind": "qualifying",
+        "name": "Qualifying",
+        "id": "f3-2026-r06-s2",
+        "timeLocal": "13:25"
       },
       {
-        "date" : "2026-07-18",
-        "durationMinutes" : 40,
-        "kind" : "sprintRace",
-        "name" : "Sprint Race",
-        "id" : "f3-2026-r06-s3",
-        "timeLocal" : "11:45"
+        "date": "2026-07-18",
+        "durationMinutes": 40,
+        "kind": "sprintRace",
+        "name": "Sprint Race",
+        "id": "f3-2026-r06-s3",
+        "timeLocal": "11:45"
       },
       {
-        "date" : "2026-07-19",
-        "durationMinutes" : 50,
-        "kind" : "race",
-        "name" : "Feature Race",
-        "id" : "f3-2026-r06-s4",
-        "timeLocal" : "08:30"
+        "date": "2026-07-19",
+        "durationMinutes": 50,
+        "kind": "race",
+        "name": "Feature Race",
+        "id": "f3-2026-r06-s4",
+        "timeLocal": "08:30"
       }
     ],
-    "roundNumber" : 6,
-    "city" : "Spa",
-    "seriesId" : "f3",
-    "raceName" : "Belgian Grand Prix"
+    "roundNumber": 6,
+    "city": "Spa",
+    "seriesId": "f3",
+    "raceName": "Belgian Grand Prix"
   },
   {
-    "countryCode" : "HU",
-    "id" : "f3-2026-r07",
-    "country" : "Hungary",
-    "circuitName" : "Hungaroring",
-    "sessions" : [
+    "countryCode": "HU",
+    "id": "f3-2026-r07",
+    "country": "Hungary",
+    "circuitName": "Hungaroring",
+    "sessions": [
       {
-        "date" : "2026-07-24",
-        "durationMinutes" : 45,
-        "kind" : "practice",
-        "name" : "Practice",
-        "id" : "f3-2026-r07-s1",
-        "timeLocal" : "09:30"
+        "date": "2026-07-24",
+        "durationMinutes": 45,
+        "kind": "practice",
+        "name": "Practice",
+        "id": "f3-2026-r07-s1",
+        "timeLocal": "09:30"
       },
       {
-        "date" : "2026-07-24",
-        "durationMinutes" : 30,
-        "kind" : "qualifying",
-        "name" : "Qualifying",
-        "id" : "f3-2026-r07-s2",
-        "timeLocal" : "14:25"
+        "date": "2026-07-24",
+        "durationMinutes": 30,
+        "kind": "qualifying",
+        "name": "Qualifying",
+        "id": "f3-2026-r07-s2",
+        "timeLocal": "14:25"
       },
       {
-        "date" : "2026-07-25",
-        "durationMinutes" : 40,
-        "kind" : "sprintRace",
-        "name" : "Sprint Race",
-        "id" : "f3-2026-r07-s3",
-        "timeLocal" : "12:30"
+        "date": "2026-07-25",
+        "durationMinutes": 40,
+        "kind": "sprintRace",
+        "name": "Sprint Race",
+        "id": "f3-2026-r07-s3",
+        "timeLocal": "12:30"
       },
       {
-        "date" : "2026-07-26",
-        "durationMinutes" : 50,
-        "kind" : "race",
-        "name" : "Feature Race",
-        "id" : "f3-2026-r07-s4",
-        "timeLocal" : "08:30"
+        "date": "2026-07-26",
+        "durationMinutes": 50,
+        "kind": "race",
+        "name": "Feature Race",
+        "id": "f3-2026-r07-s4",
+        "timeLocal": "08:30"
       }
     ],
-    "roundNumber" : 7,
-    "city" : "Budapest",
-    "seriesId" : "f3",
-    "raceName" : "Hungarian Grand Prix"
+    "roundNumber": 7,
+    "city": "Budapest",
+    "seriesId": "f3",
+    "raceName": "Hungarian Grand Prix"
   },
   {
-    "countryCode" : "IT",
-    "id" : "f3-2026-r08",
-    "country" : "Italy",
-    "circuitName" : "Autodromo Nazionale Monza",
-    "sessions" : [
+    "countryCode": "IT",
+    "id": "f3-2026-r08",
+    "country": "Italy",
+    "circuitName": "Autodromo Nazionale Monza",
+    "sessions": [
       {
-        "date" : "2026-09-04",
-        "durationMinutes" : 45,
-        "kind" : "practice",
-        "name" : "Practice",
-        "id" : "f3-2026-r08-s1",
-        "timeLocal" : "09:25"
+        "date": "2026-09-04",
+        "durationMinutes": 45,
+        "kind": "practice",
+        "name": "Practice",
+        "id": "f3-2026-r08-s1",
+        "timeLocal": "09:25"
       },
       {
-        "date" : "2026-09-04",
-        "durationMinutes" : 30,
-        "kind" : "qualifying",
-        "name" : "Qualifying",
-        "id" : "f3-2026-r08-s2",
-        "timeLocal" : "14:20"
+        "date": "2026-09-04",
+        "durationMinutes": 30,
+        "kind": "qualifying",
+        "name": "Qualifying",
+        "id": "f3-2026-r08-s2",
+        "timeLocal": "14:20"
       },
       {
-        "date" : "2026-09-05",
-        "durationMinutes" : 40,
-        "kind" : "sprintRace",
-        "name" : "Sprint Race",
-        "id" : "f3-2026-r08-s3",
-        "timeLocal" : "12:30"
+        "date": "2026-09-05",
+        "durationMinutes": 40,
+        "kind": "sprintRace",
+        "name": "Sprint Race",
+        "id": "f3-2026-r08-s3",
+        "timeLocal": "12:30"
       },
       {
-        "date" : "2026-09-06",
-        "durationMinutes" : 50,
-        "kind" : "race",
-        "name" : "Feature Race",
-        "id" : "f3-2026-r08-s4",
-        "timeLocal" : "08:15"
+        "date": "2026-09-06",
+        "durationMinutes": 50,
+        "kind": "race",
+        "name": "Feature Race",
+        "id": "f3-2026-r08-s4",
+        "timeLocal": "08:15"
       }
     ],
-    "roundNumber" : 8,
-    "city" : "Monza",
-    "seriesId" : "f3",
-    "raceName" : "Italian Grand Prix"
+    "roundNumber": 8,
+    "city": "Monza",
+    "seriesId": "f3",
+    "raceName": "Italian Grand Prix"
   },
   {
-    "countryCode" : "ES",
-    "id" : "f3-2026-r09",
-    "country" : "Spain",
-    "circuitName" : "Circuito de Madring",
-    "sessions" : [
+    "countryCode": "ES",
+    "id": "f3-2026-r09",
+    "country": "Spain",
+    "circuitName": "Circuito de Madring",
+    "sessions": [
       {
-        "date" : "2026-09-11",
-        "durationMinutes" : 45,
-        "kind" : "practice",
-        "name" : "Practice",
-        "id" : "f3-2026-r09-s1",
-        "timeLocal" : "09:25"
+        "date": "2026-09-11",
+        "durationMinutes": 45,
+        "kind": "practice",
+        "name": "Practice",
+        "id": "f3-2026-r09-s1",
+        "timeLocal": "09:25"
       },
       {
-        "date" : "2026-09-11",
-        "durationMinutes" : 30,
-        "kind" : "qualifying",
-        "name" : "Qualifying",
-        "id" : "f3-2026-r09-s2",
-        "timeLocal" : "14:20"
+        "date": "2026-09-11",
+        "durationMinutes": 30,
+        "kind": "qualifying",
+        "name": "Qualifying",
+        "id": "f3-2026-r09-s2",
+        "timeLocal": "14:20"
       },
       {
-        "date" : "2026-09-12",
-        "durationMinutes" : 40,
-        "kind" : "sprintRace",
-        "name" : "Sprint Race",
-        "id" : "f3-2026-r09-s3",
-        "timeLocal" : "12:30"
+        "date": "2026-09-12",
+        "durationMinutes": 40,
+        "kind": "sprintRace",
+        "name": "Sprint Race",
+        "id": "f3-2026-r09-s3",
+        "timeLocal": "12:30"
       },
       {
-        "date" : "2026-09-13",
-        "durationMinutes" : 50,
-        "kind" : "race",
-        "name" : "Feature Race",
-        "id" : "f3-2026-r09-s4",
-        "timeLocal" : "08:15"
+        "date": "2026-09-13",
+        "durationMinutes": 50,
+        "kind": "race",
+        "name": "Feature Race",
+        "id": "f3-2026-r09-s4",
+        "timeLocal": "08:15"
       }
     ],
-    "roundNumber" : 9,
-    "city" : "Madrid",
-    "seriesId" : "f3",
-    "raceName" : "Spanish Grand Prix"
+    "roundNumber": 9,
+    "city": "Madrid",
+    "seriesId": "f3",
+    "raceName": "Spanish Grand Prix"
   }
 ]
