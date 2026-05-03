@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       url:
-        description: 'Motorsport.com results URL'
+        description: 'Results URL'
         required: true
       session_id:
         description: 'Session ID (e.g. wec-2026-r01-s5)'
@@ -43,6 +43,9 @@ jobs:
             --session-id "${{ github.event.inputs.session_id }}" \
             --series "${{ github.event.inputs.series }}"
 
+      - name: Cleanup URL references
+        run: python cleanup_urls.py
+
       - name: Commit and push
         run: |
           git config user.name "RaceDay Bot"
@@ -51,6 +54,10 @@ jobs:
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
+            git stash
+            git pull --rebase origin main
+            git stash pop
+            git add *.json
             git commit -m "🏁 Results: ${{ github.event.inputs.session_id }}"
             git push
           fi
