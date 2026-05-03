@@ -478,7 +478,7 @@ let state = {
   series: [],           // [{id, name, color}]
   data: {},             // {seriesId: [RaceRound]}
   activeSeries: null,
-  github: { token: '', repo: '', branch: 'main', path: 'data' }
+  github: { token: '', repo: '', branch: 'main', path: '' }
 };
 
 // ── Persistence ────────────────────────────────────────────────────────────────
@@ -509,7 +509,8 @@ async function loadFromGitHub() {
 
   try {
     // Fetch repo contents to discover all *_2026.json files dynamically
-    const contentsResp = await fetch(`https://api.github.com/repos/${owner}/${repoName}/contents/`, {
+    const basePath = state.github.path ? `${state.github.path}/` : '';
+    const contentsResp = await fetch(`https://api.github.com/repos/${owner}/${repoName}/contents/${basePath}`, {
       headers: {
         'Authorization': `Bearer ${token}`,
         'Accept': 'application/vnd.github+json',
