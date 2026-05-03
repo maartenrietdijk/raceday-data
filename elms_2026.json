@@ -1,262 +1,774 @@
 [
   {
-    "sessions" : [
+    "sessions": [
       {
-        "id" : "elms-2026-r01-s1",
-        "kind" : "practice",
-        "date" : "2026-04-10",
-        "timeLocal" : "10:00",
-        "name" : "Free Practice 1",
-        "durationMinutes" : 60
+        "id": "elms-2026-r01-s1",
+        "kind": "practice",
+        "date": "2026-04-10",
+        "timeLocal": "10:00",
+        "name": "Free Practice 1",
+        "durationMinutes": 60
       },
       {
-        "id" : "elms-2026-r01-s2",
-        "kind" : "practice",
-        "date" : "2026-04-11",
-        "timeLocal" : "09:30",
-        "name" : "Free Practice 2",
-        "durationMinutes" : 60
+        "id": "elms-2026-r01-s2",
+        "kind": "practice",
+        "date": "2026-04-11",
+        "timeLocal": "09:30",
+        "name": "Free Practice 2",
+        "durationMinutes": 60
       },
       {
-        "id" : "elms-2026-r01-s3",
-        "kind" : "qualifying",
-        "date" : "2026-04-11",
-        "timeLocal" : "15:00",
-        "name" : "Qualifying",
-        "durationMinutes" : 30
+        "id": "elms-2026-r01-s3",
+        "kind": "qualifying",
+        "date": "2026-04-11",
+        "timeLocal": "15:00",
+        "name": "Qualifying",
+        "durationMinutes": 30
       },
       {
-        "id" : "elms-2026-r01-s4",
-        "kind" : "race",
-        "date" : "2026-04-12",
-        "timeLocal" : "12:00",
-        "name" : "4 Hour Race",
-        "durationMinutes" : 240
+        "id": "elms-2026-r01-s4",
+        "kind": "race",
+        "date": "2026-04-12",
+        "timeLocal": "12:00",
+        "name": "4 Hour Race",
+        "durationMinutes": 240
       }
     ],
-    "city" : "Barcelona",
-    "roundNumber" : 1,
-    "country" : "Spain",
-    "id" : "elms-2026-r01",
-    "countryCode" : "ES",
-    "circuitName" : "Circuit de Barcelona-Catalunya",
-    "raceName" : "4 Hours of Barcelona",
-    "seriesId" : "elms"
+    "city": "Barcelona",
+    "roundNumber": 1,
+    "country": "Spain",
+    "id": "elms-2026-r01",
+    "countryCode": "ES",
+    "circuitName": "Circuit de Barcelona-Catalunya",
+    "raceName": "4 Hours of Barcelona",
+    "seriesId": "elms"
   },
   {
-    "sessions" : [
+    "sessions": [
       {
-        "id" : "elms-2026-r02-s1",
-        "date" : "2026-05-01",
-        "timeLocal" : "11:50",
-        "name" : "Free Practice 1",
-        "durationMinutes" : 60
+        "id": "elms-2026-r02-s1",
+        "date": "2026-05-01",
+        "timeLocal": "11:50",
+        "name": "Free Practice 1",
+        "durationMinutes": 60
       },
       {
-        "id" : "elms-2026-r02-s2",
-        "date" : "2026-05-02",
-        "timeLocal" : "10:10",
-        "name" : "Free Practice 2",
-        "durationMinutes" : 60
+        "id": "elms-2026-r02-s2",
+        "date": "2026-05-02",
+        "timeLocal": "10:10",
+        "name": "Free Practice 2",
+        "durationMinutes": 60
       },
       {
-        "id" : "elms-2026-r02-s3",
-        "date" : "2026-05-02",
-        "timeLocal" : "15:10",
-        "name" : "Qualifying",
-        "durationMinutes" : 30
+        "id": "elms-2026-r02-s3",
+        "date": "2026-05-02",
+        "timeLocal": "15:10",
+        "name": "Qualifying",
+        "durationMinutes": 30
       },
       {
-        "id" : "elms-2026-r02-s4",
-        "date" : "2026-05-03",
-        "timeLocal" : "12:00",
-        "name" : "4 Hour Race",
-        "durationMinutes" : 240
+        "id": "elms-2026-r02-s4",
+        "date": "2026-05-03",
+        "timeLocal": "12:00",
+        "name": "4 Hour Race",
+        "durationMinutes": 240,
+        "results": [
+          {
+            "position": 1,
+            "drivers": [
+              "G. Saucy",
+              "B. Hanley"
+            ],
+            "team": "United Autosports",
+            "number": "22",
+            "laps": "112",
+            "time": "0:01.773"
+          },
+          {
+            "position": 2,
+            "drivers": [
+              "B. Garg",
+              "R. de Gerus"
+            ],
+            "team": "Inter Europol Competition",
+            "number": "34",
+            "laps": "112",
+            "interval": "+8.569"
+          },
+          {
+            "position": 3,
+            "drivers": [
+              "P. Lafargue",
+              "J. Van Uitert",
+              "P. Chatin"
+            ],
+            "team": "IDEC SPORT",
+            "number": "28",
+            "laps": "112",
+            "interval": "+9.498"
+          },
+          {
+            "position": 4,
+            "drivers": [
+              "J. Chadwick",
+              "L. Hörr"
+            ],
+            "team": "IDEC SPORT",
+            "number": "18",
+            "laps": "112",
+            "interval": "+12.001"
+          },
+          {
+            "position": 5,
+            "drivers": [
+              "R. Cullen",
+              "V. Lomko",
+              "P. Fittipaldi"
+            ],
+            "team": "Vector Sport",
+            "number": "10",
+            "laps": "112",
+            "interval": "+12.796"
+          },
+          {
+            "position": 6,
+            "drivers": [
+              "A. Closmenil",
+              "T. Jensen",
+              "I. Aguilera"
+            ],
+            "team": "CLX Motorsport",
+            "number": "37",
+            "laps": "112",
+            "interval": "+14.284"
+          },
+          {
+            "position": 7,
+            "drivers": [
+              "J. Smiechowski",
+              "T. Dillmann",
+              "L. Ghiotto"
+            ],
+            "team": "Inter Europol Competition",
+            "number": "43",
+            "laps": "112",
+            "interval": "+14.758"
+          },
+          {
+            "position": 8,
+            "driver": "J. Allen",
+            "team": "NIELSEN RACING",
+            "number": "27",
+            "laps": "112",
+            "interval": "+23.971"
+          },
+          {
+            "position": 9,
+            "drivers": [
+              "P. Hyett",
+              "J. Edgar",
+              "D. Cameron"
+            ],
+            "team": "AO by TF",
+            "number": "99",
+            "laps": "112",
+            "interval": "+29.722"
+          },
+          {
+            "position": 10,
+            "drivers": [
+              "G. Roda",
+              "R. Verschoor",
+              "D. Pin"
+            ],
+            "team": "DUQUEINE TEAM",
+            "number": "30",
+            "laps": "112",
+            "interval": "+37.612"
+          },
+          {
+            "position": 11,
+            "drivers": [
+              "J. Ried",
+              "M. Rockenfeller"
+            ],
+            "team": "Proton Competition",
+            "number": "9",
+            "laps": "112",
+            "interval": "+43.913"
+          },
+          {
+            "position": 12,
+            "drivers": [
+              "S. Thomas",
+              "S. Huffaker"
+            ],
+            "team": "TDS RACING",
+            "number": "14",
+            "laps": "112",
+            "interval": "+48.617"
+          },
+          {
+            "position": 13,
+            "driver": "C. Bolukbasi",
+            "team": "Vector Sport",
+            "number": "7",
+            "laps": "112",
+            "interval": "+49.149"
+          },
+          {
+            "position": 14,
+            "drivers": [
+              "R. Nissany",
+              "J. Doohan"
+            ],
+            "team": "NIELSEN RACING",
+            "number": "24",
+            "laps": "112",
+            "interval": "+49.427"
+          },
+          {
+            "position": 15,
+            "drivers": [
+              "F. Perrodo",
+              "M. Vaxiviere",
+              "A. Fuoco"
+            ],
+            "team": "AF Corse",
+            "number": "83",
+            "laps": "112",
+            "interval": "+52.426"
+          },
+          {
+            "position": 16,
+            "driver": "J. Falb",
+            "team": "ROSSA RACING BY VIRAGE",
+            "number": "19",
+            "laps": "112",
+            "interval": "+53.447"
+          },
+          {
+            "position": 17,
+            "drivers": [
+              "D. Schneider",
+              "M. Sato",
+              "O. Jarvis"
+            ],
+            "team": "United Autosports",
+            "number": "21",
+            "laps": "112",
+            "interval": "+54.177"
+          },
+          {
+            "position": 18,
+            "drivers": [
+              "F. Habsburg",
+              "C. Milesi"
+            ],
+            "team": "CLX Motorsport",
+            "number": "47",
+            "laps": "112",
+            "interval": "+54.346"
+          },
+          {
+            "position": 19,
+            "drivers": [
+              "J. Glorieux",
+              "S. Alvarez"
+            ],
+            "team": "DKR ENGINEERING",
+            "number": "3",
+            "laps": "112",
+            "interval": "+57.353"
+          },
+          {
+            "position": 20,
+            "drivers": [
+              "E. Trulli",
+              "M. Jakobsen"
+            ],
+            "team": "Algarve Pro Racing Team",
+            "number": "20",
+            "laps": "111",
+            "interval": "+1 Lap"
+          },
+          {
+            "position": 21,
+            "drivers": [
+              "M. Kaiser",
+              "T. Vautier",
+              "J. Hughes"
+            ],
+            "team": "Algarve Pro Racing Team",
+            "number": "25",
+            "laps": "111",
+            "interval": "+1 Lap"
+          },
+          {
+            "position": 22,
+            "drivers": [
+              "H. Felbermayr Jr.",
+              "R. Binder"
+            ],
+            "team": "Proton Competition",
+            "number": "88",
+            "laps": "111",
+            "interval": "+1 Lap"
+          },
+          {
+            "position": 23,
+            "drivers": [
+              "A. Bukhantsov",
+              "H. Cubides",
+              "C. Ting Chou"
+            ],
+            "team": "Inter Europol Competition",
+            "number": "13",
+            "laps": "104",
+            "interval": "+8 Laps"
+          },
+          {
+            "position": 24,
+            "drivers": [
+              "N. Adcock",
+              "Q. Antonel",
+              "T. Imbourg"
+            ],
+            "team": "M RACING",
+            "number": "68",
+            "laps": "104",
+            "interval": "+8 Laps"
+          },
+          {
+            "position": 25,
+            "drivers": [
+              "A. Rammo",
+              "R. Favre",
+              "W. Brichacek"
+            ],
+            "team": "DKR ENGINEERING",
+            "number": "4",
+            "laps": "104",
+            "interval": "+8 Laps"
+          },
+          {
+            "position": 26,
+            "drivers": [
+              "F. Michal",
+              "P. Provost",
+              "H. Schwarze"
+            ],
+            "team": "R-ACE GP",
+            "number": "85",
+            "laps": "104",
+            "interval": "+8 Laps"
+          },
+          {
+            "position": 27,
+            "driver": "T. Woodward",
+            "team": "Ultimate Team",
+            "number": "35",
+            "laps": "104",
+            "interval": "+8 Laps"
+          },
+          {
+            "position": 28,
+            "drivers": [
+              "P. Lanchere",
+              "A. Jacoby",
+              "B. Ribeiro"
+            ],
+            "team": "CLX Motorsport",
+            "number": "17",
+            "laps": "104",
+            "interval": "+8 Laps"
+          },
+          {
+            "position": 29,
+            "drivers": [
+              "J. Fernandes Cauutela",
+              "A. Rodella",
+              "M. Pedersen"
+            ],
+            "team": "RINALDI RACING",
+            "number": "5",
+            "laps": "104",
+            "interval": "+8 Laps"
+          },
+          {
+            "position": 30,
+            "drivers": [
+              "L. Stern",
+              "M. Quintarelli",
+              "D. Nogales"
+            ],
+            "team": "TEAM VIRAGE",
+            "number": "8",
+            "laps": "104",
+            "interval": "+8 Laps"
+          },
+          {
+            "position": 31,
+            "drivers": [
+              "T. Kimura",
+              "D. Serra"
+            ],
+            "team": "KESSEL RACING",
+            "number": "57",
+            "laps": "103",
+            "interval": "+9 Laps"
+          },
+          {
+            "position": 32,
+            "drivers": [
+              "A. Udell",
+              "C. Eastwood"
+            ],
+            "team": "TF Sport",
+            "number": "33",
+            "laps": "103",
+            "interval": "+9 Laps"
+          },
+          {
+            "position": 33,
+            "driver": "M. Wainwright",
+            "team": "GR Racing",
+            "number": "86",
+            "laps": "103",
+            "interval": "+9 Laps"
+          },
+          {
+            "position": 34,
+            "driver": "D. Rigon",
+            "team": "AF Corse",
+            "number": "51",
+            "laps": "103",
+            "interval": "+9 Laps"
+          },
+          {
+            "position": 35,
+            "drivers": [
+              "D. Cameron",
+              "D. Perel",
+              "M. Griffin"
+            ],
+            "team": "Spirit of Race",
+            "number": "55",
+            "laps": "103",
+            "interval": "+9 Laps"
+          },
+          {
+            "position": 36,
+            "drivers": [
+              "B.",
+              "H. Van Eijndhoven",
+              "J. Sturm"
+            ],
+            "team": "Proton Competition",
+            "number": "77",
+            "laps": "103",
+            "interval": "+9 Laps"
+          },
+          {
+            "position": 37,
+            "drivers": [
+              "R. Andrade",
+              "S. Sette Camara"
+            ],
+            "team": "IRON LYNX",
+            "number": "63",
+            "laps": "102",
+            "interval": "+10 Laps"
+          },
+          {
+            "position": 38,
+            "drivers": [
+              "T. Sargent",
+              "R. Lietz"
+            ],
+            "team": "Proton Competition",
+            "number": "75",
+            "laps": "102",
+            "interval": "+10 Laps"
+          },
+          {
+            "position": 39,
+            "drivers": [
+              "R. Meichtry",
+              "G. de Sybourg",
+              "L. Ried"
+            ],
+            "team": "RACING SPIRIT OF LEMAN",
+            "number": "31",
+            "laps": "102",
+            "interval": "+10 Laps"
+          },
+          {
+            "position": 40,
+            "drivers": [
+              "A. Fjordbach",
+              "T. Preining"
+            ],
+            "team": "High Class Racing",
+            "number": "54",
+            "laps": "102",
+            "interval": "+10 Laps"
+          },
+          {
+            "position": 41,
+            "drivers": [
+              "C. Mateu",
+              "V. Hasse-Clot"
+            ],
+            "team": "RACING SPIRIT OF LEMAN",
+            "number": "59",
+            "laps": "102",
+            "interval": "+10 Laps"
+          },
+          {
+            "position": "DNF",
+            "drivers": [
+              "L. Rousset",
+              "O. Gray",
+              "E. Masson"
+            ],
+            "team": "FORESTIER RACING BY PANIS",
+            "number": "29",
+            "laps": "91",
+            "interval": "+21 Laps"
+          },
+          {
+            "position": "DNF",
+            "drivers": [
+              "J. Hanses",
+              "M. Martin"
+            ],
+            "team": "TEAM QATAR BY IRON LYNX",
+            "number": "62",
+            "laps": "85",
+            "interval": "+27 Laps"
+          },
+          {
+            "position": "DNF",
+            "driver": "F. Rueda",
+            "team": "KESSEL RACING",
+            "number": "74",
+            "laps": "69",
+            "interval": "+43 Laps"
+          },
+          {
+            "position": "DNF",
+            "driver": "M. Bell",
+            "team": "Eurointernational",
+            "number": "11",
+            "laps": "67",
+            "interval": "+45 Laps"
+          },
+          {
+            "position": "DNF",
+            "driver": "W. Boyd",
+            "team": "United Autosports",
+            "number": "23",
+            "laps": "27",
+            "interval": "+85 Laps"
+          },
+          {
+            "position": "DNF",
+            "drivers": [
+              "C. Toledo",
+              "L. Wadoux"
+            ],
+            "team": "Richard Mille AF Corse",
+            "number": "50",
+            "laps": "9",
+            "interval": "+103 Laps"
+          }
+        ]
       }
     ],
-    "city" : "Le Castellet",
-    "roundNumber" : 2,
-    "country" : "France",
-    "id" : "elms-2026-r02",
-    "countryCode" : "FR",
-    "circuitName" : "Circuit Paul Ricard",
-    "raceName" : "4 Hours of Le Castellet",
-    "seriesId" : "elms"
+    "city": "Le Castellet",
+    "roundNumber": 2,
+    "country": "France",
+    "id": "elms-2026-r02",
+    "countryCode": "FR",
+    "circuitName": "Circuit Paul Ricard",
+    "raceName": "4 Hours of Le Castellet",
+    "seriesId": "elms"
   },
   {
-    "sessions" : [
+    "sessions": [
       {
-        "id" : "elms-2026-r03-s1",
-        "kind" : "practice",
-        "date" : "2026-07-03",
-        "timeLocal" : "10:00",
-        "name" : "Free Practice 1",
-        "durationMinutes" : 60
+        "id": "elms-2026-r03-s1",
+        "kind": "practice",
+        "date": "2026-07-03",
+        "timeLocal": "10:00",
+        "name": "Free Practice 1",
+        "durationMinutes": 60
       },
       {
-        "id" : "elms-2026-r03-s2",
-        "kind" : "practice",
-        "date" : "2026-07-04",
-        "timeLocal" : "09:30",
-        "name" : "Free Practice 2",
-        "durationMinutes" : 60
+        "id": "elms-2026-r03-s2",
+        "kind": "practice",
+        "date": "2026-07-04",
+        "timeLocal": "09:30",
+        "name": "Free Practice 2",
+        "durationMinutes": 60
       },
       {
-        "id" : "elms-2026-r03-s3",
-        "kind" : "qualifying",
-        "date" : "2026-07-04",
-        "timeLocal" : "15:00",
-        "name" : "Qualifying",
-        "durationMinutes" : 30
+        "id": "elms-2026-r03-s3",
+        "kind": "qualifying",
+        "date": "2026-07-04",
+        "timeLocal": "15:00",
+        "name": "Qualifying",
+        "durationMinutes": 30
       },
       {
-        "id" : "elms-2026-r03-s4",
-        "kind" : "race",
-        "date" : "2026-07-05",
-        "timeLocal" : "12:00",
-        "name" : "4 Hour Race",
-        "durationMinutes" : 240
+        "id": "elms-2026-r03-s4",
+        "kind": "race",
+        "date": "2026-07-05",
+        "timeLocal": "12:00",
+        "name": "4 Hour Race",
+        "durationMinutes": 240
       }
     ],
-    "city" : "Imola",
-    "roundNumber" : 3,
-    "country" : "Italy",
-    "id" : "elms-2026-r03",
-    "countryCode" : "IT",
-    "circuitName" : "Autodromo Enzo e Dino Ferrari",
-    "raceName" : "4 Hours of Imola",
-    "seriesId" : "elms"
+    "city": "Imola",
+    "roundNumber": 3,
+    "country": "Italy",
+    "id": "elms-2026-r03",
+    "countryCode": "IT",
+    "circuitName": "Autodromo Enzo e Dino Ferrari",
+    "raceName": "4 Hours of Imola",
+    "seriesId": "elms"
   },
   {
-    "sessions" : [
+    "sessions": [
       {
-        "id" : "elms-2026-r04-s1",
-        "kind" : "practice",
-        "date" : "2026-08-21",
-        "timeLocal" : "10:00",
-        "name" : "Free Practice 1",
-        "durationMinutes" : 60
+        "id": "elms-2026-r04-s1",
+        "kind": "practice",
+        "date": "2026-08-21",
+        "timeLocal": "10:00",
+        "name": "Free Practice 1",
+        "durationMinutes": 60
       },
       {
-        "id" : "elms-2026-r04-s2",
-        "kind" : "practice",
-        "date" : "2026-08-22",
-        "timeLocal" : "09:30",
-        "name" : "Free Practice 2",
-        "durationMinutes" : 60
+        "id": "elms-2026-r04-s2",
+        "kind": "practice",
+        "date": "2026-08-22",
+        "timeLocal": "09:30",
+        "name": "Free Practice 2",
+        "durationMinutes": 60
       },
       {
-        "id" : "elms-2026-r04-s3",
-        "kind" : "qualifying",
-        "date" : "2026-08-22",
-        "timeLocal" : "15:00",
-        "name" : "Qualifying",
-        "durationMinutes" : 30
+        "id": "elms-2026-r04-s3",
+        "kind": "qualifying",
+        "date": "2026-08-22",
+        "timeLocal": "15:00",
+        "name": "Qualifying",
+        "durationMinutes": 30
       },
       {
-        "id" : "elms-2026-r04-s4",
-        "kind" : "race",
-        "date" : "2026-08-23",
-        "timeLocal" : "12:00",
-        "name" : "4 Hour Race",
-        "durationMinutes" : 240
+        "id": "elms-2026-r04-s4",
+        "kind": "race",
+        "date": "2026-08-23",
+        "timeLocal": "12:00",
+        "name": "4 Hour Race",
+        "durationMinutes": 240
       }
     ],
-    "city" : "Spa-Francorchamps",
-    "roundNumber" : 4,
-    "country" : "Belgium",
-    "id" : "elms-2026-r04",
-    "countryCode" : "BE",
-    "circuitName" : "Circuit de Spa-Francorchamps",
-    "raceName" : "4 Hours of Spa-Francorchamps",
-    "seriesId" : "elms"
+    "city": "Spa-Francorchamps",
+    "roundNumber": 4,
+    "country": "Belgium",
+    "id": "elms-2026-r04",
+    "countryCode": "BE",
+    "circuitName": "Circuit de Spa-Francorchamps",
+    "raceName": "4 Hours of Spa-Francorchamps",
+    "seriesId": "elms"
   },
   {
-    "sessions" : [
+    "sessions": [
       {
-        "id" : "elms-2026-r05-s1",
-        "kind" : "practice",
-        "date" : "2026-09-11",
-        "timeLocal" : "10:00",
-        "name" : "Free Practice 1",
-        "durationMinutes" : 60
+        "id": "elms-2026-r05-s1",
+        "kind": "practice",
+        "date": "2026-09-11",
+        "timeLocal": "10:00",
+        "name": "Free Practice 1",
+        "durationMinutes": 60
       },
       {
-        "id" : "elms-2026-r05-s2",
-        "kind" : "practice",
-        "date" : "2026-09-12",
-        "timeLocal" : "09:30",
-        "name" : "Free Practice 2",
-        "durationMinutes" : 60
+        "id": "elms-2026-r05-s2",
+        "kind": "practice",
+        "date": "2026-09-12",
+        "timeLocal": "09:30",
+        "name": "Free Practice 2",
+        "durationMinutes": 60
       },
       {
-        "id" : "elms-2026-r05-s3",
-        "kind" : "qualifying",
-        "date" : "2026-09-12",
-        "timeLocal" : "15:00",
-        "name" : "Qualifying",
-        "durationMinutes" : 30
+        "id": "elms-2026-r05-s3",
+        "kind": "qualifying",
+        "date": "2026-09-12",
+        "timeLocal": "15:00",
+        "name": "Qualifying",
+        "durationMinutes": 30
       },
       {
-        "id" : "elms-2026-r05-s4",
-        "kind" : "race",
-        "date" : "2026-09-13",
-        "timeLocal" : "12:00",
-        "name" : "4 Hour Race",
-        "durationMinutes" : 240
+        "id": "elms-2026-r05-s4",
+        "kind": "race",
+        "date": "2026-09-13",
+        "timeLocal": "12:00",
+        "name": "4 Hour Race",
+        "durationMinutes": 240
       }
     ],
-    "city" : "Silverstone",
-    "roundNumber" : 5,
-    "country" : "United Kingdom",
-    "id" : "elms-2026-r05",
-    "countryCode" : "GB",
-    "circuitName" : "Silverstone Circuit",
-    "raceName" : "Goodyear 4 Hours of Silverstone",
-    "seriesId" : "elms"
+    "city": "Silverstone",
+    "roundNumber": 5,
+    "country": "United Kingdom",
+    "id": "elms-2026-r05",
+    "countryCode": "GB",
+    "circuitName": "Silverstone Circuit",
+    "raceName": "Goodyear 4 Hours of Silverstone",
+    "seriesId": "elms"
   },
   {
-    "sessions" : [
+    "sessions": [
       {
-        "id" : "elms-2026-r06-s1",
-        "kind" : "practice",
-        "date" : "2026-10-08",
-        "timeLocal" : "10:00",
-        "name" : "Free Practice 1",
-        "durationMinutes" : 60
+        "id": "elms-2026-r06-s1",
+        "kind": "practice",
+        "date": "2026-10-08",
+        "timeLocal": "10:00",
+        "name": "Free Practice 1",
+        "durationMinutes": 60
       },
       {
-        "id" : "elms-2026-r06-s2",
-        "kind" : "practice",
-        "date" : "2026-10-09",
-        "timeLocal" : "09:30",
-        "name" : "Free Practice 2",
-        "durationMinutes" : 60
+        "id": "elms-2026-r06-s2",
+        "kind": "practice",
+        "date": "2026-10-09",
+        "timeLocal": "09:30",
+        "name": "Free Practice 2",
+        "durationMinutes": 60
       },
       {
-        "id" : "elms-2026-r06-s3",
-        "kind" : "qualifying",
-        "date" : "2026-10-09",
-        "timeLocal" : "15:00",
-        "name" : "Qualifying",
-        "durationMinutes" : 30
+        "id": "elms-2026-r06-s3",
+        "kind": "qualifying",
+        "date": "2026-10-09",
+        "timeLocal": "15:00",
+        "name": "Qualifying",
+        "durationMinutes": 30
       },
       {
-        "id" : "elms-2026-r06-s4",
-        "kind" : "race",
-        "date" : "2026-10-10",
-        "timeLocal" : "12:00",
-        "name" : "4 Hour Race",
-        "durationMinutes" : 240
+        "id": "elms-2026-r06-s4",
+        "kind": "race",
+        "date": "2026-10-10",
+        "timeLocal": "12:00",
+        "name": "4 Hour Race",
+        "durationMinutes": 240
       }
     ],
-    "city" : "Portimão",
-    "roundNumber" : 6,
-    "country" : "Portugal",
-    "id" : "elms-2026-r06",
-    "countryCode" : "PT",
-    "circuitName" : "Autodromo do Algarve",
-    "raceName" : "4 Hours of Portimão",
-    "seriesId" : "elms"
+    "city": "Portimão",
+    "roundNumber": 6,
+    "country": "Portugal",
+    "id": "elms-2026-r06",
+    "countryCode": "PT",
+    "circuitName": "Autodromo do Algarve",
+    "raceName": "4 Hours of Portimão",
+    "seriesId": "elms"
   }
 ]
