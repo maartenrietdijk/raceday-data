@@ -451,12 +451,27 @@ const KIND_OPTIONS = [
 ];
 
 const DEFAULT_SERIES = [
-  { id: 'f1',      name: 'Formula 1',  color: '#e8001a' },
-  { id: 'f2',      name: 'Formula 2',  color: '#0065ff' },
-  { id: 'f3',      name: 'Formula 3',  color: '#00b0ff' },
-  { id: 'indycar', name: 'IndyCar',    color: '#002d72' },
-  { id: 'nascar',  name: 'NASCAR',     color: '#ffd700' },
-  { id: 'wec',     name: 'WEC',        color: '#9b59b6' },
+  { id: 'f1',            name: 'Formula 1',        color: '#e8001a' },
+  { id: 'f2',            name: 'Formula 2',        color: '#0065ff' },
+  { id: 'f3',            name: 'Formula 3',        color: '#00b0ff' },
+  { id: 'f1academy',     name: 'F1 Academy',       color: '#ff6b9d' },
+  { id: 'formulae',      name: 'Formula E',        color: '#00c8ff' },
+  { id: 'indycar',       name: 'IndyCar',          color: '#002d72' },
+  { id: 'nascar',        name: 'NASCAR Cup',       color: '#ffd700' },
+  { id: 'nascar_oreilly',name: "NASCAR O'Reilly",  color: '#f5a623' },
+  { id: 'nascar_trucks', name: 'NASCAR Trucks',    color: '#e8832a' },
+  { id: 'wec',           name: 'WEC',              color: '#9b59b6' },
+  { id: 'imsa',          name: 'IMSA',             color: '#27ae60' },
+  { id: 'elms',          name: 'ELMS',             color: '#2ecc71' },
+  { id: 'gtwce',         name: 'GT World Challenge',color: '#1abc9c' },
+  { id: 'motogp',        name: 'MotoGP',           color: '#cc0000' },
+  { id: 'moto2',         name: 'Moto2',            color: '#e67e22' },
+  { id: 'moto3',         name: 'Moto3',            color: '#f39c12' },
+  { id: 'wrc',           name: 'WRC',              color: '#3498db' },
+  { id: 'dtm',           name: 'DTM',              color: '#e74c3c' },
+  { id: 'british_gt',    name: 'British GT',       color: '#c0392b' },
+  { id: 'nls',           name: 'NLS',              color: '#7f8c8d' },
+  { id: 'supercars',     name: 'Supercars',        color: '#f1c40f' },
 ];
 
 let state = {
@@ -483,6 +498,59 @@ function load() {
   // Load GitHub credentials separately
   const gh = localStorage.getItem('raceday_gh');
   if (gh) try { state.github = { ...state.github, ...JSON.parse(gh) }; } catch {}
+}
+
+async function loadFromGitHub() {
+  const { token, repo } = state.github;
+  if (!token || !repo) return;
+
+  showStatus('Loading data from GitHub…', 'info');
+  const [owner, repoName] = repo.split('/');
+
+  try {
+    // Fetch repo contents to discover all *_2026.json files dynamically
+    const contentsResp = await fetch(`https://api.github.com/repos/${owner}/${repoName}/contents/`, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/vnd.github+json',
+      }
+    });
+    if (!contentsResp.ok) throw new Error(`GitHub API error ${contentsResp.status}`);
+    const files = await contentsResp.json();
+    const jsonFiles = files.filter(f => f.name.match(/^(.+)_2026\.json$/));
+
+    // Build series list from discovered files
+    const discoveredSeries = jsonFiles.map(f => {
+      const id = f.name.replace('_2026.json', '');
+      // Find existing series definition or create a new one
+      const existing = DEFAULT_SERIES.find(s => s.id === id);
+      return existing || { id, name: id, color: '#888888' };
+    });
+
+    if (discoveredSeries.length > 0) {
+      state.series = discoveredSeries;
+    }
+
+    // Load each JSON file
+    let loaded = 0;
+    for (const file of jsonFiles) {
+      const id = file.name.replace('_2026.json', '');
+      try {
+        const resp = await fetch(file.download_url);
+        if (!resp.ok) continue;
+        state.data[id] = await resp.json();
+        loaded++;
+      } catch (e) {
+        console.warn(`Could not load ${file.name}:`, e);
+      }
+    }
+
+    save();
+    render();
+    showStatus(`✓ Loaded ${loaded} series from GitHub`, 'success');
+  } catch (e) {
+    showStatus(`Error: ${e.message}`, 'error');
+  }
 }
 
 function save() {
@@ -549,6 +617,7 @@ function renderMain() {
           <input type="text" style="max-width:260px" id="cfg_path" placeholder="data" value="${esc(state.github.path)}"/>
         </div>
         <button class="btn btn-primary btn-sm" onclick="saveGitHubConfig()" style="margin-bottom:1px">Save settings</button>
+        <button class="btn btn-ghost btn-sm" onclick="loadFromGitHub()" style="margin-bottom:1px">↓ Sync from GitHub</button>
       </div>
     </div>
 
@@ -1145,6 +1214,10 @@ document.querySelectorAll('.modal-backdrop').forEach(el => {
 // ── Init ───────────────────────────────────────────────────────────────────────
 load();
 renderSidebar();
+// Auto-sync from GitHub if credentials are set
+if (state.github.token && state.github.repo) {
+  loadFromGitHub();
+}
 </script>
 </body>
 </html>
