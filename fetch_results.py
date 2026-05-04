@@ -65,7 +65,15 @@ def get_headers(url: str) -> dict:
     }
 
 
-def fetch_page(url: str) -> str:
+# Driver name overrides per series
+DRIVER_NAME_MAP = {
+    "indycar": {
+        "R. van Kalmthout": "R. VeeKay",
+    }
+}
+
+def apply_name_map(name: str, series: str) -> str:
+    return DRIVER_NAME_MAP.get(series, {}).get(name, name)
     import time
     # Small random delay to appear more human
     time.sleep(1.5)
@@ -274,9 +282,9 @@ def parse_results(html: str, url: str = "", series: str = "", is_oval: bool = Fa
 
             # Single driver vs multi-driver
             if len(drivers) > 1:
-                result["drivers"] = drivers
+                result["drivers"] = [apply_name_map(d, args.series) for d in drivers]
             elif drivers:
-                result["driver"] = drivers[0]
+                result["driver"] = apply_name_map(drivers[0], args.series)
 
             if team:      result["team"]     = team
             if number:    result["number"]   = number
@@ -313,6 +321,15 @@ def parse_results(html: str, url: str = "", series: str = "", is_oval: bool = Fa
                             gap = lap_match.group(1)
                             if not gap.startswith(('+', '-')):
                                 gap = '+' + gap
+                        elif is_wrc:
+                            # WRC stages: gap like "+0.7" or "+1'02.3"
+                            if time_val.startswith(('+', '-')):
+                                # Gap format: "+0.7" or "+1'02.3"
+                                gap = time_val.replace("'", ":")
+                            else:
+                                # Absolute time: "3'24.5" → store as interval with +
+                                # P1 is stored as time, P2+ store as interval relative
+                                gap = ""  # No gap available, skip
                         elif combined_format:
                             # Gap embedded in TIME: "+4.79841'42.649" → "+4.798"
                             # Also handles minute gaps: "+1'02.3451'29.607" → "+1'02.345"
