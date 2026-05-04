@@ -382,176 +382,195 @@
         "name": "Practice 3",
         "results": [
           {
-            "team": "Mercedes",
             "position": 1,
-            "laps": "23",
-            "number": "63",
             "driver": "G. Russell",
+            "team": "Mercedes",
+            "number": "63",
+            "laps": "23",
             "time": "1:19.053"
           },
           {
-            "team": "Ferrari",
             "position": 2,
-            "laps": "22",
-            "interval": "+0.616",
-            "number": "44",
-            "driver": "L. Hamilton"
-          },
-          {
+            "driver": "L. Hamilton",
             "team": "Ferrari",
+            "number": "44",
+            "laps": "22",
+            "speed": "1:19.669",
+            "interval": "+0.616"
+          },
+          {
             "position": 3,
-            "laps": "20",
-            "interval": "+0.774",
+            "driver": "C. Leclerc",
+            "team": "Ferrari",
             "number": "16",
-            "driver": "C. Leclerc"
+            "laps": "20",
+            "speed": "1:19.827",
+            "interval": "+0.774"
           },
           {
-            "team": "McLaren",
             "position": 4,
-            "laps": "17",
-            "interval": "+1.034",
-            "number": "81",
-            "driver": "O. Piastri"
-          },
-          {
-            "team": "Red Bull Racing",
-            "position": 5,
-            "laps": "15",
-            "interval": "+1.084",
-            "number": "6",
-            "driver": "I. Hadjar"
-          },
-          {
-            "team": "Red Bull Racing",
-            "position": 6,
-            "laps": "15",
-            "interval": "+1.144",
-            "number": "3",
-            "driver": "M. Verstappen"
-          },
-          {
-            "team": "Mercedes",
-            "position": 7,
-            "laps": "18",
-            "interval": "+1.271",
-            "number": "12",
-            "driver": "A. Antonelli"
-          },
-          {
+            "driver": "O. Piastri",
             "team": "McLaren",
-            "position": 8,
-            "laps": "22",
-            "interval": "+1.390",
-            "number": "1",
-            "driver": "L. Norris"
+            "number": "81",
+            "laps": "17",
+            "speed": "1:20.087",
+            "interval": "+1.034"
           },
           {
-            "team": "Audi",
-            "position": 9,
-            "laps": "19",
-            "interval": "+1.406",
-            "number": "5",
-            "driver": "G. Bortoleto"
-          },
-          {
-            "team": "Haas F1 Team",
-            "position": 10,
-            "laps": "18",
-            "interval": "+1.725",
-            "number": "87",
-            "driver": "O. Bearman"
-          },
-          {
-            "team": "Racing Bulls",
-            "position": 11,
+            "position": 5,
+            "driver": "I. Hadjar",
+            "team": "Red Bull Racing",
+            "number": "6",
             "laps": "15",
-            "interval": "+1.785",
-            "number": "41",
-            "driver": "A. Lindblad"
+            "speed": "1:20.137",
+            "interval": "+1.084"
           },
           {
-            "team": "Racing Bulls",
-            "position": 12,
-            "laps": "13",
-            "interval": "+1.837",
-            "number": "30",
-            "driver": "L. Lawson"
+            "position": 6,
+            "driver": "M. Verstappen",
+            "team": "Red Bull Racing",
+            "number": "3",
+            "laps": "15",
+            "speed": "1:20.197",
+            "interval": "+1.144"
           },
           {
-            "team": "Haas F1 Team",
-            "position": 13,
-            "laps": "19",
-            "interval": "+1.930",
-            "number": "31",
-            "driver": "E. Ocon"
+            "position": 7,
+            "driver": "A. Antonelli",
+            "team": "Mercedes",
+            "number": "12",
+            "laps": "18",
+            "speed": "1:20.324",
+            "interval": "+1.271"
           },
           {
+            "position": 8,
+            "driver": "L. Norris",
+            "team": "McLaren",
+            "number": "1",
+            "laps": "22",
+            "speed": "1:20.443",
+            "interval": "+1.390"
+          },
+          {
+            "position": 9,
+            "driver": "G. Bortoleto",
             "team": "Audi",
+            "number": "5",
+            "laps": "19",
+            "speed": "1:20.459",
+            "interval": "+1.406"
+          },
+          {
+            "position": 10,
+            "driver": "O. Bearman",
+            "team": "Haas F1 Team",
+            "number": "87",
+            "laps": "18",
+            "speed": "1:20.778",
+            "interval": "+1.725"
+          },
+          {
+            "position": 11,
+            "driver": "A. Lindblad",
+            "team": "Racing Bulls",
+            "number": "41",
+            "laps": "15",
+            "speed": "1:20.838",
+            "interval": "+1.785"
+          },
+          {
+            "position": 12,
+            "driver": "L. Lawson",
+            "team": "Racing Bulls",
+            "number": "30",
+            "laps": "13",
+            "speed": "1:20.890",
+            "interval": "+1.837"
+          },
+          {
+            "position": 13,
+            "driver": "E. Ocon",
+            "team": "Haas F1 Team",
+            "number": "31",
+            "laps": "19",
+            "speed": "1:20.983",
+            "interval": "+1.930"
+          },
+          {
             "position": 14,
-            "laps": "22",
-            "interval": "+2.014",
+            "driver": "N. Hulkenberg",
+            "team": "Audi",
             "number": "27",
-            "driver": "N. Hulkenberg"
-          },
-          {
-            "team": "Alpine",
-            "position": 15,
-            "laps": "26",
-            "interval": "+2.018",
-            "number": "10",
-            "driver": "P. Gasly"
-          },
-          {
-            "team": "Alpine",
-            "position": 16,
             "laps": "22",
-            "interval": "+2.360",
-            "number": "43",
-            "driver": "F. Colapinto"
+            "speed": "1:21.067",
+            "interval": "+2.014"
           },
           {
-            "interval": "+2.611",
+            "position": 15,
+            "driver": "P. Gasly",
+            "team": "Alpine",
+            "number": "10",
+            "laps": "26",
+            "speed": "1:21.071",
+            "interval": "+2.018"
+          },
+          {
+            "position": 16,
+            "driver": "F. Colapinto",
+            "team": "Alpine",
+            "number": "43",
+            "laps": "22",
+            "speed": "1:21.413",
+            "interval": "+2.360"
+          },
+          {
+            "position": 17,
             "driver": "A. Albon",
             "team": "Williams",
-            "position": 17,
             "number": "23",
-            "laps": "17"
+            "laps": "17",
+            "speed": "1:21.664",
+            "interval": "+2.611"
           },
           {
-            "interval": "+3.667",
+            "position": 18,
             "driver": "F. Alonso",
             "team": "Aston Martin Racing",
-            "position": 18,
             "number": "14",
-            "laps": "20"
+            "laps": "20",
+            "speed": "1:22.720",
+            "interval": "+3.667"
           },
           {
-            "interval": "+4.461",
+            "position": 19,
             "driver": "V. Bottas",
             "team": "Cadillac F1 team",
-            "position": 19,
             "number": "77",
-            "laps": "12"
+            "laps": "12",
+            "speed": "1:23.514",
+            "interval": "+4.461"
           },
           {
-            "interval": "+5.344",
+            "position": 20,
             "driver": "S. Perez",
             "team": "Cadillac F1 team",
-            "position": 20,
             "number": "11",
-            "laps": "21"
+            "laps": "21",
+            "speed": "1:24.397",
+            "interval": "+5.344"
           },
           {
+            "position": 21,
             "driver": "C. Sainz",
             "team": "Williams",
-            "position": 21,
             "number": "55",
             "laps": "1"
           },
           {
+            "position": 22,
             "driver": "L. Stroll",
             "team": "Aston Martin Racing",
-            "position": 22,
             "number": "18",
             "laps": "0"
           }
