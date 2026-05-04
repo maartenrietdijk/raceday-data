@@ -23,6 +23,7 @@ SERIES_JSON = {
     "f1":           "f1_2026.json",
     "f2":           "f2_2026.json",
     "f3":           "f3_2026.json",
+    "f1academy":    "f1academy_2026.json",
     "wec":          "wec_2026.json",
     "imsa":         "imsa_2026.json",
     "indycar":      "indycar_2026.json",
