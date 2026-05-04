@@ -74,8 +74,9 @@ DRIVER_NAME_MAP = {
 
 def apply_name_map(name: str, series: str) -> str:
     return DRIVER_NAME_MAP.get(series, {}).get(name, name)
+
+def fetch_page(url: str) -> str:
     import time
-    # Small random delay to appear more human
     time.sleep(1.5)
     resp = requests.get(url, headers=get_headers(url), timeout=20)
     resp.raise_for_status()
