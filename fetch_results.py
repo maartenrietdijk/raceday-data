@@ -377,6 +377,12 @@ def parse_results(html: str, url: str = "", series: str = "", is_oval: bool = Fa
 
             results.append(result)
 
+            # DNF/DNS: clear time, interval and speed
+            if result.get("position") in ("DNF", "DNS"):
+                result.pop("time", None)
+                result.pop("interval", None)
+                result.pop("speed", None)
+
         except Exception as e:
             print(f"⚠️  Row error: {e}")
             continue
