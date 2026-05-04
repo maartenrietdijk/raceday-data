@@ -341,9 +341,10 @@ def parse_results(html: str, url: str = "", series: str = "", is_oval: bool = Fa
                                 # Store absolute lap time for F1/F2/F3/F1Academy
                                 if series in ("f1", "f2", "f3", "f1academy"):
                                     lap_seconds = m.group(2)
-                                    min_match = re.search(rf"[+\-]?\d+\.\d+(\d{{1,2}})'", time_val)
+                                    # Extract minutes: everything between last digit of gap and apostrophe
+                                    min_match = re.search(r"(\d{1,2})'(\d{2}\.\d+)$", time_val)
                                     if min_match:
-                                        result["speed"] = f"{min_match.group(1)}:{lap_seconds}"
+                                        result["speed"] = f"{min_match.group(1)}:{min_match.group(2)}"
                             else:
                                 # Try minute:second gap format: "+1'02.345..."
                                 m = re.search(r"^([+\-]?\d+'\d{2}\.\d+)\d'(\d{2}\.\d+)", time_val)
