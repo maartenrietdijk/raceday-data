@@ -3,10 +3,6 @@ name: Fetch Session Results
 on:
   workflow_dispatch:
     inputs:
-
-concurrency:
-  group: fetch-results-${{ github.event.inputs.series }}
-  cancel-in-progress: false
       url:
         description: 'Results URL'
         required: true
@@ -16,6 +12,10 @@ concurrency:
       series:
         description: 'Series ID (e.g. wec, f1, indycar)'
         required: true
+
+concurrency:
+  group: fetch-results-${{ github.event.inputs.series }}
+  cancel-in-progress: false
 
 permissions:
   contents: write
