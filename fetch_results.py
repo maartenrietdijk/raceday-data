@@ -283,9 +283,9 @@ def parse_results(html: str, url: str = "", series: str = "", is_oval: bool = Fa
 
             # Single driver vs multi-driver
             if len(drivers) > 1:
-                result["drivers"] = [apply_name_map(d, args.series) for d in drivers]
+                result["drivers"] = [apply_name_map(d, series) for d in drivers]
             elif drivers:
-                result["driver"] = apply_name_map(drivers[0], args.series)
+                result["driver"] = apply_name_map(drivers[0], series)
 
             if team:      result["team"]     = team
             if number:    result["number"]   = number
