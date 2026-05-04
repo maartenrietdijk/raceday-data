@@ -332,12 +332,18 @@ def parse_results(html: str, url: str = "", series: str = "", is_oval: bool = Fa
                                 # P1 is stored as time, P2+ store as interval relative
                                 gap = ""  # No gap available, skip
                         elif combined_format:
-                            # Gap embedded in TIME: "+4.79841'42.649" → "+4.798"
+                            # Gap embedded in TIME: "+4.79841'42.649" → gap="+4.798", lapTime="1:42.649"
                             # Also handles minute gaps: "+1'02.3451'29.607" → "+1'02.345"
                             # Try decimal gap first
-                            m = re.search(rf"^([+\-]?\d+\.\d{{1,{decimals}}})\d{{1,2}}'", time_val)
+                            m = re.search(rf"^([+\-]?\d+\.\d{{1,{decimals}}})\d{{1,2}}'(\d{{2}}\.\d+)", time_val)
                             if m:
                                 gap = m.group(1)
+                                # Store absolute lap time for F1/F2/F3 qualifying/practice
+                                if series in ("f1", "f2", "f3", "f1academy"):
+                                    lap_seconds = m.group(2)
+                                    min_match = re.search(rf"[+\-]?\d+\.\d+(\d{{1,2}})'", time_val)
+                                    if min_match:
+                                        result["speed"] = f"{min_match.group(1)}:{lap_seconds}"
                             else:
                                 # Try minute:second gap format: "+1'02.345..."
                                 m = re.search(r"^([+\-]?\d+'\d{2}\.\d+)\d'", time_val)
