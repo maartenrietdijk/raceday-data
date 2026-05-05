@@ -134,16 +134,6 @@ def parse_results(html: str, url: str = "", series: str = "", is_oval: bool = Fa
 
     print(f"📋 Speed based: {is_speed_based}, speed_idx={speed_idx}")
 
-    # Detect combined time format from P2-P4 rows
-    combined_format = False
-    for row in table.find_all("tr")[2:5]:
-        cols = row.find_all("td")
-        if time_idx > 0 and len(cols) > time_idx:
-            tv = cols[time_idx].get_text(strip=True)
-            if "'" in tv and re.search(r"[+\-]\d+\.\d+\d'", tv):
-                combined_format = True
-                break
-    print(f"📋 Combined time format: {combined_format}")
     is_race = False  # Always use gap logic
 
     # Debug first 2 rows
@@ -265,7 +255,19 @@ def parse_results(html: str, url: str = "", series: str = "", is_oval: bool = Fa
 
             # Laps, time, interval
             laps     = cols[laps_idx].get_text(strip=True) if laps_idx > 0 and len(cols) > laps_idx else ""
-            time_val = cols[time_idx].get_text(strip=True) if time_idx > 0 and len(cols) > time_idx else ""
+            # Extract time cell — first <p> is interval/gap, second <p> is absolute lap time
+            time_cell = cols[time_idx] if time_idx > 0 and len(cols) > time_idx else None
+            time_val = ""
+            time_absolute = ""
+            if time_cell:
+                ps = time_cell.find_all("p")
+                if len(ps) >= 2:
+                    time_val      = ps[0].get_text(strip=True)  # gap/interval
+                    time_absolute = ps[1].get_text(strip=True)  # absolute lap time
+                elif len(ps) == 1:
+                    time_val = ps[0].get_text(strip=True)
+                else:
+                    time_val = time_cell.get_text(strip=True)
             interval = cols[int_idx].get_text(strip=True)  if int_idx  > 0 and len(cols) > int_idx  else ""
             speed    = cols[speed_idx].get_text(strip=True) if speed_idx > 0 and len(cols) > speed_idx else ""
             speed_unit = "km/h" if "KM/H" in headers else ("mph" if "MPH" in headers else "")
@@ -297,83 +299,27 @@ def parse_results(html: str, url: str = "", series: str = "", is_oval: bool = Fa
                 # Oval qualifying: store speed as primary, time if available
                 if time_val:
                     result["time"] = time_val
-            elif is_race:
-                if position == 1 and time_val:
-                    if "'" in time_val:
-                        # Format: "4:01'49.660" → "4:01:49.660" or "1'49.660" → "1:49.660"
-                        result["time"] = time_val.replace("'", ":")
-                    else:
-                        result["time"] = time_val
-                elif interval:
-                    result["interval"] = interval
             else:
                 if position == 1 and time_val:
-                    # P1: absolute time — format can be "4:00'01.773" → "4:00:01.773"
-                    if "'" in time_val:
-                        result["time"] = time_val.replace("'", ":")
-                    else:
-                        result["time"] = time_val
+                    # P1: absolute race/session time
+                    result["time"] = time_val
                 else:
-                    # P2+: gap to P1 — always from TIME column
-                    gap = ""
-                    if time_val:
-                        # Check for lap interval first: "+1 Lap...", "+2 Laps..."
-                        lap_match = re.match(r'^([+\-]?\d+\s+Laps?)', time_val, re.IGNORECASE)
-                        if lap_match:
-                            gap = lap_match.group(1)
-                            if not gap.startswith(('+', '-')):
-                                gap = '+' + gap
-                        elif is_wrc:
-                            # WRC stages: gap like "+0.7" or "+1'02.3"
-                            if time_val.startswith(('+', '-')):
-                                # Gap format: "+0.7" or "+1'02.3"
-                                gap = time_val.replace("'", ":")
-                            else:
-                                # Absolute time: "3'24.5" → store as interval with +
-                                # P1 is stored as time, P2+ store as interval relative
-                                gap = ""  # No gap available, skip
-                        elif combined_format:
-                            # Gap embedded in TIME: "+4.79841'42.649" → gap="+4.798", lapTime="1:42.649"
-                            # Try decimal gap first
-                            m = re.search(rf"^([+\-]?\d+\.\d{{1,{decimals}}})\d{{1,2}}'(\d{{2}}\.\d+)", time_val)
-                            if m:
-                                gap = m.group(1)
-                                # Store absolute lap time for F1/F2/F3/F1Academy
-                                if series in ("f1", "f2", "f3", "f1academy"):
-                                    lap_seconds = m.group(2)
-                                    # Extract minutes: everything between last digit of gap and apostrophe
-                                    min_match = re.search(r"(\d{1,2})'(\d{2}\.\d+)$", time_val)
-                                    if min_match:
-                                        result["speed"] = f"{min_match.group(1)}:{min_match.group(2)}"
-                            else:
-                                # Try minute:second gap format: "+1'02.345..."
-                                m = re.search(r"^([+\-]?\d+'\d{2}\.\d+)\d'(\d{2}\.\d+)", time_val)
-                                if m:
-                                    gap = m.group(1).replace("'", ":")
-                                    if series in ("f1", "f2", "f3", "f1academy"):
-                                        result["speed"] = m.group(2)
-                                elif re.match(r"^[+\-]\d+'", time_val):
-                                    m2 = re.match(r"^([+\-]\d+'\d{2}\.\d+)", time_val)
-                                    if m2:
-                                        gap = m2.group(1).replace("'", ":")
-                        else:
-                            m = re.match(gap_pattern, time_val)
-                            if m:
-                                gap = m.group(1)
-                            elif time_val.startswith(('+', '-')):
-                                gap = time_val[:time_val.index('.')+decimals+1] if '.' in time_val else time_val
+                    # P2+: gap/interval from TIME cell first <p>
+                    gap = time_val
                     if gap:
-                        if not gap.startswith(('+', '-')):
-                            gap = '+' + gap
-                        # Clean lap intervals: "+1 Lap1:24'03.974" → "+1 Lap"
+                        # Clean lap intervals: "+1 Lap" — strip anything after Lap(s)
                         lap_match = re.match(r'^([+\-]?\d+\s+Laps?)', gap, re.IGNORECASE)
                         if lap_match:
                             gap = lap_match.group(1)
-                            if not gap.startswith(('+', '-')):
-                                gap = '+' + gap
+                        if not gap.startswith(('+', '-')):
+                            gap = '+' + gap
                         result["interval"] = gap
                     elif interval and series == "formulae":
                         result["interval"] = interval
+
+                    # Absolute lap time from second <p> for F1/F2/F3/F1Academy
+                    if time_absolute and series in ("f1", "f2", "f3", "f1academy"):
+                        result["speed"] = time_absolute
 
             results.append(result)
 
