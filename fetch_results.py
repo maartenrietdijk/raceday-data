@@ -266,15 +266,13 @@ def parse_results(html: str, url: str = "", series: str = "", is_oval: bool = Fa
             time_absolute = ""
             if time_cell:
                 ps = time_cell.find_all("p")
-                if position and position <= 2:
-                    print(f"🕐 P{position} time cell p tags: {[p.get_text(strip=True) for p in ps]}")
                 if len(ps) >= 2:
-                    time_val      = ps[0].get_text(strip=True)  # gap/interval
-                    time_absolute = ps[1].get_text(strip=True)  # absolute lap time
+                    time_val      = ps[0].get_text(strip=True)
+                    time_absolute = ps[1].get_text(strip=True).replace("'", ":")
                 elif len(ps) == 1:
-                    time_val = ps[0].get_text(strip=True)
+                    time_val = ps[0].get_text(strip=True).replace("'", ":")
                 else:
-                    time_val = time_cell.get_text(strip=True)
+                    time_val = time_cell.get_text(strip=True).replace("'", ":")
             interval = cols[int_idx].get_text(strip=True)  if int_idx  > 0 and len(cols) > int_idx  else ""
             speed    = cols[speed_idx].get_text(strip=True) if speed_idx > 0 and len(cols) > speed_idx else ""
             speed_unit = "km/h" if "KM/H" in headers else ("mph" if "MPH" in headers else "")
@@ -328,9 +326,6 @@ def parse_results(html: str, url: str = "", series: str = "", is_oval: bool = Fa
                     if series in ("f1", "f2", "f3", "f1academy", "formulae", "indycar", "motogp", "moto2", "moto3", "nascar", "nascar_oreilly", "nascar_trucks", "dtm"):
                         if time_absolute:
                             result["speed"] = time_absolute
-                        elif interval and not interval.startswith(('+', '-')) and 'lap' not in interval.lower():
-                            # Interval column contains absolute lap time (e.g. DTM qualifying)
-                            result["speed"] = interval
 
             results.append(result)
 
