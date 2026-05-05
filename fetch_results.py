@@ -268,11 +268,11 @@ def parse_results(html: str, url: str = "", series: str = "", is_oval: bool = Fa
                 ps = time_cell.find_all("p")
                 if len(ps) >= 2:
                     time_val      = ps[0].get_text(strip=True)
-                    time_absolute = ps[1].get_text(strip=True).replace("'", ":")
+                    time_absolute = ps[1].get_text(strip=True)
                 elif len(ps) == 1:
-                    time_val = ps[0].get_text(strip=True).replace("'", ":")
+                    time_val = ps[0].get_text(strip=True)
                 else:
-                    time_val = time_cell.get_text(strip=True).replace("'", ":")
+                    time_val = time_cell.get_text(strip=True)
             interval = cols[int_idx].get_text(strip=True)  if int_idx  > 0 and len(cols) > int_idx  else ""
             speed    = cols[speed_idx].get_text(strip=True) if speed_idx > 0 and len(cols) > speed_idx else ""
             speed_unit = "km/h" if "KM/H" in headers else ("mph" if "MPH" in headers else "")
