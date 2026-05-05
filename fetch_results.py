@@ -266,6 +266,8 @@ def parse_results(html: str, url: str = "", series: str = "", is_oval: bool = Fa
             time_absolute = ""
             if time_cell:
                 ps = time_cell.find_all("p")
+                if position and position <= 2:
+                    print(f"🕐 P{position} time cell p tags: {[p.get_text(strip=True) for p in ps]}")
                 if len(ps) >= 2:
                     time_val      = ps[0].get_text(strip=True)  # gap/interval
                     time_absolute = ps[1].get_text(strip=True)  # absolute lap time
@@ -323,8 +325,12 @@ def parse_results(html: str, url: str = "", series: str = "", is_oval: bool = Fa
                         result["interval"] = interval
 
                     # Absolute lap time from second <p> for supported series
-                    if time_absolute and series in ("f1", "f2", "f3", "f1academy", "formulae", "indycar", "motogp", "moto2", "moto3", "nascar", "nascar_oreilly", "nascar_trucks", "dtm"):
-                        result["speed"] = time_absolute
+                    if series in ("f1", "f2", "f3", "f1academy", "formulae", "indycar", "motogp", "moto2", "moto3", "nascar", "nascar_oreilly", "nascar_trucks", "dtm"):
+                        if time_absolute:
+                            result["speed"] = time_absolute
+                        elif interval and not interval.startswith(('+', '-')) and 'lap' not in interval.lower():
+                            # Interval column contains absolute lap time (e.g. DTM qualifying)
+                            result["speed"] = interval
 
             results.append(result)
 
