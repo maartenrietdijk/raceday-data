@@ -317,8 +317,8 @@ def parse_results(html: str, url: str = "", series: str = "", is_oval: bool = Fa
                     elif interval and series == "formulae":
                         result["interval"] = interval
 
-                    # Absolute lap time from second <p> for F1/F2/F3/F1Academy
-                    if time_absolute and series in ("f1", "f2", "f3", "f1academy"):
+                    # Absolute lap time from second <p> for supported series
+                    if time_absolute and series in ("f1", "f2", "f3", "f1academy", "formulae", "indycar", "motogp", "moto2", "moto3", "nascar", "nascar_oreilly", "nascar_trucks", "dtm"):
                         result["speed"] = time_absolute
 
             results.append(result)
