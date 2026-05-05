@@ -90,8 +90,13 @@ def parse_results(html: str, url: str = "", series: str = "", is_oval: bool = Fa
     decimals = 4 if series in four_decimal_series else 3
     gap_pattern = rf"^([+\-]\d+\.\d{{1,{decimals}}})"
     soup = BeautifulSoup(html, "html.parser")
-    table = soup.find("table")
+    table = (soup.find("table", class_=lambda c: c and "ms-table" in c)
+             or soup.find("table", class_=lambda c: c and "result" in (c or "").lower())
+             or soup.find("table"))
     if not table:
+        # Debug: show page title to help diagnose
+        title = soup.find("title")
+        print(f"❌ No results table found. Page title: {title.get_text() if title else 'unknown'}")
         raise ValueError("No results table found on page")
 
     # Read headers
