@@ -78,10 +78,16 @@ def apply_name_map(name: str, series: str) -> str:
 
 def fetch_page(url: str) -> str:
     import time
-    time.sleep(1.5)
-    resp = requests.get(url, headers=get_headers(url), timeout=20)
-    resp.raise_for_status()
-    return resp.text
+    for attempt in range(3):
+        time.sleep(2 + attempt * 3)  # 2s, 5s, 8s
+        resp = requests.get(url, headers=get_headers(url), timeout=30)
+        resp.raise_for_status()
+        html = resp.text
+        # Check if we got a real page
+        if "<table" in html:
+            return html
+        print(f"⚠️ Attempt {attempt+1}: no table found, retrying...")
+    return html
 
 
 def parse_results(html: str, url: str = "", series: str = "", is_oval: bool = False) -> list:
@@ -358,8 +364,20 @@ def main():
         print(f"❌ JSON not found: {json_file}")
         sys.exit(1)
 
-    print(f"🔍 Fetching: {args.url}")
-    html = fetch_page(args.url)
+    # Clean URL — strip trailing slash after ?st= param, fix spaces
+    url = args.url.rstrip('/')
+    # Re-add trailing slash before ?st= if needed
+    if '?st=' in url:
+        base, tag = url.split('?st=', 1)
+        if not base.endswith('/'): base += '/'
+        # Replace + with %20 for proper encoding
+        tag = tag.replace('+', '%20')
+        url = f"{base}?st={tag}"
+    elif not url.endswith('/'):
+        url += '/'
+
+    print(f"🔍 Fetching: {url}")
+    html = fetch_page(url)
 
     print("📊 Parsing results...")
     # Check if session is oval from JSON
