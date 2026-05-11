@@ -1031,11 +1031,27 @@
     "sessions": [
       {
         "id": "nascar_trucks-2026-09-race",
+        "name": "Practice",
+        "kind": "practice",
+        "date": "2026-05-15",
+        "timeLocal": "12:30",
+        "durationMinutes": 60
+      },
+      {
+        "id": "nascar_trucks-2026-09-s1778503893034",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-05-15",
+        "timeLocal": "13:40",
+        "durationMinutes": 60
+      },
+      {
+        "id": "nascar_trucks-2026-09-s1778503890243",
         "name": "Race",
         "kind": "race",
         "date": "2026-05-15",
         "timeLocal": "17:00",
-        "durationMinutes": 60
+        "durationMinutes": 180
       }
     ]
   },
