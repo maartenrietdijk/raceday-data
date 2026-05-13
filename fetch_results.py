@@ -90,7 +90,7 @@ def fetch_page(url: str) -> str:
     return html
 
 
-def parse_results(html: str, url: str = "", series: str = "", is_oval: bool = False) -> list:
+def parse_results(html: str, url: str = "", series: str = "", is_oval: bool = False, is_race_session: bool = False) -> list:
     # Series with 4 decimal places in gap
     four_decimal_series = {"indycar", "nascar", "nascar_oreilly", "nascar_trucks"}
     decimals = 4 if series in four_decimal_series else 3
@@ -304,21 +304,26 @@ def parse_results(html: str, url: str = "", series: str = "", is_oval: bool = Fa
             if team:      result["team"]     = team
             if number:    result["number"]   = number
             if laps:      result["laps"]     = laps
-            if speed and is_oval: result["speed"] = f"{speed} {speed_unit}".strip()
+            if speed and is_oval and is_race_session:
+                result["speed"] = f"{speed} {speed_unit}".strip()
 
             if is_speed_based:
                 # Oval qualifying: store speed as primary, time if available
                 if time_val:
                     result["time"] = time_val
             else:
-                if position == 1 and time_val:
+                if is_oval and not is_race_session:
+                    # Oval practice/qualifying: MPH is the relevant value
+                    # Store best speed as time, no interval
+                    if speed:
+                        result["time"] = f"{speed} {speed_unit}".strip()
+                elif position == 1 and time_val:
                     # P1: absolute race/session time
                     result["time"] = time_val
                 else:
                     # P2+: gap/interval from TIME cell first <p>
                     gap = time_val
                     if gap:
-                        # Clean lap intervals: "+1 Lap" — strip anything after Lap(s)
                         lap_match = re.match(r'^([+\-]?\d+\s+Laps?)', gap, re.IGNORECASE)
                         if lap_match:
                             gap = lap_match.group(1)
@@ -328,12 +333,10 @@ def parse_results(html: str, url: str = "", series: str = "", is_oval: bool = Fa
                     elif interval and series == "formulae":
                         result["interval"] = interval
 
-                    # For oval: store absolute lap time as "time", not "speed"
-                    # (speed column already has MPH)
-                    if is_oval and time_absolute:
+                    # Absolute lap time from second <p>
+                    if is_oval and is_race_session and time_absolute:
                         result["time"] = time_absolute
                     elif not is_oval:
-                        # Absolute lap time from second <p> for supported series
                         if series in ("f1", "f2", "f3", "f1academy", "formulae", "indycar", "motogp", "moto2", "moto3", "nascar", "nascar_oreilly", "nascar_trucks", "dtm"):
                             if time_absolute:
                                 result["speed"] = time_absolute
@@ -387,16 +390,20 @@ def main():
     print("📊 Parsing results...")
     # Check if session is oval from JSON
     is_oval = False
+    is_race_session = False
     with open(json_file, "r", encoding="utf-8") as f:
         rounds_check = json.load(f)
     for round_data in rounds_check:
         for s in round_data.get("sessions", []):
             if s.get("id") == args.session_id:
                 is_oval = s.get("isOval", False)
+                kind = s.get("kind", "").lower()
+                name = s.get("name", "").lower()
+                is_race_session = kind in ("race", "feature_race") or "race" in name
                 break
 
-    print(f"📋 Is oval: {is_oval}")
-    results = parse_results(html, args.url, args.series, is_oval)
+    print(f"📋 Is oval: {is_oval}, is_race: {is_race_session}")
+    results = parse_results(html, args.url, args.series, is_oval, is_race_session)
 
     if len(results) < 3:
         print(f"❌ Too few results ({len(results)}), aborting")
