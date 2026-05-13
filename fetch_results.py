@@ -328,10 +328,15 @@ def parse_results(html: str, url: str = "", series: str = "", is_oval: bool = Fa
                     elif interval and series == "formulae":
                         result["interval"] = interval
 
-                    # Absolute lap time from second <p> for supported series
-                    if series in ("f1", "f2", "f3", "f1academy", "formulae", "indycar", "motogp", "moto2", "moto3", "nascar", "nascar_oreilly", "nascar_trucks", "dtm"):
-                        if time_absolute:
-                            result["speed"] = time_absolute
+                    # For oval: store absolute lap time as "time", not "speed"
+                    # (speed column already has MPH)
+                    if is_oval and time_absolute:
+                        result["time"] = time_absolute
+                    elif not is_oval:
+                        # Absolute lap time from second <p> for supported series
+                        if series in ("f1", "f2", "f3", "f1academy", "formulae", "indycar", "motogp", "moto2", "moto3", "nascar", "nascar_oreilly", "nascar_trucks", "dtm"):
+                            if time_absolute:
+                                result["speed"] = time_absolute
 
             results.append(result)
 
