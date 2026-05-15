@@ -1,1606 +1,1606 @@
 [
   {
-    "sessions" : [
-      {
-        "kind" : "practice",
-        "date" : "2025-12-06",
-        "durationMinutes" : 45,
-        "name" : "Practice",
-        "id" : "formulae-2026-r01-s1",
-        "timeLocal" : "16:30"
-      },
-      {
-        "kind" : "qualifying",
-        "date" : "2025-12-06",
-        "durationMinutes" : 30,
-        "name" : "Qualifying",
-        "id" : "formulae-2026-r01-s2",
-        "timeLocal" : "19:00"
-      },
-      {
-        "kind" : "race",
-        "date" : "2025-12-06",
-        "durationMinutes" : 45,
-        "name" : "Race",
-        "id" : "formulae-2026-r01-s3",
-        "timeLocal" : "21:00"
-      }
-    ],
-    "circuitName" : "Sambadrome Anhembi",
-    "roundNumber" : 1,
-    "id" : "formulae-2026-r01",
-    "seriesId" : "formulae",
-    "country" : "Brazil",
-    "raceName" : "São Paulo E-Prix",
     "city" : "São Paulo",
-    "countryCode" : "BR"
-  },
-  {
+    "country" : "Brazil",
+    "seriesId" : "formulae",
     "sessions" : [
       {
+        "id" : "formulae-2026-r01-s1",
         "kind" : "practice",
-        "date" : "2026-01-10",
+        "timeLocal" : "16:30",
         "durationMinutes" : 45,
         "name" : "Practice",
-        "id" : "formulae-2026-r02-s1",
-        "timeLocal" : "21:30"
+        "date" : "2025-12-06"
       },
       {
+        "id" : "formulae-2026-r01-s2",
         "kind" : "qualifying",
-        "date" : "2026-01-10",
+        "timeLocal" : "19:00",
         "durationMinutes" : 30,
         "name" : "Qualifying",
-        "id" : "formulae-2026-r02-s2",
-        "timeLocal" : "23:00"
+        "date" : "2025-12-06"
       },
       {
+        "id" : "formulae-2026-r01-s3",
         "kind" : "race",
-        "date" : "2026-01-11",
+        "timeLocal" : "21:00",
         "durationMinutes" : 45,
         "name" : "Race",
-        "id" : "formulae-2026-r02-s3",
-        "timeLocal" : "01:00"
+        "date" : "2025-12-06"
       }
     ],
-    "circuitName" : "Autódromo Hermanos Rodríguez",
-    "roundNumber" : 2,
-    "id" : "formulae-2026-r02",
-    "seriesId" : "formulae",
-    "country" : "Mexico",
-    "raceName" : "Mexico City E-Prix",
+    "raceName" : "São Paulo E-Prix",
+    "id" : "formulae-2026-r01",
+    "roundNumber" : 1,
+    "countryCode" : "BR",
+    "circuitName" : "Sambadrome Anhembi"
+  },
+  {
     "city" : "Mexico City",
-    "countryCode" : "MX"
-  },
-  {
+    "country" : "Mexico",
+    "seriesId" : "formulae",
     "sessions" : [
       {
+        "id" : "formulae-2026-r02-s1",
         "kind" : "practice",
-        "date" : "2026-01-31",
+        "timeLocal" : "21:30",
         "durationMinutes" : 45,
         "name" : "Practice",
-        "id" : "formulae-2026-r03-s1",
-        "timeLocal" : "21:30"
+        "date" : "2026-01-10"
       },
       {
+        "id" : "formulae-2026-r02-s2",
         "kind" : "qualifying",
-        "date" : "2026-01-31",
+        "timeLocal" : "23:00",
         "durationMinutes" : 30,
         "name" : "Qualifying",
-        "id" : "formulae-2026-r03-s2",
-        "timeLocal" : "23:00"
+        "date" : "2026-01-10"
       },
       {
+        "id" : "formulae-2026-r02-s3",
         "kind" : "race",
-        "date" : "2026-02-01",
+        "timeLocal" : "01:00",
         "durationMinutes" : 45,
         "name" : "Race",
-        "id" : "formulae-2026-r03-s3",
-        "timeLocal" : "01:00"
+        "date" : "2026-01-11"
       }
     ],
-    "circuitName" : "Miami International Autodrome",
-    "roundNumber" : 3,
-    "id" : "formulae-2026-r03",
-    "seriesId" : "formulae",
-    "country" : "United States",
-    "raceName" : "Miami E-Prix",
+    "raceName" : "Mexico City E-Prix",
+    "id" : "formulae-2026-r02",
+    "roundNumber" : 2,
+    "countryCode" : "MX",
+    "circuitName" : "Autódromo Hermanos Rodríguez"
+  },
+  {
     "city" : "Miami",
-    "countryCode" : "US"
-  },
-  {
+    "country" : "United States",
+    "seriesId" : "formulae",
     "sessions" : [
       {
+        "id" : "formulae-2026-r03-s1",
         "kind" : "practice",
-        "date" : "2026-02-13",
+        "timeLocal" : "21:30",
         "durationMinutes" : 45,
         "name" : "Practice",
+        "date" : "2026-01-31"
+      },
+      {
+        "id" : "formulae-2026-r03-s2",
+        "kind" : "qualifying",
+        "timeLocal" : "23:00",
+        "durationMinutes" : 30,
+        "name" : "Qualifying",
+        "date" : "2026-01-31"
+      },
+      {
+        "id" : "formulae-2026-r03-s3",
+        "kind" : "race",
+        "timeLocal" : "01:00",
+        "durationMinutes" : 45,
+        "name" : "Race",
+        "date" : "2026-02-01"
+      }
+    ],
+    "raceName" : "Miami E-Prix",
+    "id" : "formulae-2026-r03",
+    "roundNumber" : 3,
+    "countryCode" : "US",
+    "circuitName" : "Miami International Autodrome"
+  },
+  {
+    "city" : "Jeddah",
+    "country" : "Saudi Arabia",
+    "seriesId" : "formulae",
+    "sessions" : [
+      {
         "id" : "formulae-2026-r04-s1",
-        "timeLocal" : "17:00"
+        "kind" : "practice",
+        "timeLocal" : "17:00",
+        "durationMinutes" : 45,
+        "name" : "Practice",
+        "date" : "2026-02-13"
       },
       {
-        "kind" : "qualifying",
-        "date" : "2026-02-13",
-        "durationMinutes" : 30,
-        "name" : "Qualifying",
         "id" : "formulae-2026-r04-s2",
-        "timeLocal" : "19:30"
+        "kind" : "qualifying",
+        "timeLocal" : "19:30",
+        "durationMinutes" : 30,
+        "name" : "Qualifying",
+        "date" : "2026-02-13"
       },
       {
-        "kind" : "race",
-        "date" : "2026-02-13",
-        "durationMinutes" : 45,
-        "name" : "Race",
         "id" : "formulae-2026-r04-s3",
-        "timeLocal" : "21:05"
+        "kind" : "race",
+        "timeLocal" : "21:05",
+        "durationMinutes" : 45,
+        "name" : "Race",
+        "date" : "2026-02-13"
       }
     ],
-    "circuitName" : "Jeddah Corniche Circuit",
-    "roundNumber" : 4,
-    "id" : "formulae-2026-r04",
-    "seriesId" : "formulae",
-    "country" : "Saudi Arabia",
     "raceName" : "Jeddah E-Prix 1",
-    "city" : "Jeddah",
-    "countryCode" : "SA"
+    "id" : "formulae-2026-r04",
+    "roundNumber" : 4,
+    "countryCode" : "SA",
+    "circuitName" : "Jeddah Corniche Circuit"
   },
   {
-    "sessions" : [
-      {
-        "kind" : "practice",
-        "date" : "2026-02-14",
-        "durationMinutes" : 45,
-        "name" : "Practice",
-        "id" : "formulae-2026-r05-s1",
-        "timeLocal" : "17:00"
-      },
-      {
-        "kind" : "qualifying",
-        "date" : "2026-02-14",
-        "durationMinutes" : 30,
-        "name" : "Qualifying",
-        "id" : "formulae-2026-r05-s2",
-        "timeLocal" : "19:30"
-      },
-      {
-        "kind" : "race",
-        "date" : "2026-02-14",
-        "durationMinutes" : 45,
-        "name" : "Race",
-        "id" : "formulae-2026-r05-s3",
-        "timeLocal" : "21:05"
-      }
-    ],
-    "circuitName" : "Jeddah Corniche Circuit",
-    "roundNumber" : 5,
-    "id" : "formulae-2026-r05",
-    "seriesId" : "formulae",
+    "city" : "Jeddah",
     "country" : "Saudi Arabia",
-    "raceName" : "Jeddah E-Prix 2",
-    "city" : "Jeddah",
-    "countryCode" : "SA"
-  },
-  {
+    "seriesId" : "formulae",
     "sessions" : [
       {
+        "id" : "formulae-2026-r05-s1",
         "kind" : "practice",
-        "date" : "2026-03-20",
+        "timeLocal" : "17:00",
         "durationMinutes" : 45,
         "name" : "Practice",
-        "id" : "formulae-2026-r06-s1",
-        "timeLocal" : "17:30"
+        "date" : "2026-02-14"
       },
       {
+        "id" : "formulae-2026-r05-s2",
         "kind" : "qualifying",
-        "date" : "2026-03-21",
+        "timeLocal" : "19:30",
         "durationMinutes" : 30,
         "name" : "Qualifying",
-        "id" : "formulae-2026-r06-s2",
-        "timeLocal" : "11:40"
+        "date" : "2026-02-14"
       },
       {
+        "id" : "formulae-2026-r05-s3",
         "kind" : "race",
-        "date" : "2026-03-21",
+        "timeLocal" : "21:05",
         "durationMinutes" : 45,
         "name" : "Race",
-        "id" : "formulae-2026-r06-s3",
-        "timeLocal" : "16:05"
+        "date" : "2026-02-14"
       }
     ],
-    "circuitName" : "Circuito de Madrid-Jarama",
-    "roundNumber" : 6,
-    "id" : "formulae-2026-r06",
-    "seriesId" : "formulae",
-    "country" : "Spain",
-    "raceName" : "Madrid E-Prix",
-    "city" : "Madrid",
-    "countryCode" : "ES"
+    "raceName" : "Jeddah E-Prix 2",
+    "id" : "formulae-2026-r05",
+    "roundNumber" : 5,
+    "countryCode" : "SA",
+    "circuitName" : "Jeddah Corniche Circuit"
   },
   {
+    "city" : "Madrid",
+    "country" : "Spain",
+    "seriesId" : "formulae",
+    "sessions" : [
+      {
+        "id" : "formulae-2026-r06-s1",
+        "kind" : "practice",
+        "timeLocal" : "17:30",
+        "durationMinutes" : 45,
+        "name" : "Practice",
+        "date" : "2026-03-20"
+      },
+      {
+        "id" : "formulae-2026-r06-s2",
+        "kind" : "qualifying",
+        "timeLocal" : "11:40",
+        "durationMinutes" : 30,
+        "name" : "Qualifying",
+        "date" : "2026-03-21"
+      },
+      {
+        "id" : "formulae-2026-r06-s3",
+        "kind" : "race",
+        "timeLocal" : "16:05",
+        "durationMinutes" : 45,
+        "name" : "Race",
+        "date" : "2026-03-21"
+      }
+    ],
+    "raceName" : "Madrid E-Prix",
+    "id" : "formulae-2026-r06",
+    "roundNumber" : 6,
+    "countryCode" : "ES",
+    "circuitName" : "Circuito de Madrid-Jarama"
+  },
+  {
+    "city" : "Berlin",
+    "country" : "Germany",
+    "seriesId" : "formulae",
     "sessions" : [
       {
         "name" : "Practice 1",
         "timeLocal" : "16:00",
-        "kind" : "practice",
-        "durationMinutes" : 55,
         "id" : "formulae-2026-r07-s1",
         "date" : "2026-05-01",
         "results" : [
           {
-            "driver" : "T. Barnard",
-            "team" : "DS Penske",
+            "time" : "57.470",
+            "number" : "77",
             "laps" : "19",
             "position" : 1,
-            "number" : "77",
-            "time" : "57.470"
+            "driver" : "T. Barnard",
+            "team" : "DS Penske"
           },
           {
-            "driver" : "P. Wehrlein",
-            "team" : "Porsche Team",
+            "number" : "94",
+            "interval" : "+0.161",
             "laps" : "20",
             "position" : 2,
-            "number" : "94",
-            "interval" : "+0.161"
+            "driver" : "P. Wehrlein",
+            "team" : "Porsche Team"
           },
           {
-            "driver" : "J. Vergne",
-            "team" : "Citroën Racing",
+            "number" : "25",
+            "interval" : "+0.185",
             "laps" : "22",
             "position" : 3,
-            "number" : "25",
-            "interval" : "+0.185"
+            "driver" : "J. Vergne",
+            "team" : "Citroën Racing"
           },
           {
-            "driver" : "M. Guenther",
-            "team" : "DS Penske",
+            "number" : "7",
+            "interval" : "+0.216",
             "laps" : "22",
             "position" : 4,
-            "number" : "7",
-            "interval" : "+0.216"
+            "driver" : "M. Guenther",
+            "team" : "DS Penske"
           },
           {
-            "driver" : "E. Mortara",
-            "team" : "Mahindra Racing",
+            "number" : "48",
+            "interval" : "+0.227",
             "laps" : "22",
             "position" : 5,
-            "number" : "48",
-            "interval" : "+0.227"
+            "driver" : "E. Mortara",
+            "team" : "Mahindra Racing"
           },
           {
-            "driver" : "N. de Vries",
-            "team" : "Mahindra Racing",
+            "number" : "21",
+            "interval" : "+0.239",
             "laps" : "24",
             "position" : 6,
-            "number" : "21",
-            "interval" : "+0.239"
+            "driver" : "N. de Vries",
+            "team" : "Mahindra Racing"
           },
           {
-            "driver" : "D. Ticktum",
-            "team" : "Cupra Kiro",
+            "number" : "33",
+            "interval" : "+0.276",
             "laps" : "22",
             "position" : 7,
-            "number" : "33",
-            "interval" : "+0.276"
+            "driver" : "D. Ticktum",
+            "team" : "Cupra Kiro"
           },
           {
-            "driver" : "S. Buemi",
-            "team" : "Envision Racing",
+            "number" : "16",
+            "interval" : "+0.340",
             "laps" : "21",
             "position" : 8,
-            "number" : "16",
-            "interval" : "+0.340"
+            "driver" : "S. Buemi",
+            "team" : "Envision Racing"
           },
           {
-            "driver" : "F. Drugovich",
-            "team" : "Andretti Formula E",
+            "number" : "28",
+            "interval" : "+0.344",
             "laps" : "24",
             "position" : 9,
-            "number" : "28",
-            "interval" : "+0.344"
+            "driver" : "F. Drugovich",
+            "team" : "Andretti Formula E"
           },
           {
-            "driver" : "J. Dennis",
-            "team" : "Andretti Formula E",
+            "number" : "27",
+            "interval" : "+0.377",
             "laps" : "25",
             "position" : 10,
-            "number" : "27",
-            "interval" : "+0.377"
+            "driver" : "J. Dennis",
+            "team" : "Andretti Formula E"
           },
           {
-            "driver" : "N. Müller",
-            "team" : "Porsche Team",
+            "number" : "51",
+            "interval" : "+0.397",
             "laps" : "24",
             "position" : 11,
-            "number" : "51",
-            "interval" : "+0.397"
+            "driver" : "N. Müller",
+            "team" : "Porsche Team"
           },
           {
-            "driver" : "O. Rowland",
-            "team" : "Nissan",
+            "number" : "1",
+            "interval" : "+0.408",
             "laps" : "21",
             "position" : 12,
-            "number" : "1",
-            "interval" : "+0.408"
+            "driver" : "O. Rowland",
+            "team" : "Nissan"
           },
           {
-            "driver" : "J. Eriksson",
-            "team" : "Envision Racing",
+            "number" : "14",
+            "interval" : "+0.439",
             "laps" : "23",
             "position" : 13,
-            "number" : "14",
-            "interval" : "+0.439"
+            "driver" : "J. Eriksson",
+            "team" : "Envision Racing"
           },
           {
-            "driver" : "M. Evans",
-            "team" : "Jaguar Racing",
+            "number" : "9",
+            "interval" : "+0.442",
             "laps" : "21",
             "position" : 14,
-            "number" : "9",
-            "interval" : "+0.442"
+            "driver" : "M. Evans",
+            "team" : "Jaguar Racing"
           },
           {
-            "driver" : "A. Felix da Costa",
-            "team" : "Jaguar Racing",
+            "number" : "13",
+            "interval" : "+0.454",
             "laps" : "23",
             "position" : 15,
-            "number" : "13",
-            "interval" : "+0.454"
+            "driver" : "A. Felix da Costa",
+            "team" : "Jaguar Racing"
           },
           {
-            "driver" : "N. Cassidy",
-            "team" : "Citroën Racing",
+            "number" : "37",
+            "interval" : "+0.455",
             "laps" : "18",
             "position" : 16,
-            "number" : "37",
-            "interval" : "+0.455"
+            "driver" : "N. Cassidy",
+            "team" : "Citroën Racing"
           },
           {
-            "driver" : "Z. Maloney",
-            "team" : "LOLA YAMAHA ABT FORMULA E TEAM",
+            "number" : "22",
+            "interval" : "+0.562",
             "laps" : "21",
             "position" : 17,
-            "number" : "22",
-            "interval" : "+0.562"
+            "driver" : "Z. Maloney",
+            "team" : "LOLA YAMAHA ABT FORMULA E TEAM"
           },
           {
-            "driver" : "N. Nato",
-            "team" : "Nissan",
+            "number" : "23",
+            "interval" : "+0.711",
             "laps" : "23",
             "position" : 18,
-            "number" : "23",
-            "interval" : "+0.711"
+            "driver" : "N. Nato",
+            "team" : "Nissan"
           },
           {
-            "driver" : "P. Martí",
-            "team" : "Cupra Kiro",
+            "number" : "3",
+            "interval" : "+0.760",
             "laps" : "24",
             "position" : 19,
-            "number" : "3",
-            "interval" : "+0.760"
+            "driver" : "P. Martí",
+            "team" : "Cupra Kiro"
           },
           {
-            "driver" : "L. di Grassi",
-            "team" : "LOLA YAMAHA ABT FORMULA E TEAM",
+            "number" : "11",
+            "interval" : "+0.899",
             "laps" : "23",
             "position" : 20,
-            "number" : "11",
-            "interval" : "+0.899"
+            "driver" : "L. di Grassi",
+            "team" : "LOLA YAMAHA ABT FORMULA E TEAM"
           }
-        ]
+        ],
+        "kind" : "practice",
+        "durationMinutes" : 55
       },
       {
         "name" : "Practice 2",
         "timeLocal" : "09:30",
-        "kind" : "practice",
-        "durationMinutes" : 55,
         "id" : "formulae-2026-r07-s2",
         "date" : "2026-05-02",
         "results" : [
           {
-            "number" : "13",
             "time" : "57.357",
+            "number" : "13",
             "laps" : "21",
-            "driver" : "A. Felix da Costa",
             "position" : 1,
+            "driver" : "A. Felix da Costa",
             "team" : "Jaguar Racing"
           },
           {
             "number" : "25",
             "interval" : "+0.087",
             "laps" : "21",
-            "driver" : "J. Vergne",
             "position" : 2,
+            "driver" : "J. Vergne",
             "team" : "Citroën Racing"
           },
           {
             "number" : "28",
             "interval" : "+0.157",
             "laps" : "23",
-            "driver" : "F. Drugovich",
             "position" : 3,
+            "driver" : "F. Drugovich",
             "team" : "Andretti Formula E"
           },
           {
             "number" : "77",
             "interval" : "+0.190",
             "laps" : "21",
-            "driver" : "T. Barnard",
             "position" : 4,
+            "driver" : "T. Barnard",
             "team" : "DS Penske"
           },
           {
             "number" : "7",
             "interval" : "+0.198",
             "laps" : "21",
-            "driver" : "M. Guenther",
             "position" : 5,
+            "driver" : "M. Guenther",
             "team" : "DS Penske"
           },
           {
             "number" : "48",
             "interval" : "+0.222",
             "laps" : "16",
-            "driver" : "E. Mortara",
             "position" : 6,
+            "driver" : "E. Mortara",
             "team" : "Mahindra Racing"
           },
           {
             "number" : "27",
             "interval" : "+0.228",
             "laps" : "21",
-            "driver" : "J. Dennis",
             "position" : 7,
+            "driver" : "J. Dennis",
             "team" : "Andretti Formula E"
           },
           {
             "number" : "33",
             "interval" : "+0.243",
             "laps" : "20",
-            "driver" : "D. Ticktum",
             "position" : 8,
+            "driver" : "D. Ticktum",
             "team" : "Cupra Kiro"
           },
           {
             "number" : "23",
             "interval" : "+0.258",
             "laps" : "20",
-            "driver" : "N. Nato",
             "position" : 9,
+            "driver" : "N. Nato",
             "team" : "Nissan"
           },
           {
             "number" : "21",
             "interval" : "+0.288",
             "laps" : "16",
-            "driver" : "N. de Vries",
             "position" : 10,
+            "driver" : "N. de Vries",
             "team" : "Mahindra Racing"
           },
           {
             "number" : "51",
             "interval" : "+0.299",
             "laps" : "22",
-            "driver" : "N. Müller",
             "position" : 11,
+            "driver" : "N. Müller",
             "team" : "Porsche Team"
           },
           {
             "number" : "37",
             "interval" : "+0.335",
             "laps" : "22",
-            "driver" : "N. Cassidy",
             "position" : 12,
+            "driver" : "N. Cassidy",
             "team" : "Citroën Racing"
           },
           {
             "number" : "16",
             "interval" : "+0.410",
             "laps" : "22",
-            "driver" : "S. Buemi",
             "position" : 13,
+            "driver" : "S. Buemi",
             "team" : "Envision Racing"
           },
           {
             "number" : "94",
             "interval" : "+0.415",
             "laps" : "23",
-            "driver" : "P. Wehrlein",
             "position" : 14,
+            "driver" : "P. Wehrlein",
             "team" : "Porsche Team"
           },
           {
             "number" : "9",
             "interval" : "+0.434",
             "laps" : "20",
-            "driver" : "M. Evans",
             "position" : 15,
+            "driver" : "M. Evans",
             "team" : "Jaguar Racing"
           },
           {
             "number" : "11",
             "interval" : "+0.606",
             "laps" : "24",
-            "driver" : "L. di Grassi",
             "position" : 16,
+            "driver" : "L. di Grassi",
             "team" : "LOLA YAMAHA ABT FORMULA E TEAM"
           },
           {
             "number" : "3",
             "interval" : "+0.816",
             "laps" : "22",
-            "driver" : "P. Martí",
             "position" : 17,
+            "driver" : "P. Martí",
             "team" : "Cupra Kiro"
           },
           {
             "number" : "14",
             "interval" : "+0.854",
             "laps" : "22",
-            "driver" : "J. Eriksson",
             "position" : 18,
+            "driver" : "J. Eriksson",
             "team" : "Envision Racing"
           },
           {
             "number" : "22",
             "interval" : "+1.707",
             "laps" : "24",
-            "driver" : "Z. Maloney",
             "position" : 19,
+            "driver" : "Z. Maloney",
             "team" : "LOLA YAMAHA ABT FORMULA E TEAM"
           },
           {
             "number" : "1",
             "interval" : "+1.790",
             "laps" : "21",
-            "driver" : "O. Rowland",
             "position" : 20,
+            "driver" : "O. Rowland",
             "team" : "Nissan"
           }
-        ]
+        ],
+        "kind" : "practice",
+        "durationMinutes" : 55
       },
       {
         "name" : "Qualifying",
         "timeLocal" : "11:40",
-        "kind" : "qualifying",
-        "durationMinutes" : 70,
         "id" : "formulae-2026-r07-s3",
         "date" : "2026-05-02",
         "results" : [
           {
-            "driver" : "E. Mortara",
-            "team" : "Mahindra Racing",
-            "position" : 1,
+            "time" : "56.986",
             "number" : "48",
-            "time" : "56.986"
+            "position" : 1,
+            "driver" : "E. Mortara",
+            "team" : "Mahindra Racing"
           },
           {
-            "driver" : "P. Wehrlein",
-            "team" : "Porsche Team",
+            "number" : "94",
             "interval" : "+0.156",
             "position" : 2,
-            "number" : "94"
+            "driver" : "P. Wehrlein",
+            "team" : "Porsche Team"
           },
           {
-            "driver" : "O. Rowland",
-            "team" : "Nissan",
+            "number" : "1",
             "interval" : "+0.126",
             "position" : 3,
-            "number" : "1"
+            "driver" : "O. Rowland",
+            "team" : "Nissan"
           },
           {
-            "driver" : "D. Ticktum",
-            "team" : "Cupra Kiro",
+            "number" : "33",
             "interval" : "+0.365",
             "position" : 4,
-            "number" : "33"
+            "driver" : "D. Ticktum",
+            "team" : "Cupra Kiro"
           },
           {
-            "driver" : "N. Cassidy",
-            "team" : "Citroën Racing",
+            "number" : "37",
             "interval" : "+0.463",
             "position" : 5,
-            "number" : "37"
+            "driver" : "N. Cassidy",
+            "team" : "Citroën Racing"
           },
           {
-            "driver" : "N. Müller",
-            "team" : "Porsche Team",
+            "number" : "51",
             "interval" : "+0.567",
             "position" : 6,
-            "number" : "51"
+            "driver" : "N. Müller",
+            "team" : "Porsche Team"
           },
           {
-            "driver" : "Z. Maloney",
-            "team" : "LOLA YAMAHA ABT FORMULA E TEAM",
+            "number" : "22",
             "interval" : "+0.661",
             "position" : 7,
-            "number" : "22"
+            "driver" : "Z. Maloney",
+            "team" : "LOLA YAMAHA ABT FORMULA E TEAM"
           },
           {
-            "driver" : "F. Drugovich",
-            "team" : "Andretti Formula E",
+            "number" : "28",
             "interval" : "+0.906",
             "position" : 8,
-            "number" : "28"
+            "driver" : "F. Drugovich",
+            "team" : "Andretti Formula E"
           },
           {
-            "driver" : "A. Felix da Costa",
-            "team" : "Jaguar Racing",
+            "number" : "13",
             "interval" : "+1.628",
             "position" : 9,
-            "number" : "13"
+            "driver" : "A. Felix da Costa",
+            "team" : "Jaguar Racing"
           },
           {
-            "driver" : "T. Barnard",
-            "team" : "DS Penske",
+            "number" : "77",
             "interval" : "+1.792",
             "position" : 10,
-            "number" : "77"
+            "driver" : "T. Barnard",
+            "team" : "DS Penske"
           },
           {
-            "driver" : "M. Guenther",
-            "team" : "DS Penske",
+            "number" : "7",
             "interval" : "+1.652",
             "position" : 11,
-            "number" : "7"
+            "driver" : "M. Guenther",
+            "team" : "DS Penske"
           },
           {
-            "driver" : "J. Eriksson",
-            "team" : "Envision Racing",
+            "number" : "14",
             "interval" : "+1.793",
             "position" : 12,
-            "number" : "14"
+            "driver" : "J. Eriksson",
+            "team" : "Envision Racing"
           },
           {
-            "driver" : "J. Dennis",
-            "team" : "Andretti Formula E",
+            "number" : "27",
             "interval" : "+1.668",
             "position" : 13,
-            "number" : "27"
+            "driver" : "J. Dennis",
+            "team" : "Andretti Formula E"
           },
           {
-            "driver" : "M. Evans",
-            "team" : "Jaguar Racing",
+            "number" : "9",
             "interval" : "+1.801",
             "position" : 14,
-            "number" : "9"
+            "driver" : "M. Evans",
+            "team" : "Jaguar Racing"
           },
           {
-            "driver" : "P. Martí",
-            "team" : "Cupra Kiro",
+            "number" : "3",
             "interval" : "+1.762",
             "position" : 15,
-            "number" : "3"
+            "driver" : "P. Martí",
+            "team" : "Cupra Kiro"
           },
           {
-            "driver" : "J. Vergne",
-            "team" : "Citroën Racing",
+            "number" : "25",
             "interval" : "+1.827",
             "position" : 16,
-            "number" : "25"
+            "driver" : "J. Vergne",
+            "team" : "Citroën Racing"
           },
           {
-            "driver" : "N. de Vries",
-            "team" : "Mahindra Racing",
+            "number" : "21",
             "interval" : "+1.856",
             "position" : 17,
-            "number" : "21"
+            "driver" : "N. de Vries",
+            "team" : "Mahindra Racing"
           },
           {
-            "driver" : "S. Buemi",
-            "team" : "Envision Racing",
+            "number" : "16",
             "interval" : "+2.000",
             "position" : 18,
-            "number" : "16"
+            "driver" : "S. Buemi",
+            "team" : "Envision Racing"
           },
           {
-            "driver" : "L. di Grassi",
-            "team" : "LOLA YAMAHA ABT FORMULA E TEAM",
+            "number" : "11",
             "interval" : "+6.180",
             "position" : 19,
-            "number" : "11"
+            "driver" : "L. di Grassi",
+            "team" : "LOLA YAMAHA ABT FORMULA E TEAM"
           },
           {
-            "driver" : "N. Nato",
-            "team" : "Nissan",
+            "number" : "23",
             "interval" : "+2.024",
             "position" : 20,
-            "number" : "23"
+            "driver" : "N. Nato",
+            "team" : "Nissan"
           }
-        ]
+        ],
+        "kind" : "qualifying",
+        "durationMinutes" : 70
       },
       {
         "name" : "Race",
         "timeLocal" : "16:05",
-        "kind" : "race",
-        "durationMinutes" : 55,
         "id" : "formulae-2026-r07-s4",
         "date" : "2026-05-02",
         "results" : [
           {
-            "number" : "51",
             "time" : "1:37.851",
+            "number" : "51",
             "laps" : "39",
-            "driver" : "N. Müller",
             "position" : 1,
+            "driver" : "N. Müller",
             "team" : "Porsche Team"
           },
           {
             "number" : "37",
             "interval" : "+4.798",
             "laps" : "39",
-            "driver" : "N. Cassidy",
             "position" : 2,
+            "driver" : "N. Cassidy",
             "team" : "Citroën Racing"
           },
           {
             "number" : "1",
             "interval" : "+5.252",
             "laps" : "39",
-            "driver" : "O. Rowland",
             "position" : 3,
+            "driver" : "O. Rowland",
             "team" : "Nissan"
           },
           {
             "number" : "48",
             "interval" : "+5.898",
             "laps" : "39",
-            "driver" : "E. Mortara",
             "position" : 4,
+            "driver" : "E. Mortara",
             "team" : "Mahindra Racing"
           },
           {
             "number" : "27",
             "interval" : "+8.117",
             "laps" : "39",
-            "driver" : "J. Dennis",
             "position" : 5,
+            "driver" : "J. Dennis",
             "team" : "Andretti Formula E"
           },
           {
             "number" : "9",
             "interval" : "+8.917",
             "laps" : "39",
-            "driver" : "M. Evans",
             "position" : 6,
+            "driver" : "M. Evans",
             "team" : "Jaguar Racing"
           },
           {
             "number" : "3",
             "interval" : "+10.142",
             "laps" : "39",
-            "driver" : "P. Martí",
             "position" : 7,
+            "driver" : "P. Martí",
             "team" : "Cupra Kiro"
           },
           {
             "number" : "77",
             "interval" : "+10.529",
             "laps" : "39",
-            "driver" : "T. Barnard",
             "position" : 8,
+            "driver" : "T. Barnard",
             "team" : "DS Penske"
           },
           {
             "number" : "21",
             "interval" : "+11.141",
             "laps" : "39",
-            "driver" : "N. de Vries",
             "position" : 9,
+            "driver" : "N. de Vries",
             "team" : "Mahindra Racing"
           },
           {
             "number" : "13",
             "interval" : "+13.051",
             "laps" : "39",
-            "driver" : "A. Felix da Costa",
             "position" : 10,
+            "driver" : "A. Felix da Costa",
             "team" : "Jaguar Racing"
           },
           {
             "number" : "7",
             "interval" : "+13.836",
             "laps" : "39",
-            "driver" : "M. Guenther",
             "position" : 11,
+            "driver" : "M. Guenther",
             "team" : "DS Penske"
           },
           {
             "number" : "16",
             "interval" : "+14.336",
             "laps" : "39",
-            "driver" : "S. Buemi",
             "position" : 12,
+            "driver" : "S. Buemi",
             "team" : "Envision Racing"
           },
           {
             "number" : "28",
             "interval" : "+14.596",
             "laps" : "39",
-            "driver" : "F. Drugovich",
             "position" : 13,
+            "driver" : "F. Drugovich",
             "team" : "Andretti Formula E"
           },
           {
             "number" : "25",
             "interval" : "+14.889",
             "laps" : "39",
-            "driver" : "J. Vergne",
             "position" : 14,
+            "driver" : "J. Vergne",
             "team" : "Citroën Racing"
           },
           {
             "number" : "22",
             "interval" : "+15.178",
             "laps" : "39",
-            "driver" : "Z. Maloney",
             "position" : 15,
+            "driver" : "Z. Maloney",
             "team" : "LOLA YAMAHA ABT FORMULA E TEAM"
           },
           {
             "number" : "14",
             "interval" : "+16.036",
             "laps" : "39",
-            "driver" : "J. Eriksson",
             "position" : 16,
+            "driver" : "J. Eriksson",
             "team" : "Envision Racing"
           },
           {
             "number" : "11",
             "interval" : "+17.195",
             "laps" : "39",
-            "driver" : "L. di Grassi",
             "position" : 17,
+            "driver" : "L. di Grassi",
             "team" : "LOLA YAMAHA ABT FORMULA E TEAM"
           },
           {
             "number" : "23",
             "interval" : "+18.138",
             "laps" : "39",
-            "driver" : "N. Nato",
             "position" : 18,
+            "driver" : "N. Nato",
             "team" : "Nissan"
           },
           {
             "number" : "94",
             "interval" : "+49.681",
             "laps" : "39",
-            "driver" : "P. Wehrlein",
             "position" : 19,
+            "driver" : "P. Wehrlein",
             "team" : "Porsche Team"
           },
           {
             "number" : "33",
             "interval" : "2 Laps",
             "laps" : "37",
-            "driver" : "D. Ticktum",
             "position" : "DNF",
+            "driver" : "D. Ticktum",
             "team" : "Cupra Kiro"
           }
-        ]
+        ],
+        "kind" : "race",
+        "durationMinutes" : 55
       }
     ],
-    "circuitName" : "Tempelhof Airport Street Circuit",
-    "roundNumber" : 7,
-    "id" : "formulae-2026-r07",
-    "seriesId" : "formulae",
-    "country" : "Germany",
     "raceName" : "Berlin E-Prix 1",
-    "city" : "Berlin",
-    "countryCode" : "DE"
+    "id" : "formulae-2026-r07",
+    "roundNumber" : 7,
+    "countryCode" : "DE",
+    "circuitName" : "Tempelhof Airport Street Circuit"
   },
   {
+    "city" : "Berlin",
+    "country" : "Germany",
+    "seriesId" : "formulae",
     "sessions" : [
       {
         "name" : "Practice 3",
         "timeLocal" : "09:30",
-        "kind" : "practice",
-        "durationMinutes" : 55,
         "id" : "formulae-2026-r08-s1",
         "date" : "2026-05-03",
         "results" : [
           {
-            "driver" : "E. Mortara",
-            "team" : "Mahindra Racing",
+            "time" : "57.581",
+            "number" : "48",
             "laps" : "23",
             "position" : 1,
-            "number" : "48",
-            "time" : "57.581"
+            "driver" : "E. Mortara",
+            "team" : "Mahindra Racing"
           },
           {
-            "driver" : "M. Guenther",
-            "team" : "DS Penske",
+            "number" : "7",
+            "interval" : "+0.004",
             "laps" : "19",
             "position" : 2,
-            "number" : "7",
-            "interval" : "+0.004"
+            "driver" : "M. Guenther",
+            "team" : "DS Penske"
           },
           {
-            "driver" : "T. Barnard",
-            "team" : "DS Penske",
+            "number" : "77",
+            "interval" : "+0.008",
             "laps" : "20",
             "position" : 3,
-            "number" : "77",
-            "interval" : "+0.008"
+            "driver" : "T. Barnard",
+            "team" : "DS Penske"
           },
           {
-            "driver" : "P. Wehrlein",
-            "team" : "Porsche Team",
+            "number" : "94",
+            "interval" : "+0.049",
             "laps" : "23",
             "position" : 4,
-            "number" : "94",
-            "interval" : "+0.049"
+            "driver" : "P. Wehrlein",
+            "team" : "Porsche Team"
           },
           {
-            "driver" : "J. Vergne",
-            "team" : "Citroën Racing",
+            "number" : "25",
+            "interval" : "+0.075",
             "laps" : "22",
             "position" : 5,
-            "number" : "25",
-            "interval" : "+0.075"
+            "driver" : "J. Vergne",
+            "team" : "Citroën Racing"
           },
           {
-            "driver" : "N. de Vries",
-            "team" : "Mahindra Racing",
+            "number" : "21",
+            "interval" : "+0.099",
             "laps" : "22",
             "position" : 6,
-            "number" : "21",
-            "interval" : "+0.099"
+            "driver" : "N. de Vries",
+            "team" : "Mahindra Racing"
           },
           {
-            "driver" : "O. Rowland",
-            "team" : "Nissan",
+            "number" : "1",
+            "interval" : "+0.120",
             "laps" : "20",
             "position" : 7,
-            "number" : "1",
-            "interval" : "+0.120"
+            "driver" : "O. Rowland",
+            "team" : "Nissan"
           },
           {
-            "driver" : "D. Ticktum",
-            "team" : "Cupra Kiro",
+            "number" : "33",
+            "interval" : "+0.137",
             "laps" : "21",
             "position" : 8,
-            "number" : "33",
-            "interval" : "+0.137"
+            "driver" : "D. Ticktum",
+            "team" : "Cupra Kiro"
           },
           {
-            "driver" : "F. Drugovich",
-            "team" : "Andretti Formula E",
+            "number" : "28",
+            "interval" : "+0.139",
             "laps" : "23",
             "position" : 9,
-            "number" : "28",
-            "interval" : "+0.139"
+            "driver" : "F. Drugovich",
+            "team" : "Andretti Formula E"
           },
           {
-            "driver" : "J. Dennis",
-            "team" : "Andretti Formula E",
+            "number" : "27",
+            "interval" : "+0.150",
             "laps" : "23",
             "position" : 10,
-            "number" : "27",
-            "interval" : "+0.150"
+            "driver" : "J. Dennis",
+            "team" : "Andretti Formula E"
           },
           {
-            "driver" : "A. Felix da Costa",
-            "team" : "Jaguar Racing",
+            "number" : "13",
+            "interval" : "+0.178",
             "laps" : "23",
             "position" : 11,
-            "number" : "13",
-            "interval" : "+0.178"
+            "driver" : "A. Felix da Costa",
+            "team" : "Jaguar Racing"
           },
           {
-            "driver" : "N. Müller",
-            "team" : "Porsche Team",
+            "number" : "51",
+            "interval" : "+0.187",
             "laps" : "23",
             "position" : 12,
-            "number" : "51",
-            "interval" : "+0.187"
+            "driver" : "N. Müller",
+            "team" : "Porsche Team"
           },
           {
-            "driver" : "S. Buemi",
-            "team" : "Envision Racing",
+            "number" : "16",
+            "interval" : "+0.209",
             "laps" : "26",
             "position" : 13,
-            "number" : "16",
-            "interval" : "+0.209"
+            "driver" : "S. Buemi",
+            "team" : "Envision Racing"
           },
           {
-            "driver" : "N. Cassidy",
-            "team" : "Citroën Racing",
+            "number" : "37",
+            "interval" : "+0.295",
             "laps" : "21",
             "position" : 14,
-            "number" : "37",
-            "interval" : "+0.295"
+            "driver" : "N. Cassidy",
+            "team" : "Citroën Racing"
           },
           {
-            "driver" : "Z. Maloney",
-            "team" : "LOLA YAMAHA ABT FORMULA E TEAM",
+            "number" : "22",
+            "interval" : "+0.373",
             "laps" : "25",
             "position" : 15,
-            "number" : "22",
-            "interval" : "+0.373"
+            "driver" : "Z. Maloney",
+            "team" : "LOLA YAMAHA ABT FORMULA E TEAM"
           },
           {
-            "driver" : "M. Evans",
-            "team" : "Jaguar Racing",
+            "number" : "9",
+            "interval" : "+0.546",
             "laps" : "23",
             "position" : 16,
-            "number" : "9",
-            "interval" : "+0.546"
+            "driver" : "M. Evans",
+            "team" : "Jaguar Racing"
           },
           {
-            "driver" : "J. Eriksson",
-            "team" : "Envision Racing",
+            "number" : "14",
+            "interval" : "+0.551",
             "laps" : "24",
             "position" : 17,
-            "number" : "14",
-            "interval" : "+0.551"
+            "driver" : "J. Eriksson",
+            "team" : "Envision Racing"
           },
           {
-            "driver" : "N. Nato",
-            "team" : "Nissan",
+            "number" : "23",
+            "interval" : "+0.569",
             "laps" : "21",
             "position" : 18,
-            "number" : "23",
-            "interval" : "+0.569"
+            "driver" : "N. Nato",
+            "team" : "Nissan"
           },
           {
-            "driver" : "L. di Grassi",
-            "team" : "LOLA YAMAHA ABT FORMULA E TEAM",
+            "number" : "11",
+            "interval" : "+0.625",
             "laps" : "24",
             "position" : 19,
-            "number" : "11",
-            "interval" : "+0.625"
+            "driver" : "L. di Grassi",
+            "team" : "LOLA YAMAHA ABT FORMULA E TEAM"
           },
           {
-            "driver" : "P. Martí",
-            "team" : "Cupra Kiro",
+            "number" : "3",
+            "interval" : "+0.628",
             "laps" : "24",
             "position" : 20,
-            "number" : "3",
-            "interval" : "+0.628"
+            "driver" : "P. Martí",
+            "team" : "Cupra Kiro"
           }
-        ]
+        ],
+        "kind" : "practice",
+        "durationMinutes" : 55
       },
       {
-        "name" : "Qualifying",
-        "date" : "2026-05-03",
+        "id" : "formulae-2026-r08-s2",
         "kind" : "qualifying",
-        "durationMinutes" : 68,
         "timeLocal" : "11:40",
-        "id" : "formulae-2026-r08-s2"
+        "durationMinutes" : 68,
+        "name" : "Qualifying",
+        "date" : "2026-05-03"
       },
       {
         "name" : "Race",
         "timeLocal" : "16:05",
-        "kind" : "race",
-        "durationMinutes" : 55,
         "id" : "formulae-2026-r08-s3",
         "date" : "2026-05-03",
         "results" : [
           {
-            "number" : "9",
             "time" : "9:50.663",
+            "number" : "9",
             "laps" : "37",
-            "driver" : "M. Evans",
             "position" : 1,
+            "driver" : "M. Evans",
             "team" : "Jaguar Racing"
           },
           {
             "number" : "1",
             "interval" : "+0.822",
             "laps" : "37",
-            "driver" : "O. Rowland",
             "position" : 2,
+            "driver" : "O. Rowland",
             "team" : "Nissan"
           },
           {
             "number" : "94",
             "interval" : "+1.111",
             "laps" : "37",
-            "driver" : "P. Wehrlein",
             "position" : 3,
+            "driver" : "P. Wehrlein",
             "team" : "Porsche Team"
           },
           {
             "number" : "16",
             "interval" : "+1.639",
             "laps" : "37",
-            "driver" : "S. Buemi",
             "position" : 4,
+            "driver" : "S. Buemi",
             "team" : "Envision Racing"
           },
           {
             "number" : "23",
             "interval" : "+4.424",
             "laps" : "37",
-            "driver" : "N. Nato",
             "position" : 5,
+            "driver" : "N. Nato",
             "team" : "Nissan"
           },
           {
             "number" : "27",
             "interval" : "+5.940",
             "laps" : "37",
-            "driver" : "J. Dennis",
             "position" : 6,
+            "driver" : "J. Dennis",
             "team" : "Andretti Formula E"
           },
           {
             "number" : "48",
             "interval" : "+6.325",
             "laps" : "37",
-            "driver" : "E. Mortara",
             "position" : 7,
+            "driver" : "E. Mortara",
             "team" : "Mahindra Racing"
           },
           {
             "number" : "25",
             "interval" : "+7.604",
             "laps" : "37",
-            "driver" : "J. Vergne",
             "position" : 8,
+            "driver" : "J. Vergne",
             "team" : "Citroën Racing"
           },
           {
             "number" : "28",
             "interval" : "+8.491",
             "laps" : "37",
-            "driver" : "F. Drugovich",
             "position" : 9,
+            "driver" : "F. Drugovich",
             "team" : "Andretti Formula E"
           },
           {
             "number" : "14",
             "interval" : "+8.965",
             "laps" : "37",
-            "driver" : "J. Eriksson",
             "position" : 10,
+            "driver" : "J. Eriksson",
             "team" : "Envision Racing"
           },
           {
             "number" : "77",
             "interval" : "+10.216",
             "laps" : "37",
-            "driver" : "T. Barnard",
             "position" : 11,
+            "driver" : "T. Barnard",
             "team" : "DS Penske"
           },
           {
             "number" : "3",
             "interval" : "+11.712",
             "laps" : "37",
-            "driver" : "P. Martí",
             "position" : 12,
+            "driver" : "P. Martí",
             "team" : "Cupra Kiro"
           },
           {
             "number" : "51",
             "interval" : "+12.747",
             "laps" : "37",
-            "driver" : "N. Müller",
             "position" : 13,
+            "driver" : "N. Müller",
             "team" : "Porsche Team"
           },
           {
             "number" : "33",
             "interval" : "+13.212",
             "laps" : "37",
-            "driver" : "D. Ticktum",
             "position" : 14,
+            "driver" : "D. Ticktum",
             "team" : "Cupra Kiro"
           },
           {
             "number" : "7",
             "interval" : "+14.774",
             "laps" : "37",
-            "driver" : "M. Guenther",
             "position" : 15,
+            "driver" : "M. Guenther",
             "team" : "DS Penske"
           },
           {
             "number" : "11",
             "interval" : "+14.873",
             "laps" : "37",
-            "driver" : "L. di Grassi",
             "position" : 16,
+            "driver" : "L. di Grassi",
             "team" : "LOLA YAMAHA ABT FORMULA E TEAM"
           },
           {
             "number" : "22",
             "interval" : "+15.342",
             "laps" : "37",
-            "driver" : "Z. Maloney",
             "position" : 17,
+            "driver" : "Z. Maloney",
             "team" : "LOLA YAMAHA ABT FORMULA E TEAM"
           },
           {
             "number" : "13",
             "interval" : "+36.559",
             "laps" : "37",
-            "driver" : "A. Felix da Costa",
             "position" : 18,
+            "driver" : "A. Felix da Costa",
             "team" : "Jaguar Racing"
           },
           {
             "number" : "37",
             "interval" : "+4 Laps",
             "laps" : "33",
-            "driver" : "N. Cassidy",
             "position" : "DNF",
+            "driver" : "N. Cassidy",
             "team" : "Citroën Racing"
           },
           {
             "number" : "21",
             "interval" : "+34 Laps",
             "laps" : "3",
-            "driver" : "N. de Vries",
             "position" : "DNF",
+            "driver" : "N. de Vries",
             "team" : "Mahindra Racing"
           }
-        ]
+        ],
+        "kind" : "race",
+        "durationMinutes" : 55
       }
     ],
-    "circuitName" : "Tempelhof Airport Street Circuit",
-    "roundNumber" : 8,
-    "id" : "formulae-2026-r08",
-    "seriesId" : "formulae",
-    "country" : "Germany",
     "raceName" : "Berlin E-Prix 2",
-    "city" : "Berlin",
-    "countryCode" : "DE"
+    "id" : "formulae-2026-r08",
+    "roundNumber" : 8,
+    "countryCode" : "DE",
+    "circuitName" : "Tempelhof Airport Street Circuit"
   },
   {
+    "city" : "Monaco",
+    "country" : "Monaco",
+    "seriesId" : "formulae",
     "sessions" : [
       {
-        "kind" : "practice",
-        "date" : "2026-05-16",
-        "durationMinutes" : 45,
-        "name" : "Practice 1",
         "id" : "formulae-2026-r09-s1",
-        "timeLocal" : "07:30"
+        "kind" : "practice",
+        "timeLocal" : "07:30",
+        "durationMinutes" : 45,
+        "name" : "Practice 1",
+        "date" : "2026-05-16"
       },
       {
-        "kind" : "practice",
-        "date" : "2026-05-16",
-        "durationMinutes" : 45,
-        "name" : "Practice 2",
         "id" : "formulae-2026-r09-s2",
-        "timeLocal" : "09:10"
+        "kind" : "practice",
+        "timeLocal" : "09:10",
+        "durationMinutes" : 45,
+        "name" : "Practice 2",
+        "date" : "2026-05-16"
       },
       {
-        "kind" : "qualifying",
-        "date" : "2026-05-16",
-        "durationMinutes" : 30,
-        "name" : "Qualifying",
         "id" : "formulae-2026-r09-s3",
-        "timeLocal" : "10:40"
+        "kind" : "qualifying",
+        "timeLocal" : "10:40",
+        "durationMinutes" : 30,
+        "name" : "Qualifying",
+        "date" : "2026-05-16"
       },
       {
-        "kind" : "race",
-        "date" : "2026-05-16",
-        "durationMinutes" : 45,
-        "name" : "Race",
         "id" : "formulae-2026-r09-s4",
-        "timeLocal" : "15:05"
+        "kind" : "race",
+        "timeLocal" : "15:05",
+        "durationMinutes" : 45,
+        "name" : "Race",
+        "date" : "2026-05-16"
       }
     ],
-    "circuitName" : "Circuit de Monaco",
-    "roundNumber" : 9,
-    "id" : "formulae-2026-r09",
-    "seriesId" : "formulae",
-    "country" : "Monaco",
     "raceName" : "Monaco E-Prix 1",
-    "city" : "Monaco",
-    "countryCode" : "MC"
+    "id" : "formulae-2026-r09",
+    "roundNumber" : 9,
+    "countryCode" : "MC",
+    "circuitName" : "Circuit de Monaco"
   },
   {
-    "sessions" : [
-      {
-        "kind" : "practice",
-        "date" : "2026-05-17",
-        "durationMinutes" : 45,
-        "name" : "Practice",
-        "id" : "formulae-2026-r10-s1",
-        "timeLocal" : "08:30"
-      },
-      {
-        "kind" : "qualifying",
-        "date" : "2026-05-17",
-        "durationMinutes" : 30,
-        "name" : "Qualifying",
-        "id" : "formulae-2026-r10-s2",
-        "timeLocal" : "10:40"
-      },
-      {
-        "kind" : "race",
-        "date" : "2026-05-17",
-        "durationMinutes" : 45,
-        "name" : "Race",
-        "id" : "formulae-2026-r10-s3",
-        "timeLocal" : "15:05"
-      }
-    ],
-    "circuitName" : "Circuit de Monaco",
-    "roundNumber" : 10,
-    "id" : "formulae-2026-r10",
-    "seriesId" : "formulae",
+    "city" : "Monaco",
     "country" : "Monaco",
+    "seriesId" : "formulae",
+    "sessions" : [
+      {
+        "id" : "formulae-2026-r10-s1",
+        "kind" : "practice",
+        "timeLocal" : "08:30",
+        "durationMinutes" : 45,
+        "name" : "Practice",
+        "date" : "2026-05-17"
+      },
+      {
+        "id" : "formulae-2026-r10-s2",
+        "kind" : "qualifying",
+        "timeLocal" : "10:40",
+        "durationMinutes" : 30,
+        "name" : "Qualifying",
+        "date" : "2026-05-17"
+      },
+      {
+        "id" : "formulae-2026-r10-s3",
+        "kind" : "race",
+        "timeLocal" : "15:05",
+        "durationMinutes" : 45,
+        "name" : "Race",
+        "date" : "2026-05-17"
+      }
+    ],
     "raceName" : "Monaco E-Prix 2",
-    "city" : "Monaco",
-    "countryCode" : "MC"
+    "id" : "formulae-2026-r10",
+    "roundNumber" : 10,
+    "countryCode" : "MC",
+    "circuitName" : "Circuit de Monaco"
   },
   {
-    "sessions" : [
-      {
-        "kind" : "practice",
-        "date" : "2026-06-19",
-        "durationMinutes" : 45,
-        "name" : "Practice",
-        "id" : "formulae-2026-r11-s1",
-        "timeLocal" : "07:30"
-      },
-      {
-        "kind" : "qualifying",
-        "date" : "2026-06-19",
-        "durationMinutes" : 30,
-        "name" : "Qualifying",
-        "id" : "formulae-2026-r11-s2",
-        "timeLocal" : "09:40"
-      },
-      {
-        "kind" : "race",
-        "date" : "2026-06-20",
-        "durationMinutes" : 45,
-        "name" : "Race",
-        "id" : "formulae-2026-r11-s3",
-        "timeLocal" : "09:05"
-      }
-    ],
-    "circuitName" : "Sanya Street Circuit",
-    "roundNumber" : 11,
-    "id" : "formulae-2026-r11",
-    "seriesId" : "formulae",
-    "country" : "China",
-    "raceName" : "Sanya E-Prix",
     "city" : "Sanya",
-    "countryCode" : "CN"
-  },
-  {
+    "country" : "China",
+    "seriesId" : "formulae",
     "sessions" : [
       {
+        "id" : "formulae-2026-r11-s1",
         "kind" : "practice",
-        "date" : "2026-07-03",
+        "timeLocal" : "07:30",
         "durationMinutes" : 45,
-        "name" : "Practice 1",
+        "name" : "Practice",
+        "date" : "2026-06-19"
+      },
+      {
+        "id" : "formulae-2026-r11-s2",
+        "kind" : "qualifying",
+        "timeLocal" : "09:40",
+        "durationMinutes" : 30,
+        "name" : "Qualifying",
+        "date" : "2026-06-19"
+      },
+      {
+        "id" : "formulae-2026-r11-s3",
+        "kind" : "race",
+        "timeLocal" : "09:05",
+        "durationMinutes" : 45,
+        "name" : "Race",
+        "date" : "2026-06-20"
+      }
+    ],
+    "raceName" : "Sanya E-Prix",
+    "id" : "formulae-2026-r11",
+    "roundNumber" : 11,
+    "countryCode" : "CN",
+    "circuitName" : "Sanya Street Circuit"
+  },
+  {
+    "city" : "Shanghai",
+    "country" : "China",
+    "seriesId" : "formulae",
+    "sessions" : [
+      {
         "id" : "formulae-2026-r12-s1",
-        "timeLocal" : "07:30"
+        "kind" : "practice",
+        "timeLocal" : "07:30",
+        "durationMinutes" : 45,
+        "name" : "Practice 1",
+        "date" : "2026-07-03"
       },
       {
-        "kind" : "practice",
-        "date" : "2026-07-04",
-        "durationMinutes" : 45,
-        "name" : "Practice 2",
         "id" : "formulae-2026-r12-s2",
-        "timeLocal" : "07:30"
+        "kind" : "practice",
+        "timeLocal" : "07:30",
+        "durationMinutes" : 45,
+        "name" : "Practice 2",
+        "date" : "2026-07-04"
       },
       {
-        "kind" : "qualifying",
-        "date" : "2026-07-04",
-        "durationMinutes" : 30,
-        "name" : "Qualifying",
         "id" : "formulae-2026-r12-s3",
-        "timeLocal" : "09:40"
+        "kind" : "qualifying",
+        "timeLocal" : "09:40",
+        "durationMinutes" : 30,
+        "name" : "Qualifying",
+        "date" : "2026-07-04"
       },
       {
-        "kind" : "race",
-        "date" : "2026-07-04",
-        "durationMinutes" : 45,
-        "name" : "Race",
         "id" : "formulae-2026-r12-s4",
-        "timeLocal" : "09:05"
+        "kind" : "race",
+        "timeLocal" : "09:05",
+        "durationMinutes" : 45,
+        "name" : "Race",
+        "date" : "2026-07-04"
       }
     ],
-    "circuitName" : "Shanghai International Circuit",
-    "roundNumber" : 12,
-    "id" : "formulae-2026-r12",
-    "seriesId" : "formulae",
-    "country" : "China",
     "raceName" : "Shanghai E-Prix 1",
-    "city" : "Shanghai",
-    "countryCode" : "CN"
+    "id" : "formulae-2026-r12",
+    "roundNumber" : 12,
+    "countryCode" : "CN",
+    "circuitName" : "Shanghai International Circuit"
   },
   {
-    "sessions" : [
-      {
-        "kind" : "practice",
-        "date" : "2026-07-05",
-        "durationMinutes" : 45,
-        "name" : "Practice",
-        "id" : "formulae-2026-r13-s1",
-        "timeLocal" : "07:30"
-      },
-      {
-        "kind" : "qualifying",
-        "date" : "2026-07-05",
-        "durationMinutes" : 30,
-        "name" : "Qualifying",
-        "id" : "formulae-2026-r13-s2",
-        "timeLocal" : "09:40"
-      },
-      {
-        "kind" : "race",
-        "date" : "2026-07-05",
-        "durationMinutes" : 45,
-        "name" : "Race",
-        "id" : "formulae-2026-r13-s3",
-        "timeLocal" : "09:05"
-      }
-    ],
-    "circuitName" : "Shanghai International Circuit",
-    "roundNumber" : 13,
-    "id" : "formulae-2026-r13",
-    "seriesId" : "formulae",
+    "city" : "Shanghai",
     "country" : "China",
+    "seriesId" : "formulae",
+    "sessions" : [
+      {
+        "id" : "formulae-2026-r13-s1",
+        "kind" : "practice",
+        "timeLocal" : "07:30",
+        "durationMinutes" : 45,
+        "name" : "Practice",
+        "date" : "2026-07-05"
+      },
+      {
+        "id" : "formulae-2026-r13-s2",
+        "kind" : "qualifying",
+        "timeLocal" : "09:40",
+        "durationMinutes" : 30,
+        "name" : "Qualifying",
+        "date" : "2026-07-05"
+      },
+      {
+        "id" : "formulae-2026-r13-s3",
+        "kind" : "race",
+        "timeLocal" : "09:05",
+        "durationMinutes" : 45,
+        "name" : "Race",
+        "date" : "2026-07-05"
+      }
+    ],
     "raceName" : "Shanghai E-Prix 2",
-    "city" : "Shanghai",
-    "countryCode" : "CN"
+    "id" : "formulae-2026-r13",
+    "roundNumber" : 13,
+    "countryCode" : "CN",
+    "circuitName" : "Shanghai International Circuit"
   },
   {
+    "city" : "Tokyo",
+    "country" : "Japan",
+    "seriesId" : "formulae",
     "sessions" : [
       {
-        "kind" : "practice",
-        "date" : "2026-07-24",
-        "durationMinutes" : 45,
-        "name" : "Practice 1",
         "id" : "formulae-2026-r14-s1",
-        "timeLocal" : "07:30"
-      },
-      {
         "kind" : "practice",
-        "date" : "2026-07-25",
-        "durationMinutes" : 45,
-        "name" : "Practice 2",
-        "id" : "formulae-2026-r14-s2",
-        "timeLocal" : "07:30"
-      },
-      {
-        "kind" : "qualifying",
-        "date" : "2026-07-25",
-        "durationMinutes" : 30,
-        "name" : "Qualifying",
-        "id" : "formulae-2026-r14-s3",
-        "timeLocal" : "09:40"
-      },
-      {
-        "kind" : "race",
-        "date" : "2026-07-26",
-        "durationMinutes" : 45,
-        "name" : "Race",
-        "id" : "formulae-2026-r14-s4",
-        "timeLocal" : "08:05"
-      }
-    ],
-    "circuitName" : "Tokyo Big Sight",
-    "roundNumber" : 14,
-    "id" : "formulae-2026-r14",
-    "seriesId" : "formulae",
-    "country" : "Japan",
-    "raceName" : "Tokyo E-Prix 1",
-    "city" : "Tokyo",
-    "countryCode" : "JP"
-  },
-  {
-    "sessions" : [
-      {
-        "kind" : "practice",
-        "date" : "2026-07-26",
-        "durationMinutes" : 45,
-        "name" : "Practice",
-        "id" : "formulae-2026-r15-s1",
-        "timeLocal" : "07:30"
-      },
-      {
-        "kind" : "qualifying",
-        "date" : "2026-07-26",
-        "durationMinutes" : 30,
-        "name" : "Qualifying",
-        "id" : "formulae-2026-r15-s2",
-        "timeLocal" : "09:40"
-      },
-      {
-        "kind" : "race",
-        "date" : "2026-07-27",
-        "durationMinutes" : 45,
-        "name" : "Race",
-        "id" : "formulae-2026-r15-s3",
-        "timeLocal" : "08:05"
-      }
-    ],
-    "circuitName" : "Tokyo Big Sight",
-    "roundNumber" : 15,
-    "id" : "formulae-2026-r15",
-    "seriesId" : "formulae",
-    "country" : "Japan",
-    "raceName" : "Tokyo E-Prix 2",
-    "city" : "Tokyo",
-    "countryCode" : "JP"
-  },
-  {
-    "sessions" : [
-      {
-        "kind" : "practice",
-        "date" : "2026-08-13",
+        "timeLocal" : "07:30",
         "durationMinutes" : 45,
         "name" : "Practice 1",
-        "id" : "formulae-2026-r16-s1",
-        "timeLocal" : "16:00"
+        "date" : "2026-07-24"
       },
       {
+        "id" : "formulae-2026-r14-s2",
         "kind" : "practice",
-        "date" : "2026-08-14",
+        "timeLocal" : "07:30",
         "durationMinutes" : 45,
         "name" : "Practice 2",
-        "id" : "formulae-2026-r16-s2",
-        "timeLocal" : "09:30"
+        "date" : "2026-07-25"
       },
       {
+        "id" : "formulae-2026-r14-s3",
         "kind" : "qualifying",
-        "date" : "2026-08-14",
+        "timeLocal" : "09:40",
         "durationMinutes" : 30,
         "name" : "Qualifying",
-        "id" : "formulae-2026-r16-s3",
-        "timeLocal" : "11:40"
+        "date" : "2026-07-25"
       },
       {
+        "id" : "formulae-2026-r14-s4",
         "kind" : "race",
-        "date" : "2026-08-15",
+        "timeLocal" : "08:05",
         "durationMinutes" : 45,
         "name" : "Race",
-        "id" : "formulae-2026-r16-s4",
-        "timeLocal" : "16:05"
+        "date" : "2026-07-26"
       }
     ],
-    "circuitName" : "ExCeL Circuit",
-    "roundNumber" : 16,
-    "id" : "formulae-2026-r16",
-    "seriesId" : "formulae",
-    "country" : "United Kingdom",
-    "raceName" : "London E-Prix 1",
-    "city" : "London",
-    "countryCode" : "GB"
+    "raceName" : "Tokyo E-Prix 1",
+    "id" : "formulae-2026-r14",
+    "roundNumber" : 14,
+    "countryCode" : "JP",
+    "circuitName" : "Tokyo Big Sight"
   },
   {
+    "city" : "Tokyo",
+    "country" : "Japan",
+    "seriesId" : "formulae",
     "sessions" : [
       {
+        "id" : "formulae-2026-r15-s1",
         "kind" : "practice",
-        "date" : "2026-08-15",
+        "timeLocal" : "07:30",
         "durationMinutes" : 45,
         "name" : "Practice",
-        "id" : "formulae-2026-r17-s1",
-        "timeLocal" : "09:30"
+        "date" : "2026-07-26"
       },
       {
+        "id" : "formulae-2026-r15-s2",
         "kind" : "qualifying",
-        "date" : "2026-08-15",
+        "timeLocal" : "09:40",
         "durationMinutes" : 30,
         "name" : "Qualifying",
-        "id" : "formulae-2026-r17-s2",
-        "timeLocal" : "11:40"
+        "date" : "2026-07-26"
       },
       {
+        "id" : "formulae-2026-r15-s3",
         "kind" : "race",
-        "date" : "2026-08-16",
+        "timeLocal" : "08:05",
         "durationMinutes" : 45,
         "name" : "Race",
-        "id" : "formulae-2026-r17-s3",
-        "timeLocal" : "16:05"
+        "date" : "2026-07-27"
       }
     ],
-    "circuitName" : "ExCeL Circuit",
-    "roundNumber" : 17,
-    "id" : "formulae-2026-r17",
-    "seriesId" : "formulae",
-    "country" : "United Kingdom",
-    "raceName" : "London E-Prix 2",
+    "raceName" : "Tokyo E-Prix 2",
+    "id" : "formulae-2026-r15",
+    "roundNumber" : 15,
+    "countryCode" : "JP",
+    "circuitName" : "Tokyo Big Sight"
+  },
+  {
     "city" : "London",
-    "countryCode" : "GB"
+    "country" : "United Kingdom",
+    "seriesId" : "formulae",
+    "sessions" : [
+      {
+        "id" : "formulae-2026-r16-s1",
+        "kind" : "practice",
+        "timeLocal" : "16:00",
+        "durationMinutes" : 45,
+        "name" : "Practice 1",
+        "date" : "2026-08-13"
+      },
+      {
+        "id" : "formulae-2026-r16-s2",
+        "kind" : "practice",
+        "timeLocal" : "09:30",
+        "durationMinutes" : 45,
+        "name" : "Practice 2",
+        "date" : "2026-08-14"
+      },
+      {
+        "id" : "formulae-2026-r16-s3",
+        "kind" : "qualifying",
+        "timeLocal" : "11:40",
+        "durationMinutes" : 30,
+        "name" : "Qualifying",
+        "date" : "2026-08-14"
+      },
+      {
+        "id" : "formulae-2026-r16-s4",
+        "kind" : "race",
+        "timeLocal" : "16:05",
+        "durationMinutes" : 45,
+        "name" : "Race",
+        "date" : "2026-08-15"
+      }
+    ],
+    "raceName" : "London E-Prix 1",
+    "id" : "formulae-2026-r16",
+    "roundNumber" : 16,
+    "countryCode" : "GB",
+    "circuitName" : "ExCeL Circuit"
+  },
+  {
+    "city" : "London",
+    "country" : "United Kingdom",
+    "seriesId" : "formulae",
+    "sessions" : [
+      {
+        "id" : "formulae-2026-r17-s1",
+        "kind" : "practice",
+        "timeLocal" : "09:30",
+        "durationMinutes" : 45,
+        "name" : "Practice",
+        "date" : "2026-08-15"
+      },
+      {
+        "id" : "formulae-2026-r17-s2",
+        "kind" : "qualifying",
+        "timeLocal" : "11:40",
+        "durationMinutes" : 30,
+        "name" : "Qualifying",
+        "date" : "2026-08-15"
+      },
+      {
+        "id" : "formulae-2026-r17-s3",
+        "kind" : "race",
+        "timeLocal" : "16:05",
+        "durationMinutes" : 45,
+        "name" : "Race",
+        "date" : "2026-08-16"
+      }
+    ],
+    "raceName" : "London E-Prix 2",
+    "id" : "formulae-2026-r17",
+    "roundNumber" : 17,
+    "countryCode" : "GB",
+    "circuitName" : "ExCeL Circuit"
   }
 ]
