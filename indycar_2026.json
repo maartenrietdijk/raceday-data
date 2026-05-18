@@ -1,18 +1,21 @@
 [
   {
-    "countryCode": "US",
+    "id": "indycar-2026-r01",
+    "seriesId": "indycar",
     "roundNumber": 1,
     "raceName": "Firestone Grand Prix of St. Petersburg",
-    "city": "St. Petersburg",
     "circuitName": "Streets of St. Petersburg",
+    "city": "St. Petersburg",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
+        "id": "indycar-2026-r01-s1",
+        "name": "Practice 1",
         "kind": "practice",
         "date": "2026-02-27",
         "timeLocal": "13:30",
-        "id": "indycar-2026-r01-s1",
         "durationMinutes": 60,
-        "name": "Practice 1",
         "results": [
           {
             "team": "Team Penske",
@@ -241,12 +244,12 @@
         ]
       },
       {
+        "id": "indycar-2026-r01-s1775253520619",
+        "name": "Practice 2",
         "kind": "practice",
         "date": "2026-02-28",
         "timeLocal": "09:30",
-        "id": "indycar-2026-r01-s1775253520619",
         "durationMinutes": 60,
-        "name": "Practice 2",
         "results": [
           {
             "team": "Arrow McLaren",
@@ -473,12 +476,12 @@
         ]
       },
       {
+        "id": "indycar-2026-r01-s1775253519278",
+        "name": "Qualifying",
         "kind": "qualifying",
         "date": "2026-02-28",
         "timeLocal": "16:30",
-        "id": "indycar-2026-r01-s1775253519278",
         "durationMinutes": 60,
-        "name": "Qualifying",
         "results": [
           {
             "team": "Team Penske",
@@ -682,12 +685,12 @@
         ]
       },
       {
+        "id": "indycar-2026-r01-s1775253518002",
+        "name": "Warmup",
         "kind": "practice",
         "date": "2026-03-01",
         "timeLocal": "09:00",
-        "id": "indycar-2026-r01-s1775253518002",
         "durationMinutes": 60,
-        "name": "Warmup",
         "results": [
           {
             "team": "Arrow McLaren",
@@ -916,12 +919,12 @@
         ]
       },
       {
+        "id": "indycar-2026-r01-s1775253516519",
+        "name": "Race",
         "kind": "race",
         "date": "2026-03-01",
         "timeLocal": "12:00",
-        "id": "indycar-2026-r01-s1775253516519",
         "durationMinutes": 120,
-        "name": "Race",
         "results": [
           {
             "team": "Chip Ganassi Racing",
@@ -1141,20 +1144,24 @@
           }
         ]
       }
-    ],
-    "id": "indycar-2026-r01",
-    "seriesId": "indycar",
-    "country": "United States"
+    ]
   },
   {
-    "city": "Phoenix",
+    "id": "indycar-2026-r02",
+    "seriesId": "indycar",
     "roundNumber": 2,
     "raceName": "Good Ranchers 250",
-    "seriesId": "indycar",
+    "circuitName": "Phoenix Raceway",
+    "city": "Phoenix",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
+        "id": "indycar-2026-r02-s1",
         "name": "Practice 1",
+        "kind": "race",
         "date": "2026-03-06",
+        "timeLocal": "10:00",
         "durationMinutes": 60,
         "results": [
           {
@@ -1382,14 +1389,14 @@
             "team": "A.J. Foyt Enterprises",
             "position": 25
           }
-        ],
-        "timeLocal": "10:00",
-        "kind": "race",
-        "id": "indycar-2026-r02-s1"
+        ]
       },
       {
+        "id": "indycar-2026-r02-s1775253755663",
         "name": "Qualifying",
+        "kind": "race",
         "date": "2026-03-06",
+        "timeLocal": "14:00",
         "durationMinutes": 60,
         "results": [
           {
@@ -1588,14 +1595,14 @@
             "position": 25,
             "driver": "W. Power"
           }
-        ],
-        "timeLocal": "14:00",
-        "kind": "race",
-        "id": "indycar-2026-r02-s1775253755663"
+        ]
       },
       {
+        "id": "indycar-2026-r02-s1775253753308",
         "name": "High Line & Final Practice",
+        "kind": "practice",
         "date": "2026-03-06",
+        "timeLocal": "16:30",
         "durationMinutes": 60,
         "results": [
           {
@@ -1820,14 +1827,14 @@
             "speed": ".000 mph",
             "laps": "0"
           }
-        ],
-        "timeLocal": "16:30",
-        "kind": "practice",
-        "id": "indycar-2026-r02-s1775253753308"
+        ]
       },
       {
+        "id": "indycar-2026-r02-s1775253750533",
         "name": "Race",
+        "kind": "race",
         "date": "2026-03-07",
+        "timeLocal": "15:00",
         "durationMinutes": 120,
         "results": [
           {
@@ -2055,31 +2062,27 @@
             "team": "Dale Coyne Racing",
             "position": "DNS"
           }
-        ],
-        "timeLocal": "15:00",
-        "kind": "race",
-        "id": "indycar-2026-r02-s1775253750533"
+        ]
       }
-    ],
-    "id": "indycar-2026-r02",
-    "country": "United States",
-    "circuitName": "Phoenix Raceway",
-    "countryCode": "US"
+    ]
   },
   {
-    "countryCode": "US",
+    "id": "indycar-2026-r03",
+    "seriesId": "indycar",
     "roundNumber": 3,
     "raceName": "Java House Grand Prix of Arlington",
-    "city": "Texas",
     "circuitName": "Streets of Arlington",
+    "city": "Texas",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
+        "id": "indycar-2026-r03-s1",
+        "name": "Practice 1",
         "kind": "practice",
         "date": "2026-03-13",
         "timeLocal": "16:30",
-        "id": "indycar-2026-r03-s1",
         "durationMinutes": 60,
-        "name": "Practice 1",
         "results": [
           {
             "team": "Team Penske",
@@ -2308,12 +2311,12 @@
         ]
       },
       {
+        "id": "indycar-2026-r03-s1775253885662",
+        "name": "Practice 2",
         "kind": "practice",
         "date": "2026-03-14",
         "timeLocal": "09:30",
-        "id": "indycar-2026-r03-s1775253885662",
         "durationMinutes": 60,
-        "name": "Practice 2",
         "results": [
           {
             "team": "Andretti Global",
@@ -2542,12 +2545,12 @@
         ]
       },
       {
+        "id": "indycar-2026-r03-s1775253884376",
+        "name": "Qualifying",
         "kind": "qualifying",
         "date": "2026-03-15",
         "timeLocal": "14:30",
-        "id": "indycar-2026-r03-s1775253884376",
         "durationMinutes": 60,
-        "name": "Qualifying",
         "results": [
           {
             "team": "Andretti Global",
@@ -2605,12 +2608,12 @@
         ]
       },
       {
+        "id": "indycar-2026-r03-s1775253882701",
+        "name": "Warmup",
         "kind": "practice",
         "date": "2026-03-15",
         "timeLocal": "09:30",
-        "id": "indycar-2026-r03-s1775253882701",
         "durationMinutes": 60,
-        "name": "Warmup",
         "results": [
           {
             "team": "Chip Ganassi Racing",
@@ -2839,12 +2842,12 @@
         ]
       },
       {
+        "id": "indycar-2026-r03-s1775253879785",
+        "name": "Race",
         "kind": "race",
         "date": "2026-03-15",
         "timeLocal": "11:30",
-        "id": "indycar-2026-r03-s1775253879785",
         "durationMinutes": 120,
-        "name": "Race",
         "results": [
           {
             "team": "Andretti Global",
@@ -3066,20 +3069,24 @@
           }
         ]
       }
-    ],
-    "id": "indycar-2026-r03",
-    "seriesId": "indycar",
-    "country": "United States"
+    ]
   },
   {
-    "city": "Birmingham",
+    "id": "indycar-2026-r04",
+    "seriesId": "indycar",
     "roundNumber": 4,
     "raceName": "Children's of Alabama Indy Grand Prix",
-    "seriesId": "indycar",
+    "circuitName": "Barber Motorsports Park",
+    "city": "Birmingham",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
+        "id": "indycar-2026-r04-s1775254027233",
         "name": "Practice 1",
+        "kind": "race",
         "date": "2026-03-27",
+        "timeLocal": "15:30",
         "durationMinutes": 60,
         "results": [
           {
@@ -3306,14 +3313,14 @@
             "team": "Chip Ganassi Racing",
             "position": 25
           }
-        ],
-        "timeLocal": "15:30",
-        "kind": "race",
-        "id": "indycar-2026-r04-s1775254027233"
+        ]
       },
       {
+        "id": "indycar-2026-r04-s1775254025860",
         "name": "Practice 2",
+        "kind": "practice",
         "date": "2026-03-28",
+        "timeLocal": "11:00",
         "durationMinutes": 60,
         "results": [
           {
@@ -3540,14 +3547,14 @@
             "team": "Rahal Letterman Lanigan Racing",
             "position": 25
           }
-        ],
-        "timeLocal": "11:00",
-        "kind": "practice",
-        "id": "indycar-2026-r04-s1775254025860"
+        ]
       },
       {
+        "id": "indycar-2026-r04-s1775254024453",
         "name": "Qualifying",
+        "kind": "qualifying",
         "date": "2026-03-28",
+        "timeLocal": "14:30",
         "durationMinutes": 60,
         "results": [
           {
@@ -3749,14 +3756,14 @@
             "interval": "+1.3768",
             "speed": "1'07.6109"
           }
-        ],
-        "timeLocal": "14:30",
-        "kind": "qualifying",
-        "id": "indycar-2026-r04-s1775254024453"
+        ]
       },
       {
+        "id": "indycar-2026-r04-s1775254021917",
         "name": "Warmup",
+        "kind": "practice",
         "date": "2026-03-29",
+        "timeLocal": "10:00",
         "durationMinutes": 60,
         "results": [
           {
@@ -3983,14 +3990,14 @@
             "team": "Juncos Hollinger Racing",
             "position": 25
           }
-        ],
-        "timeLocal": "10:00",
-        "kind": "practice",
-        "id": "indycar-2026-r04-s1775254021917"
+        ]
       },
       {
+        "id": "indycar-2026-r04-s1",
         "name": "Race",
+        "kind": "race",
         "date": "2026-03-29",
+        "timeLocal": "13:00",
         "durationMinutes": 120,
         "results": [
           {
@@ -4217,31 +4224,27 @@
             "team": "Rahal Letterman Lanigan Racing",
             "position": 25
           }
-        ],
-        "timeLocal": "13:00",
-        "kind": "race",
-        "id": "indycar-2026-r04-s1"
+        ]
       }
-    ],
-    "id": "indycar-2026-r04",
-    "country": "United States",
-    "circuitName": "Barber Motorsports Park",
-    "countryCode": "US"
+    ]
   },
   {
-    "countryCode": "US",
+    "id": "indycar-2026-r05",
+    "seriesId": "indycar",
     "roundNumber": 5,
     "raceName": "Acura Grand Prix of Long Beach",
-    "city": "Long Beach",
     "circuitName": "Streets of Long Beach",
+    "city": "Long Beach",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
+        "id": "indycar-2026-r05-s1775254118779",
+        "name": "Practice 1",
         "kind": "race",
         "date": "2026-04-17",
         "timeLocal": "18:00",
-        "id": "indycar-2026-r05-s1775254118779",
         "durationMinutes": 60,
-        "name": "Practice 1",
         "results": [
           {
             "team": "Andretti Global",
@@ -4446,12 +4449,12 @@
         ]
       },
       {
+        "id": "indycar-2026-r05-s1775254116620",
+        "name": "Practice 2",
         "kind": "race",
         "date": "2026-04-18",
         "timeLocal": "13:30",
-        "id": "indycar-2026-r05-s1775254116620",
         "durationMinutes": 60,
-        "name": "Practice 2",
         "results": [
           {
             "team": "Andretti Global",
@@ -4656,12 +4659,12 @@
         ]
       },
       {
+        "id": "indycar-2026-r05-s1775254115090",
+        "name": "Qualifying",
         "kind": "race",
         "date": "2026-04-18",
         "timeLocal": "18:30",
-        "id": "indycar-2026-r05-s1775254115090",
         "durationMinutes": 60,
-        "name": "Qualifying",
         "results": [
           {
             "team": "Meyer Shank Racing with Curb-Agajanian",
@@ -4841,12 +4844,12 @@
         ]
       },
       {
+        "id": "indycar-2026-r05-s1775254113522",
+        "name": "Warmup",
         "kind": "race",
         "date": "2026-04-19",
         "timeLocal": "13:00",
-        "id": "indycar-2026-r05-s1775254113522",
         "durationMinutes": 60,
-        "name": "Warmup",
         "results": [
           {
             "team": "Team Penske",
@@ -5051,12 +5054,12 @@
         ]
       },
       {
+        "id": "indycar-2026-r05-s1",
+        "name": "Race",
         "kind": "race",
         "date": "2026-04-19",
         "timeLocal": "17:30",
-        "id": "indycar-2026-r05-s1",
         "durationMinutes": 120,
-        "name": "Race",
         "results": [
           {
             "team": "Chip Ganassi Racing",
@@ -5260,20 +5263,24 @@
           }
         ]
       }
-    ],
-    "id": "indycar-2026-r05",
-    "seriesId": "indycar",
-    "country": "United States"
+    ]
   },
   {
-    "city": "Indianapolis",
+    "id": "indycar-2026-r06",
+    "seriesId": "indycar",
     "roundNumber": 6,
     "raceName": "Sonsio Grand Prix",
-    "seriesId": "indycar",
+    "circuitName": "IMS Road Course",
+    "city": "Indianapolis",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
+        "id": "indycar-2026-r06-s1",
         "name": "Practice 1",
+        "kind": "practice",
         "date": "2026-05-08",
+        "timeLocal": "09:00",
         "durationMinutes": 90,
         "results": [
           {
@@ -5500,14 +5507,14 @@
             "team": "Juncos Hollinger Racing",
             "position": 25
           }
-        ],
-        "timeLocal": "09:00",
-        "kind": "practice",
-        "id": "indycar-2026-r06-s1"
+        ]
       },
       {
+        "id": "indycar-2026-r06-s1777883790979",
         "name": "Practice 2",
+        "kind": "practice",
         "date": "2026-05-08",
+        "timeLocal": "13:00",
         "durationMinutes": 90,
         "results": [
           {
@@ -5734,14 +5741,14 @@
             "team": "Chip Ganassi Racing",
             "position": 25
           }
-        ],
-        "timeLocal": "13:00",
-        "kind": "practice",
-        "id": "indycar-2026-r06-s1777883790979"
+        ]
       },
       {
+        "id": "indycar-2026-r06-s1777883788641",
         "name": "Qualifying",
+        "kind": "qualifying",
         "date": "2026-05-09",
+        "timeLocal": "10:30",
         "durationMinutes": 89,
         "results": [
           {
@@ -5797,14 +5804,14 @@
             "team": "Rahal Letterman Lanigan Racing",
             "position": 6
           }
-        ],
-        "timeLocal": "10:30",
-        "kind": "qualifying",
-        "id": "indycar-2026-r06-s1777883788641"
+        ]
       },
       {
+        "id": "indycar-2026-r06-s1777883836400",
         "name": "Race",
+        "kind": "race",
         "date": "2026-05-09",
+        "timeLocal": "16:30",
         "durationMinutes": 89,
         "results": [
           {
@@ -6031,31 +6038,27 @@
             "team": "Ed Carpenter Racing",
             "position": 25
           }
-        ],
-        "timeLocal": "16:30",
-        "kind": "race",
-        "id": "indycar-2026-r06-s1777883836400"
+        ]
       }
-    ],
-    "id": "indycar-2026-r06",
-    "country": "United States",
-    "circuitName": "IMS Road Course",
-    "countryCode": "US"
+    ]
   },
   {
-    "countryCode": "US",
+    "id": "indycar-2026-r07",
+    "seriesId": "indycar",
     "roundNumber": 7,
     "raceName": "Indianapolis 500",
-    "city": "Indianapolis",
     "circuitName": "Indianapolis Motor Speedway",
+    "city": "Indianapolis",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
+        "id": "indycar-2026-r07-s3",
+        "name": "Practice 1",
         "kind": "practice",
         "date": "2026-05-12",
         "timeLocal": "12:00",
-        "id": "indycar-2026-r07-s3",
         "durationMinutes": 240,
-        "name": "Practice 1",
         "results": [
           {
             "team": "Chip Ganassi Racing",
@@ -6324,12 +6327,12 @@
         ]
       },
       {
+        "id": "indycar-2026-r07-s1778503981594",
+        "name": "Practice 2",
         "kind": "practice",
         "date": "2026-05-13",
         "timeLocal": "12:00",
-        "id": "indycar-2026-r07-s1778503981594",
         "durationMinutes": 360,
-        "name": "Practice 2",
         "results": [
           {
             "team": "Dreyer & Reinbold Racing",
@@ -6598,12 +6601,12 @@
         ]
       },
       {
+        "id": "indycar-2026-r07-s1778503976420",
+        "name": "Practice 3",
         "kind": "practice",
         "date": "2026-05-14",
         "timeLocal": "12:00",
-        "id": "indycar-2026-r07-s1778503976420",
         "durationMinutes": 360,
-        "name": "Practice 3",
         "results": [
           {
             "team": "Arrow McLaren",
@@ -6872,28 +6875,28 @@
         ]
       },
       {
-        "timeLocal": "12:00",
-        "kind": "practice",
-        "durationMinutes": 360,
         "id": "indycar-2026-r07-s1778745845515",
         "name": "Practice 4 (cancelled)",
-        "date": "2026-05-15"
+        "kind": "practice",
+        "date": "2026-05-15",
+        "timeLocal": "12:00",
+        "durationMinutes": 360
       },
       {
-        "timeLocal": "08:30",
-        "kind": "practice",
-        "durationMinutes": 120,
         "id": "indycar-2026-r07-s1778495504990",
         "name": "Practice 5 (cancelled)",
-        "date": "2026-05-16"
+        "kind": "practice",
+        "date": "2026-05-16",
+        "timeLocal": "08:30",
+        "durationMinutes": 120
       },
       {
+        "id": "indycar-2026-r07-s5",
+        "name": "Practice 6",
         "kind": "practice",
         "date": "2026-05-17",
         "timeLocal": "09:30",
-        "id": "indycar-2026-r07-s5",
         "durationMinutes": 60,
-        "name": "Practice 6",
         "results": [
           {
             "team": "Ed Carpenter Racing",
@@ -7156,12 +7159,12 @@
         ]
       },
       {
+        "id": "indycar-2026-r07-s4",
+        "name": "Qualifying",
         "kind": "qualifying",
         "date": "2026-05-17",
         "timeLocal": "12:00",
-        "id": "indycar-2026-r07-s4",
         "durationMinutes": 180,
-        "name": "Qualifying",
         "results": [
           {
             "team": "Meyer Shank Racing with Curb-Agajanian",
@@ -7430,12 +7433,12 @@
         ]
       },
       {
+        "id": "indycar-2026-r07-s1778495796818",
+        "name": "Top 12 Qualifying",
         "kind": "qualifying",
         "date": "2026-05-17",
         "timeLocal": "16:00",
-        "id": "indycar-2026-r07-s1778495796818",
         "durationMinutes": 75,
-        "name": "Top 12 Qualifying",
         "results": [
           {
             "team": "Meyer Shank Racing with Curb-Agajanian",
@@ -7536,12 +7539,12 @@
         ]
       },
       {
+        "id": "indycar-2026-r07-s1778495844360",
+        "name": "Fast 6 Qualifying",
         "kind": "qualifying",
         "date": "2026-05-17",
         "timeLocal": "18:00",
-        "id": "indycar-2026-r07-s1778495844360",
         "durationMinutes": 60,
-        "name": "Fast 6 Qualifying",
         "results": [
           {
             "team": "Chip Ganassi Racing",
@@ -7594,12 +7597,12 @@
         ]
       },
       {
-        "timeLocal": "13:00",
-        "kind": "practice",
-        "durationMinutes": 120,
         "id": "indycar-2026-r07-s1778504131012",
         "name": "Practice 7",
+        "kind": "practice",
         "date": "2026-05-18",
+        "timeLocal": "16:30",
+        "durationMinutes": 120,
         "results": [
           {
             "position": 1,
@@ -7891,242 +7894,241 @@
         ]
       },
       {
-        "timeLocal": "11:00",
-        "kind": "practice",
-        "durationMinutes": 120,
         "id": "indycar-2026-r07-s1778504161971",
         "name": "Practice 8",
-        "date": "2026-05-22"
+        "kind": "practice",
+        "date": "2026-05-22",
+        "timeLocal": "11:00",
+        "durationMinutes": 120
       },
       {
-        "timeLocal": "12:30",
-        "kind": "race",
-        "durationMinutes": 200,
         "id": "indycar-2026-r07-s1",
         "name": "Race",
-        "date": "2026-05-24"
+        "kind": "race",
+        "date": "2026-05-24",
+        "timeLocal": "12:30",
+        "durationMinutes": 200
       }
-    ],
-    "id": "indycar-2026-r07",
-    "seriesId": "indycar",
-    "country": "United States"
+    ]
   },
   {
-    "city": "Detroit",
+    "id": "indycar-2026-r08",
+    "seriesId": "indycar",
     "roundNumber": 8,
     "raceName": "Chevrolet Detroit Grand Prix",
-    "seriesId": "indycar",
+    "circuitName": "Detroit Street Circuit",
+    "city": "Detroit",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
-        "timeLocal": "12:30",
-        "kind": "race",
-        "durationMinutes": 120,
         "id": "indycar-2026-r08-s1",
         "name": "Race",
-        "date": "2026-05-31"
+        "kind": "race",
+        "date": "2026-05-31",
+        "timeLocal": "12:30",
+        "durationMinutes": 120
       }
-    ],
-    "id": "indycar-2026-r08",
-    "country": "United States",
-    "circuitName": "Detroit Street Circuit",
-    "countryCode": "US"
+    ]
   },
   {
-    "city": "Madison",
+    "id": "indycar-2026-r09",
+    "seriesId": "indycar",
     "roundNumber": 9,
     "raceName": "Bommarito Automotive Group 500",
-    "seriesId": "indycar",
+    "circuitName": "World Wide Technology Raceway",
+    "city": "Madison",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
-        "timeLocal": "21:00",
-        "kind": "race",
-        "durationMinutes": 120,
         "id": "indycar-2026-r09-s1",
         "name": "Race",
-        "date": "2026-06-07"
+        "kind": "race",
+        "date": "2026-06-07",
+        "timeLocal": "21:00",
+        "durationMinutes": 120
       }
-    ],
-    "id": "indycar-2026-r09",
-    "country": "United States",
-    "circuitName": "World Wide Technology Raceway",
-    "countryCode": "US"
+    ]
   },
   {
-    "city": "Elkhart Lake",
+    "id": "indycar-2026-r10",
+    "seriesId": "indycar",
     "roundNumber": 10,
     "raceName": "XPEL Grand Prix at Road America",
-    "seriesId": "indycar",
+    "circuitName": "Road America",
+    "city": "Elkhart Lake",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
-        "timeLocal": "14:00",
-        "kind": "race",
-        "durationMinutes": 120,
         "id": "indycar-2026-r10-s1",
         "name": "Race",
-        "date": "2026-06-21"
+        "kind": "race",
+        "date": "2026-06-21",
+        "timeLocal": "14:00",
+        "durationMinutes": 120
       }
-    ],
-    "id": "indycar-2026-r10",
-    "country": "United States",
-    "circuitName": "Road America",
-    "countryCode": "US"
+    ]
   },
   {
-    "city": "Lexington",
+    "id": "indycar-2026-r11",
+    "seriesId": "indycar",
     "roundNumber": 11,
     "raceName": "Honda Indy 200 at Mid-Ohio",
-    "seriesId": "indycar",
+    "circuitName": "Mid-Ohio Sports Car Course",
+    "city": "Lexington",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
-        "timeLocal": "12:30",
-        "kind": "race",
-        "durationMinutes": 120,
         "id": "indycar-2026-r11-s1",
         "name": "Race",
-        "date": "2026-07-05"
+        "kind": "race",
+        "date": "2026-07-05",
+        "timeLocal": "12:30",
+        "durationMinutes": 120
       }
-    ],
-    "id": "indycar-2026-r11",
-    "country": "United States",
-    "circuitName": "Mid-Ohio Sports Car Course",
-    "countryCode": "US"
+    ]
   },
   {
-    "city": "Lebanon",
+    "id": "indycar-2026-r12",
+    "seriesId": "indycar",
     "roundNumber": 12,
     "raceName": "Borchetta Bourbon Music City Grand Prix",
-    "seriesId": "indycar",
+    "circuitName": "Nashville Superspeedway",
+    "city": "Lebanon",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
-        "kind": "race",
-        "durationMinutes": 120,
         "id": "indycar-2026-r12-s1",
         "name": "Race",
-        "date": "2026-07-19"
+        "kind": "race",
+        "date": "2026-07-19",
+        "timeLocal": null,
+        "durationMinutes": 120
       }
-    ],
-    "id": "indycar-2026-r12",
-    "country": "United States",
-    "circuitName": "Nashville Superspeedway",
-    "countryCode": "US"
+    ]
   },
   {
-    "city": "Portland",
+    "id": "indycar-2026-r13",
+    "seriesId": "indycar",
     "roundNumber": 13,
     "raceName": "BITNILE.com Grand Prix of Portland",
-    "seriesId": "indycar",
+    "circuitName": "Portland International Raceway",
+    "city": "Portland",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
-        "timeLocal": "16:00",
-        "kind": "race",
-        "durationMinutes": 120,
         "id": "indycar-2026-r13-s1",
         "name": "Race",
-        "date": "2026-08-09"
+        "kind": "race",
+        "date": "2026-08-09",
+        "timeLocal": "16:00",
+        "durationMinutes": 120
       }
-    ],
-    "id": "indycar-2026-r13",
-    "country": "United States",
-    "circuitName": "Portland International Raceway",
-    "countryCode": "US"
+    ]
   },
   {
-    "city": "Markham",
+    "id": "indycar-2026-r14",
+    "seriesId": "indycar",
     "roundNumber": 14,
     "raceName": "Ontario Honda Dealers Indy at Markham",
-    "seriesId": "indycar",
+    "circuitName": "Streets of Markham",
+    "city": "Markham",
+    "country": "Canada",
+    "countryCode": "CA",
     "sessions": [
       {
-        "timeLocal": "12:00",
-        "kind": "race",
-        "durationMinutes": 120,
         "id": "indycar-2026-r14-s1",
         "name": "Race",
-        "date": "2026-08-16"
+        "kind": "race",
+        "date": "2026-08-16",
+        "timeLocal": "12:00",
+        "durationMinutes": 120
       }
-    ],
-    "id": "indycar-2026-r14",
-    "country": "Canada",
-    "circuitName": "Streets of Markham",
-    "countryCode": "CA"
+    ]
   },
   {
-    "city": "Washington D.C.",
+    "id": "indycar-2026-r15",
+    "seriesId": "indycar",
     "roundNumber": 15,
     "raceName": "Freedom 250 Grand Prix of Washington, D.C.",
-    "seriesId": "indycar",
+    "circuitName": "Streets of Washington",
+    "city": "Washington D.C.",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
-        "kind": "race",
-        "durationMinutes": 120,
         "id": "indycar-2026-r15-s1",
         "name": "Race",
-        "date": "2026-08-23"
+        "kind": "race",
+        "date": "2026-08-23",
+        "timeLocal": null,
+        "durationMinutes": 120
       }
-    ],
-    "id": "indycar-2026-r15",
-    "country": "United States",
-    "circuitName": "Streets of Washington",
-    "countryCode": "US"
+    ]
   },
   {
-    "city": "West Allis",
+    "id": "indycar-2026-r16",
+    "seriesId": "indycar",
     "roundNumber": 16,
     "raceName": "Snap-on Makers and Fixers 250",
-    "seriesId": "indycar",
+    "circuitName": "Milwaukee Mile",
+    "city": "West Allis",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
-        "timeLocal": "14:30",
-        "kind": "race",
-        "durationMinutes": 120,
         "id": "indycar-2026-r16-s1",
         "name": "Race",
-        "date": "2026-08-29"
+        "kind": "race",
+        "date": "2026-08-29",
+        "timeLocal": "14:30",
+        "durationMinutes": 120
       }
-    ],
-    "id": "indycar-2026-r16",
-    "country": "United States",
-    "circuitName": "Milwaukee Mile",
-    "countryCode": "US"
+    ]
   },
   {
-    "city": "West Allis",
+    "id": "indycar-2026-r17",
+    "seriesId": "indycar",
     "roundNumber": 17,
     "raceName": "Snap-on Milwaukee Mile 250",
-    "seriesId": "indycar",
+    "circuitName": "Milwaukee Mile",
+    "city": "West Allis",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
-        "timeLocal": "13:00",
-        "kind": "race",
-        "durationMinutes": 120,
         "id": "indycar-2026-r17-s1",
         "name": "Race",
-        "date": "2026-08-30"
+        "kind": "race",
+        "date": "2026-08-30",
+        "timeLocal": "13:00",
+        "durationMinutes": 120
       }
-    ],
-    "id": "indycar-2026-r17",
-    "country": "United States",
-    "circuitName": "Milwaukee Mile",
-    "countryCode": "US"
+    ]
   },
   {
-    "city": "Monterey",
+    "id": "indycar-2026-r18",
+    "seriesId": "indycar",
     "roundNumber": 18,
     "raceName": "Grand Prix of Monterey",
-    "seriesId": "indycar",
+    "circuitName": "WeatherTech Raceway Laguna Seca",
+    "city": "Monterey",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
-        "timeLocal": "14:30",
-        "kind": "race",
-        "durationMinutes": 120,
         "id": "indycar-2026-r18-s1",
         "name": "Race",
-        "date": "2026-09-06"
+        "kind": "race",
+        "date": "2026-09-06",
+        "timeLocal": "14:30",
+        "durationMinutes": 120
       }
-    ],
-    "id": "indycar-2026-r18",
-    "country": "United States",
-    "circuitName": "WeatherTech Raceway Laguna Seca",
-    "countryCode": "US"
+    ]
   }
 ]
