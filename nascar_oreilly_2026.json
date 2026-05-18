@@ -1990,11 +1990,29 @@
     "sessions": [
       {
         "id": "nascar_oreilly-2026-15-race",
+        "name": "Practice",
+        "kind": "practice",
+        "date": "2026-05-23",
+        "timeLocal": "11:00",
+        "durationMinutes": 50,
+        "isOval": true
+      },
+      {
+        "id": "nascar_oreilly-2026-15-s1779090504916",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-05-23",
+        "timeLocal": "12:05",
+        "durationMinutes": 55,
+        "isOval": true
+      },
+      {
+        "id": "nascar_oreilly-2026-15-s1779090502837",
         "name": "Race",
         "kind": "race",
         "date": "2026-05-23",
         "timeLocal": "17:00",
-        "durationMinutes": 60
+        "durationMinutes": 180
       }
     ]
   },
