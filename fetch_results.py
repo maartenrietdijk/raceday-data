@@ -356,6 +356,104 @@ def parse_results(html: str, url: str = "", series: str = "", is_oval: bool = Fa
     return results
 
 
+def parse_gtwc(html: str) -> list:
+    """
+    Parser for gt-world-challenge-europe.com results pages.
+    Table columns: Pos | Car# | Class | Drivers | Team | Car | Time | Laps | Gap
+    We only store: position, drivers, team, time, interval.
+    """
+    soup = BeautifulSoup(html, "html.parser")
+    table = soup.find("table")
+    if not table:
+        title = soup.find("title")
+        print(f"❌ No results table found. Page title: {title.get_text() if title else 'unknown'}")
+        raise ValueError("No results table found on page")
+
+    header_row = table.find("tr")
+    headers = [th.get_text(strip=True).upper() for th in header_row.find_all(["th", "td"])] if header_row else []
+    print(f"📋 GTWC columns: {headers}")
+
+    def col_idx(names):
+        for name in names:
+            try:
+                return headers.index(name)
+            except ValueError:
+                pass
+        return -1
+
+    pos_idx     = 0
+    driver_idx  = col_idx(["DRIVERS", "DRIVER"])
+    team_idx    = col_idx(["TEAM"])
+    time_idx    = col_idx(["TIME"])
+    gap_idx     = col_idx(["GAP"])
+
+    rows = table.find_all("tr")[1:]
+    results = []
+
+    for row in rows:
+        cols = row.find_all("td")
+        if len(cols) < 3:
+            continue
+
+        try:
+            # Position
+            pos_text = cols[pos_idx].get_text(strip=True)
+            position = int(pos_text) if pos_text.isdigit() else "DNF"
+
+            # Drivers — comma-separated in one cell
+            drivers = []
+            if driver_idx >= 0 and len(cols) > driver_idx:
+                raw = cols[driver_idx].get_text(strip=True)
+                # GTWC format: "Charles Weerts, Kelvin van der Linde"
+                parts = [p.strip() for p in raw.split(",") if p.strip()]
+                drivers = parts
+
+            # Team
+            team = ""
+            if team_idx >= 0 and len(cols) > team_idx:
+                team = cols[team_idx].get_text(strip=True)
+
+            # Time (P1 gets absolute time, rest gets gap)
+            time_val = ""
+            if time_idx >= 0 and len(cols) > time_idx:
+                time_val = cols[time_idx].get_text(strip=True)
+
+            # Gap
+            gap = ""
+            if gap_idx >= 0 and len(cols) > gap_idx:
+                gap = cols[gap_idx].get_text(strip=True)
+                if gap and not gap.startswith(("+", "-")):
+                    gap = "+" + gap
+
+            result = {"position": position}
+
+            if len(drivers) > 1:
+                result["drivers"] = drivers
+            elif drivers:
+                result["driver"] = drivers[0]
+
+            if team:
+                result["team"] = team
+
+            # P1 gets time, rest gets interval (gap)
+            if position == 1:
+                if time_val:
+                    result["time"] = time_val
+            else:
+                if gap:
+                    result["interval"] = gap
+                elif time_val:
+                    result["interval"] = time_val
+
+            results.append(result)
+
+        except Exception as e:
+            print(f"⚠️  Row error: {e}")
+            continue
+
+    return results
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--url",        required=True)
@@ -403,7 +501,13 @@ def main():
                 break
 
     print(f"📋 Is oval: {is_oval}, is_race: {is_race_session}")
-    results = parse_results(html, args.url, args.series, is_oval, is_race_session)
+
+    # Route to the correct parser based on URL
+    if "gt-world-challenge" in args.url:
+        print("🏁 Using GTWC parser")
+        results = parse_gtwc(html)
+    else:
+        results = parse_results(html, args.url, args.series, is_oval, is_race_session)
 
     if len(results) < 3:
         print(f"❌ Too few results ({len(results)}), aborting")
