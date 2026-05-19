@@ -41,6 +41,9 @@ SERIES_JSON = {
     "gtwce":        "gtwce_2026.json",
     "british_gt":   "british_gt_2026.json",
     "nls":          "nls_2026.json",
+    "gtwca_am":     "gtwca_am_2026.json",
+    "gtwca_as":     "gtwca_as_2026.json",
+    "gtwca_au":     "gtwca_au_2026.json",
 }
 
 # Rotate through different user agents to avoid detection
@@ -359,7 +362,7 @@ def parse_results(html: str, url: str = "", series: str = "", is_oval: bool = Fa
 
 def parse_gtwc(html: str) -> list:
     """
-    Parser for gt-world-challenge-europe/america results pages.
+    Parser for all SRO GT World Challenge sites (Europe, America, Asia, Australia).
     Stores: position, drivers, team, time (P1), interval + speed/laptime (P2+).
     """
     soup = BeautifulSoup(html, 'html.parser')
@@ -421,11 +424,9 @@ def parse_gtwc(html: str) -> list:
                 result['team'] = team
 
             if position == 1:
-                # P1: absolute time
                 if time_val:
                     result['time'] = time_val
             else:
-                # P2+: gap as interval, lap time as speed (shown as secondary label)
                 if gap:
                     result['interval'] = gap
                 if time_val:
@@ -437,6 +438,7 @@ def parse_gtwc(html: str) -> list:
             continue
 
     return results
+
 
 def main():
     parser = argparse.ArgumentParser()
@@ -486,8 +488,14 @@ def main():
 
     print(f"📋 Is oval: {is_oval}, is_race: {is_race_session}")
     # Route to the correct parser based on URL
-    if 'gt-world-challenge' in args.url:
-        print('Using GTWC parser')
+    gtwc_domains = [
+        'gt-world-challenge-europe',
+        'gt-world-challenge-america',
+        'gt-world-challenge-asia',
+        'gt-world-challenge-australia',
+    ]
+    if any(d in args.url for d in gtwc_domains):
+        print('🏁 Using GTWC parser')
         results = parse_gtwc(html)
     else:
         results = parse_results(html, args.url, args.series, is_oval, is_race_session)
