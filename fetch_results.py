@@ -358,6 +358,10 @@ def parse_results(html: str, url: str = "", series: str = "", is_oval: bool = Fa
 
 
 def parse_gtwc(html: str) -> list:
+    """
+    Parser for gt-world-challenge-europe/america results pages.
+    Stores: position, drivers, team, time (P1), interval + speed/laptime (P2+).
+    """
     soup = BeautifulSoup(html, 'html.parser')
     table = soup.find('table')
     if not table:
@@ -413,10 +417,19 @@ def parse_gtwc(html: str) -> list:
                 result['drivers'] = drivers
             elif drivers:
                 result['driver'] = drivers[0]
-            if team:     result['team'] = team
-            if time_val: result['time'] = time_val
-            if position != 1 and gap:
-                result['interval'] = gap
+            if team:
+                result['team'] = team
+
+            if position == 1:
+                # P1: absolute time
+                if time_val:
+                    result['time'] = time_val
+            else:
+                # P2+: gap as interval, lap time as speed (shown as secondary label)
+                if gap:
+                    result['interval'] = gap
+                if time_val:
+                    result['speed'] = time_val
 
             results.append(result)
         except Exception as e:
