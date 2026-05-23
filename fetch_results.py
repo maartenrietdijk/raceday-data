@@ -440,6 +440,105 @@ def parse_gtwc(html: str) -> list:
     return results
 
 
+def parse_british_gt(html: str) -> list:
+    """
+    Parser for British GT Championship results.
+    Columns: Pos | Car # | Class | Team | Drivers | Car | Time | Laps | Gap | Diff | AV MPH
+    Stores: position, number (car #), class, team, drivers, car, time (P1), interval (P2+), laps.
+    """
+    soup = BeautifulSoup(html, 'html.parser')
+    table = soup.find('table')
+    if not table:
+        title = soup.find('title')
+        print(f'No results table found. Page title: {title.get_text() if title else "unknown"}')
+        raise ValueError('No results table found on page')
+
+    header_row = table.find('tr')
+    headers = [th.get_text(strip=True).upper() for th in header_row.find_all(['th', 'td'])] if header_row else []
+    print(f'British GT columns: {headers}')
+
+    def col_idx(names):
+        for name in names:
+            try: return headers.index(name)
+            except ValueError: pass
+        return -1
+
+    pos_idx     = 0
+    number_idx  = col_idx(['CAR #', 'CAR#', '#'])
+    class_idx   = col_idx(['CLASS', 'CLS'])
+    team_idx    = col_idx(['TEAM'])
+    drivers_idx = col_idx(['DRIVERS', 'DRIVER'])
+    car_idx     = col_idx(['CAR'])
+    time_idx    = col_idx(['TIME'])
+    laps_idx    = col_idx(['LAPS'])
+    gap_idx     = col_idx(['GAP'])
+
+    results = []
+    for row in table.find_all('tr')[1:]:
+        cols = row.find_all('td')
+        if len(cols) < 4:
+            continue
+        try:
+            pos_text = cols[pos_idx].get_text(strip=True)
+            if pos_text.upper() == 'NS' or pos_text.upper() == 'DNS':
+                position = 'DNS'
+            elif pos_text.isdigit():
+                position = int(pos_text)
+            else:
+                position = 'DNF'
+
+            number = cols[number_idx].get_text(strip=True) if number_idx >= 0 and len(cols) > number_idx else ''
+            cls    = cols[class_idx].get_text(strip=True) if class_idx >= 0 and len(cols) > class_idx else ''
+            team   = cols[team_idx].get_text(strip=True) if team_idx >= 0 and len(cols) > team_idx else ''
+            laps   = cols[laps_idx].get_text(strip=True) if laps_idx >= 0 and len(cols) > laps_idx else ''
+
+            # Drivers: "FIRSTNAME LASTNAME, FIRSTNAME LASTNAME"
+            drivers = []
+            if drivers_idx >= 0 and len(cols) > drivers_idx:
+                raw = cols[drivers_idx].get_text(strip=True)
+                drivers = [d.strip() for d in raw.split(',') if d.strip()]
+
+            # Car model
+            car = cols[car_idx].get_text(strip=True) if car_idx >= 0 and len(cols) > car_idx else ''
+
+            # Time / Gap
+            time_val = cols[time_idx].get_text(strip=True) if time_idx >= 0 and len(cols) > time_idx else ''
+            gap_val  = cols[gap_idx].get_text(strip=True) if gap_idx >= 0 and len(cols) > gap_idx else ''
+
+            result = {'position': position}
+            if number:  result['number'] = number
+            if cls:     result['class'] = cls
+            if team:    result['team'] = team
+            if len(drivers) > 1:
+                result['drivers'] = drivers
+            elif drivers:
+                result['driver'] = drivers[0]
+            if car:     result['car'] = car
+            if laps:    result['laps'] = laps
+
+            if position == 'DNS':
+                results.append(result)
+                continue
+
+            if position == 1:
+                if time_val:
+                    result['time'] = time_val
+            else:
+                if gap_val:
+                    interval = gap_val if gap_val.startswith(('+', '-')) else '+' + gap_val
+                    result['interval'] = interval
+                if time_val:
+                    result['time'] = time_val
+
+            results.append(result)
+
+        except Exception as e:
+            print(f'Row error: {e}')
+            continue
+
+    return results
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--url",        required=True)
@@ -497,6 +596,9 @@ def main():
     if any(d in args.url for d in gtwc_domains):
         print('🏁 Using GTWC parser')
         results = parse_gtwc(html)
+    elif 'britishgt.com' in args.url:
+        print('🏁 Using British GT parser')
+        results = parse_british_gt(html)
     else:
         results = parse_results(html, args.url, args.series, is_oval, is_race_session)
 
