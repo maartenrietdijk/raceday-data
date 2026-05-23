@@ -1,415 +1,415 @@
 [
   {
-    "id": "british_gt-2026-r01",
-    "countryCode": "GB",
-    "sessions": [
+    "roundNumber" : 1,
+    "city" : "Silverstone",
+    "country" : "Great Britain",
+    "id" : "british_gt-2026-r01",
+    "countryCode" : "GB",
+    "seriesId" : "british_gt",
+    "sessions" : [
       {
-        "date": "2026-04-25",
-        "kind": "practice",
-        "name": "Free Practice 1",
-        "id": "british_gt-2026-r01-s1",
-        "durationMinutes": 60,
-        "timeLocal": "08:30"
+        "name" : "Free Practice 1",
+        "id" : "british_gt-2026-r01-s1",
+        "kind" : "practice",
+        "date" : "2026-04-25",
+        "durationMinutes" : 60,
+        "timeLocal" : "08:30"
       },
       {
-        "date": "2026-04-25",
-        "kind": "qualifying",
-        "name": "Pre-Qualifying",
-        "id": "british_gt-2026-r01-s1776787957171",
-        "durationMinutes": 60,
-        "timeLocal": "11:15"
+        "name" : "Pre-Qualifying",
+        "id" : "british_gt-2026-r01-s1776787957171",
+        "kind" : "qualifying",
+        "date" : "2026-04-25",
+        "durationMinutes" : 60,
+        "timeLocal" : "11:15"
       },
       {
-        "date": "2026-04-25",
-        "kind": "qualifying",
-        "name": "GT3 Qualifying 1",
-        "id": "british_gt-2026-r01-s1776787958747",
-        "durationMinutes": 14,
-        "timeLocal": "14:45"
+        "name" : "GT3 Qualifying 1",
+        "id" : "british_gt-2026-r01-s1776787958747",
+        "kind" : "qualifying",
+        "date" : "2026-04-25",
+        "durationMinutes" : 14,
+        "timeLocal" : "14:45"
       },
       {
-        "date": "2026-04-25",
-        "kind": "qualifying",
-        "name": "GT3 Qualifying 2",
-        "id": "british_gt-2026-r01-s1776788007041",
-        "durationMinutes": 14,
-        "timeLocal": "14:59"
+        "name" : "GT3 Qualifying 2",
+        "id" : "british_gt-2026-r01-s1776788007041",
+        "kind" : "qualifying",
+        "date" : "2026-04-25",
+        "durationMinutes" : 14,
+        "timeLocal" : "14:59"
       },
       {
-        "date": "2026-04-25",
-        "kind": "qualifying",
-        "name": "GT4 Qualifying 1",
-        "id": "british_gt-2026-r01-s1776788040381",
-        "durationMinutes": 14,
-        "timeLocal": "15:13"
+        "name" : "GT4 Qualifying 1",
+        "id" : "british_gt-2026-r01-s1776788040381",
+        "kind" : "qualifying",
+        "date" : "2026-04-25",
+        "durationMinutes" : 14,
+        "timeLocal" : "15:13"
       },
       {
-        "date": "2026-04-25",
-        "kind": "qualifying",
-        "name": "GT4 Qualifying 2",
-        "id": "british_gt-2026-r01-s1776788041984",
-        "durationMinutes": 14,
-        "timeLocal": "15:28"
+        "name" : "GT4 Qualifying 2",
+        "id" : "british_gt-2026-r01-s1776788041984",
+        "kind" : "qualifying",
+        "date" : "2026-04-25",
+        "durationMinutes" : 14,
+        "timeLocal" : "15:28"
       },
       {
-        "date": "2026-04-26",
-        "kind": "practice",
-        "name": "Warmup",
-        "id": "british_gt-2026-r01-s1776788094764",
-        "durationMinutes": 15,
-        "timeLocal": "08:40"
+        "name" : "Warmup",
+        "id" : "british_gt-2026-r01-s1776788094764",
+        "kind" : "practice",
+        "date" : "2026-04-26",
+        "durationMinutes" : 15,
+        "timeLocal" : "08:40"
       },
       {
-        "date": "2026-04-26",
-        "kind": "race",
-        "name": "Race",
-        "id": "british_gt-2026-r01-s1776788145563",
-        "durationMinutes": 180,
-        "timeLocal": "12:00"
+        "name" : "Race",
+        "id" : "british_gt-2026-r01-s1776788145563",
+        "kind" : "race",
+        "date" : "2026-04-26",
+        "durationMinutes" : 180,
+        "timeLocal" : "12:00"
       }
     ],
-    "city": "Silverstone",
-    "raceName": "Silverstone 500",
-    "circuitName": "Silverstone Circuit",
-    "roundNumber": 1,
-    "country": "Great Britain",
-    "seriesId": "british_gt"
+    "raceName" : "Silverstone 500",
+    "circuitName" : "Silverstone Circuit"
   },
   {
-    "id": "british_gt-2026-r02",
-    "countryCode": "GB",
-    "sessions": [
+    "roundNumber" : 2,
+    "city" : "Little Budworth",
+    "country" : "Great Britain",
+    "id" : "british_gt-2026-r02",
+    "countryCode" : "GB",
+    "seriesId" : "british_gt",
+    "sessions" : [
       {
-        "date": "2026-05-23",
-        "kind": "practice",
-        "name": "Free Practive 1",
-        "id": "british_gt-2026-r02-s1",
-        "durationMinutes": 60,
-        "timeLocal": "10:30",
-        "results": [
+        "kind" : "practice",
+        "timeLocal" : "10:30",
+        "results" : [
           {
-            "position": 1,
-            "driver": "67",
-            "number": "GT3",
-            "laps": "25",
-            "time": "1:32.502"
+            "number" : "GT3",
+            "laps" : "25",
+            "time" : "1:32.502",
+            "driver" : "67",
+            "position" : 1
           },
           {
-            "position": 2,
-            "driver": "63",
-            "number": "GT3",
-            "laps": "25",
-            "interval": "+1:32.831"
+            "number" : "GT3",
+            "laps" : "25",
+            "driver" : "63",
+            "interval" : "+1:32.831",
+            "position" : 2
           },
           {
-            "position": 3,
-            "driver": "77",
-            "number": "GT3",
-            "laps": "30",
-            "interval": "+1:32.897"
+            "number" : "GT3",
+            "laps" : "30",
+            "driver" : "77",
+            "interval" : "+1:32.897",
+            "position" : 3
           },
           {
-            "position": 4,
-            "driver": "78",
-            "number": "GT3",
-            "laps": "31",
-            "interval": "+1:33.360"
+            "number" : "GT3",
+            "laps" : "31",
+            "driver" : "78",
+            "interval" : "+1:33.360",
+            "position" : 4
           },
           {
-            "position": 5,
-            "driver": "44",
-            "number": "GT3",
-            "laps": "35",
-            "interval": "+1:33.512"
+            "number" : "GT3",
+            "laps" : "35",
+            "driver" : "44",
+            "interval" : "+1:33.512",
+            "position" : 5
           },
           {
-            "position": 6,
-            "driver": "18",
-            "number": "GT3",
-            "laps": "29",
-            "interval": "+1:33.541"
+            "number" : "GT3",
+            "laps" : "29",
+            "driver" : "18",
+            "interval" : "+1:33.541",
+            "position" : 6
           },
           {
-            "position": 7,
-            "driver": "90",
-            "number": "GT3",
-            "laps": "30",
-            "interval": "+1:33.580"
+            "number" : "GT3",
+            "laps" : "30",
+            "driver" : "90",
+            "interval" : "+1:33.580",
+            "position" : 7
           },
           {
-            "position": 8,
-            "driver": "7",
-            "number": "GT3",
-            "laps": "31",
-            "interval": "+1:33.750"
+            "number" : "GT3",
+            "laps" : "31",
+            "driver" : "7",
+            "interval" : "+1:33.750",
+            "position" : 8
           },
           {
-            "position": 9,
-            "driver": "13",
-            "number": "GT3",
-            "laps": "30",
-            "interval": "+1:33.770"
+            "number" : "GT3",
+            "laps" : "30",
+            "driver" : "13",
+            "interval" : "+1:33.770",
+            "position" : 9
           },
           {
-            "position": 10,
-            "driver": "9",
-            "number": "GT3",
-            "laps": "31",
-            "interval": "+1:33.830"
+            "number" : "GT3",
+            "laps" : "31",
+            "driver" : "9",
+            "interval" : "+1:33.830",
+            "position" : 10
           },
           {
-            "position": 11,
-            "driver": "71",
-            "number": "GT3",
-            "laps": "32",
-            "interval": "+1:34.166"
+            "number" : "GT3",
+            "laps" : "32",
+            "driver" : "71",
+            "interval" : "+1:34.166",
+            "position" : 11
           },
           {
-            "position": 12,
-            "driver": "55",
-            "number": "GT3",
-            "laps": "32",
-            "interval": "+1:34.267"
+            "number" : "GT3",
+            "laps" : "32",
+            "driver" : "55",
+            "interval" : "+1:34.267",
+            "position" : 12
           },
           {
-            "position": 13,
-            "driver": "15",
-            "number": "GT3",
-            "laps": "28",
-            "interval": "+1:34.334"
+            "number" : "GT3",
+            "laps" : "28",
+            "driver" : "15",
+            "interval" : "+1:34.334",
+            "position" : 13
           },
           {
-            "position": 14,
-            "driver": "27",
-            "number": "GT4",
-            "laps": "16",
-            "interval": "+1:41.517"
+            "number" : "GT4",
+            "laps" : "16",
+            "driver" : "27",
+            "interval" : "+1:41.517",
+            "position" : 14
           },
           {
-            "position": 15,
-            "driver": "42",
-            "number": "GT4",
-            "laps": "22",
-            "interval": "+1:41.935"
+            "number" : "GT4",
+            "laps" : "22",
+            "driver" : "42",
+            "interval" : "+1:41.935",
+            "position" : 15
           },
           {
-            "position": 16,
-            "driver": "8",
-            "number": "GT4",
-            "laps": "26",
-            "interval": "+1:42.416"
+            "number" : "GT4",
+            "laps" : "26",
+            "driver" : "8",
+            "interval" : "+1:42.416",
+            "position" : 16
           },
           {
-            "position": 17,
-            "driver": "74",
-            "number": "GT4",
-            "laps": "27",
-            "interval": "+1:42.475"
+            "number" : "GT4",
+            "laps" : "27",
+            "driver" : "74",
+            "interval" : "+1:42.475",
+            "position" : 17
           },
           {
-            "position": 18,
-            "driver": "21",
-            "number": "GT4",
-            "laps": "22",
-            "interval": "+1:42.498"
+            "number" : "GT4",
+            "laps" : "22",
+            "driver" : "21",
+            "interval" : "+1:42.498",
+            "position" : 18
           },
           {
-            "position": 19,
-            "driver": "59",
-            "number": "GT4",
-            "laps": "24",
-            "interval": "+1:42.979"
+            "number" : "GT4",
+            "laps" : "24",
+            "driver" : "59",
+            "interval" : "+1:42.979",
+            "position" : 19
           },
           {
-            "position": 20,
-            "driver": "24",
-            "number": "GT4",
-            "laps": "25",
-            "interval": "+1:43.086"
+            "number" : "GT4",
+            "laps" : "25",
+            "driver" : "24",
+            "interval" : "+1:43.086",
+            "position" : 20
           },
           {
-            "position": 21,
-            "driver": "84",
-            "number": "GT4",
-            "laps": "16",
-            "interval": "+1:43.528"
+            "number" : "GT4",
+            "laps" : "16",
+            "driver" : "84",
+            "interval" : "+1:43.528",
+            "position" : 21
           },
           {
-            "position": 22,
-            "driver": "61",
-            "number": "GT4",
-            "laps": "30",
-            "interval": "+1:43.696"
+            "number" : "GT4",
+            "laps" : "30",
+            "driver" : "61",
+            "interval" : "+1:43.696",
+            "position" : 22
           },
           {
-            "position": 23,
-            "driver": "97",
-            "number": "GT4",
-            "laps": "14",
-            "interval": "+1:47.771"
+            "number" : "GT4",
+            "laps" : "14",
+            "driver" : "97",
+            "interval" : "+1:47.771",
+            "position" : 23
           },
           {
-            "position": "DNS",
-            "driver": "40",
-            "number": "GT4",
-            "laps": "0"
+            "number" : "GT4",
+            "laps" : "0",
+            "driver" : "40",
+            "position" : "DNS"
           }
-        ]
+        ],
+        "id" : "british_gt-2026-r02-s1",
+        "date" : "2026-05-23",
+        "durationMinutes" : 60,
+        "name" : "Free Practive 1"
       },
       {
-        "date": "2026-05-23",
-        "kind": "qualifying",
-        "name": "Pre-Qualifying",
-        "id": "british_gt-2026-r02-s1777107948996",
-        "durationMinutes": 60,
-        "timeLocal": "13:00"
+        "name" : "Pre-Qualifying",
+        "id" : "british_gt-2026-r02-s1777107948996",
+        "kind" : "qualifying",
+        "date" : "2026-05-23",
+        "durationMinutes" : 60,
+        "timeLocal" : "13:00"
       },
       {
-        "date": "2026-05-23",
-        "kind": "qualifying",
-        "name": "GT3 Qualifying 1",
-        "id": "british_gt-2026-r02-s1777107950987",
-        "durationMinutes": 14,
-        "timeLocal": "16:35"
+        "name" : "GT3 Qualifying 1",
+        "id" : "british_gt-2026-r02-s1777107950987",
+        "kind" : "qualifying",
+        "date" : "2026-05-23",
+        "durationMinutes" : 14,
+        "timeLocal" : "16:35"
       },
       {
-        "date": "2026-05-23",
-        "kind": "qualifying",
-        "name": "GT3 Qualifying 2",
-        "id": "british_gt-2026-r02-s1777107991783",
-        "durationMinutes": 14,
-        "timeLocal": "16:49"
+        "name" : "GT3 Qualifying 2",
+        "id" : "british_gt-2026-r02-s1777107991783",
+        "kind" : "qualifying",
+        "date" : "2026-05-23",
+        "durationMinutes" : 14,
+        "timeLocal" : "16:49"
       },
       {
-        "date": "2026-05-23",
-        "kind": "qualifying",
-        "name": "GT4 Qualifying 1",
-        "id": "british_gt-2026-r02-s1777107993899",
-        "durationMinutes": 14,
-        "timeLocal": "17:03"
+        "name" : "GT4 Qualifying 1",
+        "id" : "british_gt-2026-r02-s1777107993899",
+        "kind" : "qualifying",
+        "date" : "2026-05-23",
+        "durationMinutes" : 14,
+        "timeLocal" : "17:03"
       },
       {
-        "date": "2026-05-23",
-        "kind": "qualifying",
-        "name": "GT4 Qualifying 2",
-        "id": "british_gt-2026-r02-s1777107996178",
-        "durationMinutes": 14,
-        "timeLocal": "17:18"
+        "name" : "GT4 Qualifying 2",
+        "id" : "british_gt-2026-r02-s1777107996178",
+        "kind" : "qualifying",
+        "date" : "2026-05-23",
+        "durationMinutes" : 14,
+        "timeLocal" : "17:18"
       },
       {
-        "date": "2026-05-25",
-        "kind": "practice",
-        "name": "Warmup",
-        "id": "british_gt-2026-r02-s1777108094649",
-        "durationMinutes": 20,
-        "timeLocal": "10:15"
+        "name" : "Warmup",
+        "id" : "british_gt-2026-r02-s1777108094649",
+        "kind" : "practice",
+        "date" : "2026-05-25",
+        "durationMinutes" : 20,
+        "timeLocal" : "10:15"
       },
       {
-        "date": "2026-05-25",
-        "kind": "race",
-        "name": "Race 1",
-        "id": "british_gt-2026-r02-s1777108112488",
-        "durationMinutes": 60,
-        "timeLocal": "12:05"
+        "name" : "Race 1",
+        "id" : "british_gt-2026-r02-s1777108112488",
+        "kind" : "race",
+        "date" : "2026-05-25",
+        "durationMinutes" : 60,
+        "timeLocal" : "12:05"
       },
       {
-        "date": "2026-05-25",
-        "kind": "race",
-        "name": "Race 2",
-        "id": "british_gt-2026-r02-s1777108178808",
-        "durationMinutes": 60,
-        "timeLocal": "16:45"
+        "name" : "Race 2",
+        "id" : "british_gt-2026-r02-s1777108178808",
+        "kind" : "race",
+        "date" : "2026-05-25",
+        "durationMinutes" : 60,
+        "timeLocal" : "16:45"
       }
     ],
-    "city": "Little Budworth",
-    "raceName": "Oulton Park",
-    "circuitName": "Oulton Park",
-    "roundNumber": 2,
-    "country": "Great Britain",
-    "seriesId": "british_gt"
+    "raceName" : "Oulton Park",
+    "circuitName" : "Oulton Park"
   },
   {
-    "id": "british_gt-2026-r03",
-    "countryCode": "BE",
-    "sessions": [
+    "roundNumber" : 3,
+    "city" : "Spa",
+    "country" : "Belgium",
+    "id" : "british_gt-2026-r03",
+    "countryCode" : "BE",
+    "seriesId" : "british_gt",
+    "sessions" : [
       {
-        "date": "2026-06-21",
-        "kind": "race",
-        "name": "Race",
-        "id": "british_gt-2026-r03-s1",
-        "durationMinutes": 60,
-        "timeLocal": "14:20"
+        "name" : "Race",
+        "id" : "british_gt-2026-r03-s1",
+        "kind" : "race",
+        "date" : "2026-06-21",
+        "durationMinutes" : 60,
+        "timeLocal" : "14:20"
       }
     ],
-    "city": "Spa",
-    "raceName": "Spa-Francorchamps",
-    "circuitName": "Circuit de Spa-Francorchamps",
-    "roundNumber": 3,
-    "country": "Belgium",
-    "seriesId": "british_gt"
+    "raceName" : "Spa-Francorchamps",
+    "circuitName" : "Circuit de Spa-Francorchamps"
   },
   {
-    "id": "british_gt-2026-r04",
-    "countryCode": "GB",
-    "sessions": [
+    "roundNumber" : 4,
+    "city" : "Snetterton",
+    "country" : "Great Britain",
+    "id" : "british_gt-2026-r04",
+    "countryCode" : "GB",
+    "seriesId" : "british_gt",
+    "sessions" : [
       {
-        "date": "2026-08-15",
-        "kind": "race",
-        "name": "Race 1",
-        "id": "british_gt-2026-r04-s1",
-        "durationMinutes": 60
+        "name" : "Race 1",
+        "id" : "british_gt-2026-r04-s1",
+        "kind" : "race",
+        "date" : "2026-08-15",
+        "durationMinutes" : 60
       },
       {
-        "date": "2026-08-16",
-        "kind": "race",
-        "name": "Race 2",
-        "id": "british_gt-2026-r04-s1777108385217",
-        "durationMinutes": 60
+        "name" : "Race 2",
+        "id" : "british_gt-2026-r04-s1777108385217",
+        "kind" : "race",
+        "date" : "2026-08-16",
+        "durationMinutes" : 60
       }
     ],
-    "city": "Snetterton",
-    "raceName": "Snetterton",
-    "circuitName": "Snetterton Circuit",
-    "roundNumber": 4,
-    "country": "Great Britain",
-    "seriesId": "british_gt"
+    "raceName" : "Snetterton",
+    "circuitName" : "Snetterton Circuit"
   },
   {
-    "id": "british_gt-2026-r05",
-    "countryCode": "GB",
-    "sessions": [
+    "roundNumber" : 5,
+    "city" : "Donnington",
+    "country" : "Great Britain",
+    "id" : "british_gt-2026-r05",
+    "countryCode" : "GB",
+    "seriesId" : "british_gt",
+    "sessions" : [
       {
-        "date": "2026-09-06",
-        "kind": "race",
-        "name": "Race",
-        "id": "british_gt-2026-r05-s1",
-        "durationMinutes": 60
+        "name" : "Race",
+        "id" : "british_gt-2026-r05-s1",
+        "kind" : "race",
+        "date" : "2026-09-06",
+        "durationMinutes" : 60
       }
     ],
-    "city": "Donnington",
-    "raceName": "Donnington Park",
-    "circuitName": "Donington Park",
-    "roundNumber": 5,
-    "country": "Great Britain",
-    "seriesId": "british_gt"
+    "raceName" : "Donnington Park",
+    "circuitName" : "Donington Park"
   },
   {
-    "id": "british_gt-2026-r06",
-    "countryCode": "GB",
-    "sessions": [
+    "roundNumber" : 6,
+    "city" : "Kent",
+    "country" : "Great Britain",
+    "id" : "british_gt-2026-r06",
+    "countryCode" : "GB",
+    "seriesId" : "british_gt",
+    "sessions" : [
       {
-        "date": "2026-09-27",
-        "kind": "race",
-        "name": "Race",
-        "id": "british_gt-2026-r06-s1",
-        "durationMinutes": 60
+        "name" : "Race",
+        "id" : "british_gt-2026-r06-s1",
+        "kind" : "race",
+        "date" : "2026-09-27",
+        "durationMinutes" : 60
       }
     ],
-    "city": "Kent",
-    "raceName": "Brands Hatch",
-    "circuitName": "Brands Hatch Circuit",
-    "roundNumber": 6,
-    "country": "Great Britain",
-    "seriesId": "british_gt"
+    "raceName" : "Brands Hatch",
+    "circuitName" : "Brands Hatch Circuit"
   }
 ]
