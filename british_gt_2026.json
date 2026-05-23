@@ -1,750 +1,702 @@
 [
   {
-    "roundNumber": 1,
-    "city": "Silverstone",
-    "country": "Great Britain",
-    "id": "british_gt-2026-r01",
-    "countryCode": "GB",
-    "seriesId": "british_gt",
-    "sessions": [
+    "seriesId" : "british_gt",
+    "country" : "Great Britain",
+    "city" : "Silverstone",
+    "circuitName" : "Silverstone Circuit",
+    "countryCode" : "GB",
+    "sessions" : [
       {
-        "name": "Free Practice 1",
-        "id": "british_gt-2026-r01-s1",
-        "kind": "practice",
-        "date": "2026-04-25",
-        "durationMinutes": 60,
-        "timeLocal": "08:30"
+        "kind" : "practice",
+        "durationMinutes" : 60,
+        "id" : "british_gt-2026-r01-s1",
+        "name" : "Free Practice 1",
+        "date" : "2026-04-25",
+        "timeLocal" : "08:30"
       },
       {
-        "name": "Pre-Qualifying",
-        "id": "british_gt-2026-r01-s1776787957171",
-        "kind": "qualifying",
-        "date": "2026-04-25",
-        "durationMinutes": 60,
-        "timeLocal": "11:15"
+        "kind" : "qualifying",
+        "durationMinutes" : 60,
+        "id" : "british_gt-2026-r01-s1776787957171",
+        "name" : "Pre-Qualifying",
+        "date" : "2026-04-25",
+        "timeLocal" : "11:15"
       },
       {
-        "name": "GT3 Qualifying 1",
-        "id": "british_gt-2026-r01-s1776787958747",
-        "kind": "qualifying",
-        "date": "2026-04-25",
-        "durationMinutes": 14,
-        "timeLocal": "14:45"
+        "kind" : "qualifying",
+        "durationMinutes" : 14,
+        "id" : "british_gt-2026-r01-s1776787958747",
+        "name" : "GT3 Qualifying 1",
+        "date" : "2026-04-25",
+        "timeLocal" : "14:45"
       },
       {
-        "name": "GT3 Qualifying 2",
-        "id": "british_gt-2026-r01-s1776788007041",
-        "kind": "qualifying",
-        "date": "2026-04-25",
-        "durationMinutes": 14,
-        "timeLocal": "14:59"
+        "kind" : "qualifying",
+        "durationMinutes" : 14,
+        "id" : "british_gt-2026-r01-s1776788007041",
+        "name" : "GT3 Qualifying 2",
+        "date" : "2026-04-25",
+        "timeLocal" : "14:59"
       },
       {
-        "name": "GT4 Qualifying 1",
-        "id": "british_gt-2026-r01-s1776788040381",
-        "kind": "qualifying",
-        "date": "2026-04-25",
-        "durationMinutes": 14,
-        "timeLocal": "15:13"
+        "kind" : "qualifying",
+        "durationMinutes" : 14,
+        "id" : "british_gt-2026-r01-s1776788040381",
+        "name" : "GT4 Qualifying 1",
+        "date" : "2026-04-25",
+        "timeLocal" : "15:13"
       },
       {
-        "name": "GT4 Qualifying 2",
-        "id": "british_gt-2026-r01-s1776788041984",
-        "kind": "qualifying",
-        "date": "2026-04-25",
-        "durationMinutes": 14,
-        "timeLocal": "15:28"
+        "kind" : "qualifying",
+        "durationMinutes" : 14,
+        "id" : "british_gt-2026-r01-s1776788041984",
+        "name" : "GT4 Qualifying 2",
+        "date" : "2026-04-25",
+        "timeLocal" : "15:28"
       },
       {
-        "name": "Warmup",
-        "id": "british_gt-2026-r01-s1776788094764",
-        "kind": "practice",
-        "date": "2026-04-26",
-        "durationMinutes": 15,
-        "timeLocal": "08:40"
+        "kind" : "practice",
+        "durationMinutes" : 15,
+        "id" : "british_gt-2026-r01-s1776788094764",
+        "name" : "Warmup",
+        "date" : "2026-04-26",
+        "timeLocal" : "08:40"
       },
       {
-        "name": "Race",
-        "id": "british_gt-2026-r01-s1776788145563",
-        "kind": "race",
-        "date": "2026-04-26",
-        "durationMinutes": 180,
-        "timeLocal": "12:00"
+        "kind" : "race",
+        "durationMinutes" : 180,
+        "id" : "british_gt-2026-r01-s1776788145563",
+        "name" : "Race",
+        "date" : "2026-04-26",
+        "timeLocal" : "12:00"
       }
     ],
-    "raceName": "Silverstone 500",
-    "circuitName": "Silverstone Circuit"
+    "raceName" : "Silverstone 500",
+    "id" : "british_gt-2026-r01",
+    "roundNumber" : 1
   },
   {
-    "roundNumber": 2,
-    "city": "Little Budworth",
-    "country": "Great Britain",
-    "id": "british_gt-2026-r02",
-    "countryCode": "GB",
-    "seriesId": "british_gt",
-    "sessions": [
+    "seriesId" : "british_gt",
+    "country" : "Great Britain",
+    "city" : "Little Budworth",
+    "circuitName" : "Oulton Park",
+    "countryCode" : "GB",
+    "sessions" : [
       {
-        "kind": "practice",
-        "timeLocal": "10:30",
-        "results": [
+        "timeLocal" : "10:30",
+        "name" : "Free Practive 1",
+        "date" : "2026-05-23",
+        "results" : [
           {
-            "number": "GT3",
-            "laps": "25",
-            "time": "1:32.502",
-            "driver": "67",
-            "position": 1
+            "laps" : "25",
+            "time" : "1:32.502",
+            "driver" : "67",
+            "number" : "GT3",
+            "position" : 1
           },
           {
-            "number": "GT3",
-            "laps": "25",
-            "driver": "63",
-            "interval": "+1:32.831",
-            "position": 2
+            "number" : "GT3",
+            "laps" : "25",
+            "driver" : "63",
+            "interval" : "+1:32.831",
+            "position" : 2
           },
           {
-            "number": "GT3",
-            "laps": "30",
-            "driver": "77",
-            "interval": "+1:32.897",
-            "position": 3
+            "number" : "GT3",
+            "laps" : "30",
+            "driver" : "77",
+            "interval" : "+1:32.897",
+            "position" : 3
           },
           {
-            "number": "GT3",
-            "laps": "31",
-            "driver": "78",
-            "interval": "+1:33.360",
-            "position": 4
+            "number" : "GT3",
+            "laps" : "31",
+            "driver" : "78",
+            "interval" : "+1:33.360",
+            "position" : 4
           },
           {
-            "number": "GT3",
-            "laps": "35",
-            "driver": "44",
-            "interval": "+1:33.512",
-            "position": 5
+            "number" : "GT3",
+            "laps" : "35",
+            "driver" : "44",
+            "interval" : "+1:33.512",
+            "position" : 5
           },
           {
-            "number": "GT3",
-            "laps": "29",
-            "driver": "18",
-            "interval": "+1:33.541",
-            "position": 6
+            "driver" : "18",
+            "position" : 6,
+            "interval" : "+1:33.541",
+            "number" : "GT3",
+            "laps" : "29"
           },
           {
-            "number": "GT3",
-            "laps": "30",
-            "driver": "90",
-            "interval": "+1:33.580",
-            "position": 7
+            "driver" : "90",
+            "position" : 7,
+            "interval" : "+1:33.580",
+            "number" : "GT3",
+            "laps" : "30"
           },
           {
-            "number": "GT3",
-            "laps": "31",
-            "driver": "7",
-            "interval": "+1:33.750",
-            "position": 8
+            "driver" : "7",
+            "position" : 8,
+            "interval" : "+1:33.750",
+            "number" : "GT3",
+            "laps" : "31"
           },
           {
-            "number": "GT3",
-            "laps": "30",
-            "driver": "13",
-            "interval": "+1:33.770",
-            "position": 9
+            "driver" : "13",
+            "position" : 9,
+            "interval" : "+1:33.770",
+            "number" : "GT3",
+            "laps" : "30"
           },
           {
-            "number": "GT3",
-            "laps": "31",
-            "driver": "9",
-            "interval": "+1:33.830",
-            "position": 10
+            "driver" : "9",
+            "position" : 10,
+            "interval" : "+1:33.830",
+            "number" : "GT3",
+            "laps" : "31"
           },
           {
-            "number": "GT3",
-            "laps": "32",
-            "driver": "71",
-            "interval": "+1:34.166",
-            "position": 11
+            "driver" : "71",
+            "position" : 11,
+            "interval" : "+1:34.166",
+            "number" : "GT3",
+            "laps" : "32"
           },
           {
-            "number": "GT3",
-            "laps": "32",
-            "driver": "55",
-            "interval": "+1:34.267",
-            "position": 12
+            "driver" : "55",
+            "position" : 12,
+            "interval" : "+1:34.267",
+            "number" : "GT3",
+            "laps" : "32"
           },
           {
-            "number": "GT3",
-            "laps": "28",
-            "driver": "15",
-            "interval": "+1:34.334",
-            "position": 13
+            "interval" : "+1:34.334",
+            "driver" : "15",
+            "number" : "GT3",
+            "position" : 13,
+            "laps" : "28"
           },
           {
-            "number": "GT4",
-            "laps": "16",
-            "driver": "27",
-            "interval": "+1:41.517",
-            "position": 14
+            "interval" : "+1:41.517",
+            "driver" : "27",
+            "number" : "GT4",
+            "position" : 14,
+            "laps" : "16"
           },
           {
-            "number": "GT4",
-            "laps": "22",
-            "driver": "42",
-            "interval": "+1:41.935",
-            "position": 15
+            "interval" : "+1:41.935",
+            "driver" : "42",
+            "number" : "GT4",
+            "position" : 15,
+            "laps" : "22"
           },
           {
-            "number": "GT4",
-            "laps": "26",
-            "driver": "8",
-            "interval": "+1:42.416",
-            "position": 16
+            "interval" : "+1:42.416",
+            "driver" : "8",
+            "number" : "GT4",
+            "position" : 16,
+            "laps" : "26"
           },
           {
-            "number": "GT4",
-            "laps": "27",
-            "driver": "74",
-            "interval": "+1:42.475",
-            "position": 17
+            "interval" : "+1:42.475",
+            "driver" : "74",
+            "number" : "GT4",
+            "position" : 17,
+            "laps" : "27"
           },
           {
-            "number": "GT4",
-            "laps": "22",
-            "driver": "21",
-            "interval": "+1:42.498",
-            "position": 18
+            "interval" : "+1:42.498",
+            "driver" : "21",
+            "number" : "GT4",
+            "position" : 18,
+            "laps" : "22"
           },
           {
-            "number": "GT4",
-            "laps": "24",
-            "driver": "59",
-            "interval": "+1:42.979",
-            "position": 19
+            "interval" : "+1:42.979",
+            "driver" : "59",
+            "number" : "GT4",
+            "position" : 19,
+            "laps" : "24"
           },
           {
-            "number": "GT4",
-            "laps": "25",
-            "driver": "24",
-            "interval": "+1:43.086",
-            "position": 20
+            "interval" : "+1:43.086",
+            "driver" : "24",
+            "number" : "GT4",
+            "position" : 20,
+            "laps" : "25"
           },
           {
-            "number": "GT4",
-            "laps": "16",
-            "driver": "84",
-            "interval": "+1:43.528",
-            "position": 21
+            "interval" : "+1:43.528",
+            "driver" : "84",
+            "number" : "GT4",
+            "position" : 21,
+            "laps" : "16"
           },
           {
-            "number": "GT4",
-            "laps": "30",
-            "driver": "61",
-            "interval": "+1:43.696",
-            "position": 22
+            "number" : "GT4",
+            "interval" : "+1:43.696",
+            "driver" : "61",
+            "laps" : "30",
+            "position" : 22
           },
           {
-            "number": "GT4",
-            "laps": "14",
-            "driver": "97",
-            "interval": "+1:47.771",
-            "position": 23
+            "number" : "GT4",
+            "interval" : "+1:47.771",
+            "driver" : "97",
+            "laps" : "14",
+            "position" : 23
           },
           {
-            "number": "GT4",
-            "laps": "0",
-            "driver": "40",
-            "position": "DNS"
+            "number" : "GT4",
+            "driver" : "40",
+            "laps" : "0",
+            "position" : "DNS"
           }
         ],
-        "id": "british_gt-2026-r02-s1",
-        "date": "2026-05-23",
-        "durationMinutes": 60,
-        "name": "Free Practive 1"
+        "durationMinutes" : 60,
+        "id" : "british_gt-2026-r02-s1",
+        "kind" : "practice"
       },
       {
-        "name": "Pre-Qualifying",
-        "id": "british_gt-2026-r02-s1777107948996",
-        "kind": "qualifying",
-        "date": "2026-05-23",
-        "durationMinutes": 60,
-        "timeLocal": "13:00",
-        "results": [
+        "results" : [
           {
-            "position": 1,
-            "number": "63",
-            "class": "GT3",
-            "team": "Barwell Motorsport",
-            "drivers": [
+            "drivers" : [
               "Rob COLLARD",
               "Hugo COOK"
             ],
-            "car": "Lamborghini Huracan GT3 Evo2",
-            "laps": "24",
-            "time": "1:32.857"
+            "time" : "1:32.857",
+            "position" : 1,
+            "laps" : "24",
+            "number" : "63",
+            "team" : "Barwell Motorsport"
           },
           {
-            "position": 2,
-            "number": "77",
-            "class": "GT3",
-            "team": "Optimum Motorsport",
-            "drivers": [
+            "time" : "1:33.061",
+            "laps" : "29",
+            "number" : "77",
+            "interval" : "+0.204",
+            "drivers" : [
               "Morgan TILLBROOK",
               "Ben BARNICOAT"
             ],
-            "car": "McLaren 720S GT3 Evo",
-            "laps": "29",
-            "interval": "+0.204",
-            "time": "1:33.061"
+            "position" : 2,
+            "team" : "Optimum Motorsport"
           },
           {
-            "position": 3,
-            "number": "67",
-            "class": "GT3",
-            "team": "Orange Racing by JMH",
-            "drivers": [
+            "time" : "1:33.089",
+            "laps" : "25",
+            "number" : "67",
+            "interval" : "+0.232",
+            "drivers" : [
               "Simon ORANGE",
               "Marcus CLUTTON"
             ],
-            "car": "McLaren 720S GT3 Evo",
-            "laps": "25",
-            "interval": "+0.232",
-            "time": "1:33.089"
+            "position" : 3,
+            "team" : "Orange Racing by JMH"
           },
           {
-            "position": 4,
-            "number": "78",
-            "class": "GT3",
-            "team": "Barwell Motorsport",
-            "drivers": [
+            "time" : "1:33.106",
+            "laps" : "27",
+            "number" : "78",
+            "interval" : "+0.249",
+            "drivers" : [
               "Alex MARTIN",
               "Jarrod WABERSKI"
             ],
-            "car": "Lamborghini Huracan GT3 Evo2",
-            "laps": "27",
-            "interval": "+0.249",
-            "time": "1:33.106"
+            "position" : 4,
+            "team" : "Barwell Motorsport"
           },
           {
-            "position": 5,
-            "number": "55",
-            "class": "GT3",
-            "team": "Barwell Motorsport",
-            "drivers": [
+            "time" : "1:33.207",
+            "laps" : "29",
+            "number" : "55",
+            "interval" : "+0.350",
+            "drivers" : [
               "Duncan CAMERON",
               "Matt GRIFFIN"
             ],
-            "car": "Lamborghini Huracan GT3 Evo2",
-            "laps": "29",
-            "interval": "+0.350",
-            "time": "1:33.207"
+            "position" : 5,
+            "team" : "Barwell Motorsport"
           },
           {
-            "position": 6,
-            "number": "18",
-            "class": "GT3",
-            "team": "2 Seas Motorsport",
-            "drivers": [
+            "time" : "1:33.256",
+            "laps" : "33",
+            "number" : "18",
+            "interval" : "+0.399",
+            "drivers" : [
               "Kevin TSE",
               "Ben GREEN"
             ],
-            "car": "Mercedes-AMG GT3 Evo",
-            "laps": "33",
-            "interval": "+0.399",
-            "time": "1:33.256"
+            "position" : 6,
+            "team" : "2 Seas Motorsport"
           },
           {
-            "position": 7,
-            "number": "90",
-            "class": "GT3",
-            "team": "Optimum Motorsport",
-            "drivers": [
+            "time" : "1:33.331",
+            "laps" : "20",
+            "number" : "90",
+            "interval" : "+0.474",
+            "drivers" : [
               "Marc WARREN",
               "Jack BROWN"
             ],
-            "car": "McLaren 720S GT3 Evo",
-            "laps": "20",
-            "interval": "+0.474",
-            "time": "1:33.331"
+            "position" : 7,
+            "team" : "Optimum Motorsport"
           },
           {
-            "position": 8,
-            "number": "9",
-            "class": "GT3",
-            "team": "Paddock Motorsport",
-            "drivers": [
+            "time" : "1:33.472",
+            "laps" : "14",
+            "number" : "9",
+            "interval" : "+0.615",
+            "drivers" : [
               "Mark SMITH",
               "Martin PLOWMAN"
             ],
-            "car": "McLaren 720S GT3 Evo",
-            "laps": "14",
-            "interval": "+0.615",
-            "time": "1:33.472"
+            "position" : 8,
+            "team" : "Paddock Motorsport"
           },
           {
-            "position": 9,
-            "number": "15",
-            "class": "GT3",
-            "team": "2 Seas Motorsport",
-            "drivers": [
+            "time" : "1:33.475",
+            "laps" : "30",
+            "number" : "15",
+            "interval" : "+0.618",
+            "drivers" : [
               "Ian LOGGIE",
               "Aaron WALKER"
             ],
-            "car": "Mercedes-AMG GT3 Evo",
-            "laps": "30",
-            "interval": "+0.618",
-            "time": "1:33.475"
+            "position" : 9,
+            "team" : "2 Seas Motorsport"
           },
           {
-            "position": 10,
-            "number": "13",
-            "class": "GT3",
-            "team": "Rodin Motorsport",
-            "drivers": [
+            "time" : "1:33.548",
+            "laps" : "14",
+            "number" : "13",
+            "interval" : "+0.691",
+            "drivers" : [
               "Cameron CAMPBELL",
               "Joshua BUCHAN"
             ],
-            "car": "Ferrari 296 GT3 Evo",
-            "laps": "14",
-            "interval": "+0.691",
-            "time": "1:33.548"
+            "position" : 10,
+            "team" : "Rodin Motorsport"
           },
           {
-            "position": 11,
-            "number": "7",
-            "class": "GT3",
-            "team": "Beechdean Motorsport",
-            "drivers": [
+            "time" : "1:34.031",
+            "laps" : "15",
+            "number" : "7",
+            "interval" : "+1.174",
+            "drivers" : [
               "Andrew HOWARD",
               "Ross GUNN"
             ],
-            "car": "Aston Martin Vantage AMR GT3 Evo",
-            "laps": "15",
-            "interval": "+1.174",
-            "time": "1:34.031"
+            "position" : 11,
+            "team" : "Beechdean Motorsport"
           },
           {
-            "position": 12,
-            "number": "44",
-            "class": "GT3",
-            "team": "Century Motorsport",
-            "drivers": [
+            "time" : "1:34.134",
+            "laps" : "30",
+            "number" : "44",
+            "interval" : "+1.277",
+            "drivers" : [
               "Jonathon BEESON",
               "Charles CLARK"
             ],
-            "car": "BMW M4 GT3 Evo",
-            "laps": "30",
-            "interval": "+1.277",
-            "time": "1:34.134"
+            "position" : 12,
+            "team" : "Century Motorsport"
           },
           {
-            "position": 13,
-            "number": "71",
-            "class": "GT3",
-            "team": "Mahiki Racing",
-            "drivers": [
+            "time" : "1:34.859",
+            "laps" : "31",
+            "number" : "71",
+            "interval" : "+2.002",
+            "drivers" : [
               "Matt TOPHAM",
               "Luke GARLICK"
             ],
-            "car": "McLaren 720S GT3 Evo",
-            "laps": "31",
-            "interval": "+2.002",
-            "time": "1:34.859"
+            "position" : 13,
+            "team" : "Mahiki Racing"
           },
           {
-            "position": 14,
-            "number": "8",
-            "class": "GT4",
-            "team": "Toro Verde GT",
-            "drivers": [
+            "laps" : "21",
+            "drivers" : [
               "Ian DUGGAN",
               "Tom BRADSHAW"
             ],
-            "car": "Porsche 718 Cayman GT4 RS CS",
-            "laps": "21",
-            "interval": "+9.383",
-            "time": "1:42.240"
+            "interval" : "+9.383",
+            "number" : "8",
+            "position" : 14,
+            "team" : "Toro Verde GT",
+            "time" : "1:42.240"
           },
           {
-            "position": 15,
-            "number": "21",
-            "class": "GT4",
-            "team": "MK Racing",
-            "drivers": [
+            "laps" : "19",
+            "drivers" : [
               "Will ORTON",
               "Jessica HAWKINS"
             ],
-            "car": "Aston Martin Vantage AMR GT4 Evo",
-            "laps": "19",
-            "interval": "+9.400",
-            "time": "1:42.257"
+            "interval" : "+9.400",
+            "number" : "21",
+            "position" : 15,
+            "team" : "MK Racing",
+            "time" : "1:42.257"
           },
           {
-            "position": 16,
-            "number": "61",
-            "class": "GT4",
-            "team": "WSR FlexiFly",
-            "drivers": [
+            "laps" : "28",
+            "drivers" : [
               "Ernie GRAHAM",
               "Colin TURKINGTON"
             ],
-            "car": "BMW M4 GT4 Evo",
-            "laps": "28",
-            "interval": "+9.508",
-            "time": "1:42.365"
+            "interval" : "+9.508",
+            "number" : "61",
+            "position" : 16,
+            "team" : "WSR FlexiFly",
+            "time" : "1:42.365"
           },
           {
-            "position": 17,
-            "number": "24",
-            "class": "GT4",
-            "team": "Century Motorsport",
-            "drivers": [
+            "interval" : "+9.553",
+            "time" : "1:42.410",
+            "position" : 17,
+            "number" : "24",
+            "team" : "Century Motorsport",
+            "drivers" : [
               "Jack COLLINS",
               "Branden TEMPLETON"
             ],
-            "car": "BMW M4 GT4 Evo",
-            "laps": "25",
-            "interval": "+9.553",
-            "time": "1:42.410"
+            "laps" : "25"
           },
           {
-            "position": 18,
-            "number": "27",
-            "class": "GT4",
-            "team": "Grange Racing by FSR",
-            "drivers": [
+            "interval" : "+9.793",
+            "time" : "1:42.650",
+            "position" : 18,
+            "number" : "27",
+            "team" : "Grange Racing by FSR",
+            "drivers" : [
               "Daniel LAVERY",
               "Darren TURNER"
             ],
-            "car": "Aston Martin Vantage AMR GT4 Evo",
-            "laps": "18",
-            "interval": "+9.793",
-            "time": "1:42.650"
+            "laps" : "18"
           },
           {
-            "position": 19,
-            "number": "40",
-            "class": "GT4",
-            "team": "Townsend Racing powered by Fox Motorsport",
-            "drivers": [
+            "interval" : "+9.853",
+            "time" : "1:42.710",
+            "position" : 19,
+            "number" : "40",
+            "team" : "Townsend Racing powered by Fox Motorsport",
+            "drivers" : [
               "James TOWNSEND",
               "Joe WHEELER"
             ],
-            "car": "Aston Martin Vantage AMR GT4 Evo",
-            "laps": "29",
-            "interval": "+9.853",
-            "time": "1:42.710"
+            "laps" : "29"
           },
           {
-            "position": 20,
-            "number": "59",
-            "class": "GT4",
-            "team": "Optimum Motorsport",
-            "drivers": [
+            "interval" : "+10.042",
+            "time" : "1:42.899",
+            "position" : 20,
+            "number" : "59",
+            "team" : "Optimum Motorsport",
+            "drivers" : [
               "Luca HOPKINSON",
               "Josh STANTON"
             ],
-            "car": "McLaren Artura GT4",
-            "laps": "24",
-            "interval": "+10.042",
-            "time": "1:42.899"
+            "laps" : "24"
           },
           {
-            "position": 21,
-            "number": "74",
-            "class": "GT4",
-            "team": "Innovation Racing",
-            "drivers": [
+            "interval" : "+10.047",
+            "time" : "1:42.904",
+            "position" : 21,
+            "number" : "74",
+            "team" : "Innovation Racing",
+            "drivers" : [
               "Thomas HOLLAND",
               "Hadley SIMPSON"
             ],
-            "car": "Ginetta G56 GT4 Evo",
-            "laps": "15",
-            "interval": "+10.047",
-            "time": "1:42.904"
+            "laps" : "15"
           },
           {
-            "position": 22,
-            "number": "97",
-            "class": "GT4",
-            "team": "GBR Stratton Motorsport",
-            "drivers": [
+            "interval" : "+10.530",
+            "time" : "1:43.387",
+            "position" : 22,
+            "number" : "97",
+            "team" : "GBR Stratton Motorsport",
+            "drivers" : [
               "John HARTSHORNE",
               "Ronan PEARSON"
             ],
-            "car": "Aston Martin Vantage AMR GT4 Evo",
-            "laps": "24",
-            "interval": "+10.530",
-            "time": "1:43.387"
+            "laps" : "24"
           },
           {
-            "position": 23,
-            "number": "84",
-            "class": "GT4",
-            "team": "Mahiki Racing",
-            "drivers": [
+            "interval" : "+11.065",
+            "time" : "1:43.922",
+            "position" : 23,
+            "number" : "84",
+            "team" : "Mahiki Racing",
+            "drivers" : [
               "Revie LAKE",
               "Blake ANGLISS"
             ],
-            "car": "McLaren Artura GT4",
-            "laps": "27",
-            "interval": "+11.065",
-            "time": "1:43.922"
+            "laps" : "27"
           },
           {
-            "position": "DNS",
-            "number": "42",
-            "class": "GT4",
-            "team": "Toro Verde GT",
-            "drivers": [
+            "drivers" : [
               "Luke SHAW",
               "Jack MITCHELL"
             ],
-            "car": "Ginetta G56 GT4 Evo",
-            "laps": "0"
+            "position" : "DNS",
+            "laps" : "0",
+            "number" : "42",
+            "team" : "Toro Verde GT"
           }
-        ]
+        ],
+        "id" : "british_gt-2026-r02-s1777107948996",
+        "durationMinutes" : 60,
+        "date" : "2026-05-23",
+        "kind" : "qualifying",
+        "timeLocal" : "13:00",
+        "name" : "Pre-Qualifying"
       },
       {
-        "name": "GT3 Qualifying 1",
-        "id": "british_gt-2026-r02-s1777107950987",
-        "kind": "qualifying",
-        "date": "2026-05-23",
-        "durationMinutes": 14,
-        "timeLocal": "16:35"
+        "timeLocal" : "16:35",
+        "kind" : "qualifying",
+        "name" : "GT3 Qualifying 1",
+        "durationMinutes" : 14,
+        "id" : "british_gt-2026-r02-s1777107950987",
+        "date" : "2026-05-23"
       },
       {
-        "name": "GT3 Qualifying 2",
-        "id": "british_gt-2026-r02-s1777107991783",
-        "kind": "qualifying",
-        "date": "2026-05-23",
-        "durationMinutes": 14,
-        "timeLocal": "16:49"
+        "timeLocal" : "16:49",
+        "kind" : "qualifying",
+        "name" : "GT3 Qualifying 2",
+        "durationMinutes" : 14,
+        "id" : "british_gt-2026-r02-s1777107991783",
+        "date" : "2026-05-23"
       },
       {
-        "name": "GT4 Qualifying 1",
-        "id": "british_gt-2026-r02-s1777107993899",
-        "kind": "qualifying",
-        "date": "2026-05-23",
-        "durationMinutes": 14,
-        "timeLocal": "17:03"
+        "timeLocal" : "17:03",
+        "kind" : "qualifying",
+        "name" : "GT4 Qualifying 1",
+        "durationMinutes" : 14,
+        "id" : "british_gt-2026-r02-s1777107993899",
+        "date" : "2026-05-23"
       },
       {
-        "name": "GT4 Qualifying 2",
-        "id": "british_gt-2026-r02-s1777107996178",
-        "kind": "qualifying",
-        "date": "2026-05-23",
-        "durationMinutes": 14,
-        "timeLocal": "17:18"
+        "timeLocal" : "17:18",
+        "kind" : "qualifying",
+        "name" : "GT4 Qualifying 2",
+        "durationMinutes" : 14,
+        "id" : "british_gt-2026-r02-s1777107996178",
+        "date" : "2026-05-23"
       },
       {
-        "name": "Warmup",
-        "id": "british_gt-2026-r02-s1777108094649",
-        "kind": "practice",
-        "date": "2026-05-25",
-        "durationMinutes": 20,
-        "timeLocal": "10:15"
+        "timeLocal" : "10:15",
+        "kind" : "practice",
+        "name" : "Warmup",
+        "durationMinutes" : 20,
+        "id" : "british_gt-2026-r02-s1777108094649",
+        "date" : "2026-05-25"
       },
       {
-        "name": "Race 1",
-        "id": "british_gt-2026-r02-s1777108112488",
-        "kind": "race",
-        "date": "2026-05-25",
-        "durationMinutes": 60,
-        "timeLocal": "12:05"
+        "timeLocal" : "12:05",
+        "kind" : "race",
+        "name" : "Race 1",
+        "durationMinutes" : 60,
+        "id" : "british_gt-2026-r02-s1777108112488",
+        "date" : "2026-05-25"
       },
       {
-        "name": "Race 2",
-        "id": "british_gt-2026-r02-s1777108178808",
-        "kind": "race",
-        "date": "2026-05-25",
-        "durationMinutes": 60,
-        "timeLocal": "16:45"
+        "timeLocal" : "16:45",
+        "kind" : "race",
+        "name" : "Race 2",
+        "durationMinutes" : 60,
+        "id" : "british_gt-2026-r02-s1777108178808",
+        "date" : "2026-05-25"
       }
     ],
-    "raceName": "Oulton Park",
-    "circuitName": "Oulton Park"
+    "raceName" : "Oulton Park",
+    "id" : "british_gt-2026-r02",
+    "roundNumber" : 2
   },
   {
-    "roundNumber": 3,
-    "city": "Spa",
-    "country": "Belgium",
-    "id": "british_gt-2026-r03",
-    "countryCode": "BE",
-    "seriesId": "british_gt",
-    "sessions": [
+    "seriesId" : "british_gt",
+    "country" : "Belgium",
+    "city" : "Spa",
+    "circuitName" : "Circuit de Spa-Francorchamps",
+    "countryCode" : "BE",
+    "sessions" : [
       {
-        "name": "Race",
-        "id": "british_gt-2026-r03-s1",
-        "kind": "race",
-        "date": "2026-06-21",
-        "durationMinutes": 60,
-        "timeLocal": "14:20"
+        "timeLocal" : "14:20",
+        "kind" : "race",
+        "name" : "Race",
+        "durationMinutes" : 60,
+        "id" : "british_gt-2026-r03-s1",
+        "date" : "2026-06-21"
       }
     ],
-    "raceName": "Spa-Francorchamps",
-    "circuitName": "Circuit de Spa-Francorchamps"
+    "raceName" : "Spa-Francorchamps",
+    "id" : "british_gt-2026-r03",
+    "roundNumber" : 3
   },
   {
-    "roundNumber": 4,
-    "city": "Snetterton",
-    "country": "Great Britain",
-    "id": "british_gt-2026-r04",
-    "countryCode": "GB",
-    "seriesId": "british_gt",
-    "sessions": [
+    "seriesId" : "british_gt",
+    "country" : "Great Britain",
+    "city" : "Snetterton",
+    "circuitName" : "Snetterton Circuit",
+    "countryCode" : "GB",
+    "sessions" : [
       {
-        "name": "Race 1",
-        "id": "british_gt-2026-r04-s1",
-        "kind": "race",
-        "date": "2026-08-15",
-        "durationMinutes": 60
+        "kind" : "race",
+        "name" : "Race 1",
+        "durationMinutes" : 60,
+        "id" : "british_gt-2026-r04-s1",
+        "date" : "2026-08-15"
       },
       {
-        "name": "Race 2",
-        "id": "british_gt-2026-r04-s1777108385217",
-        "kind": "race",
-        "date": "2026-08-16",
-        "durationMinutes": 60
+        "kind" : "race",
+        "date" : "2026-08-16",
+        "name" : "Race 2",
+        "durationMinutes" : 60,
+        "id" : "british_gt-2026-r04-s1777108385217"
       }
     ],
-    "raceName": "Snetterton",
-    "circuitName": "Snetterton Circuit"
+    "raceName" : "Snetterton",
+    "id" : "british_gt-2026-r04",
+    "roundNumber" : 4
   },
   {
-    "roundNumber": 5,
-    "city": "Donnington",
-    "country": "Great Britain",
-    "id": "british_gt-2026-r05",
-    "countryCode": "GB",
-    "seriesId": "british_gt",
-    "sessions": [
+    "country" : "Great Britain",
+    "roundNumber" : 5,
+    "countryCode" : "GB",
+    "raceName" : "Donnington Park",
+    "circuitName" : "Donington Park",
+    "id" : "british_gt-2026-r05",
+    "seriesId" : "british_gt",
+    "sessions" : [
       {
-        "name": "Race",
-        "id": "british_gt-2026-r05-s1",
-        "kind": "race",
-        "date": "2026-09-06",
-        "durationMinutes": 60
+        "kind" : "race",
+        "date" : "2026-09-06",
+        "name" : "Race",
+        "durationMinutes" : 60,
+        "id" : "british_gt-2026-r05-s1"
       }
     ],
-    "raceName": "Donnington Park",
-    "circuitName": "Donington Park"
+    "city" : "Donnington"
   },
   {
-    "roundNumber": 6,
-    "city": "Kent",
-    "country": "Great Britain",
-    "id": "british_gt-2026-r06",
-    "countryCode": "GB",
-    "seriesId": "british_gt",
-    "sessions": [
+    "country" : "Great Britain",
+    "roundNumber" : 6,
+    "countryCode" : "GB",
+    "raceName" : "Brands Hatch",
+    "circuitName" : "Brands Hatch Circuit",
+    "id" : "british_gt-2026-r06",
+    "seriesId" : "british_gt",
+    "sessions" : [
       {
-        "name": "Race",
-        "id": "british_gt-2026-r06-s1",
-        "kind": "race",
-        "date": "2026-09-27",
-        "durationMinutes": 60
+        "kind" : "race",
+        "date" : "2026-09-27",
+        "name" : "Race",
+        "durationMinutes" : 60,
+        "id" : "british_gt-2026-r06-s1"
       }
     ],
-    "raceName": "Brands Hatch",
-    "circuitName": "Brands Hatch Circuit"
+    "city" : "Kent"
   }
 ]
