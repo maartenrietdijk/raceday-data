@@ -1,2479 +1,2479 @@
 [
   {
-    "id": "dtm-2026-r01",
-    "seriesId": "dtm",
-    "circuitName": "Red Bull Ring",
-    "raceName": "Red Bull Ring",
-    "city": "Spielberg",
-    "roundNumber": 1,
-    "country": "Austria",
-    "countryCode": "AT",
-    "sessions": [
+    "raceName" : "Red Bull Ring",
+    "country" : "Austria",
+    "countryCode" : "AT",
+    "circuitName" : "Red Bull Ring",
+    "seriesId" : "dtm",
+    "sessions" : [
       {
-        "name": "Practice 1",
-        "id": "dtm-2026-r01-s1",
-        "results": [
+        "id" : "dtm-2026-r01-s1",
+        "kind" : "practice",
+        "results" : [
           {
-            "position": 1,
-            "laps": "17",
-            "team": "Dörr Motorsport",
-            "time": "1'28.567",
-            "number": "25",
-            "driver": "B. Dörr"
+            "driver" : "B. Dörr",
+            "laps" : "17",
+            "number" : "25",
+            "team" : "Dörr Motorsport",
+            "time" : "1'28.567",
+            "position" : 1
           },
           {
-            "laps": "15",
-            "number": "22",
-            "speed": "1'28.769",
-            "driver": "L. Auer",
-            "team": "Mercedes-AMG Team Landgraf",
-            "interval": "+0.202",
-            "position": 2
+            "laps" : "15",
+            "team" : "Mercedes-AMG Team Landgraf",
+            "number" : "22",
+            "driver" : "L. Auer",
+            "speed" : "1'28.769",
+            "position" : 2,
+            "interval" : "+0.202"
           },
           {
-            "laps": "18",
-            "number": "48",
-            "speed": "1'28.791",
-            "driver": "J. Gounon",
-            "team": "Mercedes-AMG Team Mann-Filter",
-            "interval": "+0.224",
-            "position": 3
+            "laps" : "18",
+            "team" : "Mercedes-AMG Team Mann-Filter",
+            "number" : "48",
+            "driver" : "J. Gounon",
+            "speed" : "1'28.791",
+            "position" : 3,
+            "interval" : "+0.224"
           },
           {
-            "laps": "14",
-            "number": "69",
-            "speed": "1'29.024",
-            "driver": "T. Vermeulen",
-            "team": "Emil Frey Racing",
-            "interval": "+0.457",
-            "position": 4
+            "laps" : "14",
+            "team" : "Emil Frey Racing",
+            "number" : "69",
+            "driver" : "T. Vermeulen",
+            "speed" : "1'29.024",
+            "position" : 4,
+            "interval" : "+0.457"
           },
           {
-            "laps": "17",
-            "number": "80",
-            "speed": "1'29.158",
-            "driver": "M. Engel",
-            "team": "Mercedes-AMG Team Ravenol",
-            "interval": "+0.591",
-            "position": 5
+            "laps" : "17",
+            "team" : "Mercedes-AMG Team Ravenol",
+            "number" : "80",
+            "driver" : "M. Engel",
+            "speed" : "1'29.158",
+            "position" : 5,
+            "interval" : "+0.591"
           },
           {
-            "laps": "13",
-            "number": "84",
-            "speed": "1'29.155",
-            "driver": "T. Kalender",
-            "team": "Mercedes-AMG Team Landgraf",
-            "interval": "+0.588",
-            "position": 6
+            "laps" : "13",
+            "team" : "Mercedes-AMG Team Landgraf",
+            "number" : "84",
+            "driver" : "T. Kalender",
+            "speed" : "1'29.155",
+            "position" : 6,
+            "interval" : "+0.588"
           },
           {
-            "laps": "16",
-            "number": "16",
-            "speed": "1'29.195",
-            "driver": "T. Glock",
-            "team": "Dörr Motorsport",
-            "interval": "+0.628",
-            "position": 7
+            "laps" : "16",
+            "team" : "Dörr Motorsport",
+            "number" : "16",
+            "driver" : "T. Glock",
+            "speed" : "1'29.195",
+            "position" : 7,
+            "interval" : "+0.628"
           },
           {
-            "laps": "20",
-            "number": "91",
-            "speed": "1'29.209",
-            "driver": "T. Preining",
-            "team": "Manthey Racing",
-            "interval": "+0.642",
-            "position": 8
+            "laps" : "20",
+            "team" : "Manthey Racing",
+            "number" : "91",
+            "driver" : "T. Preining",
+            "speed" : "1'29.209",
+            "position" : 8,
+            "interval" : "+0.642"
           },
           {
-            "laps": "14",
-            "number": "14",
-            "speed": "1'29.304",
-            "driver": "M. Cairoli",
-            "team": "Emil Frey Racing",
-            "interval": "+0.737",
-            "position": 9
+            "laps" : "14",
+            "team" : "Emil Frey Racing",
+            "number" : "14",
+            "driver" : "M. Cairoli",
+            "speed" : "1'29.304",
+            "position" : 9,
+            "interval" : "+0.737"
           },
           {
-            "laps": "19",
-            "number": "29",
-            "speed": "1'29.392",
-            "driver": "B. Buus",
-            "team": "Land-Motorsport",
-            "interval": "+0.825",
-            "position": 10
+            "laps" : "19",
+            "team" : "Land-Motorsport",
+            "number" : "29",
+            "driver" : "B. Buus",
+            "speed" : "1'29.392",
+            "position" : 10,
+            "interval" : "+0.825"
           },
           {
-            "laps": "12",
-            "number": "11",
-            "speed": "1'29.483",
-            "driver": "M. Wittmann",
-            "team": "Schubert Motorsport",
-            "interval": "+0.916",
-            "position": 11
+            "laps" : "12",
+            "team" : "Schubert Motorsport",
+            "number" : "11",
+            "driver" : "M. Wittmann",
+            "speed" : "1'29.483",
+            "position" : 11,
+            "interval" : "+0.916"
           },
           {
-            "laps": "12",
-            "number": "64",
-            "speed": "1'29.518",
-            "driver": "F. Wiebelhaus",
-            "team": "HRT Ford Performance",
-            "interval": "+0.951",
-            "position": 12
+            "laps" : "12",
+            "team" : "HRT Ford Performance",
+            "number" : "64",
+            "driver" : "F. Wiebelhaus",
+            "speed" : "1'29.518",
+            "position" : 12,
+            "interval" : "+0.951"
           },
           {
-            "laps": "16",
-            "number": "3",
-            "speed": "1'29.578",
-            "driver": "K. van der Linde",
-            "team": "Schubert Motorsport",
-            "interval": "+1.011",
-            "position": 13
+            "laps" : "16",
+            "team" : "Schubert Motorsport",
+            "number" : "3",
+            "driver" : "K. van der Linde",
+            "speed" : "1'29.578",
+            "position" : 13,
+            "interval" : "+1.011"
           },
           {
-            "laps": "15",
-            "number": "36",
-            "speed": "1'29.706",
-            "driver": "A. Maini",
-            "team": "HRT Ford Performance",
-            "interval": "+1.139",
-            "position": 14
+            "laps" : "15",
+            "team" : "HRT Ford Performance",
+            "number" : "36",
+            "driver" : "A. Maini",
+            "speed" : "1'29.706",
+            "position" : 14,
+            "interval" : "+1.139"
           },
           {
-            "laps": "14",
-            "number": "90",
-            "speed": "1'30.047",
-            "driver": "R. Feller",
-            "team": "Manthey Racing",
-            "interval": "+1.480",
-            "position": 15
+            "laps" : "14",
+            "team" : "Manthey Racing",
+            "number" : "90",
+            "driver" : "R. Feller",
+            "speed" : "1'30.047",
+            "position" : 15,
+            "interval" : "+1.480"
           },
           {
-            "laps": "12",
-            "number": "130",
-            "speed": "1'30.057",
-            "driver": "L. Engstler",
-            "team": "Red Bull Team Abt",
-            "interval": "+1.490",
-            "position": 16
+            "laps" : "12",
+            "team" : "Red Bull Team Abt",
+            "number" : "130",
+            "driver" : "L. Engstler",
+            "speed" : "1'30.057",
+            "position" : 16,
+            "interval" : "+1.490"
           },
           {
-            "laps": "11",
-            "number": "19",
-            "speed": "1'30.103",
-            "driver": "M. Bortolotti",
-            "team": "TGI Team Lamborghini by GRT",
-            "interval": "+1.536",
-            "position": 17
+            "laps" : "11",
+            "team" : "TGI Team Lamborghini by GRT",
+            "number" : "19",
+            "driver" : "M. Bortolotti",
+            "speed" : "1'30.103",
+            "position" : 17,
+            "interval" : "+1.536"
           },
           {
-            "laps": "16",
-            "number": "8",
-            "speed": "1'30.373",
-            "driver": "N. Baert",
-            "team": "Comtoyou Racing",
-            "interval": "+1.806",
-            "position": 18
+            "laps" : "16",
+            "team" : "Comtoyou Racing",
+            "number" : "8",
+            "driver" : "N. Baert",
+            "speed" : "1'30.373",
+            "position" : 18,
+            "interval" : "+1.806"
           },
           {
-            "laps": "13",
-            "number": "7",
-            "speed": "1'30.155",
-            "driver": "N. Thiim",
-            "team": "Comtoyou Racing",
-            "interval": "+1.588",
-            "position": 19
+            "laps" : "13",
+            "team" : "Comtoyou Racing",
+            "number" : "7",
+            "driver" : "N. Thiim",
+            "speed" : "1'30.155",
+            "position" : 19,
+            "interval" : "+1.588"
           },
           {
-            "laps": "16",
-            "number": "63",
-            "speed": "1'30.175",
-            "driver": "P. Maximilian",
-            "team": "TGI Team Lamborghini by GRT",
-            "interval": "+1.608",
-            "position": 20
+            "laps" : "16",
+            "team" : "TGI Team Lamborghini by GRT",
+            "number" : "63",
+            "driver" : "P. Maximilian",
+            "speed" : "1'30.175",
+            "position" : 20,
+            "interval" : "+1.608"
           },
           {
-            "laps": "15",
-            "number": "10",
-            "speed": "1'30.470",
-            "driver": "M. Mapelli",
-            "team": "Red Bull Team Abt",
-            "interval": "+1.903",
-            "position": 21
+            "laps" : "15",
+            "team" : "Red Bull Team Abt",
+            "number" : "10",
+            "driver" : "M. Mapelli",
+            "speed" : "1'30.470",
+            "position" : 21,
+            "interval" : "+1.903"
           }
         ],
-        "date": "2026-04-24",
-        "kind": "practice",
-        "timeLocal": "11:05",
-        "durationMinutes": 45
+        "timeLocal" : "11:05",
+        "durationMinutes" : 45,
+        "date" : "2026-04-24",
+        "name" : "Practice 1"
       },
       {
-        "name": "Practice 2",
-        "id": "dtm-2026-r01-s2",
-        "results": [
+        "id" : "dtm-2026-r01-s2",
+        "kind" : "practice",
+        "results" : [
           {
-            "position": 1,
-            "laps": "9",
-            "team": "Mercedes-AMG Team Landgraf",
-            "time": "1'28.204",
-            "number": "22",
-            "driver": "L. Auer"
+            "driver" : "L. Auer",
+            "laps" : "9",
+            "number" : "22",
+            "team" : "Mercedes-AMG Team Landgraf",
+            "time" : "1'28.204",
+            "position" : 1
           },
           {
-            "laps": "9",
-            "number": "48",
-            "speed": "1'28.208",
-            "driver": "J. Gounon",
-            "team": "Mercedes-AMG Team Mann-Filter",
-            "interval": "+0.004",
-            "position": 2
+            "laps" : "9",
+            "team" : "Mercedes-AMG Team Mann-Filter",
+            "number" : "48",
+            "driver" : "J. Gounon",
+            "speed" : "1'28.208",
+            "position" : 2,
+            "interval" : "+0.004"
           },
           {
-            "laps": "10",
-            "number": "80",
-            "speed": "1'28.210",
-            "driver": "M. Engel",
-            "team": "Mercedes-AMG Team Ravenol",
-            "interval": "+0.006",
-            "position": 3
+            "laps" : "10",
+            "team" : "Mercedes-AMG Team Ravenol",
+            "number" : "80",
+            "driver" : "M. Engel",
+            "speed" : "1'28.210",
+            "position" : 3,
+            "interval" : "+0.006"
           },
           {
-            "laps": "10",
-            "number": "25",
-            "speed": "1'28.342",
-            "driver": "B. Dörr",
-            "team": "Dörr Motorsport",
-            "interval": "+0.138",
-            "position": 4
+            "laps" : "10",
+            "team" : "Dörr Motorsport",
+            "number" : "25",
+            "driver" : "B. Dörr",
+            "speed" : "1'28.342",
+            "position" : 4,
+            "interval" : "+0.138"
           },
           {
-            "laps": "10",
-            "number": "84",
-            "speed": "1'28.370",
-            "driver": "T. Kalender",
-            "team": "Mercedes-AMG Team Landgraf",
-            "interval": "+0.166",
-            "position": 5
+            "laps" : "10",
+            "team" : "Mercedes-AMG Team Landgraf",
+            "number" : "84",
+            "driver" : "T. Kalender",
+            "speed" : "1'28.370",
+            "position" : 5,
+            "interval" : "+0.166"
           },
           {
-            "laps": "9",
-            "number": "16",
-            "speed": "1'28.433",
-            "driver": "T. Glock",
-            "team": "Dörr Motorsport",
-            "interval": "+0.229",
-            "position": 6
+            "laps" : "9",
+            "team" : "Dörr Motorsport",
+            "number" : "16",
+            "driver" : "T. Glock",
+            "speed" : "1'28.433",
+            "position" : 6,
+            "interval" : "+0.229"
           },
           {
-            "laps": "9",
-            "number": "64",
-            "speed": "1'28.574",
-            "driver": "F. Wiebelhaus",
-            "team": "HRT Ford Performance",
-            "interval": "+0.370",
-            "position": 7
+            "laps" : "9",
+            "team" : "HRT Ford Performance",
+            "number" : "64",
+            "driver" : "F. Wiebelhaus",
+            "speed" : "1'28.574",
+            "position" : 7,
+            "interval" : "+0.370"
           },
           {
-            "laps": "9",
-            "number": "91",
-            "speed": "1'28.731",
-            "driver": "T. Preining",
-            "team": "Manthey Racing",
-            "interval": "+0.527",
-            "position": 8
+            "laps" : "9",
+            "team" : "Manthey Racing",
+            "number" : "91",
+            "driver" : "T. Preining",
+            "speed" : "1'28.731",
+            "position" : 8,
+            "interval" : "+0.527"
           },
           {
-            "laps": "6",
-            "number": "69",
-            "speed": "1'28.731",
-            "driver": "T. Vermeulen",
-            "team": "Emil Frey Racing",
-            "interval": "+0.527",
-            "position": 9
+            "laps" : "6",
+            "team" : "Emil Frey Racing",
+            "number" : "69",
+            "driver" : "T. Vermeulen",
+            "speed" : "1'28.731",
+            "position" : 9,
+            "interval" : "+0.527"
           },
           {
-            "laps": "7",
-            "number": "36",
-            "speed": "1'28.902",
-            "driver": "A. Maini",
-            "team": "HRT Ford Performance",
-            "interval": "+0.698",
-            "position": 10
+            "laps" : "7",
+            "team" : "HRT Ford Performance",
+            "number" : "36",
+            "driver" : "A. Maini",
+            "speed" : "1'28.902",
+            "position" : 10,
+            "interval" : "+0.698"
           },
           {
-            "laps": "8",
-            "number": "11",
-            "speed": "1'28.798",
-            "driver": "M. Wittmann",
-            "team": "Schubert Motorsport",
-            "interval": "+0.594",
-            "position": 11
+            "laps" : "8",
+            "team" : "Schubert Motorsport",
+            "number" : "11",
+            "driver" : "M. Wittmann",
+            "speed" : "1'28.798",
+            "position" : 11,
+            "interval" : "+0.594"
           },
           {
-            "laps": "9",
-            "number": "90",
-            "speed": "1'28.923",
-            "driver": "R. Feller",
-            "team": "Manthey Racing",
-            "interval": "+0.719",
-            "position": 12
+            "laps" : "9",
+            "team" : "Manthey Racing",
+            "number" : "90",
+            "driver" : "R. Feller",
+            "speed" : "1'28.923",
+            "position" : 12,
+            "interval" : "+0.719"
           },
           {
-            "laps": "8",
-            "number": "14",
-            "speed": "1'29.012",
-            "driver": "M. Cairoli",
-            "team": "Emil Frey Racing",
-            "interval": "+0.808",
-            "position": 13
+            "laps" : "8",
+            "team" : "Emil Frey Racing",
+            "number" : "14",
+            "driver" : "M. Cairoli",
+            "speed" : "1'29.012",
+            "position" : 13,
+            "interval" : "+0.808"
           },
           {
-            "laps": "8",
-            "number": "130",
-            "speed": "1'29.031",
-            "driver": "L. Engstler",
-            "team": "Red Bull Team Abt",
-            "interval": "+0.827",
-            "position": 14
+            "laps" : "8",
+            "team" : "Red Bull Team Abt",
+            "number" : "130",
+            "driver" : "L. Engstler",
+            "speed" : "1'29.031",
+            "position" : 14,
+            "interval" : "+0.827"
           },
           {
-            "laps": "8",
-            "number": "29",
-            "speed": "1'29.061",
-            "driver": "B. Buus",
-            "team": "Land-Motorsport",
-            "interval": "+0.857",
-            "position": 15
+            "laps" : "8",
+            "team" : "Land-Motorsport",
+            "number" : "29",
+            "driver" : "B. Buus",
+            "speed" : "1'29.061",
+            "position" : 15,
+            "interval" : "+0.857"
           },
           {
-            "laps": "8",
-            "number": "7",
-            "speed": "1'29.298",
-            "driver": "N. Thiim",
-            "team": "Comtoyou Racing",
-            "interval": "+1.094",
-            "position": 16
+            "laps" : "8",
+            "team" : "Comtoyou Racing",
+            "number" : "7",
+            "driver" : "N. Thiim",
+            "speed" : "1'29.298",
+            "position" : 16,
+            "interval" : "+1.094"
           },
           {
-            "laps": "11",
-            "number": "3",
-            "speed": "1'29.345",
-            "driver": "K. van der Linde",
-            "team": "Schubert Motorsport",
-            "interval": "+1.141",
-            "position": 17
+            "laps" : "11",
+            "team" : "Schubert Motorsport",
+            "number" : "3",
+            "driver" : "K. van der Linde",
+            "speed" : "1'29.345",
+            "position" : 17,
+            "interval" : "+1.141"
           },
           {
-            "laps": "5",
-            "number": "10",
-            "speed": "1'29.389",
-            "driver": "M. Mapelli",
-            "team": "Red Bull Team Abt",
-            "interval": "+1.185",
-            "position": 18
+            "laps" : "5",
+            "team" : "Red Bull Team Abt",
+            "number" : "10",
+            "driver" : "M. Mapelli",
+            "speed" : "1'29.389",
+            "position" : 18,
+            "interval" : "+1.185"
           },
           {
-            "laps": "11",
-            "number": "19",
-            "speed": "1'29.481",
-            "driver": "M. Bortolotti",
-            "team": "TGI Team Lamborghini by GRT",
-            "interval": "+1.277",
-            "position": 19
+            "laps" : "11",
+            "team" : "TGI Team Lamborghini by GRT",
+            "number" : "19",
+            "driver" : "M. Bortolotti",
+            "speed" : "1'29.481",
+            "position" : 19,
+            "interval" : "+1.277"
           },
           {
-            "laps": "9",
-            "number": "63",
-            "speed": "1'29.618",
-            "driver": "P. Maximilian",
-            "team": "TGI Team Lamborghini by GRT",
-            "interval": "+1.414",
-            "position": 20
+            "laps" : "9",
+            "team" : "TGI Team Lamborghini by GRT",
+            "number" : "63",
+            "driver" : "P. Maximilian",
+            "speed" : "1'29.618",
+            "position" : 20,
+            "interval" : "+1.414"
           },
           {
-            "laps": "8",
-            "number": "8",
-            "speed": "1'30.009",
-            "driver": "N. Baert",
-            "team": "Comtoyou Racing",
-            "interval": "+1.805",
-            "position": 21
+            "laps" : "8",
+            "team" : "Comtoyou Racing",
+            "number" : "8",
+            "driver" : "N. Baert",
+            "speed" : "1'30.009",
+            "position" : 21,
+            "interval" : "+1.805"
           }
         ],
-        "date": "2026-04-24",
-        "kind": "practice",
-        "timeLocal": "15:55",
-        "durationMinutes": 45
+        "timeLocal" : "15:55",
+        "durationMinutes" : 45,
+        "date" : "2026-04-24",
+        "name" : "Practice 2"
       },
       {
-        "name": "Qualifying 1",
-        "id": "dtm-2026-r01-s3",
-        "results": [
+        "id" : "dtm-2026-r01-s3",
+        "kind" : "qualifying",
+        "results" : [
           {
-            "position": 1,
-            "laps": "7",
-            "team": "Mercedes-AMG Team Ravenol",
-            "time": "1'27.403",
-            "number": "80",
-            "driver": "M. Engel"
+            "driver" : "M. Engel",
+            "laps" : "7",
+            "number" : "80",
+            "team" : "Mercedes-AMG Team Ravenol",
+            "time" : "1'27.403",
+            "position" : 1
           },
           {
-            "laps": "9",
-            "number": "25",
-            "speed": "1'27.418",
-            "driver": "B. Dörr",
-            "team": "Dörr Motorsport",
-            "interval": "+0.015",
-            "position": 2
+            "laps" : "9",
+            "team" : "Dörr Motorsport",
+            "number" : "25",
+            "driver" : "B. Dörr",
+            "speed" : "1'27.418",
+            "position" : 2,
+            "interval" : "+0.015"
           },
           {
-            "laps": "7",
-            "number": "91",
-            "speed": "1'27.451",
-            "driver": "T. Preining",
-            "team": "Manthey Racing",
-            "interval": "+0.048",
-            "position": 3
+            "laps" : "7",
+            "team" : "Manthey Racing",
+            "number" : "91",
+            "driver" : "T. Preining",
+            "speed" : "1'27.451",
+            "position" : 3,
+            "interval" : "+0.048"
           },
           {
-            "laps": "8",
-            "number": "22",
-            "speed": "1'27.606",
-            "driver": "L. Auer",
-            "team": "Mercedes-AMG Team Landgraf",
-            "interval": "+0.203",
-            "position": 4
+            "laps" : "8",
+            "team" : "Mercedes-AMG Team Landgraf",
+            "number" : "22",
+            "driver" : "L. Auer",
+            "speed" : "1'27.606",
+            "position" : 4,
+            "interval" : "+0.203"
           },
           {
-            "laps": "7",
-            "number": "29",
-            "speed": "1'27.650",
-            "driver": "B. Buus",
-            "team": "Land-Motorsport",
-            "interval": "+0.247",
-            "position": 5
+            "laps" : "7",
+            "team" : "Land-Motorsport",
+            "number" : "29",
+            "driver" : "B. Buus",
+            "speed" : "1'27.650",
+            "position" : 5,
+            "interval" : "+0.247"
           },
           {
-            "laps": "7",
-            "number": "48",
-            "speed": "1'27.664",
-            "driver": "J. Gounon",
-            "team": "Mercedes-AMG Team Mann-Filter",
-            "interval": "+0.261",
-            "position": 6
+            "laps" : "7",
+            "team" : "Mercedes-AMG Team Mann-Filter",
+            "number" : "48",
+            "driver" : "J. Gounon",
+            "speed" : "1'27.664",
+            "position" : 6,
+            "interval" : "+0.261"
           },
           {
-            "laps": "9",
-            "number": "90",
-            "speed": "1'27.673",
-            "driver": "R. Feller",
-            "team": "Manthey Racing",
-            "interval": "+0.270",
-            "position": 7
+            "laps" : "9",
+            "team" : "Manthey Racing",
+            "number" : "90",
+            "driver" : "R. Feller",
+            "speed" : "1'27.673",
+            "position" : 7,
+            "interval" : "+0.270"
           },
           {
-            "laps": "7",
-            "number": "14",
-            "speed": "1'27.767",
-            "driver": "M. Cairoli",
-            "team": "Emil Frey Racing",
-            "interval": "+0.364",
-            "position": 8
+            "laps" : "7",
+            "team" : "Emil Frey Racing",
+            "number" : "14",
+            "driver" : "M. Cairoli",
+            "speed" : "1'27.767",
+            "position" : 8,
+            "interval" : "+0.364"
           },
           {
-            "laps": "9",
-            "number": "16",
-            "speed": "1'27.773",
-            "driver": "T. Glock",
-            "team": "Dörr Motorsport",
-            "interval": "+0.370",
-            "position": 9
+            "laps" : "9",
+            "team" : "Dörr Motorsport",
+            "number" : "16",
+            "driver" : "T. Glock",
+            "speed" : "1'27.773",
+            "position" : 9,
+            "interval" : "+0.370"
           },
           {
-            "laps": "8",
-            "number": "84",
-            "speed": "1'27.869",
-            "driver": "T. Kalender",
-            "team": "Mercedes-AMG Team Landgraf",
-            "interval": "+0.466",
-            "position": 10
+            "laps" : "8",
+            "team" : "Mercedes-AMG Team Landgraf",
+            "number" : "84",
+            "driver" : "T. Kalender",
+            "speed" : "1'27.869",
+            "position" : 10,
+            "interval" : "+0.466"
           },
           {
-            "laps": "9",
-            "number": "3",
-            "speed": "1'27.950",
-            "driver": "K. van der Linde",
-            "team": "Schubert Motorsport",
-            "interval": "+0.547",
-            "position": 11
+            "laps" : "9",
+            "team" : "Schubert Motorsport",
+            "number" : "3",
+            "driver" : "K. van der Linde",
+            "speed" : "1'27.950",
+            "position" : 11,
+            "interval" : "+0.547"
           },
           {
-            "laps": "7",
-            "number": "7",
-            "speed": "1'28.016",
-            "driver": "N. Thiim",
-            "team": "Comtoyou Racing",
-            "interval": "+0.613",
-            "position": 12
+            "laps" : "7",
+            "team" : "Comtoyou Racing",
+            "number" : "7",
+            "driver" : "N. Thiim",
+            "speed" : "1'28.016",
+            "position" : 12,
+            "interval" : "+0.613"
           },
           {
-            "laps": "8",
-            "number": "64",
-            "speed": "1'28.032",
-            "driver": "F. Wiebelhaus",
-            "team": "HRT Ford Performance",
-            "interval": "+0.629",
-            "position": 13
+            "laps" : "8",
+            "team" : "HRT Ford Performance",
+            "number" : "64",
+            "driver" : "F. Wiebelhaus",
+            "speed" : "1'28.032",
+            "position" : 13,
+            "interval" : "+0.629"
           },
           {
-            "laps": "6",
-            "number": "69",
-            "speed": "1'28.051",
-            "driver": "T. Vermeulen",
-            "team": "Emil Frey Racing",
-            "interval": "+0.648",
-            "position": 14
+            "laps" : "6",
+            "team" : "Emil Frey Racing",
+            "number" : "69",
+            "driver" : "T. Vermeulen",
+            "speed" : "1'28.051",
+            "position" : 14,
+            "interval" : "+0.648"
           },
           {
-            "laps": "7",
-            "number": "11",
-            "speed": "1'28.161",
-            "driver": "M. Wittmann",
-            "team": "Schubert Motorsport",
-            "interval": "+0.758",
-            "position": 15
+            "laps" : "7",
+            "team" : "Schubert Motorsport",
+            "number" : "11",
+            "driver" : "M. Wittmann",
+            "speed" : "1'28.161",
+            "position" : 15,
+            "interval" : "+0.758"
           },
           {
-            "laps": "7",
-            "number": "36",
-            "speed": "1'28.197",
-            "driver": "A. Maini",
-            "team": "HRT Ford Performance",
-            "interval": "+0.794",
-            "position": 16
+            "laps" : "7",
+            "team" : "HRT Ford Performance",
+            "number" : "36",
+            "driver" : "A. Maini",
+            "speed" : "1'28.197",
+            "position" : 16,
+            "interval" : "+0.794"
           },
           {
-            "laps": "9",
-            "number": "19",
-            "speed": "1'28.197",
-            "driver": "M. Bortolotti",
-            "team": "TGI Team Lamborghini by GRT",
-            "interval": "+0.794",
-            "position": 17
+            "laps" : "9",
+            "team" : "TGI Team Lamborghini by GRT",
+            "number" : "19",
+            "driver" : "M. Bortolotti",
+            "speed" : "1'28.197",
+            "position" : 17,
+            "interval" : "+0.794"
           },
           {
-            "laps": "8",
-            "number": "8",
-            "speed": "1'28.256",
-            "driver": "N. Baert",
-            "team": "Comtoyou Racing",
-            "interval": "+0.853",
-            "position": 18
+            "laps" : "8",
+            "team" : "Comtoyou Racing",
+            "number" : "8",
+            "driver" : "N. Baert",
+            "speed" : "1'28.256",
+            "position" : 18,
+            "interval" : "+0.853"
           },
           {
-            "laps": "7",
-            "number": "130",
-            "speed": "1'28.336",
-            "driver": "L. Engstler",
-            "team": "Red Bull Team Abt",
-            "interval": "+0.933",
-            "position": 19
+            "laps" : "7",
+            "team" : "Red Bull Team Abt",
+            "number" : "130",
+            "driver" : "L. Engstler",
+            "speed" : "1'28.336",
+            "position" : 19,
+            "interval" : "+0.933"
           },
           {
-            "laps": "9",
-            "number": "10",
-            "speed": "1'28.923",
-            "driver": "M. Mapelli",
-            "team": "Red Bull Team Abt",
-            "interval": "+1.520",
-            "position": 20
+            "laps" : "9",
+            "team" : "Red Bull Team Abt",
+            "number" : "10",
+            "driver" : "M. Mapelli",
+            "speed" : "1'28.923",
+            "position" : 20,
+            "interval" : "+1.520"
           },
           {
-            "laps": "7",
-            "number": "63",
-            "speed": "1'29.007",
-            "driver": "P. Maximilian",
-            "team": "TGI Team Lamborghini by GRT",
-            "interval": "+1.604",
-            "position": 21
+            "laps" : "7",
+            "team" : "TGI Team Lamborghini by GRT",
+            "number" : "63",
+            "driver" : "P. Maximilian",
+            "speed" : "1'29.007",
+            "position" : 21,
+            "interval" : "+1.604"
           }
         ],
-        "date": "2026-04-25",
-        "kind": "qualifying",
-        "timeLocal": "09:10",
-        "durationMinutes": 30
+        "timeLocal" : "09:10",
+        "durationMinutes" : 30,
+        "date" : "2026-04-25",
+        "name" : "Qualifying 1"
       },
       {
-        "name": "Race 1",
-        "id": "dtm-2026-r01-s4",
-        "results": [
+        "id" : "dtm-2026-r01-s4",
+        "kind" : "race",
+        "results" : [
           {
-            "position": 1,
-            "laps": "38",
-            "team": "Manthey Racing",
-            "time": "1:00'11.576",
-            "number": "91",
-            "driver": "T. Preining"
+            "driver" : "T. Preining",
+            "laps" : "38",
+            "number" : "91",
+            "team" : "Manthey Racing",
+            "time" : "1:00'11.576",
+            "position" : 1
           },
           {
-            "laps": "38",
-            "number": "22",
-            "speed": "1:00'12.350",
-            "driver": "L. Auer",
-            "team": "Mercedes-AMG Team Landgraf",
-            "interval": "+0.774",
-            "position": 2
+            "laps" : "38",
+            "team" : "Mercedes-AMG Team Landgraf",
+            "number" : "22",
+            "driver" : "L. Auer",
+            "speed" : "1:00'12.350",
+            "position" : 2,
+            "interval" : "+0.774"
           },
           {
-            "laps": "38",
-            "number": "80",
-            "speed": "1:00'13.196",
-            "driver": "M. Engel",
-            "team": "Mercedes-AMG Team Ravenol",
-            "interval": "+1.620",
-            "position": 3
+            "laps" : "38",
+            "team" : "Mercedes-AMG Team Ravenol",
+            "number" : "80",
+            "driver" : "M. Engel",
+            "speed" : "1:00'13.196",
+            "position" : 3,
+            "interval" : "+1.620"
           },
           {
-            "laps": "38",
-            "number": "84",
-            "speed": "1:00'14.120",
-            "driver": "T. Kalender",
-            "team": "Mercedes-AMG Team Landgraf",
-            "interval": "+2.544",
-            "position": 4
+            "laps" : "38",
+            "team" : "Mercedes-AMG Team Landgraf",
+            "number" : "84",
+            "driver" : "T. Kalender",
+            "speed" : "1:00'14.120",
+            "position" : 4,
+            "interval" : "+2.544"
           },
           {
-            "laps": "38",
-            "number": "11",
-            "speed": "1:00'14.339",
-            "driver": "M. Wittmann",
-            "team": "Schubert Motorsport",
-            "interval": "+2.763",
-            "position": 5
+            "laps" : "38",
+            "team" : "Schubert Motorsport",
+            "number" : "11",
+            "driver" : "M. Wittmann",
+            "speed" : "1:00'14.339",
+            "position" : 5,
+            "interval" : "+2.763"
           },
           {
-            "laps": "38",
-            "number": "16",
-            "speed": "1:00'14.920",
-            "driver": "T. Glock",
-            "team": "Dörr Motorsport",
-            "interval": "+3.344",
-            "position": 6
+            "laps" : "38",
+            "team" : "Dörr Motorsport",
+            "number" : "16",
+            "driver" : "T. Glock",
+            "speed" : "1:00'14.920",
+            "position" : 6,
+            "interval" : "+3.344"
           },
           {
-            "laps": "38",
-            "number": "36",
-            "speed": "1:00'15.698",
-            "driver": "A. Maini",
-            "team": "HRT Ford Performance",
-            "interval": "+4.122",
-            "position": 7
+            "laps" : "38",
+            "team" : "HRT Ford Performance",
+            "number" : "36",
+            "driver" : "A. Maini",
+            "speed" : "1:00'15.698",
+            "position" : 7,
+            "interval" : "+4.122"
           },
           {
-            "laps": "38",
-            "number": "14",
-            "speed": "1:00'16.273",
-            "driver": "M. Cairoli",
-            "team": "Emil Frey Racing",
-            "interval": "+4.697",
-            "position": 8
+            "laps" : "38",
+            "team" : "Emil Frey Racing",
+            "number" : "14",
+            "driver" : "M. Cairoli",
+            "speed" : "1:00'16.273",
+            "position" : 8,
+            "interval" : "+4.697"
           },
           {
-            "laps": "38",
-            "number": "90",
-            "speed": "1:00'16.447",
-            "driver": "R. Feller",
-            "team": "Manthey Racing",
-            "interval": "+4.871",
-            "position": 9
+            "laps" : "38",
+            "team" : "Manthey Racing",
+            "number" : "90",
+            "driver" : "R. Feller",
+            "speed" : "1:00'16.447",
+            "position" : 9,
+            "interval" : "+4.871"
           },
           {
-            "laps": "38",
-            "number": "7",
-            "speed": "1:00'16.992",
-            "driver": "N. Thiim",
-            "team": "Comtoyou Racing",
-            "interval": "+5.416",
-            "position": 10
+            "laps" : "38",
+            "team" : "Comtoyou Racing",
+            "number" : "7",
+            "driver" : "N. Thiim",
+            "speed" : "1:00'16.992",
+            "position" : 10,
+            "interval" : "+5.416"
           },
           {
-            "laps": "38",
-            "number": "64",
-            "speed": "1:00'17.505",
-            "driver": "F. Wiebelhaus",
-            "team": "HRT Ford Performance",
-            "interval": "+5.929",
-            "position": 11
+            "laps" : "38",
+            "team" : "HRT Ford Performance",
+            "number" : "64",
+            "driver" : "F. Wiebelhaus",
+            "speed" : "1:00'17.505",
+            "position" : 11,
+            "interval" : "+5.929"
           },
           {
-            "laps": "38",
-            "number": "19",
-            "speed": "1:00'18.329",
-            "driver": "M. Bortolotti",
-            "team": "TGI Team Lamborghini by GRT",
-            "interval": "+6.753",
-            "position": 12
+            "laps" : "38",
+            "team" : "TGI Team Lamborghini by GRT",
+            "number" : "19",
+            "driver" : "M. Bortolotti",
+            "speed" : "1:00'18.329",
+            "position" : 12,
+            "interval" : "+6.753"
           },
           {
-            "laps": "38",
-            "number": "69",
-            "speed": "1:00'18.605",
-            "driver": "T. Vermeulen",
-            "team": "Emil Frey Racing",
-            "interval": "+7.029",
-            "position": 13
+            "laps" : "38",
+            "team" : "Emil Frey Racing",
+            "number" : "69",
+            "driver" : "T. Vermeulen",
+            "speed" : "1:00'18.605",
+            "position" : 13,
+            "interval" : "+7.029"
           },
           {
-            "laps": "38",
-            "number": "29",
-            "speed": "1:00'18.701",
-            "driver": "B. Buus",
-            "team": "Land-Motorsport",
-            "interval": "+7.125",
-            "position": 14
+            "laps" : "38",
+            "team" : "Land-Motorsport",
+            "number" : "29",
+            "driver" : "B. Buus",
+            "speed" : "1:00'18.701",
+            "position" : 14,
+            "interval" : "+7.125"
           },
           {
-            "laps": "38",
-            "number": "130",
-            "speed": "1:00'18.817",
-            "driver": "L. Engstler",
-            "team": "Red Bull Team Abt",
-            "interval": "+7.241",
-            "position": 15
+            "laps" : "38",
+            "team" : "Red Bull Team Abt",
+            "number" : "130",
+            "driver" : "L. Engstler",
+            "speed" : "1:00'18.817",
+            "position" : 15,
+            "interval" : "+7.241"
           },
           {
-            "laps": "38",
-            "number": "63",
-            "speed": "1:00'19.139",
-            "driver": "P. Maximilian",
-            "team": "TGI Team Lamborghini by GRT",
-            "interval": "+7.563",
-            "position": 16
+            "laps" : "38",
+            "team" : "TGI Team Lamborghini by GRT",
+            "number" : "63",
+            "driver" : "P. Maximilian",
+            "speed" : "1:00'19.139",
+            "position" : 16,
+            "interval" : "+7.563"
           },
           {
-            "laps": "38",
-            "number": "10",
-            "speed": "1:00'19.827",
-            "driver": "M. Mapelli",
-            "team": "Red Bull Team Abt",
-            "interval": "+8.251",
-            "position": 17
+            "laps" : "38",
+            "team" : "Red Bull Team Abt",
+            "number" : "10",
+            "driver" : "M. Mapelli",
+            "speed" : "1:00'19.827",
+            "position" : 17,
+            "interval" : "+8.251"
           },
           {
-            "position": "DNF",
-            "laps": "36",
-            "team": "Schubert Motorsport",
-            "number": "3",
-            "driver": "K. van der Linde"
+            "driver" : "K. van der Linde",
+            "laps" : "36",
+            "number" : "3",
+            "team" : "Schubert Motorsport",
+            "position" : "DNF"
           },
           {
-            "position": "DNF",
-            "laps": "34",
-            "team": "Mercedes-AMG Team Mann-Filter",
-            "number": "48",
-            "driver": "J. Gounon"
+            "driver" : "J. Gounon",
+            "laps" : "34",
+            "number" : "48",
+            "team" : "Mercedes-AMG Team Mann-Filter",
+            "position" : "DNF"
           },
           {
-            "position": "DNF",
-            "laps": "20",
-            "team": "Comtoyou Racing",
-            "number": "8",
-            "driver": "N. Baert"
+            "driver" : "N. Baert",
+            "laps" : "20",
+            "number" : "8",
+            "team" : "Comtoyou Racing",
+            "position" : "DNF"
           },
           {
-            "position": "DNF",
-            "laps": "1",
-            "team": "Dörr Motorsport",
-            "number": "25",
-            "driver": "B. Dörr"
+            "driver" : "B. Dörr",
+            "laps" : "1",
+            "number" : "25",
+            "team" : "Dörr Motorsport",
+            "position" : "DNF"
           }
         ],
-        "date": "2026-04-25",
-        "kind": "race",
-        "timeLocal": "13:30",
-        "durationMinutes": 55
+        "timeLocal" : "13:30",
+        "durationMinutes" : 55,
+        "date" : "2026-04-25",
+        "name" : "Race 1"
       },
       {
-        "name": "Qualifying 2",
-        "id": "dtm-2026-r01-s5",
-        "results": [
+        "id" : "dtm-2026-r01-s5",
+        "kind" : "qualifying",
+        "results" : [
           {
-            "position": 1,
-            "laps": "10",
-            "team": "Schubert Motorsport",
-            "time": "1'27.575",
-            "number": "3",
-            "driver": "K. van der Linde"
+            "driver" : "K. van der Linde",
+            "laps" : "10",
+            "number" : "3",
+            "team" : "Schubert Motorsport",
+            "time" : "1'27.575",
+            "position" : 1
           },
           {
-            "laps": "8",
-            "number": "64",
-            "speed": "1'27.660",
-            "driver": "F. Wiebelhaus",
-            "team": "HRT Ford Performance",
-            "interval": "+0.085",
-            "position": 2
+            "laps" : "8",
+            "team" : "HRT Ford Performance",
+            "number" : "64",
+            "driver" : "F. Wiebelhaus",
+            "speed" : "1'27.660",
+            "position" : 2,
+            "interval" : "+0.085"
           },
           {
-            "laps": "10",
-            "number": "22",
-            "speed": "1'27.668",
-            "driver": "L. Auer",
-            "team": "Mercedes-AMG Team Landgraf",
-            "interval": "+0.093",
-            "position": 3
+            "laps" : "10",
+            "team" : "Mercedes-AMG Team Landgraf",
+            "number" : "22",
+            "driver" : "L. Auer",
+            "speed" : "1'27.668",
+            "position" : 3,
+            "interval" : "+0.093"
           },
           {
-            "laps": "8",
-            "number": "48",
-            "speed": "1'27.680",
-            "driver": "J. Gounon",
-            "team": "Mercedes-AMG Team Mann-Filter",
-            "interval": "+0.105",
-            "position": 4
+            "laps" : "8",
+            "team" : "Mercedes-AMG Team Mann-Filter",
+            "number" : "48",
+            "driver" : "J. Gounon",
+            "speed" : "1'27.680",
+            "position" : 4,
+            "interval" : "+0.105"
           },
           {
-            "laps": "9",
-            "number": "80",
-            "speed": "1'27.709",
-            "driver": "M. Engel",
-            "team": "Mercedes-AMG Team Ravenol",
-            "interval": "+0.134",
-            "position": 5
+            "laps" : "9",
+            "team" : "Mercedes-AMG Team Ravenol",
+            "number" : "80",
+            "driver" : "M. Engel",
+            "speed" : "1'27.709",
+            "position" : 5,
+            "interval" : "+0.134"
           },
           {
-            "laps": "8",
-            "number": "29",
-            "speed": "1'27.712",
-            "driver": "B. Buus",
-            "team": "Land-Motorsport",
-            "interval": "+0.137",
-            "position": 6
+            "laps" : "8",
+            "team" : "Land-Motorsport",
+            "number" : "29",
+            "driver" : "B. Buus",
+            "speed" : "1'27.712",
+            "position" : 6,
+            "interval" : "+0.137"
           },
           {
-            "laps": "9",
-            "number": "7",
-            "speed": "1'27.771",
-            "driver": "N. Thiim",
-            "team": "Comtoyou Racing",
-            "interval": "+0.196",
-            "position": 7
+            "laps" : "9",
+            "team" : "Comtoyou Racing",
+            "number" : "7",
+            "driver" : "N. Thiim",
+            "speed" : "1'27.771",
+            "position" : 7,
+            "interval" : "+0.196"
           },
           {
-            "laps": "10",
-            "number": "25",
-            "speed": "1'27.800",
-            "driver": "B. Dörr",
-            "team": "Dörr Motorsport",
-            "interval": "+0.225",
-            "position": 8
+            "laps" : "10",
+            "team" : "Dörr Motorsport",
+            "number" : "25",
+            "driver" : "B. Dörr",
+            "speed" : "1'27.800",
+            "position" : 8,
+            "interval" : "+0.225"
           },
           {
-            "laps": "9",
-            "number": "11",
-            "speed": "1'27.934",
-            "driver": "M. Wittmann",
-            "team": "Schubert Motorsport",
-            "interval": "+0.359",
-            "position": 9
+            "laps" : "9",
+            "team" : "Schubert Motorsport",
+            "number" : "11",
+            "driver" : "M. Wittmann",
+            "speed" : "1'27.934",
+            "position" : 9,
+            "interval" : "+0.359"
           },
           {
-            "laps": "11",
-            "number": "84",
-            "speed": "1'27.948",
-            "driver": "T. Kalender",
-            "team": "Mercedes-AMG Team Landgraf",
-            "interval": "+0.373",
-            "position": 10
+            "laps" : "11",
+            "team" : "Mercedes-AMG Team Landgraf",
+            "number" : "84",
+            "driver" : "T. Kalender",
+            "speed" : "1'27.948",
+            "position" : 10,
+            "interval" : "+0.373"
           },
           {
-            "laps": "9",
-            "number": "14",
-            "speed": "1'28.010",
-            "driver": "M. Cairoli",
-            "team": "Emil Frey Racing",
-            "interval": "+0.435",
-            "position": 11
+            "laps" : "9",
+            "team" : "Emil Frey Racing",
+            "number" : "14",
+            "driver" : "M. Cairoli",
+            "speed" : "1'28.010",
+            "position" : 11,
+            "interval" : "+0.435"
           },
           {
-            "laps": "9",
-            "number": "69",
-            "speed": "1'28.029",
-            "driver": "T. Vermeulen",
-            "team": "Emil Frey Racing",
-            "interval": "+0.454",
-            "position": 12
+            "laps" : "9",
+            "team" : "Emil Frey Racing",
+            "number" : "69",
+            "driver" : "T. Vermeulen",
+            "speed" : "1'28.029",
+            "position" : 12,
+            "interval" : "+0.454"
           },
           {
-            "laps": "11",
-            "number": "16",
-            "speed": "1'28.047",
-            "driver": "T. Glock",
-            "team": "Dörr Motorsport",
-            "interval": "+0.472",
-            "position": 13
+            "laps" : "11",
+            "team" : "Dörr Motorsport",
+            "number" : "16",
+            "driver" : "T. Glock",
+            "speed" : "1'28.047",
+            "position" : 13,
+            "interval" : "+0.472"
           },
           {
-            "laps": "9",
-            "number": "91",
-            "speed": "1'28.060",
-            "driver": "T. Preining",
-            "team": "Manthey Racing",
-            "interval": "+0.485",
-            "position": 14
+            "laps" : "9",
+            "team" : "Manthey Racing",
+            "number" : "91",
+            "driver" : "T. Preining",
+            "speed" : "1'28.060",
+            "position" : 14,
+            "interval" : "+0.485"
           },
           {
-            "laps": "8",
-            "number": "36",
-            "speed": "1'28.066",
-            "driver": "A. Maini",
-            "team": "HRT Ford Performance",
-            "interval": "+0.491",
-            "position": 15
+            "laps" : "8",
+            "team" : "HRT Ford Performance",
+            "number" : "36",
+            "driver" : "A. Maini",
+            "speed" : "1'28.066",
+            "position" : 15,
+            "interval" : "+0.491"
           },
           {
-            "laps": "10",
-            "number": "90",
-            "speed": "1'28.129",
-            "driver": "R. Feller",
-            "team": "Manthey Racing",
-            "interval": "+0.554",
-            "position": 16
+            "laps" : "10",
+            "team" : "Manthey Racing",
+            "number" : "90",
+            "driver" : "R. Feller",
+            "speed" : "1'28.129",
+            "position" : 16,
+            "interval" : "+0.554"
           },
           {
-            "laps": "8",
-            "number": "8",
-            "speed": "1'28.338",
-            "driver": "N. Baert",
-            "team": "Comtoyou Racing",
-            "interval": "+0.763",
-            "position": 17
+            "laps" : "8",
+            "team" : "Comtoyou Racing",
+            "number" : "8",
+            "driver" : "N. Baert",
+            "speed" : "1'28.338",
+            "position" : 17,
+            "interval" : "+0.763"
           },
           {
-            "laps": "9",
-            "number": "19",
-            "speed": "1'28.378",
-            "driver": "M. Bortolotti",
-            "team": "TGI Team Lamborghini by GRT",
-            "interval": "+0.803",
-            "position": 18
+            "laps" : "9",
+            "team" : "TGI Team Lamborghini by GRT",
+            "number" : "19",
+            "driver" : "M. Bortolotti",
+            "speed" : "1'28.378",
+            "position" : 18,
+            "interval" : "+0.803"
           },
           {
-            "laps": "9",
-            "number": "130",
-            "speed": "1'28.844",
-            "driver": "L. Engstler",
-            "team": "Red Bull Team Abt",
-            "interval": "+1.269",
-            "position": 19
+            "laps" : "9",
+            "team" : "Red Bull Team Abt",
+            "number" : "130",
+            "driver" : "L. Engstler",
+            "speed" : "1'28.844",
+            "position" : 19,
+            "interval" : "+1.269"
           },
           {
-            "laps": "9",
-            "number": "63",
-            "speed": "1'29.022",
-            "driver": "P. Maximilian",
-            "team": "TGI Team Lamborghini by GRT",
-            "interval": "+1.447",
-            "position": 20
+            "laps" : "9",
+            "team" : "TGI Team Lamborghini by GRT",
+            "number" : "63",
+            "driver" : "P. Maximilian",
+            "speed" : "1'29.022",
+            "position" : 20,
+            "interval" : "+1.447"
           },
           {
-            "laps": "8",
-            "number": "10",
-            "speed": "1'29.085",
-            "driver": "M. Mapelli",
-            "team": "Red Bull Team Abt",
-            "interval": "+1.510",
-            "position": 21
+            "laps" : "8",
+            "team" : "Red Bull Team Abt",
+            "number" : "10",
+            "driver" : "M. Mapelli",
+            "speed" : "1'29.085",
+            "position" : 21,
+            "interval" : "+1.510"
           }
         ],
-        "date": "2026-04-26",
-        "kind": "qualifying",
-        "timeLocal": "09:15",
-        "durationMinutes": 30
+        "timeLocal" : "09:15",
+        "durationMinutes" : 30,
+        "date" : "2026-04-26",
+        "name" : "Qualifying 2"
       },
       {
-        "name": "Race 2",
-        "id": "dtm-2026-r01-s6",
-        "results": [
+        "id" : "dtm-2026-r01-s6",
+        "kind" : "race",
+        "results" : [
           {
-            "position": 1,
-            "laps": "37",
-            "team": "Mercedes-AMG Team Ravenol",
-            "time": "56'30.308",
-            "number": "80",
-            "driver": "M. Engel"
+            "driver" : "M. Engel",
+            "laps" : "37",
+            "number" : "80",
+            "team" : "Mercedes-AMG Team Ravenol",
+            "time" : "56'30.308",
+            "position" : 1
           },
           {
-            "laps": "37",
-            "number": "11",
-            "speed": "56'35.165",
-            "driver": "M. Wittmann",
-            "team": "Schubert Motorsport",
-            "interval": "+4.857",
-            "position": 2
+            "laps" : "37",
+            "team" : "Schubert Motorsport",
+            "number" : "11",
+            "driver" : "M. Wittmann",
+            "speed" : "56'35.165",
+            "position" : 2,
+            "interval" : "+4.857"
           },
           {
-            "laps": "37",
-            "number": "22",
-            "speed": "56'35.737",
-            "driver": "L. Auer",
-            "team": "Mercedes-AMG Team Landgraf",
-            "interval": "+5.429",
-            "position": 3
+            "laps" : "37",
+            "team" : "Mercedes-AMG Team Landgraf",
+            "number" : "22",
+            "driver" : "L. Auer",
+            "speed" : "56'35.737",
+            "position" : 3,
+            "interval" : "+5.429"
           },
           {
-            "laps": "37",
-            "number": "48",
-            "speed": "56'36.528",
-            "driver": "J. Gounon",
-            "team": "Mercedes-AMG Team Mann-Filter",
-            "interval": "+6.220",
-            "position": 4
+            "laps" : "37",
+            "team" : "Mercedes-AMG Team Mann-Filter",
+            "number" : "48",
+            "driver" : "J. Gounon",
+            "speed" : "56'36.528",
+            "position" : 4,
+            "interval" : "+6.220"
           },
           {
-            "laps": "37",
-            "number": "7",
-            "speed": "56'39.511",
-            "driver": "N. Thiim",
-            "team": "Comtoyou Racing",
-            "interval": "+9.203",
-            "position": 5
+            "laps" : "37",
+            "team" : "Comtoyou Racing",
+            "number" : "7",
+            "driver" : "N. Thiim",
+            "speed" : "56'39.511",
+            "position" : 5,
+            "interval" : "+9.203"
           },
           {
-            "laps": "37",
-            "number": "3",
-            "speed": "56'40.620",
-            "driver": "K. van der Linde",
-            "team": "Schubert Motorsport",
-            "interval": "+10.312",
-            "position": 6
+            "laps" : "37",
+            "team" : "Schubert Motorsport",
+            "number" : "3",
+            "driver" : "K. van der Linde",
+            "speed" : "56'40.620",
+            "position" : 6,
+            "interval" : "+10.312"
           },
           {
-            "laps": "37",
-            "number": "25",
-            "speed": "56'40.835",
-            "driver": "B. Dörr",
-            "team": "Dörr Motorsport",
-            "interval": "+10.527",
-            "position": 7
+            "laps" : "37",
+            "team" : "Dörr Motorsport",
+            "number" : "25",
+            "driver" : "B. Dörr",
+            "speed" : "56'40.835",
+            "position" : 7,
+            "interval" : "+10.527"
           },
           {
-            "laps": "37",
-            "number": "64",
-            "speed": "56'44.694",
-            "driver": "F. Wiebelhaus",
-            "team": "HRT Ford Performance",
-            "interval": "+14.386",
-            "position": 8
+            "laps" : "37",
+            "team" : "HRT Ford Performance",
+            "number" : "64",
+            "driver" : "F. Wiebelhaus",
+            "speed" : "56'44.694",
+            "position" : 8,
+            "interval" : "+14.386"
           },
           {
-            "laps": "37",
-            "number": "69",
-            "speed": "56'48.739",
-            "driver": "T. Vermeulen",
-            "team": "Emil Frey Racing",
-            "interval": "+18.431",
-            "position": 9
+            "laps" : "37",
+            "team" : "Emil Frey Racing",
+            "number" : "69",
+            "driver" : "T. Vermeulen",
+            "speed" : "56'48.739",
+            "position" : 9,
+            "interval" : "+18.431"
           },
           {
-            "laps": "37",
-            "number": "29",
-            "speed": "56'50.544",
-            "driver": "B. Buus",
-            "team": "Land-Motorsport",
-            "interval": "+20.236",
-            "position": 10
+            "laps" : "37",
+            "team" : "Land-Motorsport",
+            "number" : "29",
+            "driver" : "B. Buus",
+            "speed" : "56'50.544",
+            "position" : 10,
+            "interval" : "+20.236"
           },
           {
-            "laps": "37",
-            "number": "36",
-            "speed": "56'54.191",
-            "driver": "A. Maini",
-            "team": "HRT Ford Performance",
-            "interval": "+23.883",
-            "position": 11
+            "laps" : "37",
+            "team" : "HRT Ford Performance",
+            "number" : "36",
+            "driver" : "A. Maini",
+            "speed" : "56'54.191",
+            "position" : 11,
+            "interval" : "+23.883"
           },
           {
-            "laps": "37",
-            "number": "90",
-            "speed": "56'54.590",
-            "driver": "R. Feller",
-            "team": "Manthey Racing",
-            "interval": "+24.282",
-            "position": 12
+            "laps" : "37",
+            "team" : "Manthey Racing",
+            "number" : "90",
+            "driver" : "R. Feller",
+            "speed" : "56'54.590",
+            "position" : 12,
+            "interval" : "+24.282"
           },
           {
-            "laps": "37",
-            "number": "91",
-            "speed": "56'54.983",
-            "driver": "T. Preining",
-            "team": "Manthey Racing",
-            "interval": "+24.675",
-            "position": 13
+            "laps" : "37",
+            "team" : "Manthey Racing",
+            "number" : "91",
+            "driver" : "T. Preining",
+            "speed" : "56'54.983",
+            "position" : 13,
+            "interval" : "+24.675"
           },
           {
-            "laps": "37",
-            "number": "14",
-            "speed": "56'55.609",
-            "driver": "M. Cairoli",
-            "team": "Emil Frey Racing",
-            "interval": "+25.301",
-            "position": 14
+            "laps" : "37",
+            "team" : "Emil Frey Racing",
+            "number" : "14",
+            "driver" : "M. Cairoli",
+            "speed" : "56'55.609",
+            "position" : 14,
+            "interval" : "+25.301"
           },
           {
-            "laps": "37",
-            "number": "16",
-            "speed": "56'59.208",
-            "driver": "T. Glock",
-            "team": "Dörr Motorsport",
-            "interval": "+28.900",
-            "position": 15
+            "laps" : "37",
+            "team" : "Dörr Motorsport",
+            "number" : "16",
+            "driver" : "T. Glock",
+            "speed" : "56'59.208",
+            "position" : 15,
+            "interval" : "+28.900"
           },
           {
-            "laps": "37",
-            "number": "19",
-            "speed": "57'06.389",
-            "driver": "M. Bortolotti",
-            "team": "TGI Team Lamborghini by GRT",
-            "interval": "+36.081",
-            "position": 16
+            "laps" : "37",
+            "team" : "TGI Team Lamborghini by GRT",
+            "number" : "19",
+            "driver" : "M. Bortolotti",
+            "speed" : "57'06.389",
+            "position" : 16,
+            "interval" : "+36.081"
           },
           {
-            "laps": "37",
-            "number": "8",
-            "speed": "57'06.753",
-            "driver": "N. Baert",
-            "team": "Comtoyou Racing",
-            "interval": "+36.445",
-            "position": 17
+            "laps" : "37",
+            "team" : "Comtoyou Racing",
+            "number" : "8",
+            "driver" : "N. Baert",
+            "speed" : "57'06.753",
+            "position" : 17,
+            "interval" : "+36.445"
           },
           {
-            "laps": "37",
-            "number": "130",
-            "speed": "57'09.373",
-            "driver": "L. Engstler",
-            "team": "Red Bull Team Abt",
-            "interval": "+39.065",
-            "position": 18
+            "laps" : "37",
+            "team" : "Red Bull Team Abt",
+            "number" : "130",
+            "driver" : "L. Engstler",
+            "speed" : "57'09.373",
+            "position" : 18,
+            "interval" : "+39.065"
           },
           {
-            "laps": "37",
-            "number": "10",
-            "speed": "57'23.429",
-            "driver": "M. Mapelli",
-            "team": "Red Bull Team Abt",
-            "interval": "+53.121",
-            "position": 19
+            "laps" : "37",
+            "team" : "Red Bull Team Abt",
+            "number" : "10",
+            "driver" : "M. Mapelli",
+            "speed" : "57'23.429",
+            "position" : 19,
+            "interval" : "+53.121"
           },
           {
-            "laps": "37",
-            "number": "63",
-            "speed": "57'30.899",
-            "driver": "P. Maximilian",
-            "team": "TGI Team Lamborghini by GRT",
-            "interval": "+1'00.591",
-            "position": 20
+            "laps" : "37",
+            "team" : "TGI Team Lamborghini by GRT",
+            "number" : "63",
+            "driver" : "P. Maximilian",
+            "speed" : "57'30.899",
+            "position" : 20,
+            "interval" : "+1'00.591"
           },
           {
-            "position": "DNF",
-            "laps": "31",
-            "team": "Mercedes-AMG Team Landgraf",
-            "number": "84",
-            "driver": "T. Kalender"
+            "driver" : "T. Kalender",
+            "laps" : "31",
+            "number" : "84",
+            "team" : "Mercedes-AMG Team Landgraf",
+            "position" : "DNF"
           }
         ],
-        "date": "2026-04-26",
-        "kind": "race",
-        "timeLocal": "13:30",
-        "durationMinutes": 55
+        "timeLocal" : "13:30",
+        "durationMinutes" : 55,
+        "date" : "2026-04-26",
+        "name" : "Race 2"
       }
-    ]
+    ],
+    "city" : "Spielberg",
+    "id" : "dtm-2026-r01",
+    "roundNumber" : 1
   },
   {
-    "id": "dtm-2026-r02",
-    "seriesId": "dtm",
-    "circuitName": "Circuit Zandvoort",
-    "raceName": "Zandvoort",
-    "city": "Zandvoort",
-    "roundNumber": 2,
-    "country": "Netherlands",
-    "countryCode": "NL",
-    "sessions": [
+    "raceName" : "Zandvoort",
+    "country" : "Netherlands",
+    "countryCode" : "NL",
+    "circuitName" : "Circuit Zandvoort",
+    "seriesId" : "dtm",
+    "sessions" : [
       {
-        "name": "Practice 1",
-        "id": "dtm-2026-r02-s1",
-        "results": [
+        "id" : "dtm-2026-r02-s1",
+        "kind" : "practice",
+        "results" : [
           {
-            "position": 1,
-            "laps": "20",
-            "team": "Emil Frey Racing",
-            "time": "1'34.289",
-            "number": "14",
-            "driver": "M. Cairoli"
+            "driver" : "M. Cairoli",
+            "laps" : "20",
+            "number" : "14",
+            "team" : "Emil Frey Racing",
+            "time" : "1'34.289",
+            "position" : 1
           },
           {
-            "laps": "22",
-            "number": "25",
-            "speed": "1'34.521",
-            "driver": "B. Dörr",
-            "team": "Dörr Motorsport",
-            "interval": "+0.232",
-            "position": 2
+            "laps" : "22",
+            "team" : "Dörr Motorsport",
+            "number" : "25",
+            "driver" : "B. Dörr",
+            "speed" : "1'34.521",
+            "position" : 2,
+            "interval" : "+0.232"
           },
           {
-            "laps": "26",
-            "number": "91",
-            "speed": "1'34.604",
-            "driver": "T. Preining",
-            "team": "Manthey Racing",
-            "interval": "+0.315",
-            "position": 3
+            "laps" : "26",
+            "team" : "Manthey Racing",
+            "number" : "91",
+            "driver" : "T. Preining",
+            "speed" : "1'34.604",
+            "position" : 3,
+            "interval" : "+0.315"
           },
           {
-            "laps": "22",
-            "number": "22",
-            "speed": "1'34.683",
-            "driver": "L. Auer",
-            "team": "Mercedes-AMG Team Landgraf",
-            "interval": "+0.394",
-            "position": 4
+            "laps" : "22",
+            "team" : "Mercedes-AMG Team Landgraf",
+            "number" : "22",
+            "driver" : "L. Auer",
+            "speed" : "1'34.683",
+            "position" : 4,
+            "interval" : "+0.394"
           },
           {
-            "laps": "22",
-            "number": "69",
-            "speed": "1'34.695",
-            "driver": "T. Vermeulen",
-            "team": "Emil Frey Racing",
-            "interval": "+0.406",
-            "position": 5
+            "laps" : "22",
+            "team" : "Emil Frey Racing",
+            "number" : "69",
+            "driver" : "T. Vermeulen",
+            "speed" : "1'34.695",
+            "position" : 5,
+            "interval" : "+0.406"
           },
           {
-            "laps": "22",
-            "number": "48",
-            "speed": "1'34.700",
-            "driver": "J. Gounon",
-            "team": "Mercedes-AMG Team Mann-Filter",
-            "interval": "+0.411",
-            "position": 6
+            "laps" : "22",
+            "team" : "Mercedes-AMG Team Mann-Filter",
+            "number" : "48",
+            "driver" : "J. Gounon",
+            "speed" : "1'34.700",
+            "position" : 6,
+            "interval" : "+0.411"
           },
           {
-            "laps": "24",
-            "number": "3",
-            "speed": "1'34.710",
-            "driver": "K. van der Linde",
-            "team": "Schubert Motorsport",
-            "interval": "+0.421",
-            "position": 7
+            "laps" : "24",
+            "team" : "Schubert Motorsport",
+            "number" : "3",
+            "driver" : "K. van der Linde",
+            "speed" : "1'34.710",
+            "position" : 7,
+            "interval" : "+0.421"
           },
           {
-            "laps": "24",
-            "number": "19",
-            "speed": "1'34.735",
-            "driver": "M. Bortolotti",
-            "team": "TGI Team Lamborghini by GRT",
-            "interval": "+0.446",
-            "position": 8
+            "laps" : "24",
+            "team" : "TGI Team Lamborghini by GRT",
+            "number" : "19",
+            "driver" : "M. Bortolotti",
+            "speed" : "1'34.735",
+            "position" : 8,
+            "interval" : "+0.446"
           },
           {
-            "laps": "25",
-            "number": "90",
-            "speed": "1'34.752",
-            "driver": "R. Feller",
-            "team": "Manthey Racing",
-            "interval": "+0.463",
-            "position": 9
+            "laps" : "25",
+            "team" : "Manthey Racing",
+            "number" : "90",
+            "driver" : "R. Feller",
+            "speed" : "1'34.752",
+            "position" : 9,
+            "interval" : "+0.463"
           },
           {
-            "laps": "21",
-            "number": "80",
-            "speed": "1'34.762",
-            "driver": "M. Engel",
-            "team": "Mercedes-AMG Team Ravenol",
-            "interval": "+0.473",
-            "position": 10
+            "laps" : "21",
+            "team" : "Mercedes-AMG Team Ravenol",
+            "number" : "80",
+            "driver" : "M. Engel",
+            "speed" : "1'34.762",
+            "position" : 10,
+            "interval" : "+0.473"
           },
           {
-            "laps": "24",
-            "number": "63",
-            "speed": "1'34.872",
-            "driver": "P. Maximilian",
-            "team": "TGI Team Lamborghini by GRT",
-            "interval": "+0.583",
-            "position": 11
+            "laps" : "24",
+            "team" : "TGI Team Lamborghini by GRT",
+            "number" : "63",
+            "driver" : "P. Maximilian",
+            "speed" : "1'34.872",
+            "position" : 11,
+            "interval" : "+0.583"
           },
           {
-            "laps": "22",
-            "number": "130",
-            "speed": "1'34.934",
-            "driver": "L. Engstler",
-            "team": "Red Bull Team Abt",
-            "interval": "+0.645",
-            "position": 12
+            "laps" : "22",
+            "team" : "Red Bull Team Abt",
+            "number" : "130",
+            "driver" : "L. Engstler",
+            "speed" : "1'34.934",
+            "position" : 12,
+            "interval" : "+0.645"
           },
           {
-            "laps": "23",
-            "number": "7",
-            "speed": "1'35.168",
-            "driver": "N. Thiim",
-            "team": "Comtoyou Racing",
-            "interval": "+0.879",
-            "position": 13
+            "laps" : "23",
+            "team" : "Comtoyou Racing",
+            "number" : "7",
+            "driver" : "N. Thiim",
+            "speed" : "1'35.168",
+            "position" : 13,
+            "interval" : "+0.879"
           },
           {
-            "laps": "21",
-            "number": "11",
-            "speed": "1'35.214",
-            "driver": "M. Wittmann",
-            "team": "Schubert Motorsport",
-            "interval": "+0.925",
-            "position": 14
+            "laps" : "21",
+            "team" : "Schubert Motorsport",
+            "number" : "11",
+            "driver" : "M. Wittmann",
+            "speed" : "1'35.214",
+            "position" : 14,
+            "interval" : "+0.925"
           },
           {
-            "laps": "24",
-            "number": "29",
-            "speed": "1'35.229",
-            "driver": "B. Buus",
-            "team": "Land-Motorsport",
-            "interval": "+0.940",
-            "position": 15
+            "laps" : "24",
+            "team" : "Land-Motorsport",
+            "number" : "29",
+            "driver" : "B. Buus",
+            "speed" : "1'35.229",
+            "position" : 15,
+            "interval" : "+0.940"
           },
           {
-            "laps": "24",
-            "number": "16",
-            "speed": "1'46.868",
-            "driver": "T. Glock",
-            "team": "Dörr Motorsport",
-            "interval": "+12.579",
-            "position": 16
+            "laps" : "24",
+            "team" : "Dörr Motorsport",
+            "number" : "16",
+            "driver" : "T. Glock",
+            "speed" : "1'46.868",
+            "position" : 16,
+            "interval" : "+12.579"
           },
           {
-            "laps": "24",
-            "number": "84",
-            "speed": "1'40.697",
-            "driver": "T. Kalender",
-            "team": "Mercedes-AMG Team Landgraf",
-            "interval": "+6.408",
-            "position": 17
+            "laps" : "24",
+            "team" : "Mercedes-AMG Team Landgraf",
+            "number" : "84",
+            "driver" : "T. Kalender",
+            "speed" : "1'40.697",
+            "position" : 17,
+            "interval" : "+6.408"
           },
           {
-            "laps": "21",
-            "number": "36",
-            "speed": "1'35.889",
-            "driver": "A. Maini",
-            "team": "HRT Ford Performance",
-            "interval": "+1.600",
-            "position": 18
+            "laps" : "21",
+            "team" : "HRT Ford Performance",
+            "number" : "36",
+            "driver" : "A. Maini",
+            "speed" : "1'35.889",
+            "position" : 18,
+            "interval" : "+1.600"
           },
           {
-            "laps": "23",
-            "number": "8",
-            "speed": "1'43.078",
-            "driver": "N. Baert",
-            "team": "Comtoyou Racing",
-            "interval": "+8.789",
-            "position": 19
+            "laps" : "23",
+            "team" : "Comtoyou Racing",
+            "number" : "8",
+            "driver" : "N. Baert",
+            "speed" : "1'43.078",
+            "position" : 19,
+            "interval" : "+8.789"
           },
           {
-            "laps": "25",
-            "number": "10",
-            "speed": "1'36.054",
-            "driver": "M. Mapelli",
-            "team": "Red Bull Team Abt",
-            "interval": "+1.765",
-            "position": 20
+            "laps" : "25",
+            "team" : "Red Bull Team Abt",
+            "number" : "10",
+            "driver" : "M. Mapelli",
+            "speed" : "1'36.054",
+            "position" : 20,
+            "interval" : "+1.765"
           },
           {
-            "laps": "20",
-            "number": "64",
-            "speed": "1'36.195",
-            "driver": "F. Wiebelhaus",
-            "team": "HRT Ford Performance",
-            "interval": "+1.906",
-            "position": 21
+            "laps" : "20",
+            "team" : "HRT Ford Performance",
+            "number" : "64",
+            "driver" : "F. Wiebelhaus",
+            "speed" : "1'36.195",
+            "position" : 21,
+            "interval" : "+1.906"
           }
         ],
-        "date": "2026-05-22",
-        "kind": "practice",
-        "timeLocal": "12:00",
-        "durationMinutes": 55
+        "timeLocal" : "12:00",
+        "durationMinutes" : 55,
+        "date" : "2026-05-22",
+        "name" : "Practice 1"
       },
       {
-        "name": "Practice 2",
-        "id": "dtm-2026-r02-s2",
-        "results": [
+        "id" : "dtm-2026-r02-s2",
+        "kind" : "practice",
+        "results" : [
           {
-            "position": 1,
-            "laps": "17",
-            "team": "Emil Frey Racing",
-            "time": "1'33.803",
-            "number": "14",
-            "driver": "M. Cairoli"
+            "driver" : "M. Cairoli",
+            "laps" : "17",
+            "number" : "14",
+            "team" : "Emil Frey Racing",
+            "time" : "1'33.803",
+            "position" : 1
           },
           {
-            "laps": "21",
-            "number": "25",
-            "speed": "1'34.160",
-            "driver": "B. Dörr",
-            "team": "Dörr Motorsport",
-            "interval": "+0.357",
-            "position": 2
+            "laps" : "21",
+            "team" : "Dörr Motorsport",
+            "number" : "25",
+            "driver" : "B. Dörr",
+            "speed" : "1'34.160",
+            "position" : 2,
+            "interval" : "+0.357"
           },
           {
-            "laps": "18",
-            "number": "91",
-            "speed": "1'34.259",
-            "driver": "T. Preining",
-            "team": "Manthey Racing",
-            "interval": "+0.456",
-            "position": 3
+            "laps" : "18",
+            "team" : "Manthey Racing",
+            "number" : "91",
+            "driver" : "T. Preining",
+            "speed" : "1'34.259",
+            "position" : 3,
+            "interval" : "+0.456"
           },
           {
-            "laps": "23",
-            "number": "19",
-            "speed": "1'34.363",
-            "driver": "M. Bortolotti",
-            "team": "TGI Team Lamborghini by GRT",
-            "interval": "+0.560",
-            "position": 4
+            "laps" : "23",
+            "team" : "TGI Team Lamborghini by GRT",
+            "number" : "19",
+            "driver" : "M. Bortolotti",
+            "speed" : "1'34.363",
+            "position" : 4,
+            "interval" : "+0.560"
           },
           {
-            "laps": "18",
-            "number": "90",
-            "speed": "1'34.371",
-            "driver": "R. Feller",
-            "team": "Manthey Racing",
-            "interval": "+0.568",
-            "position": 5
+            "laps" : "18",
+            "team" : "Manthey Racing",
+            "number" : "90",
+            "driver" : "R. Feller",
+            "speed" : "1'34.371",
+            "position" : 5,
+            "interval" : "+0.568"
           },
           {
-            "laps": "17",
-            "number": "80",
-            "speed": "1'34.412",
-            "driver": "M. Engel",
-            "team": "Mercedes-AMG Team Ravenol",
-            "interval": "+0.609",
-            "position": 6
+            "laps" : "17",
+            "team" : "Mercedes-AMG Team Ravenol",
+            "number" : "80",
+            "driver" : "M. Engel",
+            "speed" : "1'34.412",
+            "position" : 6,
+            "interval" : "+0.609"
           },
           {
-            "laps": "20",
-            "number": "22",
-            "speed": "1'34.443",
-            "driver": "L. Auer",
-            "team": "Mercedes-AMG Team Landgraf",
-            "interval": "+0.640",
-            "position": 7
+            "laps" : "20",
+            "team" : "Mercedes-AMG Team Landgraf",
+            "number" : "22",
+            "driver" : "L. Auer",
+            "speed" : "1'34.443",
+            "position" : 7,
+            "interval" : "+0.640"
           },
           {
-            "laps": "20",
-            "number": "16",
-            "speed": "1'34.450",
-            "driver": "T. Glock",
-            "team": "Dörr Motorsport",
-            "interval": "+0.647",
-            "position": 8
+            "laps" : "20",
+            "team" : "Dörr Motorsport",
+            "number" : "16",
+            "driver" : "T. Glock",
+            "speed" : "1'34.450",
+            "position" : 8,
+            "interval" : "+0.647"
           },
           {
-            "laps": "18",
-            "number": "69",
-            "speed": "1'34.506",
-            "driver": "T. Vermeulen",
-            "team": "Emil Frey Racing",
-            "interval": "+0.703",
-            "position": 9
+            "laps" : "18",
+            "team" : "Emil Frey Racing",
+            "number" : "69",
+            "driver" : "T. Vermeulen",
+            "speed" : "1'34.506",
+            "position" : 9,
+            "interval" : "+0.703"
           },
           {
-            "laps": "17",
-            "number": "48",
-            "speed": "1'34.603",
-            "driver": "J. Gounon",
-            "team": "Mercedes-AMG Team Mann-Filter",
-            "interval": "+0.800",
-            "position": 10
+            "laps" : "17",
+            "team" : "Mercedes-AMG Team Mann-Filter",
+            "number" : "48",
+            "driver" : "J. Gounon",
+            "speed" : "1'34.603",
+            "position" : 10,
+            "interval" : "+0.800"
           },
           {
-            "laps": "19",
-            "number": "7",
-            "speed": "1'34.700",
-            "driver": "N. Thiim",
-            "team": "Comtoyou Racing",
-            "interval": "+0.897",
-            "position": 11
+            "laps" : "19",
+            "team" : "Comtoyou Racing",
+            "number" : "7",
+            "driver" : "N. Thiim",
+            "speed" : "1'34.700",
+            "position" : 11,
+            "interval" : "+0.897"
           },
           {
-            "laps": "15",
-            "number": "10",
-            "speed": "1'34.752",
-            "driver": "M. Mapelli",
-            "team": "Red Bull Team Abt",
-            "interval": "+0.949",
-            "position": 12
+            "laps" : "15",
+            "team" : "Red Bull Team Abt",
+            "number" : "10",
+            "driver" : "M. Mapelli",
+            "speed" : "1'34.752",
+            "position" : 12,
+            "interval" : "+0.949"
           },
           {
-            "laps": "20",
-            "number": "130",
-            "speed": "1'34.832",
-            "driver": "L. Engstler",
-            "team": "Red Bull Team Abt",
-            "interval": "+1.029",
-            "position": 13
+            "laps" : "20",
+            "team" : "Red Bull Team Abt",
+            "number" : "130",
+            "driver" : "L. Engstler",
+            "speed" : "1'34.832",
+            "position" : 13,
+            "interval" : "+1.029"
           },
           {
-            "laps": "21",
-            "number": "64",
-            "speed": "1'34.908",
-            "driver": "F. Wiebelhaus",
-            "team": "HRT Ford Performance",
-            "interval": "+1.105",
-            "position": 14
+            "laps" : "21",
+            "team" : "HRT Ford Performance",
+            "number" : "64",
+            "driver" : "F. Wiebelhaus",
+            "speed" : "1'34.908",
+            "position" : 14,
+            "interval" : "+1.105"
           },
           {
-            "laps": "19",
-            "number": "84",
-            "speed": "1'34.917",
-            "driver": "T. Kalender",
-            "team": "Mercedes-AMG Team Landgraf",
-            "interval": "+1.114",
-            "position": 15
+            "laps" : "19",
+            "team" : "Mercedes-AMG Team Landgraf",
+            "number" : "84",
+            "driver" : "T. Kalender",
+            "speed" : "1'34.917",
+            "position" : 15,
+            "interval" : "+1.114"
           },
           {
-            "laps": "25",
-            "number": "3",
-            "speed": "1'34.953",
-            "driver": "K. van der Linde",
-            "team": "Schubert Motorsport",
-            "interval": "+1.150",
-            "position": 16
+            "laps" : "25",
+            "team" : "Schubert Motorsport",
+            "number" : "3",
+            "driver" : "K. van der Linde",
+            "speed" : "1'34.953",
+            "position" : 16,
+            "interval" : "+1.150"
           },
           {
-            "laps": "18",
-            "number": "29",
-            "speed": "1'35.040",
-            "driver": "B. Buus",
-            "team": "Land-Motorsport",
-            "interval": "+1.237",
-            "position": 17
+            "laps" : "18",
+            "team" : "Land-Motorsport",
+            "number" : "29",
+            "driver" : "B. Buus",
+            "speed" : "1'35.040",
+            "position" : 17,
+            "interval" : "+1.237"
           },
           {
-            "laps": "19",
-            "number": "36",
-            "speed": "1'35.055",
-            "driver": "A. Maini",
-            "team": "HRT Ford Performance",
-            "interval": "+1.252",
-            "position": 18
+            "laps" : "19",
+            "team" : "HRT Ford Performance",
+            "number" : "36",
+            "driver" : "A. Maini",
+            "speed" : "1'35.055",
+            "position" : 18,
+            "interval" : "+1.252"
           },
           {
-            "laps": "18",
-            "number": "11",
-            "speed": "1'35.138",
-            "driver": "M. Wittmann",
-            "team": "Schubert Motorsport",
-            "interval": "+1.335",
-            "position": 19
+            "laps" : "18",
+            "team" : "Schubert Motorsport",
+            "number" : "11",
+            "driver" : "M. Wittmann",
+            "speed" : "1'35.138",
+            "position" : 19,
+            "interval" : "+1.335"
           },
           {
-            "laps": "18",
-            "number": "8",
-            "speed": "1'35.701",
-            "driver": "N. Baert",
-            "team": "Comtoyou Racing",
-            "interval": "+1.898",
-            "position": 20
+            "laps" : "18",
+            "team" : "Comtoyou Racing",
+            "number" : "8",
+            "driver" : "N. Baert",
+            "speed" : "1'35.701",
+            "position" : 20,
+            "interval" : "+1.898"
           },
           {
-            "laps": "14",
-            "number": "63",
-            "speed": "1'35.754",
-            "driver": "P. Maximilian",
-            "team": "TGI Team Lamborghini by GRT",
-            "interval": "+1.951",
-            "position": 21
+            "laps" : "14",
+            "team" : "TGI Team Lamborghini by GRT",
+            "number" : "63",
+            "driver" : "P. Maximilian",
+            "speed" : "1'35.754",
+            "position" : 21,
+            "interval" : "+1.951"
           }
         ],
-        "date": "2026-05-22",
-        "kind": "practice",
-        "timeLocal": "16:20",
-        "durationMinutes": 55
+        "timeLocal" : "16:20",
+        "durationMinutes" : 55,
+        "date" : "2026-05-22",
+        "name" : "Practice 2"
       },
       {
-        "name": "Qualifying 1",
-        "id": "dtm-2026-r02-s3",
-        "results": [
+        "id" : "dtm-2026-r02-s3",
+        "kind" : "qualifying",
+        "results" : [
           {
-            "position": 1,
-            "team": "Emil Frey Racing",
-            "time": "1'32.974",
-            "number": "14",
-            "driver": "M. Cairoli"
+            "driver" : "M. Cairoli",
+            "number" : "14",
+            "team" : "Emil Frey Racing",
+            "time" : "1'32.974",
+            "position" : 1
           },
           {
-            "position": 2,
-            "speed": "1'33.145",
-            "team": "Emil Frey Racing",
-            "interval": "+0.171",
-            "number": "69",
-            "driver": "T. Vermeulen"
+            "driver" : "T. Vermeulen",
+            "speed" : "1'33.145",
+            "number" : "69",
+            "team" : "Emil Frey Racing",
+            "interval" : "+0.171",
+            "position" : 2
           },
           {
-            "position": 3,
-            "speed": "1'33.391",
-            "team": "Mercedes-AMG Team Landgraf",
-            "interval": "+0.417",
-            "number": "22",
-            "driver": "L. Auer"
+            "driver" : "L. Auer",
+            "speed" : "1'33.391",
+            "number" : "22",
+            "team" : "Mercedes-AMG Team Landgraf",
+            "interval" : "+0.417",
+            "position" : 3
           },
           {
-            "position": 4,
-            "speed": "1'33.402",
-            "team": "Land-Motorsport",
-            "interval": "+0.428",
-            "number": "29",
-            "driver": "B. Buus"
+            "driver" : "B. Buus",
+            "speed" : "1'33.402",
+            "number" : "29",
+            "team" : "Land-Motorsport",
+            "interval" : "+0.428",
+            "position" : 4
           },
           {
-            "position": 5,
-            "speed": "1'33.409",
-            "team": "Dörr Motorsport",
-            "interval": "+0.435",
-            "number": "25",
-            "driver": "B. Dörr"
+            "driver" : "B. Dörr",
+            "speed" : "1'33.409",
+            "number" : "25",
+            "team" : "Dörr Motorsport",
+            "interval" : "+0.435",
+            "position" : 5
           },
           {
-            "position": 6,
-            "speed": "1'33.438",
-            "team": "Mercedes-AMG Team Mann-Filter",
-            "interval": "+0.464",
-            "number": "48",
-            "driver": "J. Gounon"
+            "driver" : "J. Gounon",
+            "speed" : "1'33.438",
+            "number" : "48",
+            "team" : "Mercedes-AMG Team Mann-Filter",
+            "interval" : "+0.464",
+            "position" : 6
           },
           {
-            "position": 7,
-            "speed": "1'33.541",
-            "team": "Red Bull Team Abt",
-            "interval": "+0.567",
-            "number": "130",
-            "driver": "L. Engstler"
+            "driver" : "L. Engstler",
+            "speed" : "1'33.541",
+            "number" : "130",
+            "team" : "Red Bull Team Abt",
+            "interval" : "+0.567",
+            "position" : 7
           },
           {
-            "position": 8,
-            "speed": "1'33.547",
-            "team": "Mercedes-AMG Team Ravenol",
-            "interval": "+0.573",
-            "number": "80",
-            "driver": "M. Engel"
+            "driver" : "M. Engel",
+            "speed" : "1'33.547",
+            "number" : "80",
+            "team" : "Mercedes-AMG Team Ravenol",
+            "interval" : "+0.573",
+            "position" : 8
           },
           {
-            "position": 9,
-            "speed": "1'33.590",
-            "team": "Comtoyou Racing",
-            "interval": "+0.616",
-            "number": "7",
-            "driver": "N. Thiim"
+            "driver" : "N. Thiim",
+            "speed" : "1'33.590",
+            "number" : "7",
+            "team" : "Comtoyou Racing",
+            "interval" : "+0.616",
+            "position" : 9
           },
           {
-            "position": 10,
-            "speed": "1'33.782",
-            "team": "Manthey Racing",
-            "interval": "+0.808",
-            "number": "91",
-            "driver": "T. Preining"
+            "driver" : "T. Preining",
+            "speed" : "1'33.782",
+            "number" : "91",
+            "team" : "Manthey Racing",
+            "interval" : "+0.808",
+            "position" : 10
           },
           {
-            "position": 11,
-            "speed": "1'33.844",
-            "team": "Manthey Racing",
-            "interval": "+0.870",
-            "number": "90",
-            "driver": "R. Feller"
+            "driver" : "R. Feller",
+            "speed" : "1'33.844",
+            "number" : "90",
+            "team" : "Manthey Racing",
+            "interval" : "+0.870",
+            "position" : 11
           },
           {
-            "position": 12,
-            "speed": "1'34.048",
-            "team": "Schubert Motorsport",
-            "interval": "+1.074",
-            "number": "11",
-            "driver": "M. Wittmann"
+            "driver" : "M. Wittmann",
+            "speed" : "1'34.048",
+            "number" : "11",
+            "team" : "Schubert Motorsport",
+            "interval" : "+1.074",
+            "position" : 12
           },
           {
-            "position": 13,
-            "speed": "1'34.055",
-            "team": "Red Bull Team Abt",
-            "interval": "+1.081",
-            "number": "10",
-            "driver": "M. Mapelli"
+            "driver" : "M. Mapelli",
+            "speed" : "1'34.055",
+            "number" : "10",
+            "team" : "Red Bull Team Abt",
+            "interval" : "+1.081",
+            "position" : 13
           },
           {
-            "position": 14,
-            "speed": "1'34.078",
-            "team": "Mercedes-AMG Team Landgraf",
-            "interval": "+1.104",
-            "number": "84",
-            "driver": "T. Kalender"
+            "driver" : "T. Kalender",
+            "speed" : "1'34.078",
+            "number" : "84",
+            "team" : "Mercedes-AMG Team Landgraf",
+            "interval" : "+1.104",
+            "position" : 14
           },
           {
-            "position": 15,
-            "speed": "1'34.206",
-            "team": "TGI Team Lamborghini by GRT",
-            "interval": "+1.232",
-            "number": "63",
-            "driver": "P. Maximilian"
+            "driver" : "P. Maximilian",
+            "speed" : "1'34.206",
+            "number" : "63",
+            "team" : "TGI Team Lamborghini by GRT",
+            "interval" : "+1.232",
+            "position" : 15
           },
           {
-            "position": 16,
-            "speed": "1'34.260",
-            "team": "HRT Ford Performance",
-            "interval": "+1.286",
-            "number": "36",
-            "driver": "A. Maini"
+            "driver" : "A. Maini",
+            "speed" : "1'34.260",
+            "number" : "36",
+            "team" : "HRT Ford Performance",
+            "interval" : "+1.286",
+            "position" : 16
           },
           {
-            "position": 17,
-            "speed": "1'34.319",
-            "team": "TGI Team Lamborghini by GRT",
-            "interval": "+1.345",
-            "number": "19",
-            "driver": "M. Bortolotti"
+            "driver" : "M. Bortolotti",
+            "speed" : "1'34.319",
+            "number" : "19",
+            "team" : "TGI Team Lamborghini by GRT",
+            "interval" : "+1.345",
+            "position" : 17
           },
           {
-            "position": 18,
-            "speed": "1'34.371",
-            "team": "HRT Ford Performance",
-            "interval": "+1.397",
-            "number": "64",
-            "driver": "F. Wiebelhaus"
+            "driver" : "F. Wiebelhaus",
+            "speed" : "1'34.371",
+            "number" : "64",
+            "team" : "HRT Ford Performance",
+            "interval" : "+1.397",
+            "position" : 18
           },
           {
-            "position": 19,
-            "speed": "1'34.537",
-            "team": "Comtoyou Racing",
-            "interval": "+1.563",
-            "number": "8",
-            "driver": "N. Baert"
+            "driver" : "N. Baert",
+            "speed" : "1'34.537",
+            "number" : "8",
+            "team" : "Comtoyou Racing",
+            "interval" : "+1.563",
+            "position" : 19
           },
           {
-            "position": 20,
-            "speed": "1'39.806",
-            "team": "Dörr Motorsport",
-            "interval": "+6.832",
-            "number": "16",
-            "driver": "T. Glock"
+            "driver" : "T. Glock",
+            "speed" : "1'39.806",
+            "number" : "16",
+            "team" : "Dörr Motorsport",
+            "interval" : "+6.832",
+            "position" : 20
           },
           {
-            "position": 21,
-            "speed": "2'04.468",
-            "team": "Schubert Motorsport",
-            "interval": "+31.494",
-            "number": "3",
-            "driver": "K. van der Linde"
+            "driver" : "K. van der Linde",
+            "speed" : "2'04.468",
+            "number" : "3",
+            "team" : "Schubert Motorsport",
+            "interval" : "+31.494",
+            "position" : 21
           }
         ],
-        "date": "2026-05-23",
-        "kind": "qualifying",
-        "timeLocal": "09:45",
-        "durationMinutes": 30
+        "timeLocal" : "09:45",
+        "durationMinutes" : 30,
+        "date" : "2026-05-23",
+        "name" : "Qualifying 1"
       },
       {
-        "name": "Race 1",
-        "id": "dtm-2026-r02-s4",
-        "results": [
+        "id" : "dtm-2026-r02-s4",
+        "kind" : "race",
+        "results" : [
           {
-            "position": 1,
-            "laps": "0",
-            "team": "Emil Frey Racing",
-            "number": "14",
-            "driver": "M. Cairoli"
+            "driver" : "M. Cairoli",
+            "laps" : "0",
+            "number" : "14",
+            "team" : "Emil Frey Racing",
+            "position" : 1
           },
           {
-            "position": 2,
-            "laps": "0",
-            "team": "Mercedes-AMG Team Landgraf",
-            "number": "22",
-            "driver": "L. Auer"
+            "driver" : "L. Auer",
+            "laps" : "0",
+            "number" : "22",
+            "team" : "Mercedes-AMG Team Landgraf",
+            "position" : 2
           },
           {
-            "position": 3,
-            "laps": "0",
-            "team": "Emil Frey Racing",
-            "number": "69",
-            "driver": "T. Vermeulen"
+            "driver" : "T. Vermeulen",
+            "laps" : "0",
+            "number" : "69",
+            "team" : "Emil Frey Racing",
+            "position" : 3
           },
           {
-            "position": 4,
-            "laps": "0",
-            "team": "Land-Motorsport",
-            "number": "29",
-            "driver": "B. Buus"
+            "driver" : "B. Buus",
+            "laps" : "0",
+            "number" : "29",
+            "team" : "Land-Motorsport",
+            "position" : 4
           },
           {
-            "position": 5,
-            "laps": "0",
-            "team": "Mercedes-AMG Team Mann-Filter",
-            "number": "48",
-            "driver": "J. Gounon"
+            "driver" : "J. Gounon",
+            "laps" : "0",
+            "number" : "48",
+            "team" : "Mercedes-AMG Team Mann-Filter",
+            "position" : 5
           },
           {
-            "position": 6,
-            "laps": "0",
-            "team": "Dörr Motorsport",
-            "number": "25",
-            "driver": "B. Dörr"
+            "driver" : "B. Dörr",
+            "laps" : "0",
+            "number" : "25",
+            "team" : "Dörr Motorsport",
+            "position" : 6
           },
           {
-            "position": 7,
-            "laps": "0",
-            "team": "Mercedes-AMG Team Ravenol",
-            "number": "80",
-            "driver": "M. Engel"
+            "driver" : "M. Engel",
+            "laps" : "0",
+            "number" : "80",
+            "team" : "Mercedes-AMG Team Ravenol",
+            "position" : 7
           },
           {
-            "position": 8,
-            "laps": "0",
-            "team": "Manthey Racing",
-            "number": "91",
-            "driver": "T. Preining"
+            "driver" : "T. Preining",
+            "laps" : "0",
+            "number" : "91",
+            "team" : "Manthey Racing",
+            "position" : 8
           },
           {
-            "position": 9,
-            "laps": "0",
-            "team": "Red Bull Team Abt",
-            "number": "130",
-            "driver": "L. Engstler"
+            "driver" : "L. Engstler",
+            "laps" : "0",
+            "number" : "130",
+            "team" : "Red Bull Team Abt",
+            "position" : 9
           },
           {
-            "position": 10,
-            "laps": "0",
-            "team": "Comtoyou Racing",
-            "number": "7",
-            "driver": "N. Thiim"
+            "driver" : "N. Thiim",
+            "laps" : "0",
+            "number" : "7",
+            "team" : "Comtoyou Racing",
+            "position" : 10
           },
           {
-            "position": 11,
-            "laps": "0",
-            "team": "Manthey Racing",
-            "number": "90",
-            "driver": "R. Feller"
+            "driver" : "R. Feller",
+            "laps" : "0",
+            "number" : "90",
+            "team" : "Manthey Racing",
+            "position" : 11
           },
           {
-            "position": 12,
-            "laps": "0",
-            "team": "Schubert Motorsport",
-            "number": "11",
-            "driver": "M. Wittmann"
+            "driver" : "M. Wittmann",
+            "laps" : "0",
+            "number" : "11",
+            "team" : "Schubert Motorsport",
+            "position" : 12
           },
           {
-            "position": 13,
-            "laps": "0",
-            "team": "TGI Team Lamborghini by GRT",
-            "number": "19",
-            "driver": "M. Bortolotti"
+            "driver" : "M. Bortolotti",
+            "laps" : "0",
+            "number" : "19",
+            "team" : "TGI Team Lamborghini by GRT",
+            "position" : 13
           },
           {
-            "position": 14,
-            "laps": "0",
-            "team": "HRT Ford Performance",
-            "number": "36",
-            "driver": "A. Maini"
+            "driver" : "A. Maini",
+            "laps" : "0",
+            "number" : "36",
+            "team" : "HRT Ford Performance",
+            "position" : 14
           },
           {
-            "position": 15,
-            "laps": "0",
-            "team": "Red Bull Team Abt",
-            "number": "10",
-            "driver": "M. Mapelli"
+            "driver" : "M. Mapelli",
+            "laps" : "0",
+            "number" : "10",
+            "team" : "Red Bull Team Abt",
+            "position" : 15
           },
           {
-            "position": 16,
-            "laps": "0",
-            "team": "TGI Team Lamborghini by GRT",
-            "number": "63",
-            "driver": "P. Maximilian"
+            "driver" : "P. Maximilian",
+            "laps" : "0",
+            "number" : "63",
+            "team" : "TGI Team Lamborghini by GRT",
+            "position" : 16
           },
           {
-            "position": 17,
-            "laps": "0",
-            "team": "HRT Ford Performance",
-            "number": "64",
-            "driver": "F. Wiebelhaus"
+            "driver" : "F. Wiebelhaus",
+            "laps" : "0",
+            "number" : "64",
+            "team" : "HRT Ford Performance",
+            "position" : 17
           },
           {
-            "position": 18,
-            "laps": "0",
-            "team": "Comtoyou Racing",
-            "number": "8",
-            "driver": "N. Baert"
+            "driver" : "N. Baert",
+            "laps" : "0",
+            "number" : "8",
+            "team" : "Comtoyou Racing",
+            "position" : 18
           },
           {
-            "position": "DNS",
-            "laps": "0",
-            "team": "Schubert Motorsport",
-            "number": "3",
-            "driver": "K. van der Linde"
+            "driver" : "K. van der Linde",
+            "laps" : "0",
+            "number" : "3",
+            "team" : "Schubert Motorsport",
+            "position" : "DNS"
           },
           {
-            "position": "DNS",
-            "laps": "0",
-            "team": "Dörr Motorsport",
-            "number": "16",
-            "driver": "T. Glock"
+            "driver" : "T. Glock",
+            "laps" : "0",
+            "number" : "16",
+            "team" : "Dörr Motorsport",
+            "position" : "DNS"
           },
           {
-            "position": "DNS",
-            "laps": "0",
-            "team": "Mercedes-AMG Team Landgraf",
-            "number": "84",
-            "driver": "T. Kalender"
+            "driver" : "T. Kalender",
+            "laps" : "0",
+            "number" : "84",
+            "team" : "Mercedes-AMG Team Landgraf",
+            "position" : "DNS"
           }
         ],
-        "date": "2026-05-23",
-        "kind": "race",
-        "timeLocal": "13:30",
-        "durationMinutes": 55
+        "timeLocal" : "13:30",
+        "durationMinutes" : 55,
+        "date" : "2026-05-23",
+        "name" : "Race 1"
       },
       {
-        "name": "Qualifying 2",
-        "id": "dtm-2026-r02-s5",
-        "timeLocal": "09:40",
-        "kind": "qualifying",
-        "date": "2026-05-24",
-        "durationMinutes": 30,
-        "results": [
+        "id" : "dtm-2026-r02-s5",
+        "kind" : "qualifying",
+        "results" : [
           {
-            "position": 1,
-            "driver": "K. van der Linde",
-            "team": "Schubert Motorsport",
-            "number": "3",
-            "time": "1'32.831"
+            "driver" : "K. van der Linde",
+            "number" : "3",
+            "team" : "Schubert Motorsport",
+            "time" : "1'32.831",
+            "position" : 1
           },
           {
-            "position": 2,
-            "driver": "T. Vermeulen",
-            "team": "Emil Frey Racing",
-            "number": "69",
-            "interval": "+0.177",
-            "speed": "1'33.008"
+            "driver" : "T. Vermeulen",
+            "speed" : "1'33.008",
+            "number" : "69",
+            "team" : "Emil Frey Racing",
+            "interval" : "+0.177",
+            "position" : 2
           },
           {
-            "position": 3,
-            "driver": "L. Engstler",
-            "team": "Red Bull Team Abt",
-            "number": "130",
-            "interval": "+0.340",
-            "speed": "1'33.171"
+            "driver" : "L. Engstler",
+            "speed" : "1'33.171",
+            "number" : "130",
+            "team" : "Red Bull Team Abt",
+            "interval" : "+0.340",
+            "position" : 3
           },
           {
-            "position": 4,
-            "driver": "M. Bortolotti",
-            "team": "TGI Team Lamborghini by GRT",
-            "number": "19",
-            "interval": "+0.374",
-            "speed": "1'33.205"
+            "driver" : "M. Bortolotti",
+            "speed" : "1'33.205",
+            "number" : "19",
+            "team" : "TGI Team Lamborghini by GRT",
+            "interval" : "+0.374",
+            "position" : 4
           },
           {
-            "position": 5,
-            "driver": "B. Dörr",
-            "team": "Dörr Motorsport",
-            "number": "25",
-            "interval": "+0.412",
-            "speed": "1'33.243"
+            "driver" : "B. Dörr",
+            "speed" : "1'33.243",
+            "number" : "25",
+            "team" : "Dörr Motorsport",
+            "interval" : "+0.412",
+            "position" : 5
           },
           {
-            "position": 6,
-            "driver": "M. Cairoli",
-            "team": "Emil Frey Racing",
-            "number": "14",
-            "interval": "+0.417",
-            "speed": "1'33.248"
+            "driver" : "M. Cairoli",
+            "speed" : "1'33.248",
+            "number" : "14",
+            "team" : "Emil Frey Racing",
+            "interval" : "+0.417",
+            "position" : 6
           },
           {
-            "position": 7,
-            "driver": "T. Preining",
-            "team": "Manthey Racing",
-            "number": "91",
-            "interval": "+0.542",
-            "speed": "1'33.373"
+            "driver" : "T. Preining",
+            "speed" : "1'33.373",
+            "number" : "91",
+            "team" : "Manthey Racing",
+            "interval" : "+0.542",
+            "position" : 7
           },
           {
-            "position": 8,
-            "driver": "L. Auer",
-            "team": "Mercedes-AMG Team Landgraf",
-            "number": "22",
-            "interval": "+0.559",
-            "speed": "1'33.390"
+            "driver" : "L. Auer",
+            "speed" : "1'33.390",
+            "number" : "22",
+            "team" : "Mercedes-AMG Team Landgraf",
+            "interval" : "+0.559",
+            "position" : 8
           },
           {
-            "position": 9,
-            "driver": "N. Thiim",
-            "team": "Comtoyou Racing",
-            "number": "7",
-            "interval": "+0.576",
-            "speed": "1'33.407"
+            "driver" : "N. Thiim",
+            "speed" : "1'33.407",
+            "number" : "7",
+            "team" : "Comtoyou Racing",
+            "interval" : "+0.576",
+            "position" : 9
           },
           {
-            "position": 10,
-            "driver": "J. Gounon",
-            "team": "Mercedes-AMG Team Mann-Filter",
-            "number": "48",
-            "interval": "+0.687",
-            "speed": "1'33.518"
+            "driver" : "J. Gounon",
+            "speed" : "1'33.518",
+            "number" : "48",
+            "team" : "Mercedes-AMG Team Mann-Filter",
+            "interval" : "+0.687",
+            "position" : 10
           },
           {
-            "position": 11,
-            "driver": "M. Engel",
-            "team": "Mercedes-AMG Team Ravenol",
-            "number": "80",
-            "interval": "+0.771",
-            "speed": "1'33.602"
+            "driver" : "M. Engel",
+            "speed" : "1'33.602",
+            "number" : "80",
+            "team" : "Mercedes-AMG Team Ravenol",
+            "interval" : "+0.771",
+            "position" : 11
           },
           {
-            "position": 12,
-            "driver": "M. Mapelli",
-            "team": "Red Bull Team Abt",
-            "number": "10",
-            "interval": "+0.890",
-            "speed": "1'33.721"
+            "driver" : "M. Mapelli",
+            "speed" : "1'33.721",
+            "number" : "10",
+            "team" : "Red Bull Team Abt",
+            "interval" : "+0.890",
+            "position" : 12
           },
           {
-            "position": 13,
-            "driver": "M. Wittmann",
-            "team": "Schubert Motorsport",
-            "number": "11",
-            "interval": "+0.904",
-            "speed": "1'33.735"
+            "driver" : "M. Wittmann",
+            "speed" : "1'33.735",
+            "number" : "11",
+            "team" : "Schubert Motorsport",
+            "interval" : "+0.904",
+            "position" : 13
           },
           {
-            "position": 14,
-            "driver": "P. Maximilian",
-            "team": "TGI Team Lamborghini by GRT",
-            "number": "63",
-            "interval": "+0.962",
-            "speed": "1'33.793"
+            "driver" : "P. Maximilian",
+            "speed" : "1'33.793",
+            "number" : "63",
+            "team" : "TGI Team Lamborghini by GRT",
+            "interval" : "+0.962",
+            "position" : 14
           },
           {
-            "position": 15,
-            "driver": "B. Buus",
-            "team": "Land-Motorsport",
-            "number": "29",
-            "interval": "+1.101",
-            "speed": "1'33.932"
+            "driver" : "B. Buus",
+            "speed" : "1'33.932",
+            "number" : "29",
+            "team" : "Land-Motorsport",
+            "interval" : "+1.101",
+            "position" : 15
           },
           {
-            "position": 16,
-            "driver": "R. Feller",
-            "team": "Manthey Racing",
-            "number": "90",
-            "interval": "+1.120",
-            "speed": "1'33.951"
+            "driver" : "R. Feller",
+            "speed" : "1'33.951",
+            "number" : "90",
+            "team" : "Manthey Racing",
+            "interval" : "+1.120",
+            "position" : 16
           },
           {
-            "position": 17,
-            "driver": "N. Baert",
-            "team": "Comtoyou Racing",
-            "number": "8",
-            "interval": "+1.217",
-            "speed": "1'34.048"
+            "driver" : "N. Baert",
+            "speed" : "1'34.048",
+            "number" : "8",
+            "team" : "Comtoyou Racing",
+            "interval" : "+1.217",
+            "position" : 17
           },
           {
-            "position": 18,
-            "driver": "A. Maini",
-            "team": "HRT Ford Performance",
-            "number": "36",
-            "interval": "+1.291",
-            "speed": "1'34.122"
+            "driver" : "A. Maini",
+            "speed" : "1'34.122",
+            "number" : "36",
+            "team" : "HRT Ford Performance",
+            "interval" : "+1.291",
+            "position" : 18
           },
           {
-            "position": 19,
-            "driver": "T. Glock",
-            "team": "Dörr Motorsport",
-            "number": "16",
-            "interval": "+1.379",
-            "speed": "1'34.210"
+            "driver" : "T. Glock",
+            "speed" : "1'34.210",
+            "number" : "16",
+            "team" : "Dörr Motorsport",
+            "interval" : "+1.379",
+            "position" : 19
           },
           {
-            "position": 20,
-            "driver": "T. Kalender",
-            "team": "Mercedes-AMG Team Landgraf",
-            "number": "84",
-            "interval": "+1.679",
-            "speed": "1'34.510"
+            "driver" : "T. Kalender",
+            "speed" : "1'34.510",
+            "number" : "84",
+            "team" : "Mercedes-AMG Team Landgraf",
+            "interval" : "+1.679",
+            "position" : 20
           },
           {
-            "position": 21,
-            "driver": "F. Wiebelhaus",
-            "team": "HRT Ford Performance",
-            "number": "64",
-            "interval": "+1.750",
-            "speed": "1'34.581"
+            "driver" : "F. Wiebelhaus",
+            "speed" : "1'34.581",
+            "number" : "64",
+            "team" : "HRT Ford Performance",
+            "interval" : "+1.750",
+            "position" : 21
           }
-        ]
+        ],
+        "timeLocal" : "09:40",
+        "durationMinutes" : 30,
+        "date" : "2026-05-24",
+        "name" : "Qualifying 2"
       },
       {
-        "name": "Race 2",
-        "id": "dtm-2026-r02-s6",
-        "timeLocal": "13:30",
-        "kind": "race",
-        "date": "2026-05-24",
-        "durationMinutes": 55
+        "timeLocal" : "13:30",
+        "kind" : "race",
+        "durationMinutes" : 55,
+        "id" : "dtm-2026-r02-s6",
+        "date" : "2026-05-24",
+        "name" : "Race 2"
       }
-    ]
+    ],
+    "city" : "Zandvoort",
+    "id" : "dtm-2026-r02",
+    "roundNumber" : 2
   },
   {
-    "id": "dtm-2026-r03",
-    "seriesId": "dtm",
-    "circuitName": "Lausitzring",
-    "raceName": "Lausitzring",
-    "city": "Klettwitz",
-    "roundNumber": 3,
-    "country": "Germany",
-    "countryCode": "DE",
-    "sessions": [
+    "raceName" : "Lausitzring",
+    "country" : "Germany",
+    "countryCode" : "DE",
+    "circuitName" : "Lausitzring",
+    "seriesId" : "dtm",
+    "sessions" : [
       {
-        "name": "Practice 1",
-        "id": "dtm-2026-r03-s1",
-        "timeLocal": "11:40",
-        "kind": "practice",
-        "date": "2026-06-19",
-        "durationMinutes": 45
+        "timeLocal" : "11:40",
+        "kind" : "practice",
+        "durationMinutes" : 45,
+        "id" : "dtm-2026-r03-s1",
+        "date" : "2026-06-19",
+        "name" : "Practice 1"
       },
       {
-        "name": "Practice 2",
-        "id": "dtm-2026-r03-s2",
-        "timeLocal": "15:55",
-        "kind": "practice",
-        "date": "2026-06-19",
-        "durationMinutes": 45
+        "timeLocal" : "15:55",
+        "kind" : "practice",
+        "durationMinutes" : 45,
+        "id" : "dtm-2026-r03-s2",
+        "date" : "2026-06-19",
+        "name" : "Practice 2"
       },
       {
-        "name": "Qualifying 1",
-        "id": "dtm-2026-r03-s3",
-        "timeLocal": "09:05",
-        "kind": "qualifying",
-        "date": "2026-06-20",
-        "durationMinutes": 30
+        "timeLocal" : "09:05",
+        "kind" : "qualifying",
+        "durationMinutes" : 30,
+        "id" : "dtm-2026-r03-s3",
+        "date" : "2026-06-20",
+        "name" : "Qualifying 1"
       },
       {
-        "name": "Race 1",
-        "id": "dtm-2026-r03-s4",
-        "timeLocal": "12:30",
-        "kind": "race",
-        "date": "2026-06-20",
-        "durationMinutes": 55
+        "timeLocal" : "12:30",
+        "kind" : "race",
+        "durationMinutes" : 55,
+        "id" : "dtm-2026-r03-s4",
+        "date" : "2026-06-20",
+        "name" : "Race 1"
       },
       {
-        "name": "Qualifying 2",
-        "id": "dtm-2026-r03-s5",
-        "timeLocal": "09:00",
-        "kind": "qualifying",
-        "date": "2026-06-21",
-        "durationMinutes": 30
+        "timeLocal" : "09:00",
+        "kind" : "qualifying",
+        "durationMinutes" : 30,
+        "id" : "dtm-2026-r03-s5",
+        "date" : "2026-06-21",
+        "name" : "Qualifying 2"
       },
       {
-        "name": "Race 2",
-        "id": "dtm-2026-r03-s6",
-        "timeLocal": "13:30",
-        "kind": "race",
-        "date": "2026-06-21",
-        "durationMinutes": 55
+        "timeLocal" : "13:30",
+        "kind" : "race",
+        "durationMinutes" : 55,
+        "id" : "dtm-2026-r03-s6",
+        "date" : "2026-06-21",
+        "name" : "Race 2"
       }
-    ]
+    ],
+    "city" : "Klettwitz",
+    "id" : "dtm-2026-r03",
+    "roundNumber" : 3
   },
   {
-    "id": "dtm-2026-r04",
-    "seriesId": "dtm",
-    "circuitName": "Norisring",
-    "raceName": "Norisring",
-    "city": "Nuremberg",
-    "roundNumber": 4,
-    "country": "Germany",
-    "countryCode": "DE",
-    "sessions": [
+    "raceName" : "Norisring",
+    "country" : "Germany",
+    "countryCode" : "DE",
+    "circuitName" : "Norisring",
+    "seriesId" : "dtm",
+    "sessions" : [
       {
-        "name": "Practice 1",
-        "id": "dtm-2026-r04-s1",
-        "timeLocal": "10:45",
-        "kind": "practice",
-        "date": "2026-07-03",
-        "durationMinutes": 45
+        "timeLocal" : "10:45",
+        "kind" : "practice",
+        "durationMinutes" : 45,
+        "id" : "dtm-2026-r04-s1",
+        "date" : "2026-07-03",
+        "name" : "Practice 1"
       },
       {
-        "name": "Practice 2",
-        "id": "dtm-2026-r04-s2",
-        "timeLocal": "15:50",
-        "kind": "practice",
-        "date": "2026-07-03",
-        "durationMinutes": 45
+        "timeLocal" : "15:50",
+        "kind" : "practice",
+        "durationMinutes" : 45,
+        "id" : "dtm-2026-r04-s2",
+        "date" : "2026-07-03",
+        "name" : "Practice 2"
       },
       {
-        "name": "Qualifying 1",
-        "id": "dtm-2026-r04-s3",
-        "timeLocal": "09:15",
-        "kind": "qualifying",
-        "date": "2026-07-04",
-        "durationMinutes": 30
+        "timeLocal" : "09:15",
+        "kind" : "qualifying",
+        "durationMinutes" : 30,
+        "id" : "dtm-2026-r04-s3",
+        "date" : "2026-07-04",
+        "name" : "Qualifying 1"
       },
       {
-        "name": "Race 1",
-        "id": "dtm-2026-r04-s4",
-        "timeLocal": "13:30",
-        "kind": "race",
-        "date": "2026-07-04",
-        "durationMinutes": 55
+        "timeLocal" : "13:30",
+        "kind" : "race",
+        "durationMinutes" : 55,
+        "id" : "dtm-2026-r04-s4",
+        "date" : "2026-07-04",
+        "name" : "Race 1"
       },
       {
-        "name": "Qualifying 2",
-        "id": "dtm-2026-r04-s5",
-        "timeLocal": "09:15",
-        "kind": "qualifying",
-        "date": "2026-07-05",
-        "durationMinutes": 30
+        "timeLocal" : "09:15",
+        "kind" : "qualifying",
+        "durationMinutes" : 30,
+        "id" : "dtm-2026-r04-s5",
+        "date" : "2026-07-05",
+        "name" : "Qualifying 2"
       },
       {
-        "name": "Race 2",
-        "id": "dtm-2026-r04-s6",
-        "timeLocal": "13:30",
-        "kind": "race",
-        "date": "2026-07-05",
-        "durationMinutes": 55
+        "timeLocal" : "13:30",
+        "kind" : "race",
+        "durationMinutes" : 55,
+        "id" : "dtm-2026-r04-s6",
+        "date" : "2026-07-05",
+        "name" : "Race 2"
       }
-    ]
+    ],
+    "city" : "Nuremberg",
+    "id" : "dtm-2026-r04",
+    "roundNumber" : 4
   },
   {
-    "id": "dtm-2026-r05",
-    "seriesId": "dtm",
-    "circuitName": "Motorsport Arena Oschersleben",
-    "raceName": "Oschersleben",
-    "city": "Oschersleben",
-    "roundNumber": 5,
-    "country": "Germany",
-    "countryCode": "DE",
-    "sessions": [
+    "raceName" : "Oschersleben",
+    "country" : "Germany",
+    "countryCode" : "DE",
+    "circuitName" : "Motorsport Arena Oschersleben",
+    "seriesId" : "dtm",
+    "sessions" : [
       {
-        "name": "Practice 1",
-        "id": "dtm-2026-r05-s1",
-        "timeLocal": "11:05",
-        "kind": "practice",
-        "date": "2026-07-24",
-        "durationMinutes": 45
+        "timeLocal" : "11:05",
+        "kind" : "practice",
+        "durationMinutes" : 45,
+        "id" : "dtm-2026-r05-s1",
+        "date" : "2026-07-24",
+        "name" : "Practice 1"
       },
       {
-        "name": "Practice 2",
-        "id": "dtm-2026-r05-s2",
-        "timeLocal": "15:40",
-        "kind": "practice",
-        "date": "2026-07-24",
-        "durationMinutes": 45
+        "timeLocal" : "15:40",
+        "kind" : "practice",
+        "durationMinutes" : 45,
+        "id" : "dtm-2026-r05-s2",
+        "date" : "2026-07-24",
+        "name" : "Practice 2"
       },
       {
-        "name": "Qualifying 1",
-        "id": "dtm-2026-r05-s3",
-        "timeLocal": "09:20",
-        "kind": "qualifying",
-        "date": "2026-07-25",
-        "durationMinutes": 30
+        "timeLocal" : "09:20",
+        "kind" : "qualifying",
+        "durationMinutes" : 30,
+        "id" : "dtm-2026-r05-s3",
+        "date" : "2026-07-25",
+        "name" : "Qualifying 1"
       },
       {
-        "name": "Race 1",
-        "id": "dtm-2026-r05-s4",
-        "timeLocal": "13:30",
-        "kind": "race",
-        "date": "2026-07-25",
-        "durationMinutes": 55
+        "timeLocal" : "13:30",
+        "kind" : "race",
+        "durationMinutes" : 55,
+        "id" : "dtm-2026-r05-s4",
+        "date" : "2026-07-25",
+        "name" : "Race 1"
       },
       {
-        "name": "Qualifying 2",
-        "id": "dtm-2026-r05-s5",
-        "timeLocal": "09:20",
-        "kind": "qualifying",
-        "date": "2026-07-26",
-        "durationMinutes": 30
+        "timeLocal" : "09:20",
+        "kind" : "qualifying",
+        "durationMinutes" : 30,
+        "id" : "dtm-2026-r05-s5",
+        "date" : "2026-07-26",
+        "name" : "Qualifying 2"
       },
       {
-        "name": "Race 2",
-        "id": "dtm-2026-r05-s6",
-        "timeLocal": "13:30",
-        "kind": "race",
-        "date": "2026-07-26",
-        "durationMinutes": 55
+        "timeLocal" : "13:30",
+        "kind" : "race",
+        "durationMinutes" : 55,
+        "id" : "dtm-2026-r05-s6",
+        "date" : "2026-07-26",
+        "name" : "Race 2"
       }
-    ]
+    ],
+    "city" : "Oschersleben",
+    "id" : "dtm-2026-r05",
+    "roundNumber" : 5
   },
   {
-    "id": "dtm-2026-r06",
-    "seriesId": "dtm",
-    "circuitName": "Nürburgring Grand Prix Circuit",
-    "raceName": "Nürburgring",
-    "city": "Nürburg",
-    "roundNumber": 6,
-    "country": "Germany",
-    "countryCode": "DE",
-    "sessions": [
+    "raceName" : "Nürburgring",
+    "country" : "Germany",
+    "countryCode" : "DE",
+    "circuitName" : "Nürburgring Grand Prix Circuit",
+    "seriesId" : "dtm",
+    "sessions" : [
       {
-        "name": "Practice 1",
-        "id": "dtm-2026-r06-s1",
-        "timeLocal": "10:40",
-        "kind": "practice",
-        "date": "2026-08-14",
-        "durationMinutes": 45
+        "timeLocal" : "10:40",
+        "kind" : "practice",
+        "durationMinutes" : 45,
+        "id" : "dtm-2026-r06-s1",
+        "date" : "2026-08-14",
+        "name" : "Practice 1"
       },
       {
-        "name": "Practice 2",
-        "id": "dtm-2026-r06-s2",
-        "timeLocal": "15:35",
-        "kind": "practice",
-        "date": "2026-08-14",
-        "durationMinutes": 45
+        "timeLocal" : "15:35",
+        "kind" : "practice",
+        "durationMinutes" : 45,
+        "id" : "dtm-2026-r06-s2",
+        "date" : "2026-08-14",
+        "name" : "Practice 2"
       },
       {
-        "name": "Qualifying 1",
-        "id": "dtm-2026-r06-s3",
-        "timeLocal": "09:35",
-        "kind": "qualifying",
-        "date": "2026-08-15",
-        "durationMinutes": 30
+        "timeLocal" : "09:35",
+        "kind" : "qualifying",
+        "durationMinutes" : 30,
+        "id" : "dtm-2026-r06-s3",
+        "date" : "2026-08-15",
+        "name" : "Qualifying 1"
       },
       {
-        "name": "Race 1",
-        "id": "dtm-2026-r06-s4",
-        "timeLocal": "13:30",
-        "kind": "race",
-        "date": "2026-08-15",
-        "durationMinutes": 55
+        "timeLocal" : "13:30",
+        "kind" : "race",
+        "durationMinutes" : 55,
+        "id" : "dtm-2026-r06-s4",
+        "date" : "2026-08-15",
+        "name" : "Race 1"
       },
       {
-        "name": "Qualifying 2",
-        "id": "dtm-2026-r06-s5",
-        "timeLocal": "09:00",
-        "kind": "qualifying",
-        "date": "2026-08-16",
-        "durationMinutes": 30
+        "timeLocal" : "09:00",
+        "kind" : "qualifying",
+        "durationMinutes" : 30,
+        "id" : "dtm-2026-r06-s5",
+        "date" : "2026-08-16",
+        "name" : "Qualifying 2"
       },
       {
-        "name": "Race 2",
-        "id": "dtm-2026-r06-s6",
-        "timeLocal": "13:30",
-        "kind": "race",
-        "date": "2026-08-16",
-        "durationMinutes": 55
+        "timeLocal" : "13:30",
+        "kind" : "race",
+        "durationMinutes" : 55,
+        "id" : "dtm-2026-r06-s6",
+        "date" : "2026-08-16",
+        "name" : "Race 2"
       }
-    ]
+    ],
+    "city" : "Nürburg",
+    "id" : "dtm-2026-r06",
+    "roundNumber" : 6
   },
   {
-    "id": "dtm-2026-r07",
-    "seriesId": "dtm",
-    "circuitName": "Sachsenring",
-    "raceName": "Sachsenring",
-    "city": "Hohenstein-Ernstthal",
-    "roundNumber": 7,
-    "country": "Germany",
-    "countryCode": "DE",
-    "sessions": [
+    "raceName" : "Sachsenring",
+    "country" : "Germany",
+    "countryCode" : "DE",
+    "circuitName" : "Sachsenring",
+    "seriesId" : "dtm",
+    "sessions" : [
       {
-        "name": "Practice 1",
-        "id": "dtm-2026-r07-s1",
-        "timeLocal": "11:30",
-        "kind": "practice",
-        "date": "2026-09-11",
-        "durationMinutes": 45
+        "timeLocal" : "11:30",
+        "kind" : "practice",
+        "durationMinutes" : 45,
+        "id" : "dtm-2026-r07-s1",
+        "date" : "2026-09-11",
+        "name" : "Practice 1"
       },
       {
-        "name": "Practice 2",
-        "id": "dtm-2026-r07-s2",
-        "timeLocal": "15:30",
-        "kind": "practice",
-        "date": "2026-09-11",
-        "durationMinutes": 45
+        "timeLocal" : "15:30",
+        "kind" : "practice",
+        "durationMinutes" : 45,
+        "id" : "dtm-2026-r07-s2",
+        "date" : "2026-09-11",
+        "name" : "Practice 2"
       },
       {
-        "name": "Qualifying 1",
-        "id": "dtm-2026-r07-s3",
-        "timeLocal": "09:10",
-        "kind": "qualifying",
-        "date": "2026-09-12",
-        "durationMinutes": 30
+        "timeLocal" : "09:10",
+        "kind" : "qualifying",
+        "durationMinutes" : 30,
+        "id" : "dtm-2026-r07-s3",
+        "date" : "2026-09-12",
+        "name" : "Qualifying 1"
       },
       {
-        "name": "Race 1",
-        "id": "dtm-2026-r07-s4",
-        "timeLocal": "13:30",
-        "kind": "race",
-        "date": "2026-09-12",
-        "durationMinutes": 55
+        "timeLocal" : "13:30",
+        "kind" : "race",
+        "durationMinutes" : 55,
+        "id" : "dtm-2026-r07-s4",
+        "date" : "2026-09-12",
+        "name" : "Race 1"
       },
       {
-        "name": "Qualifying 2",
-        "id": "dtm-2026-r07-s5",
-        "timeLocal": "09:20",
-        "kind": "qualifying",
-        "date": "2026-09-13",
-        "durationMinutes": 30
+        "timeLocal" : "09:20",
+        "kind" : "qualifying",
+        "durationMinutes" : 30,
+        "id" : "dtm-2026-r07-s5",
+        "date" : "2026-09-13",
+        "name" : "Qualifying 2"
       },
       {
-        "name": "Race 2",
-        "id": "dtm-2026-r07-s6",
-        "timeLocal": "13:30",
-        "kind": "race",
-        "date": "2026-09-13",
-        "durationMinutes": 55
+        "timeLocal" : "13:30",
+        "kind" : "race",
+        "durationMinutes" : 55,
+        "id" : "dtm-2026-r07-s6",
+        "date" : "2026-09-13",
+        "name" : "Race 2"
       }
-    ]
+    ],
+    "city" : "Hohenstein-Ernstthal",
+    "id" : "dtm-2026-r07",
+    "roundNumber" : 7
   },
   {
-    "id": "dtm-2026-r08",
-    "seriesId": "dtm",
-    "circuitName": "Hockenheimring Baden-Württemberg",
-    "raceName": "Hockenheimring",
-    "city": "Hockenheim",
-    "roundNumber": 8,
-    "country": "Germany",
-    "countryCode": "DE",
-    "sessions": [
+    "raceName" : "Hockenheimring",
+    "country" : "Germany",
+    "countryCode" : "DE",
+    "circuitName" : "Hockenheimring Baden-Württemberg",
+    "seriesId" : "dtm",
+    "sessions" : [
       {
-        "name": "Practice 1",
-        "id": "dtm-2026-r08-s1",
-        "timeLocal": "11:05",
-        "kind": "practice",
-        "date": "2026-10-09",
-        "durationMinutes": 45
+        "timeLocal" : "11:05",
+        "kind" : "practice",
+        "durationMinutes" : 45,
+        "id" : "dtm-2026-r08-s1",
+        "date" : "2026-10-09",
+        "name" : "Practice 1"
       },
       {
-        "name": "Practice 2",
-        "id": "dtm-2026-r08-s2",
-        "timeLocal": "15:30",
-        "kind": "practice",
-        "date": "2026-10-09",
-        "durationMinutes": 45
+        "timeLocal" : "15:30",
+        "kind" : "practice",
+        "durationMinutes" : 45,
+        "id" : "dtm-2026-r08-s2",
+        "date" : "2026-10-09",
+        "name" : "Practice 2"
       },
       {
-        "name": "Qualifying 1",
-        "id": "dtm-2026-r08-s3",
-        "timeLocal": "09:35",
-        "kind": "qualifying",
-        "date": "2026-10-10",
-        "durationMinutes": 30
+        "timeLocal" : "09:35",
+        "kind" : "qualifying",
+        "durationMinutes" : 30,
+        "id" : "dtm-2026-r08-s3",
+        "date" : "2026-10-10",
+        "name" : "Qualifying 1"
       },
       {
-        "name": "Race 1",
-        "id": "dtm-2026-r08-s4",
-        "timeLocal": "13:30",
-        "kind": "race",
-        "date": "2026-10-10",
-        "durationMinutes": 55
+        "timeLocal" : "13:30",
+        "kind" : "race",
+        "durationMinutes" : 55,
+        "id" : "dtm-2026-r08-s4",
+        "date" : "2026-10-10",
+        "name" : "Race 1"
       },
       {
-        "name": "Qualifying 2",
-        "id": "dtm-2026-r08-s5",
-        "timeLocal": "09:30",
-        "kind": "qualifying",
-        "date": "2026-10-11",
-        "durationMinutes": 30
+        "timeLocal" : "09:30",
+        "kind" : "qualifying",
+        "durationMinutes" : 30,
+        "id" : "dtm-2026-r08-s5",
+        "date" : "2026-10-11",
+        "name" : "Qualifying 2"
       },
       {
-        "name": "Race 2",
-        "id": "dtm-2026-r08-s6",
-        "timeLocal": "13:30",
-        "kind": "race",
-        "date": "2026-10-11",
-        "durationMinutes": 55
+        "timeLocal" : "13:30",
+        "kind" : "race",
+        "durationMinutes" : 55,
+        "id" : "dtm-2026-r08-s6",
+        "date" : "2026-10-11",
+        "name" : "Race 2"
       }
-    ]
+    ],
+    "city" : "Hockenheim",
+    "id" : "dtm-2026-r08",
+    "roundNumber" : 8
   }
 ]
