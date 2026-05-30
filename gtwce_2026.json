@@ -1,4271 +1,4271 @@
 [
   {
-    "id": "gtwce-2026-r01",
-    "seriesId": "gtwce",
-    "roundNumber": 1,
-    "raceName": "Circuit Paul Ricard",
-    "circuitName": "Circuit Paul Ricard",
-    "city": "Le Castellet",
-    "country": "France",
-    "countryCode": "FR",
-    "sessions": [
+    "countryCode" : "FR",
+    "circuitName" : "Circuit Paul Ricard",
+    "id" : "gtwce-2026-r01",
+    "country" : "France",
+    "seriesId" : "gtwce",
+    "city" : "Le Castellet",
+    "raceName" : "Circuit Paul Ricard",
+    "sessions" : [
       {
-        "id": "gtwce-2026-r01-s1",
-        "name": "Practice 1",
-        "kind": "practice",
-        "date": "2026-04-10",
-        "timeLocal": "14:25",
-        "durationMinutes": 60,
-        "results": [
+        "timeLocal" : "14:25",
+        "kind" : "practice",
+        "durationMinutes" : 60,
+        "name" : "Practice 1",
+        "date" : "2026-04-10",
+        "id" : "gtwce-2026-r01-s1",
+        "results" : [
           {
-            "position": 1,
-            "driver": "Jonathan Mitchell",
-            "team": "Scott Sport",
-            "time": "2:07.032"
+            "driver" : "Jonathan Mitchell",
+            "time" : "2:07.032",
+            "team" : "Scott Sport",
+            "position" : 1
           },
           {
-            "position": 2,
-            "driver": "Benjamin Ricci",
-            "team": "Storic and Race Cars",
-            "interval": "+0.002",
-            "speed": "2:07.034"
+            "driver" : "Benjamin Ricci",
+            "speed" : "2:07.034",
+            "interval" : "+0.002",
+            "team" : "Storic and Race Cars",
+            "position" : 2
           },
           {
-            "position": 3,
-            "drivers": [
+            "interval" : "+0.550",
+            "speed" : "2:07.582",
+            "drivers" : [
               "Franz Wunderlich",
               "Pascal Huteau"
             ],
-            "team": "Fanta Racing Legend by Code Classic",
-            "interval": "+0.550",
-            "speed": "2:07.582"
+            "team" : "Fanta Racing Legend by Code Classic",
+            "position" : 3
           },
           {
-            "position": 4,
-            "drivers": [
+            "interval" : "+1.078",
+            "speed" : "2:08.110",
+            "drivers" : [
               "Mark Cole",
               "Alvaro Parente"
             ],
-            "team": "Quinntec Racing",
-            "interval": "+1.078",
-            "speed": "2:08.110"
+            "team" : "Quinntec Racing",
+            "position" : 4
           },
           {
-            "position": 5,
-            "drivers": [
+            "interval" : "+1.578",
+            "speed" : "2:08.610",
+            "drivers" : [
               "Stephan Joebstl",
               "William Nuthall"
             ],
-            "team": "Michelotto",
-            "interval": "+1.578",
-            "speed": "2:08.610"
+            "team" : "Michelotto",
+            "position" : 5
           },
           {
-            "position": 6,
-            "driver": "Philippe Giauque",
-            "team": "Debard Automobiles By Racetivity",
-            "interval": "+1.626",
-            "speed": "2:08.658"
+            "driver" : "Philippe Giauque",
+            "speed" : "2:08.658",
+            "interval" : "+1.626",
+            "team" : "Debard Automobiles By Racetivity",
+            "position" : 6
           },
           {
-            "position": 7,
-            "drivers": [
+            "interval" : "+2.290",
+            "speed" : "2:09.322",
+            "drivers" : [
               "Adam Balon",
               "Phil Keen"
             ],
-            "team": "Barwell Motorsport",
-            "interval": "+2.290",
-            "speed": "2:09.322"
+            "team" : "Barwell Motorsport",
+            "position" : 7
           },
           {
-            "position": 8,
-            "driver": "Christpoh von Oeynhausen",
-            "team": "Classic & Speed",
-            "interval": "+3.080",
-            "speed": "2:10.112"
+            "driver" : "Christpoh von Oeynhausen",
+            "speed" : "2:10.112",
+            "interval" : "+3.080",
+            "team" : "Classic & Speed",
+            "position" : 8
           },
           {
-            "position": 9,
-            "driver": "Heiko Neumann",
-            "team": "Team Motopark",
-            "interval": "+3.525",
-            "speed": "2:10.557"
+            "driver" : "Heiko Neumann",
+            "speed" : "2:10.557",
+            "interval" : "+3.525",
+            "team" : "Team Motopark",
+            "position" : 9
           },
           {
-            "position": 10,
-            "drivers": [
+            "interval" : "+3.998",
+            "speed" : "2:11.030",
+            "drivers" : [
               "Jean-Lou Rihon",
               "Nick Padmore"
             ],
-            "team": "TFT Racing",
-            "interval": "+3.998",
-            "speed": "2:11.030"
+            "team" : "TFT Racing",
+            "position" : 10
           },
           {
-            "position": 11,
-            "driver": "Shaun Lynn",
-            "team": "Team Parker Racing",
-            "interval": "+4.098",
-            "speed": "2:11.130"
+            "driver" : "Shaun Lynn",
+            "speed" : "2:11.130",
+            "interval" : "+4.098",
+            "team" : "Team Parker Racing",
+            "position" : 11
           },
           {
-            "position": 12,
-            "drivers": [
+            "interval" : "+4.624",
+            "speed" : "2:11.656",
+            "drivers" : [
               "Jacques Caumes",
               "Emil Caumes"
             ],
-            "team": "Caumes Armatures Bourgoin",
-            "interval": "+4.624",
-            "speed": "2:11.656"
+            "team" : "Caumes Armatures Bourgoin",
+            "position" : 12
           },
           {
-            "position": 13,
-            "driver": "Philippe Colancon",
-            "team": "2B Autosport",
-            "interval": "+4.976",
-            "speed": "2:12.008"
+            "driver" : "Philippe Colancon",
+            "speed" : "2:12.008",
+            "interval" : "+4.976",
+            "team" : "2B Autosport",
+            "position" : 13
           },
           {
-            "position": 14,
-            "drivers": [
+            "interval" : "+5.035",
+            "speed" : "2:12.067",
+            "drivers" : [
               "Peter Moulsdale",
               "Matt Topham"
             ],
-            "team": "Barwell Motorsport",
-            "interval": "+5.035",
-            "speed": "2:12.067"
+            "team" : "Barwell Motorsport",
+            "position" : 14
           },
           {
-            "position": 15,
-            "driver": "Dan Henrey",
-            "team": "Scott Sport",
-            "interval": "+5.315",
-            "speed": "2:12.347"
+            "driver" : "Dan Henrey",
+            "speed" : "2:12.347",
+            "interval" : "+5.315",
+            "team" : "Scott Sport",
+            "position" : 15
           },
           {
-            "position": 16,
-            "driver": "Marcus van Oeynhausen",
-            "team": "Classic & Speed",
-            "interval": "+6.003",
-            "speed": "2:13.035"
+            "driver" : "Marcus van Oeynhausen",
+            "speed" : "2:13.035",
+            "interval" : "+6.003",
+            "team" : "Classic & Speed",
+            "position" : 16
           },
           {
-            "position": 17,
-            "driver": "Janos Santa",
-            "team": "GFS Racing",
-            "interval": "+6.373",
-            "speed": "2:13.405"
+            "driver" : "Janos Santa",
+            "speed" : "2:13.405",
+            "interval" : "+6.373",
+            "team" : "GFS Racing",
+            "position" : 17
           },
           {
-            "position": 18,
-            "drivers": [
+            "interval" : "+7.301",
+            "speed" : "2:14.333",
+            "drivers" : [
               "Daniel Desbrueres",
               "Philippe Gache"
             ],
-            "team": "Sainteloc Racing",
-            "interval": "+7.301",
-            "speed": "2:14.333"
+            "team" : "Sainteloc Racing",
+            "position" : 18
           },
           {
-            "position": 19,
-            "drivers": [
+            "interval" : "+8.166",
+            "speed" : "2:15.198",
+            "drivers" : [
               "Anne-Sophie Nourry",
               "Michel Nourry"
             ],
-            "team": "Nourry Competition",
-            "interval": "+8.166",
-            "speed": "2:15.198"
+            "team" : "Nourry Competition",
+            "position" : 19
           },
           {
-            "position": 20,
-            "driver": "Pierre Hirschi",
-            "team": "CMR",
-            "interval": "+8.962",
-            "speed": "2:15.994"
+            "driver" : "Pierre Hirschi",
+            "speed" : "2:15.994",
+            "interval" : "+8.962",
+            "team" : "CMR",
+            "position" : 20
           },
           {
-            "position": 21,
-            "drivers": [
+            "interval" : "+9.161",
+            "speed" : "2:16.193",
+            "drivers" : [
               "Nicolas Doquin",
               "Hugues Ripert"
             ],
-            "team": "Spark Motorsport",
-            "interval": "+9.161",
-            "speed": "2:16.193"
+            "team" : "Spark Motorsport",
+            "position" : 21
           },
           {
-            "position": 22,
-            "driver": "Geoff Isringhausen",
-            "team": "Speed Motorsport Management",
-            "interval": "+13.764",
-            "speed": "2:20.796"
+            "driver" : "Geoff Isringhausen",
+            "speed" : "2:20.796",
+            "interval" : "+13.764",
+            "team" : "Speed Motorsport Management",
+            "position" : 22
           },
           {
-            "position": 23,
-            "drivers": [
+            "interval" : "+13.823",
+            "speed" : "2:20.855",
+            "drivers" : [
               "Jose Garcia",
               "Timmo Mol"
             ],
-            "team": "Lionspeed GP",
-            "interval": "+13.823",
-            "speed": "2:20.855"
+            "team" : "Lionspeed GP",
+            "position" : 23
           },
           {
-            "position": 24,
-            "driver": "Christian Kuhn",
-            "team": "Speed Motorsport Management",
-            "interval": "+16.835",
-            "speed": "2:23.867"
+            "driver" : "Christian Kuhn",
+            "speed" : "2:23.867",
+            "interval" : "+16.835",
+            "team" : "Speed Motorsport Management",
+            "position" : 24
           },
           {
-            "position": "DNF",
-            "drivers": [
+            "drivers" : [
               "Celia Martin",
               "Lindsay Brewer"
             ],
-            "team": "Klausen Racing"
+            "team" : "Klausen Racing",
+            "position" : "DNF"
           },
           {
-            "position": "DNF",
-            "drivers": [
+            "drivers" : [
               "Christian Philippon",
               "Olivier Lopez"
             ],
-            "team": "Espace Racing"
+            "team" : "Espace Racing",
+            "position" : "DNF"
           },
           {
-            "position": "DNF",
-            "driver": "Jean Legras",
-            "team": "Spark Motorsport"
+            "driver" : "Jean Legras",
+            "team" : "Spark Motorsport",
+            "position" : "DNF"
           }
         ]
       },
       {
-        "id": "gtwce-2026-r01-s2",
-        "name": "Practice 2",
-        "kind": "practice",
-        "date": "2026-04-10",
-        "timeLocal": "19:25",
-        "durationMinutes": 60,
-        "results": [
+        "timeLocal" : "19:25",
+        "kind" : "practice",
+        "durationMinutes" : 60,
+        "name" : "Practice 2",
+        "date" : "2026-04-10",
+        "id" : "gtwce-2026-r01-s2",
+        "results" : [
           {
-            "position": 1,
-            "drivers": [
+            "time" : "1:54.624",
+            "drivers" : [
               "Maxime Martin",
               "Maximilian Götz",
               "Fabian Schiller"
             ],
-            "team": "Mercedes-AMG Team GetSpeed",
-            "time": "1:54.624"
+            "team" : "Mercedes-AMG Team GetSpeed",
+            "position" : 1
           },
           {
-            "position": 2,
-            "drivers": [
+            "interval" : "+0.216",
+            "speed" : "1:54.840",
+            "drivers" : [
               "Gerhard Tweraser",
               "Dominik Olbert",
               "Benjamin Paque"
             ],
-            "team": "Razoon - more than racing",
-            "interval": "+0.216",
-            "speed": "1:54.840"
+            "team" : "Razoon - more than racing",
+            "position" : 2
           },
           {
-            "position": 3,
-            "drivers": [
+            "interval" : "+0.525",
+            "speed" : "1:55.149",
+            "drivers" : [
               "Riccardo Pera",
               "Antares Au",
               "Loek Hartog"
             ],
-            "team": "Rutronik Racing",
-            "interval": "+0.525",
-            "speed": "1:55.149"
+            "team" : "Rutronik Racing",
+            "position" : 3
           },
           {
-            "position": 4,
-            "drivers": [
+            "interval" : "+0.544",
+            "speed" : "1:55.168",
+            "drivers" : [
               "Bastian Buus",
               "Thomas Preining",
               "Ricardo Feller"
             ],
-            "team": "Lionspeed GP",
-            "interval": "+0.544",
-            "speed": "1:55.168"
+            "team" : "Lionspeed GP",
+            "position" : 4
           },
           {
-            "position": 5,
-            "drivers": [
+            "interval" : "+0.575",
+            "speed" : "1:55.199",
+            "drivers" : [
               "Alessio Rovera",
               "Nicklas Nielsen",
               "Tommaso Mosca"
             ],
-            "team": "AF Corse",
-            "interval": "+0.575",
-            "speed": "1:55.199"
+            "team" : "AF Corse",
+            "position" : 5
           },
           {
-            "position": 6,
-            "drivers": [
+            "interval" : "+0.650",
+            "speed" : "1:55.274",
+            "drivers" : [
               "Aurelien Panis",
               "Anthony Bartone",
               "Cesar Gazeau"
             ],
-            "team": "GetSpeed Team BartoneBros",
-            "interval": "+0.650",
-            "speed": "1:55.274"
+            "team" : "GetSpeed Team BartoneBros",
+            "position" : 6
           },
           {
-            "position": 7,
-            "drivers": [
+            "interval" : "+0.730",
+            "speed" : "1:55.354",
+            "drivers" : [
               "Oliver Söderström",
               "Sebastien Baud",
               "Kobe Pauwels"
             ],
-            "team": "Comtoyou Racing",
-            "interval": "+0.730",
-            "speed": "1:55.354"
+            "team" : "Comtoyou Racing",
+            "position" : 7
           },
           {
-            "position": 8,
-            "drivers": [
+            "interval" : "+0.747",
+            "speed" : "1:55.371",
+            "drivers" : [
               "Thomas Fleming",
               "Louis Prette",
               "Benjamin Goethe"
             ],
-            "team": "Garage 59",
-            "interval": "+0.747",
-            "speed": "1:55.371"
+            "team" : "Garage 59",
+            "position" : 8
           },
           {
-            "position": 9,
-            "drivers": [
+            "interval" : "+0.780",
+            "speed" : "1:55.404",
+            "drivers" : [
               "James Kell",
               "Arthur Rougier",
               "Simon Gachet"
             ],
-            "team": "CSA Racing",
-            "interval": "+0.780",
-            "speed": "1:55.404"
+            "team" : "CSA Racing",
+            "position" : 9
           },
           {
-            "position": 10,
-            "drivers": [
+            "interval" : "+0.783",
+            "speed" : "1:55.407",
+            "drivers" : [
               "Marvin Dienst",
               "Gabriele Piana",
               "Rinat Salikhov"
             ],
-            "team": "Winward Racing",
-            "interval": "+0.783",
-            "speed": "1:55.407"
+            "team" : "Winward Racing",
+            "position" : 10
           },
           {
-            "position": 11,
-            "drivers": [
+            "interval" : "+0.814",
+            "speed" : "1:55.438",
+            "drivers" : [
               "Joseph Loake",
               "Dean Macdonald",
               "Marvin Kirchhöfer"
             ],
-            "team": "Garage 59",
-            "interval": "+0.814",
-            "speed": "1:55.438"
+            "team" : "Garage 59",
+            "position" : 11
           },
           {
-            "position": 12,
-            "drivers": [
+            "interval" : "+0.854",
+            "speed" : "1:55.478",
+            "drivers" : [
               "Michael Porter",
               "Dante Rappange",
               "Guilherme Oliveira"
             ],
-            "team": "Optimum Motorsport",
-            "interval": "+0.854",
-            "speed": "1:55.478"
+            "team" : "Optimum Motorsport",
+            "position" : 12
           },
           {
-            "position": 13,
-            "drivers": [
+            "interval" : "+0.919",
+            "speed" : "1:55.543",
+            "drivers" : [
               "Lilou Wadoux",
               "Arthur Leclerc",
               "Sean Gelael"
             ],
-            "team": "AF Corse",
-            "interval": "+0.919",
-            "speed": "1:55.543"
+            "team" : "AF Corse",
+            "position" : 13
           },
           {
-            "position": 14,
-            "drivers": [
+            "interval" : "+0.945",
+            "speed" : "1:55.569",
+            "drivers" : [
               "Scott Noble",
               "Jason Hart",
               "Philip Ellis"
             ],
-            "team": "GetSpeed Team Noble Racing",
-            "interval": "+0.945",
-            "speed": "1:55.569"
+            "team" : "GetSpeed Team Noble Racing",
+            "position" : 14
           },
           {
-            "position": 15,
-            "drivers": [
+            "interval" : "+0.954",
+            "speed" : "1:55.578",
+            "drivers" : [
               "Daniel Harper",
               "Max Hesse",
               "Valentino Rossi"
             ],
-            "team": "Team WRT",
-            "interval": "+0.954",
-            "speed": "1:55.578"
+            "team" : "Team WRT",
+            "position" : 15
           },
           {
-            "position": 16,
-            "drivers": [
+            "interval" : "+0.962",
+            "speed" : "1:55.586",
+            "drivers" : [
               "Kelvin van der Linde",
               "Jordan Pepper",
               "Charles Weerts"
             ],
-            "team": "Team WRT",
-            "interval": "+0.962",
-            "speed": "1:55.586"
+            "team" : "Team WRT",
+            "position" : 16
           },
           {
-            "position": 17,
-            "drivers": [
+            "interval" : "+0.985",
+            "speed" : "1:55.609",
+            "drivers" : [
               "Daniel Juncadella",
               "Chris Lulham",
               "Jules Gounon"
             ],
-            "team": "Mercedes-AMG Team Verstappen Racing",
-            "interval": "+0.985",
-            "speed": "1:55.609"
+            "team" : "Mercedes-AMG Team Verstappen Racing",
+            "position" : 17
           },
           {
-            "position": 18,
-            "drivers": [
+            "interval" : "+0.987",
+            "speed" : "1:55.611",
+            "drivers" : [
               "Mattia Drudi",
               "Marco Sorensen",
               "Nicki Thiim"
             ],
-            "team": "Comtoyou Racing",
-            "interval": "+0.987",
-            "speed": "1:55.611"
+            "team" : "Comtoyou Racing",
+            "position" : 18
           },
           {
-            "position": 19,
-            "drivers": [
+            "interval" : "+0.992",
+            "speed" : "1:55.616",
+            "drivers" : [
               "Dries Vanthoor",
               "James Kellett",
               "Darren Leung"
             ],
-            "team": "Paradine Competition",
-            "interval": "+0.992",
-            "speed": "1:55.616"
+            "team" : "Paradine Competition",
+            "position" : 19
           },
           {
-            "position": 20,
-            "drivers": [
+            "interval" : "+0.997",
+            "speed" : "1:55.621",
+            "drivers" : [
               "Morris Schuring",
               "Dorian Boccolacci",
               "Alessio Picariello"
             ],
-            "team": "Boutsen VDS",
-            "interval": "+0.997",
-            "speed": "1:55.621"
+            "team" : "Boutsen VDS",
+            "position" : 20
           },
           {
-            "position": 21,
-            "drivers": [
+            "interval" : "+1.022",
+            "speed" : "1:55.646",
+            "drivers" : [
               "Augusto Farfus",
               "Jake Dennis",
               "Raffaele Marciello"
             ],
-            "team": "Rowe Racing",
-            "interval": "+1.022",
-            "speed": "1:55.646"
+            "team" : "Rowe Racing",
+            "position" : 21
           },
           {
-            "position": 22,
-            "drivers": [
+            "interval" : "+1.023",
+            "speed" : "1:55.647",
+            "drivers" : [
               "Gabriel Rindone",
               "Tom Kalender",
               "Mikael Grenier"
             ],
-            "team": "GetSpeed Team Dubai",
-            "interval": "+1.023",
-            "speed": "1:55.647"
+            "team" : "GetSpeed Team Dubai",
+            "position" : 22
           },
           {
-            "position": 23,
-            "drivers": [
+            "interval" : "+1.051",
+            "speed" : "1:55.675",
+            "drivers" : [
               "Rocco Mazzola",
               "Sebastian Øgaard",
               "Ariel Levi"
             ],
-            "team": "Tresor Attempto Racing",
-            "interval": "+1.051",
-            "speed": "1:55.675"
+            "team" : "Tresor Attempto Racing",
+            "position" : 23
           },
           {
-            "position": 24,
-            "drivers": [
+            "interval" : "+1.061",
+            "speed" : "1:55.685",
+            "drivers" : [
               "Ignacio Montenegro",
               "Matisse Lismont",
               "Amaury Cordeel"
             ],
-            "team": "Team WRT",
-            "interval": "+1.061",
-            "speed": "1:55.685"
+            "team" : "Team WRT",
+            "position" : 24
           },
           {
-            "position": 25,
-            "drivers": [
+            "interval" : "+1.079",
+            "speed" : "1:55.703",
+            "drivers" : [
               "Tomas Pintos",
               "Jayden Kelly",
               "Joshua Rattican"
             ],
-            "team": "Greystone GT",
-            "interval": "+1.079",
-            "speed": "1:55.703"
+            "team" : "Greystone GT",
+            "position" : 25
           },
           {
-            "position": 26,
-            "drivers": [
+            "interval" : "+1.095",
+            "speed" : "1:55.719",
+            "drivers" : [
               "Ralf Bohn",
               "Huub van Eijndhoven",
               "Robert Renauer"
             ],
-            "team": "Herberth Motorsport",
-            "interval": "+1.095",
-            "speed": "1:55.719"
+            "team" : "Herberth Motorsport",
+            "position" : 26
           },
           {
-            "position": 27,
-            "drivers": [
+            "interval" : "+1.097",
+            "speed" : "1:55.721",
+            "drivers" : [
               "Lucas Auer",
               "Luca Stolz",
               "Maro Engel"
             ],
-            "team": "Mercedes-AMG Team MANN-FILTER",
-            "interval": "+1.097",
-            "speed": "1:55.721"
+            "team" : "Mercedes-AMG Team MANN-FILTER",
+            "position" : 27
           },
           {
-            "position": 28,
-            "drivers": [
+            "interval" : "+1.102",
+            "speed" : "1:55.726",
+            "drivers" : [
               "Matias Zagazeta",
               "Jeff Machiels",
               "Gilles Stadsbader"
             ],
-            "team": "AF Corse",
-            "interval": "+1.102",
-            "speed": "1:55.726"
+            "team" : "AF Corse",
+            "position" : 28
           },
           {
-            "position": 29,
-            "drivers": [
+            "interval" : "+1.137",
+            "speed" : "1:55.761",
+            "drivers" : [
               "Alex Fontana",
               "Bashar Mardini",
               "Patrick Kolb"
             ],
-            "team": "Lionspeed GP",
-            "interval": "+1.137",
-            "speed": "1:55.761"
+            "team" : "Lionspeed GP",
+            "position" : 29
           },
           {
-            "position": 30,
-            "drivers": [
+            "interval" : "+1.180",
+            "speed" : "1:55.804",
+            "drivers" : [
               "Arjun Maini",
               "Fabio Scherer",
               "Thomas Drouet"
             ],
-            "team": "HRT Ford Racing",
-            "interval": "+1.180",
-            "speed": "1:55.804"
+            "team" : "HRT Ford Racing",
+            "position" : 30
           },
           {
-            "position": 31,
-            "drivers": [
+            "interval" : "+1.184",
+            "speed" : "1:55.808",
+            "drivers" : [
               "Carrie Schreiner",
               "Daniele Di Amato",
               "Alberto Di Folco"
             ],
-            "team": "Tresor Attempto Racing",
-            "interval": "+1.184",
-            "speed": "1:55.808"
+            "team" : "Tresor Attempto Racing",
+            "position" : 31
           },
           {
-            "position": 32,
-            "drivers": [
+            "interval" : "+1.188",
+            "speed" : "1:55.812",
+            "drivers" : [
               "Antoine Doquin",
               "Lorenzo Fluxa Cross",
               "Dennis Lind"
             ],
-            "team": "Steller Motorsport",
-            "interval": "+1.188",
-            "speed": "1:55.812"
+            "team" : "Steller Motorsport",
+            "position" : 32
           },
           {
-            "position": 33,
-            "drivers": [
+            "interval" : "+1.198",
+            "speed" : "1:55.822",
+            "drivers" : [
               "Roberto Merhi",
               "Lance Stroll",
               "Mari Boya"
             ],
-            "team": "Comtoyou Racing",
-            "interval": "+1.198",
-            "speed": "1:55.822"
+            "team" : "Comtoyou Racing",
+            "position" : 33
           },
           {
-            "position": 34,
-            "drivers": [
+            "interval" : "+1.253",
+            "speed" : "1:55.877",
+            "drivers" : [
               "Christian Hahn",
               "Ashley Sutton",
               "Robert De Haan"
             ],
-            "team": "Paradine Competition",
-            "interval": "+1.253",
-            "speed": "1:55.877"
+            "team" : "Paradine Competition",
+            "position" : 34
           },
           {
-            "position": 35,
-            "drivers": [
+            "interval" : "+1.254",
+            "speed" : "1:55.878",
+            "drivers" : [
               "Christopher Haase",
               "Simon Reicher",
               "Markus Winkelhock"
             ],
-            "team": "Eastalent Racing",
-            "interval": "+1.254",
-            "speed": "1:55.878"
+            "team" : "Eastalent Racing",
+            "position" : 35
           },
           {
-            "position": 36,
-            "drivers": [
+            "interval" : "+1.264",
+            "speed" : "1:55.888",
+            "drivers" : [
               "Adam Smalley",
               "Freddie Tomlinson",
               "Harry George"
             ],
-            "team": "Optimum Motorsport",
-            "interval": "+1.264",
-            "speed": "1:55.888"
+            "team" : "Optimum Motorsport",
+            "position" : 36
           },
           {
-            "position": 37,
-            "drivers": [
+            "interval" : "+1.264",
+            "speed" : "1:55.888",
+            "drivers" : [
               "Dylan Pereira",
               "Andrea Frassineti",
               "Alex Aka"
             ],
-            "team": "Tresor Attempto Racing",
-            "interval": "+1.264",
-            "speed": "1:55.888"
+            "team" : "Tresor Attempto Racing",
+            "position" : 37
           },
           {
-            "position": 38,
-            "drivers": [
+            "interval" : "+1.282",
+            "speed" : "1:55.906",
+            "drivers" : [
               "Gaspard Simon",
               "Ethan Ischer",
               "Mateo Villagomez"
             ],
-            "team": "Walkenhorst Motorsport",
-            "interval": "+1.282",
-            "speed": "1:55.906"
+            "team" : "Walkenhorst Motorsport",
+            "position" : 38
           },
           {
-            "position": 39,
-            "drivers": [
+            "interval" : "+1.308",
+            "speed" : "1:55.932",
+            "drivers" : [
               "Stefano Costantini",
               "Chris Froggatt",
               "Eddie Cheever"
             ],
-            "team": "Ziggo Sport Tempesta Racing",
-            "interval": "+1.308",
-            "speed": "1:55.932"
+            "team" : "Ziggo Sport Tempesta Racing",
+            "position" : 39
           },
           {
-            "position": 40,
-            "drivers": [
+            "interval" : "+1.316",
+            "speed" : "1:55.940",
+            "drivers" : [
               "Chandler Hull",
               "Rolf Ineichen",
               "Tim Heinemann"
             ],
-            "team": "JMW Motorsport",
-            "interval": "+1.316",
-            "speed": "1:55.940"
+            "team" : "JMW Motorsport",
+            "position" : 40
           },
           {
-            "position": 41,
-            "drivers": [
+            "interval" : "+1.319",
+            "speed" : "1:55.943",
+            "drivers" : [
               "Horatio Fitz-Simon",
               "Maxwell Lynn",
               "Ben Dörr"
             ],
-            "team": "Team RJN",
-            "interval": "+1.319",
-            "speed": "1:55.943"
+            "team" : "Team RJN",
+            "position" : 41
           },
           {
-            "position": 42,
-            "drivers": [
+            "interval" : "+1.327",
+            "speed" : "1:55.951",
+            "drivers" : [
               "Aleksei Nesov",
               "Aliaksandr Malykhin",
               "Max Hofer"
             ],
-            "team": "Pure Rxcing",
-            "interval": "+1.327",
-            "speed": "1:55.951"
+            "team" : "Pure Rxcing",
+            "position" : 42
           },
           {
-            "position": 43,
-            "drivers": [
+            "interval" : "+1.339",
+            "speed" : "1:55.963",
+            "drivers" : [
               "Frederik Schandorff",
               "Malte Ebdrup",
               "Simon Birch"
             ],
-            "team": "Selected Car Racing",
-            "interval": "+1.339",
-            "speed": "1:55.963"
+            "team" : "Selected Car Racing",
+            "position" : 43
           },
           {
-            "position": 44,
-            "drivers": [
+            "interval" : "+1.367",
+            "speed" : "1:55.991",
+            "drivers" : [
               "Baptiste Moulin",
               "Romain Andriolo",
               "Lorens Lecertua"
             ],
-            "team": "CSA Racing",
-            "interval": "+1.367",
-            "speed": "1:55.991"
+            "team" : "CSA Racing",
+            "position" : 44
           },
           {
-            "position": 45,
-            "drivers": [
+            "interval" : "+1.456",
+            "speed" : "1:56.080",
+            "drivers" : [
               "Reece Barr",
               "Charles Dawson",
               "Kiern Jewiss"
             ],
-            "team": "2 Seas Motorsport",
-            "interval": "+1.456",
-            "speed": "1:56.080"
+            "team" : "2 Seas Motorsport",
+            "position" : 45
           },
           {
-            "position": 46,
-            "drivers": [
+            "interval" : "+1.460",
+            "speed" : "1:56.084",
+            "drivers" : [
               "Marcelo Tomasoni",
               "Aaron Muss",
               "Kyle Marcelli"
             ],
-            "team": "Comtoyou Racing",
-            "interval": "+1.460",
-            "speed": "1:56.084"
+            "team" : "Comtoyou Racing",
+            "position" : 46
           },
           {
-            "position": 47,
-            "drivers": [
+            "interval" : "+1.464",
+            "speed" : "1:56.088",
+            "drivers" : [
               "Dustin Blattner",
               "Lorenzo Patrese",
               "Dennis Marschall"
             ],
-            "team": "Kessel Racing",
-            "interval": "+1.464",
-            "speed": "1:56.088"
+            "team" : "Kessel Racing",
+            "position" : 47
           },
           {
-            "position": 48,
-            "drivers": [
+            "interval" : "+1.482",
+            "speed" : "1:56.106",
+            "drivers" : [
               "Jonathan Adam",
               "Tom Wood",
               "Giacomo Petrobelli"
             ],
-            "team": "Ecurie Ecosse Blackthorn",
-            "interval": "+1.482",
-            "speed": "1:56.106"
+            "team" : "Ecurie Ecosse Blackthorn",
+            "position" : 48
           },
           {
-            "position": 49,
-            "drivers": [
+            "interval" : "+1.734",
+            "speed" : "1:56.358",
+            "drivers" : [
               "Ezequiel Perez Companc",
               "Etienne Cheli",
               "Ivan Klymenko"
             ],
-            "team": "Sainteloc Racing",
-            "interval": "+1.734",
-            "speed": "1:56.358"
+            "team" : "Sainteloc Racing",
+            "position" : 49
           },
           {
-            "position": 50,
-            "drivers": [
+            "interval" : "+1.762",
+            "speed" : "1:56.386",
+            "drivers" : [
               "Luca Engstler",
               "Marco Mapelli",
               "Patric Niederhauser"
             ],
-            "team": "Rutronik Racing",
-            "interval": "+1.762",
-            "speed": "1:56.386"
+            "team" : "Rutronik Racing",
+            "position" : 50
           },
           {
-            "position": 51,
-            "drivers": [
+            "interval" : "+1.795",
+            "speed" : "1:56.419",
+            "drivers" : [
               "Gilles Magnus",
               "Robin Knutsson",
               "Alessandro Ghiretti"
             ],
-            "team": "Boutsen VDS",
-            "interval": "+1.795",
-            "speed": "1:56.419"
+            "team" : "Boutsen VDS",
+            "position" : 51
           },
           {
-            "position": 52,
-            "drivers": [
+            "interval" : "+1.846",
+            "speed" : "1:56.470",
+            "drivers" : [
               "Franck Perera",
               "Maximilian Paul",
               "Mirko Bortolotti"
             ],
-            "team": "TGI Team by GRT",
-            "interval": "+1.846",
-            "speed": "1:56.470"
+            "team" : "TGI Team by GRT",
+            "position" : 52
           },
           {
-            "position": 53,
-            "drivers": [
+            "interval" : "+1.881",
+            "speed" : "1:56.505",
+            "drivers" : [
               "Ahmad Al Harthy",
               "Javier Sagrera",
               "Calan Williams"
             ],
-            "team": "Oman Racing by Century Motorsport",
-            "interval": "+1.881",
-            "speed": "1:56.505"
+            "team" : "Oman Racing by Century Motorsport",
+            "position" : 53
           },
           {
-            "position": 54,
-            "drivers": [
+            "interval" : "+1.969",
+            "speed" : "1:56.593",
+            "drivers" : [
               "Tanart Sathienthirakul",
               "Francesco Simonazzi",
               "Angus Whiteside"
             ],
-            "team": "Dinamic GT",
-            "interval": "+1.969",
-            "speed": "1:56.593"
+            "team" : "Dinamic GT",
+            "position" : 54
           },
           {
-            "position": 55,
-            "drivers": [
+            "interval" : "+2.036",
+            "speed" : "1:56.660",
+            "drivers" : [
               "Alfredo Hernandez Ortega",
               "Stephane Tribaudini",
               "Colin Caresani"
             ],
-            "team": "Grupo Prom Racing Team",
-            "interval": "+2.036",
-            "speed": "1:56.660"
+            "team" : "Grupo Prom Racing Team",
+            "position" : 55
           },
           {
-            "position": 56,
-            "drivers": [
+            "interval" : "+2.106",
+            "speed" : "1:56.730",
+            "drivers" : [
               "Ugo De Wilde",
               "Tim Tramnitz",
               "Jens Klingmann"
             ],
-            "team": "Rowe Racing",
-            "interval": "+2.106",
-            "speed": "1:56.730"
+            "team" : "Rowe Racing",
+            "position" : 56
           },
           {
-            "position": 57,
-            "drivers": [
+            "interval" : "+2.126",
+            "speed" : "1:56.750",
+            "drivers" : [
               "Rafael Duran",
               "Dylan Medler",
               "David Perel"
             ],
-            "team": "Rinaldi Racing",
-            "interval": "+2.126",
-            "speed": "1:56.750"
+            "team" : "Rinaldi Racing",
+            "position" : 57
           },
           {
-            "position": 58,
-            "drivers": [
+            "interval" : "+2.189",
+            "speed" : "1:56.813",
+            "drivers" : [
               "Finn Wiebelhaus",
               "Eduardo Coseteng",
               "Maxime Oosten"
             ],
-            "team": "HRT Ford Racing",
-            "interval": "+2.189",
-            "speed": "1:56.813"
+            "team" : "HRT Ford Racing",
+            "position" : 58
           }
         ]
       },
       {
-        "id": "gtwce-2026-r01-s3",
-        "name": "Qualifying",
-        "kind": "qualifying",
-        "date": "2026-04-11",
-        "timeLocal": "12:05",
-        "durationMinutes": 45,
-        "results": [
+        "timeLocal" : "12:05",
+        "kind" : "qualifying",
+        "durationMinutes" : 45,
+        "name" : "Qualifying",
+        "date" : "2026-04-11",
+        "id" : "gtwce-2026-r01-s3",
+        "results" : [
           {
-            "position": 1,
-            "drivers": [
+            "time" : "1:53.049",
+            "drivers" : [
               "Maxime Martin",
               "Maximilian Götz",
               "Fabian Schiller"
             ],
-            "team": "Mercedes-AMG Team GetSpeed",
-            "time": "1:53.049"
+            "team" : "Mercedes-AMG Team GetSpeed",
+            "position" : 1
           },
           {
-            "position": 2,
-            "drivers": [
+            "interval" : "+0.245",
+            "speed" : "1:53.294",
+            "drivers" : [
               "Mattia Drudi",
               "Marco Sorensen",
               "Nicki Thiim"
             ],
-            "team": "Comtoyou Racing",
-            "interval": "+0.245",
-            "speed": "1:53.294"
+            "team" : "Comtoyou Racing",
+            "position" : 2
           },
           {
-            "position": 3,
-            "drivers": [
+            "interval" : "+0.316",
+            "speed" : "1:53.365",
+            "drivers" : [
               "Daniel Juncadella",
               "Chris Lulham",
               "Jules Gounon"
             ],
-            "team": "Mercedes-AMG Team Verstappen Racing",
-            "interval": "+0.316",
-            "speed": "1:53.365"
+            "team" : "Mercedes-AMG Team Verstappen Racing",
+            "position" : 3
           },
           {
-            "position": 4,
-            "drivers": [
+            "interval" : "+0.404",
+            "speed" : "1:53.453",
+            "drivers" : [
               "Frederik Schandorff",
               "Malte Ebdrup",
               "Simon Birch"
             ],
-            "team": "Selected Car Racing",
-            "interval": "+0.404",
-            "speed": "1:53.453"
+            "team" : "Selected Car Racing",
+            "position" : 4
           },
           {
-            "position": 5,
-            "drivers": [
+            "interval" : "+0.445",
+            "speed" : "1:53.494",
+            "drivers" : [
               "Bastian Buus",
               "Thomas Preining",
               "Ricardo Feller"
             ],
-            "team": "Lionspeed GP",
-            "interval": "+0.445",
-            "speed": "1:53.494"
+            "team" : "Lionspeed GP",
+            "position" : 5
           },
           {
-            "position": 6,
-            "drivers": [
+            "interval" : "+0.478",
+            "speed" : "1:53.527",
+            "drivers" : [
               "Joseph Loake",
               "Dean Macdonald",
               "Marvin Kirchhöfer"
             ],
-            "team": "Garage 59",
-            "interval": "+0.478",
-            "speed": "1:53.527"
+            "team" : "Garage 59",
+            "position" : 6
           },
           {
-            "position": 7,
-            "drivers": [
+            "interval" : "+0.505",
+            "speed" : "1:53.554",
+            "drivers" : [
               "Thomas Fleming",
               "Louis Prette",
               "Benjamin Goethe"
             ],
-            "team": "Garage 59",
-            "interval": "+0.505",
-            "speed": "1:53.554"
+            "team" : "Garage 59",
+            "position" : 7
           },
           {
-            "position": 8,
-            "drivers": [
+            "interval" : "+0.539",
+            "speed" : "1:53.588",
+            "drivers" : [
               "James Kell",
               "Arthur Rougier",
               "Simon Gachet"
             ],
-            "team": "CSA Racing",
-            "interval": "+0.539",
-            "speed": "1:53.588"
+            "team" : "CSA Racing",
+            "position" : 8
           },
           {
-            "position": 9,
-            "drivers": [
+            "interval" : "+0.556",
+            "speed" : "1:53.605",
+            "drivers" : [
               "Alessio Rovera",
               "Nicklas Nielsen",
               "Tommaso Mosca"
             ],
-            "team": "AF Corse",
-            "interval": "+0.556",
-            "speed": "1:53.605"
+            "team" : "AF Corse",
+            "position" : 9
           },
           {
-            "position": 10,
-            "drivers": [
+            "interval" : "+0.627",
+            "speed" : "1:53.676",
+            "drivers" : [
               "Roberto Merhi",
               "Lance Stroll",
               "Mari Boya"
             ],
-            "team": "Comtoyou Racing",
-            "interval": "+0.627",
-            "speed": "1:53.676"
+            "team" : "Comtoyou Racing",
+            "position" : 10
           },
           {
-            "position": 11,
-            "drivers": [
+            "interval" : "+0.645",
+            "speed" : "1:53.694",
+            "drivers" : [
               "Lucas Auer",
               "Luca Stolz",
               "Maro Engel"
             ],
-            "team": "Mercedes-AMG Team MANN-FILTER",
-            "interval": "+0.645",
-            "speed": "1:53.694"
+            "team" : "Mercedes-AMG Team MANN-FILTER",
+            "position" : 11
           },
           {
-            "position": 12,
-            "drivers": [
+            "interval" : "+0.647",
+            "speed" : "1:53.696",
+            "drivers" : [
               "Oliver Söderström",
               "Sebastien Baud",
               "Kobe Pauwels"
             ],
-            "team": "Comtoyou Racing",
-            "interval": "+0.647",
-            "speed": "1:53.696"
+            "team" : "Comtoyou Racing",
+            "position" : 12
           },
           {
-            "position": 13,
-            "drivers": [
+            "interval" : "+0.683",
+            "speed" : "1:53.732",
+            "drivers" : [
               "Tomas Pintos",
               "Jayden Kelly",
               "Joshua Rattican"
             ],
-            "team": "Greystone GT",
-            "interval": "+0.683",
-            "speed": "1:53.732"
+            "team" : "Greystone GT",
+            "position" : 13
           },
           {
-            "position": 14,
-            "drivers": [
+            "interval" : "+0.708",
+            "speed" : "1:53.757",
+            "drivers" : [
               "Scott Noble",
               "Jason Hart",
               "Philip Ellis"
             ],
-            "team": "GetSpeed Team Noble Racing",
-            "interval": "+0.708",
-            "speed": "1:53.757"
+            "team" : "GetSpeed Team Noble Racing",
+            "position" : 14
           },
           {
-            "position": 15,
-            "drivers": [
+            "interval" : "+0.712",
+            "speed" : "1:53.761",
+            "drivers" : [
               "Horatio Fitz-Simon",
               "Maxwell Lynn",
               "Ben Dörr"
             ],
-            "team": "Team RJN",
-            "interval": "+0.712",
-            "speed": "1:53.761"
+            "team" : "Team RJN",
+            "position" : 15
           },
           {
-            "position": 16,
-            "drivers": [
+            "interval" : "+0.786",
+            "speed" : "1:53.835",
+            "drivers" : [
               "Kelvin van der Linde",
               "Jordan Pepper",
               "Charles Weerts"
             ],
-            "team": "Team WRT",
-            "interval": "+0.786",
-            "speed": "1:53.835"
+            "team" : "Team WRT",
+            "position" : 16
           },
           {
-            "position": 17,
-            "drivers": [
+            "interval" : "+0.860",
+            "speed" : "1:53.909",
+            "drivers" : [
               "Dylan Pereira",
               "Andrea Frassineti",
               "Alex Aka"
             ],
-            "team": "Tresor Attempto Racing",
-            "interval": "+0.860",
-            "speed": "1:53.909"
+            "team" : "Tresor Attempto Racing",
+            "position" : 17
           },
           {
-            "position": 18,
-            "drivers": [
+            "interval" : "+0.905",
+            "speed" : "1:53.954",
+            "drivers" : [
               "Morris Schuring",
               "Dorian Boccolacci",
               "Alessio Picariello"
             ],
-            "team": "Boutsen VDS",
-            "interval": "+0.905",
-            "speed": "1:53.954"
+            "team" : "Boutsen VDS",
+            "position" : 18
           },
           {
-            "position": 19,
-            "drivers": [
+            "interval" : "+0.924",
+            "speed" : "1:53.973",
+            "drivers" : [
               "Christian Hahn",
               "Ashley Sutton",
               "Robert De Haan"
             ],
-            "team": "Paradine Competition",
-            "interval": "+0.924",
-            "speed": "1:53.973"
+            "team" : "Paradine Competition",
+            "position" : 19
           },
           {
-            "position": 20,
-            "drivers": [
+            "interval" : "+0.926",
+            "speed" : "1:53.975",
+            "drivers" : [
               "Arjun Maini",
               "Fabio Scherer",
               "Thomas Drouet"
             ],
-            "team": "HRT Ford Racing",
-            "interval": "+0.926",
-            "speed": "1:53.975"
+            "team" : "HRT Ford Racing",
+            "position" : 20
           },
           {
-            "position": 21,
-            "drivers": [
+            "interval" : "+0.939",
+            "speed" : "1:53.988",
+            "drivers" : [
               "Finn Wiebelhaus",
               "Eduardo Coseteng",
               "Maxime Oosten"
             ],
-            "team": "HRT Ford Racing",
-            "interval": "+0.939",
-            "speed": "1:53.988"
+            "team" : "HRT Ford Racing",
+            "position" : 21
           },
           {
-            "position": 22,
-            "drivers": [
+            "interval" : "+0.946",
+            "speed" : "1:53.995",
+            "drivers" : [
               "Baptiste Moulin",
               "Romain Andriolo",
               "Lorens Lecertua"
             ],
-            "team": "CSA Racing",
-            "interval": "+0.946",
-            "speed": "1:53.995"
+            "team" : "CSA Racing",
+            "position" : 22
           },
           {
-            "position": 23,
-            "drivers": [
+            "interval" : "+1.004",
+            "speed" : "1:54.053",
+            "drivers" : [
               "Riccardo Pera",
               "Antares Au",
               "Loek Hartog"
             ],
-            "team": "Rutronik Racing",
-            "interval": "+1.004",
-            "speed": "1:54.053"
+            "team" : "Rutronik Racing",
+            "position" : 23
           },
           {
-            "position": 24,
-            "drivers": [
+            "interval" : "+1.021",
+            "speed" : "1:54.070",
+            "drivers" : [
               "Gilles Magnus",
               "Robin Knutsson",
               "Alessandro Ghiretti"
             ],
-            "team": "Boutsen VDS",
-            "interval": "+1.021",
-            "speed": "1:54.070"
+            "team" : "Boutsen VDS",
+            "position" : 24
           },
           {
-            "position": 25,
-            "drivers": [
+            "interval" : "+1.047",
+            "speed" : "1:54.096",
+            "drivers" : [
               "Lilou Wadoux",
               "Arthur Leclerc",
               "Sean Gelael"
             ],
-            "team": "AF Corse",
-            "interval": "+1.047",
-            "speed": "1:54.096"
+            "team" : "AF Corse",
+            "position" : 25
           },
           {
-            "position": 26,
-            "drivers": [
+            "interval" : "+1.048",
+            "speed" : "1:54.097",
+            "drivers" : [
               "Stefano Costantini",
               "Chris Froggatt",
               "Eddie Cheever"
             ],
-            "team": "Ziggo Sport Tempesta Racing",
-            "interval": "+1.048",
-            "speed": "1:54.097"
+            "team" : "Ziggo Sport Tempesta Racing",
+            "position" : 26
           },
           {
-            "position": 27,
-            "drivers": [
+            "interval" : "+1.050",
+            "speed" : "1:54.099",
+            "drivers" : [
               "Michael Porter",
               "Dante Rappange",
               "Guilherme Oliveira"
             ],
-            "team": "Optimum Motorsport",
-            "interval": "+1.050",
-            "speed": "1:54.099"
+            "team" : "Optimum Motorsport",
+            "position" : 27
           },
           {
-            "position": 28,
-            "drivers": [
+            "interval" : "+1.054",
+            "speed" : "1:54.103",
+            "drivers" : [
               "Augusto Farfus",
               "Jake Dennis",
               "Raffaele Marciello"
             ],
-            "team": "Rowe Racing",
-            "interval": "+1.054",
-            "speed": "1:54.103"
+            "team" : "Rowe Racing",
+            "position" : 28
           },
           {
-            "position": 29,
-            "drivers": [
+            "interval" : "+1.082",
+            "speed" : "1:54.131",
+            "drivers" : [
               "Christopher Haase",
               "Simon Reicher",
               "Markus Winkelhock"
             ],
-            "team": "Eastalent Racing",
-            "interval": "+1.082",
-            "speed": "1:54.131"
+            "team" : "Eastalent Racing",
+            "position" : 29
           },
           {
-            "position": 30,
-            "drivers": [
+            "interval" : "+1.084",
+            "speed" : "1:54.133",
+            "drivers" : [
               "Ralf Bohn",
               "Huub van Eijndhoven",
               "Robert Renauer"
             ],
-            "team": "Herberth Motorsport",
-            "interval": "+1.084",
-            "speed": "1:54.133"
+            "team" : "Herberth Motorsport",
+            "position" : 30
           },
           {
-            "position": 31,
-            "drivers": [
+            "interval" : "+1.097",
+            "speed" : "1:54.146",
+            "drivers" : [
               "Chandler Hull",
               "Rolf Ineichen",
               "Tim Heinemann"
             ],
-            "team": "JMW Motorsport",
-            "interval": "+1.097",
-            "speed": "1:54.146"
+            "team" : "JMW Motorsport",
+            "position" : 31
           },
           {
-            "position": 32,
-            "drivers": [
+            "interval" : "+1.101",
+            "speed" : "1:54.150",
+            "drivers" : [
               "Ugo De Wilde",
               "Tim Tramnitz",
               "Jens Klingmann"
             ],
-            "team": "Rowe Racing",
-            "interval": "+1.101",
-            "speed": "1:54.150"
+            "team" : "Rowe Racing",
+            "position" : 32
           },
           {
-            "position": 33,
-            "drivers": [
+            "interval" : "+1.122",
+            "speed" : "1:54.171",
+            "drivers" : [
               "Aurelien Panis",
               "Anthony Bartone",
               "Cesar Gazeau"
             ],
-            "team": "GetSpeed Team BartoneBros",
-            "interval": "+1.122",
-            "speed": "1:54.171"
+            "team" : "GetSpeed Team BartoneBros",
+            "position" : 33
           },
           {
-            "position": 34,
-            "drivers": [
+            "interval" : "+1.158",
+            "speed" : "1:54.207",
+            "drivers" : [
               "Rocco Mazzola",
               "Sebastian Øgaard",
               "Ariel Levi"
             ],
-            "team": "Tresor Attempto Racing",
-            "interval": "+1.158",
-            "speed": "1:54.207"
+            "team" : "Tresor Attempto Racing",
+            "position" : 34
           },
           {
-            "position": 35,
-            "drivers": [
+            "interval" : "+1.185",
+            "speed" : "1:54.234",
+            "drivers" : [
               "Daniel Harper",
               "Max Hesse",
               "Valentino Rossi"
             ],
-            "team": "Team WRT",
-            "interval": "+1.185",
-            "speed": "1:54.234"
+            "team" : "Team WRT",
+            "position" : 35
           },
           {
-            "position": 36,
-            "drivers": [
+            "interval" : "+1.235",
+            "speed" : "1:54.284",
+            "drivers" : [
               "Aleksei Nesov",
               "Aliaksandr Malykhin",
               "Max Hofer"
             ],
-            "team": "Pure Rxcing",
-            "interval": "+1.235",
-            "speed": "1:54.284"
+            "team" : "Pure Rxcing",
+            "position" : 36
           },
           {
-            "position": 37,
-            "drivers": [
+            "interval" : "+1.235",
+            "speed" : "1:54.284",
+            "drivers" : [
               "Antoine Doquin",
               "Lorenzo Fluxa Cross",
               "Dennis Lind"
             ],
-            "team": "Steller Motorsport",
-            "interval": "+1.235",
-            "speed": "1:54.284"
+            "team" : "Steller Motorsport",
+            "position" : 37
           },
           {
-            "position": 38,
-            "drivers": [
+            "interval" : "+1.247",
+            "speed" : "1:54.296",
+            "drivers" : [
               "Matias Zagazeta",
               "Jeff Machiels",
               "Gilles Stadsbader"
             ],
-            "team": "AF Corse",
-            "interval": "+1.247",
-            "speed": "1:54.296"
+            "team" : "AF Corse",
+            "position" : 38
           },
           {
-            "position": 39,
-            "drivers": [
+            "interval" : "+1.256",
+            "speed" : "1:54.305",
+            "drivers" : [
               "Gabriel Rindone",
               "Tom Kalender",
               "Mikael Grenier"
             ],
-            "team": "GetSpeed Team Dubai",
-            "interval": "+1.256",
-            "speed": "1:54.305"
+            "team" : "GetSpeed Team Dubai",
+            "position" : 39
           },
           {
-            "position": 40,
-            "drivers": [
+            "interval" : "+1.269",
+            "speed" : "1:54.318",
+            "drivers" : [
               "Ezequiel Perez Companc",
               "Etienne Cheli",
               "Ivan Klymenko"
             ],
-            "team": "Sainteloc Racing",
-            "interval": "+1.269",
-            "speed": "1:54.318"
+            "team" : "Sainteloc Racing",
+            "position" : 40
           },
           {
-            "position": 41,
-            "drivers": [
+            "interval" : "+1.333",
+            "speed" : "1:54.382",
+            "drivers" : [
               "Ahmad Al Harthy",
               "Javier Sagrera",
               "Calan Williams"
             ],
-            "team": "Oman Racing by Century Motorsport",
-            "interval": "+1.333",
-            "speed": "1:54.382"
+            "team" : "Oman Racing by Century Motorsport",
+            "position" : 41
           },
           {
-            "position": 42,
-            "drivers": [
+            "interval" : "+1.374",
+            "speed" : "1:54.423",
+            "drivers" : [
               "Dustin Blattner",
               "Lorenzo Patrese",
               "Dennis Marschall"
             ],
-            "team": "Kessel Racing",
-            "interval": "+1.374",
-            "speed": "1:54.423"
+            "team" : "Kessel Racing",
+            "position" : 42
           },
           {
-            "position": 43,
-            "drivers": [
+            "interval" : "+1.454",
+            "speed" : "1:54.503",
+            "drivers" : [
               "Reece Barr",
               "Charles Dawson",
               "Kiern Jewiss"
             ],
-            "team": "2 Seas Motorsport",
-            "interval": "+1.454",
-            "speed": "1:54.503"
+            "team" : "2 Seas Motorsport",
+            "position" : 43
           },
           {
-            "position": 44,
-            "drivers": [
+            "interval" : "+1.471",
+            "speed" : "1:54.520",
+            "drivers" : [
               "Alex Fontana",
               "Bashar Mardini",
               "Patrick Kolb"
             ],
-            "team": "Lionspeed GP",
-            "interval": "+1.471",
-            "speed": "1:54.520"
+            "team" : "Lionspeed GP",
+            "position" : 44
           },
           {
-            "position": 45,
-            "drivers": [
+            "interval" : "+1.497",
+            "speed" : "1:54.546",
+            "drivers" : [
               "Gerhard Tweraser",
               "Dominik Olbert",
               "Benjamin Paque"
             ],
-            "team": "Razoon - more than racing",
-            "interval": "+1.497",
-            "speed": "1:54.546"
+            "team" : "Razoon - more than racing",
+            "position" : 45
           },
           {
-            "position": 46,
-            "drivers": [
+            "interval" : "+1.513",
+            "speed" : "1:54.562",
+            "drivers" : [
               "Carrie Schreiner",
               "Daniele Di Amato",
               "Alberto Di Folco"
             ],
-            "team": "Tresor Attempto Racing",
-            "interval": "+1.513",
-            "speed": "1:54.562"
+            "team" : "Tresor Attempto Racing",
+            "position" : 46
           },
           {
-            "position": 47,
-            "drivers": [
+            "interval" : "+1.592",
+            "speed" : "1:54.641",
+            "drivers" : [
               "Ignacio Montenegro",
               "Matisse Lismont",
               "Amaury Cordeel"
             ],
-            "team": "Team WRT",
-            "interval": "+1.592",
-            "speed": "1:54.641"
+            "team" : "Team WRT",
+            "position" : 47
           },
           {
-            "position": 48,
-            "drivers": [
+            "interval" : "+1.637",
+            "speed" : "1:54.686",
+            "drivers" : [
               "Gaspard Simon",
               "Ethan Ischer",
               "Mateo Villagomez"
             ],
-            "team": "Walkenhorst Motorsport",
-            "interval": "+1.637",
-            "speed": "1:54.686"
+            "team" : "Walkenhorst Motorsport",
+            "position" : 48
           },
           {
-            "position": 49,
-            "drivers": [
+            "interval" : "+1.737",
+            "speed" : "1:54.786",
+            "drivers" : [
               "Franck Perera",
               "Maximilian Paul",
               "Mirko Bortolotti"
             ],
-            "team": "TGI Team by GRT",
-            "interval": "+1.737",
-            "speed": "1:54.786"
+            "team" : "TGI Team by GRT",
+            "position" : 49
           },
           {
-            "position": 50,
-            "drivers": [
+            "interval" : "+1.827",
+            "speed" : "1:54.876",
+            "drivers" : [
               "Marcelo Tomasoni",
               "Aaron Muss",
               "Kyle Marcelli"
             ],
-            "team": "Comtoyou Racing",
-            "interval": "+1.827",
-            "speed": "1:54.876"
+            "team" : "Comtoyou Racing",
+            "position" : 50
           },
           {
-            "position": 51,
-            "drivers": [
+            "interval" : "+1.897",
+            "speed" : "1:54.946",
+            "drivers" : [
               "Adam Smalley",
               "Freddie Tomlinson",
               "Harry George"
             ],
-            "team": "Optimum Motorsport",
-            "interval": "+1.897",
-            "speed": "1:54.946"
+            "team" : "Optimum Motorsport",
+            "position" : 51
           },
           {
-            "position": 52,
-            "drivers": [
+            "interval" : "+1.962",
+            "speed" : "1:55.011",
+            "drivers" : [
               "Luca Engstler",
               "Marco Mapelli",
               "Patric Niederhauser"
             ],
-            "team": "Rutronik Racing",
-            "interval": "+1.962",
-            "speed": "1:55.011"
+            "team" : "Rutronik Racing",
+            "position" : 52
           },
           {
-            "position": 53,
-            "drivers": [
+            "interval" : "+2.037",
+            "speed" : "1:55.086",
+            "drivers" : [
               "Rafael Duran",
               "Dylan Medler",
               "David Perel"
             ],
-            "team": "Rinaldi Racing",
-            "interval": "+2.037",
-            "speed": "1:55.086"
+            "team" : "Rinaldi Racing",
+            "position" : 53
           },
           {
-            "position": 54,
-            "drivers": [
+            "interval" : "+2.138",
+            "speed" : "1:55.187",
+            "drivers" : [
               "Alfredo Hernandez Ortega",
               "Stephane Tribaudini",
               "Colin Caresani"
             ],
-            "team": "Grupo Prom Racing Team",
-            "interval": "+2.138",
-            "speed": "1:55.187"
+            "team" : "Grupo Prom Racing Team",
+            "position" : 54
           },
           {
-            "position": 55,
-            "drivers": [
+            "interval" : "+2.139",
+            "speed" : "1:55.188",
+            "drivers" : [
               "Tanart Sathienthirakul",
               "Francesco Simonazzi",
               "Angus Whiteside"
             ],
-            "team": "Dinamic GT",
-            "interval": "+2.139",
-            "speed": "1:55.188"
+            "team" : "Dinamic GT",
+            "position" : 55
           },
           {
-            "position": 56,
-            "drivers": [
+            "interval" : "+2.230",
+            "speed" : "1:55.279",
+            "drivers" : [
               "Jonathan Adam",
               "Tom Wood",
               "Giacomo Petrobelli"
             ],
-            "team": "Ecurie Ecosse Blackthorn",
-            "interval": "+2.230",
-            "speed": "1:55.279"
+            "team" : "Ecurie Ecosse Blackthorn",
+            "position" : 56
           },
           {
-            "position": 57,
-            "drivers": [
+            "interval" : "+3.698",
+            "speed" : "1:56.747",
+            "drivers" : [
               "Dries Vanthoor",
               "James Kellett",
               "Darren Leung"
             ],
-            "team": "Paradine Competition",
-            "interval": "+3.698",
-            "speed": "1:56.747"
+            "team" : "Paradine Competition",
+            "position" : 57
           },
           {
-            "position": "DNF",
-            "drivers": [
+            "drivers" : [
               "Marvin Dienst",
               "Gabriele Piana",
               "Rinat Salikhov"
             ],
-            "team": "Winward Racing"
+            "team" : "Winward Racing",
+            "position" : "DNF"
           }
         ]
       },
       {
-        "id": "gtwce-2026-r01-s4",
-        "name": "6 Hour Race",
-        "kind": "race",
-        "date": "2026-04-11",
-        "timeLocal": "18:00",
-        "durationMinutes": 360,
-        "results": [
+        "timeLocal" : "18:00",
+        "kind" : "race",
+        "durationMinutes" : 360,
+        "name" : "6 Hour Race",
+        "date" : "2026-04-11",
+        "id" : "gtwce-2026-r01-s4",
+        "results" : [
           {
-            "position": 1,
-            "drivers": [
+            "time" : "1:54.737",
+            "drivers" : [
               "Mattia Drudi",
               "Marco Sorensen",
               "Nicki Thiim"
             ],
-            "team": "Comtoyou Racing",
-            "time": "1:54.737"
+            "team" : "Comtoyou Racing",
+            "position" : 1
           },
           {
-            "position": 2,
-            "drivers": [
+            "interval" : "+0.806",
+            "speed" : "1:55.063",
+            "drivers" : [
               "Lucas Auer",
               "Luca Stolz",
               "Maro Engel"
             ],
-            "team": "Mercedes-AMG Team MANN-FILTER",
-            "interval": "+0.806",
-            "speed": "1:55.063"
+            "team" : "Mercedes-AMG Team MANN-FILTER",
+            "position" : 2
           },
           {
-            "position": 3,
-            "drivers": [
+            "interval" : "+4.447",
+            "speed" : "1:54.817",
+            "drivers" : [
               "Thomas Fleming",
               "Louis Prette",
               "Benjamin Goethe"
             ],
-            "team": "Garage 59",
-            "interval": "+4.447",
-            "speed": "1:54.817"
+            "team" : "Garage 59",
+            "position" : 3
           },
           {
-            "position": 4,
-            "drivers": [
+            "interval" : "+10.776",
+            "speed" : "1:55.324",
+            "drivers" : [
               "Kelvin van der Linde",
               "Jordan Pepper",
               "Charles Weerts"
             ],
-            "team": "Team WRT",
-            "interval": "+10.776",
-            "speed": "1:55.324"
+            "team" : "Team WRT",
+            "position" : 4
           },
           {
-            "position": 5,
-            "drivers": [
+            "interval" : "+25.880",
+            "speed" : "1:55.059",
+            "drivers" : [
               "Joseph Loake",
               "Dean Macdonald",
               "Marvin Kirchhöfer"
             ],
-            "team": "Garage 59",
-            "interval": "+25.880",
-            "speed": "1:55.059"
+            "team" : "Garage 59",
+            "position" : 5
           },
           {
-            "position": 6,
-            "drivers": [
+            "interval" : "+28.638",
+            "speed" : "1:55.640",
+            "drivers" : [
               "Augusto Farfus",
               "Jake Dennis",
               "Raffaele Marciello"
             ],
-            "team": "Rowe Racing",
-            "interval": "+28.638",
-            "speed": "1:55.640"
+            "team" : "Rowe Racing",
+            "position" : 6
           },
           {
-            "position": 7,
-            "drivers": [
+            "interval" : "+29.437",
+            "speed" : "1:55.269",
+            "drivers" : [
               "Maxime Martin",
               "Maximilian Götz",
               "Fabian Schiller"
             ],
-            "team": "Mercedes-AMG Team GetSpeed",
-            "interval": "+29.437",
-            "speed": "1:55.269"
+            "team" : "Mercedes-AMG Team GetSpeed",
+            "position" : 7
           },
           {
-            "position": 8,
-            "drivers": [
+            "interval" : "+31.318",
+            "speed" : "1:55.542",
+            "drivers" : [
               "James Kell",
               "Arthur Rougier",
               "Simon Gachet"
             ],
-            "team": "CSA Racing",
-            "interval": "+31.318",
-            "speed": "1:55.542"
+            "team" : "CSA Racing",
+            "position" : 8
           },
           {
-            "position": 9,
-            "drivers": [
+            "interval" : "+35.708",
+            "speed" : "1:55.546",
+            "drivers" : [
               "Daniel Juncadella",
               "Chris Lulham",
               "Jules Gounon"
             ],
-            "team": "Mercedes-AMG Team Verstappen Racing",
-            "interval": "+35.708",
-            "speed": "1:55.546"
+            "team" : "Mercedes-AMG Team Verstappen Racing",
+            "position" : 9
           },
           {
-            "position": 10,
-            "drivers": [
+            "interval" : "+38.569",
+            "speed" : "1:55.424",
+            "drivers" : [
               "Ugo De Wilde",
               "Tim Tramnitz",
               "Jens Klingmann"
             ],
-            "team": "Rowe Racing",
-            "interval": "+38.569",
-            "speed": "1:55.424"
+            "team" : "Rowe Racing",
+            "position" : 10
           },
           {
-            "position": 11,
-            "drivers": [
+            "interval" : "+2:15.209",
+            "speed" : "1:55.365",
+            "drivers" : [
               "Morris Schuring",
               "Dorian Boccolacci",
               "Alessio Picariello"
             ],
-            "team": "Boutsen VDS",
-            "interval": "+2:15.209",
-            "speed": "1:55.365"
+            "team" : "Boutsen VDS",
+            "position" : 11
           },
           {
-            "position": 12,
-            "drivers": [
+            "interval" : "+1.427",
+            "speed" : "1:55.189",
+            "drivers" : [
               "Daniel Harper",
               "Max Hesse",
               "Valentino Rossi"
             ],
-            "team": "Team WRT",
-            "interval": "+1.427",
-            "speed": "1:55.189"
+            "team" : "Team WRT",
+            "position" : 12
           },
           {
-            "position": 13,
-            "drivers": [
+            "interval" : "+11.324",
+            "speed" : "1:55.142",
+            "drivers" : [
               "Riccardo Pera",
               "Antares Au",
               "Loek Hartog"
             ],
-            "team": "Rutronik Racing",
-            "interval": "+11.324",
-            "speed": "1:55.142"
+            "team" : "Rutronik Racing",
+            "position" : 13
           },
           {
-            "position": 14,
-            "drivers": [
+            "interval" : "+13.901",
+            "speed" : "1:55.361",
+            "drivers" : [
               "Alessio Rovera",
               "Nicklas Nielsen",
               "Tommaso Mosca"
             ],
-            "team": "AF Corse",
-            "interval": "+13.901",
-            "speed": "1:55.361"
+            "team" : "AF Corse",
+            "position" : 14
           },
           {
-            "position": 15,
-            "drivers": [
+            "interval" : "+32.419",
+            "speed" : "1:55.175",
+            "drivers" : [
               "Christopher Haase",
               "Simon Reicher",
               "Markus Winkelhock"
             ],
-            "team": "Eastalent Racing",
-            "interval": "+32.419",
-            "speed": "1:55.175"
+            "team" : "Eastalent Racing",
+            "position" : 15
           },
           {
-            "position": 16,
-            "drivers": [
+            "interval" : "+32.752",
+            "speed" : "1:55.798",
+            "drivers" : [
               "Frederik Schandorff",
               "Malte Ebdrup",
               "Simon Birch"
             ],
-            "team": "Selected Car Racing",
-            "interval": "+32.752",
-            "speed": "1:55.798"
+            "team" : "Selected Car Racing",
+            "position" : 16
           },
           {
-            "position": 17,
-            "drivers": [
+            "interval" : "+33.847",
+            "speed" : "1:55.684",
+            "drivers" : [
               "Aleksei Nesov",
               "Aliaksandr Malykhin",
               "Max Hofer"
             ],
-            "team": "Pure Rxcing",
-            "interval": "+33.847",
-            "speed": "1:55.684"
+            "team" : "Pure Rxcing",
+            "position" : 17
           },
           {
-            "position": 18,
-            "drivers": [
+            "interval" : "+34.629",
+            "speed" : "1:55.845",
+            "drivers" : [
               "Ignacio Montenegro",
               "Matisse Lismont",
               "Amaury Cordeel"
             ],
-            "team": "Team WRT",
-            "interval": "+34.629",
-            "speed": "1:55.845"
+            "team" : "Team WRT",
+            "position" : 18
           },
           {
-            "position": 19,
-            "drivers": [
+            "interval" : "+42.247",
+            "speed" : "1:55.576",
+            "drivers" : [
               "Lilou Wadoux",
               "Arthur Leclerc",
               "Sean Gelael"
             ],
-            "team": "AF Corse",
-            "interval": "+42.247",
-            "speed": "1:55.576"
+            "team" : "AF Corse",
+            "position" : 19
           },
           {
-            "position": 20,
-            "drivers": [
+            "interval" : "+42.737",
+            "speed" : "1:55.584",
+            "drivers" : [
               "Oliver Söderström",
               "Sebastien Baud",
               "Kobe Pauwels"
             ],
-            "team": "Comtoyou Racing",
-            "interval": "+42.737",
-            "speed": "1:55.584"
+            "team" : "Comtoyou Racing",
+            "position" : 20
           },
           {
-            "position": 21,
-            "drivers": [
+            "interval" : "+44.612",
+            "speed" : "1:56.155",
+            "drivers" : [
               "Rocco Mazzola",
               "Sebastian Øgaard",
               "Ariel Levi"
             ],
-            "team": "Tresor Attempto Racing",
-            "interval": "+44.612",
-            "speed": "1:56.155"
+            "team" : "Tresor Attempto Racing",
+            "position" : 21
           },
           {
-            "position": 22,
-            "drivers": [
+            "interval" : "+50.766",
+            "speed" : "1:55.564",
+            "drivers" : [
               "Marvin Dienst",
               "Gabriele Piana",
               "Rinat Salikhov"
             ],
-            "team": "Winward Racing",
-            "interval": "+50.766",
-            "speed": "1:55.564"
+            "team" : "Winward Racing",
+            "position" : 22
           },
           {
-            "position": 23,
-            "drivers": [
+            "interval" : "+17.994",
+            "speed" : "1:55.434",
+            "drivers" : [
               "Dries Vanthoor",
               "James Kellett",
               "Darren Leung"
             ],
-            "team": "Paradine Competition",
-            "interval": "+17.994",
-            "speed": "1:55.434"
+            "team" : "Paradine Competition",
+            "position" : 23
           },
           {
-            "position": 24,
-            "drivers": [
+            "interval" : "+18.610",
+            "speed" : "1:55.787",
+            "drivers" : [
               "Christian Hahn",
               "Ashley Sutton",
               "Robert De Haan"
             ],
-            "team": "Paradine Competition",
-            "interval": "+18.610",
-            "speed": "1:55.787"
+            "team" : "Paradine Competition",
+            "position" : 24
           },
           {
-            "position": 25,
-            "drivers": [
+            "interval" : "+22.135",
+            "speed" : "1:55.549",
+            "drivers" : [
               "Arjun Maini",
               "Fabio Scherer",
               "Thomas Drouet"
             ],
-            "team": "HRT Ford Racing",
-            "interval": "+22.135",
-            "speed": "1:55.549"
+            "team" : "HRT Ford Racing",
+            "position" : 25
           },
           {
-            "position": 26,
-            "drivers": [
+            "interval" : "+24.799",
+            "speed" : "1:55.991",
+            "drivers" : [
               "Finn Wiebelhaus",
               "Eduardo Coseteng",
               "Maxime Oosten"
             ],
-            "team": "HRT Ford Racing",
-            "interval": "+24.799",
-            "speed": "1:55.991"
+            "team" : "HRT Ford Racing",
+            "position" : 26
           },
           {
-            "position": 27,
-            "drivers": [
+            "interval" : "+25.257",
+            "speed" : "1:56.467",
+            "drivers" : [
               "Reece Barr",
               "Charles Dawson",
               "Kiern Jewiss"
             ],
-            "team": "2 Seas Motorsport",
-            "interval": "+25.257",
-            "speed": "1:56.467"
+            "team" : "2 Seas Motorsport",
+            "position" : 27
           },
           {
-            "position": 28,
-            "drivers": [
+            "interval" : "+46.558",
+            "speed" : "1:56.243",
+            "drivers" : [
               "Dustin Blattner",
               "Lorenzo Patrese",
               "Dennis Marschall"
             ],
-            "team": "Kessel Racing",
-            "interval": "+46.558",
-            "speed": "1:56.243"
+            "team" : "Kessel Racing",
+            "position" : 28
           },
           {
-            "position": 29,
-            "drivers": [
+            "interval" : "+47.888",
+            "speed" : "1:56.264",
+            "drivers" : [
               "Ahmad Al Harthy",
               "Javier Sagrera",
               "Calan Williams"
             ],
-            "team": "Oman Racing by Century Motorsport",
-            "interval": "+47.888",
-            "speed": "1:56.264"
+            "team" : "Oman Racing by Century Motorsport",
+            "position" : 29
           },
           {
-            "position": 30,
-            "drivers": [
+            "interval" : "+52.390",
+            "speed" : "1:56.218",
+            "drivers" : [
               "Ezequiel Perez Companc",
               "Etienne Cheli",
               "Ivan Klymenko"
             ],
-            "team": "Sainteloc Racing",
-            "interval": "+52.390",
-            "speed": "1:56.218"
+            "team" : "Sainteloc Racing",
+            "position" : 30
           },
           {
-            "position": 31,
-            "drivers": [
+            "interval" : "+52.977",
+            "speed" : "1:56.312",
+            "drivers" : [
               "Matias Zagazeta",
               "Jeff Machiels",
               "Gilles Stadsbader"
             ],
-            "team": "AF Corse",
-            "interval": "+52.977",
-            "speed": "1:56.312"
+            "team" : "AF Corse",
+            "position" : 31
           },
           {
-            "position": 32,
-            "drivers": [
+            "interval" : "+1:08.855",
+            "speed" : "1:55.773",
+            "drivers" : [
               "Horatio Fitz-Simon",
               "Maxwell Lynn",
               "Ben Dörr"
             ],
-            "team": "Team RJN",
-            "interval": "+1:08.855",
-            "speed": "1:55.773"
+            "team" : "Team RJN",
+            "position" : 32
           },
           {
-            "position": 33,
-            "drivers": [
+            "interval" : "+1:21.875",
+            "speed" : "1:56.037",
+            "drivers" : [
               "Aurelien Panis",
               "Anthony Bartone",
               "Cesar Gazeau"
             ],
-            "team": "GetSpeed Team BartoneBros",
-            "interval": "+1:21.875",
-            "speed": "1:56.037"
+            "team" : "GetSpeed Team BartoneBros",
+            "position" : 33
           },
           {
-            "position": 34,
-            "drivers": [
+            "interval" : "+1:27.490",
+            "speed" : "1:56.737",
+            "drivers" : [
               "Gaspard Simon",
               "Ethan Ischer",
               "Mateo Villagomez"
             ],
-            "team": "Walkenhorst Motorsport",
-            "interval": "+1:27.490",
-            "speed": "1:56.737"
+            "team" : "Walkenhorst Motorsport",
+            "position" : 34
           },
           {
-            "position": 35,
-            "drivers": [
+            "interval" : "+30.576",
+            "speed" : "1:56.521",
+            "drivers" : [
               "Ralf Bohn",
               "Huub van Eijndhoven",
               "Robert Renauer"
             ],
-            "team": "Herberth Motorsport",
-            "interval": "+30.576",
-            "speed": "1:56.521"
+            "team" : "Herberth Motorsport",
+            "position" : 35
           },
           {
-            "position": 36,
-            "drivers": [
+            "interval" : "+41.327",
+            "speed" : "1:55.969",
+            "drivers" : [
               "Gabriel Rindone",
               "Tom Kalender",
               "Mikael Grenier"
             ],
-            "team": "GetSpeed Team Dubai",
-            "interval": "+41.327",
-            "speed": "1:55.969"
+            "team" : "GetSpeed Team Dubai",
+            "position" : 36
           },
           {
-            "position": 37,
-            "drivers": [
+            "interval" : "+53.340",
+            "speed" : "1:56.869",
+            "drivers" : [
               "Tanart Sathienthirakul",
               "Francesco Simonazzi",
               "Angus Whiteside"
             ],
-            "team": "Dinamic GT",
-            "interval": "+53.340",
-            "speed": "1:56.869"
+            "team" : "Dinamic GT",
+            "position" : 37
           },
           {
-            "position": 38,
-            "drivers": [
+            "interval" : "+54.015",
+            "speed" : "1:56.008",
+            "drivers" : [
               "Antoine Doquin",
               "Lorenzo Fluxa Cross",
               "Dennis Lind"
             ],
-            "team": "Steller Motorsport",
-            "interval": "+54.015",
-            "speed": "1:56.008"
+            "team" : "Steller Motorsport",
+            "position" : 38
           },
           {
-            "position": 39,
-            "drivers": [
+            "interval" : "+1:29.300",
+            "speed" : "1:56.267",
+            "drivers" : [
               "Franck Perera",
               "Maximilian Paul",
               "Mirko Bortolotti"
             ],
-            "team": "TGI Team by GRT",
-            "interval": "+1:29.300",
-            "speed": "1:56.267"
+            "team" : "TGI Team by GRT",
+            "position" : 39
           },
           {
-            "position": 40,
-            "drivers": [
+            "interval" : "+1:46.762",
+            "speed" : "1:55.955",
+            "drivers" : [
               "Gerhard Tweraser",
               "Dominik Olbert",
               "Benjamin Paque"
             ],
-            "team": "Razoon - more than racing",
-            "interval": "+1:46.762",
-            "speed": "1:55.955"
+            "team" : "Razoon - more than racing",
+            "position" : 40
           },
           {
-            "position": 41,
-            "drivers": [
+            "interval" : "+57.657",
+            "speed" : "1:56.963",
+            "drivers" : [
               "Jonathan Adam",
               "Tom Wood",
               "Giacomo Petrobelli"
             ],
-            "team": "Ecurie Ecosse Blackthorn",
-            "interval": "+57.657",
-            "speed": "1:56.963"
+            "team" : "Ecurie Ecosse Blackthorn",
+            "position" : 41
           },
           {
-            "position": 42,
-            "drivers": [
+            "interval" : "+1:54.511",
+            "speed" : "1:56.740",
+            "drivers" : [
               "Rafael Duran",
               "Dylan Medler",
               "David Perel"
             ],
-            "team": "Rinaldi Racing",
-            "interval": "+1:54.511",
-            "speed": "1:56.740"
+            "team" : "Rinaldi Racing",
+            "position" : 42
           },
           {
-            "position": 43,
-            "drivers": [
+            "interval" : "+2:14.325",
+            "speed" : "1:55.264",
+            "drivers" : [
               "Carrie Schreiner",
               "Daniele Di Amato",
               "Alberto Di Folco"
             ],
-            "team": "Tresor Attempto Racing",
-            "interval": "+2:14.325",
-            "speed": "1:55.264"
+            "team" : "Tresor Attempto Racing",
+            "position" : 43
           },
           {
-            "position": 44,
-            "drivers": [
+            "interval" : "+2:19.793",
+            "speed" : "1:56.907",
+            "drivers" : [
               "Marcelo Tomasoni",
               "Aaron Muss",
               "Kyle Marcelli"
             ],
-            "team": "Comtoyou Racing",
-            "interval": "+2:19.793",
-            "speed": "1:56.907"
+            "team" : "Comtoyou Racing",
+            "position" : 44
           },
           {
-            "position": 45,
-            "drivers": [
+            "interval" : "+57.821",
+            "speed" : "1:55.861",
+            "drivers" : [
               "Adam Smalley",
               "Freddie Tomlinson",
               "Harry George"
             ],
-            "team": "Optimum Motorsport",
-            "interval": "+57.821",
-            "speed": "1:55.861"
+            "team" : "Optimum Motorsport",
+            "position" : 45
           },
           {
-            "position": 46,
-            "drivers": [
+            "interval" : "+1:25.310",
+            "speed" : "1:56.144",
+            "drivers" : [
               "Scott Noble",
               "Jason Hart",
               "Philip Ellis"
             ],
-            "team": "GetSpeed Team Noble Racing",
-            "interval": "+1:25.310",
-            "speed": "1:56.144"
+            "team" : "GetSpeed Team Noble Racing",
+            "position" : 46
           },
           {
-            "position": 47,
-            "drivers": [
+            "interval" : "+1:45.122",
+            "speed" : "1:56.230",
+            "drivers" : [
               "Alfredo Hernandez Ortega",
               "Stephane Tribaudini",
               "Colin Caresani"
             ],
-            "team": "Grupo Prom Racing Team",
-            "interval": "+1:45.122",
-            "speed": "1:56.230"
+            "team" : "Grupo Prom Racing Team",
+            "position" : 47
           },
           {
-            "position": 48,
-            "drivers": [
+            "interval" : "-12:36.716",
+            "speed" : "1:55.213",
+            "drivers" : [
               "Roberto Merhi",
               "Lance Stroll",
               "Mari Boya"
             ],
-            "team": "Comtoyou Racing",
-            "interval": "-12:36.716",
-            "speed": "1:55.213"
+            "team" : "Comtoyou Racing",
+            "position" : 48
           },
           {
-            "position": 49,
-            "drivers": [
+            "interval" : "-51:07.336",
+            "speed" : "1:56.396",
+            "drivers" : [
               "Stefano Costantini",
               "Chris Froggatt",
               "Eddie Cheever"
             ],
-            "team": "Ziggo Sport Tempesta Racing",
-            "interval": "-51:07.336",
-            "speed": "1:56.396"
+            "team" : "Ziggo Sport Tempesta Racing",
+            "position" : 49
           },
           {
-            "position": "DNF",
-            "drivers": [
+            "interval" : "-2:12:17.645",
+            "speed" : "1:56.842",
+            "drivers" : [
               "Luca Engstler",
               "Marco Mapelli",
               "Patric Niederhauser"
             ],
-            "team": "Rutronik Racing",
-            "interval": "-2:12:17.645",
-            "speed": "1:56.842"
+            "team" : "Rutronik Racing",
+            "position" : "DNF"
           },
           {
-            "position": "DNF",
-            "drivers": [
+            "interval" : "-2:07:03.266",
+            "speed" : "1:55.672",
+            "drivers" : [
               "Dylan Pereira",
               "Andrea Frassineti",
               "Alex Aka"
             ],
-            "team": "Tresor Attempto Racing",
-            "interval": "-2:07:03.266",
-            "speed": "1:55.672"
+            "team" : "Tresor Attempto Racing",
+            "position" : "DNF"
           },
           {
-            "position": "DNF",
-            "drivers": [
+            "interval" : "-1:32:46.643",
+            "speed" : "1:56.125",
+            "drivers" : [
               "Chandler Hull",
               "Rolf Ineichen",
               "Tim Heinemann"
             ],
-            "team": "JMW Motorsport",
-            "interval": "-1:32:46.643",
-            "speed": "1:56.125"
+            "team" : "JMW Motorsport",
+            "position" : "DNF"
           },
           {
-            "position": "DNF",
-            "drivers": [
+            "interval" : "-1:53:39.316",
+            "speed" : "1:55.832",
+            "drivers" : [
               "Michael Porter",
               "Dante Rappange",
               "Guilherme Oliveira"
             ],
-            "team": "Optimum Motorsport",
-            "interval": "-1:53:39.316",
-            "speed": "1:55.832"
+            "team" : "Optimum Motorsport",
+            "position" : "DNF"
           },
           {
-            "position": "DNF",
-            "drivers": [
+            "interval" : "-2:48:55.496",
+            "speed" : "1:55.249",
+            "drivers" : [
               "Bastian Buus",
               "Thomas Preining",
               "Ricardo Feller"
             ],
-            "team": "Lionspeed GP",
-            "interval": "-2:48:55.496",
-            "speed": "1:55.249"
+            "team" : "Lionspeed GP",
+            "position" : "DNF"
           },
           {
-            "position": "DNF",
-            "drivers": [
+            "interval" : "-5:58:59.907",
+            "drivers" : [
               "Tomas Pintos",
               "Jayden Kelly",
               "Joshua Rattican"
             ],
-            "team": "Greystone GT",
-            "interval": "-5:58:59.907"
+            "team" : "Greystone GT",
+            "position" : "DNF"
           },
           {
-            "position": "DNF",
-            "drivers": [
+            "interval" : "-5:57:32.925",
+            "drivers" : [
               "Alex Fontana",
               "Bashar Mardini",
               "Patrick Kolb"
             ],
-            "team": "Lionspeed GP",
-            "interval": "-5:57:32.925"
+            "team" : "Lionspeed GP",
+            "position" : "DNF"
           },
           {
-            "position": "DNF",
-            "drivers": [
+            "drivers" : [
               "Baptiste Moulin",
               "Romain Andriolo",
               "Lorens Lecertua"
             ],
-            "team": "CSA Racing"
+            "team" : "CSA Racing",
+            "position" : "DNF"
           },
           {
-            "position": "DNF",
-            "drivers": [
+            "drivers" : [
               "Gilles Magnus",
               "Robin Knutsson",
               "Alessandro Ghiretti"
             ],
-            "team": "Boutsen VDS"
+            "team" : "Boutsen VDS",
+            "position" : "DNF"
           }
         ]
       }
-    ]
+    ],
+    "roundNumber" : 1
   },
   {
-    "id": "gtwce-2026-r02",
-    "seriesId": "gtwce",
-    "roundNumber": 2,
-    "raceName": "Brands Hatch",
-    "circuitName": "Brands Hatch Circuit",
-    "city": "Kent",
-    "country": "United Kingdom",
-    "countryCode": "GB",
-    "sessions": [
+    "country" : "United Kingdom",
+    "countryCode" : "GB",
+    "sessions" : [
       {
-        "id": "gtwce-2026-r02-s1",
-        "name": "Practice 1",
-        "kind": "practice",
-        "date": "2026-05-02",
-        "timeLocal": "10:35",
-        "durationMinutes": 60,
-        "results": [
+        "kind" : "practice",
+        "id" : "gtwce-2026-r02-s1",
+        "durationMinutes" : 60,
+        "name" : "Practice 1",
+        "results" : [
           {
-            "position": 1,
-            "drivers": [
+            "time" : "1:23.260",
+            "drivers" : [
               "Charles Weerts",
               "Kelvin van der Linde"
             ],
-            "team": "Team WRT",
-            "time": "1:23.260"
+            "team" : "Team WRT",
+            "position" : 1
           },
           {
-            "position": 2,
-            "drivers": [
+            "interval" : "+0.274",
+            "speed" : "1:23.534",
+            "drivers" : [
               "Simon Reicher",
               "Christopher Haase"
             ],
-            "team": "Eastalent Racing",
-            "interval": "+0.274",
-            "speed": "1:23.534"
+            "team" : "Eastalent Racing",
+            "position" : 2
           },
           {
-            "position": 3,
-            "drivers": [
+            "interval" : "+0.283",
+            "speed" : "1:23.543",
+            "drivers" : [
               "Ricardo Feller",
               "Bastian Buus"
             ],
-            "team": "Lionspeed GP",
-            "interval": "+0.283",
-            "speed": "1:23.543"
+            "team" : "Lionspeed GP",
+            "position" : 3
           },
           {
-            "position": 4,
-            "drivers": [
+            "interval" : "+0.333",
+            "speed" : "1:23.593",
+            "drivers" : [
               "Lucas Auer",
               "Maro Engel"
             ],
-            "team": "Winward Racing",
-            "interval": "+0.333",
-            "speed": "1:23.593"
+            "team" : "Winward Racing",
+            "position" : 4
           },
           {
-            "position": 5,
-            "drivers": [
+            "interval" : "+0.437",
+            "speed" : "1:23.697",
+            "drivers" : [
               "Daniel Juncadella",
               "Chris Lulham"
             ],
-            "team": "Mercedes-AMG Team Verstappen Racing",
-            "interval": "+0.437",
-            "speed": "1:23.697"
+            "team" : "Mercedes-AMG Team Verstappen Racing",
+            "position" : 5
           },
           {
-            "position": 6,
-            "drivers": [
+            "interval" : "+0.456",
+            "speed" : "1:23.716",
+            "drivers" : [
               "Valentino Rossi",
               "Max Hesse"
             ],
-            "team": "Team WRT",
-            "interval": "+0.456",
-            "speed": "1:23.716"
+            "team" : "Team WRT",
+            "position" : 6
           },
           {
-            "position": 7,
-            "drivers": [
+            "interval" : "+0.466",
+            "speed" : "1:23.726",
+            "drivers" : [
               "Nicki Thiim",
               "Kobe Pauwels"
             ],
-            "team": "Comtoyou Racing",
-            "interval": "+0.466",
-            "speed": "1:23.726"
+            "team" : "Comtoyou Racing",
+            "position" : 7
           },
           {
-            "position": 8,
-            "drivers": [
+            "interval" : "+0.527",
+            "speed" : "1:23.787",
+            "drivers" : [
               "Morris Schuring",
               "Dorian Boccolacci"
             ],
-            "team": "Boutsen VDS",
-            "interval": "+0.527",
-            "speed": "1:23.787"
+            "team" : "Boutsen VDS",
+            "position" : 8
           },
           {
-            "position": 9,
-            "drivers": [
+            "interval" : "+0.533",
+            "speed" : "1:23.793",
+            "drivers" : [
               "Konsta Lappalainen",
               "Matteo Cairoli"
             ],
-            "team": "Emil Frey Racing",
-            "interval": "+0.533",
-            "speed": "1:23.793"
+            "team" : "Emil Frey Racing",
+            "position" : 9
           },
           {
-            "position": 10,
-            "drivers": [
+            "interval" : "+0.568",
+            "speed" : "1:23.828",
+            "drivers" : [
               "Dylan Pereira",
               "Alex Aka"
             ],
-            "team": "Tresor Attempto Racing",
-            "interval": "+0.568",
-            "speed": "1:23.828"
+            "team" : "Tresor Attempto Racing",
+            "position" : 10
           },
           {
-            "position": 11,
-            "drivers": [
+            "interval" : "+0.571",
+            "speed" : "1:23.831",
+            "drivers" : [
               "Ben Green",
               "Thierry Vermeulen"
             ],
-            "team": "Emil Frey Racing",
-            "interval": "+0.571",
-            "speed": "1:23.831"
+            "team" : "Emil Frey Racing",
+            "position" : 11
           },
           {
-            "position": 12,
-            "drivers": [
+            "interval" : "+0.747",
+            "speed" : "1:24.007",
+            "drivers" : [
               "Dean Macdonald",
               "Marvin Kirchhöfer"
             ],
-            "team": "Garage 59",
-            "interval": "+0.747",
-            "speed": "1:24.007"
+            "team" : "Garage 59",
+            "position" : 12
           },
           {
-            "position": 13,
-            "drivers": [
+            "interval" : "+0.793",
+            "speed" : "1:24.053",
+            "drivers" : [
               "Aleksei Nesov",
               "Aliaksandr Malykhin"
             ],
-            "team": "Pure Rxcing",
-            "interval": "+0.793",
-            "speed": "1:24.053"
+            "team" : "Pure Rxcing",
+            "position" : 13
           },
           {
-            "position": 14,
-            "drivers": [
+            "interval" : "+0.794",
+            "speed" : "1:24.054",
+            "drivers" : [
               "Thomas Fleming",
               "Louis Prette"
             ],
-            "team": "Garage 59",
-            "interval": "+0.794",
-            "speed": "1:24.054"
+            "team" : "Garage 59",
+            "position" : 14
           },
           {
-            "position": 15,
-            "drivers": [
+            "interval" : "+0.808",
+            "speed" : "1:24.068",
+            "drivers" : [
               "Arthur Leclerc",
               "Thomas Neubauer"
             ],
-            "team": "AF Corse",
-            "interval": "+0.808",
-            "speed": "1:24.068"
+            "team" : "AF Corse",
+            "position" : 15
           },
           {
-            "position": 16,
-            "drivers": [
+            "interval" : "+0.818",
+            "speed" : "1:24.078",
+            "drivers" : [
               "Jamie Day",
               "Mateo Villagomez"
             ],
-            "team": "Walkenhorst Motorsport",
-            "interval": "+0.818",
-            "speed": "1:24.078"
+            "team" : "Walkenhorst Motorsport",
+            "position" : 16
           },
           {
-            "position": 17,
-            "drivers": [
+            "interval" : "+0.884",
+            "speed" : "1:24.144",
+            "drivers" : [
               "Arthur Rougier",
               "James Kell"
             ],
-            "team": "CSA Racing",
-            "interval": "+0.884",
-            "speed": "1:24.144"
+            "team" : "CSA Racing",
+            "position" : 17
           },
           {
-            "position": 18,
-            "drivers": [
+            "interval" : "+0.947",
+            "speed" : "1:24.207",
+            "drivers" : [
               "Simon Birch",
               "Magnus Gustavsen"
             ],
-            "team": "Razoon - more than racing",
-            "interval": "+0.947",
-            "speed": "1:24.207"
+            "team" : "Razoon - more than racing",
+            "position" : 18
           },
           {
-            "position": 19,
-            "drivers": [
+            "interval" : "+0.954",
+            "speed" : "1:24.214",
+            "drivers" : [
               "Tommaso Mosca",
               "Matias Zagazeta"
             ],
-            "team": "AF Corse",
-            "interval": "+0.954",
-            "speed": "1:24.214"
+            "team" : "AF Corse",
+            "position" : 19
           },
           {
-            "position": 20,
-            "drivers": [
+            "interval" : "+0.961",
+            "speed" : "1:24.221",
+            "drivers" : [
               "Luca Engstler",
               "Patric Niederhauser"
             ],
-            "team": "Rutronik Racing",
-            "interval": "+0.961",
-            "speed": "1:24.221"
+            "team" : "Rutronik Racing",
+            "position" : 20
           },
           {
-            "position": 21,
-            "drivers": [
+            "interval" : "+0.974",
+            "speed" : "1:24.234",
+            "drivers" : [
               "Robin Knutsson",
               "Gilles Magnus"
             ],
-            "team": "Boutsen VDS",
-            "interval": "+0.974",
-            "speed": "1:24.234"
+            "team" : "Boutsen VDS",
+            "position" : 21
           },
           {
-            "position": 22,
-            "drivers": [
+            "interval" : "+1.026",
+            "speed" : "1:24.286",
+            "drivers" : [
               "Mikey Porter",
               "Guilherme Oliveira"
             ],
-            "team": "Optimum Motorsport",
-            "interval": "+1.026",
-            "speed": "1:24.286"
+            "team" : "Optimum Motorsport",
+            "position" : 22
           },
           {
-            "position": 23,
-            "drivers": [
+            "interval" : "+1.033",
+            "speed" : "1:24.293",
+            "drivers" : [
               "Romain Andriolo",
               "Simon Gachet"
             ],
-            "team": "CSA Racing",
-            "interval": "+1.033",
-            "speed": "1:24.293"
+            "team" : "CSA Racing",
+            "position" : 23
           },
           {
-            "position": 24,
-            "drivers": [
+            "interval" : "+1.092",
+            "speed" : "1:24.352",
+            "drivers" : [
               "Maxime Robin",
               "Gaspard Simon"
             ],
-            "team": "Walkenhorst Motorsport",
-            "interval": "+1.092",
-            "speed": "1:24.352"
+            "team" : "Walkenhorst Motorsport",
+            "position" : 24
           },
           {
-            "position": 25,
-            "drivers": [
+            "interval" : "+1.106",
+            "speed" : "1:24.366",
+            "drivers" : [
               "Amaury Cordeel",
               "Jordan Pepper"
             ],
-            "team": "Team WRT",
-            "interval": "+1.106",
-            "speed": "1:24.366"
+            "team" : "Team WRT",
+            "position" : 25
           },
           {
-            "position": 26,
-            "drivers": [
+            "interval" : "+1.164",
+            "speed" : "1:24.424",
+            "drivers" : [
               "Jop Rappange",
               "David Pittard"
             ],
-            "team": "KPX Motorsport",
-            "interval": "+1.164",
-            "speed": "1:24.424"
+            "team" : "KPX Motorsport",
+            "position" : 26
           },
           {
-            "position": 27,
-            "drivers": [
+            "interval" : "+1.181",
+            "speed" : "1:24.441",
+            "drivers" : [
               "Matisse Lismont",
               "Ignacio Montenegro"
             ],
-            "team": "Team WRT",
-            "interval": "+1.181",
-            "speed": "1:24.441"
+            "team" : "Team WRT",
+            "position" : 27
           },
           {
-            "position": 28,
-            "drivers": [
+            "interval" : "+1.274",
+            "speed" : "1:24.534",
+            "drivers" : [
               "Jeff Machiels",
               "Gilles Stadsbader"
             ],
-            "team": "AF Corse",
-            "interval": "+1.274",
-            "speed": "1:24.534"
+            "team" : "AF Corse",
+            "position" : 28
           },
           {
-            "position": 29,
-            "drivers": [
+            "interval" : "+1.501",
+            "speed" : "1:24.761",
+            "drivers" : [
               "Aurelien Panis",
               "Anthony Bartone"
             ],
-            "team": "GetSpeed Team BartoneBros",
-            "interval": "+1.501",
-            "speed": "1:24.761"
+            "team" : "GetSpeed Team BartoneBros",
+            "position" : 29
           },
           {
-            "position": 30,
-            "drivers": [
+            "interval" : "+1.603",
+            "speed" : "1:24.863",
+            "drivers" : [
               "Carl Bennet",
               "Felix Hirsiger"
             ],
-            "team": "AF Corse",
-            "interval": "+1.603",
-            "speed": "1:24.863"
+            "team" : "AF Corse",
+            "position" : 30
           },
           {
-            "position": 31,
-            "drivers": [
+            "interval" : "+1.643",
+            "speed" : "1:24.903",
+            "drivers" : [
               "Oliver Söderström",
               "Arthur Dorison"
             ],
-            "team": "Comtoyou Racing",
-            "interval": "+1.643",
-            "speed": "1:24.903"
+            "team" : "Comtoyou Racing",
+            "position" : 31
           },
           {
-            "position": 32,
-            "drivers": [
+            "interval" : "+1.950",
+            "speed" : "1:25.210",
+            "drivers" : [
               "Mattia Michelotto",
               "Loris Spinelli"
             ],
-            "team": "VSR",
-            "interval": "+1.950",
-            "speed": "1:25.210"
+            "team" : "VSR",
+            "position" : 32
           },
           {
-            "position": 33,
-            "drivers": [
+            "interval" : "+2.246",
+            "speed" : "1:25.506",
+            "drivers" : [
               "Ariel Levi",
               "Andrea Frassineti"
             ],
-            "team": "Tresor Attempto Racing",
-            "interval": "+2.246",
-            "speed": "1:25.506"
+            "team" : "Tresor Attempto Racing",
+            "position" : 33
           },
           {
-            "position": "DNF",
-            "drivers": [
+            "drivers" : [
               "Loris Cabirou",
               "Tanart Sathienthirakul"
             ],
-            "team": "Dinamic GT"
+            "team" : "Dinamic GT",
+            "position" : "DNF"
           }
-        ]
+        ],
+        "date" : "2026-05-02",
+        "timeLocal" : "10:35"
       },
       {
-        "id": "gtwce-2026-r02-s1777314136221",
-        "name": "Practice 2",
-        "kind": "practice",
-        "date": "2026-05-02",
-        "timeLocal": "13:00",
-        "durationMinutes": 60,
-        "results": [
+        "kind" : "practice",
+        "id" : "gtwce-2026-r02-s1777314136221",
+        "durationMinutes" : 60,
+        "name" : "Practice 2",
+        "results" : [
           {
-            "position": 1,
-            "drivers": [
+            "time" : "1:22.932",
+            "drivers" : [
               "Daniel Juncadella",
               "Chris Lulham"
             ],
-            "team": "Mercedes-AMG Team Verstappen Racing",
-            "time": "1:22.932"
+            "team" : "Mercedes-AMG Team Verstappen Racing",
+            "position" : 1
           },
           {
-            "position": 2,
-            "drivers": [
+            "interval" : "+0.105",
+            "speed" : "1:23.037",
+            "drivers" : [
               "Dean Macdonald",
               "Marvin Kirchhöfer"
             ],
-            "team": "Garage 59",
-            "interval": "+0.105",
-            "speed": "1:23.037"
+            "team" : "Garage 59",
+            "position" : 2
           },
           {
-            "position": 3,
-            "drivers": [
+            "interval" : "+0.134",
+            "speed" : "1:23.066",
+            "drivers" : [
               "Ricardo Feller",
               "Bastian Buus"
             ],
-            "team": "Lionspeed GP",
-            "interval": "+0.134",
-            "speed": "1:23.066"
+            "team" : "Lionspeed GP",
+            "position" : 3
           },
           {
-            "position": 4,
-            "drivers": [
+            "interval" : "+0.243",
+            "speed" : "1:23.175",
+            "drivers" : [
               "Robin Knutsson",
               "Gilles Magnus"
             ],
-            "team": "Boutsen VDS",
-            "interval": "+0.243",
-            "speed": "1:23.175"
+            "team" : "Boutsen VDS",
+            "position" : 4
           },
           {
-            "position": 5,
-            "drivers": [
+            "interval" : "+0.371",
+            "speed" : "1:23.303",
+            "drivers" : [
               "Morris Schuring",
               "Dorian Boccolacci"
             ],
-            "team": "Boutsen VDS",
-            "interval": "+0.371",
-            "speed": "1:23.303"
+            "team" : "Boutsen VDS",
+            "position" : 5
           },
           {
-            "position": 6,
-            "drivers": [
+            "interval" : "+0.373",
+            "speed" : "1:23.305",
+            "drivers" : [
               "Charles Weerts",
               "Kelvin van der Linde"
             ],
-            "team": "Team WRT",
-            "interval": "+0.373",
-            "speed": "1:23.305"
+            "team" : "Team WRT",
+            "position" : 6
           },
           {
-            "position": 7,
-            "drivers": [
+            "interval" : "+0.410",
+            "speed" : "1:23.342",
+            "drivers" : [
               "Konsta Lappalainen",
               "Matteo Cairoli"
             ],
-            "team": "Emil Frey Racing",
-            "interval": "+0.410",
-            "speed": "1:23.342"
+            "team" : "Emil Frey Racing",
+            "position" : 7
           },
           {
-            "position": 8,
-            "drivers": [
+            "interval" : "+0.425",
+            "speed" : "1:23.357",
+            "drivers" : [
               "Tommaso Mosca",
               "Matias Zagazeta"
             ],
-            "team": "AF Corse",
-            "interval": "+0.425",
-            "speed": "1:23.357"
+            "team" : "AF Corse",
+            "position" : 8
           },
           {
-            "position": 9,
-            "drivers": [
+            "interval" : "+0.461",
+            "speed" : "1:23.393",
+            "drivers" : [
               "Valentino Rossi",
               "Max Hesse"
             ],
-            "team": "Team WRT",
-            "interval": "+0.461",
-            "speed": "1:23.393"
+            "team" : "Team WRT",
+            "position" : 9
           },
           {
-            "position": 10,
-            "drivers": [
+            "interval" : "+0.486",
+            "speed" : "1:23.418",
+            "drivers" : [
               "Arthur Leclerc",
               "Thomas Neubauer"
             ],
-            "team": "AF Corse",
-            "interval": "+0.486",
-            "speed": "1:23.418"
+            "team" : "AF Corse",
+            "position" : 10
           },
           {
-            "position": 11,
-            "drivers": [
+            "interval" : "+0.500",
+            "speed" : "1:23.432",
+            "drivers" : [
               "Simon Reicher",
               "Christopher Haase"
             ],
-            "team": "Eastalent Racing",
-            "interval": "+0.500",
-            "speed": "1:23.432"
+            "team" : "Eastalent Racing",
+            "position" : 11
           },
           {
-            "position": 12,
-            "drivers": [
+            "interval" : "+0.516",
+            "speed" : "1:23.448",
+            "drivers" : [
               "Simon Birch",
               "Magnus Gustavsen"
             ],
-            "team": "Razoon - more than racing",
-            "interval": "+0.516",
-            "speed": "1:23.448"
+            "team" : "Razoon - more than racing",
+            "position" : 12
           },
           {
-            "position": 13,
-            "drivers": [
+            "interval" : "+0.526",
+            "speed" : "1:23.458",
+            "drivers" : [
               "Dylan Pereira",
               "Alex Aka"
             ],
-            "team": "Tresor Attempto Racing",
-            "interval": "+0.526",
-            "speed": "1:23.458"
+            "team" : "Tresor Attempto Racing",
+            "position" : 13
           },
           {
-            "position": 14,
-            "drivers": [
+            "interval" : "+0.553",
+            "speed" : "1:23.485",
+            "drivers" : [
               "Aurelien Panis",
               "Anthony Bartone"
             ],
-            "team": "GetSpeed Team BartoneBros",
-            "interval": "+0.553",
-            "speed": "1:23.485"
+            "team" : "GetSpeed Team BartoneBros",
+            "position" : 14
           },
           {
-            "position": 15,
-            "drivers": [
+            "interval" : "+0.567",
+            "speed" : "1:23.499",
+            "drivers" : [
               "Arthur Rougier",
               "James Kell"
             ],
-            "team": "CSA Racing",
-            "interval": "+0.567",
-            "speed": "1:23.499"
+            "team" : "CSA Racing",
+            "position" : 15
           },
           {
-            "position": 16,
-            "drivers": [
+            "interval" : "+0.607",
+            "speed" : "1:23.539",
+            "drivers" : [
               "Ben Green",
               "Thierry Vermeulen"
             ],
-            "team": "Emil Frey Racing",
-            "interval": "+0.607",
-            "speed": "1:23.539"
+            "team" : "Emil Frey Racing",
+            "position" : 16
           },
           {
-            "position": 17,
-            "drivers": [
+            "interval" : "+0.627",
+            "speed" : "1:23.559",
+            "drivers" : [
               "Nicki Thiim",
               "Kobe Pauwels"
             ],
-            "team": "Comtoyou Racing",
-            "interval": "+0.627",
-            "speed": "1:23.559"
+            "team" : "Comtoyou Racing",
+            "position" : 17
           },
           {
-            "position": 18,
-            "drivers": [
+            "interval" : "+0.673",
+            "speed" : "1:23.605",
+            "drivers" : [
               "Mikey Porter",
               "Guilherme Oliveira"
             ],
-            "team": "Optimum Motorsport",
-            "interval": "+0.673",
-            "speed": "1:23.605"
+            "team" : "Optimum Motorsport",
+            "position" : 18
           },
           {
-            "position": 19,
-            "drivers": [
+            "interval" : "+0.678",
+            "speed" : "1:23.610",
+            "drivers" : [
               "Aleksei Nesov",
               "Aliaksandr Malykhin"
             ],
-            "team": "Pure Rxcing",
-            "interval": "+0.678",
-            "speed": "1:23.610"
+            "team" : "Pure Rxcing",
+            "position" : 19
           },
           {
-            "position": 20,
-            "drivers": [
+            "interval" : "+0.695",
+            "speed" : "1:23.627",
+            "drivers" : [
               "Jop Rappange",
               "David Pittard"
             ],
-            "team": "KPX Motorsport",
-            "interval": "+0.695",
-            "speed": "1:23.627"
+            "team" : "KPX Motorsport",
+            "position" : 20
           },
           {
-            "position": 21,
-            "drivers": [
+            "interval" : "+0.723",
+            "speed" : "1:23.655",
+            "drivers" : [
               "Thomas Fleming",
               "Louis Prette"
             ],
-            "team": "Garage 59",
-            "interval": "+0.723",
-            "speed": "1:23.655"
+            "team" : "Garage 59",
+            "position" : 21
           },
           {
-            "position": 22,
-            "drivers": [
+            "interval" : "+0.733",
+            "speed" : "1:23.665",
+            "drivers" : [
               "Amaury Cordeel",
               "Jordan Pepper"
             ],
-            "team": "Team WRT",
-            "interval": "+0.733",
-            "speed": "1:23.665"
+            "team" : "Team WRT",
+            "position" : 22
           },
           {
-            "position": 23,
-            "drivers": [
+            "interval" : "+0.748",
+            "speed" : "1:23.680",
+            "drivers" : [
               "Lucas Auer",
               "Maro Engel"
             ],
-            "team": "Winward Racing",
-            "interval": "+0.748",
-            "speed": "1:23.680"
+            "team" : "Winward Racing",
+            "position" : 23
           },
           {
-            "position": 24,
-            "drivers": [
+            "interval" : "+0.789",
+            "speed" : "1:23.721",
+            "drivers" : [
               "Loris Cabirou",
               "Tanart Sathienthirakul"
             ],
-            "team": "Dinamic GT",
-            "interval": "+0.789",
-            "speed": "1:23.721"
+            "team" : "Dinamic GT",
+            "position" : 24
           },
           {
-            "position": 25,
-            "drivers": [
+            "interval" : "+0.806",
+            "speed" : "1:23.738",
+            "drivers" : [
               "Jamie Day",
               "Mateo Villagomez"
             ],
-            "team": "Walkenhorst Motorsport",
-            "interval": "+0.806",
-            "speed": "1:23.738"
+            "team" : "Walkenhorst Motorsport",
+            "position" : 25
           },
           {
-            "position": 26,
-            "drivers": [
+            "interval" : "+0.900",
+            "speed" : "1:23.832",
+            "drivers" : [
               "Matisse Lismont",
               "Ignacio Montenegro"
             ],
-            "team": "Team WRT",
-            "interval": "+0.900",
-            "speed": "1:23.832"
+            "team" : "Team WRT",
+            "position" : 26
           },
           {
-            "position": 27,
-            "drivers": [
+            "interval" : "+0.954",
+            "speed" : "1:23.886",
+            "drivers" : [
               "Maxime Robin",
               "Gaspard Simon"
             ],
-            "team": "Walkenhorst Motorsport",
-            "interval": "+0.954",
-            "speed": "1:23.886"
+            "team" : "Walkenhorst Motorsport",
+            "position" : 27
           },
           {
-            "position": 28,
-            "drivers": [
+            "interval" : "+1.041",
+            "speed" : "1:23.973",
+            "drivers" : [
               "Romain Andriolo",
               "Simon Gachet"
             ],
-            "team": "CSA Racing",
-            "interval": "+1.041",
-            "speed": "1:23.973"
+            "team" : "CSA Racing",
+            "position" : 28
           },
           {
-            "position": 29,
-            "drivers": [
+            "interval" : "+1.056",
+            "speed" : "1:23.988",
+            "drivers" : [
               "Oliver Söderström",
               "Arthur Dorison"
             ],
-            "team": "Comtoyou Racing",
-            "interval": "+1.056",
-            "speed": "1:23.988"
+            "team" : "Comtoyou Racing",
+            "position" : 29
           },
           {
-            "position": 30,
-            "drivers": [
+            "interval" : "+1.144",
+            "speed" : "1:24.076",
+            "drivers" : [
               "Jeff Machiels",
               "Gilles Stadsbader"
             ],
-            "team": "AF Corse",
-            "interval": "+1.144",
-            "speed": "1:24.076"
+            "team" : "AF Corse",
+            "position" : 30
           },
           {
-            "position": 31,
-            "drivers": [
+            "interval" : "+1.173",
+            "speed" : "1:24.105",
+            "drivers" : [
               "Carl Bennet",
               "Felix Hirsiger"
             ],
-            "team": "AF Corse",
-            "interval": "+1.173",
-            "speed": "1:24.105"
+            "team" : "AF Corse",
+            "position" : 31
           },
           {
-            "position": 32,
-            "drivers": [
+            "interval" : "+1.220",
+            "speed" : "1:24.152",
+            "drivers" : [
               "Luca Engstler",
               "Patric Niederhauser"
             ],
-            "team": "Rutronik Racing",
-            "interval": "+1.220",
-            "speed": "1:24.152"
+            "team" : "Rutronik Racing",
+            "position" : 32
           },
           {
-            "position": 33,
-            "drivers": [
+            "interval" : "+1.653",
+            "speed" : "1:24.585",
+            "drivers" : [
               "Mattia Michelotto",
               "Loris Spinelli"
             ],
-            "team": "VSR",
-            "interval": "+1.653",
-            "speed": "1:24.585"
+            "team" : "VSR",
+            "position" : 33
           },
           {
-            "position": "DNF",
-            "drivers": [
+            "drivers" : [
               "Ariel Levi",
               "Andrea Frassineti"
             ],
-            "team": "Tresor Attempto Racing"
+            "team" : "Tresor Attempto Racing",
+            "position" : "DNF"
           }
-        ]
+        ],
+        "date" : "2026-05-02",
+        "timeLocal" : "13:00"
       },
       {
-        "id": "gtwce-2026-r02-s2",
-        "name": "Qualifying",
-        "kind": "qualifying",
-        "date": "2026-05-02",
-        "timeLocal": "17:40",
-        "durationMinutes": 30,
-        "results": [
+        "kind" : "qualifying",
+        "id" : "gtwce-2026-r02-s2",
+        "durationMinutes" : 30,
+        "name" : "Qualifying",
+        "results" : [
           {
-            "position": 1,
-            "drivers": [
+            "time" : "1:22.722",
+            "drivers" : [
               "Ricardo Feller",
               "Bastian Buus"
             ],
-            "team": "Lionspeed GP",
-            "time": "1:22.722"
+            "team" : "Lionspeed GP",
+            "position" : 1
           },
           {
-            "position": 2,
-            "drivers": [
+            "interval" : "+0.249",
+            "speed" : "1:22.971",
+            "drivers" : [
               "Arthur Leclerc",
               "Thomas Neubauer"
             ],
-            "team": "AF Corse",
-            "interval": "+0.249",
-            "speed": "1:22.971"
+            "team" : "AF Corse",
+            "position" : 2
           },
           {
-            "position": 3,
-            "drivers": [
+            "interval" : "+0.459",
+            "speed" : "1:23.181",
+            "drivers" : [
               "Matisse Lismont",
               "Ignacio Montenegro"
             ],
-            "team": "Team WRT",
-            "interval": "+0.459",
-            "speed": "1:23.181"
+            "team" : "Team WRT",
+            "position" : 3
           },
           {
-            "position": 4,
-            "drivers": [
+            "interval" : "+0.501",
+            "speed" : "1:23.223",
+            "drivers" : [
               "Daniel Juncadella",
               "Chris Lulham"
             ],
-            "team": "Mercedes-AMG Team Verstappen Racing",
-            "interval": "+0.501",
-            "speed": "1:23.223"
+            "team" : "Mercedes-AMG Team Verstappen Racing",
+            "position" : 4
           },
           {
-            "position": 5,
-            "drivers": [
+            "interval" : "+0.517",
+            "speed" : "1:23.239",
+            "drivers" : [
               "Konsta Lappalainen",
               "Matteo Cairoli"
             ],
-            "team": "Emil Frey Racing",
-            "interval": "+0.517",
-            "speed": "1:23.239"
+            "team" : "Emil Frey Racing",
+            "position" : 5
           },
           {
-            "position": 6,
-            "drivers": [
+            "interval" : "+0.520",
+            "speed" : "1:23.242",
+            "drivers" : [
               "Morris Schuring",
               "Dorian Boccolacci"
             ],
-            "team": "Boutsen VDS",
-            "interval": "+0.520",
-            "speed": "1:23.242"
+            "team" : "Boutsen VDS",
+            "position" : 6
           },
           {
-            "position": 7,
-            "drivers": [
+            "interval" : "+0.537",
+            "speed" : "1:23.259",
+            "drivers" : [
               "Dylan Pereira",
               "Alex Aka"
             ],
-            "team": "Tresor Attempto Racing",
-            "interval": "+0.537",
-            "speed": "1:23.259"
+            "team" : "Tresor Attempto Racing",
+            "position" : 7
           },
           {
-            "position": 8,
-            "drivers": [
+            "interval" : "+0.547",
+            "speed" : "1:23.269",
+            "drivers" : [
               "Valentino Rossi",
               "Max Hesse"
             ],
-            "team": "Team WRT",
-            "interval": "+0.547",
-            "speed": "1:23.269"
+            "team" : "Team WRT",
+            "position" : 8
           },
           {
-            "position": 9,
-            "drivers": [
+            "interval" : "+0.566",
+            "speed" : "1:23.288",
+            "drivers" : [
               "Aleksei Nesov",
               "Aliaksandr Malykhin"
             ],
-            "team": "Pure Rxcing",
-            "interval": "+0.566",
-            "speed": "1:23.288"
+            "team" : "Pure Rxcing",
+            "position" : 9
           },
           {
-            "position": 10,
-            "drivers": [
+            "interval" : "+0.578",
+            "speed" : "1:23.300",
+            "drivers" : [
               "Tommaso Mosca",
               "Matias Zagazeta"
             ],
-            "team": "AF Corse",
-            "interval": "+0.578",
-            "speed": "1:23.300"
+            "team" : "AF Corse",
+            "position" : 10
           },
           {
-            "position": 11,
-            "drivers": [
+            "interval" : "+0.588",
+            "speed" : "1:23.310",
+            "drivers" : [
               "Arthur Rougier",
               "James Kell"
             ],
-            "team": "CSA Racing",
-            "interval": "+0.588",
-            "speed": "1:23.310"
+            "team" : "CSA Racing",
+            "position" : 11
           },
           {
-            "position": 12,
-            "drivers": [
+            "interval" : "+0.633",
+            "speed" : "1:23.355",
+            "drivers" : [
               "Charles Weerts",
               "Kelvin van der Linde"
             ],
-            "team": "Team WRT",
-            "interval": "+0.633",
-            "speed": "1:23.355"
+            "team" : "Team WRT",
+            "position" : 12
           },
           {
-            "position": 13,
-            "drivers": [
+            "interval" : "+0.640",
+            "speed" : "1:23.362",
+            "drivers" : [
               "Thomas Fleming",
               "Louis Prette"
             ],
-            "team": "Garage 59",
-            "interval": "+0.640",
-            "speed": "1:23.362"
+            "team" : "Garage 59",
+            "position" : 13
           },
           {
-            "position": 14,
-            "drivers": [
+            "interval" : "+0.667",
+            "speed" : "1:23.389",
+            "drivers" : [
               "Amaury Cordeel",
               "Jordan Pepper"
             ],
-            "team": "Team WRT",
-            "interval": "+0.667",
-            "speed": "1:23.389"
+            "team" : "Team WRT",
+            "position" : 14
           },
           {
-            "position": 15,
-            "drivers": [
+            "interval" : "+0.702",
+            "speed" : "1:23.424",
+            "drivers" : [
               "Lucas Auer",
               "Maro Engel"
             ],
-            "team": "Winward Racing",
-            "interval": "+0.702",
-            "speed": "1:23.424"
+            "team" : "Winward Racing",
+            "position" : 15
           },
           {
-            "position": 16,
-            "drivers": [
+            "interval" : "+0.703",
+            "speed" : "1:23.425",
+            "drivers" : [
               "Mikey Porter",
               "Guilherme Oliveira"
             ],
-            "team": "Optimum Motorsport",
-            "interval": "+0.703",
-            "speed": "1:23.425"
+            "team" : "Optimum Motorsport",
+            "position" : 16
           },
           {
-            "position": 17,
-            "drivers": [
+            "interval" : "+0.713",
+            "speed" : "1:23.435",
+            "drivers" : [
               "Ben Green",
               "Thierry Vermeulen"
             ],
-            "team": "Emil Frey Racing",
-            "interval": "+0.713",
-            "speed": "1:23.435"
+            "team" : "Emil Frey Racing",
+            "position" : 17
           },
           {
-            "position": 18,
-            "drivers": [
+            "interval" : "+0.744",
+            "speed" : "1:23.466",
+            "drivers" : [
               "Robin Knutsson",
               "Gilles Magnus"
             ],
-            "team": "Boutsen VDS",
-            "interval": "+0.744",
-            "speed": "1:23.466"
+            "team" : "Boutsen VDS",
+            "position" : 18
           },
           {
-            "position": 19,
-            "drivers": [
+            "interval" : "+0.768",
+            "speed" : "1:23.490",
+            "drivers" : [
               "Aurelien Panis",
               "Anthony Bartone"
             ],
-            "team": "GetSpeed Team BartoneBros",
-            "interval": "+0.768",
-            "speed": "1:23.490"
+            "team" : "GetSpeed Team BartoneBros",
+            "position" : 19
           },
           {
-            "position": 20,
-            "drivers": [
+            "interval" : "+0.793",
+            "speed" : "1:23.515",
+            "drivers" : [
               "Dean Macdonald",
               "Marvin Kirchhöfer"
             ],
-            "team": "Garage 59",
-            "interval": "+0.793",
-            "speed": "1:23.515"
+            "team" : "Garage 59",
+            "position" : 20
           },
           {
-            "position": 21,
-            "drivers": [
+            "interval" : "+0.876",
+            "speed" : "1:23.598",
+            "drivers" : [
               "Ariel Levi",
               "Andrea Frassineti"
             ],
-            "team": "Tresor Attempto Racing",
-            "interval": "+0.876",
-            "speed": "1:23.598"
+            "team" : "Tresor Attempto Racing",
+            "position" : 21
           },
           {
-            "position": 22,
-            "drivers": [
+            "interval" : "+0.880",
+            "speed" : "1:23.602",
+            "drivers" : [
               "Jamie Day",
               "Mateo Villagomez"
             ],
-            "team": "Walkenhorst Motorsport",
-            "interval": "+0.880",
-            "speed": "1:23.602"
+            "team" : "Walkenhorst Motorsport",
+            "position" : 22
           },
           {
-            "position": 23,
-            "drivers": [
+            "interval" : "+0.951",
+            "speed" : "1:23.673",
+            "drivers" : [
               "Simon Birch",
               "Magnus Gustavsen"
             ],
-            "team": "Razoon - more than racing",
-            "interval": "+0.951",
-            "speed": "1:23.673"
+            "team" : "Razoon - more than racing",
+            "position" : 23
           },
           {
-            "position": 24,
-            "drivers": [
+            "interval" : "+0.985",
+            "speed" : "1:23.707",
+            "drivers" : [
               "Jeff Machiels",
               "Gilles Stadsbader"
             ],
-            "team": "AF Corse",
-            "interval": "+0.985",
-            "speed": "1:23.707"
+            "team" : "AF Corse",
+            "position" : 24
           },
           {
-            "position": 25,
-            "drivers": [
+            "interval" : "+1.010",
+            "speed" : "1:23.732",
+            "drivers" : [
               "Jop Rappange",
               "David Pittard"
             ],
-            "team": "KPX Motorsport",
-            "interval": "+1.010",
-            "speed": "1:23.732"
+            "team" : "KPX Motorsport",
+            "position" : 25
           },
           {
-            "position": 26,
-            "drivers": [
+            "interval" : "+1.016",
+            "speed" : "1:23.738",
+            "drivers" : [
               "Loris Cabirou",
               "Tanart Sathienthirakul"
             ],
-            "team": "Dinamic GT",
-            "interval": "+1.016",
-            "speed": "1:23.738"
+            "team" : "Dinamic GT",
+            "position" : 26
           },
           {
-            "position": 27,
-            "drivers": [
+            "interval" : "+1.068",
+            "speed" : "1:23.790",
+            "drivers" : [
               "Romain Andriolo",
               "Simon Gachet"
             ],
-            "team": "CSA Racing",
-            "interval": "+1.068",
-            "speed": "1:23.790"
+            "team" : "CSA Racing",
+            "position" : 27
           },
           {
-            "position": 28,
-            "drivers": [
+            "interval" : "+1.294",
+            "speed" : "1:24.016",
+            "drivers" : [
               "Oliver Söderström",
               "Arthur Dorison"
             ],
-            "team": "Comtoyou Racing",
-            "interval": "+1.294",
-            "speed": "1:24.016"
+            "team" : "Comtoyou Racing",
+            "position" : 28
           },
           {
-            "position": 29,
-            "drivers": [
+            "interval" : "+1.341",
+            "speed" : "1:24.063",
+            "drivers" : [
               "Luca Engstler",
               "Patric Niederhauser"
             ],
-            "team": "Rutronik Racing",
-            "interval": "+1.341",
-            "speed": "1:24.063"
+            "team" : "Rutronik Racing",
+            "position" : 29
           },
           {
-            "position": 30,
-            "drivers": [
+            "interval" : "+1.473",
+            "speed" : "1:24.195",
+            "drivers" : [
               "Carl Bennet",
               "Felix Hirsiger"
             ],
-            "team": "AF Corse",
-            "interval": "+1.473",
-            "speed": "1:24.195"
+            "team" : "AF Corse",
+            "position" : 30
           },
           {
-            "position": 31,
-            "drivers": [
+            "interval" : "+1.527",
+            "speed" : "1:24.249",
+            "drivers" : [
               "Nicki Thiim",
               "Kobe Pauwels"
             ],
-            "team": "Comtoyou Racing",
-            "interval": "+1.527",
-            "speed": "1:24.249"
+            "team" : "Comtoyou Racing",
+            "position" : 31
           },
           {
-            "position": 32,
-            "drivers": [
+            "interval" : "+1.560",
+            "speed" : "1:24.282",
+            "drivers" : [
               "Mattia Michelotto",
               "Loris Spinelli"
             ],
-            "team": "VSR",
-            "interval": "+1.560",
-            "speed": "1:24.282"
+            "team" : "VSR",
+            "position" : 32
           },
           {
-            "position": 33,
-            "drivers": [
+            "interval" : "+1.811",
+            "speed" : "1:24.533",
+            "drivers" : [
               "Simon Reicher",
               "Christopher Haase"
             ],
-            "team": "Eastalent Racing",
-            "interval": "+1.811",
-            "speed": "1:24.533"
+            "team" : "Eastalent Racing",
+            "position" : 33
           },
           {
-            "position": 34,
-            "drivers": [
+            "interval" : "+1.847",
+            "speed" : "1:24.569",
+            "drivers" : [
               "Maxime Robin",
               "Gaspard Simon"
             ],
-            "team": "Walkenhorst Motorsport",
-            "interval": "+1.847",
-            "speed": "1:24.569"
+            "team" : "Walkenhorst Motorsport",
+            "position" : 34
           }
-        ]
+        ],
+        "date" : "2026-05-02",
+        "timeLocal" : "17:40"
       },
       {
-        "id": "gtwce-2026-r02-s3",
-        "name": "Race 1",
-        "kind": "race",
-        "date": "2026-05-03",
-        "timeLocal": "12:15",
-        "durationMinutes": 60,
-        "results": [
+        "kind" : "race",
+        "id" : "gtwce-2026-r02-s3",
+        "durationMinutes" : 60,
+        "name" : "Race 1",
+        "results" : [
           {
-            "position": 1,
-            "drivers": [
+            "time" : "1:24.132",
+            "drivers" : [
               "Arthur Leclerc",
               "Thomas Neubauer"
             ],
-            "team": "AF Corse",
-            "time": "1:24.132"
+            "team" : "AF Corse",
+            "position" : 1
           },
           {
-            "position": 2,
-            "drivers": [
+            "interval" : "+0.685",
+            "speed" : "1:24.020",
+            "drivers" : [
               "Morris Schuring",
               "Dorian Boccolacci"
             ],
-            "team": "Boutsen VDS",
-            "interval": "+0.685",
-            "speed": "1:24.020"
+            "team" : "Boutsen VDS",
+            "position" : 2
           },
           {
-            "position": 3,
-            "drivers": [
+            "interval" : "+1.893",
+            "speed" : "1:23.658",
+            "drivers" : [
               "Charles Weerts",
               "Kelvin van der Linde"
             ],
-            "team": "Team WRT",
-            "interval": "+1.893",
-            "speed": "1:23.658"
+            "team" : "Team WRT",
+            "position" : 3
           },
           {
-            "position": 4,
-            "drivers": [
+            "interval" : "+11.953",
+            "speed" : "1:23.747",
+            "drivers" : [
               "Amaury Cordeel",
               "Jordan Pepper"
             ],
-            "team": "Team WRT",
-            "interval": "+11.953",
-            "speed": "1:23.747"
+            "team" : "Team WRT",
+            "position" : 4
           },
           {
-            "position": 5,
-            "drivers": [
+            "interval" : "+12.769",
+            "speed" : "1:23.703",
+            "drivers" : [
               "Konsta Lappalainen",
               "Matteo Cairoli"
             ],
-            "team": "Emil Frey Racing",
-            "interval": "+12.769",
-            "speed": "1:23.703"
+            "team" : "Emil Frey Racing",
+            "position" : 5
           },
           {
-            "position": 6,
-            "drivers": [
+            "interval" : "+13.181",
+            "speed" : "1:23.523",
+            "drivers" : [
               "Lucas Auer",
               "Maro Engel"
             ],
-            "team": "Winward Racing",
-            "interval": "+13.181",
-            "speed": "1:23.523"
+            "team" : "Winward Racing",
+            "position" : 6
           },
           {
-            "position": 7,
-            "drivers": [
+            "interval" : "+26.544",
+            "speed" : "1:24.402",
+            "drivers" : [
               "Tommaso Mosca",
               "Matias Zagazeta"
             ],
-            "team": "AF Corse",
-            "interval": "+26.544",
-            "speed": "1:24.402"
+            "team" : "AF Corse",
+            "position" : 7
           },
           {
-            "position": 8,
-            "drivers": [
+            "interval" : "+27.005",
+            "speed" : "1:24.358",
+            "drivers" : [
               "Thomas Fleming",
               "Louis Prette"
             ],
-            "team": "Garage 59",
-            "interval": "+27.005",
-            "speed": "1:24.358"
+            "team" : "Garage 59",
+            "position" : 8
           },
           {
-            "position": 9,
-            "drivers": [
+            "interval" : "+27.593",
+            "speed" : "1:24.346",
+            "drivers" : [
               "Nicki Thiim",
               "Kobe Pauwels"
             ],
-            "team": "Comtoyou Racing",
-            "interval": "+27.593",
-            "speed": "1:24.346"
+            "team" : "Comtoyou Racing",
+            "position" : 9
           },
           {
-            "position": 10,
-            "drivers": [
+            "interval" : "+28.028",
+            "speed" : "1:24.503",
+            "drivers" : [
               "Ben Green",
               "Thierry Vermeulen"
             ],
-            "team": "Emil Frey Racing",
-            "interval": "+28.028",
-            "speed": "1:24.503"
+            "team" : "Emil Frey Racing",
+            "position" : 10
           },
           {
-            "position": 11,
-            "drivers": [
+            "interval" : "+28.535",
+            "speed" : "1:24.072",
+            "drivers" : [
               "Dean Macdonald",
               "Marvin Kirchhöfer"
             ],
-            "team": "Garage 59",
-            "interval": "+28.535",
-            "speed": "1:24.072"
+            "team" : "Garage 59",
+            "position" : 11
           },
           {
-            "position": 12,
-            "drivers": [
+            "interval" : "+28.736",
+            "speed" : "1:23.607",
+            "drivers" : [
               "Daniel Juncadella",
               "Chris Lulham"
             ],
-            "team": "Mercedes-AMG Team Verstappen Racing",
-            "interval": "+28.736",
-            "speed": "1:23.607"
+            "team" : "Mercedes-AMG Team Verstappen Racing",
+            "position" : 12
           },
           {
-            "position": 13,
-            "drivers": [
+            "interval" : "+31.530",
+            "speed" : "1:24.422",
+            "drivers" : [
               "Mikey Porter",
               "Guilherme Oliveira"
             ],
-            "team": "Optimum Motorsport",
-            "interval": "+31.530",
-            "speed": "1:24.422"
+            "team" : "Optimum Motorsport",
+            "position" : 13
           },
           {
-            "position": 14,
-            "drivers": [
+            "interval" : "+34.644",
+            "speed" : "1:23.539",
+            "drivers" : [
               "Valentino Rossi",
               "Max Hesse"
             ],
-            "team": "Team WRT",
-            "interval": "+34.644",
-            "speed": "1:23.539"
+            "team" : "Team WRT",
+            "position" : 14
           },
           {
-            "position": 15,
-            "drivers": [
+            "interval" : "+36.024",
+            "speed" : "1:23.932",
+            "drivers" : [
               "Matisse Lismont",
               "Ignacio Montenegro"
             ],
-            "team": "Team WRT",
-            "interval": "+36.024",
-            "speed": "1:23.932"
+            "team" : "Team WRT",
+            "position" : 15
           },
           {
-            "position": 16,
-            "drivers": [
+            "interval" : "+43.749",
+            "speed" : "1:24.609",
+            "drivers" : [
               "Jamie Day",
               "Mateo Villagomez"
             ],
-            "team": "Walkenhorst Motorsport",
-            "interval": "+43.749",
-            "speed": "1:24.609"
+            "team" : "Walkenhorst Motorsport",
+            "position" : 16
           },
           {
-            "position": 17,
-            "drivers": [
+            "interval" : "+52.583",
+            "speed" : "1:24.551",
+            "drivers" : [
               "Aurelien Panis",
               "Anthony Bartone"
             ],
-            "team": "GetSpeed Team BartoneBros",
-            "interval": "+52.583",
-            "speed": "1:24.551"
+            "team" : "GetSpeed Team BartoneBros",
+            "position" : 17
           },
           {
-            "position": 18,
-            "drivers": [
+            "interval" : "+53.849",
+            "speed" : "1:24.395",
+            "drivers" : [
               "Maxime Robin",
               "Gaspard Simon"
             ],
-            "team": "Walkenhorst Motorsport",
-            "interval": "+53.849",
-            "speed": "1:24.395"
+            "team" : "Walkenhorst Motorsport",
+            "position" : 18
           },
           {
-            "position": 19,
-            "drivers": [
+            "interval" : "+55.841",
+            "speed" : "1:24.080",
+            "drivers" : [
               "Aleksei Nesov",
               "Aliaksandr Malykhin"
             ],
-            "team": "Pure Rxcing",
-            "interval": "+55.841",
-            "speed": "1:24.080"
+            "team" : "Pure Rxcing",
+            "position" : 19
           },
           {
-            "position": 20,
-            "drivers": [
+            "interval" : "+57.881",
+            "speed" : "1:24.722",
+            "drivers" : [
               "Luca Engstler",
               "Patric Niederhauser"
             ],
-            "team": "Rutronik Racing",
-            "interval": "+57.881",
-            "speed": "1:24.722"
+            "team" : "Rutronik Racing",
+            "position" : 20
           },
           {
-            "position": 21,
-            "drivers": [
+            "interval" : "+59.301",
+            "speed" : "1:24.216",
+            "drivers" : [
               "Arthur Rougier",
               "James Kell"
             ],
-            "team": "CSA Racing",
-            "interval": "+59.301",
-            "speed": "1:24.216"
+            "team" : "CSA Racing",
+            "position" : 21
           },
           {
-            "position": 22,
-            "drivers": [
+            "interval" : "+1:04.845",
+            "speed" : "1:24.124",
+            "drivers" : [
               "Ariel Levi",
               "Andrea Frassineti"
             ],
-            "team": "Tresor Attempto Racing",
-            "interval": "+1:04.845",
-            "speed": "1:24.124"
+            "team" : "Tresor Attempto Racing",
+            "position" : 22
           },
           {
-            "position": 23,
-            "drivers": [
+            "interval" : "+1:14.528",
+            "speed" : "1:24.040",
+            "drivers" : [
               "Simon Reicher",
               "Christopher Haase"
             ],
-            "team": "Eastalent Racing",
-            "interval": "+1:14.528",
-            "speed": "1:24.040"
+            "team" : "Eastalent Racing",
+            "position" : 23
           },
           {
-            "position": 24,
-            "drivers": [
+            "interval" : "+1:19.283",
+            "speed" : "1:24.880",
+            "drivers" : [
               "Oliver Söderström",
               "Arthur Dorison"
             ],
-            "team": "Comtoyou Racing",
-            "interval": "+1:19.283",
-            "speed": "1:24.880"
+            "team" : "Comtoyou Racing",
+            "position" : 24
           },
           {
-            "position": 25,
-            "drivers": [
+            "interval" : "+1:22.267",
+            "speed" : "1:24.880",
+            "drivers" : [
               "Jeff Machiels",
               "Gilles Stadsbader"
             ],
-            "team": "AF Corse",
-            "interval": "+1:22.267",
-            "speed": "1:24.880"
+            "team" : "AF Corse",
+            "position" : 25
           },
           {
-            "position": 26,
-            "drivers": [
+            "interval" : "+1:22.630",
+            "speed" : "1:24.657",
+            "drivers" : [
               "Carl Bennett",
               "Felix Hirsiger"
             ],
-            "team": "AF Corse",
-            "interval": "+1:22.630",
-            "speed": "1:24.657"
+            "team" : "AF Corse",
+            "position" : 26
           },
           {
-            "position": 27,
-            "drivers": [
+            "interval" : "+1:23.195",
+            "speed" : "1:24.656",
+            "drivers" : [
               "Romain Andriolo",
               "Simon Gachet"
             ],
-            "team": "CSA Racing",
-            "interval": "+1:23.195",
-            "speed": "1:24.656"
+            "team" : "CSA Racing",
+            "position" : 27
           },
           {
-            "position": 28,
-            "drivers": [
+            "interval" : "+1:23.485",
+            "speed" : "1:24.728",
+            "drivers" : [
               "Mattia Michelotto",
               "Loris Spinelli"
             ],
-            "team": "VSR",
-            "interval": "+1:23.485",
-            "speed": "1:24.728"
+            "team" : "VSR",
+            "position" : 28
           },
           {
-            "position": 29,
-            "drivers": [
+            "interval" : "+2.761",
+            "speed" : "1:24.032",
+            "drivers" : [
               "Jop Rappange",
               "David Pittard"
             ],
-            "team": "KPX Motorsport",
-            "interval": "+2.761",
-            "speed": "1:24.032"
+            "team" : "KPX Motorsport",
+            "position" : 29
           },
           {
-            "position": 30,
-            "drivers": [
+            "interval" : "+12.129",
+            "speed" : "1:23.876",
+            "drivers" : [
               "Simon Birch",
               "Magnus Gustavsen"
             ],
-            "team": "Razoon - more than racing",
-            "interval": "+12.129",
-            "speed": "1:23.876"
+            "team" : "Razoon - more than racing",
+            "position" : 30
           },
           {
-            "position": 31,
-            "drivers": [
+            "interval" : "+34.869",
+            "speed" : "1:25.210",
+            "drivers" : [
               "Loris Cabirou",
               "Tanart Sathienthirakul"
             ],
-            "team": "Dinamic GT",
-            "interval": "+34.869",
-            "speed": "1:25.210"
+            "team" : "Dinamic GT",
+            "position" : 31
           },
           {
-            "position": "DNF",
-            "drivers": [
+            "interval" : "-26:24.690",
+            "speed" : "1:24.307",
+            "drivers" : [
               "Ricardo Feller",
               "Bastian Buus"
             ],
-            "team": "Lionspeed GP",
-            "interval": "-26:24.690",
-            "speed": "1:24.307"
+            "team" : "Lionspeed GP",
+            "position" : "DNF"
           },
           {
-            "position": "DNF",
-            "drivers": [
+            "interval" : "-33:28.631",
+            "speed" : "1:24.224",
+            "drivers" : [
               "Dylan Pereira",
               "Alex Aka"
             ],
-            "team": "Tresor Attempto Racing",
-            "interval": "-33:28.631",
-            "speed": "1:24.224"
+            "team" : "Tresor Attempto Racing",
+            "position" : "DNF"
           },
           {
-            "position": "DNF",
-            "drivers": [
+            "drivers" : [
               "Robin Knutsson",
               "Gilles Magnus"
             ],
-            "team": "Boutsen VDS"
+            "team" : "Boutsen VDS",
+            "position" : "DNF"
           }
-        ]
+        ],
+        "date" : "2026-05-03",
+        "timeLocal" : "12:15"
       },
       {
-        "id": "gtwce-2026-r02-s4",
-        "name": "Race 2",
-        "kind": "race",
-        "date": "2026-05-03",
-        "timeLocal": "16:45",
-        "durationMinutes": 60,
-        "results": [
+        "kind" : "race",
+        "id" : "gtwce-2026-r02-s4",
+        "durationMinutes" : 60,
+        "name" : "Race 2",
+        "results" : [
           {
-            "position": 1,
-            "drivers": [
+            "time" : "1:23.563",
+            "drivers" : [
               "Ricardo Feller",
               "Bastian Buus"
             ],
-            "team": "Lionspeed GP",
-            "time": "1:23.563"
+            "team" : "Lionspeed GP",
+            "position" : 1
           },
           {
-            "position": 2,
-            "drivers": [
+            "interval" : "+3.073",
+            "speed" : "1:23.287",
+            "drivers" : [
               "Daniel Juncadella",
               "Chris Lulham"
             ],
-            "team": "Mercedes-AMG Team Verstappen Racing",
-            "interval": "+3.073",
-            "speed": "1:23.287"
+            "team" : "Mercedes-AMG Team Verstappen Racing",
+            "position" : 2
           },
           {
-            "position": 3,
-            "drivers": [
+            "interval" : "+10.286",
+            "speed" : "1:23.433",
+            "drivers" : [
               "Lucas Auer",
               "Maro Engel"
             ],
-            "team": "Winward Racing",
-            "interval": "+10.286",
-            "speed": "1:23.433"
+            "team" : "Winward Racing",
+            "position" : 3
           },
           {
-            "position": 4,
-            "drivers": [
+            "interval" : "+13.576",
+            "speed" : "1:23.499",
+            "drivers" : [
               "Valentino Rossi",
               "Max Hesse"
             ],
-            "team": "Team WRT",
-            "interval": "+13.576",
-            "speed": "1:23.499"
+            "team" : "Team WRT",
+            "position" : 4
           },
           {
-            "position": 5,
-            "drivers": [
+            "interval" : "+17.330",
+            "speed" : "1:23.899",
+            "drivers" : [
               "Dean Macdonald",
               "Marvin Kirchhöfer"
             ],
-            "team": "Garage 59",
-            "interval": "+17.330",
-            "speed": "1:23.899"
+            "team" : "Garage 59",
+            "position" : 5
           },
           {
-            "position": 6,
-            "drivers": [
+            "interval" : "+19.483",
+            "speed" : "1:23.806",
+            "drivers" : [
               "Charles Weerts",
               "Kelvin van der Linde"
             ],
-            "team": "Team WRT",
-            "interval": "+19.483",
-            "speed": "1:23.806"
+            "team" : "Team WRT",
+            "position" : 6
           },
           {
-            "position": 7,
-            "drivers": [
+            "interval" : "+25.640",
+            "speed" : "1:24.049",
+            "drivers" : [
               "Amaury Cordeel",
               "Jordan Pepper"
             ],
-            "team": "Team WRT",
-            "interval": "+25.640",
-            "speed": "1:24.049"
+            "team" : "Team WRT",
+            "position" : 7
           },
           {
-            "position": 8,
-            "drivers": [
+            "interval" : "+26.227",
+            "speed" : "1:23.661",
+            "drivers" : [
               "Matisse Lismont",
               "Ignacio Montenegro"
             ],
-            "team": "Team WRT",
-            "interval": "+26.227",
-            "speed": "1:23.661"
+            "team" : "Team WRT",
+            "position" : 8
           },
           {
-            "position": 9,
-            "drivers": [
+            "interval" : "+30.676",
+            "speed" : "1:23.759",
+            "drivers" : [
               "Konsta Lappalainen",
               "Matteo Cairoli"
             ],
-            "team": "Emil Frey Racing",
-            "interval": "+30.676",
-            "speed": "1:23.759"
+            "team" : "Emil Frey Racing",
+            "position" : 9
           },
           {
-            "position": 10,
-            "drivers": [
+            "interval" : "+37.011",
+            "speed" : "1:24.050",
+            "drivers" : [
               "Romain Andriolo",
               "Simon Gachet"
             ],
-            "team": "CSA Racing",
-            "interval": "+37.011",
-            "speed": "1:24.050"
+            "team" : "CSA Racing",
+            "position" : 10
           },
           {
-            "position": 11,
-            "drivers": [
+            "interval" : "+37.311",
+            "speed" : "1:23.633",
+            "drivers" : [
               "Ben Green",
               "Thierry Vermeulen"
             ],
-            "team": "Emil Frey Racing",
-            "interval": "+37.311",
-            "speed": "1:23.633"
+            "team" : "Emil Frey Racing",
+            "position" : 11
           },
           {
-            "position": 12,
-            "drivers": [
+            "interval" : "+38.103",
+            "speed" : "1:23.104",
+            "drivers" : [
               "Morris Schuring",
               "Dorian Boccolacci"
             ],
-            "team": "Boutsen VDS",
-            "interval": "+38.103",
-            "speed": "1:23.104"
+            "team" : "Boutsen VDS",
+            "position" : 12
           },
           {
-            "position": 13,
-            "drivers": [
+            "interval" : "+38.182",
+            "speed" : "1:23.878",
+            "drivers" : [
               "Mikey Porter",
               "Guilherme Oliveira"
             ],
-            "team": "Optimum Motorsport",
-            "interval": "+38.182",
-            "speed": "1:23.878"
+            "team" : "Optimum Motorsport",
+            "position" : 13
           },
           {
-            "position": 14,
-            "drivers": [
+            "interval" : "+38.927",
+            "speed" : "1:23.940",
+            "drivers" : [
               "Nicki Thiim",
               "Kobe Pauwels"
             ],
-            "team": "Comtoyou Racing",
-            "interval": "+38.927",
-            "speed": "1:23.940"
+            "team" : "Comtoyou Racing",
+            "position" : 14
           },
           {
-            "position": 15,
-            "drivers": [
+            "interval" : "+41.023",
+            "speed" : "1:23.987",
+            "drivers" : [
               "Arthur Leclerc",
               "Thomas Neubauer"
             ],
-            "team": "AF Corse",
-            "interval": "+41.023",
-            "speed": "1:23.987"
+            "team" : "AF Corse",
+            "position" : 15
           },
           {
-            "position": 16,
-            "drivers": [
+            "interval" : "+43.781",
+            "speed" : "1:24.114",
+            "drivers" : [
               "Jeff Machiels",
               "Gilles Stadsbader"
             ],
-            "team": "AF Corse",
-            "interval": "+43.781",
-            "speed": "1:24.114"
+            "team" : "AF Corse",
+            "position" : 16
           },
           {
-            "position": 17,
-            "drivers": [
+            "interval" : "+59.432",
+            "speed" : "1:24.541",
+            "drivers" : [
               "Simon Reicher",
               "Christopher Haase"
             ],
-            "team": "Eastalent Racing",
-            "interval": "+59.432",
-            "speed": "1:24.541"
+            "team" : "Eastalent Racing",
+            "position" : 17
           },
           {
-            "position": 18,
-            "drivers": [
+            "interval" : "+59.919",
+            "speed" : "1:24.545",
+            "drivers" : [
               "Luca Engstler",
               "Patric Niederhauser"
             ],
-            "team": "Rutronik Racing",
-            "interval": "+59.919",
-            "speed": "1:24.545"
+            "team" : "Rutronik Racing",
+            "position" : 18
           },
           {
-            "position": 19,
-            "drivers": [
+            "interval" : "+1:00.402",
+            "speed" : "1:24.646",
+            "drivers" : [
               "Tommaso Mosca",
               "Matias Zagazeta"
             ],
-            "team": "AF Corse",
-            "interval": "+1:00.402",
-            "speed": "1:24.646"
+            "team" : "AF Corse",
+            "position" : 19
           },
           {
-            "position": 20,
-            "drivers": [
+            "interval" : "+1:01.484",
+            "speed" : "1:24.361",
+            "drivers" : [
               "Jamie Day",
               "Mateo Villagomez"
             ],
-            "team": "Walkenhorst Motorsport",
-            "interval": "+1:01.484",
-            "speed": "1:24.361"
+            "team" : "Walkenhorst Motorsport",
+            "position" : 20
           },
           {
-            "position": 21,
-            "drivers": [
+            "interval" : "+1:02.467",
+            "speed" : "1:23.585",
+            "drivers" : [
               "Aleksei Nesov",
               "Aliaksandr Malykhin"
             ],
-            "team": "Pure Rxcing",
-            "interval": "+1:02.467",
-            "speed": "1:23.585"
+            "team" : "Pure Rxcing",
+            "position" : 21
           },
           {
-            "position": 22,
-            "drivers": [
+            "interval" : "+1:06.524",
+            "speed" : "1:24.653",
+            "drivers" : [
               "Carl Bennett",
               "Felix Hirsiger"
             ],
-            "team": "AF Corse",
-            "interval": "+1:06.524",
-            "speed": "1:24.653"
+            "team" : "AF Corse",
+            "position" : 22
           },
           {
-            "position": 23,
-            "drivers": [
+            "interval" : "+1:15.002",
+            "speed" : "1:24.598",
+            "drivers" : [
               "Mattia Michelotto",
               "Loris Spinelli"
             ],
-            "team": "VSR",
-            "interval": "+1:15.002",
-            "speed": "1:24.598"
+            "team" : "VSR",
+            "position" : 23
           },
           {
-            "position": 24,
-            "drivers": [
+            "interval" : "+1:23.857",
+            "speed" : "1:24.516",
+            "drivers" : [
               "Jop Rappange",
               "David Pittard"
             ],
-            "team": "KPX Motorsport",
-            "interval": "+1:23.857",
-            "speed": "1:24.516"
+            "team" : "KPX Motorsport",
+            "position" : 24
           },
           {
-            "position": 25,
-            "drivers": [
+            "interval" : "+1:36.996",
+            "speed" : "1:24.079",
+            "drivers" : [
               "Arthur Rougier",
               "James Kell"
             ],
-            "team": "CSA Racing",
-            "interval": "+1:36.996",
-            "speed": "1:24.079"
+            "team" : "CSA Racing",
+            "position" : 25
           },
           {
-            "position": 26,
-            "drivers": [
+            "interval" : "+7.591",
+            "speed" : "1:24.694",
+            "drivers" : [
               "Maxime Robin",
               "Gaspard Simon"
             ],
-            "team": "Walkenhorst Motorsport",
-            "interval": "+7.591",
-            "speed": "1:24.694"
+            "team" : "Walkenhorst Motorsport",
+            "position" : 26
           },
           {
-            "position": 27,
-            "drivers": [
+            "interval" : "+7.943",
+            "speed" : "1:25.120",
+            "drivers" : [
               "Oliver Söderström",
               "Arthur Dorison"
             ],
-            "team": "Comtoyou Racing",
-            "interval": "+7.943",
-            "speed": "1:25.120"
+            "team" : "Comtoyou Racing",
+            "position" : 27
           },
           {
-            "position": 28,
-            "drivers": [
+            "interval" : "+8.308",
+            "speed" : "1:24.146",
+            "drivers" : [
               "Simon Birch",
               "Magnus Gustavsen"
             ],
-            "team": "Razoon - more than racing",
-            "interval": "+8.308",
-            "speed": "1:24.146"
+            "team" : "Razoon - more than racing",
+            "position" : 28
           },
           {
-            "position": 29,
-            "drivers": [
+            "interval" : "+15.296",
+            "speed" : "1:23.859",
+            "drivers" : [
               "Aurelien Panis",
               "Anthony Bartone"
             ],
-            "team": "GetSpeed Team BartoneBros",
-            "interval": "+15.296",
-            "speed": "1:23.859"
+            "team" : "GetSpeed Team BartoneBros",
+            "position" : 29
           },
           {
-            "position": 30,
-            "drivers": [
+            "interval" : "+19.692",
+            "speed" : "1:23.984",
+            "drivers" : [
               "Loris Cabirou",
               "Tanart Sathienthirakul"
             ],
-            "team": "Dinamic GT",
-            "interval": "+19.692",
-            "speed": "1:23.984"
+            "team" : "Dinamic GT",
+            "position" : 30
           },
           {
-            "position": 31,
-            "drivers": [
+            "interval" : "+21.488",
+            "speed" : "1:24.149",
+            "drivers" : [
               "Ariel Levi",
               "Andrea Frassineti"
             ],
-            "team": "Tresor Attempto Racing",
-            "interval": "+21.488",
-            "speed": "1:24.149"
+            "team" : "Tresor Attempto Racing",
+            "position" : 31
           },
           {
-            "position": "DNF",
-            "drivers": [
+            "interval" : "-28:34.557",
+            "speed" : "1:24.897",
+            "drivers" : [
               "Thomas Fleming",
               "Louis Prette"
             ],
-            "team": "Garage 59",
-            "interval": "-28:34.557",
-            "speed": "1:24.897"
+            "team" : "Garage 59",
+            "position" : "DNF"
           },
           {
-            "position": "DNF",
-            "drivers": [
+            "interval" : "-52:23.859",
+            "speed" : "1:24.209",
+            "drivers" : [
               "Dylan Pereira",
               "Alex Aka"
             ],
-            "team": "Tresor Attempto Racing",
-            "interval": "-52:23.859",
-            "speed": "1:24.209"
+            "team" : "Tresor Attempto Racing",
+            "position" : "DNF"
           }
-        ]
+        ],
+        "date" : "2026-05-03",
+        "timeLocal" : "16:45"
       }
-    ]
+    ],
+    "raceName" : "Brands Hatch",
+    "id" : "gtwce-2026-r02",
+    "city" : "Kent",
+    "circuitName" : "Brands Hatch Circuit",
+    "seriesId" : "gtwce",
+    "roundNumber" : 2
   },
   {
-    "id": "gtwce-2026-r03",
-    "seriesId": "gtwce",
-    "roundNumber": 3,
-    "raceName": "Monza",
-    "circuitName": "Autodromo Nazionale Monza",
-    "city": "Monza",
-    "country": "Italy",
-    "countryCode": "IT",
-    "sessions": [
+    "country" : "Italy",
+    "countryCode" : "IT",
+    "sessions" : [
       {
-        "id": "gtwce-2026-r03-s1",
-        "name": "Practice 1",
-        "kind": "practice",
-        "date": "2026-05-30",
-        "timeLocal": "09:00",
-        "durationMinutes": 90
+        "timeLocal" : "09:00",
+        "kind" : "practice",
+        "id" : "gtwce-2026-r03-s1",
+        "date" : "2026-05-30",
+        "durationMinutes" : 90,
+        "name" : "Practice 1"
       },
       {
-        "id": "gtwce-2026-r03-s2",
-        "name": "Practice 2",
-        "kind": "practice",
-        "date": "2026-05-30",
-        "timeLocal": "14:25",
-        "durationMinutes": 90
+        "timeLocal" : "14:25",
+        "kind" : "practice",
+        "id" : "gtwce-2026-r03-s2",
+        "date" : "2026-05-30",
+        "durationMinutes" : 90,
+        "name" : "Practice 2"
       },
       {
-        "id": "gtwce-2026-r03-s3",
-        "name": "Qualifying",
-        "kind": "qualifying",
-        "date": "2026-05-31",
-        "timeLocal": "09:50",
-        "durationMinutes": 65
+        "timeLocal" : "09:50",
+        "kind" : "qualifying",
+        "id" : "gtwce-2026-r03-s3",
+        "date" : "2026-05-31",
+        "durationMinutes" : 65,
+        "name" : "Qualifying"
       },
       {
-        "id": "gtwce-2026-r03-s4",
-        "name": "3 Hour Race",
-        "kind": "race",
-        "date": "2026-05-31",
-        "timeLocal": "15:30",
-        "durationMinutes": 180
+        "timeLocal" : "15:30",
+        "kind" : "race",
+        "id" : "gtwce-2026-r03-s4",
+        "date" : "2026-05-31",
+        "durationMinutes" : 180,
+        "name" : "3 Hour Race"
       }
-    ]
+    ],
+    "raceName" : "Monza",
+    "id" : "gtwce-2026-r03",
+    "city" : "Monza",
+    "circuitName" : "Autodromo Nazionale Monza",
+    "seriesId" : "gtwce",
+    "roundNumber" : 3
   },
   {
-    "id": "gtwce-2026-r04",
-    "seriesId": "gtwce",
-    "roundNumber": 4,
-    "raceName": "CrowdStrike 24 Hours of Spa",
-    "circuitName": "Circuit de Spa-Francorchamps",
-    "city": "Spa-Francorchamps",
-    "country": "Belgium",
-    "countryCode": "BE",
-    "sessions": [
+    "country" : "Belgium",
+    "countryCode" : "BE",
+    "sessions" : [
       {
-        "id": "gtwce-2026-r04-s1",
-        "name": "Practice 1",
-        "kind": "practice",
-        "date": "2026-06-24",
-        "timeLocal": "13:00",
-        "durationMinutes": 90
+        "timeLocal" : "13:00",
+        "kind" : "practice",
+        "id" : "gtwce-2026-r04-s1",
+        "date" : "2026-06-24",
+        "durationMinutes" : 90,
+        "name" : "Practice 1"
       },
       {
-        "id": "gtwce-2026-r04-s2",
-        "name": "Practice 2",
-        "kind": "practice",
-        "date": "2026-06-25",
-        "timeLocal": "10:00",
-        "durationMinutes": 90
+        "timeLocal" : "10:00",
+        "kind" : "practice",
+        "id" : "gtwce-2026-r04-s2",
+        "date" : "2026-06-25",
+        "durationMinutes" : 90,
+        "name" : "Practice 2"
       },
       {
-        "id": "gtwce-2026-r04-s3",
-        "name": "Qualifying",
-        "kind": "qualifying",
-        "date": "2026-06-25",
-        "timeLocal": "16:00",
-        "durationMinutes": 60
+        "timeLocal" : "16:00",
+        "kind" : "qualifying",
+        "id" : "gtwce-2026-r04-s3",
+        "date" : "2026-06-25",
+        "durationMinutes" : 60,
+        "name" : "Qualifying"
       },
       {
-        "id": "gtwce-2026-r04-s4",
-        "name": "24 Hours of Spa",
-        "kind": "race",
-        "date": "2026-06-27",
-        "timeLocal": "16:00",
-        "durationMinutes": 1440
+        "timeLocal" : "16:00",
+        "kind" : "race",
+        "id" : "gtwce-2026-r04-s4",
+        "date" : "2026-06-27",
+        "durationMinutes" : 1440,
+        "name" : "24 Hours of Spa"
       }
-    ]
+    ],
+    "raceName" : "CrowdStrike 24 Hours of Spa",
+    "id" : "gtwce-2026-r04",
+    "city" : "Spa-Francorchamps",
+    "circuitName" : "Circuit de Spa-Francorchamps",
+    "seriesId" : "gtwce",
+    "roundNumber" : 4
   },
   {
-    "id": "gtwce-2026-r05",
-    "seriesId": "gtwce",
-    "roundNumber": 5,
-    "raceName": "Misano",
-    "circuitName": "Misano World Circuit Marco Simoncelli",
-    "city": "Misano Adriatico",
-    "country": "Italy",
-    "countryCode": "IT",
-    "sessions": [
+    "country" : "Italy",
+    "countryCode" : "IT",
+    "sessions" : [
       {
-        "id": "gtwce-2026-r05-s1",
-        "name": "Practice",
-        "kind": "practice",
-        "date": "2026-07-17",
-        "timeLocal": "10:00",
-        "durationMinutes": 60
+        "timeLocal" : "10:00",
+        "kind" : "practice",
+        "id" : "gtwce-2026-r05-s1",
+        "date" : "2026-07-17",
+        "durationMinutes" : 60,
+        "name" : "Practice"
       },
       {
-        "id": "gtwce-2026-r05-s2",
-        "name": "Qualifying",
-        "kind": "qualifying",
-        "date": "2026-07-17",
-        "timeLocal": "14:30",
-        "durationMinutes": 30
+        "timeLocal" : "14:30",
+        "kind" : "qualifying",
+        "id" : "gtwce-2026-r05-s2",
+        "date" : "2026-07-17",
+        "durationMinutes" : 30,
+        "name" : "Qualifying"
       },
       {
-        "id": "gtwce-2026-r05-s3",
-        "name": "Race 1",
-        "kind": "race",
-        "date": "2026-07-18",
-        "timeLocal": "11:00",
-        "durationMinutes": 60
+        "timeLocal" : "11:00",
+        "kind" : "race",
+        "id" : "gtwce-2026-r05-s3",
+        "date" : "2026-07-18",
+        "durationMinutes" : 60,
+        "name" : "Race 1"
       },
       {
-        "id": "gtwce-2026-r05-s4",
-        "name": "Race 2",
-        "kind": "race",
-        "date": "2026-07-19",
-        "timeLocal": "11:00",
-        "durationMinutes": 60
+        "timeLocal" : "11:00",
+        "kind" : "race",
+        "id" : "gtwce-2026-r05-s4",
+        "date" : "2026-07-19",
+        "durationMinutes" : 60,
+        "name" : "Race 2"
       }
-    ]
+    ],
+    "raceName" : "Misano",
+    "id" : "gtwce-2026-r05",
+    "city" : "Misano Adriatico",
+    "circuitName" : "Misano World Circuit Marco Simoncelli",
+    "seriesId" : "gtwce",
+    "roundNumber" : 5
   },
   {
-    "id": "gtwce-2026-r06",
-    "seriesId": "gtwce",
-    "roundNumber": 6,
-    "raceName": "Magny-Cours",
-    "circuitName": "Circuit de Nevers Magny-Cours",
-    "city": "Magny-Cours",
-    "country": "France",
-    "countryCode": "FR",
-    "sessions": [
+    "country" : "France",
+    "countryCode" : "FR",
+    "sessions" : [
       {
-        "id": "gtwce-2026-r06-s1",
-        "name": "Practice",
-        "kind": "practice",
-        "date": "2026-07-31",
-        "timeLocal": "10:00",
-        "durationMinutes": 60
+        "timeLocal" : "10:00",
+        "kind" : "practice",
+        "id" : "gtwce-2026-r06-s1",
+        "date" : "2026-07-31",
+        "durationMinutes" : 60,
+        "name" : "Practice"
       },
       {
-        "id": "gtwce-2026-r06-s2",
-        "name": "Qualifying",
-        "kind": "qualifying",
-        "date": "2026-07-31",
-        "timeLocal": "14:30",
-        "durationMinutes": 30
+        "timeLocal" : "14:30",
+        "kind" : "qualifying",
+        "id" : "gtwce-2026-r06-s2",
+        "date" : "2026-07-31",
+        "durationMinutes" : 30,
+        "name" : "Qualifying"
       },
       {
-        "id": "gtwce-2026-r06-s3",
-        "name": "Race 1",
-        "kind": "race",
-        "date": "2026-08-01",
-        "timeLocal": "11:00",
-        "durationMinutes": 60
+        "timeLocal" : "11:00",
+        "kind" : "race",
+        "id" : "gtwce-2026-r06-s3",
+        "date" : "2026-08-01",
+        "durationMinutes" : 60,
+        "name" : "Race 1"
       },
       {
-        "id": "gtwce-2026-r06-s4",
-        "name": "Race 2",
-        "kind": "race",
-        "date": "2026-08-02",
-        "timeLocal": "11:00",
-        "durationMinutes": 60
+        "timeLocal" : "11:00",
+        "kind" : "race",
+        "id" : "gtwce-2026-r06-s4",
+        "date" : "2026-08-02",
+        "durationMinutes" : 60,
+        "name" : "Race 2"
       }
-    ]
+    ],
+    "raceName" : "Magny-Cours",
+    "id" : "gtwce-2026-r06",
+    "city" : "Magny-Cours",
+    "circuitName" : "Circuit de Nevers Magny-Cours",
+    "seriesId" : "gtwce",
+    "roundNumber" : 6
   },
   {
-    "id": "gtwce-2026-r07",
-    "seriesId": "gtwce",
-    "roundNumber": 7,
-    "raceName": "Nürburgring",
-    "circuitName": "Nürburgring Grand Prix Circuit",
-    "city": "Nürburg",
-    "country": "Germany",
-    "countryCode": "DE",
-    "sessions": [
+    "country" : "Germany",
+    "countryCode" : "DE",
+    "sessions" : [
       {
-        "id": "gtwce-2026-r07-s1",
-        "name": "Practice 1",
-        "kind": "practice",
-        "date": "2026-08-28",
-        "timeLocal": "11:00",
-        "durationMinutes": 60
+        "timeLocal" : "11:00",
+        "kind" : "practice",
+        "id" : "gtwce-2026-r07-s1",
+        "date" : "2026-08-28",
+        "durationMinutes" : 60,
+        "name" : "Practice 1"
       },
       {
-        "id": "gtwce-2026-r07-s2",
-        "name": "Practice 2",
-        "kind": "practice",
-        "date": "2026-08-28",
-        "timeLocal": "16:00",
-        "durationMinutes": 60
+        "timeLocal" : "16:00",
+        "kind" : "practice",
+        "id" : "gtwce-2026-r07-s2",
+        "date" : "2026-08-28",
+        "durationMinutes" : 60,
+        "name" : "Practice 2"
       },
       {
-        "id": "gtwce-2026-r07-s3",
-        "name": "Qualifying",
-        "kind": "qualifying",
-        "date": "2026-08-29",
-        "timeLocal": "10:30",
-        "durationMinutes": 45
+        "timeLocal" : "10:30",
+        "kind" : "qualifying",
+        "id" : "gtwce-2026-r07-s3",
+        "date" : "2026-08-29",
+        "durationMinutes" : 45,
+        "name" : "Qualifying"
       },
       {
-        "id": "gtwce-2026-r07-s4",
-        "name": "3 Hour Race",
-        "kind": "race",
-        "date": "2026-08-30",
-        "timeLocal": "14:00",
-        "durationMinutes": 180
+        "timeLocal" : "14:00",
+        "kind" : "race",
+        "id" : "gtwce-2026-r07-s4",
+        "date" : "2026-08-30",
+        "durationMinutes" : 180,
+        "name" : "3 Hour Race"
       }
-    ]
+    ],
+    "raceName" : "Nürburgring",
+    "id" : "gtwce-2026-r07",
+    "city" : "Nürburg",
+    "circuitName" : "Nürburgring Grand Prix Circuit",
+    "seriesId" : "gtwce",
+    "roundNumber" : 7
   },
   {
-    "id": "gtwce-2026-r08",
-    "seriesId": "gtwce",
-    "roundNumber": 8,
-    "raceName": "Zandvoort",
-    "circuitName": "Circuit Zandvoort",
-    "city": "Zandvoort",
-    "country": "Netherlands",
-    "countryCode": "NL",
-    "sessions": [
+    "country" : "Netherlands",
+    "countryCode" : "NL",
+    "sessions" : [
       {
-        "id": "gtwce-2026-r08-s1",
-        "name": "Practice",
-        "kind": "practice",
-        "date": "2026-09-18",
-        "timeLocal": "10:00",
-        "durationMinutes": 60
+        "timeLocal" : "10:00",
+        "kind" : "practice",
+        "id" : "gtwce-2026-r08-s1",
+        "date" : "2026-09-18",
+        "durationMinutes" : 60,
+        "name" : "Practice"
       },
       {
-        "id": "gtwce-2026-r08-s2",
-        "name": "Qualifying",
-        "kind": "qualifying",
-        "date": "2026-09-18",
-        "timeLocal": "14:30",
-        "durationMinutes": 30
+        "timeLocal" : "14:30",
+        "kind" : "qualifying",
+        "id" : "gtwce-2026-r08-s2",
+        "date" : "2026-09-18",
+        "durationMinutes" : 30,
+        "name" : "Qualifying"
       },
       {
-        "id": "gtwce-2026-r08-s3",
-        "name": "Race 1",
-        "kind": "race",
-        "date": "2026-09-19",
-        "timeLocal": "11:00",
-        "durationMinutes": 60
+        "timeLocal" : "11:00",
+        "kind" : "race",
+        "id" : "gtwce-2026-r08-s3",
+        "date" : "2026-09-19",
+        "durationMinutes" : 60,
+        "name" : "Race 1"
       },
       {
-        "id": "gtwce-2026-r08-s4",
-        "name": "Race 2",
-        "kind": "race",
-        "date": "2026-09-20",
-        "timeLocal": "11:00",
-        "durationMinutes": 60
+        "timeLocal" : "11:00",
+        "kind" : "race",
+        "id" : "gtwce-2026-r08-s4",
+        "date" : "2026-09-20",
+        "durationMinutes" : 60,
+        "name" : "Race 2"
       }
-    ]
+    ],
+    "raceName" : "Zandvoort",
+    "id" : "gtwce-2026-r08",
+    "city" : "Zandvoort",
+    "circuitName" : "Circuit Zandvoort",
+    "seriesId" : "gtwce",
+    "roundNumber" : 8
   },
   {
-    "id": "gtwce-2026-r09",
-    "seriesId": "gtwce",
-    "roundNumber": 9,
-    "raceName": "Barcelona",
-    "circuitName": "Circuit de Barcelona-Catalunya",
-    "city": "Barcelona",
-    "country": "Spain",
-    "countryCode": "ES",
-    "sessions": [
+    "country" : "Spain",
+    "countryCode" : "ES",
+    "sessions" : [
       {
-        "id": "gtwce-2026-r09-s1",
-        "name": "Practice",
-        "kind": "practice",
-        "date": "2026-10-02",
-        "timeLocal": "10:00",
-        "durationMinutes": 60
+        "timeLocal" : "10:00",
+        "kind" : "practice",
+        "id" : "gtwce-2026-r09-s1",
+        "date" : "2026-10-02",
+        "durationMinutes" : 60,
+        "name" : "Practice"
       },
       {
-        "id": "gtwce-2026-r09-s2",
-        "name": "Qualifying",
-        "kind": "qualifying",
-        "date": "2026-10-02",
-        "timeLocal": "14:30",
-        "durationMinutes": 30
+        "timeLocal" : "14:30",
+        "kind" : "qualifying",
+        "id" : "gtwce-2026-r09-s2",
+        "date" : "2026-10-02",
+        "durationMinutes" : 30,
+        "name" : "Qualifying"
       },
       {
-        "id": "gtwce-2026-r09-s3",
-        "name": "Race 1",
-        "kind": "race",
-        "date": "2026-10-03",
-        "timeLocal": "11:00",
-        "durationMinutes": 60
+        "timeLocal" : "11:00",
+        "kind" : "race",
+        "id" : "gtwce-2026-r09-s3",
+        "date" : "2026-10-03",
+        "durationMinutes" : 60,
+        "name" : "Race 1"
       },
       {
-        "id": "gtwce-2026-r09-s4",
-        "name": "Race 2",
-        "kind": "race",
-        "date": "2026-10-04",
-        "timeLocal": "11:00",
-        "durationMinutes": 60
+        "timeLocal" : "11:00",
+        "kind" : "race",
+        "id" : "gtwce-2026-r09-s4",
+        "date" : "2026-10-04",
+        "durationMinutes" : 60,
+        "name" : "Race 2"
       }
-    ]
+    ],
+    "raceName" : "Barcelona",
+    "id" : "gtwce-2026-r09",
+    "city" : "Barcelona",
+    "circuitName" : "Circuit de Barcelona-Catalunya",
+    "seriesId" : "gtwce",
+    "roundNumber" : 9
   },
   {
-    "id": "gtwce-2026-r10",
-    "seriesId": "gtwce",
-    "roundNumber": 10,
-    "raceName": "Portimão",
-    "circuitName": "Autódromo Internacional do Algarve",
-    "city": "Portimão",
-    "country": "Portugal",
-    "countryCode": "PT",
-    "sessions": [
+    "country" : "Portugal",
+    "countryCode" : "PT",
+    "sessions" : [
       {
-        "id": "gtwce-2026-r10-s1",
-        "name": "Practice 1",
-        "kind": "practice",
-        "date": "2026-10-16",
-        "timeLocal": "11:00",
-        "durationMinutes": 60
+        "timeLocal" : "11:00",
+        "kind" : "practice",
+        "id" : "gtwce-2026-r10-s1",
+        "date" : "2026-10-16",
+        "durationMinutes" : 60,
+        "name" : "Practice 1"
       },
       {
-        "id": "gtwce-2026-r10-s2",
-        "name": "Practice 2",
-        "kind": "practice",
-        "date": "2026-10-16",
-        "timeLocal": "16:00",
-        "durationMinutes": 60
+        "timeLocal" : "16:00",
+        "kind" : "practice",
+        "id" : "gtwce-2026-r10-s2",
+        "date" : "2026-10-16",
+        "durationMinutes" : 60,
+        "name" : "Practice 2"
       },
       {
-        "id": "gtwce-2026-r10-s3",
-        "name": "Qualifying",
-        "kind": "qualifying",
-        "date": "2026-10-17",
-        "timeLocal": "10:30",
-        "durationMinutes": 45
+        "timeLocal" : "10:30",
+        "kind" : "qualifying",
+        "id" : "gtwce-2026-r10-s3",
+        "date" : "2026-10-17",
+        "durationMinutes" : 45,
+        "name" : "Qualifying"
       },
       {
-        "id": "gtwce-2026-r10-s4",
-        "name": "3 Hour Race",
-        "kind": "race",
-        "date": "2026-10-18",
-        "timeLocal": "14:00",
-        "durationMinutes": 180
+        "timeLocal" : "14:00",
+        "kind" : "race",
+        "id" : "gtwce-2026-r10-s4",
+        "date" : "2026-10-18",
+        "durationMinutes" : 180,
+        "name" : "3 Hour Race"
       }
-    ]
+    ],
+    "raceName" : "Portimão",
+    "id" : "gtwce-2026-r10",
+    "city" : "Portimão",
+    "circuitName" : "Autódromo Internacional do Algarve",
+    "seriesId" : "gtwce",
+    "roundNumber" : 10
   }
 ]
