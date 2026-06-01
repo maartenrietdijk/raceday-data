@@ -2114,11 +2114,30 @@
     "sessions": [
       {
         "id": "nascar_trucks-2026-12-race",
-        "name": "Race",
+        "name": "Practice",
+        "kind": "practice",
+        "date": "2026-06-06",
+        "timeLocal": "09:30",
+        "durationMinutes": 55,
+        "isOval": true
+      },
+      {
+        "id": "nascar_trucks-2026-12-s1780334117017",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-06-06",
+        "timeLocal": "10:25",
+        "durationMinutes": 55,
+        "isOval": true
+      },
+      {
+        "id": "nascar_trucks-2026-12-s1780334115120",
+        "name": "Race (copy)",
         "kind": "race",
         "date": "2026-06-06",
         "timeLocal": "13:30",
-        "durationMinutes": 60
+        "durationMinutes": 60,
+        "isOval": true
       }
     ]
   },
