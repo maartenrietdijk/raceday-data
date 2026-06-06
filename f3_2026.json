@@ -1,2009 +1,2270 @@
 [
   {
-    "circuitName" : "Albert Park Circuit",
-    "country" : "Australia",
-    "seriesId" : "f3",
-    "raceName" : "Australian Grand Prix",
-    "countryCode" : "AU",
-    "sessions" : [
+    "circuitName": "Albert Park Circuit",
+    "country": "Australia",
+    "seriesId": "f3",
+    "raceName": "Australian Grand Prix",
+    "countryCode": "AU",
+    "sessions": [
       {
-        "durationMinutes" : 45,
-        "timeLocal" : "22:50",
-        "date" : "2026-03-05",
-        "id" : "f3-2026-r01-s1",
-        "name" : "Practice",
-        "results" : [
+        "durationMinutes": 45,
+        "timeLocal": "22:50",
+        "date": "2026-03-05",
+        "id": "f3-2026-r01-s1",
+        "name": "Practice",
+        "results": [
           {
-            "position" : 1,
-            "driver" : "U. Ugochukwu",
-            "team" : "Campos Racing",
-            "number" : "2",
-            "time" : "1:34.607",
-            "laps" : "13"
+            "position": 1,
+            "driver": "U. Ugochukwu",
+            "team": "Campos Racing",
+            "number": "2",
+            "time": "1:34.607",
+            "laps": "13"
           },
           {
-            "speed" : "1:35.034",
-            "driver" : "B. Badoer",
-            "position" : 2,
-            "team" : "Rodin Motorsport",
-            "laps" : "16",
-            "interval" : "+0.427",
-            "number" : "18"
+            "speed": "1:35.034",
+            "driver": "B. Badoer",
+            "position": 2,
+            "team": "Rodin Motorsport",
+            "laps": "16",
+            "interval": "+0.427",
+            "number": "18"
           },
           {
-            "speed" : "1:35.056",
-            "driver" : "N. Strømsted",
-            "position" : 3,
-            "team" : "Trident",
-            "laps" : "15",
-            "interval" : "+0.449",
-            "number" : "4"
+            "speed": "1:35.056",
+            "driver": "N. Strømsted",
+            "position": 3,
+            "team": "Trident",
+            "laps": "15",
+            "interval": "+0.449",
+            "number": "4"
           },
           {
-            "speed" : "1:35.070",
-            "driver" : "T. Naël",
-            "position" : 4,
-            "team" : "Campos Racing",
-            "laps" : "14",
-            "interval" : "+0.463",
-            "number" : "1"
+            "speed": "1:35.070",
+            "driver": "T. Naël",
+            "position": 4,
+            "team": "Campos Racing",
+            "laps": "14",
+            "interval": "+0.463",
+            "number": "1"
           },
           {
-            "speed" : "1:35.078",
-            "driver" : "A. Giusti",
-            "position" : 5,
-            "team" : "MP Motorsport",
-            "laps" : "13",
-            "interval" : "+0.471",
-            "number" : "9"
+            "speed": "1:35.078",
+            "driver": "A. Giusti",
+            "position": 5,
+            "team": "MP Motorsport",
+            "laps": "13",
+            "interval": "+0.471",
+            "number": "9"
           },
           {
-            "speed" : "1:35.131",
-            "team" : "AIX Racing",
-            "position" : 6,
-            "laps" : "15",
-            "driver" : "B. Benavides",
-            "number" : "26",
-            "interval" : "+0.524"
+            "speed": "1:35.131",
+            "team": "AIX Racing",
+            "position": 6,
+            "laps": "15",
+            "driver": "B. Benavides",
+            "number": "26",
+            "interval": "+0.524"
           },
           {
-            "speed" : "1:35.243",
-            "team" : "Rodin Motorsport",
-            "position" : 7,
-            "laps" : "16",
-            "driver" : "P. Clerot",
-            "number" : "17",
-            "interval" : "+0.636"
+            "speed": "1:35.243",
+            "team": "Rodin Motorsport",
+            "position": 7,
+            "laps": "16",
+            "driver": "P. Clerot",
+            "number": "17",
+            "interval": "+0.636"
           },
           {
-            "speed" : "1:35.244",
-            "team" : "DAMS Lucas Oil",
-            "position" : 8,
-            "laps" : "15",
-            "driver" : "N. Lacorte",
-            "number" : "29",
-            "interval" : "+0.637"
+            "speed": "1:35.244",
+            "team": "DAMS Lucas Oil",
+            "position": 8,
+            "laps": "15",
+            "driver": "N. Lacorte",
+            "number": "29",
+            "interval": "+0.637"
           },
           {
-            "speed" : "1:35.262",
-            "team" : "Rodin Motorsport",
-            "position" : 9,
-            "laps" : "15",
-            "driver" : "C. Ho",
-            "number" : "19",
-            "interval" : "+0.655"
+            "speed": "1:35.262",
+            "team": "Rodin Motorsport",
+            "position": 9,
+            "laps": "15",
+            "driver": "C. Ho",
+            "number": "19",
+            "interval": "+0.655"
           },
           {
-            "speed" : "1:35.335",
-            "team" : "Prema Powerteam",
-            "position" : 10,
-            "laps" : "17",
-            "driver" : "L. Sharp",
-            "number" : "20",
-            "interval" : "+0.728"
+            "speed": "1:35.335",
+            "team": "Prema Powerteam",
+            "position": 10,
+            "laps": "17",
+            "driver": "L. Sharp",
+            "number": "20",
+            "interval": "+0.728"
           },
           {
-            "speed" : "1:35.359",
-            "team" : "Van Amersfoort Racing",
-            "position" : 11,
-            "laps" : "18",
-            "driver" : "B. del Pino",
-            "number" : "16",
-            "interval" : "+0.752"
+            "speed": "1:35.359",
+            "team": "Van Amersfoort Racing",
+            "position": 11,
+            "laps": "18",
+            "driver": "B. del Pino",
+            "number": "16",
+            "interval": "+0.752"
           },
           {
-            "speed" : "1:35.387",
-            "team" : "ART Grand Prix",
-            "position" : 12,
-            "laps" : "15",
-            "driver" : "T. Kato",
-            "number" : "10",
-            "interval" : "+0.780"
+            "speed": "1:35.387",
+            "team": "ART Grand Prix",
+            "position": 12,
+            "laps": "15",
+            "driver": "T. Kato",
+            "number": "10",
+            "interval": "+0.780"
           },
           {
-            "speed" : "1:35.454",
-            "team" : "MP Motorsport",
-            "position" : 13,
-            "laps" : "13",
-            "driver" : "T. Taponen",
-            "number" : "8",
-            "interval" : "+0.847"
+            "speed": "1:35.454",
+            "team": "MP Motorsport",
+            "position": 13,
+            "laps": "13",
+            "driver": "T. Taponen",
+            "number": "8",
+            "interval": "+0.847"
           },
           {
-            "speed" : "1:35.456",
-            "team" : "Trident",
-            "position" : 14,
-            "laps" : "16",
-            "driver" : "F. Slater",
-            "number" : "5",
-            "interval" : "+0.849"
+            "speed": "1:35.456",
+            "team": "Trident",
+            "position": 14,
+            "laps": "16",
+            "driver": "F. Slater",
+            "number": "5",
+            "interval": "+0.849"
           },
           {
-            "speed" : "1:35.495",
-            "team" : "MP Motorsport",
-            "position" : 15,
-            "laps" : "16",
-            "driver" : "M. Colnaghi",
-            "number" : "7",
-            "interval" : "+0.888"
+            "speed": "1:35.495",
+            "team": "MP Motorsport",
+            "position": 15,
+            "laps": "16",
+            "driver": "M. Colnaghi",
+            "number": "7",
+            "interval": "+0.888"
           },
           {
-            "speed" : "1:35.586",
-            "team" : "Trident",
-            "position" : 16,
-            "laps" : "17",
-            "driver" : "M. De Palo",
-            "number" : "6",
-            "interval" : "+0.979"
+            "speed": "1:35.586",
+            "team": "Trident",
+            "position": 16,
+            "laps": "17",
+            "driver": "M. De Palo",
+            "number": "6",
+            "interval": "+0.979"
           },
           {
-            "laps" : "16",
-            "driver" : "J. Wharton",
-            "interval" : "+1.052",
-            "number" : "21",
-            "team" : "Prema Powerteam",
-            "position" : 17,
-            "speed" : "1:35.659"
+            "laps": "16",
+            "driver": "J. Wharton",
+            "interval": "+1.052",
+            "number": "21",
+            "team": "Prema Powerteam",
+            "position": 17,
+            "speed": "1:35.659"
           },
           {
-            "laps" : "18",
-            "driver" : "J. Nakamura",
-            "interval" : "+1.080",
-            "number" : "25",
-            "team" : "HitechGP",
-            "position" : 18,
-            "speed" : "1:35.687"
+            "laps": "18",
+            "driver": "J. Nakamura",
+            "interval": "+1.080",
+            "number": "25",
+            "team": "HitechGP",
+            "position": 18,
+            "speed": "1:35.687"
           },
           {
-            "driver" : "M. Gładysz",
-            "position" : 19,
-            "speed" : "1:35.692",
-            "number" : "11",
-            "team" : "ART Grand Prix",
-            "laps" : "15",
-            "interval" : "+1.085"
+            "driver": "M. Gładysz",
+            "position": 19,
+            "speed": "1:35.692",
+            "number": "11",
+            "team": "ART Grand Prix",
+            "laps": "15",
+            "interval": "+1.085"
           },
           {
-            "driver" : "J. Garfias",
-            "position" : 20,
-            "speed" : "1:35.715",
-            "number" : "22",
-            "team" : "Prema Powerteam",
-            "laps" : "16",
-            "interval" : "+1.108"
+            "driver": "J. Garfias",
+            "position": 20,
+            "speed": "1:35.715",
+            "number": "22",
+            "team": "Prema Powerteam",
+            "laps": "16",
+            "interval": "+1.108"
           },
           {
-            "driver" : "E. Deligny",
-            "position" : 21,
-            "speed" : "1:35.727",
-            "number" : "15",
-            "team" : "Van Amersfoort Racing",
-            "laps" : "14",
-            "interval" : "+1.120"
+            "driver": "E. Deligny",
+            "position": 21,
+            "speed": "1:35.727",
+            "number": "15",
+            "team": "Van Amersfoort Racing",
+            "laps": "14",
+            "interval": "+1.120"
           },
           {
-            "driver" : "G. Xie",
-            "position" : 22,
-            "speed" : "1:35.821",
-            "number" : "31",
-            "team" : "DAMS Lucas Oil",
-            "laps" : "16",
-            "interval" : "+1.214"
+            "driver": "G. Xie",
+            "position": 22,
+            "speed": "1:35.821",
+            "number": "31",
+            "team": "DAMS Lucas Oil",
+            "laps": "16",
+            "interval": "+1.214"
           },
           {
-            "driver" : "K. Le",
-            "position" : 23,
-            "speed" : "1:35.977",
-            "number" : "12",
-            "team" : "ART Grand Prix",
-            "laps" : "14",
-            "interval" : "+1.370"
+            "driver": "K. Le",
+            "position": 23,
+            "speed": "1:35.977",
+            "number": "12",
+            "team": "ART Grand Prix",
+            "laps": "14",
+            "interval": "+1.370"
           },
           {
-            "driver" : "F. McLaughlin",
-            "position" : 24,
-            "speed" : "1:36.096",
-            "number" : "24",
-            "team" : "HitechGP",
-            "laps" : "19",
-            "interval" : "+1.489"
+            "driver": "F. McLaughlin",
+            "position": 24,
+            "speed": "1:36.096",
+            "number": "24",
+            "team": "HitechGP",
+            "laps": "19",
+            "interval": "+1.489"
           },
           {
-            "position" : 25,
-            "number" : "14",
-            "laps" : "16",
-            "speed" : "1:36.239",
-            "interval" : "+1.632",
-            "driver" : "H. Yamakoshi",
-            "team" : "Van Amersfoort Racing"
+            "position": 25,
+            "number": "14",
+            "laps": "16",
+            "speed": "1:36.239",
+            "interval": "+1.632",
+            "driver": "H. Yamakoshi",
+            "team": "Van Amersfoort Racing"
           },
           {
-            "position" : 26,
-            "number" : "27",
-            "laps" : "14",
-            "speed" : "1:36.317",
-            "interval" : "+1.710",
-            "driver" : "Y. David",
-            "team" : "AIX Racing"
+            "position": 26,
+            "number": "27",
+            "laps": "14",
+            "speed": "1:36.317",
+            "interval": "+1.710",
+            "driver": "Y. David",
+            "team": "AIX Racing"
           },
           {
-            "position" : 27,
-            "number" : "23",
-            "laps" : "18",
-            "speed" : "1:36.870",
-            "interval" : "+2.263",
-            "driver" : "M. Shin",
-            "team" : "HitechGP"
+            "position": 27,
+            "number": "23",
+            "laps": "18",
+            "speed": "1:36.870",
+            "interval": "+2.263",
+            "driver": "M. Shin",
+            "team": "HitechGP"
           },
           {
-            "position" : 28,
-            "number" : "3",
-            "laps" : "16",
-            "speed" : "1:37.046",
-            "interval" : "+2.439",
-            "driver" : "P. Heuzenroeder",
-            "team" : "Campos Racing"
+            "position": 28,
+            "number": "3",
+            "laps": "16",
+            "speed": "1:37.046",
+            "interval": "+2.439",
+            "driver": "P. Heuzenroeder",
+            "team": "Campos Racing"
           },
           {
-            "position" : 29,
-            "number" : "30",
-            "laps" : "17",
-            "speed" : "1:37.142",
-            "interval" : "+2.535",
-            "driver" : "N. Bhirombhakdi",
-            "team" : "DAMS Lucas Oil"
+            "position": 29,
+            "number": "30",
+            "laps": "17",
+            "speed": "1:37.142",
+            "interval": "+2.535",
+            "driver": "N. Bhirombhakdi",
+            "team": "DAMS Lucas Oil"
           },
           {
-            "position" : 30,
-            "number" : "28",
-            "laps" : "14",
-            "speed" : "1:37.210",
-            "interval" : "+2.603",
-            "driver" : "F. Barrichello",
-            "team" : "AIX Racing"
+            "position": 30,
+            "number": "28",
+            "laps": "14",
+            "speed": "1:37.210",
+            "interval": "+2.603",
+            "driver": "F. Barrichello",
+            "team": "AIX Racing"
           }
         ],
-        "kind" : "race"
+        "kind": "race"
       },
       {
-        "id" : "f3-2026-r01-s2",
-        "name" : "Qualifying",
-        "kind" : "race",
-        "results" : [
+        "id": "f3-2026-r01-s2",
+        "name": "Qualifying",
+        "kind": "race",
+        "results": [
           {
-            "position" : 1,
-            "driver" : "T. Naël",
-            "team" : "Campos Racing",
-            "number" : "1",
-            "time" : "1:34.187",
-            "laps" : "14"
+            "position": 1,
+            "driver": "T. Naël",
+            "team": "Campos Racing",
+            "number": "1",
+            "time": "1:34.187",
+            "laps": "14"
           },
           {
-            "number" : "2",
-            "position" : 2,
-            "laps" : "13",
-            "speed" : "1:34.208",
-            "interval" : "+0.021",
-            "driver" : "U. Ugochukwu",
-            "team" : "Campos Racing"
+            "number": "2",
+            "position": 2,
+            "laps": "13",
+            "speed": "1:34.208",
+            "interval": "+0.021",
+            "driver": "U. Ugochukwu",
+            "team": "Campos Racing"
           },
           {
-            "number" : "5",
-            "position" : 3,
-            "laps" : "14",
-            "speed" : "1:34.269",
-            "interval" : "+0.082",
-            "driver" : "F. Slater",
-            "team" : "Trident"
+            "number": "5",
+            "position": 3,
+            "laps": "14",
+            "speed": "1:34.269",
+            "interval": "+0.082",
+            "driver": "F. Slater",
+            "team": "Trident"
           },
           {
-            "number" : "11",
-            "position" : 4,
-            "laps" : "15",
-            "speed" : "1:34.454",
-            "interval" : "+0.267",
-            "driver" : "M. Gładysz",
-            "team" : "ART Grand Prix"
+            "number": "11",
+            "position": 4,
+            "laps": "15",
+            "speed": "1:34.454",
+            "interval": "+0.267",
+            "driver": "M. Gładysz",
+            "team": "ART Grand Prix"
           },
           {
-            "number" : "29",
-            "position" : 5,
-            "laps" : "15",
-            "speed" : "1:34.533",
-            "interval" : "+0.346",
-            "driver" : "N. Lacorte",
-            "team" : "DAMS Lucas Oil"
+            "number": "29",
+            "position": 5,
+            "laps": "15",
+            "speed": "1:34.533",
+            "interval": "+0.346",
+            "driver": "N. Lacorte",
+            "team": "DAMS Lucas Oil"
           },
           {
-            "number" : "7",
-            "position" : 6,
-            "laps" : "14",
-            "speed" : "1:34.547",
-            "interval" : "+0.360",
-            "driver" : "M. Colnaghi",
-            "team" : "MP Motorsport"
+            "number": "7",
+            "position": 6,
+            "laps": "14",
+            "speed": "1:34.547",
+            "interval": "+0.360",
+            "driver": "M. Colnaghi",
+            "team": "MP Motorsport"
           },
           {
-            "number" : "10",
-            "position" : 7,
-            "laps" : "13",
-            "speed" : "1:34.612",
-            "interval" : "+0.425",
-            "driver" : "T. Kato",
-            "team" : "ART Grand Prix"
+            "number": "10",
+            "position": 7,
+            "laps": "13",
+            "speed": "1:34.612",
+            "interval": "+0.425",
+            "driver": "T. Kato",
+            "team": "ART Grand Prix"
           },
           {
-            "number" : "21",
-            "position" : 8,
-            "laps" : "14",
-            "speed" : "1:34.621",
-            "interval" : "+0.434",
-            "driver" : "J. Wharton",
-            "team" : "Prema Powerteam"
+            "number": "21",
+            "position": 8,
+            "laps": "14",
+            "speed": "1:34.621",
+            "interval": "+0.434",
+            "driver": "J. Wharton",
+            "team": "Prema Powerteam"
           },
           {
-            "number" : "18",
-            "position" : 9,
-            "laps" : "15",
-            "speed" : "1:34.625",
-            "interval" : "+0.438",
-            "driver" : "B. Badoer",
-            "team" : "Rodin Motorsport"
+            "number": "18",
+            "position": 9,
+            "laps": "15",
+            "speed": "1:34.625",
+            "interval": "+0.438",
+            "driver": "B. Badoer",
+            "team": "Rodin Motorsport"
           },
           {
-            "number" : "4",
-            "position" : 10,
-            "laps" : "12",
-            "speed" : "1:34.638",
-            "interval" : "+0.451",
-            "driver" : "N. Strømsted",
-            "team" : "Trident"
+            "number": "4",
+            "position": 10,
+            "laps": "12",
+            "speed": "1:34.638",
+            "interval": "+0.451",
+            "driver": "N. Strømsted",
+            "team": "Trident"
           },
           {
-            "number" : "15",
-            "position" : 11,
-            "laps" : "15",
-            "speed" : "1:34.644",
-            "interval" : "+0.457",
-            "driver" : "E. Deligny",
-            "team" : "Van Amersfoort Racing"
+            "number": "15",
+            "position": 11,
+            "laps": "15",
+            "speed": "1:34.644",
+            "interval": "+0.457",
+            "driver": "E. Deligny",
+            "team": "Van Amersfoort Racing"
           },
           {
-            "number" : "16",
-            "position" : 12,
-            "laps" : "15",
-            "speed" : "1:34.648",
-            "interval" : "+0.461",
-            "driver" : "B. del Pino",
-            "team" : "Van Amersfoort Racing"
+            "number": "16",
+            "position": 12,
+            "laps": "15",
+            "speed": "1:34.648",
+            "interval": "+0.461",
+            "driver": "B. del Pino",
+            "team": "Van Amersfoort Racing"
           },
           {
-            "number" : "20",
-            "position" : 13,
-            "laps" : "13",
-            "speed" : "1:34.686",
-            "interval" : "+0.499",
-            "driver" : "L. Sharp",
-            "team" : "Prema Powerteam"
+            "number": "20",
+            "position": 13,
+            "laps": "13",
+            "speed": "1:34.686",
+            "interval": "+0.499",
+            "driver": "L. Sharp",
+            "team": "Prema Powerteam"
           },
           {
-            "number" : "8",
-            "position" : 14,
-            "laps" : "15",
-            "speed" : "1:34.741",
-            "interval" : "+0.554",
-            "driver" : "T. Taponen",
-            "team" : "MP Motorsport"
+            "number": "8",
+            "position": 14,
+            "laps": "15",
+            "speed": "1:34.741",
+            "interval": "+0.554",
+            "driver": "T. Taponen",
+            "team": "MP Motorsport"
           },
           {
-            "number" : "25",
-            "position" : 15,
-            "laps" : "15",
-            "speed" : "1:34.759",
-            "interval" : "+0.572",
-            "driver" : "J. Nakamura",
-            "team" : "HitechGP"
+            "number": "25",
+            "position": 15,
+            "laps": "15",
+            "speed": "1:34.759",
+            "interval": "+0.572",
+            "driver": "J. Nakamura",
+            "team": "HitechGP"
           },
           {
-            "team" : "MP Motorsport",
-            "speed" : "1:34.817",
-            "interval" : "+0.630",
-            "position" : 16,
-            "number" : "9",
-            "laps" : "14",
-            "driver" : "A. Giusti"
+            "team": "MP Motorsport",
+            "speed": "1:34.817",
+            "interval": "+0.630",
+            "position": 16,
+            "number": "9",
+            "laps": "14",
+            "driver": "A. Giusti"
           },
           {
-            "team" : "DAMS Lucas Oil",
-            "speed" : "1:34.860",
-            "interval" : "+0.673",
-            "position" : 17,
-            "number" : "31",
-            "laps" : "15",
-            "driver" : "G. Xie"
+            "team": "DAMS Lucas Oil",
+            "speed": "1:34.860",
+            "interval": "+0.673",
+            "position": 17,
+            "number": "31",
+            "laps": "15",
+            "driver": "G. Xie"
           },
           {
-            "team" : "HitechGP",
-            "speed" : "1:34.874",
-            "interval" : "+0.687",
-            "position" : 18,
-            "number" : "24",
-            "laps" : "15",
-            "driver" : "F. McLaughlin"
+            "team": "HitechGP",
+            "speed": "1:34.874",
+            "interval": "+0.687",
+            "position": 18,
+            "number": "24",
+            "laps": "15",
+            "driver": "F. McLaughlin"
           },
           {
-            "team" : "Rodin Motorsport",
-            "speed" : "1:34.879",
-            "interval" : "+0.692",
-            "position" : 19,
-            "number" : "17",
-            "laps" : "15",
-            "driver" : "P. Clerot"
+            "team": "Rodin Motorsport",
+            "speed": "1:34.879",
+            "interval": "+0.692",
+            "position": 19,
+            "number": "17",
+            "laps": "15",
+            "driver": "P. Clerot"
           },
           {
-            "team" : "AIX Racing",
-            "speed" : "1:34.933",
-            "interval" : "+0.746",
-            "position" : 20,
-            "number" : "26",
-            "laps" : "14",
-            "driver" : "B. Benavides"
+            "team": "AIX Racing",
+            "speed": "1:34.933",
+            "interval": "+0.746",
+            "position": 20,
+            "number": "26",
+            "laps": "14",
+            "driver": "B. Benavides"
           },
           {
-            "team" : "Rodin Motorsport",
-            "speed" : "1:34.947",
-            "interval" : "+0.760",
-            "position" : 21,
-            "number" : "19",
-            "laps" : "15",
-            "driver" : "C. Ho"
+            "team": "Rodin Motorsport",
+            "speed": "1:34.947",
+            "interval": "+0.760",
+            "position": 21,
+            "number": "19",
+            "laps": "15",
+            "driver": "C. Ho"
           },
           {
-            "team" : "Van Amersfoort Racing",
-            "speed" : "1:34.955",
-            "interval" : "+0.768",
-            "position" : 22,
-            "number" : "14",
-            "laps" : "15",
-            "driver" : "H. Yamakoshi"
+            "team": "Van Amersfoort Racing",
+            "speed": "1:34.955",
+            "interval": "+0.768",
+            "position": 22,
+            "number": "14",
+            "laps": "15",
+            "driver": "H. Yamakoshi"
           },
           {
-            "team" : "Trident",
-            "speed" : "1:35.113",
-            "interval" : "+0.926",
-            "position" : 23,
-            "number" : "6",
-            "laps" : "5",
-            "driver" : "M. De Palo"
+            "team": "Trident",
+            "speed": "1:35.113",
+            "interval": "+0.926",
+            "position": 23,
+            "number": "6",
+            "laps": "5",
+            "driver": "M. De Palo"
           },
           {
-            "team" : "Campos Racing",
-            "speed" : "1:35.156",
-            "interval" : "+0.969",
-            "position" : 24,
-            "number" : "3",
-            "laps" : "15",
-            "driver" : "P. Heuzenroeder"
+            "team": "Campos Racing",
+            "speed": "1:35.156",
+            "interval": "+0.969",
+            "position": 24,
+            "number": "3",
+            "laps": "15",
+            "driver": "P. Heuzenroeder"
           },
           {
-            "team" : "Prema Powerteam",
-            "speed" : "1:35.307",
-            "interval" : "+1.120",
-            "position" : 25,
-            "number" : "22",
-            "laps" : "13",
-            "driver" : "J. Garfias"
+            "team": "Prema Powerteam",
+            "speed": "1:35.307",
+            "interval": "+1.120",
+            "position": 25,
+            "number": "22",
+            "laps": "13",
+            "driver": "J. Garfias"
           },
           {
-            "team" : "AIX Racing",
-            "speed" : "1:35.731",
-            "interval" : "+1.544",
-            "position" : 26,
-            "number" : "27",
-            "laps" : "12",
-            "driver" : "Y. David"
+            "team": "AIX Racing",
+            "speed": "1:35.731",
+            "interval": "+1.544",
+            "position": 26,
+            "number": "27",
+            "laps": "12",
+            "driver": "Y. David"
           },
           {
-            "team" : "ART Grand Prix",
-            "speed" : "1:35.795",
-            "interval" : "+1.608",
-            "position" : 27,
-            "number" : "12",
-            "laps" : "15",
-            "driver" : "K. Le"
+            "team": "ART Grand Prix",
+            "speed": "1:35.795",
+            "interval": "+1.608",
+            "position": 27,
+            "number": "12",
+            "laps": "15",
+            "driver": "K. Le"
           },
           {
-            "team" : "HitechGP",
-            "speed" : "1:35.820",
-            "interval" : "+1.633",
-            "position" : 28,
-            "number" : "23",
-            "laps" : "15",
-            "driver" : "M. Shin"
+            "team": "HitechGP",
+            "speed": "1:35.820",
+            "interval": "+1.633",
+            "position": 28,
+            "number": "23",
+            "laps": "15",
+            "driver": "M. Shin"
           },
           {
-            "team" : "DAMS Lucas Oil",
-            "speed" : "1:36.161",
-            "interval" : "+1.974",
-            "position" : 29,
-            "number" : "30",
-            "laps" : "14",
-            "driver" : "N. Bhirombhakdi"
+            "team": "DAMS Lucas Oil",
+            "speed": "1:36.161",
+            "interval": "+1.974",
+            "position": 29,
+            "number": "30",
+            "laps": "14",
+            "driver": "N. Bhirombhakdi"
           },
           {
-            "team" : "AIX Racing",
-            "speed" : "1:36.482",
-            "interval" : "+2.295",
-            "position" : 30,
-            "number" : "28",
-            "laps" : "16",
-            "driver" : "F. Barrichello"
+            "team": "AIX Racing",
+            "speed": "1:36.482",
+            "interval": "+2.295",
+            "position": 30,
+            "number": "28",
+            "laps": "16",
+            "driver": "F. Barrichello"
           }
         ],
-        "timeLocal" : "04:00",
-        "date" : "2026-03-06",
-        "durationMinutes" : 30
+        "timeLocal": "04:00",
+        "date": "2026-03-06",
+        "durationMinutes": 30
       },
       {
-        "date" : "2026-03-07",
-        "id" : "f3-2026-r01-s3",
-        "timeLocal" : "01:15",
-        "results" : [
+        "date": "2026-03-07",
+        "id": "f3-2026-r01-s3",
+        "timeLocal": "01:15",
+        "results": [
           {
-            "laps" : "7",
-            "position" : 1,
-            "driver" : "B. del Pino",
-            "team" : "Van Amersfoort Racing",
-            "time" : "11:35.440",
-            "number" : "16"
+            "laps": "7",
+            "position": 1,
+            "driver": "B. del Pino",
+            "team": "Van Amersfoort Racing",
+            "time": "11:35.440",
+            "number": "16"
           },
           {
-            "team" : "Van Amersfoort Racing",
-            "speed" : "11:36.821",
-            "interval" : "+1.381",
-            "position" : 2,
-            "number" : "15",
-            "laps" : "7",
-            "driver" : "E. Deligny"
+            "team": "Van Amersfoort Racing",
+            "speed": "11:36.821",
+            "interval": "+1.381",
+            "position": 2,
+            "number": "15",
+            "laps": "7",
+            "driver": "E. Deligny"
           },
           {
-            "team" : "Rodin Motorsport",
-            "speed" : "11:38.152",
-            "interval" : "+2.712",
-            "position" : 3,
-            "number" : "18",
-            "laps" : "7",
-            "driver" : "B. Badoer"
+            "team": "Rodin Motorsport",
+            "speed": "11:38.152",
+            "interval": "+2.712",
+            "position": 3,
+            "number": "18",
+            "laps": "7",
+            "driver": "B. Badoer"
           },
           {
-            "team" : "Trident",
-            "speed" : "11:38.747",
-            "interval" : "+3.307",
-            "position" : 4,
-            "number" : "4",
-            "laps" : "7",
-            "driver" : "N. Strømsted"
+            "team": "Trident",
+            "speed": "11:38.747",
+            "interval": "+3.307",
+            "position": 4,
+            "number": "4",
+            "laps": "7",
+            "driver": "N. Strømsted"
           },
           {
-            "team" : "ART Grand Prix",
-            "speed" : "11:40.174",
-            "interval" : "+4.734",
-            "position" : 5,
-            "number" : "10",
-            "laps" : "7",
-            "driver" : "T. Kato"
+            "team": "ART Grand Prix",
+            "speed": "11:40.174",
+            "interval": "+4.734",
+            "position": 5,
+            "number": "10",
+            "laps": "7",
+            "driver": "T. Kato"
           },
           {
-            "team" : "ART Grand Prix",
-            "speed" : "11:41.297",
-            "interval" : "+5.857",
-            "position" : 6,
-            "number" : "11",
-            "laps" : "7",
-            "driver" : "M. Gładysz"
+            "team": "ART Grand Prix",
+            "speed": "11:41.297",
+            "interval": "+5.857",
+            "position": 6,
+            "number": "11",
+            "laps": "7",
+            "driver": "M. Gładysz"
           },
           {
-            "laps" : "7",
-            "speed" : "11:43.019",
-            "position" : 7,
-            "interval" : "+7.579",
-            "team" : "Prema Powerteam",
-            "number" : "21",
-            "driver" : "J. Wharton"
+            "laps": "7",
+            "speed": "11:43.019",
+            "position": 7,
+            "interval": "+7.579",
+            "team": "Prema Powerteam",
+            "number": "21",
+            "driver": "J. Wharton"
           },
           {
-            "laps" : "7",
-            "speed" : "11:45.002",
-            "position" : 8,
-            "interval" : "+9.562",
-            "team" : "Campos Racing",
-            "number" : "2",
-            "driver" : "U. Ugochukwu"
+            "laps": "7",
+            "speed": "11:45.002",
+            "position": 8,
+            "interval": "+9.562",
+            "team": "Campos Racing",
+            "number": "2",
+            "driver": "U. Ugochukwu"
           },
           {
-            "laps" : "7",
-            "speed" : "11:46.714",
-            "position" : 9,
-            "interval" : "+11.274",
-            "team" : "Trident",
-            "number" : "5",
-            "driver" : "F. Slater"
+            "laps": "7",
+            "speed": "11:46.714",
+            "position": 9,
+            "interval": "+11.274",
+            "team": "Trident",
+            "number": "5",
+            "driver": "F. Slater"
           },
           {
-            "laps" : "7",
-            "speed" : "11:48.229",
-            "position" : 10,
-            "interval" : "+12.789",
-            "team" : "Campos Racing",
-            "number" : "1",
-            "driver" : "T. Naël"
+            "laps": "7",
+            "speed": "11:48.229",
+            "position": 10,
+            "interval": "+12.789",
+            "team": "Campos Racing",
+            "number": "1",
+            "driver": "T. Naël"
           },
           {
-            "laps" : "7",
-            "speed" : "11:48.600",
-            "position" : 11,
-            "interval" : "+13.160",
-            "team" : "DAMS Lucas Oil",
-            "number" : "29",
-            "driver" : "N. Lacorte"
+            "laps": "7",
+            "speed": "11:48.600",
+            "position": 11,
+            "interval": "+13.160",
+            "team": "DAMS Lucas Oil",
+            "number": "29",
+            "driver": "N. Lacorte"
           },
           {
-            "laps" : "7",
-            "speed" : "11:49.115",
-            "position" : 12,
-            "interval" : "+13.675",
-            "team" : "MP Motorsport",
-            "number" : "8",
-            "driver" : "T. Taponen"
+            "laps": "7",
+            "speed": "11:49.115",
+            "position": 12,
+            "interval": "+13.675",
+            "team": "MP Motorsport",
+            "number": "8",
+            "driver": "T. Taponen"
           },
           {
-            "laps" : "7",
-            "speed" : "11:49.722",
-            "position" : 13,
-            "interval" : "+14.282",
-            "team" : "HitechGP",
-            "number" : "25",
-            "driver" : "J. Nakamura"
+            "laps": "7",
+            "speed": "11:49.722",
+            "position": 13,
+            "interval": "+14.282",
+            "team": "HitechGP",
+            "number": "25",
+            "driver": "J. Nakamura"
           },
           {
-            "laps" : "7",
-            "speed" : "11:50.133",
-            "position" : 14,
-            "interval" : "+14.693",
-            "team" : "Rodin Motorsport",
-            "number" : "17",
-            "driver" : "P. Clerot"
+            "laps": "7",
+            "speed": "11:50.133",
+            "position": 14,
+            "interval": "+14.693",
+            "team": "Rodin Motorsport",
+            "number": "17",
+            "driver": "P. Clerot"
           },
           {
-            "laps" : "7",
-            "speed" : "11:51.679",
-            "position" : 15,
-            "interval" : "+16.239",
-            "team" : "HitechGP",
-            "number" : "24",
-            "driver" : "F. McLaughlin"
+            "laps": "7",
+            "speed": "11:51.679",
+            "position": 15,
+            "interval": "+16.239",
+            "team": "HitechGP",
+            "number": "24",
+            "driver": "F. McLaughlin"
           },
           {
-            "laps" : "7",
-            "speed" : "11:53.183",
-            "position" : 16,
-            "interval" : "+17.743",
-            "team" : "Prema Powerteam",
-            "number" : "20",
-            "driver" : "L. Sharp"
+            "laps": "7",
+            "speed": "11:53.183",
+            "position": 16,
+            "interval": "+17.743",
+            "team": "Prema Powerteam",
+            "number": "20",
+            "driver": "L. Sharp"
           },
           {
-            "laps" : "7",
-            "speed" : "11:54.334",
-            "position" : 17,
-            "interval" : "+18.894",
-            "team" : "AIX Racing",
-            "number" : "26",
-            "driver" : "B. Benavides"
+            "laps": "7",
+            "speed": "11:54.334",
+            "position": 17,
+            "interval": "+18.894",
+            "team": "AIX Racing",
+            "number": "26",
+            "driver": "B. Benavides"
           },
           {
-            "laps" : "7",
-            "speed" : "11:54.844",
-            "position" : 18,
-            "interval" : "+19.404",
-            "team" : "Rodin Motorsport",
-            "number" : "19",
-            "driver" : "C. Ho"
+            "laps": "7",
+            "speed": "11:54.844",
+            "position": 18,
+            "interval": "+19.404",
+            "team": "Rodin Motorsport",
+            "number": "19",
+            "driver": "C. Ho"
           },
           {
-            "laps" : "7",
-            "speed" : "11:56.206",
-            "position" : 19,
-            "interval" : "+20.766",
-            "team" : "DAMS Lucas Oil",
-            "number" : "31",
-            "driver" : "G. Xie"
+            "laps": "7",
+            "speed": "11:56.206",
+            "position": 19,
+            "interval": "+20.766",
+            "team": "DAMS Lucas Oil",
+            "number": "31",
+            "driver": "G. Xie"
           },
           {
-            "laps" : "7",
-            "speed" : "11:57.180",
-            "position" : 20,
-            "interval" : "+21.740",
-            "team" : "Van Amersfoort Racing",
-            "number" : "14",
-            "driver" : "H. Yamakoshi"
+            "laps": "7",
+            "speed": "11:57.180",
+            "position": 20,
+            "interval": "+21.740",
+            "team": "Van Amersfoort Racing",
+            "number": "14",
+            "driver": "H. Yamakoshi"
           },
           {
-            "laps" : "7",
-            "speed" : "11:57.736",
-            "position" : 21,
-            "interval" : "+22.296",
-            "team" : "MP Motorsport",
-            "number" : "9",
-            "driver" : "A. Giusti"
+            "laps": "7",
+            "speed": "11:57.736",
+            "position": 21,
+            "interval": "+22.296",
+            "team": "MP Motorsport",
+            "number": "9",
+            "driver": "A. Giusti"
           },
           {
-            "laps" : "7",
-            "speed" : "11:58.060",
-            "position" : 22,
-            "interval" : "+22.620",
-            "team" : "AIX Racing",
-            "number" : "27",
-            "driver" : "Y. David"
+            "laps": "7",
+            "speed": "11:58.060",
+            "position": 22,
+            "interval": "+22.620",
+            "team": "AIX Racing",
+            "number": "27",
+            "driver": "Y. David"
           },
           {
-            "laps" : "7",
-            "speed" : "11:58.480",
-            "position" : 23,
-            "interval" : "+23.040",
-            "team" : "Campos Racing",
-            "number" : "3",
-            "driver" : "P. Heuzenroeder"
+            "laps": "7",
+            "speed": "11:58.480",
+            "position": 23,
+            "interval": "+23.040",
+            "team": "Campos Racing",
+            "number": "3",
+            "driver": "P. Heuzenroeder"
           },
           {
-            "laps" : "7",
-            "speed" : "11:58.853",
-            "position" : 24,
-            "interval" : "+23.413",
-            "team" : "Prema Powerteam",
-            "number" : "22",
-            "driver" : "J. Garfias"
+            "laps": "7",
+            "speed": "11:58.853",
+            "position": 24,
+            "interval": "+23.413",
+            "team": "Prema Powerteam",
+            "number": "22",
+            "driver": "J. Garfias"
           },
           {
-            "laps" : "7",
-            "speed" : "11:59.354",
-            "position" : 25,
-            "interval" : "+23.914",
-            "team" : "HitechGP",
-            "number" : "23",
-            "driver" : "M. Shin"
+            "laps": "7",
+            "speed": "11:59.354",
+            "position": 25,
+            "interval": "+23.914",
+            "team": "HitechGP",
+            "number": "23",
+            "driver": "M. Shin"
           },
           {
-            "laps" : "7",
-            "speed" : "12:00.092",
-            "position" : 26,
-            "interval" : "+24.652",
-            "team" : "Trident",
-            "number" : "6",
-            "driver" : "M. De Palo"
+            "laps": "7",
+            "speed": "12:00.092",
+            "position": 26,
+            "interval": "+24.652",
+            "team": "Trident",
+            "number": "6",
+            "driver": "M. De Palo"
           },
           {
-            "laps" : "7",
-            "speed" : "12:00.697",
-            "position" : 27,
-            "interval" : "+25.257",
-            "team" : "AIX Racing",
-            "number" : "28",
-            "driver" : "F. Barrichello"
+            "laps": "7",
+            "speed": "12:00.697",
+            "position": 27,
+            "interval": "+25.257",
+            "team": "AIX Racing",
+            "number": "28",
+            "driver": "F. Barrichello"
           },
           {
-            "driver" : "K. Le",
-            "speed" : "12:01.196",
-            "position" : 28,
-            "team" : "ART Grand Prix",
-            "number" : "12",
-            "laps" : "7",
-            "interval" : "+25.756"
+            "driver": "K. Le",
+            "speed": "12:01.196",
+            "position": 28,
+            "team": "ART Grand Prix",
+            "number": "12",
+            "laps": "7",
+            "interval": "+25.756"
           },
           {
-            "driver" : "N. Bhirombhakdi",
-            "speed" : "12:01.545",
-            "position" : 29,
-            "team" : "DAMS Lucas Oil",
-            "number" : "30",
-            "laps" : "7",
-            "interval" : "+26.105"
+            "driver": "N. Bhirombhakdi",
+            "speed": "12:01.545",
+            "position": 29,
+            "team": "DAMS Lucas Oil",
+            "number": "30",
+            "laps": "7",
+            "interval": "+26.105"
           },
           {
-            "driver" : "M. Colnaghi",
-            "speed" : "12:06.134",
-            "position" : 30,
-            "team" : "MP Motorsport",
-            "number" : "7",
-            "laps" : "7",
-            "interval" : "+30.694"
+            "driver": "M. Colnaghi",
+            "speed": "12:06.134",
+            "position": 30,
+            "team": "MP Motorsport",
+            "number": "7",
+            "laps": "7",
+            "interval": "+30.694"
           }
         ],
-        "kind" : "race",
-        "durationMinutes" : 40,
-        "name" : "Sprint Race"
+        "kind": "race",
+        "durationMinutes": 40,
+        "name": "Sprint Race"
       },
       {
-        "results" : [
+        "results": [
           {
-            "laps" : "23",
-            "position" : 1,
-            "driver" : "U. Ugochukwu",
-            "team" : "Campos Racing",
-            "time" : "42:59.653",
-            "number" : "2"
+            "laps": "23",
+            "position": 1,
+            "driver": "U. Ugochukwu",
+            "team": "Campos Racing",
+            "time": "42:59.653",
+            "number": "2"
           },
           {
-            "driver" : "F. Slater",
-            "speed" : "43:00.346",
-            "position" : 2,
-            "team" : "Trident",
-            "number" : "5",
-            "laps" : "23",
-            "interval" : "+0.693"
+            "driver": "F. Slater",
+            "speed": "43:00.346",
+            "position": 2,
+            "team": "Trident",
+            "number": "5",
+            "laps": "23",
+            "interval": "+0.693"
           },
           {
-            "driver" : "T. Kato",
-            "speed" : "43:01.925",
-            "position" : 3,
-            "team" : "ART Grand Prix",
-            "number" : "10",
-            "laps" : "23",
-            "interval" : "+2.272"
+            "driver": "T. Kato",
+            "speed": "43:01.925",
+            "position": 3,
+            "team": "ART Grand Prix",
+            "number": "10",
+            "laps": "23",
+            "interval": "+2.272"
           },
           {
-            "driver" : "B. del Pino",
-            "speed" : "43:02.369",
-            "position" : 4,
-            "team" : "Van Amersfoort Racing",
-            "number" : "16",
-            "laps" : "23",
-            "interval" : "+2.716"
+            "driver": "B. del Pino",
+            "speed": "43:02.369",
+            "position": 4,
+            "team": "Van Amersfoort Racing",
+            "number": "16",
+            "laps": "23",
+            "interval": "+2.716"
           },
           {
-            "driver" : "M. Gładysz",
-            "speed" : "43:02.906",
-            "position" : 5,
-            "team" : "ART Grand Prix",
-            "number" : "11",
-            "laps" : "23",
-            "interval" : "+3.253"
+            "driver": "M. Gładysz",
+            "speed": "43:02.906",
+            "position": 5,
+            "team": "ART Grand Prix",
+            "number": "11",
+            "laps": "23",
+            "interval": "+3.253"
           },
           {
-            "driver" : "E. Deligny",
-            "speed" : "43:03.229",
-            "position" : 6,
-            "team" : "Van Amersfoort Racing",
-            "number" : "15",
-            "laps" : "23",
-            "interval" : "+3.576"
+            "driver": "E. Deligny",
+            "speed": "43:03.229",
+            "position": 6,
+            "team": "Van Amersfoort Racing",
+            "number": "15",
+            "laps": "23",
+            "interval": "+3.576"
           },
           {
-            "driver" : "B. Benavides",
-            "speed" : "43:04.369",
-            "position" : 7,
-            "team" : "AIX Racing",
-            "number" : "26",
-            "laps" : "23",
-            "interval" : "+4.716"
+            "driver": "B. Benavides",
+            "speed": "43:04.369",
+            "position": 7,
+            "team": "AIX Racing",
+            "number": "26",
+            "laps": "23",
+            "interval": "+4.716"
           },
           {
-            "driver" : "P. Clerot",
-            "speed" : "43:04.616",
-            "position" : 8,
-            "team" : "Rodin Motorsport",
-            "number" : "17",
-            "laps" : "23",
-            "interval" : "+4.963"
+            "driver": "P. Clerot",
+            "speed": "43:04.616",
+            "position": 8,
+            "team": "Rodin Motorsport",
+            "number": "17",
+            "laps": "23",
+            "interval": "+4.963"
           },
           {
-            "driver" : "J. Nakamura",
-            "speed" : "43:04.999",
-            "position" : 9,
-            "team" : "HitechGP",
-            "number" : "25",
-            "laps" : "23",
-            "interval" : "+5.346"
+            "driver": "J. Nakamura",
+            "speed": "43:04.999",
+            "position": 9,
+            "team": "HitechGP",
+            "number": "25",
+            "laps": "23",
+            "interval": "+5.346"
           },
           {
-            "driver" : "M. Colnaghi",
-            "speed" : "43:05.437",
-            "position" : 10,
-            "team" : "MP Motorsport",
-            "number" : "7",
-            "laps" : "23",
-            "interval" : "+5.784"
+            "driver": "M. Colnaghi",
+            "speed": "43:05.437",
+            "position": 10,
+            "team": "MP Motorsport",
+            "number": "7",
+            "laps": "23",
+            "interval": "+5.784"
           },
           {
-            "driver" : "H. Yamakoshi",
-            "speed" : "43:05.636",
-            "position" : 11,
-            "team" : "Van Amersfoort Racing",
-            "number" : "14",
-            "laps" : "23",
-            "interval" : "+5.983"
+            "driver": "H. Yamakoshi",
+            "speed": "43:05.636",
+            "position": 11,
+            "team": "Van Amersfoort Racing",
+            "number": "14",
+            "laps": "23",
+            "interval": "+5.983"
           },
           {
-            "driver" : "T. Naël",
-            "speed" : "43:05.943",
-            "position" : 12,
-            "team" : "Campos Racing",
-            "number" : "1",
-            "laps" : "23",
-            "interval" : "+6.290"
+            "driver": "T. Naël",
+            "speed": "43:05.943",
+            "position": 12,
+            "team": "Campos Racing",
+            "number": "1",
+            "laps": "23",
+            "interval": "+6.290"
           },
           {
-            "driver" : "T. Taponen",
-            "speed" : "43:06.182",
-            "position" : 13,
-            "team" : "MP Motorsport",
-            "number" : "8",
-            "laps" : "23",
-            "interval" : "+6.529"
+            "driver": "T. Taponen",
+            "speed": "43:06.182",
+            "position": 13,
+            "team": "MP Motorsport",
+            "number": "8",
+            "laps": "23",
+            "interval": "+6.529"
           },
           {
-            "driver" : "F. McLaughlin",
-            "speed" : "43:06.455",
-            "position" : 14,
-            "team" : "HitechGP",
-            "number" : "24",
-            "laps" : "23",
-            "interval" : "+6.802"
+            "driver": "F. McLaughlin",
+            "speed": "43:06.455",
+            "position": 14,
+            "team": "HitechGP",
+            "number": "24",
+            "laps": "23",
+            "interval": "+6.802"
           },
           {
-            "driver" : "A. Giusti",
-            "speed" : "43:06.871",
-            "position" : 15,
-            "team" : "MP Motorsport",
-            "number" : "9",
-            "laps" : "23",
-            "interval" : "+7.218"
+            "driver": "A. Giusti",
+            "speed": "43:06.871",
+            "position": 15,
+            "team": "MP Motorsport",
+            "number": "9",
+            "laps": "23",
+            "interval": "+7.218"
           },
           {
-            "driver" : "B. Badoer",
-            "speed" : "43:07.431",
-            "position" : 16,
-            "team" : "Rodin Motorsport",
-            "number" : "18",
-            "laps" : "23",
-            "interval" : "+7.778"
+            "driver": "B. Badoer",
+            "speed": "43:07.431",
+            "position": 16,
+            "team": "Rodin Motorsport",
+            "number": "18",
+            "laps": "23",
+            "interval": "+7.778"
           },
           {
-            "driver" : "P. Heuzenroeder",
-            "speed" : "43:08.136",
-            "position" : 17,
-            "team" : "Campos Racing",
-            "number" : "3",
-            "laps" : "23",
-            "interval" : "+8.483"
+            "driver": "P. Heuzenroeder",
+            "speed": "43:08.136",
+            "position": 17,
+            "team": "Campos Racing",
+            "number": "3",
+            "laps": "23",
+            "interval": "+8.483"
           },
           {
-            "driver" : "F. Barrichello",
-            "speed" : "43:08.489",
-            "position" : 18,
-            "team" : "AIX Racing",
-            "number" : "28",
-            "laps" : "23",
-            "interval" : "+8.836"
+            "driver": "F. Barrichello",
+            "speed": "43:08.489",
+            "position": 18,
+            "team": "AIX Racing",
+            "number": "28",
+            "laps": "23",
+            "interval": "+8.836"
           },
           {
-            "interval" : "+9.401",
-            "driver" : "G. Xie",
-            "number" : "31",
-            "speed" : "43:09.054",
-            "team" : "DAMS Lucas Oil",
-            "position" : 19,
-            "laps" : "23"
+            "interval": "+9.401",
+            "driver": "G. Xie",
+            "number": "31",
+            "speed": "43:09.054",
+            "team": "DAMS Lucas Oil",
+            "position": 19,
+            "laps": "23"
           },
           {
-            "interval" : "+9.977",
-            "driver" : "Y. David",
-            "number" : "27",
-            "speed" : "43:09.630",
-            "team" : "AIX Racing",
-            "position" : 20,
-            "laps" : "23"
+            "interval": "+9.977",
+            "driver": "Y. David",
+            "number": "27",
+            "speed": "43:09.630",
+            "team": "AIX Racing",
+            "position": 20,
+            "laps": "23"
           },
           {
-            "interval" : "+10.473",
-            "driver" : "C. Ho",
-            "number" : "19",
-            "speed" : "43:10.126",
-            "team" : "Rodin Motorsport",
-            "position" : 21,
-            "laps" : "23"
+            "interval": "+10.473",
+            "driver": "C. Ho",
+            "number": "19",
+            "speed": "43:10.126",
+            "team": "Rodin Motorsport",
+            "position": 21,
+            "laps": "23"
           },
           {
-            "interval" : "+11.182",
-            "driver" : "M. De Palo",
-            "number" : "6",
-            "speed" : "43:10.835",
-            "team" : "Trident",
-            "position" : 22,
-            "laps" : "23"
+            "interval": "+11.182",
+            "driver": "M. De Palo",
+            "number": "6",
+            "speed": "43:10.835",
+            "team": "Trident",
+            "position": 22,
+            "laps": "23"
           },
           {
-            "interval" : "+11.621",
-            "driver" : "N. Strømsted",
-            "number" : "4",
-            "speed" : "43:11.274",
-            "team" : "Trident",
-            "position" : 23,
-            "laps" : "23"
+            "interval": "+11.621",
+            "driver": "N. Strømsted",
+            "number": "4",
+            "speed": "43:11.274",
+            "team": "Trident",
+            "position": 23,
+            "laps": "23"
           },
           {
-            "interval" : "+11.871",
-            "driver" : "J. Garfias",
-            "number" : "22",
-            "speed" : "43:11.524",
-            "team" : "Prema Powerteam",
-            "position" : 24,
-            "laps" : "23"
+            "interval": "+11.871",
+            "driver": "J. Garfias",
+            "number": "22",
+            "speed": "43:11.524",
+            "team": "Prema Powerteam",
+            "position": 24,
+            "laps": "23"
           },
           {
-            "interval" : "+19.142",
-            "driver" : "N. Lacorte",
-            "number" : "29",
-            "speed" : "43:18.795",
-            "team" : "DAMS Lucas Oil",
-            "position" : 25,
-            "laps" : "23"
+            "interval": "+19.142",
+            "driver": "N. Lacorte",
+            "number": "29",
+            "speed": "43:18.795",
+            "team": "DAMS Lucas Oil",
+            "position": 25,
+            "laps": "23"
           },
           {
-            "laps" : "19",
-            "position" : "DNF",
-            "driver" : "M. Shin",
-            "team" : "HitechGP",
-            "number" : "23"
+            "laps": "19",
+            "position": "DNF",
+            "driver": "M. Shin",
+            "team": "HitechGP",
+            "number": "23"
           },
           {
-            "laps" : "7",
-            "position" : "DNF",
-            "driver" : "N. Bhirombhakdi",
-            "team" : "DAMS Lucas Oil",
-            "number" : "30"
+            "laps": "7",
+            "position": "DNF",
+            "driver": "N. Bhirombhakdi",
+            "team": "DAMS Lucas Oil",
+            "number": "30"
           },
           {
-            "laps" : "1",
-            "position" : "DNF",
-            "driver" : "K. Le",
-            "team" : "ART Grand Prix",
-            "number" : "12"
+            "laps": "1",
+            "position": "DNF",
+            "driver": "K. Le",
+            "team": "ART Grand Prix",
+            "number": "12"
           }
         ],
-        "date" : "2026-03-07",
-        "durationMinutes" : 50,
-        "name" : "Feature Race",
-        "timeLocal" : "22:50",
-        "id" : "f3-2026-r01-s4",
-        "kind" : "race"
+        "date": "2026-03-07",
+        "durationMinutes": 50,
+        "name": "Feature Race",
+        "timeLocal": "22:50",
+        "id": "f3-2026-r01-s4",
+        "kind": "race"
       }
     ],
-    "city" : "Melbourne",
-    "id" : "f3-2026-r01",
-    "roundNumber" : 1
+    "city": "Melbourne",
+    "id": "f3-2026-r01",
+    "roundNumber": 1
   },
   {
-    "country" : "Monaco",
-    "id" : "f3-2026-r02",
-    "circuitName" : "Circuit de Monaco",
-    "city" : "Monte Carlo",
-    "seriesId" : "f3",
-    "raceName" : "Monaco Grand Prix",
-    "roundNumber" : 2,
-    "countryCode" : "MC",
-    "sessions" : [
+    "country": "Monaco",
+    "id": "f3-2026-r02",
+    "circuitName": "Circuit de Monaco",
+    "city": "Monte Carlo",
+    "seriesId": "f3",
+    "raceName": "Monaco Grand Prix",
+    "roundNumber": 2,
+    "countryCode": "MC",
+    "sessions": [
       {
-        "timeLocal" : "13:25",
-        "durationMinutes" : 45,
-        "kind" : "practice",
-        "name" : "Practice",
-        "date" : "2026-06-04",
-        "results" : [
+        "timeLocal": "13:25",
+        "durationMinutes": 45,
+        "kind": "practice",
+        "name": "Practice",
+        "date": "2026-06-04",
+        "results": [
           {
-            "laps" : "24",
-            "team" : "Campos Racing",
-            "time" : "1'25.794",
-            "number" : "1",
-            "position" : 1,
-            "driver" : "T. Naël"
+            "laps": "24",
+            "team": "Campos Racing",
+            "time": "1'25.794",
+            "number": "1",
+            "position": 1,
+            "driver": "T. Naël"
           },
           {
-            "interval" : "+0.059",
-            "team" : "Trident",
-            "number" : "5",
-            "laps" : "23",
-            "driver" : "F. Slater",
-            "speed" : "1'25.853",
-            "position" : 2
+            "interval": "+0.059",
+            "team": "Trident",
+            "number": "5",
+            "laps": "23",
+            "driver": "F. Slater",
+            "speed": "1'25.853",
+            "position": 2
           },
           {
-            "interval" : "+0.295",
-            "team" : "Campos Racing",
-            "number" : "2",
-            "laps" : "22",
-            "driver" : "U. Ugochukwu",
-            "speed" : "1'26.089",
-            "position" : 3
+            "interval": "+0.295",
+            "team": "Campos Racing",
+            "number": "2",
+            "laps": "22",
+            "driver": "U. Ugochukwu",
+            "speed": "1'26.089",
+            "position": 3
           },
           {
-            "interval" : "+0.343",
-            "team" : "Van Amersfoort Racing",
-            "number" : "16",
-            "laps" : "23",
-            "driver" : "B. del Pino",
-            "speed" : "1'26.137",
-            "position" : 4
+            "interval": "+0.343",
+            "team": "Van Amersfoort Racing",
+            "number": "16",
+            "laps": "23",
+            "driver": "B. del Pino",
+            "speed": "1'26.137",
+            "position": 4
           },
           {
-            "interval" : "+0.347",
-            "team" : "Rodin Motorsport",
-            "number" : "17",
-            "laps" : "24",
-            "driver" : "P. Clerot",
-            "speed" : "1'26.141",
-            "position" : 5
+            "interval": "+0.347",
+            "team": "Rodin Motorsport",
+            "number": "17",
+            "laps": "24",
+            "driver": "P. Clerot",
+            "speed": "1'26.141",
+            "position": 5
           },
           {
-            "interval" : "+0.381",
-            "team" : "Prema Powerteam",
-            "number" : "20",
-            "laps" : "24",
-            "driver" : "L. Sharp",
-            "speed" : "1'26.175",
-            "position" : 6
+            "interval": "+0.381",
+            "team": "Prema Powerteam",
+            "number": "20",
+            "laps": "24",
+            "driver": "L. Sharp",
+            "speed": "1'26.175",
+            "position": 6
           },
           {
-            "interval" : "+0.497",
-            "team" : "Campos Racing",
-            "number" : "3",
-            "laps" : "24",
-            "driver" : "E. Rivera",
-            "speed" : "1'26.291",
-            "position" : 7
+            "interval": "+0.497",
+            "team": "Campos Racing",
+            "number": "3",
+            "laps": "24",
+            "driver": "E. Rivera",
+            "speed": "1'26.291",
+            "position": 7
           },
           {
-            "interval" : "+0.658",
-            "team" : "ART Grand Prix",
-            "number" : "10",
-            "laps" : "24",
-            "driver" : "T. Kato",
-            "speed" : "1'26.452",
-            "position" : 8
+            "interval": "+0.658",
+            "team": "ART Grand Prix",
+            "number": "10",
+            "laps": "24",
+            "driver": "T. Kato",
+            "speed": "1'26.452",
+            "position": 8
           },
           {
-            "interval" : "+0.702",
-            "team" : "Trident",
-            "number" : "4",
-            "laps" : "22",
-            "driver" : "N. Strømsted",
-            "speed" : "1'26.496",
-            "position" : 9
+            "interval": "+0.702",
+            "team": "Trident",
+            "number": "4",
+            "laps": "22",
+            "driver": "N. Strømsted",
+            "speed": "1'26.496",
+            "position": 9
           },
           {
-            "interval" : "+0.754",
-            "team" : "Van Amersfoort Racing",
-            "number" : "15",
-            "laps" : "24",
-            "driver" : "E. Deligny",
-            "speed" : "1'26.548",
-            "position" : 10
+            "interval": "+0.754",
+            "team": "Van Amersfoort Racing",
+            "number": "15",
+            "laps": "24",
+            "driver": "E. Deligny",
+            "speed": "1'26.548",
+            "position": 10
           },
           {
-            "interval" : "+0.755",
-            "team" : "MP Motorsport",
-            "number" : "9",
-            "laps" : "23",
-            "driver" : "A. Giusti",
-            "speed" : "1'26.549",
-            "position" : 11
+            "interval": "+0.755",
+            "team": "MP Motorsport",
+            "number": "9",
+            "laps": "23",
+            "driver": "A. Giusti",
+            "speed": "1'26.549",
+            "position": 11
           },
           {
-            "interval" : "+0.800",
-            "team" : "ART Grand Prix",
-            "number" : "11",
-            "laps" : "24",
-            "driver" : "M. Gładysz",
-            "speed" : "1'26.594",
-            "position" : 12
+            "interval": "+0.800",
+            "team": "ART Grand Prix",
+            "number": "11",
+            "laps": "24",
+            "driver": "M. Gładysz",
+            "speed": "1'26.594",
+            "position": 12
           },
           {
-            "interval" : "+0.819",
-            "team" : "Rodin Motorsport",
-            "number" : "19",
-            "laps" : "24",
-            "driver" : "C. Ho",
-            "speed" : "1'26.613",
-            "position" : 13
+            "interval": "+0.819",
+            "team": "Rodin Motorsport",
+            "number": "19",
+            "laps": "24",
+            "driver": "C. Ho",
+            "speed": "1'26.613",
+            "position": 13
           },
           {
-            "driver" : "B. Benavides",
-            "interval" : "+0.842",
-            "position" : 14,
-            "number" : "26",
-            "speed" : "1'26.636",
-            "laps" : "24",
-            "team" : "AIX Racing"
+            "driver": "B. Benavides",
+            "interval": "+0.842",
+            "position": 14,
+            "number": "26",
+            "speed": "1'26.636",
+            "laps": "24",
+            "team": "AIX Racing"
           },
           {
-            "driver" : "G. Xie",
-            "interval" : "+0.909",
-            "position" : 15,
-            "number" : "31",
-            "speed" : "1'26.703",
-            "laps" : "24",
-            "team" : "DAMS Lucas Oil"
+            "driver": "G. Xie",
+            "interval": "+0.909",
+            "position": 15,
+            "number": "31",
+            "speed": "1'26.703",
+            "laps": "24",
+            "team": "DAMS Lucas Oil"
           },
           {
-            "driver" : "B. Badoer",
-            "interval" : "+0.945",
-            "position" : 16,
-            "number" : "18",
-            "speed" : "1'26.739",
-            "laps" : "25",
-            "team" : "Rodin Motorsport"
+            "driver": "B. Badoer",
+            "interval": "+0.945",
+            "position": 16,
+            "number": "18",
+            "speed": "1'26.739",
+            "laps": "25",
+            "team": "Rodin Motorsport"
           },
           {
-            "driver" : "N. Lacorte",
-            "interval" : "+0.953",
-            "position" : 17,
-            "number" : "29",
-            "speed" : "1'26.747",
-            "laps" : "21",
-            "team" : "DAMS Lucas Oil"
+            "driver": "N. Lacorte",
+            "interval": "+0.953",
+            "position": 17,
+            "number": "29",
+            "speed": "1'26.747",
+            "laps": "21",
+            "team": "DAMS Lucas Oil"
           },
           {
-            "driver" : "M. Colnaghi",
-            "interval" : "+1.105",
-            "position" : 18,
-            "number" : "7",
-            "speed" : "1'26.899",
-            "laps" : "22",
-            "team" : "MP Motorsport"
+            "driver": "M. Colnaghi",
+            "interval": "+1.105",
+            "position": 18,
+            "number": "7",
+            "speed": "1'26.899",
+            "laps": "22",
+            "team": "MP Motorsport"
           },
           {
-            "driver" : "T. Taponen",
-            "interval" : "+1.229",
-            "position" : 19,
-            "number" : "8",
-            "speed" : "1'27.023",
-            "laps" : "23",
-            "team" : "MP Motorsport"
+            "driver": "T. Taponen",
+            "interval": "+1.229",
+            "position": 19,
+            "number": "8",
+            "speed": "1'27.023",
+            "laps": "23",
+            "team": "MP Motorsport"
           },
           {
-            "driver" : "M. Shin",
-            "interval" : "+1.426",
-            "position" : 20,
-            "number" : "23",
-            "speed" : "1'27.220",
-            "laps" : "25",
-            "team" : "HitechGP"
+            "driver": "M. Shin",
+            "interval": "+1.426",
+            "position": 20,
+            "number": "23",
+            "speed": "1'27.220",
+            "laps": "25",
+            "team": "HitechGP"
           },
           {
-            "driver" : "N. Bhirombhakdi",
-            "interval" : "+1.441",
-            "position" : 21,
-            "number" : "30",
-            "speed" : "1'27.235",
-            "laps" : "23",
-            "team" : "DAMS Lucas Oil"
+            "driver": "N. Bhirombhakdi",
+            "interval": "+1.441",
+            "position": 21,
+            "number": "30",
+            "speed": "1'27.235",
+            "laps": "23",
+            "team": "DAMS Lucas Oil"
           },
           {
-            "driver" : "F. McLaughlin",
-            "interval" : "+1.454",
-            "position" : 22,
-            "number" : "24",
-            "speed" : "1'27.248",
-            "laps" : "26",
-            "team" : "HitechGP"
+            "driver": "F. McLaughlin",
+            "interval": "+1.454",
+            "position": 22,
+            "number": "24",
+            "speed": "1'27.248",
+            "laps": "26",
+            "team": "HitechGP"
           },
           {
-            "driver" : "K. Le",
-            "interval" : "+1.580",
-            "position" : 23,
-            "number" : "12",
-            "speed" : "1'27.374",
-            "laps" : "23",
-            "team" : "ART Grand Prix"
+            "driver": "K. Le",
+            "interval": "+1.580",
+            "position": 23,
+            "number": "12",
+            "speed": "1'27.374",
+            "laps": "23",
+            "team": "ART Grand Prix"
           },
           {
-            "driver" : "J. Garfias",
-            "interval" : "+1.609",
-            "position" : 24,
-            "number" : "22",
-            "speed" : "1'27.403",
-            "laps" : "24",
-            "team" : "Prema Powerteam"
+            "driver": "J. Garfias",
+            "interval": "+1.609",
+            "position": 24,
+            "number": "22",
+            "speed": "1'27.403",
+            "laps": "24",
+            "team": "Prema Powerteam"
           },
           {
-            "driver" : "H. Yamakoshi",
-            "interval" : "+1.611",
-            "position" : 25,
-            "number" : "14",
-            "speed" : "1'27.405",
-            "laps" : "23",
-            "team" : "Van Amersfoort Racing"
+            "driver": "H. Yamakoshi",
+            "interval": "+1.611",
+            "position": 25,
+            "number": "14",
+            "speed": "1'27.405",
+            "laps": "23",
+            "team": "Van Amersfoort Racing"
           },
           {
-            "driver" : "Y. David",
-            "interval" : "+1.681",
-            "position" : 26,
-            "number" : "27",
-            "speed" : "1'27.475",
-            "laps" : "23",
-            "team" : "AIX Racing"
+            "driver": "Y. David",
+            "interval": "+1.681",
+            "position": 26,
+            "number": "27",
+            "speed": "1'27.475",
+            "laps": "23",
+            "team": "AIX Racing"
           },
           {
-            "driver" : "J. Nakamura",
-            "interval" : "+1.771",
-            "position" : 27,
-            "number" : "25",
-            "speed" : "1'27.565",
-            "laps" : "26",
-            "team" : "HitechGP"
+            "driver": "J. Nakamura",
+            "interval": "+1.771",
+            "position": 27,
+            "number": "25",
+            "speed": "1'27.565",
+            "laps": "26",
+            "team": "HitechGP"
           },
           {
-            "driver" : "M. De Palo",
-            "interval" : "+2.038",
-            "position" : 28,
-            "number" : "6",
-            "speed" : "1'27.832",
-            "laps" : "22",
-            "team" : "Trident"
+            "driver": "M. De Palo",
+            "interval": "+2.038",
+            "position": 28,
+            "number": "6",
+            "speed": "1'27.832",
+            "laps": "22",
+            "team": "Trident"
           },
           {
-            "driver" : "F. Barrichello",
-            "interval" : "+2.232",
-            "position" : 29,
-            "number" : "28",
-            "speed" : "1'28.026",
-            "laps" : "23",
-            "team" : "AIX Racing"
+            "driver": "F. Barrichello",
+            "interval": "+2.232",
+            "position": 29,
+            "number": "28",
+            "speed": "1'28.026",
+            "laps": "23",
+            "team": "AIX Racing"
           },
           {
-            "driver" : "J. Wharton",
-            "interval" : "+3.351",
-            "position" : 30,
-            "number" : "21",
-            "speed" : "1'29.145",
-            "laps" : "5",
-            "team" : "Prema Powerteam"
+            "driver": "J. Wharton",
+            "interval": "+3.351",
+            "position": 30,
+            "number": "21",
+            "speed": "1'29.145",
+            "laps": "5",
+            "team": "Prema Powerteam"
           }
         ],
-        "id" : "f3-2026-r02-s1"
+        "id": "f3-2026-r02-s1"
       },
       {
-        "durationMinutes" : 15,
-        "kind" : "qualifying",
-        "name" : "Qualifying Group A",
-        "id" : "f3-2026-r02-s2",
-        "timeLocal" : "11:05",
-        "results" : [
+        "durationMinutes": 15,
+        "kind": "qualifying",
+        "name": "Qualifying Group A",
+        "id": "f3-2026-r02-s2",
+        "timeLocal": "11:05",
+        "results": [
           {
-            "laps" : "11",
-            "team" : "Rodin Motorsport",
-            "time" : "1'24.612",
-            "number" : "18",
-            "position" : 1,
-            "driver" : "B. Badoer"
+            "laps": "11",
+            "team": "Rodin Motorsport",
+            "time": "1'24.612",
+            "number": "18",
+            "position": 1,
+            "driver": "B. Badoer"
           },
           {
-            "driver" : "U. Ugochukwu",
-            "interval" : "+0.351",
-            "position" : 2,
-            "number" : "2",
-            "speed" : "1'24.963",
-            "laps" : "11",
-            "team" : "Campos Racing"
+            "driver": "U. Ugochukwu",
+            "interval": "+0.351",
+            "position": 2,
+            "number": "2",
+            "speed": "1'24.963",
+            "laps": "11",
+            "team": "Campos Racing"
           },
           {
-            "driver" : "T. Taponen",
-            "interval" : "+0.630",
-            "position" : 3,
-            "number" : "8",
-            "speed" : "1'25.242",
-            "laps" : "10",
-            "team" : "MP Motorsport"
+            "driver": "T. Taponen",
+            "interval": "+0.630",
+            "position": 3,
+            "number": "8",
+            "speed": "1'25.242",
+            "laps": "10",
+            "team": "MP Motorsport"
           },
           {
-            "driver" : "B. del Pino",
-            "interval" : "+0.696",
-            "position" : 4,
-            "number" : "16",
-            "speed" : "1'25.308",
-            "laps" : "10",
-            "team" : "Van Amersfoort Racing"
+            "driver": "B. del Pino",
+            "interval": "+0.696",
+            "position": 4,
+            "number": "16",
+            "speed": "1'25.308",
+            "laps": "10",
+            "team": "Van Amersfoort Racing"
           },
           {
-            "team" : "Trident",
-            "interval" : "+0.720",
-            "speed" : "1'25.332",
-            "laps" : "10",
-            "number" : "4",
-            "position" : 5,
-            "driver" : "N. Strømsted"
+            "team": "Trident",
+            "interval": "+0.720",
+            "speed": "1'25.332",
+            "laps": "10",
+            "number": "4",
+            "position": 5,
+            "driver": "N. Strømsted"
           },
           {
-            "team" : "Van Amersfoort Racing",
-            "interval" : "+0.740",
-            "speed" : "1'25.352",
-            "laps" : "11",
-            "number" : "14",
-            "position" : 6,
-            "driver" : "H. Yamakoshi"
+            "team": "Van Amersfoort Racing",
+            "interval": "+0.740",
+            "speed": "1'25.352",
+            "laps": "11",
+            "number": "14",
+            "position": 6,
+            "driver": "H. Yamakoshi"
           },
           {
-            "team" : "ART Grand Prix",
-            "interval" : "+0.865",
-            "speed" : "1'25.477",
-            "laps" : "10",
-            "number" : "10",
-            "position" : 7,
-            "driver" : "T. Kato"
+            "team": "ART Grand Prix",
+            "interval": "+0.865",
+            "speed": "1'25.477",
+            "laps": "10",
+            "number": "10",
+            "position": 7,
+            "driver": "T. Kato"
           },
           {
-            "team" : "Prema Powerteam",
-            "interval" : "+1.081",
-            "speed" : "1'25.693",
-            "laps" : "11",
-            "number" : "20",
-            "position" : 8,
-            "driver" : "L. Sharp"
+            "team": "Prema Powerteam",
+            "interval": "+1.081",
+            "speed": "1'25.693",
+            "laps": "11",
+            "number": "20",
+            "position": 8,
+            "driver": "L. Sharp"
           },
           {
-            "team" : "DAMS Lucas Oil",
-            "interval" : "+1.266",
-            "speed" : "1'25.878",
-            "laps" : "11",
-            "number" : "30",
-            "position" : 9,
-            "driver" : "N. Bhirombhakdi"
+            "team": "DAMS Lucas Oil",
+            "interval": "+1.266",
+            "speed": "1'25.878",
+            "laps": "11",
+            "number": "30",
+            "position": 9,
+            "driver": "N. Bhirombhakdi"
           },
           {
-            "team" : "AIX Racing",
-            "interval" : "+1.278",
-            "speed" : "1'25.890",
-            "laps" : "11",
-            "number" : "26",
-            "position" : 10,
-            "driver" : "B. Benavides"
+            "team": "AIX Racing",
+            "interval": "+1.278",
+            "speed": "1'25.890",
+            "laps": "11",
+            "number": "26",
+            "position": 10,
+            "driver": "B. Benavides"
           },
           {
-            "team" : "ART Grand Prix",
-            "interval" : "+1.402",
-            "speed" : "1'26.014",
-            "laps" : "10",
-            "number" : "12",
-            "position" : 11,
-            "driver" : "K. Le"
+            "team": "ART Grand Prix",
+            "interval": "+1.402",
+            "speed": "1'26.014",
+            "laps": "10",
+            "number": "12",
+            "position": 11,
+            "driver": "K. Le"
           },
           {
-            "team" : "Trident",
-            "interval" : "+1.596",
-            "speed" : "1'26.208",
-            "laps" : "10",
-            "number" : "6",
-            "position" : 12,
-            "driver" : "M. De Palo"
+            "team": "Trident",
+            "interval": "+1.596",
+            "speed": "1'26.208",
+            "laps": "10",
+            "number": "6",
+            "position": 12,
+            "driver": "M. De Palo"
           },
           {
-            "team" : "Prema Powerteam",
-            "interval" : "+1.681",
-            "speed" : "1'26.293",
-            "laps" : "11",
-            "number" : "22",
-            "position" : 13,
-            "driver" : "J. Garfias"
+            "team": "Prema Powerteam",
+            "interval": "+1.681",
+            "speed": "1'26.293",
+            "laps": "11",
+            "number": "22",
+            "position": 13,
+            "driver": "J. Garfias"
           },
           {
-            "team" : "HitechGP",
-            "interval" : "+1.775",
-            "speed" : "1'26.387",
-            "laps" : "9",
-            "number" : "24",
-            "position" : 14,
-            "driver" : "F. McLaughlin"
+            "team": "HitechGP",
+            "interval": "+1.775",
+            "speed": "1'26.387",
+            "laps": "9",
+            "number": "24",
+            "position": 14,
+            "driver": "F. McLaughlin"
           },
           {
-            "team" : "AIX Racing",
-            "interval" : "+2.208",
-            "speed" : "1'26.820",
-            "laps" : "10",
-            "number" : "28",
-            "position" : 15,
-            "driver" : "F. Barrichello"
+            "team": "AIX Racing",
+            "interval": "+2.208",
+            "speed": "1'26.820",
+            "laps": "10",
+            "number": "28",
+            "position": 15,
+            "driver": "F. Barrichello"
           }
         ],
-        "date" : "2026-06-05"
+        "date": "2026-06-05"
       },
       {
-        "kind" : "qualifying",
-        "date" : "2026-06-05",
-        "results" : [
+        "kind": "qualifying",
+        "date": "2026-06-05",
+        "results": [
           {
-            "laps" : "11",
-            "team" : "Campos Racing",
-            "time" : "1'24.471",
-            "number" : "1",
-            "position" : 1,
-            "driver" : "T. Naël"
+            "laps": "11",
+            "team": "Campos Racing",
+            "time": "1'24.471",
+            "number": "1",
+            "position": 1,
+            "driver": "T. Naël"
           },
           {
-            "team" : "Trident",
-            "interval" : "+0.406",
-            "speed" : "1'24.877",
-            "laps" : "10",
-            "number" : "5",
-            "position" : 2,
-            "driver" : "F. Slater"
+            "team": "Trident",
+            "interval": "+0.406",
+            "speed": "1'24.877",
+            "laps": "10",
+            "number": "5",
+            "position": 2,
+            "driver": "F. Slater"
           },
           {
-            "team" : "Campos Racing",
-            "interval" : "+0.411",
-            "speed" : "1'24.882",
-            "laps" : "11",
-            "number" : "3",
-            "position" : 3,
-            "driver" : "E. Rivera"
+            "team": "Campos Racing",
+            "interval": "+0.411",
+            "speed": "1'24.882",
+            "laps": "11",
+            "number": "3",
+            "position": 3,
+            "driver": "E. Rivera"
           },
           {
-            "team" : "MP Motorsport",
-            "interval" : "+0.557",
-            "speed" : "1'25.028",
-            "laps" : "10",
-            "number" : "9",
-            "position" : 4,
-            "driver" : "A. Giusti"
+            "team": "MP Motorsport",
+            "interval": "+0.557",
+            "speed": "1'25.028",
+            "laps": "10",
+            "number": "9",
+            "position": 4,
+            "driver": "A. Giusti"
           },
           {
-            "team" : "Rodin Motorsport",
-            "interval" : "+0.658",
-            "speed" : "1'25.129",
-            "laps" : "10",
-            "number" : "17",
-            "position" : 5,
-            "driver" : "P. Clerot"
+            "team": "Rodin Motorsport",
+            "interval": "+0.658",
+            "speed": "1'25.129",
+            "laps": "10",
+            "number": "17",
+            "position": 5,
+            "driver": "P. Clerot"
           },
           {
-            "team" : "DAMS Lucas Oil",
-            "interval" : "+0.741",
-            "speed" : "1'25.212",
-            "laps" : "11",
-            "number" : "31",
-            "position" : 6,
-            "driver" : "G. Xie"
+            "team": "DAMS Lucas Oil",
+            "interval": "+0.741",
+            "speed": "1'25.212",
+            "laps": "11",
+            "number": "31",
+            "position": 6,
+            "driver": "G. Xie"
           },
           {
-            "team" : "ART Grand Prix",
-            "interval" : "+0.743",
-            "speed" : "1'25.214",
-            "laps" : "10",
-            "number" : "11",
-            "position" : 7,
-            "driver" : "M. Gładysz"
+            "team": "ART Grand Prix",
+            "interval": "+0.743",
+            "speed": "1'25.214",
+            "laps": "10",
+            "number": "11",
+            "position": 7,
+            "driver": "M. Gładysz"
           },
           {
-            "team" : "HitechGP",
-            "interval" : "+0.800",
-            "speed" : "1'25.271",
-            "laps" : "11",
-            "number" : "25",
-            "position" : 8,
-            "driver" : "J. Nakamura"
+            "team": "HitechGP",
+            "interval": "+0.800",
+            "speed": "1'25.271",
+            "laps": "11",
+            "number": "25",
+            "position": 8,
+            "driver": "J. Nakamura"
           },
           {
-            "team" : "DAMS Lucas Oil",
-            "interval" : "+0.837",
-            "speed" : "1'25.308",
-            "laps" : "11",
-            "number" : "29",
-            "position" : 9,
-            "driver" : "N. Lacorte"
+            "team": "DAMS Lucas Oil",
+            "interval": "+0.837",
+            "speed": "1'25.308",
+            "laps": "11",
+            "number": "29",
+            "position": 9,
+            "driver": "N. Lacorte"
           },
           {
-            "team" : "Rodin Motorsport",
-            "interval" : "+1.008",
-            "speed" : "1'25.479",
-            "laps" : "10",
-            "number" : "19",
-            "position" : 10,
-            "driver" : "C. Ho"
+            "team": "Rodin Motorsport",
+            "interval": "+1.008",
+            "speed": "1'25.479",
+            "laps": "10",
+            "number": "19",
+            "position": 10,
+            "driver": "C. Ho"
           },
           {
-            "speed" : "1'25.480",
-            "laps" : "11",
-            "interval" : "+1.009",
-            "number" : "15",
-            "team" : "Van Amersfoort Racing",
-            "position" : 11,
-            "driver" : "E. Deligny"
+            "speed": "1'25.480",
+            "laps": "11",
+            "interval": "+1.009",
+            "number": "15",
+            "team": "Van Amersfoort Racing",
+            "position": 11,
+            "driver": "E. Deligny"
           },
           {
-            "speed" : "1'25.520",
-            "laps" : "10",
-            "interval" : "+1.049",
-            "number" : "27",
-            "team" : "AIX Racing",
-            "position" : 12,
-            "driver" : "Y. David"
+            "speed": "1'25.520",
+            "laps": "10",
+            "interval": "+1.049",
+            "number": "27",
+            "team": "AIX Racing",
+            "position": 12,
+            "driver": "Y. David"
           },
           {
-            "speed" : "1'25.649",
-            "laps" : "11",
-            "interval" : "+1.178",
-            "number" : "21",
-            "team" : "Prema Powerteam",
-            "position" : 13,
-            "driver" : "J. Wharton"
+            "speed": "1'25.649",
+            "laps": "11",
+            "interval": "+1.178",
+            "number": "21",
+            "team": "Prema Powerteam",
+            "position": 13,
+            "driver": "J. Wharton"
           },
           {
-            "speed" : "1'25.919",
-            "laps" : "11",
-            "interval" : "+1.448",
-            "number" : "7",
-            "team" : "MP Motorsport",
-            "position" : 14,
-            "driver" : "M. Colnaghi"
+            "speed": "1'25.919",
+            "laps": "11",
+            "interval": "+1.448",
+            "number": "7",
+            "team": "MP Motorsport",
+            "position": 14,
+            "driver": "M. Colnaghi"
           },
           {
-            "speed" : "1'26.223",
-            "laps" : "11",
-            "interval" : "+1.752",
-            "number" : "23",
-            "team" : "HitechGP",
-            "position" : 15,
-            "driver" : "M. Shin"
+            "speed": "1'26.223",
+            "laps": "11",
+            "interval": "+1.752",
+            "number": "23",
+            "team": "HitechGP",
+            "position": 15,
+            "driver": "M. Shin"
           }
         ],
-        "name" : "Qualifying Group B",
-        "durationMinutes" : 15,
-        "id" : "f3-2026-r02-s1780673979218",
-        "timeLocal" : "11:30"
+        "name": "Qualifying Group B",
+        "durationMinutes": 15,
+        "id": "f3-2026-r02-s1780673979218",
+        "timeLocal": "11:30"
       },
       {
-        "durationMinutes" : 40,
-        "id" : "f3-2026-r02-s3",
-        "kind" : "sprintRace",
-        "name" : "Sprint Race",
-        "date" : "2026-06-06",
-        "timeLocal" : "10:45"
+        "durationMinutes": 40,
+        "id": "f3-2026-r02-s3",
+        "kind": "sprintRace",
+        "name": "Sprint Race",
+        "date": "2026-06-06",
+        "timeLocal": "10:45",
+        "results": [
+          {
+            "position": 1,
+            "driver": "H. Yamakoshi",
+            "team": "Van Amersfoort Racing",
+            "number": "14",
+            "laps": "18",
+            "time": "1:01'52.069"
+          },
+          {
+            "position": 2,
+            "driver": "G. Xie",
+            "team": "DAMS Lucas Oil",
+            "number": "31",
+            "laps": "18",
+            "interval": "+3.312",
+            "speed": "1:01'55.381"
+          },
+          {
+            "position": 3,
+            "driver": "B. del Pino",
+            "team": "Van Amersfoort Racing",
+            "number": "16",
+            "laps": "18",
+            "interval": "+3.564",
+            "speed": "1:01'55.633"
+          },
+          {
+            "position": 4,
+            "driver": "P. Clerot",
+            "team": "Rodin Motorsport",
+            "number": "17",
+            "laps": "18",
+            "interval": "+4.328",
+            "speed": "1:01'56.397"
+          },
+          {
+            "position": 5,
+            "driver": "A. Giusti",
+            "team": "MP Motorsport",
+            "number": "9",
+            "laps": "18",
+            "interval": "+5.408",
+            "speed": "1:01'57.477"
+          },
+          {
+            "position": 6,
+            "driver": "N. Strømsted",
+            "team": "Trident",
+            "number": "4",
+            "laps": "18",
+            "interval": "+11.092",
+            "speed": "1:02'03.161"
+          },
+          {
+            "position": 7,
+            "driver": "U. Ugochukwu",
+            "team": "Campos Racing",
+            "number": "2",
+            "laps": "18",
+            "interval": "+11.396",
+            "speed": "1:02'03.465"
+          },
+          {
+            "position": 8,
+            "driver": "J. Nakamura",
+            "team": "HitechGP",
+            "number": "25",
+            "laps": "18",
+            "interval": "+13.493",
+            "speed": "1:02'05.562"
+          },
+          {
+            "position": 9,
+            "driver": "M. Gładysz",
+            "team": "ART Grand Prix",
+            "number": "11",
+            "laps": "18",
+            "interval": "+14.244",
+            "speed": "1:02'06.313"
+          },
+          {
+            "position": 10,
+            "driver": "K. Le",
+            "team": "ART Grand Prix",
+            "number": "12",
+            "laps": "18",
+            "interval": "+15.810",
+            "speed": "1:02'07.879"
+          },
+          {
+            "position": 11,
+            "driver": "N. Lacorte",
+            "team": "DAMS Lucas Oil",
+            "number": "29",
+            "laps": "18",
+            "interval": "+18.774",
+            "speed": "1:02'10.843"
+          },
+          {
+            "position": 12,
+            "driver": "M. De Palo",
+            "team": "Trident",
+            "number": "6",
+            "laps": "18",
+            "interval": "+19.960",
+            "speed": "1:02'12.029"
+          },
+          {
+            "position": 13,
+            "driver": "L. Sharp",
+            "team": "Prema Powerteam",
+            "number": "20",
+            "laps": "18",
+            "interval": "+20.298",
+            "speed": "1:02'12.367"
+          },
+          {
+            "position": 14,
+            "driver": "M. Shin",
+            "team": "HitechGP",
+            "number": "23",
+            "laps": "18",
+            "interval": "+20.986",
+            "speed": "1:02'13.055"
+          },
+          {
+            "position": 15,
+            "driver": "E. Deligny",
+            "team": "Van Amersfoort Racing",
+            "number": "15",
+            "laps": "18",
+            "interval": "+21.362",
+            "speed": "1:02'13.431"
+          },
+          {
+            "position": 16,
+            "driver": "J. Garfias",
+            "team": "Prema Powerteam",
+            "number": "22",
+            "laps": "18",
+            "interval": "+22.947",
+            "speed": "1:02'15.016"
+          },
+          {
+            "position": 17,
+            "driver": "M. Colnaghi",
+            "team": "MP Motorsport",
+            "number": "7",
+            "laps": "18",
+            "interval": "+23.756",
+            "speed": "1:02'15.825"
+          },
+          {
+            "position": 18,
+            "driver": "N. Bhirombhakdi",
+            "team": "DAMS Lucas Oil",
+            "number": "30",
+            "laps": "18",
+            "interval": "+25.544",
+            "speed": "1:02'17.613"
+          },
+          {
+            "position": 19,
+            "driver": "F. Barrichello",
+            "team": "AIX Racing",
+            "number": "28",
+            "laps": "18",
+            "interval": "+28.358",
+            "speed": "1:02'20.427"
+          },
+          {
+            "position": 20,
+            "driver": "Y. David",
+            "team": "AIX Racing",
+            "number": "27",
+            "laps": "18",
+            "interval": "+28.715",
+            "speed": "1:02'20.784"
+          },
+          {
+            "position": 21,
+            "driver": "F. McLaughlin",
+            "team": "HitechGP",
+            "number": "24",
+            "laps": "18",
+            "interval": "+29.880",
+            "speed": "1:02'21.949"
+          },
+          {
+            "position": 22,
+            "driver": "J. Wharton",
+            "team": "Prema Powerteam",
+            "number": "21",
+            "laps": "18",
+            "interval": "+31.591",
+            "speed": "1:02'23.660"
+          },
+          {
+            "position": 23,
+            "driver": "T. Kato",
+            "team": "ART Grand Prix",
+            "number": "10",
+            "laps": "18",
+            "interval": "+34.065",
+            "speed": "1:02'26.134"
+          },
+          {
+            "position": 24,
+            "driver": "F. Slater",
+            "team": "Trident",
+            "number": "5",
+            "laps": "18",
+            "interval": "+53.867",
+            "speed": "1:02'45.936"
+          },
+          {
+            "position": 25,
+            "driver": "T. Naël",
+            "team": "Campos Racing",
+            "number": "1",
+            "laps": "18",
+            "interval": "+1'05.342",
+            "speed": "1:02'57.411"
+          },
+          {
+            "position": "DNF",
+            "driver": "E. Rivera",
+            "team": "Campos Racing",
+            "number": "3",
+            "laps": "11"
+          },
+          {
+            "position": "DNS",
+            "driver": "T. Taponen",
+            "team": "MP Motorsport",
+            "number": "8",
+            "laps": "0"
+          },
+          {
+            "position": "DNS",
+            "driver": "B. Badoer",
+            "team": "Rodin Motorsport",
+            "number": "18",
+            "laps": "0"
+          },
+          {
+            "position": "DNS",
+            "driver": "B. Benavides",
+            "team": "AIX Racing",
+            "number": "26",
+            "laps": "0"
+          },
+          {
+            "position": "DNS",
+            "driver": "C. Ho",
+            "team": "Rodin Motorsport",
+            "number": "19",
+            "laps": "0"
+          }
+        ]
       },
       {
-        "durationMinutes" : 50,
-        "id" : "f3-2026-r02-s4",
-        "kind" : "race",
-        "name" : "Feature Race",
-        "date" : "2026-06-07",
-        "timeLocal" : "07:55"
+        "durationMinutes": 50,
+        "id": "f3-2026-r02-s4",
+        "kind": "race",
+        "name": "Feature Race",
+        "date": "2026-06-07",
+        "timeLocal": "07:55"
       }
     ]
   },
   {
-    "sessions" : [
+    "sessions": [
       {
-        "durationMinutes" : 45,
-        "id" : "f3-2026-r03-s1",
-        "kind" : "practice",
-        "name" : "Practice",
-        "date" : "2026-06-12",
-        "timeLocal" : "09:30"
+        "durationMinutes": 45,
+        "id": "f3-2026-r03-s1",
+        "kind": "practice",
+        "name": "Practice",
+        "date": "2026-06-12",
+        "timeLocal": "09:30"
       },
       {
-        "durationMinutes" : 30,
-        "id" : "f3-2026-r03-s2",
-        "kind" : "qualifying",
-        "name" : "Qualifying",
-        "date" : "2026-06-12",
-        "timeLocal" : "14:25"
+        "durationMinutes": 30,
+        "id": "f3-2026-r03-s2",
+        "kind": "qualifying",
+        "name": "Qualifying",
+        "date": "2026-06-12",
+        "timeLocal": "14:25"
       },
       {
-        "durationMinutes" : 40,
-        "id" : "f3-2026-r03-s3",
-        "kind" : "sprintRace",
-        "name" : "Sprint Race",
-        "date" : "2026-06-13",
-        "timeLocal" : "12:35"
+        "durationMinutes": 40,
+        "id": "f3-2026-r03-s3",
+        "kind": "sprintRace",
+        "name": "Sprint Race",
+        "date": "2026-06-13",
+        "timeLocal": "12:35"
       },
       {
-        "durationMinutes" : 50,
-        "id" : "f3-2026-r03-s4",
-        "kind" : "race",
-        "name" : "Feature Race",
-        "date" : "2026-06-14",
-        "timeLocal" : "10:00"
+        "durationMinutes": 50,
+        "id": "f3-2026-r03-s4",
+        "kind": "race",
+        "name": "Feature Race",
+        "date": "2026-06-14",
+        "timeLocal": "10:00"
       }
     ],
-    "raceName" : "Spanish Grand Prix",
-    "countryCode" : "ES",
-    "circuitName" : "Circuit de Barcelona-Catalunya",
-    "city" : "Barcelona",
-    "roundNumber" : 3,
-    "country" : "Spain",
-    "seriesId" : "f3",
-    "id" : "f3-2026-r03"
+    "raceName": "Spanish Grand Prix",
+    "countryCode": "ES",
+    "circuitName": "Circuit de Barcelona-Catalunya",
+    "city": "Barcelona",
+    "roundNumber": 3,
+    "country": "Spain",
+    "seriesId": "f3",
+    "id": "f3-2026-r03"
   },
   {
-    "sessions" : [
+    "sessions": [
       {
-        "durationMinutes" : 45,
-        "id" : "f3-2026-r04-s1",
-        "kind" : "practice",
-        "name" : "Practice",
-        "date" : "2026-06-26",
-        "timeLocal" : "09:30"
+        "durationMinutes": 45,
+        "id": "f3-2026-r04-s1",
+        "kind": "practice",
+        "name": "Practice",
+        "date": "2026-06-26",
+        "timeLocal": "09:30"
       },
       {
-        "durationMinutes" : 30,
-        "id" : "f3-2026-r04-s2",
-        "kind" : "qualifying",
-        "name" : "Qualifying",
-        "date" : "2026-06-26",
-        "timeLocal" : "14:25"
+        "durationMinutes": 30,
+        "id": "f3-2026-r04-s2",
+        "kind": "qualifying",
+        "name": "Qualifying",
+        "date": "2026-06-26",
+        "timeLocal": "14:25"
       },
       {
-        "durationMinutes" : 40,
-        "id" : "f3-2026-r04-s3",
-        "kind" : "sprintRace",
-        "name" : "Sprint Race",
-        "date" : "2026-06-27",
-        "timeLocal" : "12:30"
+        "durationMinutes": 40,
+        "id": "f3-2026-r04-s3",
+        "kind": "sprintRace",
+        "name": "Sprint Race",
+        "date": "2026-06-27",
+        "timeLocal": "12:30"
       },
       {
-        "durationMinutes" : 50,
-        "id" : "f3-2026-r04-s4",
-        "kind" : "race",
-        "name" : "Feature Race",
-        "date" : "2026-06-28",
-        "timeLocal" : "08:30"
+        "durationMinutes": 50,
+        "id": "f3-2026-r04-s4",
+        "kind": "race",
+        "name": "Feature Race",
+        "date": "2026-06-28",
+        "timeLocal": "08:30"
       }
     ],
-    "raceName" : "Austrian Grand Prix",
-    "countryCode" : "AT",
-    "circuitName" : "Red Bull Ring",
-    "city" : "Spielberg",
-    "roundNumber" : 4,
-    "country" : "Austria",
-    "seriesId" : "f3",
-    "id" : "f3-2026-r04"
+    "raceName": "Austrian Grand Prix",
+    "countryCode": "AT",
+    "circuitName": "Red Bull Ring",
+    "city": "Spielberg",
+    "roundNumber": 4,
+    "country": "Austria",
+    "seriesId": "f3",
+    "id": "f3-2026-r04"
   },
   {
-    "sessions" : [
+    "sessions": [
       {
-        "durationMinutes" : 45,
-        "id" : "f3-2026-r05-s1",
-        "kind" : "practice",
-        "name" : "Practice",
-        "date" : "2026-07-03",
-        "timeLocal" : "09:25"
+        "durationMinutes": 45,
+        "id": "f3-2026-r05-s1",
+        "kind": "practice",
+        "name": "Practice",
+        "date": "2026-07-03",
+        "timeLocal": "09:25"
       },
       {
-        "durationMinutes" : 30,
-        "id" : "f3-2026-r05-s2",
-        "kind" : "qualifying",
-        "name" : "Qualifying",
-        "date" : "2026-07-03",
-        "timeLocal" : "14:20"
+        "durationMinutes": 30,
+        "id": "f3-2026-r05-s2",
+        "kind": "qualifying",
+        "name": "Qualifying",
+        "date": "2026-07-03",
+        "timeLocal": "14:20"
       },
       {
-        "durationMinutes" : 40,
-        "id" : "f3-2026-r05-s3",
-        "kind" : "sprintRace",
-        "name" : "Sprint Race",
-        "date" : "2026-07-04",
-        "timeLocal" : "12:30"
+        "durationMinutes": 40,
+        "id": "f3-2026-r05-s3",
+        "kind": "sprintRace",
+        "name": "Sprint Race",
+        "date": "2026-07-04",
+        "timeLocal": "12:30"
       },
       {
-        "durationMinutes" : 50,
-        "id" : "f3-2026-r05-s4",
-        "kind" : "race",
-        "name" : "Feature Race",
-        "date" : "2026-07-05",
-        "timeLocal" : "10:30"
+        "durationMinutes": 50,
+        "id": "f3-2026-r05-s4",
+        "kind": "race",
+        "name": "Feature Race",
+        "date": "2026-07-05",
+        "timeLocal": "10:30"
       }
     ],
-    "raceName" : "British Grand Prix",
-    "countryCode" : "GB",
-    "circuitName" : "Silverstone Circuit",
-    "city" : "Silverstone",
-    "roundNumber" : 5,
-    "country" : "United Kingdom",
-    "seriesId" : "f3",
-    "id" : "f3-2026-r05"
+    "raceName": "British Grand Prix",
+    "countryCode": "GB",
+    "circuitName": "Silverstone Circuit",
+    "city": "Silverstone",
+    "roundNumber": 5,
+    "country": "United Kingdom",
+    "seriesId": "f3",
+    "id": "f3-2026-r05"
   },
   {
-    "sessions" : [
+    "sessions": [
       {
-        "durationMinutes" : 45,
-        "id" : "f3-2026-r06-s1",
-        "kind" : "practice",
-        "name" : "Practice",
-        "date" : "2026-07-17",
-        "timeLocal" : "08:35"
+        "durationMinutes": 45,
+        "id": "f3-2026-r06-s1",
+        "kind": "practice",
+        "name": "Practice",
+        "date": "2026-07-17",
+        "timeLocal": "08:35"
       },
       {
-        "durationMinutes" : 30,
-        "id" : "f3-2026-r06-s2",
-        "kind" : "qualifying",
-        "name" : "Qualifying",
-        "date" : "2026-07-17",
-        "timeLocal" : "13:25"
+        "durationMinutes": 30,
+        "id": "f3-2026-r06-s2",
+        "kind": "qualifying",
+        "name": "Qualifying",
+        "date": "2026-07-17",
+        "timeLocal": "13:25"
       },
       {
-        "durationMinutes" : 40,
-        "id" : "f3-2026-r06-s3",
-        "kind" : "sprintRace",
-        "name" : "Sprint Race",
-        "date" : "2026-07-18",
-        "timeLocal" : "11:45"
+        "durationMinutes": 40,
+        "id": "f3-2026-r06-s3",
+        "kind": "sprintRace",
+        "name": "Sprint Race",
+        "date": "2026-07-18",
+        "timeLocal": "11:45"
       },
       {
-        "durationMinutes" : 50,
-        "id" : "f3-2026-r06-s4",
-        "kind" : "race",
-        "name" : "Feature Race",
-        "date" : "2026-07-19",
-        "timeLocal" : "08:30"
+        "durationMinutes": 50,
+        "id": "f3-2026-r06-s4",
+        "kind": "race",
+        "name": "Feature Race",
+        "date": "2026-07-19",
+        "timeLocal": "08:30"
       }
     ],
-    "raceName" : "Belgian Grand Prix",
-    "countryCode" : "BE",
-    "circuitName" : "Circuit de Spa-Francorchamps",
-    "city" : "Spa",
-    "roundNumber" : 6,
-    "country" : "Belgium",
-    "seriesId" : "f3",
-    "id" : "f3-2026-r06"
+    "raceName": "Belgian Grand Prix",
+    "countryCode": "BE",
+    "circuitName": "Circuit de Spa-Francorchamps",
+    "city": "Spa",
+    "roundNumber": 6,
+    "country": "Belgium",
+    "seriesId": "f3",
+    "id": "f3-2026-r06"
   },
   {
-    "sessions" : [
+    "sessions": [
       {
-        "durationMinutes" : 45,
-        "id" : "f3-2026-r07-s1",
-        "kind" : "practice",
-        "name" : "Practice",
-        "date" : "2026-07-24",
-        "timeLocal" : "09:30"
+        "durationMinutes": 45,
+        "id": "f3-2026-r07-s1",
+        "kind": "practice",
+        "name": "Practice",
+        "date": "2026-07-24",
+        "timeLocal": "09:30"
       },
       {
-        "durationMinutes" : 30,
-        "id" : "f3-2026-r07-s2",
-        "kind" : "qualifying",
-        "name" : "Qualifying",
-        "date" : "2026-07-24",
-        "timeLocal" : "14:25"
+        "durationMinutes": 30,
+        "id": "f3-2026-r07-s2",
+        "kind": "qualifying",
+        "name": "Qualifying",
+        "date": "2026-07-24",
+        "timeLocal": "14:25"
       },
       {
-        "durationMinutes" : 40,
-        "id" : "f3-2026-r07-s3",
-        "kind" : "sprintRace",
-        "name" : "Sprint Race",
-        "date" : "2026-07-25",
-        "timeLocal" : "12:30"
+        "durationMinutes": 40,
+        "id": "f3-2026-r07-s3",
+        "kind": "sprintRace",
+        "name": "Sprint Race",
+        "date": "2026-07-25",
+        "timeLocal": "12:30"
       },
       {
-        "durationMinutes" : 50,
-        "id" : "f3-2026-r07-s4",
-        "kind" : "race",
-        "name" : "Feature Race",
-        "date" : "2026-07-26",
-        "timeLocal" : "08:30"
+        "durationMinutes": 50,
+        "id": "f3-2026-r07-s4",
+        "kind": "race",
+        "name": "Feature Race",
+        "date": "2026-07-26",
+        "timeLocal": "08:30"
       }
     ],
-    "raceName" : "Hungarian Grand Prix",
-    "countryCode" : "HU",
-    "circuitName" : "Hungaroring",
-    "city" : "Budapest",
-    "roundNumber" : 7,
-    "country" : "Hungary",
-    "seriesId" : "f3",
-    "id" : "f3-2026-r07"
+    "raceName": "Hungarian Grand Prix",
+    "countryCode": "HU",
+    "circuitName": "Hungaroring",
+    "city": "Budapest",
+    "roundNumber": 7,
+    "country": "Hungary",
+    "seriesId": "f3",
+    "id": "f3-2026-r07"
   },
   {
-    "sessions" : [
+    "sessions": [
       {
-        "durationMinutes" : 45,
-        "id" : "f3-2026-r08-s1",
-        "kind" : "practice",
-        "name" : "Practice",
-        "date" : "2026-09-04",
-        "timeLocal" : "09:25"
+        "durationMinutes": 45,
+        "id": "f3-2026-r08-s1",
+        "kind": "practice",
+        "name": "Practice",
+        "date": "2026-09-04",
+        "timeLocal": "09:25"
       },
       {
-        "durationMinutes" : 30,
-        "id" : "f3-2026-r08-s2",
-        "kind" : "qualifying",
-        "name" : "Qualifying",
-        "date" : "2026-09-04",
-        "timeLocal" : "14:20"
+        "durationMinutes": 30,
+        "id": "f3-2026-r08-s2",
+        "kind": "qualifying",
+        "name": "Qualifying",
+        "date": "2026-09-04",
+        "timeLocal": "14:20"
       },
       {
-        "durationMinutes" : 40,
-        "id" : "f3-2026-r08-s3",
-        "kind" : "sprintRace",
-        "name" : "Sprint Race",
-        "date" : "2026-09-05",
-        "timeLocal" : "12:30"
+        "durationMinutes": 40,
+        "id": "f3-2026-r08-s3",
+        "kind": "sprintRace",
+        "name": "Sprint Race",
+        "date": "2026-09-05",
+        "timeLocal": "12:30"
       },
       {
-        "durationMinutes" : 50,
-        "id" : "f3-2026-r08-s4",
-        "kind" : "race",
-        "name" : "Feature Race",
-        "date" : "2026-09-06",
-        "timeLocal" : "08:15"
+        "durationMinutes": 50,
+        "id": "f3-2026-r08-s4",
+        "kind": "race",
+        "name": "Feature Race",
+        "date": "2026-09-06",
+        "timeLocal": "08:15"
       }
     ],
-    "raceName" : "Italian Grand Prix",
-    "countryCode" : "IT",
-    "circuitName" : "Autodromo Nazionale Monza",
-    "city" : "Monza",
-    "roundNumber" : 8,
-    "country" : "Italy",
-    "seriesId" : "f3",
-    "id" : "f3-2026-r08"
+    "raceName": "Italian Grand Prix",
+    "countryCode": "IT",
+    "circuitName": "Autodromo Nazionale Monza",
+    "city": "Monza",
+    "roundNumber": 8,
+    "country": "Italy",
+    "seriesId": "f3",
+    "id": "f3-2026-r08"
   },
   {
-    "sessions" : [
+    "sessions": [
       {
-        "durationMinutes" : 45,
-        "id" : "f3-2026-r09-s1",
-        "kind" : "practice",
-        "name" : "Practice",
-        "date" : "2026-09-11",
-        "timeLocal" : "09:25"
+        "durationMinutes": 45,
+        "id": "f3-2026-r09-s1",
+        "kind": "practice",
+        "name": "Practice",
+        "date": "2026-09-11",
+        "timeLocal": "09:25"
       },
       {
-        "durationMinutes" : 30,
-        "id" : "f3-2026-r09-s2",
-        "kind" : "qualifying",
-        "name" : "Qualifying",
-        "date" : "2026-09-11",
-        "timeLocal" : "14:20"
+        "durationMinutes": 30,
+        "id": "f3-2026-r09-s2",
+        "kind": "qualifying",
+        "name": "Qualifying",
+        "date": "2026-09-11",
+        "timeLocal": "14:20"
       },
       {
-        "durationMinutes" : 40,
-        "id" : "f3-2026-r09-s3",
-        "kind" : "sprintRace",
-        "name" : "Sprint Race",
-        "date" : "2026-09-12",
-        "timeLocal" : "12:30"
+        "durationMinutes": 40,
+        "id": "f3-2026-r09-s3",
+        "kind": "sprintRace",
+        "name": "Sprint Race",
+        "date": "2026-09-12",
+        "timeLocal": "12:30"
       },
       {
-        "durationMinutes" : 50,
-        "id" : "f3-2026-r09-s4",
-        "kind" : "race",
-        "name" : "Feature Race",
-        "date" : "2026-09-13",
-        "timeLocal" : "08:15"
+        "durationMinutes": 50,
+        "id": "f3-2026-r09-s4",
+        "kind": "race",
+        "name": "Feature Race",
+        "date": "2026-09-13",
+        "timeLocal": "08:15"
       }
     ],
-    "raceName" : "Spanish Grand Prix",
-    "countryCode" : "ES",
-    "circuitName" : "Circuito de Madring",
-    "city" : "Madrid",
-    "roundNumber" : 9,
-    "country" : "Spain",
-    "seriesId" : "f3",
-    "id" : "f3-2026-r09"
+    "raceName": "Spanish Grand Prix",
+    "countryCode": "ES",
+    "circuitName": "Circuito de Madring",
+    "city": "Madrid",
+    "roundNumber": 9,
+    "country": "Spain",
+    "seriesId": "f3",
+    "id": "f3-2026-r09"
   }
 ]
