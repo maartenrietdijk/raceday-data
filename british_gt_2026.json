@@ -1,91 +1,97 @@
 [
   {
+    "id": "british_gt-2026-r01",
     "seriesId": "british_gt",
-    "country": "Great Britain",
-    "city": "Silverstone",
+    "roundNumber": 1,
+    "raceName": "Silverstone 500",
     "circuitName": "Silverstone Circuit",
+    "city": "Silverstone",
+    "country": "Great Britain",
     "countryCode": "GB",
     "sessions": [
       {
-        "kind": "practice",
-        "durationMinutes": 60,
         "id": "british_gt-2026-r01-s1",
         "name": "Free Practice 1",
+        "kind": "practice",
         "date": "2026-04-25",
-        "timeLocal": "08:30"
+        "timeLocal": "08:30",
+        "durationMinutes": 60
       },
       {
-        "kind": "qualifying",
-        "durationMinutes": 60,
         "id": "british_gt-2026-r01-s1776787957171",
         "name": "Pre-Qualifying",
+        "kind": "qualifying",
         "date": "2026-04-25",
-        "timeLocal": "11:15"
+        "timeLocal": "11:15",
+        "durationMinutes": 60
       },
       {
-        "kind": "qualifying",
-        "durationMinutes": 14,
         "id": "british_gt-2026-r01-s1776787958747",
         "name": "GT3 Qualifying 1",
+        "kind": "qualifying",
         "date": "2026-04-25",
-        "timeLocal": "14:45"
+        "timeLocal": "14:45",
+        "durationMinutes": 14
       },
       {
-        "kind": "qualifying",
-        "durationMinutes": 14,
         "id": "british_gt-2026-r01-s1776788007041",
         "name": "GT3 Qualifying 2",
+        "kind": "qualifying",
         "date": "2026-04-25",
-        "timeLocal": "14:59"
+        "timeLocal": "14:59",
+        "durationMinutes": 14
       },
       {
-        "kind": "qualifying",
-        "durationMinutes": 14,
         "id": "british_gt-2026-r01-s1776788040381",
         "name": "GT4 Qualifying 1",
+        "kind": "qualifying",
         "date": "2026-04-25",
-        "timeLocal": "15:13"
+        "timeLocal": "15:13",
+        "durationMinutes": 14
       },
       {
-        "kind": "qualifying",
-        "durationMinutes": 14,
         "id": "british_gt-2026-r01-s1776788041984",
         "name": "GT4 Qualifying 2",
+        "kind": "qualifying",
         "date": "2026-04-25",
-        "timeLocal": "15:28"
+        "timeLocal": "15:28",
+        "durationMinutes": 14
       },
       {
-        "kind": "practice",
-        "durationMinutes": 15,
         "id": "british_gt-2026-r01-s1776788094764",
         "name": "Warmup",
+        "kind": "practice",
         "date": "2026-04-26",
-        "timeLocal": "08:40"
+        "timeLocal": "08:40",
+        "durationMinutes": 15
       },
       {
-        "kind": "race",
-        "durationMinutes": 180,
         "id": "british_gt-2026-r01-s1776788145563",
         "name": "Race",
+        "kind": "race",
         "date": "2026-04-26",
-        "timeLocal": "12:00"
+        "timeLocal": "12:00",
+        "durationMinutes": 180
       }
-    ],
-    "raceName": "Silverstone 500",
-    "id": "british_gt-2026-r01",
-    "roundNumber": 1
+    ]
   },
   {
+    "id": "british_gt-2026-r02",
     "seriesId": "british_gt",
-    "country": "Great Britain",
-    "city": "Little Budworth",
+    "roundNumber": 2,
+    "raceName": "Oulton Park",
     "circuitName": "Oulton Park",
+    "city": "Little Budworth",
+    "country": "Great Britain",
     "countryCode": "GB",
     "sessions": [
       {
-        "timeLocal": "10:30",
+        "id": "british_gt-2026-r02-s1",
         "name": "Free Practive 1",
+        "kind": "practice",
         "date": "2026-05-23",
+        "timeLocal": "10:30",
+        "durationMinutes": 60,
         "results": [
           {
             "laps": "25",
@@ -254,12 +260,15 @@
             "laps": "0",
             "position": "DNS"
           }
-        ],
-        "durationMinutes": 60,
-        "id": "british_gt-2026-r02-s1",
-        "kind": "practice"
+        ]
       },
       {
+        "id": "british_gt-2026-r02-s1777107948996",
+        "name": "Pre-Qualifying",
+        "kind": "qualifying",
+        "date": "2026-05-23",
+        "timeLocal": "13:00",
+        "durationMinutes": 60,
         "results": [
           {
             "drivers": [
@@ -546,21 +555,15 @@
             "number": "42",
             "team": "Toro Verde GT"
           }
-        ],
-        "id": "british_gt-2026-r02-s1777107948996",
-        "durationMinutes": 60,
-        "date": "2026-05-23",
-        "kind": "qualifying",
-        "timeLocal": "13:00",
-        "name": "Pre-Qualifying"
+        ]
       },
       {
-        "timeLocal": "16:35",
-        "kind": "qualifying",
-        "name": "GT3 Qualifying 1",
-        "durationMinutes": 14,
         "id": "british_gt-2026-r02-s1777107950987",
+        "name": "GT3 Qualifying 1",
+        "kind": "qualifying",
         "date": "2026-05-23",
+        "timeLocal": "16:35",
+        "durationMinutes": 14,
         "results": [
           {
             "position": 1,
@@ -746,140 +749,189 @@
         ]
       },
       {
-        "timeLocal": "16:49",
-        "kind": "qualifying",
-        "name": "GT3 Qualifying 2",
-        "durationMinutes": 14,
         "id": "british_gt-2026-r02-s1777107991783",
-        "date": "2026-05-23"
+        "name": "GT3 Qualifying 2",
+        "kind": "qualifying",
+        "date": "2026-05-23",
+        "timeLocal": "16:49",
+        "durationMinutes": 14
       },
       {
-        "timeLocal": "17:03",
-        "kind": "qualifying",
-        "name": "GT4 Qualifying 1",
-        "durationMinutes": 14,
         "id": "british_gt-2026-r02-s1777107993899",
-        "date": "2026-05-23"
-      },
-      {
-        "timeLocal": "17:18",
+        "name": "GT4 Qualifying 1",
         "kind": "qualifying",
-        "name": "GT4 Qualifying 2",
-        "durationMinutes": 14,
+        "date": "2026-05-23",
+        "timeLocal": "17:03",
+        "durationMinutes": 14
+      },
+      {
         "id": "british_gt-2026-r02-s1777107996178",
-        "date": "2026-05-23"
+        "name": "GT4 Qualifying 2",
+        "kind": "qualifying",
+        "date": "2026-05-23",
+        "timeLocal": "17:18",
+        "durationMinutes": 14
       },
       {
-        "timeLocal": "10:15",
-        "kind": "practice",
-        "name": "Warmup",
-        "durationMinutes": 20,
         "id": "british_gt-2026-r02-s1777108094649",
-        "date": "2026-05-25"
+        "name": "Warmup",
+        "kind": "practice",
+        "date": "2026-05-25",
+        "timeLocal": "10:15",
+        "durationMinutes": 20
       },
       {
-        "timeLocal": "12:05",
-        "kind": "race",
-        "name": "Race 1",
-        "durationMinutes": 60,
         "id": "british_gt-2026-r02-s1777108112488",
-        "date": "2026-05-25"
+        "name": "Race 1",
+        "kind": "race",
+        "date": "2026-05-25",
+        "timeLocal": "12:05",
+        "durationMinutes": 60
       },
       {
-        "timeLocal": "16:45",
-        "kind": "race",
-        "name": "Race 2",
-        "durationMinutes": 60,
         "id": "british_gt-2026-r02-s1777108178808",
-        "date": "2026-05-25"
+        "name": "Race 2",
+        "kind": "race",
+        "date": "2026-05-25",
+        "timeLocal": "16:45",
+        "durationMinutes": 60
       }
-    ],
-    "raceName": "Oulton Park",
-    "id": "british_gt-2026-r02",
-    "roundNumber": 2
+    ]
   },
   {
+    "id": "british_gt-2026-r03",
     "seriesId": "british_gt",
-    "country": "Belgium",
-    "city": "Spa",
+    "roundNumber": 3,
+    "raceName": "Spa-Francorchamps",
     "circuitName": "Circuit de Spa-Francorchamps",
+    "city": "Spa",
+    "country": "Belgium",
     "countryCode": "BE",
     "sessions": [
       {
-        "timeLocal": "14:20",
-        "kind": "race",
-        "name": "Race",
-        "durationMinutes": 60,
         "id": "british_gt-2026-r03-s1",
-        "date": "2026-06-21"
-      }
-    ],
-    "raceName": "Spa-Francorchamps",
-    "id": "british_gt-2026-r03",
-    "roundNumber": 3
-  },
-  {
-    "seriesId": "british_gt",
-    "country": "Great Britain",
-    "city": "Snetterton",
-    "circuitName": "Snetterton Circuit",
-    "countryCode": "GB",
-    "sessions": [
-      {
-        "kind": "race",
-        "name": "Race 1",
-        "durationMinutes": 60,
-        "id": "british_gt-2026-r04-s1",
-        "date": "2026-08-15"
+        "name": "Practice 1",
+        "kind": "practice",
+        "date": "2026-06-20",
+        "timeLocal": "10:00",
+        "durationMinutes": 60
       },
       {
+        "id": "british_gt-2026-r03-s1780904221085",
+        "name": "Practice 2",
+        "kind": "practice",
+        "date": "2026-06-20",
+        "timeLocal": "14:10",
+        "durationMinutes": 60
+      },
+      {
+        "id": "british_gt-2026-r03-s1780904219244",
+        "name": "GT3 Qualifying 1",
+        "kind": "qualifying",
+        "date": "2026-06-20",
+        "timeLocal": "19:35",
+        "durationMinutes": 25
+      },
+      {
+        "id": "british_gt-2026-r03-s1780904297319",
+        "name": "GT3 Qualifying 2",
+        "kind": "qualifying",
+        "date": "2026-06-20",
+        "timeLocal": "20:00",
+        "durationMinutes": 25
+      },
+      {
+        "id": "british_gt-2026-r03-s1780904323256",
+        "name": "GT4 Qualifying 1",
+        "kind": "qualifying",
+        "date": "2026-06-20",
+        "timeLocal": "20:25",
+        "durationMinutes": 25
+      },
+      {
+        "id": "british_gt-2026-r03-s1780904344914",
+        "name": "GT4 Qualifying 2",
+        "kind": "qualifying",
+        "date": "2026-06-20",
+        "timeLocal": "20:40",
+        "durationMinutes": 25
+      },
+      {
+        "id": "british_gt-2026-r03-s1780904217535",
+        "name": "Race",
+        "kind": "race",
+        "date": "2026-06-21",
+        "timeLocal": "14:20",
+        "durationMinutes": 120
+      }
+    ]
+  },
+  {
+    "id": "british_gt-2026-r04",
+    "seriesId": "british_gt",
+    "roundNumber": 4,
+    "raceName": "Snetterton",
+    "circuitName": "Snetterton Circuit",
+    "city": "Snetterton",
+    "country": "Great Britain",
+    "countryCode": "GB",
+    "sessions": [
+      {
+        "id": "british_gt-2026-r04-s1",
+        "name": "Race 1",
+        "kind": "race",
+        "date": "2026-08-15",
+        "timeLocal": null,
+        "durationMinutes": 60
+      },
+      {
+        "id": "british_gt-2026-r04-s1777108385217",
+        "name": "Race 2",
         "kind": "race",
         "date": "2026-08-16",
-        "name": "Race 2",
-        "durationMinutes": 60,
-        "id": "british_gt-2026-r04-s1777108385217"
+        "timeLocal": null,
+        "durationMinutes": 60
       }
-    ],
-    "raceName": "Snetterton",
-    "id": "british_gt-2026-r04",
-    "roundNumber": 4
+    ]
   },
   {
-    "country": "Great Britain",
-    "roundNumber": 5,
-    "countryCode": "GB",
-    "raceName": "Donnington Park",
-    "circuitName": "Donington Park",
     "id": "british_gt-2026-r05",
     "seriesId": "british_gt",
+    "roundNumber": 5,
+    "raceName": "Donnington Park",
+    "circuitName": "Donington Park",
+    "city": "Donnington",
+    "country": "Great Britain",
+    "countryCode": "GB",
     "sessions": [
       {
+        "id": "british_gt-2026-r05-s1",
+        "name": "Race",
         "kind": "race",
         "date": "2026-09-06",
-        "name": "Race",
-        "durationMinutes": 60,
-        "id": "british_gt-2026-r05-s1"
+        "timeLocal": null,
+        "durationMinutes": 60
       }
-    ],
-    "city": "Donnington"
+    ]
   },
   {
-    "country": "Great Britain",
-    "roundNumber": 6,
-    "countryCode": "GB",
-    "raceName": "Brands Hatch",
-    "circuitName": "Brands Hatch Circuit",
     "id": "british_gt-2026-r06",
     "seriesId": "british_gt",
+    "roundNumber": 6,
+    "raceName": "Brands Hatch",
+    "circuitName": "Brands Hatch Circuit",
+    "city": "Kent",
+    "country": "Great Britain",
+    "countryCode": "GB",
     "sessions": [
       {
+        "id": "british_gt-2026-r06-s1",
+        "name": "Race",
         "kind": "race",
         "date": "2026-09-27",
-        "name": "Race",
-        "durationMinutes": 60,
-        "id": "british_gt-2026-r06-s1"
+        "timeLocal": null,
+        "durationMinutes": 60
       }
-    ],
-    "city": "Kent"
+    ]
   }
 ]
