@@ -935,7 +935,9 @@ function duplicateSession(ri, si) {
   copy.name = orig.name ? orig.name + ' (copy)' : '';
   rounds[ri].sessions.splice(newSi, 0, copy);
   save();
+  const openCards = [...document.querySelectorAll('.round-card.open')].map(el => el.id);
   renderMain();
+  openCards.forEach(id => document.getElementById(id)?.classList.add('open'));
 }
 
 function moveSession(ri, from, to) {
