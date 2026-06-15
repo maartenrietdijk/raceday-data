@@ -123,24 +123,53 @@ def parse_standings(html: str) -> list[dict]:
             except ValueError:
                 continue  # skip header/separator rows
 
-            # Driver name — prefer link text, then cell text
+            # Driver name — only the driver link text, NOT the team sub-text
             driver_cell = cols[driver_col]
-            links = driver_cell.find_all("a")
-            if links:
-                name = links[0].get_text(strip=True)
+
+            # Motorsport.com often nests team name inside the driver cell as a
+            # second link or span. Extract only the first <a> that points to a
+            # driver/rider/pilot profile URL, otherwise fall back to first link.
+            driver_links = driver_cell.find_all("a")
+            driver_link = next(
+                (l for l in driver_links if any(kw in (l.get("href") or "") for kw in ["/driver", "/rider", "/pilot"])),
+                driver_links[0] if driver_links else None
+            )
+            if driver_link:
+                name = driver_link.get_text(strip=True)
             else:
-                name = driver_cell.get_text(strip=True)
+                # No links — grab only the direct text nodes (not nested tag text)
+                name = "".join(t for t in driver_cell.strings
+                               if t.strip() and not any(
+                                   t.strip() == a.get_text(strip=True)
+                                   for a in driver_cell.find_all("a")[1:]
+                               )).strip()
             name = clean_name(name)
             if not name:
                 continue
 
-            # Team
+            # Team — prefer explicit team column; otherwise look for a second
+            # link or a sub-span inside the driver cell (motorsport.com style).
             team = ""
             if team_col is not None:
                 team_cell = cols[team_col]
                 team_links = team_cell.find_all("a")
                 team = (team_links[0].get_text(strip=True) if team_links
                         else team_cell.get_text(strip=True)).strip()
+            else:
+                # Team embedded in driver cell as second link or a span with 'team' in class
+                team_link = next(
+                    (l for l in driver_links if l is not driver_link),
+                    None
+                )
+                if team_link:
+                    team = team_link.get_text(strip=True)
+                else:
+                    team_span = driver_cell.find(
+                        lambda tag: tag.name in ("span", "div", "p", "small")
+                        and any("team" in (c or "").lower() for c in tag.get("class", []))
+                    )
+                    if team_span:
+                        team = team_span.get_text(strip=True)
 
             # Points
             pts_text = cols[pts_col].get_text(strip=True)
@@ -149,16 +178,6 @@ def parse_standings(html: str) -> list[dict]:
                 pts = int(float(pts_text)) if pts_text else 0
             except ValueError:
                 pts = 0
-
-            # If team info is embedded under driver name (motorsport.com style)
-            if not team:
-                # Look for a span/div with class containing 'team' below the driver name
-                team_span = driver_cell.find(
-                    lambda tag: tag.name in ("span", "div", "p")
-                    and any("team" in (c or "") for c in tag.get("class", []))
-                )
-                if team_span:
-                    team = team_span.get_text(strip=True)
 
             entries.append({"position": pos, "name": name, "team": team, "points": pts})
 
