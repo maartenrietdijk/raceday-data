@@ -135,14 +135,18 @@ def parse_standings(html: str) -> list[dict]:
                 driver_links[0] if driver_links else None
             )
             if driver_link:
-                name = driver_link.get_text(strip=True)
+                # Take only the first direct text node inside the link —
+                # motorsport.com nests the team name as a child span inside
+                # the same <a>, so get_text() would return "AntonelliMercedes".
+                first_text = next(
+                    (s.strip() for s in driver_link.strings if s.strip()), ""
+                )
+                name = first_text if first_text else driver_link.get_text(strip=True)
             else:
-                # No links — grab only the direct text nodes (not nested tag text)
-                name = "".join(t for t in driver_cell.strings
-                               if t.strip() and not any(
-                                   t.strip() == a.get_text(strip=True)
-                                   for a in driver_cell.find_all("a")[1:]
-                               )).strip()
+                # No links — grab only the first direct text node of the cell
+                name = next(
+                    (s.strip() for s in driver_cell.strings if s.strip()), ""
+                )
             name = clean_name(name)
             if not name:
                 continue
