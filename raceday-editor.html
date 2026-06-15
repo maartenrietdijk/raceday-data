@@ -287,6 +287,70 @@
     border: 1px solid rgba(0,201,110,.3); white-space: nowrap;
   }
 
+  /* ── Tab switcher ── */
+  .tab-switcher {
+    display: flex; gap: 0; border: 1px solid var(--border);
+    border-radius: var(--radius-sm); overflow: hidden;
+  }
+  .tab-btn {
+    padding: 6px 14px; font-size: 12px; font-weight: 500;
+    background: transparent; color: var(--muted);
+    border: none; cursor: pointer; transition: all .14s;
+    font-family: var(--sans);
+  }
+  .tab-btn:hover { color: var(--text); background: var(--border); }
+  .tab-btn.active { background: var(--red); color: #fff; }
+
+  /* ── Standings ── */
+  .standings-fetch-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 16px 20px;
+    margin-bottom: 20px;
+  }
+  .standings-table-wrap {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius); overflow: hidden;
+  }
+  .standings-table-header {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 14px; border-bottom: 1px solid var(--border2);
+    font-size: 10px; font-weight: 700; letter-spacing: .06em;
+    text-transform: uppercase; color: var(--muted);
+    font-family: var(--mono);
+  }
+  .standings-table-header span { flex-shrink: 0; }
+  .standing-row {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 14px; border-bottom: 1px solid var(--border2);
+    transition: background .1s;
+  }
+  .standing-row:last-child { border-bottom: none; }
+  .standing-row:hover { background: rgba(255,255,255,.02); }
+  .standing-pos {
+    width: 44px; text-align: center;
+    background: var(--surface); border: 1px solid var(--border);
+    color: var(--text); padding: 5px 6px; border-radius: var(--radius-sm);
+    font-family: var(--mono); font-size: 12px; outline: none;
+  }
+  .standing-name {
+    flex: 1.4; background: var(--surface); border: 1px solid var(--border);
+    color: var(--text); padding: 5px 8px; border-radius: var(--radius-sm);
+    font-size: 13px; outline: none;
+  }
+  .standing-team {
+    flex: 1; background: var(--surface); border: 1px solid var(--border);
+    color: var(--text); padding: 5px 8px; border-radius: var(--radius-sm);
+    font-size: 13px; outline: none;
+  }
+  .standing-pts {
+    width: 64px; text-align: right;
+    background: var(--surface); border: 1px solid var(--border);
+    color: var(--text); padding: 5px 8px; border-radius: var(--radius-sm);
+    font-family: var(--mono); font-size: 13px; outline: none;
+  }
+  .standing-pos:focus, .standing-name:focus,
+  .standing-team:focus, .standing-pts:focus { border-color: var(--red); }
+
   /* TBC checkbox pill */
   .tbc-wrap {
     display: flex; align-items: center; gap: 5px;
@@ -500,6 +564,9 @@ const DEFAULT_SERIES = [
 let state = {
   series: [],           // [{id, name, color}]
   data: {},             // {seriesId: [RaceRound]}
+  standings: {},        // {seriesId: [{position, name, team, points}]}
+  standingsUrls: {},    // {seriesId: url}
+  activeTab: 'calendar', // 'calendar' | 'standings'
   activeSeries: null,
   github: { token: '', repo: '', branch: 'main', path: '' }
 };
@@ -511,9 +578,11 @@ function load() {
     const saved = localStorage.getItem('raceday_editor');
     if (saved) {
       const parsed = JSON.parse(saved);
-      state.series  = parsed.series  || DEFAULT_SERIES;
-      state.data    = parsed.data    || {};
-      state.github  = parsed.github  || state.github;
+      state.series       = parsed.series       || DEFAULT_SERIES;
+      state.data         = parsed.data         || {};
+      state.standings    = parsed.standings    || {};
+      state.standingsUrls = parsed.standingsUrls || {};
+      state.github       = parsed.github       || state.github;
     } else {
       state.series = DEFAULT_SERIES;
     }
@@ -569,6 +638,25 @@ async function loadFromGitHub() {
       }
     }
 
+    // Load standings files (*_standings_2026.json)
+    const basePath2 = state.github.path ? `${state.github.path}/` : '';
+    try {
+      const sContentsResp = await fetch(`https://api.github.com/repos/${owner}/${repoName}/contents/${basePath2}`, {
+        headers: { 'Authorization': `Bearer ${token}`, 'Accept': 'application/vnd.github+json' }
+      });
+      if (sContentsResp.ok) {
+        const sFiles = await sContentsResp.json();
+        const standingsFiles = sFiles.filter(f => f.name.match(/^(.+)_standings_2026\.json$/));
+        for (const file of standingsFiles) {
+          const id = file.name.replace('_standings_2026.json', '');
+          try {
+            const resp = await fetch(file.download_url);
+            if (resp.ok) state.standings[id] = await resp.json();
+          } catch (e) { console.warn(`Could not load ${file.name}:`, e); }
+        }
+      }
+    } catch (e) { console.warn('Could not load standings files:', e); }
+
     save();
     renderSidebar();
     renderMain();
@@ -580,8 +668,10 @@ async function loadFromGitHub() {
 
 function save() {
   localStorage.setItem('raceday_editor', JSON.stringify({
-    series: state.series,
-    data:   state.data,
+    series:        state.series,
+    data:          state.data,
+    standings:     state.standings,
+    standingsUrls: state.standingsUrls,
   }));
   localStorage.setItem('raceday_gh', JSON.stringify(state.github));
 }
@@ -621,10 +711,16 @@ function selectSeries(id) {
 
 // ── Render Main ────────────────────────────────────────────────────────────────
 
+function switchTab(tab) {
+  state.activeTab = tab;
+  renderMain();
+}
+
 function renderMain() {
   const series = state.series.find(s => s.id === state.activeSeries);
   if (!series) return;
   const rounds = state.data[series.id] || [];
+  const tab = state.activeTab || 'calendar';
 
   const content = document.getElementById('mainContent');
   content.innerHTML = `
@@ -655,29 +751,225 @@ function renderMain() {
       </div>
     </div>
 
-    <!-- Section heading -->
+    <!-- Section heading + tab switcher -->
     <div class="section-heading">
       <div>
         <div class="section-title">${series.name}</div>
         <div class="section-meta">${rounds.length} rounds · ${series.id}_2026.json</div>
       </div>
-      <div style="display:flex;gap:8px">
-        <button class="btn btn-ghost btn-sm" onclick="importJSON()">⬆ Import JSON</button>
-        <button class="btn btn-surface btn-sm" onclick="addRound()">+ Add Round</button>
+      <div style="display:flex;gap:8px;align-items:center">
+        <div class="tab-switcher">
+          <button class="tab-btn ${tab==='calendar'?'active':''}" onclick="switchTab('calendar')">📅 Calendar</button>
+          <button class="tab-btn ${tab==='standings'?'active':''}" onclick="switchTab('standings')">🏆 Standings</button>
+        </div>
+        ${tab === 'calendar' ? `
+          <button class="btn btn-ghost btn-sm" onclick="importJSON()">⬆ Import JSON</button>
+          <button class="btn btn-surface btn-sm" onclick="addRound()">+ Add Round</button>
+        ` : `
+          <button class="btn btn-ghost btn-sm" onclick="publishStandingsToGitHub()">↑ Push to GitHub</button>
+          <button class="btn btn-surface btn-sm" onclick="addStandingRow()">+ Add Driver</button>
+        `}
       </div>
     </div>
 
-    <!-- Rounds -->
-    <div id="roundsList">
-      ${rounds.length === 0
-        ? `<div class="empty" style="padding:40px 0">
-            <h3>No rounds yet</h3>
-            <p>Click "Add Round" to start building the calendar.</p>
-           </div>`
-        : rounds.map((r, i) => renderRound(r, i, series)).join('')}
+    <!-- Tab content -->
+    <div id="tabContent">
+      ${tab === 'calendar' ? `
+        <div id="roundsList">
+          ${rounds.length === 0
+            ? `<div class="empty" style="padding:40px 0">
+                <h3>No rounds yet</h3>
+                <p>Click "Add Round" to start building the calendar.</p>
+               </div>`
+            : rounds.map((r, i) => renderRound(r, i, series)).join('')}
+        </div>
+      ` : renderStandingsTab(series)}
     </div>
   `;
 }
+
+// ── Standings Tab ──────────────────────────────────────────────────────────────
+
+function renderStandingsTab(series) {
+  const id = series.id;
+  const drivers = state.standings[id] || [];
+  const url = state.standingsUrls[id] || '';
+
+  return `
+    <div class="standings-fetch-card">
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+        <div class="field" style="flex:1;min-width:260px">
+          <label>Motorsport.com standings URL</label>
+          <input type="url" id="standings_url_${id}"
+            placeholder="https://www.motorsport.com/f1/standings/2026/"
+            value="${esc(url)}"
+            oninput="state.standingsUrls['${id}']=this.value;save()"/>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="fetchStandingsViaAction('${id}')" style="white-space:nowrap;margin-top:18px">
+          ⬇ Fetch from Motorsport.com
+        </button>
+      </div>
+      <p style="margin-top:8px;font-size:11px;color:var(--muted)">
+        Triggers a GitHub Action that scrapes the standings page and commits <code>${id}_standings_2026.json</code>.
+        After ~30s click "↓ Sync from GitHub" to load the result, or edit drivers manually below.
+      </p>
+    </div>
+
+    <div class="standings-table-wrap">
+      <div class="standings-table-header">
+        <span style="width:44px;text-align:center">#</span>
+        <span style="flex:1.4">Driver</span>
+        <span style="flex:1">Team</span>
+        <span style="width:64px;text-align:right">Pts</span>
+        <span style="width:28px"></span>
+      </div>
+      <div id="standings_rows_${id}">
+        ${drivers.length === 0
+          ? `<div class="empty" style="padding:30px 0;text-align:center">
+               <p>No standings yet — fetch from Motorsport.com or add drivers manually.</p>
+             </div>`
+          : drivers.map((d, i) => renderStandingRow(d, i, id)).join('')}
+      </div>
+    </div>
+  `;
+}
+
+function renderStandingRow(d, i, seriesId) {
+  return `
+    <div class="standing-row" id="standing_row_${i}">
+      <input type="number" class="standing-pos" value="${d.position}" min="1"
+        oninput="updateStandingField('${seriesId}',${i},'position',+this.value)"/>
+      <input type="text" class="standing-name" value="${esc(d.name)}" placeholder="L. Norris"
+        oninput="updateStandingField('${seriesId}',${i},'name',this.value)"/>
+      <input type="text" class="standing-team" value="${esc(d.team||'')}" placeholder="McLaren"
+        oninput="updateStandingField('${seriesId}',${i},'team',this.value)"/>
+      <input type="number" class="standing-pts" value="${d.points}" min="0"
+        oninput="updateStandingField('${seriesId}',${i},'points',+this.value)"/>
+      <button class="btn-icon danger" onclick="deleteStandingRow('${seriesId}',${i})" title="Delete">🗑</button>
+    </div>`;
+}
+
+function updateStandingField(seriesId, i, key, val) {
+  if (!state.standings[seriesId]) state.standings[seriesId] = [];
+  state.standings[seriesId][i][key] = val;
+  save();
+}
+
+function addStandingRow() {
+  const id = state.activeSeries;
+  if (!state.standings[id]) state.standings[id] = [];
+  const pos = state.standings[id].length + 1;
+  state.standings[id].push({ position: pos, name: '', team: '', points: 0 });
+  save();
+  renderMain();
+  // scroll to new row
+  setTimeout(() => {
+    const el = document.getElementById(`standing_row_${pos - 1}`);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }, 60);
+}
+
+function deleteStandingRow(seriesId, i) {
+  state.standings[seriesId].splice(i, 1);
+  // Renumber positions
+  state.standings[seriesId].forEach((d, idx) => d.position = idx + 1);
+  save();
+  renderMain();
+}
+
+function buildStandingsJSON(seriesId) {
+  const drivers = state.standings[seriesId] || [];
+  return JSON.stringify(
+    drivers.map(d => ({ position: d.position, name: d.name, team: d.team || '', points: d.points })),
+    null, 2
+  );
+}
+
+async function fetchStandingsViaAction(seriesId) {
+  const url = (document.getElementById(`standings_url_${seriesId}`)?.value ||
+               state.standingsUrls[seriesId] || '').trim();
+  if (!url) return showStatus('Vul eerst een motorsport.com standings URL in', 'error');
+
+  state.standingsUrls[seriesId] = url;
+  save();
+
+  const { token, repo } = state.github;
+  if (!token || !repo) return showStatus('Stel eerst GitHub token en repo in', 'error');
+
+  showStatus('GitHub Action starten…', 'loading');
+  try {
+    const [owner, repoName] = repo.split('/');
+    const resp = await fetch(
+      `https://api.github.com/repos/${owner}/${repoName}/actions/workflows/fetch_standings.yml/dispatches`,
+      {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Accept': 'application/vnd.github+json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ref: state.github.branch || 'main',
+          inputs: { url, series: seriesId }
+        })
+      }
+    );
+    if (resp.status === 204) {
+      showStatus(`✓ Fetch gestart voor ${seriesId} — wacht ~30s en klik dan "↓ Sync from GitHub"`, 'success');
+    } else {
+      const err = await resp.json().catch(() => ({}));
+      throw new Error(err.message || `GitHub error ${resp.status}`);
+    }
+  } catch (e) {
+    showStatus(`Error: ${e.message}`, 'error');
+  }
+}
+
+async function publishStandingsToGitHub() {
+  const { token, repo, branch, path } = state.github;
+  if (!token) return showStatus('Geen GitHub token ingesteld', 'error');
+  if (!repo)  return showStatus('Geen GitHub repo ingesteld', 'error');
+  const id = state.activeSeries;
+  if (!id) return showStatus('Selecteer eerst een serie', 'error');
+
+  const filename = `${id}_standings_2026.json`;
+  const filePath = path ? `${path.replace(/\/$/,'')}/${filename}` : filename;
+  const content  = buildStandingsJSON(id);
+  const encoded  = btoa(unescape(encodeURIComponent(content)));
+
+  showStatus('Pushing standings naar GitHub…', 'loading');
+  const apiBase = `https://api.github.com/repos/${repo}/contents/${filePath}`;
+  const headers = {
+    'Authorization': `token ${token}`,
+    'Accept': 'application/vnd.github+json',
+    'Content-Type': 'application/json',
+  };
+  try {
+    let sha = null;
+    const getRes = await fetch(`${apiBase}?ref=${branch||'main'}`, { headers });
+    if (getRes.ok) sha = (await getRes.json()).sha;
+
+    const putRes = await fetch(apiBase, {
+      method: 'PUT', headers,
+      body: JSON.stringify({
+        message: `Update ${filename} via RaceDay Editor`,
+        content: encoded,
+        branch: branch || 'main',
+        ...(sha ? { sha } : {})
+      })
+    });
+    if (putRes.status === 200 || putRes.status === 201) {
+      showStatus(`✓ ${filename} gepushed naar ${repo}`, 'success');
+    } else {
+      const err = await putRes.json().catch(() => ({}));
+      showStatus(`GitHub error ${putRes.status}: ${err.message || 'unknown'}`, 'error');
+    }
+  } catch (e) {
+    showStatus(`Mislukt: ${e.message}`, 'error');
+  }
+}
+
+// ── Round rendering ────────────────────────────────────────────────────────────
 
 function renderRound(r, i, series) {
   const sessionRows = (r.sessions || []).map((s, si) => renderSession(s, i, si)).join('');
