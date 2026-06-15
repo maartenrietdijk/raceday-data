@@ -2145,7 +2145,7 @@
     "id": "nascar_trucks-2026-13",
     "seriesId": "nascar_trucks",
     "roundNumber": 13,
-    "raceName": "Truck Series Race at San Diego",
+    "raceName": "Navy 250",
     "circuitName": "Naval Base Coronado",
     "city": "San Diego",
     "country": "United States",
@@ -2153,11 +2153,27 @@
     "sessions": [
       {
         "id": "nascar_trucks-2026-13-race",
+        "name": "Practice",
+        "kind": "practice",
+        "date": "2026-06-19",
+        "timeLocal": "12:00",
+        "durationMinutes": 60
+      },
+      {
+        "id": "nascar_trucks-2026-13-s1781506897374",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-06-19",
+        "timeLocal": "14:00",
+        "durationMinutes": 60
+      },
+      {
+        "id": "nascar_trucks-2026-13-s1781506896789",
         "name": "Race",
         "kind": "race",
         "date": "2026-06-19",
         "timeLocal": "19:00",
-        "durationMinutes": 60
+        "durationMinutes": 150
       }
     ]
   },
