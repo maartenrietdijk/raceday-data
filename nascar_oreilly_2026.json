@@ -2096,7 +2096,7 @@
     "id": "nascar_oreilly-2026-18",
     "seriesId": "nascar_oreilly",
     "roundNumber": 18,
-    "raceName": "O'Reilly Auto Parts Series Race at San Diego",
+    "raceName": "United Rentals Driven to Serve 250",
     "circuitName": "Naval Base Coronado",
     "city": "San Diego",
     "country": "United States",
@@ -2104,11 +2104,27 @@
     "sessions": [
       {
         "id": "nascar_oreilly-2026-18-race",
+        "name": "Practice",
+        "kind": "practice",
+        "date": "2026-06-19",
+        "timeLocal": "15:30",
+        "durationMinutes": 60
+      },
+      {
+        "id": "nascar_oreilly-2026-18-s1781506985137",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-06-20",
+        "timeLocal": "13:00",
+        "durationMinutes": 60
+      },
+      {
+        "id": "nascar_oreilly-2026-18-s1781506984668",
         "name": "Race",
         "kind": "race",
         "date": "2026-06-20",
         "timeLocal": "17:00",
-        "durationMinutes": 60
+        "durationMinutes": 180
       }
     ]
   },
