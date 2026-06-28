@@ -11676,10 +11676,42 @@
     "sessions": [
       {
         "id": "indycar-2026-r11-s1",
+        "name": "Practice 1",
+        "kind": "practice",
+        "date": "2026-07-03",
+        "timeLocal": "15:00",
+        "durationMinutes": 90
+      },
+      {
+        "id": "indycar-2026-r11-s1782672376805",
+        "name": "Practice 2",
+        "kind": "practice",
+        "date": "2026-07-04",
+        "timeLocal": "10:00",
+        "durationMinutes": 80
+      },
+      {
+        "id": "indycar-2026-r11-s1782672353674",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-07-04",
+        "timeLocal": "14:30",
+        "durationMinutes": 120
+      },
+      {
+        "id": "indycar-2026-r11-s1782672441208",
+        "name": "Warmup",
+        "kind": "practice",
+        "date": "2026-07-05",
+        "timeLocal": "09:00",
+        "durationMinutes": 30
+      },
+      {
+        "id": "indycar-2026-r11-s1782672353314",
         "name": "Race",
         "kind": "race",
         "date": "2026-07-05",
-        "timeLocal": "12:30",
+        "timeLocal": "12:45",
         "durationMinutes": 120
       }
     ]
