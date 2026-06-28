@@ -1,12 +1,20 @@
 [
   {
+    "id": "elms-2026-r01",
+    "seriesId": "elms",
+    "roundNumber": 1,
+    "raceName": "4 Hours of Barcelona",
+    "circuitName": "Circuit de Barcelona-Catalunya",
+    "city": "Barcelona",
+    "country": "Spain",
+    "countryCode": "ES",
     "sessions": [
       {
         "id": "elms-2026-r01-s1",
+        "name": "Free Practice 1",
         "kind": "practice",
         "date": "2026-04-10",
         "timeLocal": "10:00",
-        "name": "Free Practice 1",
         "durationMinutes": 60,
         "results": [
           {
@@ -526,10 +534,10 @@
       },
       {
         "id": "elms-2026-r01-s2",
+        "name": "Free Practice 2",
         "kind": "practice",
         "date": "2026-04-11",
         "timeLocal": "09:30",
-        "name": "Free Practice 2",
         "durationMinutes": 60,
         "results": [
           {
@@ -1050,10 +1058,10 @@
       },
       {
         "id": "elms-2026-r01-s3",
+        "name": "Qualifying",
         "kind": "qualifying",
         "date": "2026-04-11",
         "timeLocal": "15:00",
-        "name": "Qualifying",
         "durationMinutes": 30,
         "results": [
           {
@@ -1479,10 +1487,10 @@
       },
       {
         "id": "elms-2026-r01-s4",
+        "name": "4 Hour Race",
         "kind": "race",
         "date": "2026-04-12",
         "timeLocal": "12:00",
-        "name": "4 Hour Race",
         "durationMinutes": 240,
         "results": [
           {
@@ -1997,23 +2005,24 @@
           }
         ]
       }
-    ],
-    "city": "Barcelona",
-    "roundNumber": 1,
-    "country": "Spain",
-    "id": "elms-2026-r01",
-    "countryCode": "ES",
-    "circuitName": "Circuit de Barcelona-Catalunya",
-    "raceName": "4 Hours of Barcelona",
-    "seriesId": "elms"
+    ]
   },
   {
+    "id": "elms-2026-r02",
+    "seriesId": "elms",
+    "roundNumber": 2,
+    "raceName": "4 Hours of Le Castellet",
+    "circuitName": "Circuit Paul Ricard",
+    "city": "Le Castellet",
+    "country": "France",
+    "countryCode": "FR",
     "sessions": [
       {
         "id": "elms-2026-r02-s1",
+        "name": "Free Practice 1",
+        "kind": "race",
         "date": "2026-05-01",
         "timeLocal": "11:50",
-        "name": "Free Practice 1",
         "durationMinutes": 60,
         "results": [
           {
@@ -2530,9 +2539,10 @@
       },
       {
         "id": "elms-2026-r02-s2",
+        "name": "Free Practice 2",
+        "kind": "race",
         "date": "2026-05-02",
         "timeLocal": "10:10",
-        "name": "Free Practice 2",
         "durationMinutes": 60,
         "results": [
           {
@@ -3049,9 +3059,10 @@
       },
       {
         "id": "elms-2026-r02-s3",
+        "name": "Qualifying",
+        "kind": "race",
         "date": "2026-05-02",
         "timeLocal": "15:10",
-        "name": "Qualifying",
         "durationMinutes": 30,
         "results": [
           {
@@ -3472,9 +3483,10 @@
       },
       {
         "id": "elms-2026-r02-s4",
+        "name": "4 Hour Race",
+        "kind": "race",
         "date": "2026-05-03",
         "timeLocal": "12:00",
-        "name": "4 Hour Race",
         "durationMinutes": 240,
         "results": [
           {
@@ -3989,190 +4001,182 @@
           }
         ]
       }
-    ],
-    "city": "Le Castellet",
-    "roundNumber": 2,
-    "country": "France",
-    "id": "elms-2026-r02",
-    "countryCode": "FR",
-    "circuitName": "Circuit Paul Ricard",
-    "raceName": "4 Hours of Le Castellet",
-    "seriesId": "elms"
+    ]
   },
   {
+    "id": "elms-2026-r03",
+    "seriesId": "elms",
+    "roundNumber": 3,
+    "raceName": "4 Hours of Imola",
+    "circuitName": "Autodromo Enzo e Dino Ferrari",
+    "city": "Imola",
+    "country": "Italy",
+    "countryCode": "IT",
     "sessions": [
       {
         "id": "elms-2026-r03-s1",
+        "name": "Free Practice 1",
         "kind": "practice",
         "date": "2026-07-03",
-        "timeLocal": "10:00",
-        "name": "Free Practice 1",
+        "timeLocal": "10:50",
         "durationMinutes": 60
       },
       {
         "id": "elms-2026-r03-s2",
+        "name": "Free Practice 2",
         "kind": "practice",
         "date": "2026-07-04",
-        "timeLocal": "09:30",
-        "name": "Free Practice 2",
+        "timeLocal": "10:50",
         "durationMinutes": 60
       },
       {
         "id": "elms-2026-r03-s3",
+        "name": "Qualifying",
         "kind": "qualifying",
         "date": "2026-07-04",
-        "timeLocal": "15:00",
-        "name": "Qualifying",
+        "timeLocal": "14:55",
         "durationMinutes": 30
       },
       {
         "id": "elms-2026-r03-s4",
+        "name": "4 Hour Race",
         "kind": "race",
         "date": "2026-07-05",
-        "timeLocal": "12:00",
-        "name": "4 Hour Race",
+        "timeLocal": "13:00",
         "durationMinutes": 240
       }
-    ],
-    "city": "Imola",
-    "roundNumber": 3,
-    "country": "Italy",
-    "id": "elms-2026-r03",
-    "countryCode": "IT",
-    "circuitName": "Autodromo Enzo e Dino Ferrari",
-    "raceName": "4 Hours of Imola",
-    "seriesId": "elms"
+    ]
   },
   {
+    "id": "elms-2026-r04",
+    "seriesId": "elms",
+    "roundNumber": 4,
+    "raceName": "4 Hours of Spa-Francorchamps",
+    "circuitName": "Circuit de Spa-Francorchamps",
+    "city": "Spa-Francorchamps",
+    "country": "Belgium",
+    "countryCode": "BE",
     "sessions": [
       {
         "id": "elms-2026-r04-s1",
+        "name": "Free Practice 1",
         "kind": "practice",
         "date": "2026-08-21",
         "timeLocal": "10:00",
-        "name": "Free Practice 1",
         "durationMinutes": 60
       },
       {
         "id": "elms-2026-r04-s2",
+        "name": "Free Practice 2",
         "kind": "practice",
         "date": "2026-08-22",
         "timeLocal": "09:30",
-        "name": "Free Practice 2",
         "durationMinutes": 60
       },
       {
         "id": "elms-2026-r04-s3",
+        "name": "Qualifying",
         "kind": "qualifying",
         "date": "2026-08-22",
         "timeLocal": "15:00",
-        "name": "Qualifying",
         "durationMinutes": 30
       },
       {
         "id": "elms-2026-r04-s4",
+        "name": "4 Hour Race",
         "kind": "race",
         "date": "2026-08-23",
         "timeLocal": "12:00",
-        "name": "4 Hour Race",
         "durationMinutes": 240
       }
-    ],
-    "city": "Spa-Francorchamps",
-    "roundNumber": 4,
-    "country": "Belgium",
-    "id": "elms-2026-r04",
-    "countryCode": "BE",
-    "circuitName": "Circuit de Spa-Francorchamps",
-    "raceName": "4 Hours of Spa-Francorchamps",
-    "seriesId": "elms"
+    ]
   },
   {
+    "id": "elms-2026-r05",
+    "seriesId": "elms",
+    "roundNumber": 5,
+    "raceName": "Goodyear 4 Hours of Silverstone",
+    "circuitName": "Silverstone Circuit",
+    "city": "Silverstone",
+    "country": "United Kingdom",
+    "countryCode": "GB",
     "sessions": [
       {
         "id": "elms-2026-r05-s1",
+        "name": "Free Practice 1",
         "kind": "practice",
         "date": "2026-09-11",
         "timeLocal": "10:00",
-        "name": "Free Practice 1",
         "durationMinutes": 60
       },
       {
         "id": "elms-2026-r05-s2",
+        "name": "Free Practice 2",
         "kind": "practice",
         "date": "2026-09-12",
         "timeLocal": "09:30",
-        "name": "Free Practice 2",
         "durationMinutes": 60
       },
       {
         "id": "elms-2026-r05-s3",
+        "name": "Qualifying",
         "kind": "qualifying",
         "date": "2026-09-12",
         "timeLocal": "15:00",
-        "name": "Qualifying",
         "durationMinutes": 30
       },
       {
         "id": "elms-2026-r05-s4",
+        "name": "4 Hour Race",
         "kind": "race",
         "date": "2026-09-13",
         "timeLocal": "12:00",
-        "name": "4 Hour Race",
         "durationMinutes": 240
       }
-    ],
-    "city": "Silverstone",
-    "roundNumber": 5,
-    "country": "United Kingdom",
-    "id": "elms-2026-r05",
-    "countryCode": "GB",
-    "circuitName": "Silverstone Circuit",
-    "raceName": "Goodyear 4 Hours of Silverstone",
-    "seriesId": "elms"
+    ]
   },
   {
+    "id": "elms-2026-r06",
+    "seriesId": "elms",
+    "roundNumber": 6,
+    "raceName": "4 Hours of Portimão",
+    "circuitName": "Autodromo do Algarve",
+    "city": "Portimão",
+    "country": "Portugal",
+    "countryCode": "PT",
     "sessions": [
       {
         "id": "elms-2026-r06-s1",
+        "name": "Free Practice 1",
         "kind": "practice",
         "date": "2026-10-08",
         "timeLocal": "10:00",
-        "name": "Free Practice 1",
         "durationMinutes": 60
       },
       {
         "id": "elms-2026-r06-s2",
+        "name": "Free Practice 2",
         "kind": "practice",
         "date": "2026-10-09",
         "timeLocal": "09:30",
-        "name": "Free Practice 2",
         "durationMinutes": 60
       },
       {
         "id": "elms-2026-r06-s3",
+        "name": "Qualifying",
         "kind": "qualifying",
         "date": "2026-10-09",
         "timeLocal": "15:00",
-        "name": "Qualifying",
         "durationMinutes": 30
       },
       {
         "id": "elms-2026-r06-s4",
+        "name": "4 Hour Race",
         "kind": "race",
         "date": "2026-10-10",
         "timeLocal": "12:00",
-        "name": "4 Hour Race",
         "durationMinutes": 240
       }
-    ],
-    "city": "Portimão",
-    "roundNumber": 6,
-    "country": "Portugal",
-    "id": "elms-2026-r06",
-    "countryCode": "PT",
-    "circuitName": "Autodromo do Algarve",
-    "raceName": "4 Hours of Portimão",
-    "seriesId": "elms"
+    ]
   }
 ]
