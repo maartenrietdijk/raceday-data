@@ -1,0 +1,51 @@
+name: Fetch Standings
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: 'Motorsport.com standings URL (e.g. https://www.motorsport.com/f1/standings/2026/)'
+        required: true
+      series:
+        description: 'Series ID (e.g. f1, motogp, wec)'
+        required: true
+      updated_after_round_id:
+        description: 'RaceDay round id the standings were updated after'
+        required: false
+        default: ''
+      updated_after_round_name:
+        description: 'Round name the standings were updated after'
+        required: false
+        default: ''
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4
+
+      - name: Fetch standings
+        run: |
+          python fetch_standings.py \
+            --url "${{ github.event.inputs.url }}" \
+            --series "${{ github.event.inputs.series }}" \
+            --updated-after-round-id "${{ github.event.inputs.updated_after_round_id }}" \
+            --updated-after-round-name "${{ github.event.inputs.updated_after_round_name }}"
+
+      - name: Commit standings file
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "standings: update ${{ github.event.inputs.series }} from motorsport.com"
+          file_pattern: "*_standings_2026.json"

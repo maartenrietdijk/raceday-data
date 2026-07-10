@@ -15,6 +15,7 @@ import json
 import re
 import sys
 import time
+from datetime import datetime, timezone
 from pathlib import Path
 
 import requests
@@ -221,6 +222,8 @@ def main():
     parser = argparse.ArgumentParser(description="Fetch motorsport.com standings")
     parser.add_argument("--url",    required=True, help="Standings URL")
     parser.add_argument("--series", required=True, help="Series ID (e.g. f1)")
+    parser.add_argument("--updated-after-round-id", default="", help="RaceDay round id the standings were updated after")
+    parser.add_argument("--updated-after-round-name", default="", help="Round name the standings were updated after")
     args = parser.parse_args()
 
     output_file = SERIES_JSON.get(args.series)
@@ -236,8 +239,15 @@ def main():
         print("   Saving empty standings file so the app shows no data (not a crash).", file=sys.stderr)
         entries = []
 
+    payload = {
+        "updatedAt": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+        "updatedAfterRoundId": args.updated_after_round_id or None,
+        "updatedAfterRoundName": args.updated_after_round_name or None,
+        "drivers": entries,
+    }
+
     out = Path(output_file)
-    out.write_text(json.dumps(entries, indent=2, ensure_ascii=False))
+    out.write_text(json.dumps(payload, indent=2, ensure_ascii=False))
     print(f"✓ Saved {len(entries)} entries to {output_file}")
 
     if not entries:

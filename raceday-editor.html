@@ -565,6 +565,7 @@ let state = {
   series: [],           // [{id, name, color}]
   data: {},             // {seriesId: [RaceRound]}
   standings: {},        // {seriesId: [{position, name, team, points}]}
+  standingsMeta: {},    // {seriesId: {updatedAt, updatedAfterRoundId, updatedAfterRoundName}}
   standingsUrls: {},    // {seriesId: url}
   activeTab: 'calendar', // 'calendar' | 'standings'
   activeSeries: null,
@@ -581,6 +582,7 @@ function load() {
       state.series       = parsed.series       || DEFAULT_SERIES;
       state.data         = parsed.data         || {};
       state.standings    = parsed.standings    || {};
+      state.standingsMeta = parsed.standingsMeta || {};
       state.standingsUrls = parsed.standingsUrls || {};
       state.github       = parsed.github       || state.github;
     } else {
@@ -651,7 +653,20 @@ async function loadFromGitHub() {
           const id = file.name.replace('_standings_2026.json', '');
           try {
             const resp = await fetch(file.download_url);
-            if (resp.ok) state.standings[id] = await resp.json();
+            if (resp.ok) {
+              const json = await resp.json();
+              if (Array.isArray(json)) {
+                state.standings[id] = json;
+                state.standingsMeta[id] = {};
+              } else {
+                state.standings[id] = json.drivers || [];
+                state.standingsMeta[id] = {
+                  updatedAt: json.updatedAt || null,
+                  updatedAfterRoundId: json.updatedAfterRoundId || null,
+                  updatedAfterRoundName: json.updatedAfterRoundName || null,
+                };
+              }
+            }
           } catch (e) { console.warn(`Could not load ${file.name}:`, e); }
         }
       }
@@ -671,6 +686,7 @@ function save() {
     series:        state.series,
     data:          state.data,
     standings:     state.standings,
+    standingsMeta: state.standingsMeta,
     standingsUrls: state.standingsUrls,
   }));
   localStorage.setItem('raceday_gh', JSON.stringify(state.github));
@@ -877,10 +893,47 @@ function deleteStandingRow(seriesId, i) {
   renderMain();
 }
 
+function sessionEndDate(session) {
+  if (!session?.date) return null;
+  const time = session.timeLocal || '23:59';
+  const start = new Date(`${session.date}T${time}:00`);
+  if (Number.isNaN(start.getTime())) return null;
+  const duration = Number(session.durationMinutes || 0);
+  return new Date(start.getTime() + duration * 60 * 1000);
+}
+
+function latestCompletedRoundForStandings(seriesId) {
+  const now = new Date();
+  return (state.data[seriesId] || [])
+    .map(round => {
+      const ends = (round.sessions || [])
+        .map(sessionEndDate)
+        .filter(Boolean);
+      const end = ends.length ? new Date(Math.max(...ends.map(d => d.getTime()))) : null;
+      return { round, end };
+    })
+    .filter(item => item.end && item.end <= now)
+    .sort((a, b) => b.end - a.end)[0]?.round || null;
+}
+
+function standingsMetadataFor(seriesId) {
+  const latestRound = latestCompletedRoundForStandings(seriesId);
+  return {
+    updatedAt: new Date().toISOString(),
+    updatedAfterRoundId: latestRound?.id || null,
+    updatedAfterRoundName: latestRound?.raceName || null,
+  };
+}
+
 function buildStandingsJSON(seriesId) {
   const drivers = state.standings[seriesId] || [];
+  const metadata = standingsMetadataFor(seriesId);
+  state.standingsMeta[seriesId] = metadata;
   return JSON.stringify(
-    drivers.map(d => ({ position: d.position, name: d.name, team: d.team || '', points: d.points })),
+    {
+      ...metadata,
+      drivers: drivers.map(d => ({ position: d.position, name: d.name, team: d.team || '', points: d.points })),
+    },
     null, 2
   );
 }
@@ -891,6 +944,8 @@ async function fetchStandingsViaAction(seriesId) {
   if (!url) return showStatus('Vul eerst een motorsport.com standings URL in', 'error');
 
   state.standingsUrls[seriesId] = url;
+  const metadata = standingsMetadataFor(seriesId);
+  state.standingsMeta[seriesId] = metadata;
   save();
 
   const { token, repo } = state.github;
@@ -910,7 +965,12 @@ async function fetchStandingsViaAction(seriesId) {
         },
         body: JSON.stringify({
           ref: state.github.branch || 'main',
-          inputs: { url, series: seriesId }
+          inputs: {
+            url,
+            series: seriesId,
+            updated_after_round_id: metadata.updatedAfterRoundId || '',
+            updated_after_round_name: metadata.updatedAfterRoundName || ''
+          }
         })
       }
     );
