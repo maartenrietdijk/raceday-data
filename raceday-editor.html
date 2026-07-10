@@ -954,26 +954,37 @@ async function fetchStandingsViaAction(seriesId) {
   showStatus('GitHub Action starten…', 'loading');
   try {
     const [owner, repoName] = repo.split('/');
-    const resp = await fetch(
-      `https://api.github.com/repos/${owner}/${repoName}/actions/workflows/fetch_standings.yml/dispatches`,
-      {
+    const workflowUrl = `https://api.github.com/repos/${owner}/${repoName}/actions/workflows/fetch_standings.yml/dispatches`;
+    const headers = {
+      'Authorization': `Bearer ${token}`,
+      'Accept': 'application/vnd.github+json',
+      'Content-Type': 'application/json',
+    };
+    const dispatch = (inputs) => fetch(workflowUrl, {
         method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Accept': 'application/vnd.github+json',
-          'Content-Type': 'application/json',
-        },
+        headers,
         body: JSON.stringify({
           ref: state.github.branch || 'main',
-          inputs: {
-            url,
-            series: seriesId,
-            updated_after_round_id: metadata.updatedAfterRoundId || '',
-            updated_after_round_name: metadata.updatedAfterRoundName || ''
-          }
+          inputs
         })
+      });
+
+    let resp = await dispatch({
+      url,
+      series: seriesId,
+      updated_after_round_id: metadata.updatedAfterRoundId || '',
+      updated_after_round_name: metadata.updatedAfterRoundName || ''
+    });
+
+    if (resp.status === 422) {
+      const err = await resp.clone().json().catch(() => ({}));
+      const message = err.message || '';
+      const errors = JSON.stringify(err.errors || []);
+      if (message.includes('Unexpected inputs') || errors.includes('Unexpected inputs')) {
+        resp = await dispatch({ url, series: seriesId });
       }
-    );
+    }
+
     if (resp.status === 204) {
       showStatus(`✓ Fetch gestart voor ${seriesId} — wacht ~30s en klik dan "↓ Sync from GitHub"`, 'success');
     } else {
