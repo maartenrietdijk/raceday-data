@@ -10,6 +10,30 @@
     "countryCode": "US",
     "sessions": [
       {
+        "id": "indynxt-2026-st-petersburg-practice",
+        "name": "Practice 1",
+        "kind": "practice",
+        "date": "2026-02-27",
+        "timeLocal": "12:30",
+        "durationMinutes": 60
+      },
+      {
+        "id": "indynxt-2026-st-petersburg-s1783964627177",
+        "name": "Practice 2",
+        "kind": "practice",
+        "date": "2026-02-28",
+        "timeLocal": "08:30",
+        "durationMinutes": 60
+      },
+      {
+        "id": "indynxt-2026-st-petersburg-qualifying",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-03-28",
+        "timeLocal": "15:30",
+        "durationMinutes": 30
+      },
+      {
         "id": "indynxt-2026-st-petersburg-race",
         "name": "Race",
         "kind": "race",
@@ -30,6 +54,30 @@
     "countryCode": "US",
     "sessions": [
       {
+        "id": "indynxt-2026-arlington-practice",
+        "name": "Practice 1",
+        "kind": "practice",
+        "date": "2026-03-13",
+        "timeLocal": "15:00",
+        "durationMinutes": 60
+      },
+      {
+        "id": "indynxt-2026-arlington-s1783964589502",
+        "name": "Practice 2",
+        "kind": "practice",
+        "date": "2026-03-14",
+        "timeLocal": "11:00",
+        "durationMinutes": 60
+      },
+      {
+        "id": "indynxt-2026-arlington-qualifying",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-03-14",
+        "timeLocal": "16:30",
+        "durationMinutes": 30
+      },
+      {
         "id": "indynxt-2026-arlington-race",
         "name": "Race",
         "kind": "race",
@@ -40,38 +88,42 @@
     ]
   },
   {
-    "id": "indynxt-2026-alabama-race-1",
+    "id": "indynxt-2026-alabama",
     "seriesId": "indynxt",
     "roundNumber": 3,
-    "raceName": "Grand Prix of Alabama Race 1",
+    "raceName": "Grand Prix of Alabama",
     "circuitName": "Barber Motorsports Park",
     "city": "Birmingham",
     "country": "United States",
     "countryCode": "US",
     "sessions": [
       {
-        "id": "indynxt-2026-alabama-race-1-race",
-        "name": "Race",
+        "id": "indynxt-2026-alabama-practice",
+        "name": "Practice",
+        "kind": "practice",
+        "date": "2026-03-27",
+        "timeLocal": "14:30",
+        "durationMinutes": 60
+      },
+      {
+        "id": "indynxt-2026-alabama-qualifying",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-03-28",
+        "timeLocal": "10:00",
+        "durationMinutes": 30
+      },
+      {
+        "id": "indynxt-2026-alabama-r1",
+        "name": "Race 1",
         "kind": "race",
         "date": "2026-03-28",
         "timeLocal": "13:00",
         "durationMinutes": 60
-      }
-    ]
-  },
-  {
-    "id": "indynxt-2026-alabama-race-2",
-    "seriesId": "indynxt",
-    "roundNumber": 4,
-    "raceName": "Grand Prix of Alabama Race 2",
-    "circuitName": "Barber Motorsports Park",
-    "city": "Birmingham",
-    "country": "United States",
-    "countryCode": "US",
-    "sessions": [
+      },
       {
-        "id": "indynxt-2026-alabama-race-2-race",
-        "name": "Race",
+        "id": "indynxt-2026-alabama-r2",
+        "name": "Race 2",
         "kind": "race",
         "date": "2026-03-29",
         "timeLocal": "11:00",
@@ -80,38 +132,42 @@
     ]
   },
   {
-    "id": "indynxt-2026-indianapolis-race-1",
+    "id": "indynxt-2026-indianapolis",
     "seriesId": "indynxt",
-    "roundNumber": 5,
-    "raceName": "Indianapolis Grand Prix Race 1",
+    "roundNumber": 4,
+    "raceName": "Indianapolis Grand Prix",
     "circuitName": "IMS Road Course",
     "city": "Indianapolis",
     "country": "United States",
     "countryCode": "US",
     "sessions": [
       {
-        "id": "indynxt-2026-indianapolis-race-1-race",
-        "name": "Race",
+        "id": "indynxt-2026-indianapolis-practice",
+        "name": "Practice",
+        "kind": "practice",
+        "date": "2026-05-08",
+        "timeLocal": "08:00",
+        "durationMinutes": 60
+      },
+      {
+        "id": "indynxt-2026-indianapolis-qualifying",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-05-08",
+        "timeLocal": "12:00",
+        "durationMinutes": 30
+      },
+      {
+        "id": "indynxt-2026-indianapolis-r1",
+        "name": "Race 1",
         "kind": "race",
         "date": "2026-05-08",
         "timeLocal": "16:00",
         "durationMinutes": 60
-      }
-    ]
-  },
-  {
-    "id": "indynxt-2026-indianapolis-race-2",
-    "seriesId": "indynxt",
-    "roundNumber": 6,
-    "raceName": "Indianapolis Grand Prix Race 2",
-    "circuitName": "IMS Road Course",
-    "city": "Indianapolis",
-    "country": "United States",
-    "countryCode": "US",
-    "sessions": [
+      },
       {
-        "id": "indynxt-2026-indianapolis-race-2-race",
-        "name": "Race",
+        "id": "indynxt-2026-indianapolis-r2",
+        "name": "Race 2",
         "kind": "race",
         "date": "2026-05-09",
         "timeLocal": "14:30",
@@ -122,13 +178,37 @@
   {
     "id": "indynxt-2026-detroit",
     "seriesId": "indynxt",
-    "roundNumber": 7,
+    "roundNumber": 5,
     "raceName": "Detroit Grand Prix",
     "circuitName": "Streets of Detroit",
     "city": "Detroit",
     "country": "United States",
     "countryCode": "US",
     "sessions": [
+      {
+        "id": "indynxt-2026-detroit-practice",
+        "name": "Practice 1",
+        "kind": "practice",
+        "date": "2026-05-29",
+        "timeLocal": "14:00",
+        "durationMinutes": 60
+      },
+      {
+        "id": "indynxt-2026-detroit-s1783964483968",
+        "name": "Practice 2",
+        "kind": "practice",
+        "date": "2026-05-30",
+        "timeLocal": "08:00",
+        "durationMinutes": 60
+      },
+      {
+        "id": "indynxt-2026-detroit-qualifying",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-05-31",
+        "timeLocal": "12:00",
+        "durationMinutes": 30
+      },
       {
         "id": "indynxt-2026-detroit-race",
         "name": "Race",
@@ -142,13 +222,29 @@
   {
     "id": "indynxt-2026-gateway",
     "seriesId": "indynxt",
-    "roundNumber": 8,
+    "roundNumber": 6,
     "raceName": "INDY NXT by Firestone at World Wide Technology Raceway",
     "circuitName": "World Wide Technology Raceway",
     "city": "Madison",
     "country": "United States",
     "countryCode": "US",
     "sessions": [
+      {
+        "id": "indynxt-2026-gateway-practice",
+        "name": "Practice",
+        "kind": "practice",
+        "date": "2026-06-06",
+        "timeLocal": "15:00",
+        "durationMinutes": 60
+      },
+      {
+        "id": "indynxt-2026-gateway-qualifying",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-06-06",
+        "timeLocal": "18:00",
+        "durationMinutes": 30
+      },
       {
         "id": "indynxt-2026-gateway-race",
         "name": "Race",
@@ -160,38 +256,42 @@
     ]
   },
   {
-    "id": "indynxt-2026-road-america-race-1",
+    "id": "indynxt-2026-road-america",
     "seriesId": "indynxt",
-    "roundNumber": 9,
-    "raceName": "Grand Prix at Road America Race 1",
+    "roundNumber": 7,
+    "raceName": "Grand Prix at Road America",
     "circuitName": "Road America",
     "city": "Elkhart Lake",
     "country": "United States",
     "countryCode": "US",
     "sessions": [
       {
-        "id": "indynxt-2026-road-america-race-1-race",
-        "name": "Race",
+        "id": "indynxt-2026-road-america-practice",
+        "name": "Practice",
+        "kind": "practice",
+        "date": "2026-06-19",
+        "timeLocal": "15:00",
+        "durationMinutes": 60
+      },
+      {
+        "id": "indynxt-2026-road-america-qualifying",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-06-20",
+        "timeLocal": "10:00",
+        "durationMinutes": 30
+      },
+      {
+        "id": "indynxt-2026-road-america-r1",
+        "name": "Race 1",
         "kind": "race",
         "date": "2026-06-20",
         "timeLocal": "12:30",
         "durationMinutes": 60
-      }
-    ]
-  },
-  {
-    "id": "indynxt-2026-road-america-race-2",
-    "seriesId": "indynxt",
-    "roundNumber": 10,
-    "raceName": "Grand Prix at Road America Race 2",
-    "circuitName": "Road America",
-    "city": "Elkhart Lake",
-    "country": "United States",
-    "countryCode": "US",
-    "sessions": [
+      },
       {
-        "id": "indynxt-2026-road-america-race-2-race",
-        "name": "Race",
+        "id": "indynxt-2026-road-america-r2",
+        "name": "Race 2",
         "kind": "race",
         "date": "2026-06-21",
         "timeLocal": "12:00",
@@ -200,38 +300,42 @@
     ]
   },
   {
-    "id": "indynxt-2026-mid-ohio-race-1",
+    "id": "indynxt-2026-mid-ohio",
     "seriesId": "indynxt",
-    "roundNumber": 11,
-    "raceName": "Grand Prix at Mid-Ohio Race 1",
+    "roundNumber": 8,
+    "raceName": "Grand Prix at Mid-Ohio",
     "circuitName": "Mid-Ohio Sports Car Course",
     "city": "Lexington",
     "country": "United States",
     "countryCode": "US",
     "sessions": [
       {
-        "id": "indynxt-2026-mid-ohio-race-1-race",
-        "name": "Race",
+        "id": "indynxt-2026-mid-ohio-practice",
+        "name": "Practice",
+        "kind": "practice",
+        "date": "2026-07-03",
+        "timeLocal": "14:00",
+        "durationMinutes": 60
+      },
+      {
+        "id": "indynxt-2026-mid-ohio-qualifying",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-07-04",
+        "timeLocal": "09:00",
+        "durationMinutes": 30
+      },
+      {
+        "id": "indynxt-2026-mid-ohio-r1",
+        "name": "Race 1",
         "kind": "race",
         "date": "2026-07-04",
         "timeLocal": "13:00",
         "durationMinutes": 60
-      }
-    ]
-  },
-  {
-    "id": "indynxt-2026-mid-ohio-race-2",
-    "seriesId": "indynxt",
-    "roundNumber": 12,
-    "raceName": "Grand Prix at Mid-Ohio Race 2",
-    "circuitName": "Mid-Ohio Sports Car Course",
-    "city": "Lexington",
-    "country": "United States",
-    "countryCode": "US",
-    "sessions": [
+      },
       {
-        "id": "indynxt-2026-mid-ohio-race-2-race",
-        "name": "Race",
+        "id": "indynxt-2026-mid-ohio-r2",
+        "name": "Race 2",
         "kind": "race",
         "date": "2026-07-05",
         "timeLocal": "10:00",
@@ -242,13 +346,29 @@
   {
     "id": "indynxt-2026-music-city",
     "seriesId": "indynxt",
-    "roundNumber": 13,
+    "roundNumber": 9,
     "raceName": "Music City Grand Prix",
     "circuitName": "Nashville Superspeedway",
     "city": "Lebanon",
     "country": "United States",
     "countryCode": "US",
     "sessions": [
+      {
+        "id": "indynxt-2026-music-city-practice",
+        "name": "Practice",
+        "kind": "practice",
+        "date": "2026-07-18",
+        "timeLocal": "11:30",
+        "durationMinutes": 60
+      },
+      {
+        "id": "indynxt-2026-music-city-qualifying",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-07-18",
+        "timeLocal": "16:30",
+        "durationMinutes": 30
+      },
       {
         "id": "indynxt-2026-music-city-race",
         "name": "Race",
@@ -262,13 +382,37 @@
   {
     "id": "indynxt-2026-portland",
     "seriesId": "indynxt",
-    "roundNumber": 14,
+    "roundNumber": 10,
     "raceName": "Grand Prix of Portland",
     "circuitName": "Portland International Raceway",
     "city": "Portland",
     "country": "United States",
     "countryCode": "US",
     "sessions": [
+      {
+        "id": "indynxt-2026-portland-practice",
+        "name": "Practice 1",
+        "kind": "practice",
+        "date": "2026-08-07",
+        "timeLocal": "04:30",
+        "durationMinutes": 60
+      },
+      {
+        "id": "indynxt-2026-portland-s1783964708849",
+        "name": "Practice 2",
+        "kind": "practice",
+        "date": "2026-08-08",
+        "timeLocal": "12:00",
+        "durationMinutes": 60
+      },
+      {
+        "id": "indynxt-2026-portland-qualifying",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-08-08",
+        "timeLocal": "15:00",
+        "durationMinutes": 30
+      },
       {
         "id": "indynxt-2026-portland-race",
         "name": "Race",
@@ -282,13 +426,29 @@
   {
     "id": "indynxt-2026-milwaukee",
     "seriesId": "indynxt",
-    "roundNumber": 15,
+    "roundNumber": 11,
     "raceName": "INDY NXT by Firestone at Milwaukee Mile",
     "circuitName": "Milwaukee Mile",
     "city": "West Allis",
     "country": "United States",
     "countryCode": "US",
     "sessions": [
+      {
+        "id": "indynxt-2026-milwaukee-practice",
+        "name": "Practice",
+        "kind": "practice",
+        "date": "2026-08-29",
+        "timeLocal": null,
+        "durationMinutes": 60
+      },
+      {
+        "id": "indynxt-2026-milwaukee-qualifying",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-08-29",
+        "timeLocal": null,
+        "durationMinutes": 30
+      },
       {
         "id": "indynxt-2026-milwaukee-race",
         "name": "Race",
@@ -300,41 +460,37 @@
     ]
   },
   {
-    "id": "indynxt-2026-monterey-race-1",
+    "id": "indynxt-2026-monterey",
     "seriesId": "indynxt",
-    "roundNumber": 16,
-    "raceName": "Grand Prix of Monterey Race 1",
+    "roundNumber": 12,
+    "raceName": "Grand Prix of Monterey",
     "circuitName": "WeatherTech Raceway Laguna Seca",
     "city": "Monterey",
     "country": "United States",
     "countryCode": "US",
     "sessions": [
       {
-        "id": "indynxt-2026-monterey-race-1-race",
+        "id": "indynxt-2026-monterey-practice",
+        "name": "Practice",
+        "kind": "practice",
+        "date": "2026-09-04",
+        "timeLocal": null,
+        "durationMinutes": 60
+      },
+      {
+        "id": "indynxt-2026-monterey-qualifying",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-09-05",
+        "timeLocal": null,
+        "durationMinutes": 30
+      },
+      {
+        "id": "indynxt-2026-monterey-r1",
         "name": "Race",
         "kind": "race",
         "date": "2026-09-05",
         "timeLocal": "18:30",
-        "durationMinutes": 60
-      }
-    ]
-  },
-  {
-    "id": "indynxt-2026-monterey-race-2",
-    "seriesId": "indynxt",
-    "roundNumber": 17,
-    "raceName": "Grand Prix of Monterey Race 2",
-    "circuitName": "WeatherTech Raceway Laguna Seca",
-    "city": "Monterey",
-    "country": "United States",
-    "countryCode": "US",
-    "sessions": [
-      {
-        "id": "indynxt-2026-monterey-race-2-race",
-        "name": "Race",
-        "kind": "race",
-        "date": "2026-09-06",
-        "timeLocal": "12:30",
         "durationMinutes": 60
       }
     ]
