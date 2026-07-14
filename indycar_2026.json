@@ -1,13 +1,21 @@
 [
   {
     "id": "indycar-2026-r01",
+    "seriesId": "indycar",
+    "roundNumber": 1,
     "raceName": "Firestone Grand Prix of St. Petersburg",
-    "countryCode": "US",
     "circuitName": "Streets of St. Petersburg",
+    "city": "St. Petersburg",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
-        "timeLocal": "13:30",
+        "id": "indycar-2026-r01-s1",
+        "name": "Practice 1",
+        "kind": "practice",
         "date": "2026-02-27",
+        "timeLocal": "13:30",
+        "durationMinutes": 60,
         "results": [
           {
             "position": 1,
@@ -233,15 +241,15 @@
             "driver": "R. Robb Sting",
             "team": "Juncos Hollinger Racing"
           }
-        ],
-        "kind": "practice",
-        "id": "indycar-2026-r01-s1",
-        "name": "Practice 1",
-        "durationMinutes": 60
+        ]
       },
       {
-        "timeLocal": "09:30",
+        "id": "indycar-2026-r01-s1775253520619",
+        "name": "Practice 2",
+        "kind": "practice",
         "date": "2026-02-28",
+        "timeLocal": "09:30",
+        "durationMinutes": 60,
         "results": [
           {
             "position": 1,
@@ -465,15 +473,15 @@
             "laps": "0",
             "driver": "W. Power"
           }
-        ],
-        "kind": "practice",
-        "id": "indycar-2026-r01-s1775253520619",
-        "name": "Practice 2",
-        "durationMinutes": 60
+        ]
       },
       {
-        "timeLocal": "16:30",
+        "id": "indycar-2026-r01-s1775253519278",
+        "name": "Qualifying",
+        "kind": "qualifying",
         "date": "2026-02-28",
+        "timeLocal": "16:30",
+        "durationMinutes": 60,
         "results": [
           {
             "position": 1,
@@ -674,15 +682,15 @@
             "driver": "A. Rossi",
             "interval": "+1.0605"
           }
-        ],
-        "kind": "qualifying",
-        "id": "indycar-2026-r01-s1775253519278",
-        "name": "Qualifying",
-        "durationMinutes": 60
+        ]
       },
       {
-        "timeLocal": "09:00",
+        "id": "indycar-2026-r01-s1775253518002",
+        "name": "Warmup",
+        "kind": "practice",
         "date": "2026-03-01",
+        "timeLocal": "09:00",
+        "durationMinutes": 60,
         "results": [
           {
             "position": 1,
@@ -908,15 +916,15 @@
             "driver": "S. McLaughlin",
             "team": "Team Penske"
           }
-        ],
-        "kind": "practice",
-        "id": "indycar-2026-r01-s1775253518002",
-        "name": "Warmup",
-        "durationMinutes": 60
+        ]
       },
       {
-        "timeLocal": "12:00",
+        "id": "indycar-2026-r01-s1775253516519",
+        "name": "Race",
+        "kind": "race",
         "date": "2026-03-01",
+        "timeLocal": "12:00",
+        "durationMinutes": 120,
         "results": [
           {
             "position": 1,
@@ -1134,31 +1142,27 @@
             "laps": "0",
             "driver": "M. Schumacher"
           }
-        ],
-        "kind": "race",
-        "id": "indycar-2026-r01-s1775253516519",
-        "name": "Race",
-        "durationMinutes": 120
+        ]
       }
-    ],
-    "seriesId": "indycar",
-    "city": "St. Petersburg",
-    "roundNumber": 1,
-    "country": "United States"
+    ]
   },
   {
-    "raceName": "Good Ranchers 250",
-    "countryCode": "US",
+    "id": "indycar-2026-r02",
+    "seriesId": "indycar",
     "roundNumber": 2,
+    "raceName": "Good Ranchers 250",
     "circuitName": "Phoenix Raceway",
     "city": "Phoenix",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
+        "id": "indycar-2026-r02-s1",
         "name": "Practice 1",
+        "kind": "race",
+        "date": "2026-03-06",
         "timeLocal": "10:00",
         "durationMinutes": 60,
-        "id": "indycar-2026-r02-s1",
-        "date": "2026-03-06",
         "results": [
           {
             "time": "20.5005",
@@ -1385,15 +1389,15 @@
             "number": "4",
             "position": 25
           }
-        ],
-        "kind": "race"
+        ]
       },
       {
+        "id": "indycar-2026-r02-s1775253755663",
         "name": "Qualifying",
+        "kind": "race",
+        "date": "2026-03-06",
         "timeLocal": "14:00",
         "durationMinutes": 60,
-        "id": "indycar-2026-r02-s1775253755663",
-        "date": "2026-03-06",
         "results": [
           {
             "position": 1,
@@ -1591,15 +1595,15 @@
             "number": "26",
             "driver": "W. Power"
           }
-        ],
-        "kind": "race"
+        ]
       },
       {
+        "id": "indycar-2026-r02-s1775253753308",
         "name": "High Line & Final Practice",
+        "kind": "practice",
+        "date": "2026-03-06",
         "timeLocal": "16:30",
         "durationMinutes": 60,
-        "id": "indycar-2026-r02-s1775253753308",
-        "date": "2026-03-06",
         "results": [
           {
             "time": "21.8303",
@@ -1823,15 +1827,15 @@
             "laps": "0",
             "driver": "F. Rosenqvist"
           }
-        ],
-        "kind": "practice"
+        ]
       },
       {
+        "id": "indycar-2026-r02-s1775253750533",
         "name": "Race",
+        "kind": "race",
+        "date": "2026-03-07",
         "timeLocal": "15:00",
         "durationMinutes": 120,
-        "id": "indycar-2026-r02-s1775253750533",
-        "date": "2026-03-07",
         "results": [
           {
             "time": "1:51:14.4657",
@@ -2058,23 +2062,27 @@
             "number": "18",
             "position": "DNS"
           }
-        ],
-        "kind": "race"
+        ]
       }
-    ],
-    "seriesId": "indycar",
-    "id": "indycar-2026-r02",
-    "country": "United States"
+    ]
   },
   {
     "id": "indycar-2026-r03",
+    "seriesId": "indycar",
+    "roundNumber": 3,
     "raceName": "Java House Grand Prix of Arlington",
-    "countryCode": "US",
     "circuitName": "Streets of Arlington",
+    "city": "Texas",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
-        "timeLocal": "16:30",
+        "id": "indycar-2026-r03-s1",
+        "name": "Practice 1",
+        "kind": "practice",
         "date": "2026-03-13",
+        "timeLocal": "16:30",
+        "durationMinutes": 60,
         "results": [
           {
             "position": 1,
@@ -2300,15 +2308,15 @@
             "driver": "R. Robb Sting",
             "team": "Juncos Hollinger Racing"
           }
-        ],
-        "kind": "practice",
-        "id": "indycar-2026-r03-s1",
-        "name": "Practice 1",
-        "durationMinutes": 60
+        ]
       },
       {
-        "timeLocal": "09:30",
+        "id": "indycar-2026-r03-s1775253885662",
+        "name": "Practice 2",
+        "kind": "practice",
         "date": "2026-03-14",
+        "timeLocal": "09:30",
+        "durationMinutes": 60,
         "results": [
           {
             "position": 1,
@@ -2534,15 +2542,15 @@
             "driver": "R. Robb Sting",
             "team": "Juncos Hollinger Racing"
           }
-        ],
-        "kind": "practice",
-        "id": "indycar-2026-r03-s1775253885662",
-        "name": "Practice 2",
-        "durationMinutes": 60
+        ]
       },
       {
-        "timeLocal": "14:30",
+        "id": "indycar-2026-r03-s1775253884376",
+        "name": "Qualifying",
+        "kind": "qualifying",
         "date": "2026-03-15",
+        "timeLocal": "14:30",
+        "durationMinutes": 60,
         "results": [
           {
             "position": 1,
@@ -2597,15 +2605,15 @@
             "driver": "M. Armstrong",
             "team": "Meyer Shank Racing with Curb-Agajanian"
           }
-        ],
-        "kind": "qualifying",
-        "id": "indycar-2026-r03-s1775253884376",
-        "name": "Qualifying",
-        "durationMinutes": 60
+        ]
       },
       {
-        "timeLocal": "09:30",
+        "id": "indycar-2026-r03-s1775253882701",
+        "name": "Warmup",
+        "kind": "practice",
         "date": "2026-03-15",
+        "timeLocal": "09:30",
+        "durationMinutes": 60,
         "results": [
           {
             "position": 1,
@@ -2831,15 +2839,15 @@
             "driver": "M. Schumacher",
             "team": "Rahal Letterman Lanigan Racing"
           }
-        ],
-        "kind": "practice",
-        "id": "indycar-2026-r03-s1775253882701",
-        "name": "Warmup",
-        "durationMinutes": 60
+        ]
       },
       {
-        "timeLocal": "11:30",
+        "id": "indycar-2026-r03-s1775253879785",
+        "name": "Race",
+        "kind": "race",
         "date": "2026-03-15",
+        "timeLocal": "11:30",
+        "durationMinutes": 120,
         "results": [
           {
             "position": 1,
@@ -3059,31 +3067,27 @@
             "laps": "66",
             "driver": "C. Rasmussen"
           }
-        ],
-        "kind": "race",
-        "id": "indycar-2026-r03-s1775253879785",
-        "name": "Race",
-        "durationMinutes": 120
+        ]
       }
-    ],
-    "seriesId": "indycar",
-    "city": "Texas",
-    "roundNumber": 3,
-    "country": "United States"
+    ]
   },
   {
-    "raceName": "Children's of Alabama Indy Grand Prix",
-    "countryCode": "US",
+    "id": "indycar-2026-r04",
+    "seriesId": "indycar",
     "roundNumber": 4,
+    "raceName": "Children's of Alabama Indy Grand Prix",
     "circuitName": "Barber Motorsports Park",
     "city": "Birmingham",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
+        "id": "indycar-2026-r04-s1775254027233",
         "name": "Practice 1",
+        "kind": "race",
+        "date": "2026-03-27",
         "timeLocal": "15:30",
         "durationMinutes": 60,
-        "id": "indycar-2026-r04-s1775254027233",
-        "date": "2026-03-27",
         "results": [
           {
             "position": 1,
@@ -3309,15 +3313,15 @@
             "number": "8",
             "position": 25
           }
-        ],
-        "kind": "race"
+        ]
       },
       {
+        "id": "indycar-2026-r04-s1775254025860",
         "name": "Practice 2",
+        "kind": "practice",
+        "date": "2026-03-28",
         "timeLocal": "11:00",
         "durationMinutes": 60,
-        "id": "indycar-2026-r04-s1775254025860",
-        "date": "2026-03-28",
         "results": [
           {
             "position": 1,
@@ -3543,15 +3547,15 @@
             "number": "45",
             "position": 25
           }
-        ],
-        "kind": "practice"
+        ]
       },
       {
+        "id": "indycar-2026-r04-s1775254024453",
         "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-03-28",
         "timeLocal": "14:30",
         "durationMinutes": 60,
-        "id": "indycar-2026-r04-s1775254024453",
-        "date": "2026-03-28",
         "results": [
           {
             "position": 1,
@@ -3752,15 +3756,15 @@
             "driver": "R. Robb Sting",
             "interval": "+1.3768"
           }
-        ],
-        "kind": "qualifying"
+        ]
       },
       {
+        "id": "indycar-2026-r04-s1775254021917",
         "name": "Warmup",
+        "kind": "practice",
+        "date": "2026-03-29",
         "timeLocal": "10:00",
         "durationMinutes": 60,
-        "id": "indycar-2026-r04-s1775254021917",
-        "date": "2026-03-29",
         "results": [
           {
             "position": 1,
@@ -3986,15 +3990,15 @@
             "number": "77",
             "position": 25
           }
-        ],
-        "kind": "practice"
+        ]
       },
       {
+        "id": "indycar-2026-r04-s1",
         "name": "Race",
+        "kind": "race",
+        "date": "2026-03-29",
         "timeLocal": "13:00",
         "durationMinutes": 120,
-        "id": "indycar-2026-r04-s1",
-        "date": "2026-03-29",
         "results": [
           {
             "position": 1,
@@ -4220,23 +4224,27 @@
             "number": "45",
             "position": 25
           }
-        ],
-        "kind": "race"
+        ]
       }
-    ],
-    "seriesId": "indycar",
-    "id": "indycar-2026-r04",
-    "country": "United States"
+    ]
   },
   {
     "id": "indycar-2026-r05",
+    "seriesId": "indycar",
+    "roundNumber": 5,
     "raceName": "Acura Grand Prix of Long Beach",
-    "countryCode": "US",
     "circuitName": "Streets of Long Beach",
+    "city": "Long Beach",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
-        "timeLocal": "18:00",
+        "id": "indycar-2026-r05-s1775254118779",
+        "name": "Practice 1",
+        "kind": "race",
         "date": "2026-04-17",
+        "timeLocal": "18:00",
+        "durationMinutes": 60,
         "results": [
           {
             "position": 1,
@@ -4438,15 +4446,15 @@
             "driver": "M. Schumacher",
             "interval": "+15.7193"
           }
-        ],
-        "kind": "race",
-        "id": "indycar-2026-r05-s1775254118779",
-        "name": "Practice 1",
-        "durationMinutes": 60
+        ]
       },
       {
-        "timeLocal": "13:30",
+        "id": "indycar-2026-r05-s1775254116620",
+        "name": "Practice 2",
+        "kind": "race",
         "date": "2026-04-18",
+        "timeLocal": "13:30",
+        "durationMinutes": 60,
         "results": [
           {
             "position": 1,
@@ -4648,15 +4656,15 @@
             "driver": "R. Grosjean",
             "interval": "+1.5659"
           }
-        ],
-        "kind": "race",
-        "id": "indycar-2026-r05-s1775254116620",
-        "name": "Practice 2",
-        "durationMinutes": 60
+        ]
       },
       {
-        "timeLocal": "18:30",
+        "id": "indycar-2026-r05-s1775254115090",
+        "name": "Qualifying",
+        "kind": "race",
         "date": "2026-04-18",
+        "timeLocal": "18:30",
+        "durationMinutes": 60,
         "results": [
           {
             "position": 1,
@@ -4833,15 +4841,15 @@
             "driver": "N. Siegel",
             "interval": "+1.1462"
           }
-        ],
-        "kind": "race",
-        "id": "indycar-2026-r05-s1775254115090",
-        "name": "Qualifying",
-        "durationMinutes": 60
+        ]
       },
       {
-        "timeLocal": "13:00",
+        "id": "indycar-2026-r05-s1775254113522",
+        "name": "Warmup",
+        "kind": "race",
         "date": "2026-04-19",
+        "timeLocal": "13:00",
+        "durationMinutes": 60,
         "results": [
           {
             "position": 1,
@@ -5043,15 +5051,15 @@
             "driver": "R. Robb Sting",
             "interval": "+2.0334"
           }
-        ],
-        "kind": "race",
-        "id": "indycar-2026-r05-s1775254113522",
-        "name": "Warmup",
-        "durationMinutes": 60
+        ]
       },
       {
-        "timeLocal": "17:30",
+        "id": "indycar-2026-r05-s1",
+        "name": "Race",
+        "kind": "race",
         "date": "2026-04-19",
+        "timeLocal": "17:30",
+        "durationMinutes": 120,
         "results": [
           {
             "position": 1,
@@ -5253,31 +5261,27 @@
             "driver": "M. Ericsson",
             "interval": "+52 Laps"
           }
-        ],
-        "kind": "race",
-        "id": "indycar-2026-r05-s1",
-        "name": "Race",
-        "durationMinutes": 120
+        ]
       }
-    ],
-    "seriesId": "indycar",
-    "city": "Long Beach",
-    "roundNumber": 5,
-    "country": "United States"
+    ]
   },
   {
-    "raceName": "Sonsio Grand Prix",
-    "countryCode": "US",
+    "id": "indycar-2026-r06",
+    "seriesId": "indycar",
     "roundNumber": 6,
+    "raceName": "Sonsio Grand Prix",
     "circuitName": "IMS Road Course",
     "city": "Indianapolis",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
+        "id": "indycar-2026-r06-s1",
         "name": "Practice 1",
+        "kind": "practice",
+        "date": "2026-05-08",
         "timeLocal": "09:00",
         "durationMinutes": 90,
-        "id": "indycar-2026-r06-s1",
-        "date": "2026-05-08",
         "results": [
           {
             "position": 1,
@@ -5503,15 +5507,15 @@
             "number": "77",
             "position": 25
           }
-        ],
-        "kind": "practice"
+        ]
       },
       {
+        "id": "indycar-2026-r06-s1777883790979",
         "name": "Practice 2",
+        "kind": "practice",
+        "date": "2026-05-08",
         "timeLocal": "13:00",
         "durationMinutes": 90,
-        "id": "indycar-2026-r06-s1777883790979",
-        "date": "2026-05-08",
         "results": [
           {
             "position": 1,
@@ -5737,15 +5741,15 @@
             "number": "8",
             "position": 25
           }
-        ],
-        "kind": "practice"
+        ]
       },
       {
+        "id": "indycar-2026-r06-s1777883788641",
         "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-05-09",
         "timeLocal": "10:30",
         "durationMinutes": 89,
-        "id": "indycar-2026-r06-s1777883788641",
-        "date": "2026-05-09",
         "results": [
           {
             "position": 1,
@@ -5800,15 +5804,15 @@
             "number": "45",
             "position": 6
           }
-        ],
-        "kind": "qualifying"
+        ]
       },
       {
+        "id": "indycar-2026-r06-s1777883836400",
         "name": "Race",
+        "kind": "race",
+        "date": "2026-05-09",
         "timeLocal": "16:30",
         "durationMinutes": 89,
-        "id": "indycar-2026-r06-s1777883836400",
-        "date": "2026-05-09",
         "results": [
           {
             "position": 1,
@@ -6034,23 +6038,27 @@
             "number": "20",
             "position": 25
           }
-        ],
-        "kind": "race"
+        ]
       }
-    ],
-    "seriesId": "indycar",
-    "id": "indycar-2026-r06",
-    "country": "United States"
+    ]
   },
   {
     "id": "indycar-2026-r07",
+    "seriesId": "indycar",
+    "roundNumber": 7,
     "raceName": "Indianapolis 500",
-    "countryCode": "US",
     "circuitName": "Indianapolis Motor Speedway",
+    "city": "Indianapolis",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
-        "timeLocal": "12:00",
+        "id": "indycar-2026-r07-s3",
+        "name": "Practice 1",
+        "kind": "practice",
         "date": "2026-05-12",
+        "timeLocal": "12:00",
+        "durationMinutes": 240,
         "results": [
           {
             "position": 1,
@@ -6316,15 +6324,15 @@
             "laps": "51",
             "driver": "K. Legge"
           }
-        ],
-        "kind": "practice",
-        "id": "indycar-2026-r07-s3",
-        "name": "Practice 1",
-        "durationMinutes": 240
+        ]
       },
       {
-        "timeLocal": "12:00",
+        "id": "indycar-2026-r07-s1778503981594",
+        "name": "Practice 2",
+        "kind": "practice",
         "date": "2026-05-13",
+        "timeLocal": "12:00",
+        "durationMinutes": 360,
         "results": [
           {
             "position": 1,
@@ -6590,15 +6598,15 @@
             "laps": "73",
             "driver": "K. Legge"
           }
-        ],
-        "kind": "practice",
-        "id": "indycar-2026-r07-s1778503981594",
-        "name": "Practice 2",
-        "durationMinutes": 360
+        ]
       },
       {
-        "timeLocal": "12:00",
+        "id": "indycar-2026-r07-s1778503976420",
+        "name": "Practice 3",
+        "kind": "practice",
         "date": "2026-05-14",
+        "timeLocal": "12:00",
+        "durationMinutes": 360,
         "results": [
           {
             "position": 1,
@@ -6864,31 +6872,31 @@
             "laps": "42",
             "driver": "C. Rasmussen"
           }
-        ],
+        ]
+      },
+      {
+        "id": "indycar-2026-r07-s1778745845515",
+        "name": "Practice 4 (cancelled)",
         "kind": "practice",
-        "id": "indycar-2026-r07-s1778503976420",
-        "name": "Practice 3",
+        "date": "2026-05-15",
+        "timeLocal": "12:00",
         "durationMinutes": 360
       },
       {
-        "kind": "practice",
-        "durationMinutes": 360,
-        "timeLocal": "12:00",
-        "id": "indycar-2026-r07-s1778745845515",
-        "name": "Practice 4 (cancelled)",
-        "date": "2026-05-15"
-      },
-      {
-        "kind": "practice",
-        "durationMinutes": 120,
-        "timeLocal": "08:30",
         "id": "indycar-2026-r07-s1778495504990",
         "name": "Practice 5 (cancelled)",
-        "date": "2026-05-16"
+        "kind": "practice",
+        "date": "2026-05-16",
+        "timeLocal": "08:30",
+        "durationMinutes": 120
       },
       {
-        "timeLocal": "09:30",
+        "id": "indycar-2026-r07-s5",
+        "name": "Practice 6",
+        "kind": "practice",
         "date": "2026-05-17",
+        "timeLocal": "09:30",
+        "durationMinutes": 60,
         "results": [
           {
             "position": 1,
@@ -7148,15 +7156,15 @@
             "laps": "0",
             "driver": "R. Robb Sting"
           }
-        ],
-        "kind": "practice",
-        "id": "indycar-2026-r07-s5",
-        "name": "Practice 6",
-        "durationMinutes": 60
+        ]
       },
       {
-        "timeLocal": "12:00",
+        "id": "indycar-2026-r07-s4",
+        "name": "Qualifying",
+        "kind": "qualifying",
         "date": "2026-05-17",
+        "timeLocal": "12:00",
+        "durationMinutes": 180,
         "results": [
           {
             "position": 1,
@@ -7422,15 +7430,15 @@
             "laps": "0",
             "driver": "R. Robb Sting"
           }
-        ],
-        "kind": "qualifying",
-        "id": "indycar-2026-r07-s4",
-        "name": "Qualifying",
-        "durationMinutes": 180
+        ]
       },
       {
-        "timeLocal": "16:00",
+        "id": "indycar-2026-r07-s1778495796818",
+        "name": "Top 12 Qualifying",
+        "kind": "qualifying",
         "date": "2026-05-17",
+        "timeLocal": "16:00",
+        "durationMinutes": 75,
         "results": [
           {
             "position": 1,
@@ -7528,15 +7536,15 @@
             "laps": "0",
             "driver": "R. VeeKay"
           }
-        ],
-        "kind": "qualifying",
-        "id": "indycar-2026-r07-s1778495796818",
-        "name": "Top 12 Qualifying",
-        "durationMinutes": 75
+        ]
       },
       {
-        "timeLocal": "18:00",
+        "id": "indycar-2026-r07-s1778495844360",
+        "name": "Fast 6 Qualifying",
+        "kind": "qualifying",
         "date": "2026-05-17",
+        "timeLocal": "18:00",
+        "durationMinutes": 60,
         "results": [
           {
             "position": 1,
@@ -7586,15 +7594,15 @@
             "laps": "0",
             "driver": "P. O'Ward"
           }
-        ],
-        "kind": "qualifying",
-        "id": "indycar-2026-r07-s1778495844360",
-        "name": "Fast 6 Qualifying",
-        "durationMinutes": 60
+        ]
       },
       {
-        "timeLocal": "13:00",
+        "id": "indycar-2026-r07-s1778504131012",
+        "name": "Practice 7",
+        "kind": "practice",
         "date": "2026-05-18",
+        "timeLocal": "13:00",
+        "durationMinutes": 120,
         "results": [
           {
             "position": 1,
@@ -7852,15 +7860,15 @@
             "laps": "24",
             "driver": "K. Legge"
           }
-        ],
-        "kind": "practice",
-        "id": "indycar-2026-r07-s1778504131012",
-        "name": "Practice 7",
-        "durationMinutes": 120
+        ]
       },
       {
-        "timeLocal": "11:00",
+        "id": "indycar-2026-r07-s1778504161971",
+        "name": "Practice 8",
+        "kind": "practice",
         "date": "2026-05-22",
+        "timeLocal": "11:00",
+        "durationMinutes": 120,
         "results": [
           {
             "position": 1,
@@ -8158,15 +8166,15 @@
             "driver": "K. Legge",
             "team": "HMD Motorsports with A.J. Foyt Racing"
           }
-        ],
-        "kind": "practice",
-        "id": "indycar-2026-r07-s1778504161971",
-        "name": "Practice 8",
-        "durationMinutes": 120
+        ]
       },
       {
-        "timeLocal": "12:30",
+        "id": "indycar-2026-r07-s1",
+        "name": "Race",
+        "kind": "race",
         "date": "2026-05-24",
+        "timeLocal": "12:30",
+        "durationMinutes": 200,
         "results": [
           {
             "position": 1,
@@ -8464,31 +8472,27 @@
             "driver": "K. Legge",
             "team": "HMD Motorsports with A.J. Foyt Racing"
           }
-        ],
-        "kind": "race",
-        "id": "indycar-2026-r07-s1",
-        "name": "Race",
-        "durationMinutes": 200
+        ]
       }
-    ],
-    "seriesId": "indycar",
-    "city": "Indianapolis",
-    "roundNumber": 7,
-    "country": "United States"
+    ]
   },
   {
-    "raceName": "Chevrolet Detroit Grand Prix",
-    "countryCode": "US",
+    "id": "indycar-2026-r08",
+    "seriesId": "indycar",
     "roundNumber": 8,
+    "raceName": "Chevrolet Detroit Grand Prix",
     "circuitName": "Detroit Street Circuit",
     "city": "Detroit",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
+        "id": "indycar-2026-r08-s1779365096157",
         "name": "Practice 1",
+        "kind": "practice",
+        "date": "2026-05-29",
         "timeLocal": "15:00",
         "durationMinutes": 90,
-        "id": "indycar-2026-r08-s1779365096157",
-        "date": "2026-05-29",
         "results": [
           {
             "position": 1,
@@ -8714,15 +8718,15 @@
             "number": "77",
             "position": 25
           }
-        ],
-        "kind": "practice"
+        ]
       },
       {
+        "id": "indycar-2026-r08-s1779365091103",
         "name": "Practice 2",
+        "kind": "practice",
+        "date": "2026-05-30",
         "timeLocal": "09:00",
         "durationMinutes": 90,
-        "id": "indycar-2026-r08-s1779365091103",
-        "date": "2026-05-30",
         "results": [
           {
             "position": 1,
@@ -8948,15 +8952,15 @@
             "number": "76",
             "position": 25
           }
-        ],
-        "kind": "practice"
+        ]
       },
       {
+        "id": "indycar-2026-r08-s1779365088679",
         "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-05-30",
         "timeLocal": "13:00",
         "durationMinutes": 60,
-        "id": "indycar-2026-r08-s1779365088679",
-        "date": "2026-05-30",
         "results": [
           {
             "position": 1,
@@ -9152,15 +9156,15 @@
             "driver": "D. Malukas",
             "interval": "+2.7101"
           }
-        ],
-        "kind": "qualifying"
+        ]
       },
       {
+        "id": "indycar-2026-r08-s1779365119057",
         "name": "Warmup",
+        "kind": "practice",
+        "date": "2026-05-31",
         "timeLocal": "09:30",
         "durationMinutes": 60,
-        "id": "indycar-2026-r08-s1779365119057",
-        "date": "2026-05-31",
         "results": [
           {
             "position": 1,
@@ -9386,15 +9390,15 @@
             "number": "18",
             "position": 25
           }
-        ],
-        "kind": "practice"
+        ]
       },
       {
+        "id": "indycar-2026-r08-s1",
         "name": "Race",
+        "kind": "race",
+        "date": "2026-05-31",
         "timeLocal": "12:30",
         "durationMinutes": 120,
-        "id": "indycar-2026-r08-s1",
-        "date": "2026-05-31",
         "results": [
           {
             "position": 1,
@@ -9595,23 +9599,27 @@
             "driver": "C. Rasmussen",
             "interval": "+90 laps"
           }
-        ],
-        "kind": "race"
+        ]
       }
-    ],
-    "seriesId": "indycar",
-    "id": "indycar-2026-r08",
-    "country": "United States"
+    ]
   },
   {
     "id": "indycar-2026-r09",
+    "seriesId": "indycar",
+    "roundNumber": 9,
     "raceName": "Bommarito Automotive Group 500",
-    "countryCode": "US",
     "circuitName": "World Wide Technology Raceway",
+    "city": "Madison",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
-        "timeLocal": "12:30",
+        "id": "indycar-2026-r09-s1",
+        "name": "Practice",
+        "kind": "practice",
         "date": "2026-06-06",
+        "timeLocal": "12:30",
+        "durationMinutes": 90,
         "results": [
           {
             "position": 1,
@@ -9837,15 +9845,15 @@
             "driver": "R. Robb Sting",
             "team": "Juncos Hollinger Racing"
           }
-        ],
-        "kind": "practice",
-        "id": "indycar-2026-r09-s1",
-        "name": "Practice",
-        "durationMinutes": 90
+        ]
       },
       {
-        "timeLocal": "16:30",
+        "id": "indycar-2026-r09-s1780334229958",
+        "name": "Qualifying",
+        "kind": "qualifying",
         "date": "2026-06-06",
+        "timeLocal": "16:30",
+        "durationMinutes": 90,
         "results": [
           {
             "position": 1,
@@ -10046,23 +10054,23 @@
             "driver": "R. Robb Sting",
             "interval": "+1.9319"
           }
-        ],
-        "kind": "qualifying",
-        "id": "indycar-2026-r09-s1780334229958",
-        "name": "Qualifying",
-        "durationMinutes": 90
+        ]
       },
       {
-        "kind": "practice",
-        "durationMinutes": 60,
-        "timeLocal": "20:00",
         "id": "indycar-2026-r09-s1780334260490",
         "name": "High Line Practice",
-        "date": "2026-06-06"
+        "kind": "practice",
+        "date": "2026-06-06",
+        "timeLocal": "20:00",
+        "durationMinutes": 60
       },
       {
-        "timeLocal": "21:00",
+        "id": "indycar-2026-r09-s1780334401297",
+        "name": "Final Practice",
+        "kind": "practice",
         "date": "2026-06-06",
+        "timeLocal": "21:00",
+        "durationMinutes": 60,
         "results": [
           {
             "position": 1,
@@ -10288,15 +10296,15 @@
             "driver": "L. Foster",
             "team": "Rahal Letterman Lanigan Racing"
           }
-        ],
-        "kind": "practice",
-        "id": "indycar-2026-r09-s1780334401297",
-        "name": "Final Practice",
-        "durationMinutes": 60
+        ]
       },
       {
-        "timeLocal": "21:00",
+        "id": "indycar-2026-r09-s1780334222070",
+        "name": "Race",
+        "kind": "race",
         "date": "2026-06-07",
+        "timeLocal": "21:00",
+        "durationMinutes": 160,
         "results": [
           {
             "position": 1,
@@ -10520,31 +10528,27 @@
             "laps": "0",
             "driver": "D. Hauger"
           }
-        ],
-        "kind": "race",
-        "id": "indycar-2026-r09-s1780334222070",
-        "name": "Race",
-        "durationMinutes": 160
+        ]
       }
-    ],
-    "seriesId": "indycar",
-    "city": "Madison",
-    "roundNumber": 9,
-    "country": "United States"
+    ]
   },
   {
-    "raceName": "XPEL Grand Prix at Road America",
-    "countryCode": "US",
+    "id": "indycar-2026-r10",
+    "seriesId": "indycar",
     "roundNumber": 10,
+    "raceName": "XPEL Grand Prix at Road America",
     "circuitName": "Road America",
     "city": "Elkhart Lake",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
+        "id": "indycar-2026-r10-s1",
         "name": "Practice 1",
+        "kind": "practice",
+        "date": "2026-06-19",
         "timeLocal": "16:00",
         "durationMinutes": 120,
-        "id": "indycar-2026-r10-s1",
-        "date": "2026-06-19",
         "results": [
           {
             "position": 1,
@@ -10770,15 +10774,15 @@
             "number": "77",
             "position": 25
           }
-        ],
-        "kind": "practice"
+        ]
       },
       {
+        "id": "indycar-2026-r10-s1781435445912",
         "name": "Practice 2",
+        "kind": "practice",
+        "date": "2026-06-20",
         "timeLocal": "11:00",
         "durationMinutes": 120,
-        "id": "indycar-2026-r10-s1781435445912",
-        "date": "2026-06-20",
         "results": [
           {
             "position": 1,
@@ -11004,15 +11008,15 @@
             "number": "45",
             "position": 25
           }
-        ],
-        "kind": "practice"
+        ]
       },
       {
+        "id": "indycar-2026-r10-s1781435444274",
         "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-06-20",
         "timeLocal": "14:00",
         "durationMinutes": 90,
-        "id": "indycar-2026-r10-s1781435444274",
-        "date": "2026-06-20",
         "results": [
           {
             "position": 1,
@@ -11213,15 +11217,15 @@
             "driver": "R. Robb Sting",
             "interval": "+1.8675"
           }
-        ],
-        "kind": "qualifying"
+        ]
       },
       {
+        "id": "indycar-2026-r10-s1781435442468",
         "name": "Warmup",
+        "kind": "practice",
+        "date": "2026-06-21",
         "timeLocal": "11:00",
         "durationMinutes": 60,
-        "id": "indycar-2026-r10-s1781435442468",
-        "date": "2026-06-21",
         "results": [
           {
             "position": 1,
@@ -11447,15 +11451,15 @@
             "number": "20",
             "position": 25
           }
-        ],
-        "kind": "practice"
+        ]
       },
       {
+        "id": "indycar-2026-r10-s1781435439591",
         "name": "Race",
+        "kind": "race",
+        "date": "2026-06-21",
         "timeLocal": "14:00",
         "durationMinutes": 120,
-        "id": "indycar-2026-r10-s1781435439591",
-        "date": "2026-06-21",
         "results": [
           {
             "position": 1,
@@ -11656,23 +11660,27 @@
             "driver": "C. Rasmussen",
             "interval": "+26 laps"
           }
-        ],
-        "kind": "race"
+        ]
       }
-    ],
-    "seriesId": "indycar",
-    "id": "indycar-2026-r10",
-    "country": "United States"
+    ]
   },
   {
     "id": "indycar-2026-r11",
+    "seriesId": "indycar",
+    "roundNumber": 11,
     "raceName": "Honda Indy 200 at Mid-Ohio",
-    "countryCode": "US",
     "circuitName": "Mid-Ohio Sports Car Course",
+    "city": "Lexington",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
-        "timeLocal": "15:00",
+        "id": "indycar-2026-r11-s1",
+        "name": "Practice 1",
+        "kind": "practice",
         "date": "2026-07-03",
+        "timeLocal": "15:00",
+        "durationMinutes": 90,
         "results": [
           {
             "position": 1,
@@ -11898,15 +11906,15 @@
             "driver": "R. Grosjean",
             "team": "Dale Coyne Racing"
           }
-        ],
-        "kind": "practice",
-        "id": "indycar-2026-r11-s1",
-        "name": "Practice 1",
-        "durationMinutes": 90
+        ]
       },
       {
-        "timeLocal": "10:00",
+        "id": "indycar-2026-r11-s1782672376805",
+        "name": "Practice 2",
+        "kind": "practice",
         "date": "2026-07-04",
+        "timeLocal": "10:00",
+        "durationMinutes": 80,
         "results": [
           {
             "position": 1,
@@ -12024,15 +12032,15 @@
             "driver": "D. Hauger",
             "team": "Dale Coyne Racing"
           }
-        ],
-        "kind": "practice",
-        "id": "indycar-2026-r11-s1782672376805",
-        "name": "Practice 2",
-        "durationMinutes": 80
+        ]
       },
       {
-        "timeLocal": "14:30",
+        "id": "indycar-2026-r11-s1782672353674",
+        "name": "Qualifying",
+        "kind": "qualifying",
         "date": "2026-07-04",
+        "timeLocal": "14:30",
+        "durationMinutes": 120,
         "results": [
           {
             "position": 1,
@@ -12233,15 +12241,15 @@
             "driver": "D. Hauger",
             "interval": "+1.0619"
           }
-        ],
-        "kind": "qualifying",
-        "id": "indycar-2026-r11-s1782672353674",
-        "name": "Qualifying",
-        "durationMinutes": 120
+        ]
       },
       {
-        "timeLocal": "09:00",
+        "id": "indycar-2026-r11-s1782672441208",
+        "name": "Warmup",
+        "kind": "practice",
         "date": "2026-07-05",
+        "timeLocal": "09:00",
+        "durationMinutes": 30,
         "results": [
           {
             "position": 1,
@@ -12467,15 +12475,15 @@
             "driver": "S. McLaughlin",
             "team": "Team Penske"
           }
-        ],
-        "kind": "practice",
-        "id": "indycar-2026-r11-s1782672441208",
-        "name": "Warmup",
-        "durationMinutes": 30
+        ]
       },
       {
-        "timeLocal": "12:30",
+        "id": "indycar-2026-r11-s1782672353314",
+        "name": "Race",
+        "kind": "race",
         "date": "2026-07-05",
+        "timeLocal": "12:30",
+        "durationMinutes": 120,
         "results": [
           {
             "position": 1,
@@ -12701,179 +12709,236 @@
             "interval": "+1 Lap",
             "speed": "1:43'47.8770"
           }
-        ],
-        "kind": "race",
-        "id": "indycar-2026-r11-s1782672353314",
-        "name": "Race",
-        "durationMinutes": 120
+        ]
       }
-    ],
-    "seriesId": "indycar",
-    "city": "Lexington",
-    "roundNumber": 11,
-    "country": "United States"
+    ]
   },
   {
-    "raceName": "Borchetta Bourbon Music City Grand Prix",
-    "countryCode": "US",
+    "id": "indycar-2026-r12",
+    "seriesId": "indycar",
     "roundNumber": 12,
+    "raceName": "Borchetta Bourbon Music City Grand Prix",
     "circuitName": "Nashville Superspeedway",
     "city": "Lebanon",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
-        "kind": "practice",
-        "durationMinutes": 90,
-        "timeLocal": "10:00",
         "id": "indycar-2026-r12-s1783248524876",
         "name": "Practice 1",
-        "date": "2026-07-18"
+        "kind": "practice",
+        "date": "2026-07-18",
+        "timeLocal": "10:00",
+        "durationMinutes": 90
       },
       {
-        "kind": "qualifying",
-        "durationMinutes": 120,
-        "timeLocal": "15:00",
         "id": "indycar-2026-r12-s1783248483765",
         "name": "Qualifying",
-        "date": "2026-07-18"
+        "kind": "qualifying",
+        "date": "2026-07-18",
+        "timeLocal": "15:00",
+        "durationMinutes": 120
       },
       {
-        "kind": "practice",
-        "durationMinutes": 120,
-        "timeLocal": "18:00",
         "id": "indycar-2026-r12-s1783248483223",
         "name": "Final Practice",
-        "date": "2026-07-18"
+        "kind": "practice",
+        "date": "2026-07-18",
+        "timeLocal": "18:00",
+        "durationMinutes": 120
       },
       {
-        "kind": "race",
-        "durationMinutes": 120,
-        "timeLocal": "17:30",
         "id": "indycar-2026-r12-s1",
         "name": "Race",
-        "date": "2026-07-19"
+        "kind": "race",
+        "date": "2026-07-19",
+        "timeLocal": "17:30",
+        "durationMinutes": 120
       }
-    ],
-    "seriesId": "indycar",
-    "id": "indycar-2026-r12",
-    "country": "United States"
+    ]
   },
   {
-    "raceName": "BITNILE.com Grand Prix of Portland",
-    "countryCode": "US",
+    "id": "indycar-2026-r13",
+    "seriesId": "indycar",
     "roundNumber": 13,
+    "raceName": "BITNILE.com Grand Prix of Portland",
     "circuitName": "Portland International Raceway",
     "city": "Portland",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
-        "kind": "race",
-        "durationMinutes": 120,
-        "timeLocal": "16:00",
         "id": "indycar-2026-r13-s1",
+        "name": "Practice 1",
+        "kind": "practice",
+        "date": "2026-08-07",
+        "timeLocal": "17:30",
+        "durationMinutes": 90
+      },
+      {
+        "id": "indycar-2026-r13-s1784048473791",
+        "name": "Practice 2",
+        "kind": "practice",
+        "date": "2026-08-08",
+        "timeLocal": "13:00",
+        "durationMinutes": 90
+      },
+      {
+        "id": "indycar-2026-r13-s1784048448625",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-08-08",
+        "timeLocal": "19:00",
+        "durationMinutes": 60
+      },
+      {
+        "id": "indycar-2026-r13-s1784048448338",
+        "name": "Warmup",
+        "kind": "practice",
+        "date": "2026-08-09",
+        "timeLocal": "13:00",
+        "durationMinutes": 30
+      },
+      {
+        "id": "indycar-2026-r13-s1784048448051",
         "name": "Race",
-        "date": "2026-08-09"
+        "kind": "race",
+        "date": "2026-08-09",
+        "timeLocal": "16:00",
+        "durationMinutes": 120
       }
-    ],
-    "seriesId": "indycar",
-    "id": "indycar-2026-r13",
-    "country": "United States"
+    ]
   },
   {
-    "raceName": "Ontario Honda Dealers Indy at Markham",
-    "countryCode": "CA",
+    "id": "indycar-2026-r14",
+    "seriesId": "indycar",
     "roundNumber": 14,
+    "raceName": "Ontario Honda Dealers Indy at Markham",
     "circuitName": "Streets of Markham",
     "city": "Markham",
+    "country": "Canada",
+    "countryCode": "CA",
     "sessions": [
       {
-        "kind": "race",
-        "durationMinutes": 120,
-        "timeLocal": "12:00",
+        "id": "indycar-2026-r14-s2",
+        "name": "Practice 1",
+        "kind": "practice",
+        "date": "2026-08-14",
+        "timeLocal": "15:00",
+        "durationMinutes": 90
+      },
+      {
+        "id": "indycar-2026-r14-s1784048567454",
+        "name": "Practice 2",
+        "kind": "practice",
+        "date": "2026-08-15",
+        "timeLocal": "10:00",
+        "durationMinutes": 90
+      },
+      {
+        "id": "indycar-2026-r14-s1784048581984",
+        "name": "Qualifying",
+        "kind": "practice",
+        "date": "2026-08-15",
+        "timeLocal": "14:25",
+        "durationMinutes": 90
+      },
+      {
+        "id": "indycar-2026-r14-s1784048601997",
+        "name": "Warmup",
+        "kind": "practice",
+        "date": "2026-08-16",
+        "timeLocal": "08:30",
+        "durationMinutes": 30
+      },
+      {
         "id": "indycar-2026-r14-s1",
         "name": "Race",
-        "date": "2026-08-16"
+        "kind": "race",
+        "date": "2026-08-16",
+        "timeLocal": "12:00",
+        "durationMinutes": 120
       }
-    ],
-    "seriesId": "indycar",
-    "id": "indycar-2026-r14",
-    "country": "Canada"
+    ]
   },
   {
-    "raceName": "Freedom 250 Grand Prix of Washington, D.C.",
-    "countryCode": "US",
+    "id": "indycar-2026-r15",
+    "seriesId": "indycar",
     "roundNumber": 15,
+    "raceName": "Freedom 250 Grand Prix of Washington, D.C.",
     "circuitName": "Streets of Washington",
     "city": "Washington D.C.",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
-        "kind": "race",
-        "durationMinutes": 120,
         "id": "indycar-2026-r15-s1",
         "name": "Race",
-        "date": "2026-08-23"
+        "kind": "race",
+        "date": "2026-08-23",
+        "timeLocal": null,
+        "durationMinutes": 120
       }
-    ],
-    "seriesId": "indycar",
-    "id": "indycar-2026-r15",
-    "country": "United States"
+    ]
   },
   {
-    "raceName": "Snap-on Makers and Fixers 250",
-    "countryCode": "US",
+    "id": "indycar-2026-r16",
+    "seriesId": "indycar",
     "roundNumber": 16,
+    "raceName": "Snap-on Makers and Fixers 250",
     "circuitName": "Milwaukee Mile",
     "city": "West Allis",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
-        "kind": "race",
-        "durationMinutes": 120,
-        "timeLocal": "14:30",
         "id": "indycar-2026-r16-s1",
         "name": "Race",
-        "date": "2026-08-29"
+        "kind": "race",
+        "date": "2026-08-29",
+        "timeLocal": "14:30",
+        "durationMinutes": 120
       }
-    ],
-    "seriesId": "indycar",
-    "id": "indycar-2026-r16",
-    "country": "United States"
+    ]
   },
   {
-    "raceName": "Snap-on Milwaukee Mile 250",
-    "countryCode": "US",
+    "id": "indycar-2026-r17",
+    "seriesId": "indycar",
     "roundNumber": 17,
+    "raceName": "Snap-on Milwaukee Mile 250",
     "circuitName": "Milwaukee Mile",
     "city": "West Allis",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
-        "kind": "race",
-        "durationMinutes": 120,
-        "timeLocal": "13:00",
         "id": "indycar-2026-r17-s1",
         "name": "Race",
-        "date": "2026-08-30"
+        "kind": "race",
+        "date": "2026-08-30",
+        "timeLocal": "14:30",
+        "durationMinutes": 120
       }
-    ],
-    "seriesId": "indycar",
-    "id": "indycar-2026-r17",
-    "country": "United States"
+    ]
   },
   {
-    "raceName": "Grand Prix of Monterey",
-    "countryCode": "US",
+    "id": "indycar-2026-r18",
+    "seriesId": "indycar",
     "roundNumber": 18,
+    "raceName": "Grand Prix of Monterey",
     "circuitName": "WeatherTech Raceway Laguna Seca",
     "city": "Monterey",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
-        "kind": "race",
-        "durationMinutes": 120,
-        "timeLocal": "14:30",
         "id": "indycar-2026-r18-s1",
         "name": "Race",
-        "date": "2026-09-06"
+        "kind": "race",
+        "date": "2026-09-06",
+        "timeLocal": "14:30",
+        "durationMinutes": 120
       }
-    ],
-    "seriesId": "indycar",
-    "id": "indycar-2026-r18",
-    "country": "United States"
+    ]
   }
 ]
