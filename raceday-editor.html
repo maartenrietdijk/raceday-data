@@ -2169,16 +2169,42 @@ function parseOcrDate(text, year) {
 }
 
 function cleanOcrSessionName(text) {
-  let value = text.replace(/[•|]/g, ' ').replace(/\s+/g, ' ').trim();
-  value = value.replace(/^WRC\s+/i, '').replace(/\s+(?:in\s+)?\d+\s+days?.*$/i, '').trim();
-  const keyword = value.match(/(?:Shakedown|Hyperpole|Sprint\s+Qualifying|Sprint\s+Race|Feature\s+Race|Qualifying|Qualification|Practice|Free\s+Practice|Training|Testing|Race|(?:SS|Stage)\s*\d+\s*[-–:]?\s*[^\d]{0,50}\d?)/i);
+  let value = text
+    .replace(/[•|]/g, ' ')
+    .replace(/[–—]/g, '-')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .replace(/^[\[\]{}()!.,:;\s]+/, '')
+    .trim();
+
+  // Tesseract verwisselt in screenshots regelmatig WRC → WRE en SS → $5/S5/55.
+  value = value
+    .replace(/^(?:wrc|wre|wro|wac|wr0)\b\s*/i, '')
+    .replace(/\s+(?:in\s+)?\d+\s+days?.*$/i, '')
+    .trim();
+
+  const fuzzyStage = value.match(/^[^a-z0-9]{0,2}[s5$§]{2}([0-9oOilLsS]{1,2})\s*[-:]\s*(.+)$/i);
+  if (fuzzyStage) {
+    const stageNumber = fuzzyStage[1]
+      .replace(/[oO]/g, '0')
+      .replace(/[iIlL]/g, '1')
+      .replace(/[sS]/g, '5');
+    const stageName = fuzzyStage[2]
+      .replace(/\s+\b(?:mon|tue|wed|thu|fri|sat|sun)\b.*$/i, '')
+      .replace(/\s+\d{1,2}\s*°?c\b.*$/i, '')
+      .replace(/\s+(?:in\s+)?\d+\s+days?.*$/i, '')
+      .trim();
+    if (stageName && Number(stageNumber) > 0) return `SS${Number(stageNumber)} - ${stageName}`;
+  }
+
+  const keyword = value.match(/(?:Shakedown|Warm\s*Up|Hyperpole|Sprint\s+Qualifying|Sprint\s+Race|Feature\s+Race|Qualifying|Qualification|Practice|Free\s+Practice|Training|Testing|Race|(?:SS|Stage)\s*\d+\s*[-:]?\s*[^\d]{0,50}\d?)/i);
   if (keyword) {
     const fullName = value.slice(keyword.index)
       .replace(/\s+\b(?:mon|tue|wed|thu|fri|sat|sun)\b.*$/i, '')
       .replace(/\s+\d{1,2}\s*°?c\b.*$/i, '').trim();
     return fullName.length <= 80 ? fullName : keyword[0].trim();
   }
-  if (/^(?:wrc|rally\b|schedule|schedules|thursday|friday|saturday|sunday|monday|tuesday|wednesday)/i.test(value)) return '';
+  if (/^(?:wrc|wre|wro|rally\b|the racing line|racing line|schedule|schedules|thursday|friday|saturday|sunday|monday|tuesday|wednesday)/i.test(value)) return '';
   if (/\b(?:mon|tue|wed|thu|fri|sat|sun)\b/i.test(value) || /\b\d{1,2}[:.]\d{2}\b/.test(value)) return '';
   if (/\b\d{1,2}\s*°?c\b/i.test(value) || /^in \d+ days?/i.test(value)) return '';
   return value.length >= 3 && value.length <= 80 ? value : '';
@@ -2221,7 +2247,11 @@ function parseScreenshotText(text, year, sourceIndex) {
 function combineOcrCandidates(candidates) {
   const combined = new Map();
   let merged = 0;
-  const quality = candidate => (/^(?:SS|Stage)\s*\d+|Shakedown|Qual|Practice|Race/i.test(candidate.name) ? 100 : 0) + candidate.name.length;
+  const quality = candidate => {
+    const recognized = /^(?:SS|Stage)\s*\d+|Shakedown|Warm\s*Up|Qual|Practice|Race/i.test(candidate.name) ? 150 : 0;
+    const noise = /[\[\]{}$§]|\b(?:wrc|wre|wro)\b/i.test(candidate.name) ? 200 : 0;
+    return recognized + Math.min(candidate.name.length, 80) - noise;
+  };
   candidates.forEach(candidate => {
     const key = `${candidate.date}|${candidate.time}`;
     const current = combined.get(key);
@@ -2480,7 +2510,8 @@ function pointerReorderEnd() {
 function deleteSession(ri, si) {
   state.data[state.activeSeries][ri].sessions.splice(si, 1);
   save();
-  renderMain(); // simple re-render
+  renderMain();
+  requestAnimationFrame(() => document.getElementById(`round_${ri}`)?.classList.add('open'));
 }
 
 // ── JSON Export ────────────────────────────────────────────────────────────────
