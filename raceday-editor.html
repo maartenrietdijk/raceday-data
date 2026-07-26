@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js" defer></script>
 <script>
   (() => {
     const media = window.matchMedia('(prefers-color-scheme: dark)');
@@ -726,6 +727,45 @@
   .modal p { margin-bottom: 22px; }
   .modal-fields { gap: 16px; }
   .modal-actions { padding-top: 18px; border-top: 1px solid var(--border2); }
+  .modal.modal-wide { width: min(860px, 100%); }
+  .ocr-controls { display: grid; grid-template-columns: minmax(0, 1fr) 120px; gap: 12px; align-items: end; }
+  .ocr-upload {
+    display: flex; align-items: center; justify-content: center; min-height: 92px; padding: 18px;
+    border: 1px dashed var(--border); border-radius: 6px; background: var(--bg2); color: var(--text2);
+    cursor: pointer; text-align: center; transition: border-color .15s, background .15s;
+  }
+  .ocr-upload:hover { border-color: var(--text); background: var(--bg3); }
+  .ocr-upload strong { display: block; margin-bottom: 2px; color: var(--text); font-size: 13px; }
+  .ocr-upload span { color: var(--muted); font-size: 11px; }
+  .ocr-file-list { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0; }
+  .ocr-file {
+    display: flex; align-items: center; gap: 8px; max-width: 230px; padding: 7px 9px;
+    border: 1px solid var(--border2); border-radius: 4px; background: var(--bg); font-size: 11px;
+  }
+  .ocr-file img { width: 34px; height: 34px; border-radius: 3px; object-fit: cover; }
+  .ocr-file-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .ocr-file button { flex: 0 0 auto; }
+  .ocr-progress { display: none; margin: 14px 0; }
+  .ocr-progress.show { display: block; }
+  .ocr-progress-track { height: 4px; overflow: hidden; border-radius: 999px; background: var(--bg3); }
+  .ocr-progress-bar { width: 0; height: 100%; background: var(--text); transition: width .2s ease; }
+  .ocr-progress-text { margin-top: 7px; color: var(--muted); font-size: 11px; }
+  .ocr-summary { display: flex; flex-wrap: wrap; gap: 6px; margin: 16px 0 8px; }
+  .ocr-chip { padding: 4px 8px; border-radius: 999px; background: var(--bg2); color: var(--text2); font-size: 11px; }
+  .ocr-chip.duplicate { background: var(--amber-bg); color: var(--amber); }
+  .ocr-table { display: flex; flex-direction: column; margin: 8px 0 18px; border-top: 1px solid var(--border2); }
+  .ocr-row {
+    display: grid; grid-template-columns: 28px minmax(180px, 1.4fr) 130px 140px 100px;
+    gap: 8px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border2);
+  }
+  .ocr-row input, .ocr-row select {
+    width: 100%; min-height: 40px; padding: 8px 9px; border: 1px solid var(--border);
+    border-radius: 3px; background: var(--bg); color: var(--text); font: 500 13px var(--sans);
+  }
+  .ocr-check { width: 20px !important; min-height: 20px !important; accent-color: var(--text); }
+  .ocr-row.is-duplicate { opacity: .58; }
+  .ocr-duplicate-note { grid-column: 2 / -1; margin-top: -5px; color: var(--amber); font-size: 10px; }
+  .ocr-empty { padding: 24px; border: 1px solid var(--border2); border-radius: 4px; color: var(--muted); text-align: center; }
   .status-bar { bottom: 24px; min-width: 0; max-width: calc(100vw - 32px); padding: 12px 18px; border: 0; border-radius: 3px; background: var(--accent); color: var(--accent-fg); box-shadow: var(--shadow-menu); }
   .status-bar.success, .status-bar.error, .status-bar.loading { border-color: transparent; color: var(--accent-fg); }
 
@@ -830,6 +870,15 @@
     .modal-backdrop { align-items: flex-end; padding: 0; }
     .modal { width: 100%; max-width: none; max-height: 92dvh; padding: 24px 18px calc(22px + env(safe-area-inset-bottom)); border-radius: 12px 12px 0 0; }
     .modal-actions { position: sticky; bottom: 0; margin: 0 -18px -22px; padding: 14px 18px calc(14px + env(safe-area-inset-bottom)); background: var(--bg); }
+    .ocr-controls { grid-template-columns: 1fr; }
+    .ocr-row { grid-template-columns: 28px minmax(0, 1fr) 105px; gap: 8px; }
+    .ocr-row .ocr-check { grid-row: 1; }
+    .ocr-row .ocr-name { grid-column: 2 / -1; grid-row: 1; }
+    .ocr-row .ocr-kind { grid-column: 2 / -1; grid-row: 2; }
+    .ocr-row .ocr-date { grid-column: 2; grid-row: 3; }
+    .ocr-row .ocr-time { grid-column: 3; grid-row: 3; }
+    .ocr-duplicate-note { grid-column: 2 / -1; grid-row: 4; }
+    .ocr-file { max-width: 100%; flex: 1 1 100%; }
     .status-bar { bottom: calc(14px + env(safe-area-inset-bottom)); width: calc(100vw - 28px); text-align: center; }
   }
 
@@ -928,6 +977,35 @@
     <div class="modal-actions">
       <button class="btn btn-ghost" onclick="closeModal('addSeriesModal')">Annuleer</button>
       <button class="btn btn-primary" onclick="confirmAddSeries()">Serie toevoegen</button>
+    </div>
+  </div>
+</div>
+
+<!-- Screenshot Session Import Modal -->
+<div class="modal-backdrop" id="screenshotImportModal">
+  <div class="modal modal-wide">
+    <h2>Sessies uit screenshots</h2>
+    <p id="ocrIntro">Voeg één of meerdere screenshots toe. De afbeeldingen worden op dit apparaat gelezen, samengevoegd en op dubbele sessies gecontroleerd.</p>
+    <div class="ocr-controls">
+      <label class="ocr-upload" for="ocrFiles">
+        <span><strong>Voeg screenshots toe</strong>Je kunt meerdere afbeeldingen tegelijk kiezen</span>
+      </label>
+      <div class="field">
+        <label for="ocrYear">Jaar</label>
+        <input type="number" id="ocrYear" min="2000" max="2100" inputmode="numeric" value="2026">
+      </div>
+    </div>
+    <input type="file" id="ocrFiles" accept="image/*" multiple hidden onchange="addScreenshotFiles(this.files)">
+    <div class="ocr-file-list" id="ocrFileList"></div>
+    <div class="ocr-progress" id="ocrProgress" aria-live="polite">
+      <div class="ocr-progress-track"><div class="ocr-progress-bar" id="ocrProgressBar"></div></div>
+      <div class="ocr-progress-text" id="ocrProgressText">Voorbereiden…</div>
+    </div>
+    <div id="ocrResults"></div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeScreenshotImport()">Annuleer</button>
+      <button class="btn btn-surface" id="ocrScanBtn" onclick="scanScreenshots()">Lees screenshots</button>
+      <button class="btn btn-primary" id="ocrImportBtn" onclick="importScreenshotSessions()" disabled>Voeg sessies toe</button>
     </div>
   </div>
 </div>
@@ -1712,7 +1790,10 @@ function renderRound(r, i, series) {
         <div class="sessions-wrap">
           <div class="sessions-label">
             Sessies
-            <button class="btn btn-surface btn-sm" onclick="addSession(${i})">+ Sessie</button>
+            <span style="display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end">
+              <button class="btn btn-surface btn-sm" onclick="openScreenshotImport(${i})">▣ Screenshots</button>
+              <button class="btn btn-surface btn-sm" onclick="addSession(${i})">+ Sessie</button>
+            </span>
           </div>
           <div class="session-columns">
             <span></span>
@@ -1958,6 +2039,338 @@ function addSession(ri) {
     document.getElementById(`round_${ri}`)?.classList.add('open');
     document.getElementById(`sessionName_${ri}_${si}`)?.focus();
   });
+}
+
+// ── Screenshot session import ─────────────────────────────────────────────────
+
+const screenshotImport = { roundIndex: null, files: [], candidates: [], busy: false };
+const OCR_MONTHS = {
+  jan: 1, january: 1, januari: 1, feb: 2, february: 2, februari: 2,
+  mar: 3, march: 3, maart: 3, apr: 4, april: 4, may: 5, mei: 5,
+  jun: 6, june: 6, juni: 6, jul: 7, july: 7, juli: 7, aug: 8, august: 8, augustus: 8,
+  sep: 9, sept: 9, september: 9, oct: 10, october: 10, oktober: 10,
+  nov: 11, november: 11, dec: 12, december: 12, december: 12
+};
+
+function sessionDateParts(session) {
+  const date = session._date || session.date || (session.dateUTC ? String(session.dateUTC).split('T')[0] : '');
+  const time = session._time || session.timeLocal || session.timeUTC ||
+    (session.dateUTC && String(session.dateUTC).includes('T') ? String(session.dateUTC).split('T')[1].substring(0, 5) : '');
+  return { date: date || '', time: time || '' };
+}
+
+function inferRoundYear(round) {
+  for (const session of round.sessions || []) {
+    const year = Number(sessionDateParts(session).date.substring(0, 4));
+    if (year >= 2000 && year <= 2100) return year;
+  }
+  const idYear = String(round.id || '').match(/(?:19|20)\d{2}/)?.[0];
+  return Number(idYear) || 2026;
+}
+
+function openScreenshotImport(roundIndex) {
+  const round = state.data[state.activeSeries]?.[roundIndex];
+  if (!round) return;
+  resetScreenshotImport();
+  screenshotImport.roundIndex = roundIndex;
+  document.getElementById('ocrYear').value = inferRoundYear(round);
+  document.getElementById('ocrIntro').textContent =
+    `Voeg screenshots voor ${round.raceName || `ronde ${round.roundNumber || roundIndex + 1}`} toe. Alles wordt lokaal gelezen, samengevoegd en gecontroleerd.`;
+  document.getElementById('screenshotImportModal').classList.add('show');
+}
+
+function closeScreenshotImport() {
+  if (screenshotImport.busy) return;
+  document.getElementById('screenshotImportModal').classList.remove('show');
+  resetScreenshotImport();
+}
+
+function resetScreenshotImport() {
+  screenshotImport.files.forEach(item => URL.revokeObjectURL(item.url));
+  screenshotImport.files = [];
+  screenshotImport.candidates = [];
+  screenshotImport.mergedCount = 0;
+  screenshotImport.roundIndex = null;
+  screenshotImport.busy = false;
+  const input = document.getElementById('ocrFiles');
+  if (input) input.value = '';
+  const list = document.getElementById('ocrFileList');
+  const results = document.getElementById('ocrResults');
+  if (list) list.innerHTML = '';
+  if (results) results.innerHTML = '';
+  setOcrProgress(0, '', false);
+  setOcrButtons(false);
+}
+
+function addScreenshotFiles(fileList) {
+  const known = new Set(screenshotImport.files.map(item => item.key));
+  [...fileList].filter(file => file.type.startsWith('image/')).forEach(file => {
+    const key = `${file.name}:${file.size}:${file.lastModified}`;
+    if (!known.has(key)) {
+      screenshotImport.files.push({ file, key, url: URL.createObjectURL(file) });
+      known.add(key);
+    }
+  });
+  document.getElementById('ocrFiles').value = '';
+  renderScreenshotFiles();
+  setOcrButtons(screenshotImport.candidates.length > 0);
+}
+
+function removeScreenshotFile(index) {
+  if (screenshotImport.busy) return;
+  const [removed] = screenshotImport.files.splice(index, 1);
+  if (removed) URL.revokeObjectURL(removed.url);
+  renderScreenshotFiles();
+}
+
+function renderScreenshotFiles() {
+  const list = document.getElementById('ocrFileList');
+  list.innerHTML = screenshotImport.files.map((item, index) => `
+    <div class="ocr-file">
+      <img src="${item.url}" alt="">
+      <span class="ocr-file-name" title="${esc(item.file.name)}">${esc(item.file.name)}</span>
+      <button class="btn-icon" onclick="removeScreenshotFile(${index})" aria-label="Verwijder screenshot">×</button>
+    </div>`).join('');
+}
+
+function setOcrProgress(percent, text, visible = true) {
+  const box = document.getElementById('ocrProgress');
+  if (!box) return;
+  box.classList.toggle('show', visible);
+  document.getElementById('ocrProgressBar').style.width = `${Math.max(0, Math.min(100, percent))}%`;
+  document.getElementById('ocrProgressText').textContent = text;
+}
+
+function setOcrButtons(hasResults) {
+  const scan = document.getElementById('ocrScanBtn');
+  const importBtn = document.getElementById('ocrImportBtn');
+  if (!scan || !importBtn) return;
+  scan.disabled = screenshotImport.busy;
+  scan.textContent = screenshotImport.busy ? 'Bezig met lezen…' : 'Lees screenshots';
+  importBtn.disabled = screenshotImport.busy || !hasResults;
+}
+
+function parseOcrDate(text, year) {
+  const clean = text.toLowerCase().replace(/[|]/g, ' ').replace(/\s+/g, ' ');
+  let match = clean.match(/\b(20\d{2})[-/.](\d{1,2})[-/.](\d{1,2})\b/);
+  if (match) return `${match[1]}-${String(match[2]).padStart(2, '0')}-${String(match[3]).padStart(2, '0')}`;
+  match = clean.match(/\b(\d{1,2})[-/.](\d{1,2})(?:[-/.](\d{2,4}))?\b/);
+  if (match) {
+    const resolvedYear = match[3] ? (match[3].length === 2 ? 2000 + Number(match[3]) : Number(match[3])) : year;
+    return `${resolvedYear}-${String(match[2]).padStart(2, '0')}-${String(match[1]).padStart(2, '0')}`;
+  }
+  const monthPattern = Object.keys(OCR_MONTHS).join('|');
+  match = clean.match(new RegExp(`\\b(?:mon|tue|wed|thu|fri|sat|sun|ma|di|wo|do|vr|za|zo)?[a-z]*\\s*(?:(${monthPattern})\\.?\\s*(\\d{1,2})|(\\d{1,2})\\s*(${monthPattern})\\.?)\\b`, 'i'));
+  if (!match) return '';
+  const month = OCR_MONTHS[(match[1] || match[4]).toLowerCase()];
+  const day = Number(match[2] || match[3]);
+  if (!month || day < 1 || day > 31) return '';
+  return `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+}
+
+function cleanOcrSessionName(text) {
+  let value = text.replace(/[•|]/g, ' ').replace(/\s+/g, ' ').trim();
+  value = value.replace(/^WRC\s+/i, '').replace(/\s+(?:in\s+)?\d+\s+days?.*$/i, '').trim();
+  const keyword = value.match(/(?:Shakedown|Hyperpole|Sprint\s+Qualifying|Sprint\s+Race|Feature\s+Race|Qualifying|Qualification|Practice|Free\s+Practice|Training|Testing|Race|(?:SS|Stage)\s*\d+\s*[-–:]?\s*[^\d]{0,50}\d?)/i);
+  if (keyword) {
+    const fullName = value.slice(keyword.index)
+      .replace(/\s+\b(?:mon|tue|wed|thu|fri|sat|sun)\b.*$/i, '')
+      .replace(/\s+\d{1,2}\s*°?c\b.*$/i, '').trim();
+    return fullName.length <= 80 ? fullName : keyword[0].trim();
+  }
+  if (/^(?:wrc|rally\b|schedule|schedules|thursday|friday|saturday|sunday|monday|tuesday|wednesday)/i.test(value)) return '';
+  if (/\b(?:mon|tue|wed|thu|fri|sat|sun)\b/i.test(value) || /\b\d{1,2}[:.]\d{2}\b/.test(value)) return '';
+  if (/\b\d{1,2}\s*°?c\b/i.test(value) || /^in \d+ days?/i.test(value)) return '';
+  return value.length >= 3 && value.length <= 80 ? value : '';
+}
+
+function detectSessionKind(name) {
+  const value = name.toLowerCase();
+  if (value.includes('shakedown')) return 'shakedown';
+  if (/\b(ss|stage)\s*\d+/.test(value)) return 'stage';
+  if (value.includes('sprint qual')) return 'sprintQualifying';
+  if (value.includes('sprint') && value.includes('race')) return 'sprintRace';
+  if (value.includes('hyperpole')) return 'hyperpole';
+  if (value.includes('qual')) return 'qualifying';
+  if (value.includes('feature')) return 'featureRace';
+  if (value.includes('test')) return 'testing';
+  if (value.includes('practice') || value.includes('training')) return 'practice';
+  return 'race';
+}
+
+function parseScreenshotText(text, year, sourceIndex) {
+  const lines = text.split(/\r?\n/).map(line => line.replace(/\s+/g, ' ').trim()).filter(Boolean);
+  const candidates = [];
+  for (let index = 0; index < lines.length; index++) {
+    const timeLine = lines[index].replace(/\b[Oo](?=\d[:.;])/g, '0').replace(/([:.;])[Oo](?=\d\b)/g, (_, separator) => `${separator}0`);
+    const timeMatches = [...timeLine.matchAll(/\b([01]?\d|2[0-3])[:.;]([0-5]\d)\b/g)];
+    for (const timeMatch of timeMatches) {
+      const time = `${String(Number(timeMatch[1])).padStart(2, '0')}:${timeMatch[2]}`;
+      let date = '';
+      for (let offset = 0; offset <= 5 && !date; offset++) date = parseOcrDate(lines[index - offset] || '', year);
+      if (!date) continue;
+      let name = cleanOcrSessionName(lines[index]);
+      for (let offset = 1; offset <= 7 && !name; offset++) name = cleanOcrSessionName(lines[index - offset] || '');
+      if (!name) continue;
+      candidates.push({ name, kind: detectSessionKind(name), date, time, sourceIndex, selected: true, duplicate: false });
+    }
+  }
+  return candidates;
+}
+
+function combineOcrCandidates(candidates) {
+  const combined = new Map();
+  let merged = 0;
+  const quality = candidate => (/^(?:SS|Stage)\s*\d+|Shakedown|Qual|Practice|Race/i.test(candidate.name) ? 100 : 0) + candidate.name.length;
+  candidates.forEach(candidate => {
+    const key = `${candidate.date}|${candidate.time}`;
+    const current = combined.get(key);
+    if (!current) combined.set(key, candidate);
+    else {
+      merged++;
+      if (quality(candidate) > quality(current)) combined.set(key, { ...candidate, selected: current.selected });
+    }
+  });
+  return { candidates: [...combined.values()], merged };
+}
+
+async function scanScreenshots() {
+  if (screenshotImport.busy) return;
+  if (screenshotImport.files.length === 0) {
+    showStatus('Voeg eerst minimaal één screenshot toe', 'error');
+    return;
+  }
+  if (!window.Tesseract) {
+    showStatus('De afbeeldingsherkenning kon niet worden geladen. Controleer je internetverbinding.', 'error');
+    return;
+  }
+
+  screenshotImport.busy = true;
+  screenshotImport.candidates = [];
+  setOcrButtons(false);
+  const year = Math.max(2000, Math.min(2100, Number(document.getElementById('ocrYear').value) || 2026));
+  let worker;
+  try {
+    worker = await Tesseract.createWorker('eng', 1, {
+      logger: message => {
+        if (message.status !== 'recognizing text') return;
+        const fileProgress = (screenshotImport._fileIndex + message.progress) / screenshotImport.files.length;
+        setOcrProgress(fileProgress * 100, `Screenshot ${screenshotImport._fileIndex + 1} van ${screenshotImport.files.length} lezen…`);
+      }
+    });
+    for (let index = 0; index < screenshotImport.files.length; index++) {
+      screenshotImport._fileIndex = index;
+      setOcrProgress(index / screenshotImport.files.length * 100, `Screenshot ${index + 1} van ${screenshotImport.files.length} voorbereiden…`);
+      const result = await worker.recognize(screenshotImport.files[index].file);
+      screenshotImport.candidates.push(...parseScreenshotText(result.data.text || '', year, index));
+    }
+    const combined = combineOcrCandidates(screenshotImport.candidates);
+    screenshotImport.candidates = combined.candidates;
+    screenshotImport.mergedCount = combined.merged;
+    setOcrProgress(100, 'Herkenning voltooid');
+    renderOcrResults();
+    if (screenshotImport.candidates.length === 0) showStatus('Geen complete sessies met datum en tijd gevonden', 'error');
+  } catch (error) {
+    console.error('Screenshot OCR failed', error);
+    showStatus('De screenshots konden niet volledig worden gelezen', 'error');
+  } finally {
+    if (worker) await worker.terminate().catch(() => {});
+    screenshotImport.busy = false;
+    delete screenshotImport._fileIndex;
+    setOcrButtons(screenshotImport.candidates.length > 0);
+  }
+}
+
+function existingSessionKeys() {
+  const sessions = state.data[state.activeSeries]?.[screenshotImport.roundIndex]?.sessions || [];
+  return new Set(sessions.map(session => {
+    const parts = sessionDateParts(session);
+    return parts.date && parts.time ? `${parts.date}|${parts.time}` : '';
+  }).filter(Boolean));
+}
+
+function renderOcrResults() {
+  const root = document.getElementById('ocrResults');
+  const existing = existingSessionKeys();
+  const seen = new Set();
+  screenshotImport.candidates.sort((a, b) => `${a.date}T${a.time}`.localeCompare(`${b.date}T${b.time}`));
+  screenshotImport.candidates.forEach(candidate => {
+    const key = `${candidate.date}|${candidate.time}`;
+    candidate.duplicate = existing.has(key) || seen.has(key);
+    if (candidate.duplicate) candidate.selected = false;
+    else seen.add(key);
+  });
+
+  if (screenshotImport.candidates.length === 0) {
+    root.innerHTML = '<div class="ocr-empty">Nog geen sessies herkend.</div>';
+    return;
+  }
+  const duplicates = screenshotImport.candidates.filter(candidate => candidate.duplicate).length;
+  const newCount = screenshotImport.candidates.length - duplicates;
+  const kindOptions = candidate => KIND_OPTIONS.map(kind =>
+    `<option value="${kind.value}" ${candidate.kind === kind.value ? 'selected' : ''}>${kind.label}</option>`).join('');
+  root.innerHTML = `
+    <div class="ocr-summary">
+      <span class="ocr-chip">${newCount} nieuwe sessie${newCount === 1 ? '' : 's'}</span>
+      <span class="ocr-chip">${screenshotImport.files.length} screenshot${screenshotImport.files.length === 1 ? '' : 's'} gecombineerd</span>
+      ${screenshotImport.mergedCount ? `<span class="ocr-chip">${screenshotImport.mergedCount} overlap${screenshotImport.mergedCount === 1 ? '' : 'pen'} samengevoegd</span>` : ''}
+      ${duplicates ? `<span class="ocr-chip duplicate">${duplicates} dubbele overgeslagen</span>` : ''}
+    </div>
+    <div class="ocr-table">
+      ${screenshotImport.candidates.map((candidate, index) => `
+        <div class="ocr-row ${candidate.duplicate ? 'is-duplicate' : ''}">
+          <input class="ocr-check" type="checkbox" aria-label="Sessie importeren" ${candidate.selected && !candidate.duplicate ? 'checked' : ''} ${candidate.duplicate ? 'disabled' : ''}
+            onchange="updateOcrCandidate(${index},'selected',this.checked,false)">
+          <input class="ocr-name" type="text" value="${esc(candidate.name)}" aria-label="Sessienaam"
+            oninput="updateOcrCandidate(${index},'name',this.value,false)">
+          <select class="ocr-kind" aria-label="Sessietype" onchange="updateOcrCandidate(${index},'kind',this.value,false)">${kindOptions(candidate)}</select>
+          <input class="ocr-date" type="date" value="${candidate.date}" aria-label="Datum"
+            onchange="updateOcrCandidate(${index},'date',this.value,true)">
+          <input class="ocr-time" type="time" value="${candidate.time}" aria-label="Tijd"
+            onchange="updateOcrCandidate(${index},'time',this.value,true)">
+          ${candidate.duplicate ? '<span class="ocr-duplicate-note">Deze datum en tijd staan al in het event of in een ander screenshot.</span>' : ''}
+        </div>`).join('')}
+    </div>`;
+}
+
+function updateOcrCandidate(index, field, value, rerender) {
+  const candidate = screenshotImport.candidates[index];
+  if (!candidate) return;
+  candidate[field] = value;
+  if (field === 'name' && candidate.kind === 'race') candidate.kind = detectSessionKind(value);
+  if (rerender) renderOcrResults();
+}
+
+function importScreenshotSessions() {
+  const round = state.data[state.activeSeries]?.[screenshotImport.roundIndex];
+  if (!round) return;
+  const additions = screenshotImport.candidates.filter(candidate => candidate.selected && !candidate.duplicate && candidate.name && candidate.date && candidate.time);
+  if (additions.length === 0) {
+    showStatus('Er zijn geen nieuwe sessies geselecteerd', 'error');
+    return;
+  }
+  const stamp = Date.now();
+  additions.forEach((candidate, index) => round.sessions.push({
+    id: `${round.id}-ocr-${stamp}-${index + 1}`,
+    name: candidate.name.trim(),
+    kind: candidate.kind || detectSessionKind(candidate.name),
+    _date: candidate.date,
+    _time: candidate.time,
+    _tbcMode: false,
+    durationMinutes: 60
+  }));
+  round.sessions.sort((a, b) => {
+    const aParts = sessionDateParts(a), bParts = sessionDateParts(b);
+    const aKey = aParts.date && aParts.time ? `${aParts.date}T${aParts.time}` : '9999';
+    const bKey = bParts.date && bParts.time ? `${bParts.date}T${bParts.time}` : '9999';
+    return aKey.localeCompare(bKey);
+  });
+  const roundIndex = screenshotImport.roundIndex;
+  save();
+  closeScreenshotImport();
+  renderMain();
+  requestAnimationFrame(() => document.getElementById(`round_${roundIndex}`)?.classList.add('open'));
+  showStatus(`✓ ${additions.length} sessie${additions.length === 1 ? '' : 's'} toegevoegd en chronologisch gesorteerd`, 'success');
 }
 
 function duplicateSession(ri, si) {
@@ -2367,11 +2780,18 @@ function showStatus(msg, type = 'success') {
 
 // Close modals on backdrop click
 document.querySelectorAll('.modal-backdrop').forEach(el => {
-  el.addEventListener('click', e => { if (e.target === el) el.classList.remove('show'); });
+  el.addEventListener('click', e => {
+    if (e.target !== el) return;
+    if (el.id === 'screenshotImportModal') closeScreenshotImport();
+    else el.classList.remove('show');
+  });
 });
 document.addEventListener('keydown', event => {
   if (event.key !== 'Escape') return;
-  document.querySelectorAll('.modal-backdrop.show').forEach(modal => modal.classList.remove('show'));
+  document.querySelectorAll('.modal-backdrop.show').forEach(modal => {
+    if (modal.id === 'screenshotImportModal') closeScreenshotImport();
+    else modal.classList.remove('show');
+  });
   if (document.querySelector('.sidebar').classList.contains('open')) toggleSidebar();
 });
 
