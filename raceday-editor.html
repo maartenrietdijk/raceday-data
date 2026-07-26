@@ -569,7 +569,8 @@
   .series-dot { width: 7px; height: 7px; }
   .series-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 13.5px; }
   .series-count { color: inherit; opacity: .6; font: 500 10px var(--sans); }
-  .series-grip { color: inherit; opacity: .35; cursor: grab; font-size: 13px; }
+  .series-grip { color: inherit; opacity: .35; cursor: grab; font-size: 13px; user-select: none; }
+  .series-grip:active { cursor: grabbing; }
   .series-mobile-order { display: none; align-items: center; gap: 2px; }
   .series-mobile-order button { width: 34px; height: 34px; border: 0; border-radius: 3px; background: var(--bg2); color: var(--text); }
   .sidebar-dashboard { margin: 0 10px 8px; }
@@ -638,8 +639,16 @@
   .round-card:hover { border-color: var(--border); }
   .round-header { min-height: 68px; padding: 14px 20px; gap: 14px; }
   .round-num { min-width: 38px; padding: 4px 7px; border: 0; border-radius: 3px; background: var(--bg2); color: var(--muted); font: 600 10.5px var(--sans); }
-  .round-name { font-size: 14.5px; font-weight: 600; }
+  .round-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 14.5px; font-weight: 600; }
   .round-meta { font-size: 12.5px; }
+  .round-drag-handle {
+    width: 36px; height: 36px; flex: 0 0 36px; display: inline-flex; align-items: center; justify-content: center;
+    border-radius: 3px; cursor: grab; touch-action: none; user-select: none;
+  }
+  .round-drag-handle:hover { background: var(--bg3); color: var(--text); }
+  .round-drag-handle:active { cursor: grabbing; }
+  .round-card.dragging { opacity: .4; }
+  .round-card.drag-over { outline: 2px solid var(--text); outline-offset: 2px; }
   .round-chevron { transition: transform .35s cubic-bezier(.76, 0, .24, 1); }
   .round-body { border-top: 1px solid var(--border2); }
   .round-card.open .round-body { animation: reveal .25s ease; }
@@ -668,7 +677,9 @@
   .btn-fetch { min-height: 40px; padding: 0 14px; border: 0; border-radius: 3px; background: var(--accent); color: var(--accent-fg); font: 600 12px var(--sans); }
   .btn-fetch:hover { background: var(--accent); opacity: .82; }
   .results-badge { border: 0; border-radius: 3px; background: var(--green-bg); color: var(--green); font-size: 11px; }
-  .drag-handle { position: static; opacity: .5; color: var(--muted); }
+  .drag-handle { position: static; opacity: .5; color: var(--muted); touch-action: none; user-select: none; }
+  .drag-handle[draggable="true"] { cursor: grab; }
+  .drag-handle[draggable="true"]:active { cursor: grabbing; }
 
   .standings-fetch-card { padding: 20px; }
   .standings-table-header { padding: 12px 16px; background: var(--bg2); font-family: var(--sans); }
@@ -769,6 +780,7 @@
     .section-actions > * { flex: 0 0 auto; }
     .tab-switcher { order: -1; }
     .round-header { min-height: 64px; padding: 12px 14px; gap: 10px; }
+    .round-drag-handle { width: 44px; height: 44px; flex-basis: 44px; }
     .round-order-actions .btn-icon { width: 44px; height: 44px; }
     .round-meta { display: none; }
     .round-fields { grid-template-columns: 1fr; gap: 14px; padding: 18px 14px; }
@@ -1139,10 +1151,10 @@ function renderSidebar() {
     const rounds = (state.data[s.id] || []).length;
     const active = s.id === state.activeSeries ? ' active' : '';
     return `
-      <div class="series-item${active}" onclick="selectSeries('${s.id}')" draggable="true"
-        ondragstart="dragSeriesStart(event,${i})" ondragover="dragSeriesOver(event)"
-        ondrop="dragSeriesDrop(event,${i})" ondragend="dragSeriesEnd()">
-        <span class="series-grip" title="Sleep om te sorteren">⠿</span>
+      <div class="series-item${active}" onclick="selectSeries('${s.id}')"
+        ondragover="dragSeriesOver(event)" ondrop="dragSeriesDrop(event,${i})">
+        <span class="series-grip" draggable="true" title="Sleep om te sorteren"
+          onclick="event.stopPropagation()" ondragstart="dragSeriesStart(event,${i})" ondragend="dragSeriesEnd()">⠿</span>
         <div class="series-dot" style="background:${s.color}"></div>
         <span class="series-name">${esc(s.name)}</span>
         <span class="series-count">${rounds}</span>
@@ -1171,16 +1183,14 @@ function moveSeries(from, to) {
 }
 
 function dragSeriesStart(event, index) {
-  if (!event.target.closest('.series-grip')) {
-    event.preventDefault();
-    return;
-  }
   seriesDragIndex = index;
   event.dataTransfer.effectAllowed = 'move';
-  event.currentTarget.classList.add('dragging');
+  event.dataTransfer.setData('text/plain', `series:${index}`);
+  event.currentTarget.closest('.series-item')?.classList.add('dragging');
 }
 
 function dragSeriesOver(event) {
+  if (seriesDragIndex === null) return;
   event.preventDefault();
   event.dataTransfer.dropEffect = 'move';
   document.querySelectorAll('.series-item').forEach(item => item.classList.remove('drag-over'));
@@ -1189,8 +1199,9 @@ function dragSeriesOver(event) {
 
 function dragSeriesDrop(event, index) {
   event.preventDefault();
-  if (seriesDragIndex !== null) moveSeries(seriesDragIndex, index);
+  const from = seriesDragIndex;
   dragSeriesEnd();
+  if (from !== null) moveSeries(from, index);
 }
 
 function dragSeriesEnd() {
@@ -1644,8 +1655,12 @@ async function publishStandingsToGitHub() {
 function renderRound(r, i, series) {
   const sessionRows = (r.sessions || []).map((s, si) => renderSession(s, i, si)).join('');
   return `
-    <div class="round-card" id="round_${i}">
+    <div class="round-card" id="round_${i}" data-round-index="${i}"
+      ondragover="dragRoundOver(event,${i})" ondrop="dragRoundDrop(event,${i})">
       <div class="round-header" onclick="toggleRound(${i})">
+        <span class="round-drag-handle drag-handle" draggable="true" title="Sleep event om te verplaatsen"
+          onclick="event.stopPropagation()" ondragstart="dragRoundStart(event,${i})" ondragend="dragRoundEnd()"
+          onpointerdown="startPointerReorder(event,'round',0,${i})">⠿</span>
         <span class="round-num">R${r.roundNumber || i+1}</span>
         <span class="round-name">${esc(r.raceName || 'Naamloze ronde')}</span>
         <span class="round-meta">${r.city ? `${esc(r.city)}, ${esc(r.country || '')}` : ''}</span>
@@ -1749,13 +1764,11 @@ function renderSession(s, ri, si) {
   const supportsOval = ['indycar','nascar','nascar_oreilly','nascar_trucks'].includes(state.activeSeries);
   return `
     <div class="session-block">
-      <div class="session-row" id="session_${ri}_${si}"
-        draggable="true"
-        ondragstart="dragSessionStart(event,${ri},${si})"
-        ondragover="dragSessionOver(event,${ri},${si})"
-        ondrop="dragSessionDrop(event,${ri},${si})"
-        ondragend="dragSessionEnd(event)">
-        <div class="session-drag"><span class="drag-handle" title="Sleep om te sorteren">⠿</span></div>
+      <div class="session-row" id="session_${ri}_${si}" data-round-index="${ri}" data-session-index="${si}"
+        ondragover="dragSessionOver(event,${ri},${si})" ondrop="dragSessionDrop(event,${ri},${si})">
+        <div class="session-drag"><span class="drag-handle" draggable="true" title="Sleep sessie om te verplaatsen"
+          ondragstart="dragSessionStart(event,${ri},${si})" ondragend="dragSessionEnd()"
+          onpointerdown="startPointerReorder(event,'session',${ri},${si})">⠿</span></div>
         <div class="session-field session-name">
           <label for="sessionName_${ri}_${si}">Naam</label>
           <input id="sessionName_${ri}_${si}" type="text" value="${esc(s.name||'')}" placeholder="Vrije training 1"
@@ -1887,6 +1900,35 @@ function addRound() {
   }, 50);
 }
 
+let roundDragSrc = null;
+
+function dragRoundStart(event, index) {
+  roundDragSrc = index;
+  event.dataTransfer.effectAllowed = 'move';
+  event.dataTransfer.setData('text/plain', `round:${index}`);
+  event.currentTarget.closest('.round-card')?.classList.add('dragging');
+}
+
+function dragRoundOver(event, index) {
+  if (roundDragSrc === null) return;
+  event.preventDefault();
+  event.dataTransfer.dropEffect = 'move';
+  document.querySelectorAll('.round-card').forEach(card => card.classList.remove('drag-over'));
+  document.getElementById(`round_${index}`)?.classList.add('drag-over');
+}
+
+function dragRoundDrop(event, index) {
+  event.preventDefault();
+  const from = roundDragSrc;
+  dragRoundEnd();
+  if (from !== null) moveRound(from, index);
+}
+
+function dragRoundEnd() {
+  document.querySelectorAll('.round-card').forEach(card => card.classList.remove('drag-over', 'dragging'));
+  roundDragSrc = null;
+}
+
 function moveRound(from, to) {
   const rounds = state.data[state.activeSeries] || [];
   if (to < 0 || to >= rounds.length || from === to) return;
@@ -1934,7 +1976,7 @@ function duplicateSession(ri, si) {
 
 function moveSession(ri, from, to) {
   const sessions = state.data[state.activeSeries][ri].sessions;
-  if (to < 0 || to >= sessions.length) return;
+  if (to < 0 || to >= sessions.length || from === to) return;
   const [moved] = sessions.splice(from, 1);
   sessions.splice(to, 0, moved);
   save();
@@ -1944,18 +1986,17 @@ function moveSession(ri, from, to) {
 
 // Drag and drop
 let dragSrc = null;
+let pointerDrag = null;
 
 function dragSessionStart(e, ri, si) {
-  if (!e.target.closest('.drag-handle')) {
-    e.preventDefault();
-    return;
-  }
   dragSrc = { ri, si };
   e.dataTransfer.effectAllowed = 'move';
-  document.getElementById(`session_${ri}_${si}`)?.classList.add('dragging');
+  e.dataTransfer.setData('text/plain', `session:${ri}:${si}`);
+  e.currentTarget.closest('.session-row')?.classList.add('dragging');
 }
 
 function dragSessionOver(e, ri, si) {
+  if (!dragSrc || dragSrc.ri !== ri) return;
   e.preventDefault();
   e.dataTransfer.dropEffect = 'move';
   document.querySelectorAll('.session-row').forEach(r => r.classList.remove('drag-over'));
@@ -1964,18 +2005,63 @@ function dragSessionOver(e, ri, si) {
 
 function dragSessionDrop(e, ri, si) {
   e.preventDefault();
-  if (!dragSrc || (dragSrc.ri === ri && dragSrc.si === si)) return;
-  if (dragSrc.ri !== ri) return; // only within same round
-  moveSession(ri, dragSrc.si, si);
-  dragSrc = null;
+  if (!dragSrc || dragSrc.ri !== ri) return;
+  const from = dragSrc.si;
+  dragSessionEnd();
+  moveSession(ri, from, si);
 }
 
-function dragSessionEnd(e) {
+function dragSessionEnd() {
   document.querySelectorAll('.session-row').forEach(r => {
     r.classList.remove('drag-over');
     r.classList.remove('dragging');
   });
   dragSrc = null;
+}
+
+function startPointerReorder(event, type, group, index) {
+  if (event.pointerType === 'mouse') return;
+  event.preventDefault();
+  event.stopPropagation();
+  pointerDrag = { type, group, from: index, to: index };
+  const item = type === 'round'
+    ? document.getElementById(`round_${index}`)
+    : document.getElementById(`session_${group}_${index}`);
+  item?.classList.add('dragging');
+  event.currentTarget.setPointerCapture?.(event.pointerId);
+  document.addEventListener('pointermove', pointerReorderMove, { passive: false });
+  document.addEventListener('pointerup', pointerReorderEnd);
+  document.addEventListener('pointercancel', pointerReorderEnd);
+}
+
+function pointerReorderMove(event) {
+  if (!pointerDrag) return;
+  event.preventDefault();
+  const selector = pointerDrag.type === 'round' ? '.round-card' : '.session-row';
+  const target = document.elementFromPoint(event.clientX, event.clientY)?.closest(selector);
+  if (!target) return;
+
+  if (pointerDrag.type === 'round') {
+    pointerDrag.to = Number(target.dataset.roundIndex);
+    document.querySelectorAll('.round-card').forEach(card => card.classList.remove('drag-over'));
+  } else {
+    if (Number(target.dataset.roundIndex) !== pointerDrag.group) return;
+    pointerDrag.to = Number(target.dataset.sessionIndex);
+    document.querySelectorAll('.session-row').forEach(row => row.classList.remove('drag-over'));
+  }
+  target.classList.add('drag-over');
+}
+
+function pointerReorderEnd() {
+  const completed = pointerDrag;
+  pointerDrag = null;
+  document.removeEventListener('pointermove', pointerReorderMove);
+  document.removeEventListener('pointerup', pointerReorderEnd);
+  document.removeEventListener('pointercancel', pointerReorderEnd);
+  document.querySelectorAll('.round-card, .session-row').forEach(item => item.classList.remove('drag-over', 'dragging'));
+  if (!completed || completed.from === completed.to) return;
+  if (completed.type === 'round') moveRound(completed.from, completed.to);
+  else moveSession(completed.group, completed.from, completed.to);
 }
 
 function deleteSession(ri, si) {
