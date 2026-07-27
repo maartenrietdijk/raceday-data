@@ -1,17 +1,21 @@
 [
   {
+    "id": "gtwce-2026-r01",
     "seriesId": "gtwce",
+    "roundNumber": 1,
     "raceName": "Circuit Paul Ricard",
+    "circuitName": "Circuit Paul Ricard",
+    "city": "Le Castellet",
     "country": "France",
     "countryCode": "FR",
-    "city": "Le Castellet",
-    "roundNumber": 1,
-    "id": "gtwce-2026-r01",
-    "circuitName": "Circuit Paul Ricard",
     "sessions": [
       {
-        "durationMinutes": 60,
+        "id": "gtwce-2026-r01-s1",
+        "name": "Practice 1",
+        "kind": "practice",
+        "date": "2026-04-10",
         "timeLocal": "14:25",
+        "durationMinutes": 60,
         "results": [
           {
             "time": "2:07.032",
@@ -234,15 +238,15 @@
             "driver": "Jean Legras",
             "position": "DNF"
           }
-        ],
-        "name": "Practice 1",
-        "date": "2026-04-10",
-        "kind": "practice",
-        "id": "gtwce-2026-r01-s1"
+        ]
       },
       {
-        "durationMinutes": 60,
+        "id": "gtwce-2026-r01-s2",
+        "name": "Practice 2",
+        "kind": "practice",
+        "date": "2026-04-10",
         "timeLocal": "19:25",
+        "durationMinutes": 60,
         "results": [
           {
             "drivers": [
@@ -881,15 +885,15 @@
             ],
             "position": 58
           }
-        ],
-        "name": "Practice 2",
-        "date": "2026-04-10",
-        "kind": "practice",
-        "id": "gtwce-2026-r01-s2"
+        ]
       },
       {
-        "durationMinutes": 45,
+        "id": "gtwce-2026-r01-s3",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-04-11",
         "timeLocal": "12:05",
+        "durationMinutes": 45,
         "results": [
           {
             "team": "Mercedes-AMG Team GetSpeed",
@@ -1526,15 +1530,15 @@
               "Rinat Salikhov"
             ]
           }
-        ],
-        "name": "Qualifying",
-        "date": "2026-04-11",
-        "kind": "qualifying",
-        "id": "gtwce-2026-r01-s3"
+        ]
       },
       {
-        "durationMinutes": 360,
+        "id": "gtwce-2026-r01-s4",
+        "name": "6 Hour Race",
+        "kind": "race",
+        "date": "2026-04-11",
         "timeLocal": "18:00",
+        "durationMinutes": 360,
         "results": [
           {
             "drivers": [
@@ -2167,27 +2171,27 @@
             ],
             "team": "Boutsen VDS"
           }
-        ],
-        "name": "6 Hour Race",
-        "date": "2026-04-11",
-        "kind": "race",
-        "id": "gtwce-2026-r01-s4"
+        ]
       }
     ]
   },
   {
+    "id": "gtwce-2026-r02",
     "seriesId": "gtwce",
+    "roundNumber": 2,
     "raceName": "Brands Hatch",
+    "circuitName": "Brands Hatch Circuit",
+    "city": "Kent",
     "country": "United Kingdom",
     "countryCode": "GB",
-    "id": "gtwce-2026-r02",
-    "roundNumber": 2,
-    "city": "Kent",
-    "circuitName": "Brands Hatch Circuit",
     "sessions": [
       {
-        "durationMinutes": 60,
+        "id": "gtwce-2026-r02-s1",
+        "name": "Practice 1",
+        "kind": "practice",
+        "date": "2026-05-02",
         "timeLocal": "10:35",
+        "durationMinutes": 60,
         "results": [
           {
             "position": 1,
@@ -2526,15 +2530,15 @@
             ],
             "team": "Dinamic GT"
           }
-        ],
-        "name": "Practice 1",
-        "date": "2026-05-02",
-        "kind": "practice",
-        "id": "gtwce-2026-r02-s1"
+        ]
       },
       {
-        "durationMinutes": 60,
+        "id": "gtwce-2026-r02-s1777314136221",
+        "name": "Practice 2",
+        "kind": "practice",
+        "date": "2026-05-02",
         "timeLocal": "13:00",
+        "durationMinutes": 60,
         "results": [
           {
             "time": "1:22.932",
@@ -2873,15 +2877,15 @@
             "position": "DNF",
             "team": "Tresor Attempto Racing"
           }
-        ],
-        "name": "Practice 2",
-        "date": "2026-05-02",
-        "kind": "practice",
-        "id": "gtwce-2026-r02-s1777314136221"
+        ]
       },
       {
-        "durationMinutes": 30,
+        "id": "gtwce-2026-r02-s2",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-05-02",
         "timeLocal": "17:40",
+        "durationMinutes": 30,
         "results": [
           {
             "position": 1,
@@ -3222,15 +3226,15 @@
             "speed": "1:24.569",
             "team": "Walkenhorst Motorsport"
           }
-        ],
-        "name": "Qualifying",
-        "date": "2026-05-02",
-        "kind": "qualifying",
-        "id": "gtwce-2026-r02-s2"
+        ]
       },
       {
-        "durationMinutes": 60,
+        "id": "gtwce-2026-r02-s3",
+        "name": "Race 1",
+        "kind": "race",
+        "date": "2026-05-03",
         "timeLocal": "12:15",
+        "durationMinutes": 60,
         "results": [
           {
             "drivers": [
@@ -3569,15 +3573,15 @@
             ],
             "position": "DNF"
           }
-        ],
-        "name": "Race 1",
-        "date": "2026-05-03",
-        "kind": "race",
-        "id": "gtwce-2026-r02-s3"
+        ]
       },
       {
-        "durationMinutes": 60,
+        "id": "gtwce-2026-r02-s4",
+        "name": "Race 2",
+        "kind": "race",
+        "date": "2026-05-03",
         "timeLocal": "16:45",
+        "durationMinutes": 60,
         "results": [
           {
             "time": "1:23.563",
@@ -3908,22 +3912,27 @@
             "position": "DNF",
             "team": "Tresor Attempto Racing"
           }
-        ],
-        "name": "Race 2",
-        "date": "2026-05-03",
-        "kind": "race",
-        "id": "gtwce-2026-r02-s4"
+        ]
       }
     ]
   },
   {
-    "city": "Monza",
+    "id": "gtwce-2026-r03",
     "seriesId": "gtwce",
-    "raceName": "Monza",
     "roundNumber": 3,
+    "raceName": "Monza",
     "circuitName": "Autodromo Nazionale Monza",
+    "city": "Monza",
+    "country": "Italy",
+    "countryCode": "IT",
     "sessions": [
       {
+        "id": "gtwce-2026-r03-s1",
+        "name": "Practice 1",
+        "kind": "practice",
+        "date": "2026-05-30",
+        "timeLocal": "09:00",
+        "durationMinutes": 90,
         "results": [
           {
             "position": 1,
@@ -4551,17 +4560,15 @@
             "interval": "+1.693",
             "team": "Oman Racing by Century Motorsport"
           }
-        ],
-        "kind": "practice",
-        "id": "gtwce-2026-r03-s1",
-        "name": "Practice 1",
-        "durationMinutes": 90,
-        "date": "2026-05-30",
-        "timeLocal": "09:00"
+        ]
       },
       {
-        "durationMinutes": 90,
+        "id": "gtwce-2026-r03-s2",
+        "name": "Practice 2",
+        "kind": "practice",
+        "date": "2026-05-30",
         "timeLocal": "14:25",
+        "durationMinutes": 90,
         "results": [
           {
             "position": 1,
@@ -5189,15 +5196,15 @@
             "speed": "1:47.874",
             "team": "Razoon - more than racing"
           }
-        ],
-        "name": "Practice 2",
-        "date": "2026-05-30",
-        "kind": "practice",
-        "id": "gtwce-2026-r03-s2"
+        ]
       },
       {
-        "durationMinutes": 65,
+        "id": "gtwce-2026-r03-s3",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-05-31",
         "timeLocal": "09:50",
+        "durationMinutes": 65,
         "results": [
           {
             "drivers": [
@@ -5712,13 +5719,15 @@
             "team": "Razoon - more than racing",
             "position": 57
           }
-        ],
-        "name": "Qualifying",
-        "date": "2026-05-31",
-        "kind": "qualifying",
-        "id": "gtwce-2026-r03-s3"
+        ]
       },
       {
+        "id": "gtwce-2026-r03-s4",
+        "name": "3 Hour Race",
+        "kind": "race",
+        "date": "2026-05-31",
+        "timeLocal": "15:30",
+        "durationMinutes": 180,
         "results": [
           {
             "drivers": [
@@ -6332,28 +6341,27 @@
             ],
             "team": "Garage 59"
           }
-        ],
-        "date": "2026-05-31",
-        "durationMinutes": 180,
-        "id": "gtwce-2026-r03-s4",
-        "kind": "race",
-        "timeLocal": "15:30",
-        "name": "3 Hour Race"
+        ]
       }
-    ],
-    "country": "Italy",
-    "id": "gtwce-2026-r03",
-    "countryCode": "IT"
+    ]
   },
   {
     "id": "gtwce-2026-r04",
+    "seriesId": "gtwce",
+    "roundNumber": 4,
+    "raceName": "CrowdStrike 24 Hours of Spa",
+    "circuitName": "Circuit de Spa-Francorchamps",
     "city": "Spa-Francorchamps",
+    "country": "Belgium",
+    "countryCode": "BE",
     "sessions": [
       {
         "id": "gtwce-2026-r04-s1",
-        "durationMinutes": 90,
         "name": "Practice 1",
+        "kind": "practice",
+        "date": "2026-06-25",
         "timeLocal": "10:10",
+        "durationMinutes": 90,
         "results": [
           {
             "position": 1,
@@ -7160,15 +7168,15 @@
             ],
             "team": "Car Collection Motorsport"
           }
-        ],
-        "date": "2026-06-25",
-        "kind": "practice"
+        ]
       },
       {
         "id": "gtwce-2026-r04-s2",
         "name": "Practice 2",
-        "durationMinutes": 60,
+        "kind": "practice",
+        "date": "2026-06-25",
         "timeLocal": "16:10",
+        "durationMinutes": 60,
         "results": [
           {
             "time": "2:18.169",
@@ -7973,15 +7981,15 @@
             "position": "DNF",
             "team": "Tsunami RT"
           }
-        ],
-        "date": "2026-06-25",
-        "kind": "practice"
+        ]
       },
       {
         "id": "gtwce-2026-r04-s3",
         "name": "Qualifying 1",
-        "durationMinutes": 20,
+        "kind": "qualifying",
+        "date": "2026-06-25",
         "timeLocal": "19:45",
+        "durationMinutes": 20,
         "results": [
           {
             "position": 1,
@@ -8542,15 +8550,15 @@
               "Eduardo Coseteng"
             ]
           }
-        ],
-        "date": "2026-06-25",
-        "kind": "qualifying"
+        ]
       },
       {
         "id": "gtwce-2026-r04-s1781506213237",
-        "durationMinutes": 20,
         "name": "Qualifying 2",
+        "kind": "qualifying",
+        "date": "2026-06-25",
         "timeLocal": "20:05",
+        "durationMinutes": 20,
         "results": [
           {
             "time": "2:17.012",
@@ -9339,15 +9347,15 @@
             ],
             "team": "HRT Ford Racing"
           }
-        ],
-        "date": "2026-06-25",
-        "kind": "qualifying"
+        ]
       },
       {
         "id": "gtwce-2026-r04-s1781506227834",
         "name": "Qualifying 3",
-        "durationMinutes": 20,
+        "kind": "qualifying",
+        "date": "2026-06-25",
         "timeLocal": "20:35",
+        "durationMinutes": 20,
         "results": [
           {
             "drivers": [
@@ -10106,15 +10114,15 @@
             "interval": "+12.595",
             "team": "Muehlner Motorsport"
           }
-        ],
-        "date": "2026-06-25",
-        "kind": "qualifying"
+        ]
       },
       {
         "id": "gtwce-2026-r04-s1781506257978",
-        "durationMinutes": 20,
         "name": "Qualifying 4",
+        "kind": "qualifying",
+        "date": "2026-06-25",
         "timeLocal": "21:05",
+        "durationMinutes": 20,
         "results": [
           {
             "time": "2:16.817",
@@ -10873,15 +10881,15 @@
               "Andres Latorre"
             ]
           }
-        ],
-        "date": "2026-06-25",
-        "kind": "qualifying"
+        ]
       },
       {
         "id": "gtwce-2026-r04-s1781506271357",
         "name": "Night Practice",
-        "durationMinutes": 90,
+        "kind": "qualifying",
+        "date": "2026-06-25",
         "timeLocal": "21:55",
+        "durationMinutes": 90,
         "results": [
           {
             "drivers": [
@@ -11684,15 +11692,15 @@
             ],
             "team": "Tsunami RT"
           }
-        ],
-        "date": "2026-06-25",
-        "kind": "qualifying"
+        ]
       },
       {
         "id": "gtwce-2026-r04-s1781506466970",
-        "durationMinutes": 30,
         "name": "Superpole",
+        "kind": "qualifying",
+        "date": "2026-06-26",
         "timeLocal": "15:05",
+        "durationMinutes": 30,
         "results": [
           {
             "position": 1,
@@ -12025,23 +12033,23 @@
             "interval": "+1.823",
             "team": "Rutronik Racing"
           }
-        ],
-        "date": "2026-06-26",
-        "kind": "qualifying"
+        ]
       },
       {
-        "date": "2026-06-26",
-        "durationMinutes": 30,
-        "kind": "practice",
-        "timeLocal": "19:20",
         "id": "gtwce-2026-r04-s1781506495302",
-        "name": "Warmup"
+        "name": "Warmup",
+        "kind": "practice",
+        "date": "2026-06-26",
+        "timeLocal": "19:20",
+        "durationMinutes": 30
       },
       {
         "id": "gtwce-2026-r04-s4",
-        "durationMinutes": 1440,
         "name": "24 Hours of Spa",
+        "kind": "race",
+        "date": "2026-06-27",
         "timeLocal": "16:30",
+        "durationMinutes": 1440,
         "results": [
           {
             "time": "2:17.484",
@@ -12844,25 +12852,27 @@
               "Ian Aguilera"
             ]
           }
-        ],
-        "date": "2026-06-27",
-        "kind": "race"
+        ]
       }
-    ],
-    "seriesId": "gtwce",
-    "circuitName": "Circuit de Spa-Francorchamps",
-    "roundNumber": 4,
-    "raceName": "CrowdStrike 24 Hours of Spa",
-    "countryCode": "BE",
-    "country": "Belgium"
+    ]
   },
   {
     "id": "gtwce-2026-r05",
+    "seriesId": "gtwce",
+    "roundNumber": 5,
+    "raceName": "Misano",
+    "circuitName": "Misano World Circuit Marco Simoncelli",
     "city": "Misano Adriatico",
+    "country": "Italy",
+    "countryCode": "IT",
     "sessions": [
       {
         "id": "gtwce-2026-r05-s1",
+        "name": "Practice 1",
+        "kind": "practice",
         "date": "2026-07-17",
+        "timeLocal": "14:50",
+        "durationMinutes": 60,
         "results": [
           {
             "drivers": [
@@ -13293,15 +13303,15 @@
               "David Pittard"
             ]
           }
-        ],
-        "timeLocal": "14:50",
-        "durationMinutes": 60,
-        "name": "Practice 1",
-        "kind": "practice"
+        ]
       },
       {
         "id": "gtwce-2026-r05-s1783248275736",
+        "name": "Practice 2",
+        "kind": "practice",
         "date": "2026-07-17",
+        "timeLocal": "20:10",
+        "durationMinutes": 60,
         "results": [
           {
             "drivers": [
@@ -13732,15 +13742,15 @@
             "speed": "1:43.194",
             "position": 43
           }
-        ],
-        "timeLocal": "20:10",
-        "durationMinutes": 60,
-        "name": "Practice 2",
-        "kind": "practice"
+        ]
       },
       {
         "id": "gtwce-2026-r05-s2",
+        "name": "Qualifying 1 - Group A",
+        "kind": "qualifying",
         "date": "2026-07-18",
+        "timeLocal": "13:05",
+        "durationMinutes": 15,
         "results": [
           {
             "speed": "1:32.567",
@@ -13807,23 +13817,23 @@
           {
             "position": "DNF"
           }
-        ],
-        "timeLocal": "13:05",
-        "durationMinutes": 15,
-        "name": "Qualifying 1 - Group A",
-        "kind": "qualifying"
+        ]
       },
       {
-        "durationMinutes": 15,
-        "timeLocal": "13:20",
-        "kind": "qualifying",
         "id": "gtwce-2026-r05-s1783248299865",
         "name": "Qualifying 1 - Group B",
-        "date": "2026-07-18"
+        "kind": "qualifying",
+        "date": "2026-07-18",
+        "timeLocal": "13:20",
+        "durationMinutes": 15
       },
       {
         "id": "gtwce-2026-r05-s3",
+        "name": "Race 1",
+        "kind": "race",
         "date": "2026-07-18",
+        "timeLocal": "20:30",
+        "durationMinutes": 60,
         "results": [
           {
             "time": "1:33.413",
@@ -14250,35 +14260,31 @@
             "position": "DNF",
             "team": "Mercedes-AMG Team Verstappen Racing"
           }
-        ],
-        "timeLocal": "20:30",
-        "durationMinutes": 60,
-        "name": "Race 1",
-        "kind": "race"
+        ]
       },
       {
-        "durationMinutes": 15,
-        "kind": "qualifying",
-        "timeLocal": "10:05",
-        "date": "2026-07-19",
         "id": "gtwce-2026-r05-s1783248360911",
-        "name": "Qualifying 2 - Group A"
-      },
-      {
-        "durationMinutes": 15,
+        "name": "Qualifying 2 - Group A",
         "kind": "qualifying",
-        "timeLocal": "10:20",
         "date": "2026-07-19",
-        "id": "gtwce-2026-r05-s1783248375352",
-        "name": "Qualifying 2 - Group B"
+        "timeLocal": "10:05",
+        "durationMinutes": 15
       },
       {
-        "durationMinutes": 60,
-        "kind": "race",
-        "timeLocal": "14:30",
+        "id": "gtwce-2026-r05-s1783248375352",
+        "name": "Qualifying 2 - Group B",
+        "kind": "qualifying",
         "date": "2026-07-19",
+        "timeLocal": "10:20",
+        "durationMinutes": 15
+      },
+      {
         "id": "gtwce-2026-r05-s4",
         "name": "Race 2",
+        "kind": "race",
+        "date": "2026-07-19",
+        "timeLocal": "14:30",
+        "durationMinutes": 60,
         "results": [
           {
             "position": 1,
@@ -14701,248 +14707,242 @@
           }
         ]
       }
-    ],
-    "seriesId": "gtwce",
-    "raceName": "Misano",
-    "roundNumber": 5,
-    "circuitName": "Misano World Circuit Marco Simoncelli",
-    "countryCode": "IT",
-    "country": "Italy"
+    ]
   },
   {
     "id": "gtwce-2026-r06",
+    "seriesId": "gtwce",
+    "roundNumber": 6,
+    "raceName": "Magny-Cours",
+    "circuitName": "Circuit de Nevers Magny-Cours",
     "city": "Magny-Cours",
+    "country": "France",
+    "countryCode": "FR",
     "sessions": [
       {
-        "durationMinutes": 60,
-        "kind": "practice",
-        "timeLocal": "13:30",
-        "date": "2026-07-31",
         "id": "gtwce-2026-r06-s1",
-        "name": "Practice 1"
-      },
-      {
-        "durationMinutes": 60,
+        "name": "Practice 1",
         "kind": "practice",
-        "timeLocal": "20:40",
         "date": "2026-07-31",
+        "timeLocal": "13:30",
+        "durationMinutes": 60
+      },
+      {
         "id": "gtwce-2026-r06-s1784476922895",
-        "name": "Practice 2"
-      },
-      {
-        "durationMinutes": 30,
-        "kind": "qualifying",
-        "timeLocal": "14:55",
+        "name": "Practice 2",
+        "kind": "practice",
         "date": "2026-07-31",
+        "timeLocal": "20:40",
+        "durationMinutes": 60
+      },
+      {
         "id": "gtwce-2026-r06-s2",
-        "name": "Qualifying"
-      },
-      {
-        "durationMinutes": 60,
-        "kind": "race",
-        "timeLocal": "21:05",
-        "date": "2026-08-01",
-        "id": "gtwce-2026-r06-s3",
-        "name": "Race 1"
-      },
-      {
+        "name": "Qualifying",
         "kind": "qualifying",
-        "durationMinutes": 60,
+        "date": "2026-08-01",
+        "timeLocal": "14:55",
+        "durationMinutes": 30
+      },
+      {
+        "id": "gtwce-2026-r06-s3",
+        "name": "Race 1",
+        "kind": "race",
+        "date": "2026-08-01",
+        "timeLocal": "21:05",
+        "durationMinutes": 60
+      },
+      {
         "id": "gtwce-2026-r06-s1784476992308",
+        "name": "Qualifying 2",
+        "kind": "qualifying",
         "date": "2026-08-02",
         "timeLocal": "10:50",
-        "name": "Qualifying 2"
+        "durationMinutes": 60
       },
       {
-        "kind": "race",
-        "durationMinutes": 60,
         "id": "gtwce-2026-r06-s4",
+        "name": "Race 2",
+        "kind": "race",
         "date": "2026-08-02",
         "timeLocal": "15:30",
-        "name": "Race 2"
+        "durationMinutes": 60
       }
-    ],
-    "seriesId": "gtwce",
-    "raceName": "Magny-Cours",
-    "roundNumber": 6,
-    "circuitName": "Circuit de Nevers Magny-Cours",
-    "countryCode": "FR",
-    "country": "France"
+    ]
   },
   {
     "id": "gtwce-2026-r07",
-    "city": "Nürburg",
-    "sessions": [
-      {
-        "kind": "practice",
-        "durationMinutes": 60,
-        "id": "gtwce-2026-r07-s1",
-        "date": "2026-08-28",
-        "timeLocal": "11:00",
-        "name": "Practice 1"
-      },
-      {
-        "kind": "practice",
-        "durationMinutes": 60,
-        "id": "gtwce-2026-r07-s2",
-        "date": "2026-08-28",
-        "timeLocal": "16:00",
-        "name": "Practice 2"
-      },
-      {
-        "kind": "qualifying",
-        "durationMinutes": 45,
-        "id": "gtwce-2026-r07-s3",
-        "date": "2026-08-29",
-        "timeLocal": "10:30",
-        "name": "Qualifying"
-      },
-      {
-        "kind": "race",
-        "durationMinutes": 180,
-        "id": "gtwce-2026-r07-s4",
-        "date": "2026-08-30",
-        "timeLocal": "14:00",
-        "name": "3 Hour Race"
-      }
-    ],
     "seriesId": "gtwce",
+    "roundNumber": 7,
     "raceName": "Nürburgring",
     "circuitName": "Nürburgring Grand Prix Circuit",
-    "roundNumber": 7,
+    "city": "Nürburg",
+    "country": "Germany",
     "countryCode": "DE",
-    "country": "Germany"
+    "sessions": [
+      {
+        "id": "gtwce-2026-r07-s1",
+        "name": "Practice 1",
+        "kind": "practice",
+        "date": "2026-08-28",
+        "timeLocal": "11:00",
+        "durationMinutes": 60
+      },
+      {
+        "id": "gtwce-2026-r07-s2",
+        "name": "Practice 2",
+        "kind": "practice",
+        "date": "2026-08-28",
+        "timeLocal": "16:00",
+        "durationMinutes": 60
+      },
+      {
+        "id": "gtwce-2026-r07-s3",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-08-29",
+        "timeLocal": "10:30",
+        "durationMinutes": 45
+      },
+      {
+        "id": "gtwce-2026-r07-s4",
+        "name": "3 Hour Race",
+        "kind": "race",
+        "date": "2026-08-30",
+        "timeLocal": "14:00",
+        "durationMinutes": 180
+      }
+    ]
   },
   {
     "id": "gtwce-2026-r08",
-    "city": "Zandvoort",
-    "sessions": [
-      {
-        "kind": "practice",
-        "durationMinutes": 60,
-        "id": "gtwce-2026-r08-s1",
-        "date": "2026-09-18",
-        "timeLocal": "10:00",
-        "name": "Practice"
-      },
-      {
-        "kind": "qualifying",
-        "durationMinutes": 30,
-        "id": "gtwce-2026-r08-s2",
-        "date": "2026-09-18",
-        "timeLocal": "14:30",
-        "name": "Qualifying"
-      },
-      {
-        "kind": "race",
-        "durationMinutes": 60,
-        "id": "gtwce-2026-r08-s3",
-        "date": "2026-09-19",
-        "timeLocal": "11:00",
-        "name": "Race 1"
-      },
-      {
-        "kind": "race",
-        "durationMinutes": 60,
-        "id": "gtwce-2026-r08-s4",
-        "date": "2026-09-20",
-        "timeLocal": "11:00",
-        "name": "Race 2"
-      }
-    ],
     "seriesId": "gtwce",
+    "roundNumber": 8,
     "raceName": "Zandvoort",
     "circuitName": "Circuit Zandvoort",
-    "roundNumber": 8,
+    "city": "Zandvoort",
+    "country": "Netherlands",
     "countryCode": "NL",
-    "country": "Netherlands"
+    "sessions": [
+      {
+        "id": "gtwce-2026-r08-s1",
+        "name": "Practice",
+        "kind": "practice",
+        "date": "2026-09-18",
+        "timeLocal": "10:00",
+        "durationMinutes": 60
+      },
+      {
+        "id": "gtwce-2026-r08-s2",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-09-18",
+        "timeLocal": "14:30",
+        "durationMinutes": 30
+      },
+      {
+        "id": "gtwce-2026-r08-s3",
+        "name": "Race 1",
+        "kind": "race",
+        "date": "2026-09-19",
+        "timeLocal": "11:00",
+        "durationMinutes": 60
+      },
+      {
+        "id": "gtwce-2026-r08-s4",
+        "name": "Race 2",
+        "kind": "race",
+        "date": "2026-09-20",
+        "timeLocal": "11:00",
+        "durationMinutes": 60
+      }
+    ]
   },
   {
     "id": "gtwce-2026-r09",
-    "city": "Barcelona",
-    "sessions": [
-      {
-        "kind": "practice",
-        "durationMinutes": 60,
-        "id": "gtwce-2026-r09-s1",
-        "date": "2026-10-02",
-        "timeLocal": "10:00",
-        "name": "Practice"
-      },
-      {
-        "kind": "qualifying",
-        "durationMinutes": 30,
-        "id": "gtwce-2026-r09-s2",
-        "date": "2026-10-02",
-        "timeLocal": "14:30",
-        "name": "Qualifying"
-      },
-      {
-        "kind": "race",
-        "durationMinutes": 60,
-        "id": "gtwce-2026-r09-s3",
-        "date": "2026-10-03",
-        "timeLocal": "11:00",
-        "name": "Race 1"
-      },
-      {
-        "kind": "race",
-        "durationMinutes": 60,
-        "id": "gtwce-2026-r09-s4",
-        "date": "2026-10-04",
-        "timeLocal": "11:00",
-        "name": "Race 2"
-      }
-    ],
     "seriesId": "gtwce",
+    "roundNumber": 9,
     "raceName": "Barcelona",
     "circuitName": "Circuit de Barcelona-Catalunya",
-    "roundNumber": 9,
+    "city": "Barcelona",
+    "country": "Spain",
     "countryCode": "ES",
-    "country": "Spain"
-  },
-  {
-    "seriesId": "gtwce",
-    "id": "gtwce-2026-r10",
-    "city": "Portimão",
-    "raceName": "Portimão",
     "sessions": [
       {
+        "id": "gtwce-2026-r09-s1",
+        "name": "Practice",
         "kind": "practice",
-        "durationMinutes": 60,
+        "date": "2026-10-02",
+        "timeLocal": "10:00",
+        "durationMinutes": 60
+      },
+      {
+        "id": "gtwce-2026-r09-s2",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-10-02",
+        "timeLocal": "14:30",
+        "durationMinutes": 30
+      },
+      {
+        "id": "gtwce-2026-r09-s3",
+        "name": "Race 1",
+        "kind": "race",
+        "date": "2026-10-03",
+        "timeLocal": "11:00",
+        "durationMinutes": 60
+      },
+      {
+        "id": "gtwce-2026-r09-s4",
+        "name": "Race 2",
+        "kind": "race",
+        "date": "2026-10-04",
+        "timeLocal": "11:00",
+        "durationMinutes": 60
+      }
+    ]
+  },
+  {
+    "id": "gtwce-2026-r10",
+    "seriesId": "gtwce",
+    "roundNumber": 10,
+    "raceName": "Portimão",
+    "circuitName": "Autódromo Internacional do Algarve",
+    "city": "Portimão",
+    "country": "Portugal",
+    "countryCode": "PT",
+    "sessions": [
+      {
         "id": "gtwce-2026-r10-s1",
+        "name": "Practice 1",
+        "kind": "practice",
         "date": "2026-10-16",
         "timeLocal": "11:00",
-        "name": "Practice 1"
+        "durationMinutes": 60
       },
       {
-        "kind": "practice",
-        "durationMinutes": 60,
         "id": "gtwce-2026-r10-s2",
+        "name": "Practice 2",
+        "kind": "practice",
         "date": "2026-10-16",
         "timeLocal": "16:00",
-        "name": "Practice 2"
+        "durationMinutes": 60
       },
       {
-        "kind": "qualifying",
-        "durationMinutes": 45,
         "id": "gtwce-2026-r10-s3",
+        "name": "Qualifying",
+        "kind": "qualifying",
         "date": "2026-10-17",
         "timeLocal": "10:30",
-        "name": "Qualifying"
+        "durationMinutes": 45
       },
       {
-        "kind": "race",
-        "durationMinutes": 180,
         "id": "gtwce-2026-r10-s4",
+        "name": "3 Hour Race",
+        "kind": "race",
         "date": "2026-10-18",
         "timeLocal": "14:00",
-        "name": "3 Hour Race"
+        "durationMinutes": 180
       }
-    ],
-    "circuitName": "Autódromo Internacional do Algarve",
-    "roundNumber": 10,
-    "country": "Portugal",
-    "countryCode": "PT"
+    ]
   }
 ]
