@@ -1,234 +1,237 @@
 [
   {
-    "country": "Australia",
-    "city": "Sydney",
     "id": "supercars-2026-01",
-    "roundNumber": 1,
-    "circuitName": "Sydney Motorsport Park",
-    "countryCode": "AU",
     "seriesId": "supercars",
+    "roundNumber": 1,
     "raceName": "Sydney 500",
+    "circuitName": "Sydney Motorsport Park",
+    "city": "Sydney",
+    "country": "Australia",
+    "countryCode": "AU",
     "sessions": [
       {
-        "timeLocal": "13:55",
-        "kind": "practice",
-        "durationMinutes": 60,
         "id": "supercars-2026-01-s01",
         "name": "Practice",
-        "date": "2026-02-20"
+        "kind": "practice",
+        "date": "2026-02-20",
+        "timeLocal": "13:55",
+        "durationMinutes": 60
       },
       {
-        "timeLocal": "16:20",
-        "kind": "qualifying",
-        "durationMinutes": 60,
         "id": "supercars-2026-01-s02",
         "name": "Qualifying",
-        "date": "2026-02-20"
+        "kind": "qualifying",
+        "date": "2026-02-20",
+        "timeLocal": "16:20",
+        "durationMinutes": 60
       },
       {
-        "timeLocal": "19:50",
-        "kind": "race",
-        "durationMinutes": 60,
         "id": "supercars-2026-01-s03",
         "name": "Race 1",
-        "date": "2026-02-20"
+        "kind": "race",
+        "date": "2026-02-20",
+        "timeLocal": "19:50",
+        "durationMinutes": 60
       },
       {
-        "timeLocal": "15:40",
-        "kind": "qualifying",
-        "durationMinutes": 60,
         "id": "supercars-2026-01-s04",
         "name": "Qualifying",
-        "date": "2026-02-21"
+        "kind": "qualifying",
+        "date": "2026-02-21",
+        "timeLocal": "15:40",
+        "durationMinutes": 60
       },
       {
-        "timeLocal": "19:35",
-        "kind": "race",
-        "durationMinutes": 60,
         "id": "supercars-2026-01-s05",
         "name": "Race 2",
-        "date": "2026-02-21"
+        "kind": "race",
+        "date": "2026-02-21",
+        "timeLocal": "19:35",
+        "durationMinutes": 60
       },
       {
-        "timeLocal": "12:10",
-        "kind": "qualifying",
-        "durationMinutes": 60,
         "id": "supercars-2026-01-s06",
         "name": "Qualifying",
-        "date": "2026-02-22"
+        "kind": "qualifying",
+        "date": "2026-02-22",
+        "timeLocal": "12:10",
+        "durationMinutes": 60
       },
       {
-        "timeLocal": "16:05",
-        "kind": "race",
-        "durationMinutes": 60,
         "id": "supercars-2026-01-s07",
         "name": "Race 3",
-        "date": "2026-02-22"
+        "kind": "race",
+        "date": "2026-02-22",
+        "timeLocal": "16:05",
+        "durationMinutes": 60
       }
     ]
   },
   {
-    "country": "Australia",
-    "city": "Melbourne",
     "id": "supercars-2026-02",
-    "roundNumber": 2,
-    "circuitName": "Albert Park Circuit",
-    "countryCode": "AU",
     "seriesId": "supercars",
+    "roundNumber": 2,
     "raceName": "Melbourne SuperSprint",
+    "circuitName": "Albert Park Circuit",
+    "city": "Melbourne",
+    "country": "Australia",
+    "countryCode": "AU",
     "sessions": [
       {
-        "timeLocal": "10:00",
-        "kind": "practice",
-        "durationMinutes": 60,
         "id": "supercars-2026-02-s01",
         "name": "Practice",
-        "date": "2026-03-07"
+        "kind": "practice",
+        "date": "2026-03-07",
+        "timeLocal": "10:00",
+        "durationMinutes": 60
       },
       {
-        "timeLocal": "12:00",
-        "kind": "qualifying",
-        "durationMinutes": 60,
         "id": "supercars-2026-02-s02",
         "name": "Qualifying",
-        "date": "2026-03-07"
+        "kind": "qualifying",
+        "date": "2026-03-07",
+        "timeLocal": "12:00",
+        "durationMinutes": 60
       },
       {
-        "timeLocal": "16:00",
-        "kind": "race",
-        "durationMinutes": 60,
         "id": "supercars-2026-02-s03",
         "name": "Race 1",
-        "date": "2026-03-07"
+        "kind": "race",
+        "date": "2026-03-07",
+        "timeLocal": "16:00",
+        "durationMinutes": 60
       },
       {
+        "id": "supercars-2026-02-s04",
         "name": "Race 2",
+        "kind": "race",
         "date": "2026-03-08",
         "timeLocal": "13:00",
-        "durationMinutes": 60,
-        "id": "supercars-2026-02-s04",
-        "kind": "race"
+        "durationMinutes": 60
       },
       {
+        "id": "supercars-2026-02-s05",
         "name": "Race 3",
+        "kind": "race",
         "date": "2026-03-08",
         "timeLocal": "16:30",
-        "durationMinutes": 60,
-        "id": "supercars-2026-02-s05",
-        "kind": "race"
+        "durationMinutes": 60
       }
     ]
   },
   {
-    "country": "New Zealand",
-    "city": "Taupō",
-    "roundNumber": 3,
     "id": "supercars-2026-03",
-    "circuitName": "Taupo International Motorsport Park",
-    "countryCode": "NZ",
     "seriesId": "supercars",
+    "roundNumber": 3,
     "raceName": "ITM Taupō Super 440",
+    "circuitName": "Taupo International Motorsport Park",
+    "city": "Taupō",
+    "country": "New Zealand",
+    "countryCode": "NZ",
     "sessions": [
       {
+        "id": "supercars-2026-03-s01",
         "name": "Practice",
+        "kind": "practice",
         "date": "2026-04-11",
         "timeLocal": "11:00",
-        "durationMinutes": 60,
-        "id": "supercars-2026-03-s01",
-        "kind": "practice"
+        "durationMinutes": 60
       },
       {
+        "id": "supercars-2026-03-s02",
         "name": "Qualifying",
+        "kind": "qualifying",
         "date": "2026-04-11",
         "timeLocal": "13:30",
-        "durationMinutes": 60,
-        "id": "supercars-2026-03-s02",
-        "kind": "qualifying"
+        "durationMinutes": 60
       },
       {
+        "id": "supercars-2026-03-s03",
         "name": "Race 1",
+        "kind": "race",
         "date": "2026-04-11",
         "timeLocal": "16:00",
-        "durationMinutes": 60,
-        "id": "supercars-2026-03-s03",
-        "kind": "race"
+        "durationMinutes": 60
       },
       {
+        "id": "supercars-2026-03-s04",
         "name": "Race 2",
+        "kind": "race",
         "date": "2026-04-12",
         "timeLocal": "13:00",
-        "durationMinutes": 60,
-        "id": "supercars-2026-03-s04",
-        "kind": "race"
+        "durationMinutes": 60
       }
     ]
   },
   {
-    "country": "New Zealand",
-    "city": "Christchurch",
-    "roundNumber": 4,
     "id": "supercars-2026-04",
-    "circuitName": "Mike Pero Motorsport Park",
-    "countryCode": "NZ",
     "seriesId": "supercars",
+    "roundNumber": 4,
     "raceName": "ITM Christchurch Super 440",
+    "circuitName": "Mike Pero Motorsport Park",
+    "city": "Christchurch",
+    "country": "New Zealand",
+    "countryCode": "NZ",
     "sessions": [
       {
-        "name": "Practice 1",
-        "date": "2026-04-18",
-        "timeLocal": "11:00",
-        "durationMinutes": 60,
         "id": "supercars-2026-04-s01",
-        "kind": "practice"
-      },
-      {
-        "name": "Practice 1 (copy)",
+        "name": "Practice 1",
+        "kind": "practice",
         "date": "2026-04-18",
         "timeLocal": "11:00",
-        "durationMinutes": 60,
-        "id": "supercars-2026-04-s1781434486927",
-        "kind": "practice"
+        "durationMinutes": 60
       },
       {
+        "id": "supercars-2026-04-s1781434486927",
+        "name": "Practice 1 (copy)",
+        "kind": "practice",
+        "date": "2026-04-18",
+        "timeLocal": "11:00",
+        "durationMinutes": 60
+      },
+      {
+        "id": "supercars-2026-04-s02",
         "name": "Qualifying",
+        "kind": "qualifying",
         "date": "2026-04-18",
         "timeLocal": "13:30",
-        "durationMinutes": 60,
-        "id": "supercars-2026-04-s02",
-        "kind": "qualifying"
+        "durationMinutes": 60
       },
       {
+        "id": "supercars-2026-04-s03",
         "name": "Race 1",
+        "kind": "race",
         "date": "2026-04-18",
         "timeLocal": "16:00",
-        "durationMinutes": 60,
-        "id": "supercars-2026-04-s03",
-        "kind": "race"
+        "durationMinutes": 60
       },
       {
         "id": "supercars-2026-04-s04",
+        "name": "Race 2",
+        "kind": "race",
         "date": "2026-04-19",
         "timeLocal": "13:00",
-        "durationMinutes": 60,
-        "name": "Race 2",
-        "kind": "race"
+        "durationMinutes": 60
       }
     ]
   },
   {
-    "country": "Australia",
-    "city": "Launceston",
     "id": "supercars-2026-05",
-    "roundNumber": 5,
-    "circuitName": "Symmons Plains Raceway",
-    "countryCode": "AU",
     "seriesId": "supercars",
+    "roundNumber": 5,
     "raceName": "Tyrepower Tasmania Super 440",
+    "circuitName": "Symmons Plains Raceway",
+    "city": "Launceston",
+    "country": "Australia",
+    "countryCode": "AU",
     "sessions": [
       {
-        "name": "Practice 1",
         "id": "supercars-2026-05-s01",
+        "name": "Practice 1",
+        "kind": "practice",
+        "date": "2026-05-22",
         "timeLocal": "14:05",
+        "durationMinutes": 35,
         "results": [
           {
             "driver": "D. Reynolds",
@@ -414,14 +417,15 @@
             "laps": "21",
             "driver": "M. Jones"
           }
-        ],
-        "durationMinutes": 35,
-        "date": "2026-05-22",
-        "kind": "practice"
+        ]
       },
       {
-        "kind": "practice",
+        "id": "supercars-2026-05-s1779205748631",
         "name": "Practice 2",
+        "kind": "practice",
+        "date": "2026-05-22",
+        "timeLocal": "14:45",
+        "durationMinutes": 35,
         "results": [
           {
             "laps": "14",
@@ -615,15 +619,15 @@
             "number": "10",
             "interval": "+0.718"
           }
-        ],
-        "timeLocal": "14:45",
-        "id": "supercars-2026-05-s1779205748631",
-        "date": "2026-05-22",
-        "durationMinutes": 35
+        ]
       },
       {
-        "kind": "qualifying",
+        "id": "supercars-2026-05-s02",
         "name": "Qualifying 1",
+        "kind": "qualifying",
+        "date": "2026-05-23",
+        "timeLocal": "10:00",
+        "durationMinutes": 30,
         "results": [
           {
             "number": "1",
@@ -817,15 +821,15 @@
             "laps": "11",
             "driver": "C. Murray"
           }
-        ],
-        "timeLocal": "10:00",
-        "id": "supercars-2026-05-s02",
-        "date": "2026-05-23",
-        "durationMinutes": 30
+        ]
       },
       {
+        "id": "supercars-2026-05-s1779206729492",
         "name": "Qualifying 2",
         "kind": "qualifying",
+        "date": "2026-05-23",
+        "timeLocal": "10:50",
+        "durationMinutes": 30,
         "results": [
           {
             "driver": "A. Heimgartner",
@@ -1019,18 +1023,15 @@
             "number": "9",
             "laps": "10"
           }
-        ],
-        "timeLocal": "10:50",
-        "id": "supercars-2026-05-s1779206729492",
-        "date": "2026-05-23",
-        "durationMinutes": 30
+        ]
       },
       {
-        "durationMinutes": 60,
-        "date": "2026-05-23",
-        "kind": "race",
-        "timeLocal": "13:00",
         "id": "supercars-2026-05-s03",
+        "name": "Race 1",
+        "kind": "race",
+        "date": "2026-05-23",
+        "timeLocal": "13:00",
+        "durationMinutes": 60,
         "results": [
           {
             "driver": "C. Mostert",
@@ -1199,15 +1200,15 @@
             "position": "DNF",
             "driver": "C. Murray"
           }
-        ],
-        "name": "Race 1"
+        ]
       },
       {
-        "timeLocal": "16:00",
+        "id": "supercars-2026-05-s04",
+        "name": "Race 2",
         "kind": "race",
         "date": "2026-05-23",
-        "name": "Race 2",
-        "id": "supercars-2026-05-s04",
+        "timeLocal": "16:00",
+        "durationMinutes": 60,
         "results": [
           {
             "team": "Brad Jones Racing",
@@ -1377,15 +1378,15 @@
             "driver": "B. Kostecki",
             "position": 24
           }
-        ],
-        "durationMinutes": 60
+        ]
       },
       {
-        "timeLocal": "11:35",
+        "id": "supercars-2026-05-s1779205936997",
+        "name": "Qualifying 3",
         "kind": "qualifying",
         "date": "2026-05-24",
-        "name": "Qualifying 3",
-        "id": "supercars-2026-05-s1779205936997",
+        "timeLocal": "11:35",
+        "durationMinutes": 30,
         "results": [
           {
             "time": "51.3791",
@@ -1467,13 +1468,15 @@
             "driver": "T. Randle",
             "laps": "1"
           }
-        ],
-        "durationMinutes": 30
+        ]
       },
       {
-        "durationMinutes": 45,
+        "id": "supercars-2026-05-s1779205969243",
+        "name": "Race 3",
         "kind": "race",
         "date": "2026-05-24",
+        "timeLocal": "12:30",
+        "durationMinutes": 45,
         "results": [
           {
             "position": 1,
@@ -1643,177 +1646,175 @@
             "driver": "J. Le Brocq",
             "laps": "67"
           }
-        ],
-        "name": "Race 3",
-        "id": "supercars-2026-05-s1779205969243",
-        "timeLocal": "12:30"
+        ]
       }
     ]
   },
   {
-    "roundNumber": 6,
+    "id": "supercars-2026-06",
     "seriesId": "supercars",
+    "roundNumber": 6,
+    "raceName": "betr Darwin Triple Crown",
+    "circuitName": "Hidden Valley Raceway",
     "city": "Darwin",
     "country": "Australia",
-    "id": "supercars-2026-06",
     "countryCode": "AU",
-    "raceName": "betr Darwin Triple Crown",
     "sessions": [
       {
-        "timeLocal": "10:50",
-        "kind": "practice",
         "id": "supercars-2026-06-s01",
+        "name": "Practice 1",
+        "kind": "practice",
         "date": "2026-06-19",
-        "durationMinutes": 60,
-        "name": "Practice 1"
+        "timeLocal": "10:50",
+        "durationMinutes": 60
       },
       {
-        "timeLocal": "13:50",
-        "kind": "qualifying",
         "id": "supercars-2026-06-s02",
+        "name": "Qualifying (race 17)",
+        "kind": "qualifying",
         "date": "2026-06-19",
-        "durationMinutes": 60,
-        "name": "Qualifying (race 17)"
+        "timeLocal": "13:50",
+        "durationMinutes": 60
       },
       {
-        "durationMinutes": 60,
-        "timeLocal": "17:30",
-        "kind": "race",
-        "date": "2026-06-19",
         "id": "supercars-2026-06-s03",
-        "name": "Race 17"
+        "name": "Race 17",
+        "kind": "race",
+        "date": "2026-06-19",
+        "timeLocal": "17:30",
+        "durationMinutes": 60
       },
       {
-        "durationMinutes": 60,
-        "timeLocal": "11:10",
-        "kind": "race",
-        "date": "2026-06-20",
         "id": "supercars-2026-06-s04",
-        "name": "Qualifying (race 18)"
-      },
-      {
-        "durationMinutes": 60,
-        "timeLocal": "12:05",
+        "name": "Qualifying (race 18)",
         "kind": "race",
         "date": "2026-06-20",
-        "id": "supercars-2026-06-s1781435233667",
-        "name": "Top 10 Shootout (race 18)"
-      },
-      {
-        "durationMinutes": 60,
-        "timeLocal": "15:50",
-        "kind": "race",
-        "date": "2026-06-20",
-        "id": "supercars-2026-06-s05",
-        "name": "Race 18"
-      },
-      {
-        "durationMinutes": 60,
         "timeLocal": "11:10",
-        "kind": "qualifying",
-        "date": "2026-06-21",
-        "id": "supercars-2026-06-s1781435308800",
-        "name": "Qualifying (race 19)"
+        "durationMinutes": 60
       },
       {
-        "durationMinutes": 60,
+        "id": "supercars-2026-06-s1781435233667",
+        "name": "Top 10 Shootout (race 18)",
+        "kind": "race",
+        "date": "2026-06-20",
         "timeLocal": "12:05",
-        "kind": "qualifying",
-        "date": "2026-06-21",
-        "id": "supercars-2026-06-s1781435337511",
-        "name": "Top 10 Shootout (race 19)"
+        "durationMinutes": 60
       },
       {
-        "durationMinutes": 60,
-        "timeLocal": "15:10",
+        "id": "supercars-2026-06-s05",
+        "name": "Race 18",
+        "kind": "race",
+        "date": "2026-06-20",
+        "timeLocal": "15:50",
+        "durationMinutes": 60
+      },
+      {
+        "id": "supercars-2026-06-s1781435308800",
+        "name": "Qualifying (race 19)",
+        "kind": "qualifying",
+        "date": "2026-06-21",
+        "timeLocal": "11:10",
+        "durationMinutes": 60
+      },
+      {
+        "id": "supercars-2026-06-s1781435337511",
+        "name": "Top 10 Shootout (race 19)",
+        "kind": "qualifying",
+        "date": "2026-06-21",
+        "timeLocal": "12:05",
+        "durationMinutes": 60
+      },
+      {
+        "id": "supercars-2026-06-s1781435364383",
+        "name": "Race 19",
         "kind": "race",
         "date": "2026-06-21",
-        "id": "supercars-2026-06-s1781435364383",
-        "name": "Race 19"
+        "timeLocal": "15:10",
+        "durationMinutes": 60
       }
-    ],
-    "circuitName": "Hidden Valley Raceway"
+    ]
   },
   {
+    "id": "supercars-2026-07",
     "seriesId": "supercars",
     "roundNumber": 7,
+    "raceName": "NTI Townsville 500",
+    "circuitName": "Townsville Street Circuit",
     "city": "Townsville",
     "country": "Australia",
-    "id": "supercars-2026-07",
     "countryCode": "AU",
-    "raceName": "NTI Townsville 500",
     "sessions": [
       {
-        "durationMinutes": 60,
-        "timeLocal": "10:35",
+        "id": "supercars-2026-07-s01",
+        "name": "Practice 1",
         "kind": "practice",
         "date": "2026-07-10",
-        "id": "supercars-2026-07-s01",
-        "name": "Practice 1"
+        "timeLocal": "10:35",
+        "durationMinutes": 60
       },
       {
-        "durationMinutes": 60,
-        "timeLocal": "12:45",
-        "kind": "qualifying",
-        "date": "2026-07-10",
         "id": "supercars-2026-07-s02",
-        "name": "Qualifying (Race 20)"
+        "name": "Qualifying (Race 20)",
+        "kind": "qualifying",
+        "date": "2026-07-10",
+        "timeLocal": "12:45",
+        "durationMinutes": 60
       },
       {
-        "durationMinutes": 60,
-        "timeLocal": "16:15",
+        "id": "supercars-2026-07-s03",
+        "name": "Race 20",
         "kind": "race",
         "date": "2026-07-10",
-        "id": "supercars-2026-07-s03",
-        "name": "Race 20"
+        "timeLocal": "16:15",
+        "durationMinutes": 60
       },
       {
-        "durationMinutes": 30,
-        "timeLocal": "11:25",
-        "kind": "qualifying",
-        "date": "2026-07-11",
         "id": "supercars-2026-07-s1783247973906",
-        "name": "Qualifying (Race 21)"
-      },
-      {
-        "durationMinutes": 30,
-        "timeLocal": "12:10",
+        "name": "Qualifying (Race 21)",
         "kind": "qualifying",
         "date": "2026-07-11",
-        "id": "supercars-2026-07-s1783247997794",
-        "name": "TTSO (Race 21)"
-      },
-      {
-        "durationMinutes": 30,
-        "timeLocal": "15:05",
-        "kind": "race",
-        "date": "2026-07-11",
-        "id": "supercars-2026-07-s1783248027931",
-        "name": "Race 21"
-      },
-      {
-        "durationMinutes": 30,
         "timeLocal": "11:25",
-        "kind": "qualifying",
-        "date": "2026-07-12",
-        "id": "supercars-2026-07-s1783248055871",
-        "name": "Qualifying (Race 22)"
+        "durationMinutes": 30
       },
       {
-        "durationMinutes": 30,
+        "id": "supercars-2026-07-s1783247997794",
+        "name": "TTSO (Race 21)",
+        "kind": "qualifying",
+        "date": "2026-07-11",
         "timeLocal": "12:10",
-        "kind": "qualifying",
-        "date": "2026-07-12",
-        "id": "supercars-2026-07-s1783248063213",
-        "name": "TTSO (Race 22)"
+        "durationMinutes": 30
       },
       {
-        "durationMinutes": 60,
-        "timeLocal": "15:05",
+        "id": "supercars-2026-07-s1783248027931",
+        "name": "Race 21",
         "kind": "race",
+        "date": "2026-07-11",
+        "timeLocal": "15:05",
+        "durationMinutes": 30
+      },
+      {
+        "id": "supercars-2026-07-s1783248055871",
+        "name": "Qualifying (Race 22)",
+        "kind": "qualifying",
         "date": "2026-07-12",
+        "timeLocal": "11:25",
+        "durationMinutes": 30
+      },
+      {
+        "id": "supercars-2026-07-s1783248063213",
+        "name": "TTSO (Race 22)",
+        "kind": "qualifying",
+        "date": "2026-07-12",
+        "timeLocal": "12:10",
+        "durationMinutes": 30
+      },
+      {
         "id": "supercars-2026-07-s04",
         "name": "Race 22",
+        "kind": "race",
+        "date": "2026-07-12",
+        "timeLocal": "15:05",
+        "durationMinutes": 60,
         "results": [
           {
             "position": 1,
@@ -1996,299 +1997,338 @@
           }
         ]
       }
-    ],
-    "circuitName": "Townsville Street Circuit"
+    ]
   },
   {
+    "id": "supercars-2026-08",
     "seriesId": "supercars",
     "roundNumber": 8,
+    "raceName": "Perth Super 440",
+    "circuitName": "Wanneroo Raceway",
     "city": "Perth",
     "country": "Australia",
-    "id": "supercars-2026-08",
     "countryCode": "AU",
-    "raceName": "Perth Super 440",
     "sessions": [
       {
-        "durationMinutes": 60,
-        "timeLocal": "11:00",
+        "id": "supercars-2026-08-ocr-1785134158241-1",
+        "name": "Practice 1",
         "kind": "practice",
-        "date": "2026-08-01",
-        "id": "supercars-2026-08-s01",
-        "name": "Practice"
+        "date": "2026-07-31",
+        "timeLocal": "17:00",
+        "durationMinutes": 60
       },
       {
-        "durationMinutes": 60,
-        "timeLocal": "13:30",
+        "id": "supercars-2026-08-ocr-1785134158241-2",
+        "name": "Practice 2",
+        "kind": "practice",
+        "date": "2026-07-31",
+        "timeLocal": "17:40",
+        "durationMinutes": 60
+      },
+      {
+        "id": "supercars-2026-08-ocr-1785134158241-3",
+        "name": "Qualifying 1",
         "kind": "qualifying",
         "date": "2026-08-01",
-        "id": "supercars-2026-08-s02",
-        "name": "Qualifying"
+        "timeLocal": "11:45",
+        "durationMinutes": 60
       },
       {
-        "durationMinutes": 60,
-        "timeLocal": "16:00",
+        "id": "supercars-2026-08-ocr-1785134158241-4",
+        "name": "Qualifying 2",
+        "kind": "qualifying",
+        "date": "2026-08-01",
+        "timeLocal": "12:35",
+        "durationMinutes": 60
+      },
+      {
+        "id": "supercars-2026-08-ocr-1785134158241-5",
+        "name": "Race 1",
         "kind": "race",
         "date": "2026-08-01",
-        "id": "supercars-2026-08-s03",
-        "name": "Race 1"
+        "timeLocal": "14:45",
+        "durationMinutes": 60
       },
       {
-        "durationMinutes": 60,
+        "id": "supercars-2026-08-ocr-1785134158241-6",
+        "name": "Race 2",
+        "kind": "race",
+        "date": "2026-08-01",
+        "timeLocal": "18:20",
+        "durationMinutes": 60
+      },
+      {
+        "id": "supercars-2026-08-ocr-1785134158241-7",
+        "name": "Qualifying 3",
+        "kind": "qualifying",
+        "date": "2026-08-02",
         "timeLocal": "13:00",
+        "durationMinutes": 60
+      },
+      {
+        "id": "supercars-2026-08-ocr-1785134158241-8",
+        "name": "Supercars Top 10 Shootout",
+        "kind": "qualifying",
+        "date": "2026-08-02",
+        "timeLocal": "13:45",
+        "durationMinutes": 60
+      },
+      {
+        "id": "supercars-2026-08-ocr-1785134158241-9",
+        "name": "Race 3",
         "kind": "race",
         "date": "2026-08-02",
-        "id": "supercars-2026-08-s04",
-        "name": "Race 2"
+        "timeLocal": "17:20",
+        "durationMinutes": 60
       }
-    ],
-    "circuitName": "Wanneroo Raceway"
+    ]
   },
   {
+    "id": "supercars-2026-09",
     "seriesId": "supercars",
     "roundNumber": 9,
+    "raceName": "Century Batteries Ipswich Super 440",
+    "circuitName": "Queensland Raceway",
     "city": "Ipswich",
     "country": "Australia",
-    "id": "supercars-2026-09",
     "countryCode": "AU",
-    "raceName": "Century Batteries Ipswich Super 440",
     "sessions": [
       {
-        "durationMinutes": 60,
-        "timeLocal": "11:00",
+        "id": "supercars-2026-09-s01",
+        "name": "Practice",
         "kind": "practice",
         "date": "2026-08-22",
-        "id": "supercars-2026-09-s01",
-        "name": "Practice"
+        "timeLocal": "11:00",
+        "durationMinutes": 60
       },
       {
-        "durationMinutes": 60,
-        "timeLocal": "13:30",
+        "id": "supercars-2026-09-s02",
+        "name": "Qualifying",
         "kind": "qualifying",
         "date": "2026-08-22",
-        "id": "supercars-2026-09-s02",
-        "name": "Qualifying"
+        "timeLocal": "13:30",
+        "durationMinutes": 60
       },
       {
-        "durationMinutes": 60,
-        "timeLocal": "16:00",
+        "id": "supercars-2026-09-s03",
+        "name": "Race 1",
         "kind": "race",
         "date": "2026-08-22",
-        "id": "supercars-2026-09-s03",
-        "name": "Race 1"
+        "timeLocal": "16:00",
+        "durationMinutes": 60
       },
       {
-        "durationMinutes": 60,
-        "timeLocal": "13:00",
+        "id": "supercars-2026-09-s04",
+        "name": "Race 2",
         "kind": "race",
         "date": "2026-08-23",
-        "id": "supercars-2026-09-s04",
-        "name": "Race 2"
+        "timeLocal": "13:00",
+        "durationMinutes": 60
       }
-    ],
-    "circuitName": "Queensland Raceway"
+    ]
   },
   {
+    "id": "supercars-2026-10",
     "seriesId": "supercars",
     "roundNumber": 10,
+    "raceName": "AirTouch 500 at The Bend",
+    "circuitName": "The Bend Motorsport Park",
     "city": "Tailem Bend",
     "country": "Australia",
-    "id": "supercars-2026-10",
     "countryCode": "AU",
-    "raceName": "AirTouch 500 at The Bend",
     "sessions": [
       {
-        "durationMinutes": 60,
-        "timeLocal": "11:00",
+        "id": "supercars-2026-10-s01",
+        "name": "Practice",
         "kind": "practice",
         "date": "2026-09-12",
-        "id": "supercars-2026-10-s01",
-        "name": "Practice"
+        "timeLocal": "11:00",
+        "durationMinutes": 60
       },
       {
-        "durationMinutes": 60,
-        "timeLocal": "13:30",
+        "id": "supercars-2026-10-s02",
+        "name": "Qualifying",
         "kind": "qualifying",
         "date": "2026-09-12",
-        "id": "supercars-2026-10-s02",
-        "name": "Qualifying"
+        "timeLocal": "13:30",
+        "durationMinutes": 60
       },
       {
-        "durationMinutes": 60,
-        "timeLocal": "11:30",
-        "kind": "race",
-        "date": "2026-09-13",
         "id": "supercars-2026-10-s03",
-        "name": "Race 1"
-      },
-      {
-        "durationMinutes": 60,
-        "timeLocal": "15:00",
+        "name": "Race 1",
         "kind": "race",
         "date": "2026-09-13",
+        "timeLocal": "11:30",
+        "durationMinutes": 60
+      },
+      {
         "id": "supercars-2026-10-s04",
-        "name": "Race 2"
+        "name": "Race 2",
+        "kind": "race",
+        "date": "2026-09-13",
+        "timeLocal": "15:00",
+        "durationMinutes": 60
       }
-    ],
-    "circuitName": "The Bend Motorsport Park"
+    ]
   },
   {
+    "id": "supercars-2026-11",
     "seriesId": "supercars",
     "roundNumber": 11,
+    "raceName": "Repco Bathurst 1000",
+    "circuitName": "Mount Panorama Circuit",
     "city": "Bathurst",
     "country": "Australia",
-    "id": "supercars-2026-11",
     "countryCode": "AU",
-    "raceName": "Repco Bathurst 1000",
     "sessions": [
       {
-        "durationMinutes": 60,
-        "timeLocal": "09:15",
+        "id": "supercars-2026-11-s01",
+        "name": "Practice",
         "kind": "practice",
         "date": "2026-10-08",
-        "id": "supercars-2026-11-s01",
-        "name": "Practice"
+        "timeLocal": "09:15",
+        "durationMinutes": 60
       },
       {
-        "durationMinutes": 60,
-        "timeLocal": "10:15",
+        "id": "supercars-2026-11-s02",
+        "name": "Qualifying",
         "kind": "qualifying",
         "date": "2026-10-09",
-        "id": "supercars-2026-11-s02",
-        "name": "Qualifying"
+        "timeLocal": "10:15",
+        "durationMinutes": 60
       },
       {
-        "durationMinutes": 60,
-        "timeLocal": "11:15",
+        "id": "supercars-2026-11-s03",
+        "name": "Race",
         "kind": "race",
         "date": "2026-10-11",
-        "id": "supercars-2026-11-s03",
-        "name": "Race"
+        "timeLocal": "11:15",
+        "durationMinutes": 60
       }
-    ],
-    "circuitName": "Mount Panorama Circuit"
+    ]
   },
   {
-    "roundNumber": 12,
-    "circuitName": "Streets of Surfers Paradise",
     "id": "supercars-2026-12",
+    "seriesId": "supercars",
+    "roundNumber": 12,
+    "raceName": "Boost Mobile Gold Coast 500",
+    "circuitName": "Streets of Surfers Paradise",
+    "city": "Gold Coast",
     "country": "Australia",
     "countryCode": "AU",
-    "city": "Gold Coast",
     "sessions": [
       {
-        "durationMinutes": 60,
-        "timeLocal": "10:00",
+        "id": "supercars-2026-12-s01",
+        "name": "Practice",
         "kind": "practice",
         "date": "2026-10-24",
-        "id": "supercars-2026-12-s01",
-        "name": "Practice"
+        "timeLocal": "10:00",
+        "durationMinutes": 60
       },
       {
-        "durationMinutes": 60,
-        "timeLocal": "13:30",
+        "id": "supercars-2026-12-s02",
+        "name": "Qualifying",
         "kind": "qualifying",
         "date": "2026-10-24",
-        "id": "supercars-2026-12-s02",
-        "name": "Qualifying"
+        "timeLocal": "13:30",
+        "durationMinutes": 60
       },
       {
-        "durationMinutes": 60,
-        "timeLocal": "17:15",
+        "id": "supercars-2026-12-s03",
+        "name": "Race 1",
         "kind": "race",
         "date": "2026-10-24",
-        "id": "supercars-2026-12-s03",
-        "name": "Race 1"
+        "timeLocal": "17:15",
+        "durationMinutes": 60
       },
       {
-        "durationMinutes": 60,
-        "timeLocal": "15:30",
+        "id": "supercars-2026-12-s04",
+        "name": "Race 2",
         "kind": "race",
         "date": "2026-10-25",
-        "id": "supercars-2026-12-s04",
-        "name": "Race 2"
+        "timeLocal": "15:30",
+        "durationMinutes": 60
       }
-    ],
-    "raceName": "Boost Mobile Gold Coast 500",
-    "seriesId": "supercars"
+    ]
   },
   {
-    "roundNumber": 13,
-    "circuitName": "Sandown Raceway",
     "id": "supercars-2026-13",
+    "seriesId": "supercars",
+    "roundNumber": 13,
+    "raceName": "Penrite Oil Sandown 500",
+    "circuitName": "Sandown Raceway",
+    "city": "Melbourne",
     "country": "Australia",
     "countryCode": "AU",
-    "city": "Melbourne",
     "sessions": [
       {
-        "durationMinutes": 60,
-        "timeLocal": "09:30",
+        "id": "supercars-2026-13-s01",
+        "name": "Practice",
         "kind": "practice",
         "date": "2026-11-14",
-        "id": "supercars-2026-13-s01",
-        "name": "Practice"
+        "timeLocal": "09:30",
+        "durationMinutes": 60
       },
       {
-        "timeLocal": "10:00",
-        "date": "2026-11-15",
-        "durationMinutes": 60,
         "id": "supercars-2026-13-s02",
         "name": "Qualifying",
-        "kind": "qualifying"
+        "kind": "qualifying",
+        "date": "2026-11-15",
+        "timeLocal": "10:00",
+        "durationMinutes": 60
       },
       {
-        "timeLocal": "12:30",
-        "date": "2026-11-15",
-        "durationMinutes": 60,
         "id": "supercars-2026-13-s03",
         "name": "Race",
-        "kind": "race"
+        "kind": "race",
+        "date": "2026-11-15",
+        "timeLocal": "12:30",
+        "durationMinutes": 60
       }
-    ],
-    "raceName": "Penrite Oil Sandown 500",
-    "seriesId": "supercars"
+    ]
   },
   {
-    "roundNumber": 14,
-    "circuitName": "Adelaide Street Circuit",
     "id": "supercars-2026-14",
+    "seriesId": "supercars",
+    "roundNumber": 14,
+    "raceName": "bp Adelaide Grand Final",
+    "circuitName": "Adelaide Street Circuit",
+    "city": "Adelaide",
     "country": "Australia",
     "countryCode": "AU",
-    "city": "Adelaide",
     "sessions": [
       {
-        "timeLocal": "10:00",
-        "date": "2026-11-27",
-        "durationMinutes": 60,
         "id": "supercars-2026-14-s01",
         "name": "Practice",
-        "kind": "practice"
+        "kind": "practice",
+        "date": "2026-11-27",
+        "timeLocal": "10:00",
+        "durationMinutes": 60
       },
       {
-        "timeLocal": "13:30",
-        "date": "2026-11-27",
-        "durationMinutes": 60,
         "id": "supercars-2026-14-s02",
         "name": "Qualifying",
-        "kind": "qualifying"
+        "kind": "qualifying",
+        "date": "2026-11-27",
+        "timeLocal": "13:30",
+        "durationMinutes": 60
       },
       {
-        "timeLocal": "16:00",
-        "date": "2026-11-28",
-        "durationMinutes": 60,
         "id": "supercars-2026-14-s03",
         "name": "Race 1",
-        "kind": "race"
+        "kind": "race",
+        "date": "2026-11-28",
+        "timeLocal": "16:00",
+        "durationMinutes": 60
       },
       {
-        "timeLocal": "14:30",
-        "date": "2026-11-29",
-        "durationMinutes": 60,
         "id": "supercars-2026-14-s04",
         "name": "Race 2",
-        "kind": "race"
+        "kind": "race",
+        "date": "2026-11-29",
+        "timeLocal": "14:30",
+        "durationMinutes": 60
       }
-    ],
-    "seriesId": "supercars",
-    "raceName": "bp Adelaide Grand Final"
+    ]
   }
 ]
