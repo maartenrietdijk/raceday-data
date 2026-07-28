@@ -1,0 +1,89 @@
+name: Auto Fetch Session Results
+
+on:
+  schedule:
+    # Offset from the top of the hour, when GitHub Actions is usually busiest.
+    - cron: '3,13,23,33,43,53 * * * *'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Only show what would be fetched'
+        required: false
+        type: boolean
+        default: false
+      series:
+        description: 'Optional RaceDay series id for a complete event import'
+        required: false
+        type: string
+      round_id:
+        description: 'Optional RaceDay event id to fetch completely'
+        required: false
+        type: string
+
+# Shared by all RaceDay workflows that write data. A running import is never
+# cancelled, and two workflows can never write the JSON files simultaneously.
+concurrency:
+  group: raceday-data-writes-main
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+      RACEDAY_TIMEZONE: Europe/Amsterdam
+
+    steps:
+      - name: Checkout latest data
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4
+
+      - name: Discover and fetch due results
+        run: |
+          if [ -n "${{ inputs.series }}" ] && [ -n "${{ inputs.round_id }}" ]; then
+            python auto_fetch_results.py \
+              --year 2026 \
+              --series "${{ inputs.series }}" \
+              --round-id "${{ inputs.round_id }}" \
+              --force-event \
+              --max-fetches 100
+          elif [ "${{ inputs.dry_run }}" = "true" ]; then
+            python auto_fetch_results.py --year 2026 --dry-run
+          else
+            python auto_fetch_results.py --year 2026
+          fi
+
+      - name: Cleanup URL references
+        if: ${{ inputs.dry_run != true }}
+        run: python cleanup_urls.py
+
+      - name: Commit and push updates
+        if: ${{ inputs.dry_run != true }}
+        run: |
+          git config user.name "RaceDay Bot"
+          git config user.email "bot@raceday.app"
+          git add '*_2026.json'
+          if [ -f .raceday/auto-results-state.json ]; then
+            git add .raceday/auto-results-state.json
+          fi
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "🏁 Automatic results refresh"
+          git pull --rebase origin main
+          git push origin main

@@ -13,8 +13,9 @@ on:
         description: 'Series ID (e.g. wec, f1, indycar)'
         required: true
 
+# Same queue as the automatic importer, so manual fetching always remains safe.
 concurrency:
-  group: fetch-results-${{ github.event.inputs.series }}
+  group: raceday-data-writes-main
   cancel-in-progress: false
 
 permissions:
@@ -32,6 +33,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           ref: main
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -46,7 +48,7 @@ jobs:
 
       - name: Fetch results
         run: |
-          python fetch_results.py \
+          python run_fetch_results.py \
             --url "${{ github.event.inputs.url }}" \
             --session-id "${{ github.event.inputs.session_id }}" \
             --series "${{ github.event.inputs.series }}"
@@ -58,10 +60,11 @@ jobs:
         run: |
           git config user.name "RaceDay Bot"
           git config user.email "bot@raceday.app"
-          git add *.json
+          git add '*.json'
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
             git commit -m "🏁 Results: ${{ github.event.inputs.session_id }}"
-            git push
+            git pull --rebase origin main
+            git push origin main
           fi
