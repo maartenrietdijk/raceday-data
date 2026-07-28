@@ -591,6 +591,7 @@
     font: 600 13.5px var(--sans); transition: opacity .15s, background .15s, border-color .15s, transform .15s;
   }
   .btn:active { transform: scale(.98); }
+  .btn:disabled { opacity: .42; cursor: not-allowed; transform: none; }
   .btn-sm { min-height: 40px; padding: 0 16px; font-size: 13px; }
   .btn-primary { background: var(--accent); color: var(--accent-fg); }
   .btn-primary:hover { background: var(--accent); box-shadow: none; opacity: .82; }
@@ -1079,6 +1080,14 @@ const DEFAULT_SERIES = [
   { id: 'nls',           name: 'NLS',              color: '#7f8c8d' },
   { id: 'supercars',     name: 'Supercars',        color: '#f1c40f' },
 ];
+
+// Keep this aligned with MOTORSPORT_SERIES in auto_fetch_results.py. Other
+// series stay fully editable, but cannot safely use automatic discovery yet.
+const AUTO_RESULTS_SERIES = new Set([
+  'f1', 'f2', 'f3', 'f1academy', 'formulae', 'indycar',
+  'nascar', 'nascar_oreilly', 'nascar_trucks', 'wec', 'imsa', 'elms',
+  'motogp', 'moto2', 'moto3', 'wrc', 'dtm', 'supercars', 'wsbk',
+]);
 
 let state = {
   series: [],           // [{id, name, color}]
@@ -1732,6 +1741,7 @@ async function publishStandingsToGitHub() {
 
 function renderRound(r, i, series) {
   const sessionRows = (r.sessions || []).map((s, si) => renderSession(s, i, si)).join('');
+  const supportsAutoResults = AUTO_RESULTS_SERIES.has(state.activeSeries);
   return `
     <div class="round-card" id="round_${i}" data-round-index="${i}"
       ondragover="dragRoundOver(event,${i})" ondrop="dragRoundDrop(event,${i})">
@@ -1791,6 +1801,9 @@ function renderRound(r, i, series) {
           <div class="sessions-label">
             Sessies
             <span style="display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end">
+              <button class="btn btn-primary btn-sm" id="fetchEventBtn_${i}" onclick="fetchEventResults(${i})"
+                title="${supportsAutoResults ? 'Haal alle vindbare sessieresultaten op via Motorsport.com' : 'Automatisch ophalen is voor deze serie nog niet beschikbaar'}"
+                ${supportsAutoResults ? '' : 'disabled'}>Alles ophalen</button>
               <button class="btn btn-surface btn-sm" onclick="openScreenshotImport(${i})">▣ Screenshots</button>
               <button class="btn btn-surface btn-sm" onclick="addSession(${i})">+ Sessie</button>
             </span>
@@ -2609,6 +2622,63 @@ async function fetchResults(ri, si) {
   }
 }
 
+async function fetchEventResults(ri) {
+  if (!AUTO_RESULTS_SERIES.has(state.activeSeries)) {
+    return showStatus('Automatisch ophalen is voor deze serie nog niet beschikbaar', 'error');
+  }
+  const round = state.data[state.activeSeries]?.[ri];
+  if (!round) return showStatus('Event niet gevonden', 'error');
+  if (!round.id) return showStatus('Geef dit event eerst een ronde-ID', 'error');
+  if (!round.sessions?.length) return showStatus('Dit event heeft nog geen sessies', 'error');
+  const missingIds = round.sessions.filter(session => !session.id).length;
+  if (missingIds) return showStatus(`${missingIds} sessie(s) hebben nog geen ID`, 'error');
+  if (!state.github?.token || !state.github?.repo) {
+    return showStatus('Stel eerst je GitHub-token en repository in', 'error');
+  }
+
+  const btn = document.getElementById(`fetchEventBtn_${ri}`);
+  const originalText = btn?.textContent || 'Alles ophalen';
+  if (btn) { btn.disabled = true; btn.textContent = 'Publiceren…'; }
+
+  try {
+    // Publish first: newly added historical events and edited session IDs must
+    // exist on GitHub before the queued event importer checks out the data.
+    const published = await publishToGitHub();
+    if (!published) throw new Error('Publiceren naar GitHub is niet gelukt');
+
+    if (btn) btn.textContent = 'Starten…';
+    const [owner, repo] = state.github.repo.split('/');
+    if (!owner || !repo) throw new Error('Gebruik eigenaar/repository bij GitHub-instellingen');
+    const workflowUrl = `https://api.github.com/repos/${owner}/${repo}/actions/workflows/auto_fetch_results.yml/dispatches`;
+    const resp = await fetch(workflowUrl, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${state.github.token}`,
+        'Accept': 'application/vnd.github+json',
+        'Content-Type': 'application/json',
+        'X-GitHub-Api-Version': '2022-11-28',
+      },
+      body: JSON.stringify({
+        ref: state.github.branch || 'main',
+        inputs: {
+          dry_run: 'false',
+          series: state.activeSeries,
+          round_id: round.id,
+        }
+      })
+    });
+    if (resp.status !== 204) {
+      const err = await resp.json().catch(() => ({}));
+      throw new Error(err.message || `GitHub error ${resp.status}`);
+    }
+    showStatus(`✓ Alle ${round.sessions.length} sessies van ${round.raceName || round.id} staan in de GitHub-wachtrij`, 'success');
+  } catch (err) {
+    showStatus(`Event ophalen mislukt: ${err.message}`, 'error');
+  } finally {
+    if (btn) { btn.disabled = false; btn.textContent = originalText; }
+  }
+}
+
 function exportJSON() {
   if (!state.activeSeries) return showStatus('Open eerst een serie', 'error');
   const json = buildJSON(state.activeSeries);
@@ -2689,9 +2759,9 @@ async function syncFromSettings() {
 
 async function publishToGitHub() {
   const { token, repo, branch, path } = state.github;
-  if (!token) return showStatus('Stel eerst je GitHub-token in', 'error');
-  if (!repo)  return showStatus('Stel eerst je GitHub-repository in', 'error');
-  if (!state.activeSeries) return showStatus('Open eerst de serie die je wilt publiceren', 'error');
+  if (!token) { showStatus('Stel eerst je GitHub-token in', 'error'); return false; }
+  if (!repo)  { showStatus('Stel eerst je GitHub-repository in', 'error'); return false; }
+  if (!state.activeSeries) { showStatus('Open eerst de serie die je wilt publiceren', 'error'); return false; }
 
   const filename = `${state.activeSeries}_2026.json`;
   const filePath = path ? `${path.replace(/\/$/,'')}/${filename}` : filename;
@@ -2700,10 +2770,12 @@ async function publishToGitHub() {
 
   // Validate inputs before trying
   if (!token.startsWith('gh')) {
-    return showStatus('Deze token lijkt ongeldig — verwacht ghp_ of github_pat_', 'error');
+    showStatus('Deze token lijkt ongeldig — verwacht ghp_ of github_pat_', 'error');
+    return false;
   }
   if (!repo.includes('/')) {
-    return showStatus('Gebruik eigenaar/repository, bijvoorbeeld maartenrietdijk/raceday-data', 'error');
+    showStatus('Gebruik eigenaar/repository, bijvoorbeeld maartenrietdijk/raceday-data', 'error');
+    return false;
   }
 
   showStatus('Publiceren naar GitHub…', 'loading');
@@ -2724,12 +2796,14 @@ async function publishToGitHub() {
         const existing = await getRes.json();
         sha = existing.sha;
       } else if (getRes.status === 401) {
-        return showStatus('Token is ongeldig of verlopen', 'error');
+        showStatus('Token is ongeldig of verlopen', 'error');
+        return false;
       } else if (getRes.status === 404) {
         // File doesn't exist yet — that's fine, we'll create it
       }
     } catch (e) {
-      return showStatus(`Netwerkfout: ${e.message}`, 'error');
+      showStatus(`Netwerkfout: ${e.message}`, 'error');
+      return false;
     }
 
     const body = {
@@ -2746,6 +2820,7 @@ async function publishToGitHub() {
 
     if (putRes.status === 201 || putRes.status === 200) {
       showStatus(`✓ ${filename} pushed to ${repo}`, 'success');
+      return true;
     } else if (putRes.status === 401) {
       showStatus('Token is ongeldig of verlopen', 'error');
     } else if (putRes.status === 403) {
@@ -2756,8 +2831,10 @@ async function publishToGitHub() {
       const err = await putRes.json().catch(() => ({}));
       showStatus(`GitHub error ${putRes.status}: ${err.message || 'unknown'}`, 'error');
     }
+    return false;
   } catch (e) {
     showStatus(`Mislukt: ${e.message}`, 'error');
+    return false;
   }
 }
 
