@@ -296,6 +296,37 @@ def session_score(candidate: SessionCandidate, session_data: dict[str, Any]) -> 
     return score
 
 
+def supercars_session_role(session_data: dict[str, Any]) -> str | None:
+    """Classify Supercars sessions without trusting their sometimes incorrect kind."""
+    name = normalize(session_data.get("name"))
+    kind = normalize(session_data.get("kind"))
+    if "shootout" in name or "ttso" in name:
+        return "shootout"
+    if "qual" in name:
+        return "qualifying"
+    if "practice" in name or kind == "practice":
+        return "practice"
+    if "race" in name or kind in {"race", "feature race", "feature_race"}:
+        return "race"
+    return None
+
+
+def session_for_matching(series: str, sessions: list[dict[str, Any]], index: int) -> dict[str, Any]:
+    """Add an event-local ordinal used by series whose public names use season numbers."""
+    session_data = dict(sessions[index])
+    if series != "supercars":
+        return session_data
+    role = supercars_session_role(session_data)
+    if not role:
+        return session_data
+    session_data["_eventOrdinal"] = sum(
+        1 for previous in sessions[:index + 1]
+        if supercars_session_role(previous) == role
+    )
+    session_data["_eventRole"] = role
+    return session_data
+
+
 def preferred_session_codes(series: str, session_data: dict[str, Any]) -> list[str] | None:
     """Return strict, series-aware result tabs in preference order.
 
@@ -421,7 +452,23 @@ def preferred_session_codes(series: str, session_data: dict[str, Any]) -> list[s
         if kind == "stage":
             return []
 
-    if series in {"dtm", "supercars"}:
+    if series == "supercars":
+        role = session_data.get("_eventRole") or supercars_session_role(session_data)
+        ordinal = session_data.get("_eventOrdinal")
+        if role == "practice":
+            session_number = ordinal or number or 1
+            return [f"FP{session_number}", "FIP", "FP"]
+        if role == "qualifying":
+            session_number = ordinal or number or 1
+            return [f"Q{session_number}", "Q"]
+        if role == "shootout":
+            session_number = ordinal or 1
+            return [f"SO{session_number}"]
+        if role == "race":
+            session_number = ordinal or number or 1
+            return [f"RACE{session_number}", "RACE"]
+
+    if series == "dtm":
         if is_practice:
             return [f"FP{number}"] if number else ["FP1", "FIP"]
         if is_qualifying:
@@ -589,7 +636,8 @@ def run(args: argparse.Namespace) -> int:
         for round_data in rounds:
             if args.round_id and round_data.get("id") != args.round_id:
                 continue
-            for session_data in round_data.get("sessions", []):
+            round_sessions = round_data.get("sessions", [])
+            for session_index, session_data in enumerate(round_sessions):
                 session_id = session_data.get("id")
                 first_fetch = first_fetch_at(session_data, timezone)
                 force_event = bool(args.force_event and args.series and args.round_id)
@@ -652,7 +700,8 @@ def run(args: argparse.Namespace) -> int:
                         except requests.RequestException as error:
                             print(f"⚠️ {series}/{candidate.label}: event page unavailable: {error}")
                             continue
-                    session_candidate = choose_session(event_cache[event_url][1], session_data, series)
+                    matching_session = session_for_matching(series, round_sessions, session_index)
+                    session_candidate = choose_session(event_cache[event_url][1], matching_session, series)
                     if not session_candidate:
                         print(f"⏳ {series}/{session_data.get('name')}: session results link not published yet")
                         continue
