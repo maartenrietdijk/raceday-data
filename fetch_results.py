@@ -197,10 +197,12 @@ def parse_results(html: str, url: str = "", series: str = "", is_oval: bool = Fa
                 else:
                     position = "DNF"
 
-            # WRC: filter on Rally1 cars only
+            # WRC: filter on Rally1 cars when Motorsport.com publishes the car.
+            # Shakedown classifications leave this column empty, so an empty
+            # value must not remove the otherwise valid order and names.
             if is_wrc and car_idx >= 0 and len(cols) > car_idx:
                 car_text = cols[car_idx].get_text(strip=True)
-                if "Rally1" not in car_text:
+                if car_text and "Rally1" not in car_text:
                     continue
 
             if is_multi_driver:
@@ -353,7 +355,7 @@ def parse_results(html: str, url: str = "", series: str = "", is_oval: bool = Fa
                     if is_oval and is_race_session and time_absolute:
                         result["time"] = time_absolute
                     elif not is_oval:
-                        if series in ("f1", "f2", "f3", "f1academy", "formulae", "indycar", "motogp", "moto2", "moto3", "nascar", "nascar_oreilly", "nascar_trucks", "dtm", "wrc", "wec", "imsa"):
+                        if series in ("f1", "f2", "f3", "f1academy", "formulae", "indycar", "motogp", "moto2", "moto3", "nascar", "nascar_oreilly", "nascar_trucks", "dtm", "supercars", "wrc", "wec", "imsa"):
                             if time_absolute:
                                 result["speed"] = time_absolute
 
