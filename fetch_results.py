@@ -181,7 +181,8 @@ def parse_results(html: str, url: str = "", series: str = "", is_oval: bool = Fa
         "legacy", "front row", "haas", "kaulig", "rfk", "23xi", "wood brothers",
     ]
 
-    for row in rows:
+    last_classification_position = 0
+    for row_index, row in enumerate(rows):
         cols = row.find_all("td")
         if len(cols) < 3:
             continue
@@ -191,6 +192,24 @@ def parse_results(html: str, url: str = "", series: str = "", is_oval: bool = Fa
             pos_text = cols[0].get_text(strip=True)
             position = int(pos_text) if pos_text.isdigit() else None
 
+            # IMSA/WEC/ELMS sometimes print DNF in the CLA column for a car
+            # that still occupies a numbered place in the middle of the final
+            # order (for example DNF, then 42). Fill only that missing number;
+            # trailing retirements remain DNF.
+            if position is None and pos_text.upper() == "DNF" and series in {"imsa", "wec", "elms"}:
+                next_numeric_position = next(
+                    (
+                        int(next_text)
+                        for next_row in rows[row_index + 1:]
+                        if (next_cols := next_row.find_all("td"))
+                        and (next_text := next_cols[0].get_text(strip=True)).isdigit()
+                    ),
+                    None,
+                )
+                inferred_position = last_classification_position + 1
+                if next_numeric_position is not None and inferred_position < next_numeric_position:
+                    position = inferred_position
+
             # DNF/DNS detection
             retirement = cols[ret_idx].get_text(strip=True) if ret_idx > 0 and len(cols) > ret_idx else ""
             if position is None:
@@ -198,6 +217,9 @@ def parse_results(html: str, url: str = "", series: str = "", is_oval: bool = Fa
                     position = "DNS"
                 else:
                     position = "DNF"
+
+            if isinstance(position, int):
+                last_classification_position = position
 
             # WRC: filter on Rally1 cars when Motorsport.com publishes the car.
             # Shakedown classifications leave this column empty, so an empty
