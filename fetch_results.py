@@ -152,9 +152,11 @@ def parse_results(html: str, url: str = "", series: str = "", is_oval: bool = Fa
     int_idx     = col_idx(["INTERVAL", "GAP"])
     speed_idx   = col_idx(["KM/H", "MPH", "SPEED"])
 
-    # If TEAM is col 1 and DRIVERS is col 3 → WEC style
-    # If DRIVER is col 1 → single driver style (NASCAR, F1 etc)
-    is_multi_driver = team_col == 1 and driver_col > 1
+    # WEC has a separate team column; IMSA/ELMS embed the team in the final
+    # driver info block. All three may mix linked and unlinked driver profiles.
+    is_multi_driver = driver_col > 0 and (
+        team_col == 1 or series in {"wec", "imsa", "elms"}
+    )
 
     speed_idx   = col_idx(["MPH", "KM/H", "AVG", "SPEED"])
     is_speed_based = is_oval and speed_idx > 0 and time_idx < 0
@@ -216,13 +218,23 @@ def parse_results(html: str, url: str = "", series: str = "", is_oval: bool = Fa
                     name_span = team_cell.find("span", class_="name")
                     team = name_span.get_text(strip=True) if name_span else team_cell.get_text(strip=True)
 
-                # Extract drivers (multiple links or spans)
+                # Extract every structured driver block. Motorsport.com uses
+                # links for drivers with a profile and plain div.info blocks
+                # for drivers without one; the team can live in either form.
                 drivers = []
                 if driver_cell:
-                    driver_links = driver_cell.find_all("a")
-                    if driver_links:
-                        drivers = [l.get_text(strip=True) for l in driver_links if l.get_text(strip=True)]
-                    else:
+                    info_blocks = driver_cell.select(".info")
+                    for info in info_blocks:
+                        name_span = info.select_one(".name-short")
+                        if name_span:
+                            driver_name = name_span.get_text(strip=True)
+                            if driver_name and driver_name not in drivers:
+                                drivers.append(driver_name)
+                        team_span = info.select_one(".team")
+                        if team_span:
+                            team = team_span.get_text(strip=True) or team
+
+                    if not drivers:
                         # Plain text separated by / or newline
                         text = driver_cell.get_text(separator="/", strip=True)
                         drivers = [d.strip() for d in text.split("/") if d.strip()]
