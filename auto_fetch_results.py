@@ -670,8 +670,8 @@ def run(args: argparse.Namespace) -> int:
                 rounds = json.loads(path.read_text(encoding="utf-8"))
                 updated_session = find_session(rounds, session_id)
                 updated_results = (updated_session or {}).get("results") or []
-                if len(updated_results) < 3:
-                    print("⚠️ Fetcher returned without usable results; not marking the check complete")
+                if not updated_results:
+                    print("⚠️ Fetcher returned without results; not marking the check complete")
                     continue
 
                 checked_at = now.astimezone(ZoneInfo("UTC")).isoformat()

@@ -79,6 +79,19 @@ DRIVER_NAME_MAP = {
 def apply_name_map(name: str, series: str) -> str:
     return DRIVER_NAME_MAP.get(series, {}).get(name, name)
 
+def results_are_usable(results: list) -> bool:
+    """Accept provisional classifications even when timing is not published yet."""
+    return any(
+        result.get("position") is not None
+        and (
+            result.get("driver")
+            or result.get("drivers")
+            or result.get("team")
+            or result.get("number")
+        )
+        for result in results
+    )
+
 def fetch_page(url: str) -> str:
     import time
     for attempt in range(3):
@@ -340,7 +353,7 @@ def parse_results(html: str, url: str = "", series: str = "", is_oval: bool = Fa
                     if is_oval and is_race_session and time_absolute:
                         result["time"] = time_absolute
                     elif not is_oval:
-                        if series in ("f1", "f2", "f3", "f1academy", "formulae", "indycar", "motogp", "moto2", "moto3", "nascar", "nascar_oreilly", "nascar_trucks", "dtm"):
+                        if series in ("f1", "f2", "f3", "f1academy", "formulae", "indycar", "motogp", "moto2", "moto3", "nascar", "nascar_oreilly", "nascar_trucks", "dtm", "wrc", "wec", "imsa"):
                             if time_absolute:
                                 result["speed"] = time_absolute
 
@@ -602,11 +615,16 @@ def main():
     else:
         results = parse_results(html, args.url, args.series, is_oval, is_race_session)
 
-    if len(results) < 3:
-        print(f"❌ Too few results ({len(results)}), aborting")
+    if not results_are_usable(results):
+        print("❌ No usable classification found, aborting")
         sys.exit(1)
 
-    print(f"✅ Found {len(results)} results")
+    has_timing = any(
+        result.get("time") or result.get("interval") or result.get("speed")
+        for result in results
+    )
+    timing_note = "with timing" if has_timing else "order only; timing not published yet"
+    print(f"✅ Found {len(results)} results ({timing_note})")
 
     # Load JSON and find session
     with open(json_file, "r", encoding="utf-8") as f:
