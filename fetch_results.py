@@ -269,13 +269,18 @@ def parse_results(html: str, url: str = "", series: str = "", is_oval: bool = Fa
                 if driver_cell:
                     all_links = [l for l in driver_cell.find_all("a") if l.get_text(strip=True)]
 
-                    # WRC: DRIVER/CODRIVER column has two /driver/ links — collect both
+                    # WRC: collect the visible driver and co-driver names, regardless
+                    # of whether Motorsport.com has given either person a profile link.
                     if is_wrc:
-                        for link in all_links:
-                            name_span = link.find("span", class_="name-short")
-                            name = name_span.get_text(strip=True) if name_span else link.get_text(strip=True)
-                            if name:
+                        for name_span in driver_cell.select(".name-short"):
+                            name = name_span.get_text(strip=True)
+                            if name and name not in drivers:
                                 drivers.append(name)
+                        if not drivers:
+                            for link in all_links:
+                                name = link.get_text(strip=True)
+                                if name and name not in drivers:
+                                    drivers.append(name)
                         # Team from CAR column
                         if car_idx >= 0 and len(cols) > car_idx:
                             team = cols[car_idx].get_text(strip=True)
