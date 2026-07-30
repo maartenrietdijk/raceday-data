@@ -21,7 +21,7 @@ from datetime import datetime, timedelta
 from difflib import SequenceMatcher
 from pathlib import Path
 from typing import Any
-from urllib.parse import parse_qs, urljoin, urlparse
+from urllib.parse import parse_qs, urlencode, urljoin, urlparse
 from zoneinfo import ZoneInfo
 
 import requests
@@ -238,6 +238,44 @@ def choose_event(candidates: list[EventCandidate], round_data: dict[str, Any]) -
     if event_score(best, round_data) >= 0.52:
         return best
 
+    return None
+
+
+def event_alias_from_url(url: str) -> str:
+    match = re.search(
+        r"/results/20\d{2}/([^/?]+?)(?:-\d+)?/?$",
+        urlparse(url).path,
+    )
+    return normalize(match.group(1).replace("-", " ")) if match else ""
+
+
+def resolve_event_url(
+    candidate: EventCandidate,
+    season_url: str,
+    session: requests.Session | None = None,
+) -> str | None:
+    """Resolve a disabled Motorsport.com event selector without guessing its id.
+
+    Motorsport.com can publish an event page before adding a link to the season
+    selector. The selector's numeric value is already usable through the site's
+    own ``?event=`` route, which redirects to the canonical results URL. Accept
+    that redirect only when its slug matches the selected event.
+    """
+    if candidate.url:
+        return candidate.url
+    if not candidate.value:
+        return None
+
+    separator = "&" if "?" in season_url else "?"
+    lookup_url = f"{season_url}{separator}{urlencode({'event': candidate.value})}"
+    _html, final_url = get_html(lookup_url, session)
+    resolved_alias = event_alias_from_url(final_url)
+    expected_aliases = {
+        compact(candidate.alias),
+        compact(candidate.label),
+    }
+    if resolved_alias and compact(resolved_alias) in expected_aliases:
+        return final_url
     return None
 
 
@@ -615,6 +653,7 @@ def run(args: argparse.Namespace) -> int:
     http = requests.Session()
     season_cache: dict[str, tuple[list[EventCandidate], str]] = {}
     event_cache: dict[str, tuple[str, list[SessionCandidate]]] = {}
+    event_resolution_cache: dict[tuple[str, str], str | None] = {}
     fetch_count = 0
     state_changed = False
 
@@ -686,10 +725,27 @@ def run(args: argparse.Namespace) -> int:
                             print(f"⚠️ {series}: season page unavailable: {error}")
                             season_cache[series] = ([], season_url)
                     candidate = choose_event(season_cache[series][0], round_data)
-                    if not candidate or not candidate.url:
+                    if not candidate:
                         print(f"⏳ {series}/{round_data.get('raceName')}: event results link not published yet")
                         continue
                     event_url = candidate.url
+                    if not event_url and candidate.value:
+                        resolution_key = (series, candidate.value)
+                        if resolution_key not in event_resolution_cache:
+                            season_url = f"{BASE_URL}/{motorsport_series}/results/{args.year}/"
+                            try:
+                                event_resolution_cache[resolution_key] = resolve_event_url(
+                                    candidate,
+                                    season_url,
+                                    http,
+                                )
+                            except requests.RequestException as error:
+                                print(f"⚠️ {series}/{candidate.label}: event lookup unavailable: {error}")
+                                event_resolution_cache[resolution_key] = None
+                        event_url = event_resolution_cache[resolution_key]
+                    if not event_url:
+                        print(f"⏳ {series}/{round_data.get('raceName')}: event results link not published yet")
+                        continue
                     if event_url not in event_cache:
                         try:
                             event_html, final_event_url = get_html(event_url, http)
