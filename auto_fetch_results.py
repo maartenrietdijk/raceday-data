@@ -30,6 +30,15 @@ from bs4 import BeautifulSoup
 
 BASE_URL = "https://www.motorsport.com"
 DEFAULT_TIMEZONE = "Europe/Amsterdam"
+SERIES_TIMEZONES = {
+    "nascar": "America/New_York",
+    "nascar_oreilly": "America/New_York",
+    "nascar_trucks": "America/New_York",
+    "indycar": "America/New_York",
+    "indynxt": "America/New_York",
+    "imsa": "America/New_York",
+    "supercars": "Australia/Sydney",
+}
 STATE_PATH = Path(".raceday/auto-results-state.json")
 INITIAL_SEARCH_HOURS = 24
 FETCH_EARLY_MINUTES = 30
@@ -567,6 +576,12 @@ def first_fetch_at(session_data: dict[str, Any], timezone: ZoneInfo) -> datetime
     return start + timedelta(minutes=max(0, duration - FETCH_EARLY_MINUTES))
 
 
+def timezone_for_series(series: str, fallback: ZoneInfo) -> ZoneInfo:
+    """Mirror RacingSeries.seriesTimeZone used by the iOS app for timeLocal."""
+    identifier = SERIES_TIMEZONES.get(series)
+    return ZoneInfo(identifier) if identifier else fallback
+
+
 def result_hash(results: list[dict[str, Any]]) -> str:
     payload = json.dumps(results, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
     return hashlib.sha256(payload.encode("utf-8")).hexdigest()
@@ -646,8 +661,11 @@ def json_files(year: int) -> list[Path]:
 
 
 def run(args: argparse.Namespace) -> int:
-    timezone = ZoneInfo(args.timezone)
-    now = datetime.fromisoformat(args.now).astimezone(timezone) if args.now else datetime.now(timezone)
+    fallback_timezone = ZoneInfo(args.timezone)
+    now = (
+        datetime.fromisoformat(args.now).astimezone(fallback_timezone)
+        if args.now else datetime.now(fallback_timezone)
+    )
     state = load_state(Path(args.state))
     session_state = state["sessions"]
     http = requests.Session()
@@ -664,6 +682,7 @@ def run(args: argparse.Namespace) -> int:
         motorsport_series = MOTORSPORT_SERIES.get(series)
         if not motorsport_series:
             continue
+        session_timezone = timezone_for_series(series, fallback_timezone)
         try:
             rounds = json.loads(path.read_text(encoding="utf-8"))
         except (OSError, json.JSONDecodeError) as error:
@@ -678,7 +697,7 @@ def run(args: argparse.Namespace) -> int:
             round_sessions = round_data.get("sessions", [])
             for session_index, session_data in enumerate(round_sessions):
                 session_id = session_data.get("id")
-                first_fetch = first_fetch_at(session_data, timezone)
+                first_fetch = first_fetch_at(session_data, session_timezone)
                 force_event = bool(args.force_event and args.series and args.round_id)
                 if not session_id:
                     continue
