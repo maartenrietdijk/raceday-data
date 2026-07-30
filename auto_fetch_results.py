@@ -69,6 +69,15 @@ MOTORSPORT_SERIES = {
     "wsbk": "wsbk",
 }
 
+# Official SRO result sites already supported by fetch_results.py. These use
+# their own year/meeting/session selectors instead of Motorsport.com tabs.
+SRO_SERIES = {
+    "gtwce": "https://www.gt-world-challenge-europe.com",
+    "gtwca_am": "https://www.gt-world-challenge-america.com",
+    "gtwca_asia": "https://www.gt-world-challenge-asia.com",
+    "gtwca_aus": "https://www.gt-world-challenge-australia.com",
+}
+
 HEADERS = {
     "User-Agent": (
         "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
@@ -286,6 +295,163 @@ def resolve_event_url(
     if resolved_alias and compact(resolved_alias) in expected_aliases:
         return final_url
     return None
+
+
+def extract_sro_season_id(html: str, year: int) -> str | None:
+    soup = BeautifulSoup(html, "html.parser")
+    for option in soup.select("#filter_season_id option[value]"):
+        if normalize(option.get_text(" ", strip=True)) == str(year):
+            value = str(option.get("value") or "").strip()
+            return value or None
+    return None
+
+
+def sro_results_url(base_url: str, **parameters: str) -> str:
+    values = {key: value for key, value in parameters.items() if value}
+    return f"{base_url.rstrip('/')}/results?{urlencode(values)}"
+
+
+def extract_sro_event_candidates(
+    html: str,
+    base_url: str,
+    season_id: str,
+) -> list[EventCandidate]:
+    soup = BeautifulSoup(html, "html.parser")
+    candidates: list[EventCandidate] = []
+    for option in soup.select("#filter_meeting_id option[value]"):
+        meeting_id = str(option.get("value") or "").strip()
+        label = option.get_text(" ", strip=True)
+        if not meeting_id or meeting_id == "0" or not label:
+            continue
+        candidates.append(EventCandidate(
+            label=label,
+            alias=normalize(label),
+            value=meeting_id,
+            url=sro_results_url(
+                base_url,
+                filter_season_id=season_id,
+                filter_meeting_id=meeting_id,
+            ),
+        ))
+    return candidates
+
+
+def extract_sro_session_candidates(
+    html: str,
+    base_url: str,
+    season_id: str,
+    meeting_id: str,
+) -> list[SessionCandidate]:
+    soup = BeautifulSoup(html, "html.parser")
+    direct_urls: dict[str, str] = {}
+    for link in soup.select("a[href]"):
+        label = normalize(link.get_text(" ", strip=True))
+        direct_url = urljoin(base_url, str(link.get("href") or "").strip())
+        parts = [part for part in urlparse(direct_url).path.split("/") if part]
+        # A published result has /results/<year>/<event>/<session>. Before a
+        # result exists, SRO sometimes links the label back to the event root.
+        if (
+            label
+            and len(parts) >= 4
+            and parts[0] == "results"
+            and re.fullmatch(r"20\d{2}", parts[1])
+        ):
+            direct_urls[label] = direct_url
+
+    candidates: list[SessionCandidate] = []
+    for option in soup.select("#filter_race_id option[value]"):
+        session_id = str(option.get("value") or "").strip()
+        label = option.get_text(" ", strip=True)
+        if not session_id or not label or normalize(label) == "session":
+            continue
+        normalized_label = normalize(label)
+        candidates.append(SessionCandidate(
+            label=label,
+            code=normalized_label.upper(),
+            url=direct_urls.get(normalized_label) or sro_results_url(
+                base_url,
+                filter_season_id=season_id,
+                filter_meeting_id=meeting_id,
+                filter_race_id=session_id,
+            ),
+        ))
+    return candidates
+
+
+def choose_sro_session(
+    candidates: list[SessionCandidate],
+    session_data: dict[str, Any],
+) -> SessionCandidate | None:
+    if not candidates:
+        return None
+    name = normalize(session_data.get("name"))
+    kind = normalize(session_data.get("kind"))
+    number = number_in(name)
+
+    exact = next((item for item in candidates if normalize(item.label) == name), None)
+    if exact:
+        return exact
+
+    if "practice" in name or kind == "practice":
+        if "warm" in name:
+            warmup = next((item for item in candidates if "warm" in normalize(item.label)), None)
+            if warmup:
+                return warmup
+        if number:
+            wanted = {f"practice {number}", f"free practice {number}"}
+            practice = next(
+                (item for item in candidates if normalize(item.label) in wanted),
+                None,
+            )
+            if practice:
+                return practice
+            if number == 2:
+                pre_qualifying = next(
+                    (item for item in candidates if "pre qualifying" in normalize(item.label)),
+                    None,
+                )
+                if pre_qualifying:
+                    return pre_qualifying
+
+    if "qual" in name or "qual" in kind or "superpole" in name:
+        qualifying_number = number or 1
+        prefix = f"qualifying {qualifying_number}"
+        matching = [
+            item for item in candidates
+            if normalize(item.label).startswith(prefix)
+        ]
+        combined = next(
+            (item for item in matching if "combined" in normalize(item.label)),
+            None,
+        )
+        if combined:
+            return combined
+        plain = next(
+            (item for item in matching if "group" not in normalize(item.label)),
+            None,
+        )
+        if plain:
+            return plain
+        # Never silently substitute an individual Group A/B result for a
+        # combined qualifying session. Exact group names were handled above.
+        return None
+
+    if "race" in name or kind in {"race", "feature race", "feature_race"}:
+        if number:
+            race = next(
+                (item for item in candidates if normalize(item.label) == f"race {number}"),
+                None,
+            )
+            if race:
+                return race
+        race = next(
+            (item for item in candidates if normalize(item.label) == "race"),
+            None,
+        )
+        if race:
+            return race
+
+    return choose_session(candidates, session_data)
 
 
 def extract_session_candidates(html: str, event_url: str) -> list[SessionCandidate]:
@@ -672,6 +838,7 @@ def run(args: argparse.Namespace) -> int:
     season_cache: dict[str, tuple[list[EventCandidate], str]] = {}
     event_cache: dict[str, tuple[str, list[SessionCandidate]]] = {}
     event_resolution_cache: dict[tuple[str, str], str | None] = {}
+    sro_season_cache: dict[str, tuple[str, list[EventCandidate]]] = {}
     fetch_count = 0
     state_changed = False
 
@@ -680,7 +847,8 @@ def run(args: argparse.Namespace) -> int:
         if args.series and series != args.series:
             continue
         motorsport_series = MOTORSPORT_SERIES.get(series)
-        if not motorsport_series:
+        sro_base_url = SRO_SERIES.get(series)
+        if not motorsport_series and not sro_base_url:
             continue
         session_timezone = timezone_for_series(series, fallback_timezone)
         try:
@@ -734,6 +902,74 @@ def run(args: argparse.Namespace) -> int:
                     return 0
 
                 source_url = (session_data.get("resultsUrl") or entry.get("sourceUrl") or "").strip()
+                if not source_url:
+                    if sro_base_url:
+                        if series not in sro_season_cache:
+                            try:
+                                root_html, _root_url = get_html(
+                                    f"{sro_base_url.rstrip('/')}/results",
+                                    http,
+                                )
+                                season_id = extract_sro_season_id(root_html, args.year)
+                                if not season_id:
+                                    raise ValueError(f"SRO season {args.year} is unavailable")
+                                season_html, _season_url = get_html(
+                                    sro_results_url(
+                                        sro_base_url,
+                                        filter_season_id=season_id,
+                                    ),
+                                    http,
+                                )
+                                sro_season_cache[series] = (
+                                    season_id,
+                                    extract_sro_event_candidates(
+                                        season_html,
+                                        sro_base_url,
+                                        season_id,
+                                    ),
+                                )
+                            except (requests.RequestException, ValueError) as error:
+                                print(f"⚠️ {series}: official results page unavailable: {error}")
+                                sro_season_cache[series] = ("", [])
+
+                        season_id, sro_events = sro_season_cache[series]
+                        candidate = choose_event(sro_events, round_data)
+                        if not candidate or not candidate.url:
+                            print(f"⏳ {series}/{round_data.get('raceName')}: event results link not published yet")
+                            continue
+                        event_url = candidate.url
+                        if event_url not in event_cache:
+                            try:
+                                event_html, final_event_url = get_html(event_url, http)
+                                event_cache[event_url] = (
+                                    final_event_url,
+                                    extract_sro_session_candidates(
+                                        event_html,
+                                        sro_base_url,
+                                        season_id,
+                                        candidate.value,
+                                    ),
+                                )
+                            except requests.RequestException as error:
+                                print(f"⚠️ {series}/{candidate.label}: event page unavailable: {error}")
+                                continue
+                        session_candidate = choose_sro_session(
+                            event_cache[event_url][1],
+                            session_data,
+                        )
+                        if not session_candidate:
+                            print(f"⏳ {series}/{session_data.get('name')}: session results link not published yet")
+                            continue
+                        source_url = session_candidate.url
+
+                    if source_url:
+                        pass
+                    elif not motorsport_series:
+                        continue
+                    else:
+                        # Motorsport.com discovery continues below.
+                        pass
+
                 if not source_url:
                     if series not in season_cache:
                         season_url = f"{BASE_URL}/{motorsport_series}/results/{args.year}/"
