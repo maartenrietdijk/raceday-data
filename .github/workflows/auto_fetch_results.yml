@@ -1,9 +1,8 @@
 name: Auto Fetch Session Results
 
 on:
-  schedule:
-    # Offset from the top of the hour, when GitHub Actions is usually busiest.
-    - cron: '3,13,23,33,43,53 * * * *'
+  # Cloudflare dispatches this workflow every ten minutes. GitHub's own
+  # scheduled events were too irregular for time-sensitive session results.
   workflow_dispatch:
     inputs:
       dry_run:
@@ -20,8 +19,9 @@ on:
         required: false
         type: string
 
-# Shared by all RaceDay workflows that write data. A running import is never
-# cancelled, and two workflows can never write the JSON files simultaneously.
+# Shared by every RaceDay workflow that writes data. Cloudflare may dispatch a
+# new check while an older one is still finishing, but GitHub will queue it so
+# two workflows can never write the JSON files simultaneously.
 concurrency:
   group: raceday-data-writes-main
   cancel-in-progress: false
