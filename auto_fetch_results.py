@@ -729,6 +729,29 @@ def choose_session(
     return best if session_score(best, session_data) >= 0.62 else None
 
 
+def direct_motorsport_session_url(
+    series: str,
+    event_url: str,
+    session_data: dict[str, Any],
+) -> str | None:
+    """Build a stable result URL only when the expected tab is unambiguous."""
+    codes = preferred_session_codes(series, session_data)
+    if not codes:
+        return None
+    exact_primary = len(codes) == 1
+    stable_wrc_code = series == "wrc"
+    stable_supercars_ordinal = (
+        series == "supercars"
+        and bool(session_data.get("_eventRole"))
+        and bool(session_data.get("_eventOrdinal"))
+    )
+    if not (exact_primary or stable_wrc_code or stable_supercars_ordinal):
+        return None
+    parsed = urlparse(event_url)
+    clean_event_url = parsed._replace(query="", fragment="").geturl()
+    return f"{clean_event_url}?{urlencode({'st': codes[0]})}"
+
+
 def first_fetch_at(session_data: dict[str, Any], timezone: ZoneInfo) -> datetime | None:
     date = session_data.get("date")
     time = session_data.get("timeLocal")
@@ -1014,9 +1037,16 @@ def run(args: argparse.Namespace) -> int:
                     matching_session = session_for_matching(series, round_sessions, session_index)
                     session_candidate = choose_session(event_cache[event_url][1], matching_session, series)
                     if not session_candidate:
-                        print(f"⏳ {series}/{session_data.get('name')}: session results link not published yet")
-                        continue
-                    source_url = session_candidate.url
+                        source_url = direct_motorsport_session_url(
+                            series,
+                            event_cache[event_url][0],
+                            matching_session,
+                        ) or ""
+                        if not source_url:
+                            print(f"⏳ {series}/{session_data.get('name')}: session results link not published yet")
+                            continue
+                    else:
+                        source_url = session_candidate.url
 
                 print(f"🏁 {stage}: {series}/{session_data.get('name')} -> {source_url}")
                 if not call_existing_fetcher(source_url, session_id, series, args.dry_run):
