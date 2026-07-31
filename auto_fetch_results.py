@@ -594,14 +594,8 @@ def preferred_session_codes(series: str, session_data: dict[str, Any]) -> list[s
             return ["W", "WU"]
         if is_practice:
             return [f"FP{number}"] if number else ["FP1"]
-        if "hyperpole 2" in name and "lmp2" in name:
-            return ["Q2"]
-        if "hyperpole 1" in name and "hypercar" in name:
-            return ["Q3"]
-        if "hyperpole 2" in name and "hypercar" in name:
-            return ["Q4"]
         if is_qualifying:
-            return ["Q4", "Q3", "Q2", "Q1", "Q"]
+            return ["GRID"]
         if is_race:
             return ["RACE"]
 
