@@ -286,14 +286,24 @@ def resolve_event_url(
 
     separator = "&" if "?" in season_url else "?"
     lookup_url = f"{season_url}{separator}{urlencode({'event': candidate.value})}"
-    _html, final_url = get_html(lookup_url, session)
-    resolved_alias = event_alias_from_url(final_url)
+    html, final_url = get_html(lookup_url, session)
     expected_aliases = {
         compact(candidate.alias),
         compact(candidate.label),
     }
-    if resolved_alias and compact(resolved_alias) in expected_aliases:
-        return final_url
+    possible_urls = [final_url]
+    soup = BeautifulSoup(html, "html.parser")
+    canonical = soup.select_one('link[rel~="canonical"][href]')
+    open_graph = soup.select_one('meta[property="og:url"][content]')
+    if canonical:
+        possible_urls.append(urljoin(lookup_url, str(canonical.get("href") or "")))
+    if open_graph:
+        possible_urls.append(urljoin(lookup_url, str(open_graph.get("content") or "")))
+
+    for possible_url in possible_urls:
+        resolved_alias = event_alias_from_url(possible_url)
+        if resolved_alias and compact(resolved_alias) in expected_aliases:
+            return possible_url
     return None
 
 
