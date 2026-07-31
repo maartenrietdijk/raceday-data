@@ -1,15 +1,21 @@
 [
   {
-    "country": "China",
-    "city": "Shanghai",
-    "countryCode": "CN",
-    "raceName": "Shanghai",
     "id": "f1academy-2026-r01",
-    "roundNumber": 1,
     "seriesId": "f1academy",
+    "roundNumber": 1,
+    "raceName": "Shanghai",
+    "circuitName": "Shanghai International Circuit",
+    "city": "Shanghai",
+    "country": "China",
+    "countryCode": "CN",
     "sessions": [
       {
+        "id": "f1academy-2026-r01-s1",
+        "name": "Practice 1",
         "kind": "practice",
+        "date": "2026-03-13",
+        "timeLocal": "08:30",
+        "durationMinutes": 30,
         "results": [
           {
             "time": "2'04.550",
@@ -172,16 +178,15 @@
             "interval": "+2.010",
             "team": "Hitech TGR"
           }
-        ],
-        "timeLocal": "08:30",
-        "date": "2026-03-13",
-        "durationMinutes": 30,
-        "id": "f1academy-2026-r01-s1",
-        "name": "Practice 1"
+        ]
       },
       {
         "id": "f1academy-2026-r01-s3",
+        "name": "Qualifying",
+        "kind": "qualifying",
         "date": "2026-03-14",
+        "timeLocal": "08:30",
+        "durationMinutes": 30,
         "results": [
           {
             "time": "2:04.182",
@@ -344,19 +349,15 @@
             "laps": "12",
             "team": "Hitech TGR"
           }
-        ],
-        "durationMinutes": 30,
-        "name": "Qualifying",
-        "timeLocal": "08:30",
-        "kind": "qualifying"
+        ]
       },
       {
-        "timeLocal": "12:30",
-        "durationMinutes": 30,
         "id": "f1academy-2026-r01-s4",
         "name": "Race 1",
-        "date": "2026-03-14",
         "kind": "race",
+        "date": "2026-03-14",
+        "timeLocal": "12:30",
+        "durationMinutes": 30,
         "results": [
           {
             "time": "28:49.109",
@@ -522,6 +523,12 @@
         ]
       },
       {
+        "id": "f1academy-2026-r01-s5",
+        "name": "Race 2",
+        "kind": "race",
+        "date": "2026-03-15",
+        "timeLocal": "09:30",
+        "durationMinutes": 30,
         "results": [
           {
             "time": "29'19.520",
@@ -676,26 +683,27 @@
             "team": "MP Motorsport",
             "number": "32"
           }
-        ],
-        "name": "Race 2",
-        "kind": "race",
-        "id": "f1academy-2026-r01-s5",
-        "date": "2026-03-15",
-        "durationMinutes": 30,
-        "timeLocal": "09:30"
+        ]
       }
-    ],
-    "circuitName": "Shanghai International Circuit"
+    ]
   },
   {
-    "seriesId": "f1academy",
-    "country": "Canada",
-    "roundNumber": 2,
     "id": "f1academy-2026-r02",
+    "seriesId": "f1academy",
+    "roundNumber": 2,
+    "raceName": "Canadian Grand Prix",
+    "circuitName": "Circuit Gilles Villeneuve",
+    "city": "Montreal",
+    "country": "Canada",
     "countryCode": "CA",
     "sessions": [
       {
+        "id": "f1academy-2026-r02-s1",
+        "name": "Practice",
+        "kind": "practice",
         "date": "2026-05-22",
+        "timeLocal": "17:05",
+        "durationMinutes": 40,
         "results": [
           {
             "time": "1'39.371",
@@ -858,19 +866,15 @@
             "number": "32",
             "position": 18
           }
-        ],
-        "kind": "practice",
-        "id": "f1academy-2026-r02-s1",
-        "name": "Practice",
-        "durationMinutes": 40,
-        "timeLocal": "17:05"
+        ]
       },
       {
-        "kind": "qualifying",
-        "timeLocal": "00:00",
-        "durationMinutes": 35,
         "id": "f1academy-2026-r02-s2",
         "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-05-23",
+        "timeLocal": "00:00",
+        "durationMinutes": 35,
         "results": [
           {
             "time": "1'38.466",
@@ -1033,15 +1037,15 @@
             "laps": "17",
             "position": 18
           }
-        ],
-        "date": "2026-05-23"
+        ]
       },
       {
-        "timeLocal": "15:45",
-        "kind": "race",
-        "durationMinutes": 35,
         "id": "f1academy-2026-r02-s3",
         "name": "Opening Race",
+        "kind": "race",
+        "date": "2026-05-23",
+        "timeLocal": "15:45",
+        "durationMinutes": 35,
         "results": [
           {
             "driver": "A. Palmowski",
@@ -1204,10 +1208,15 @@
             "position": 18,
             "speed": "29'09.190"
           }
-        ],
-        "date": "2026-05-23"
+        ]
       },
       {
+        "id": "f1academy-2026-r02-s4",
+        "name": "Reverse Grid Race",
+        "kind": "race",
+        "date": "2026-05-24",
+        "timeLocal": "00:05",
+        "durationMinutes": 35,
         "results": [
           {
             "time": "32'33.104",
@@ -1364,17 +1373,15 @@
             "team": "Hitech TGR",
             "laps": "0"
           }
-        ],
-        "kind": "race",
-        "date": "2026-05-24",
-        "durationMinutes": 35,
-        "timeLocal": "00:05",
-        "name": "Reverse Grid Race",
-        "id": "f1academy-2026-r02-s4"
+        ]
       },
       {
-        "date": "2026-05-24",
+        "id": "f1academy-2026-r02-s5",
+        "name": "Feature Race",
         "kind": "race",
+        "date": "2026-05-24",
+        "timeLocal": "16:45",
+        "durationMinutes": 35,
         "results": [
           {
             "number": "21",
@@ -1537,22 +1544,27 @@
             "laps": "17",
             "speed": "32'26.958"
           }
-        ],
-        "name": "Feature Race",
-        "id": "f1academy-2026-r02-s5",
-        "timeLocal": "16:45",
-        "durationMinutes": 35
+        ]
       }
-    ],
-    "circuitName": "Circuit Gilles Villeneuve",
-    "raceName": "Canadian Grand Prix",
-    "city": "Montreal"
+    ]
   },
   {
     "id": "f1academy-2026-r03",
+    "seriesId": "f1academy",
+    "roundNumber": 3,
+    "raceName": "Great Britain",
+    "circuitName": "Silverstone Circuit",
+    "city": "Silverstone",
+    "country": "United Kingdom",
+    "countryCode": "GB",
     "sessions": [
       {
+        "id": "f1academy-2026-r03-s1",
         "name": "Free Practice",
+        "kind": "practice",
+        "date": "2026-07-03",
+        "timeLocal": "08:45",
+        "durationMinutes": 30,
         "results": [
           {
             "position": 1,
@@ -1715,17 +1727,15 @@
             "number": "95",
             "speed": "2'04.761"
           }
-        ],
-        "date": "2026-07-03",
-        "durationMinutes": 30,
-        "timeLocal": "08:45",
-        "kind": "practice",
-        "id": "f1academy-2026-r03-s1"
+        ]
       },
       {
         "id": "f1academy-2026-r03-s3",
         "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-07-03",
         "timeLocal": "19:00",
+        "durationMinutes": 30,
         "results": [
           {
             "position": 1,
@@ -1888,16 +1898,15 @@
             "position": 18,
             "laps": "13"
           }
-        ],
-        "date": "2026-07-03",
-        "durationMinutes": 30,
-        "kind": "qualifying"
+        ]
       },
       {
         "id": "f1academy-2026-r03-s4",
-        "durationMinutes": 30,
+        "name": "Reverse Grid Race",
         "kind": "race",
         "date": "2026-07-04",
+        "timeLocal": "19:05",
+        "durationMinutes": 30,
         "results": [
           {
             "position": 1,
@@ -2060,17 +2069,15 @@
             "team": "ART Grand Prix",
             "speed": "27'22.550"
           }
-        ],
-        "timeLocal": "19:05",
-        "name": "Reverse Grid Race"
+        ]
       },
       {
         "id": "f1academy-2026-r03-s5",
-        "date": "2026-07-05",
-        "durationMinutes": 30,
         "name": "Feature Race",
-        "timeLocal": "11:00",
         "kind": "race",
+        "date": "2026-07-05",
+        "timeLocal": "11:00",
+        "durationMinutes": 30,
         "results": [
           {
             "position": 1,
@@ -2231,156 +2238,146 @@
           }
         ]
       }
-    ],
-    "city": "Silverstone",
-    "roundNumber": 3,
-    "seriesId": "f1academy",
-    "raceName": "Great Britain",
-    "countryCode": "GB",
-    "circuitName": "Silverstone Circuit",
-    "country": "United Kingdom"
+    ]
   },
   {
     "id": "f1academy-2026-r04",
+    "seriesId": "f1academy",
+    "roundNumber": 4,
+    "raceName": "Netherlands",
+    "circuitName": "Circuit Zandvoort",
     "city": "Zandvoort",
+    "country": "Netherlands",
+    "countryCode": "NL",
     "sessions": [
       {
         "id": "f1academy-2026-r04-s1",
+        "name": "Practice",
+        "kind": "practice",
         "date": "2026-08-21",
-        "durationMinutes": 30,
-        "name": "Practice 1",
-        "timeLocal": "10:10",
-        "kind": "practice"
-      },
-      {
-        "id": "f1academy-2026-r04-s2",
-        "date": "2026-08-21",
-        "durationMinutes": 30,
-        "name": "Practice 2",
-        "timeLocal": "17:30",
-        "kind": "practice"
+        "timeLocal": "14:00",
+        "durationMinutes": 40
       },
       {
         "id": "f1academy-2026-r04-s3",
-        "date": "2026-08-22",
-        "durationMinutes": 30,
         "name": "Qualifying",
-        "timeLocal": "10:25",
-        "kind": "qualifying"
+        "kind": "qualifying",
+        "date": "2026-08-22",
+        "timeLocal": "09:20",
+        "durationMinutes": 30
       },
       {
         "id": "f1academy-2026-r04-s4",
-        "date": "2026-08-22",
-        "durationMinutes": 30,
         "name": "Race 1",
-        "timeLocal": "17:05",
-        "kind": "race"
+        "kind": "race",
+        "date": "2026-08-22",
+        "timeLocal": "14:00",
+        "durationMinutes": 45
       },
       {
         "id": "f1academy-2026-r04-s5",
-        "date": "2026-08-23",
-        "durationMinutes": 30,
         "name": "Race 2",
-        "timeLocal": "10:40",
-        "kind": "race"
+        "kind": "race",
+        "date": "2026-08-23",
+        "timeLocal": "10:30",
+        "durationMinutes": 35
       }
-    ],
-    "roundNumber": 4,
-    "circuitName": "Circuit Zandvoort",
-    "country": "Netherlands",
-    "raceName": "Netherlands",
-    "seriesId": "f1academy",
-    "countryCode": "NL"
+    ]
   },
   {
     "id": "f1academy-2026-r05",
+    "seriesId": "f1academy",
+    "roundNumber": 5,
+    "raceName": "Austin",
+    "circuitName": "Circuit of the Americas",
     "city": "Austin",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
         "id": "f1academy-2026-r05-s1",
-        "date": "2026-10-23",
-        "durationMinutes": 60,
         "name": "Practice",
-        "kind": "practice"
+        "kind": "practice",
+        "date": "2026-10-23",
+        "timeLocal": null,
+        "durationMinutes": 60
       },
       {
         "id": "f1academy-2026-r05-s2",
-        "date": "2026-10-23",
-        "durationMinutes": 60,
         "name": "Qualifying",
-        "kind": "qualifying"
+        "kind": "qualifying",
+        "date": "2026-10-23",
+        "timeLocal": null,
+        "durationMinutes": 60
       },
       {
         "id": "f1academy-2026-r05-s3",
-        "date": "2026-10-23",
-        "durationMinutes": 60,
         "name": "Race 1",
-        "kind": "race"
+        "kind": "race",
+        "date": "2026-10-23",
+        "timeLocal": null,
+        "durationMinutes": 60
       },
       {
-        "durationMinutes": 60,
-        "date": "2026-10-24",
-        "name": "Race 2",
         "id": "f1academy-2026-r05-s4",
-        "kind": "race"
+        "name": "Race 2",
+        "kind": "race",
+        "date": "2026-10-24",
+        "timeLocal": null,
+        "durationMinutes": 60
       },
       {
-        "durationMinutes": 60,
-        "date": "2026-10-25",
-        "name": "Race 3",
         "id": "f1academy-2026-r05-s5",
-        "kind": "race"
+        "name": "Race 3",
+        "kind": "race",
+        "date": "2026-10-25",
+        "timeLocal": null,
+        "durationMinutes": 60
       }
-    ],
-    "roundNumber": 5,
-    "circuitName": "Circuit of the Americas",
-    "country": "United States",
-    "raceName": "Austin",
-    "seriesId": "f1academy",
-    "countryCode": "US"
+    ]
   },
   {
     "id": "f1academy-2026-r06",
+    "seriesId": "f1academy",
+    "roundNumber": 6,
+    "raceName": "Las Vegas",
+    "circuitName": "Las Vegas Street Circuit",
     "city": "Las Vegas",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
-        "timeLocal": "03:00",
-        "date": "2026-11-19",
-        "durationMinutes": 30,
-        "name": "Practice",
         "id": "f1academy-2026-r06-s1",
-        "kind": "practice"
-      },
-      {
-        "timeLocal": "06:30",
+        "name": "Practice",
+        "kind": "practice",
         "date": "2026-11-19",
-        "durationMinutes": 30,
-        "name": "Qualifying",
-        "id": "f1academy-2026-r06-s2",
-        "kind": "qualifying"
+        "timeLocal": "03:00",
+        "durationMinutes": 30
       },
       {
-        "timeLocal": "03:15",
-        "date": "2026-11-20",
-        "durationMinutes": 30,
-        "name": "Race 1",
+        "id": "f1academy-2026-r06-s2",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-11-19",
+        "timeLocal": "06:30",
+        "durationMinutes": 30
+      },
+      {
         "id": "f1academy-2026-r06-s3",
-        "kind": "race"
+        "name": "Race 1",
+        "kind": "race",
+        "date": "2026-11-20",
+        "timeLocal": "03:15",
+        "durationMinutes": 30
       },
       {
         "id": "f1academy-2026-r06-s4",
-        "kind": "race",
-        "timeLocal": "01:20",
-        "date": "2026-11-21",
         "name": "Race 2",
+        "kind": "race",
+        "date": "2026-11-21",
+        "timeLocal": "01:20",
         "durationMinutes": 30
       }
-    ],
-    "circuitName": "Las Vegas Street Circuit",
-    "roundNumber": 6,
-    "country": "United States",
-    "raceName": "Las Vegas",
-    "seriesId": "f1academy",
-    "countryCode": "US"
+    ]
   }
 ]
