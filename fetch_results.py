@@ -15,6 +15,7 @@ import json
 import re
 import sys
 from pathlib import Path
+from urllib.parse import parse_qs, urlsplit, urlunsplit
 
 import requests
 from bs4 import BeautifulSoup
@@ -91,6 +92,34 @@ def results_are_usable(results: list) -> bool:
         )
         for result in results
     )
+
+
+def normalize_results_url(value: str) -> str:
+    """Normalize result URLs without corrupting SRO filter query values."""
+    parsed = urlsplit(value.strip())
+    path = parsed.path
+    query = parsed.query
+    if query:
+        if query.lower().startswith("st="):
+            path = path.rstrip("/") + "/"
+            query = query.rstrip("/").replace(" ", "%20")
+    else:
+        path = path.rstrip("/") + "/"
+    return urlunsplit((parsed.scheme, parsed.netloc, path, query, ""))
+
+
+def validate_gtwc_filter_selection(html: str, url: str) -> None:
+    """Refuse an SRO fallback page if it did not select the requested session."""
+    expected = (parse_qs(urlsplit(url).query).get("filter_race_id") or [""])[0]
+    if not expected:
+        return
+    soup = BeautifulSoup(html, "html.parser")
+    selected = soup.select_one("#filter_race_id option[selected]")
+    actual = str(selected.get("value") or "").strip() if selected else ""
+    if actual != expected:
+        raise ValueError(
+            f"GTWC returned session {actual or 'none'} instead of requested session {expected}"
+        )
 
 def fetch_page(url: str) -> str:
     import time
@@ -609,17 +638,7 @@ def main():
         print(f"❌ JSON not found: {json_file}")
         sys.exit(1)
 
-    # Clean URL — strip trailing slash after ?st= param, fix spaces
-    url = args.url.rstrip('/')
-    # Re-add trailing slash before ?st= if needed
-    if '?st=' in url:
-        base, tag = url.split('?st=', 1)
-        if not base.endswith('/'): base += '/'
-        # Replace + with %20 for proper encoding
-        tag = tag.replace('+', '%20')
-        url = f"{base}?st={tag}"
-    elif not url.endswith('/'):
-        url += '/'
+    url = normalize_results_url(args.url)
 
     print(f"🔍 Fetching: {url}")
     html = fetch_page(url)
@@ -649,6 +668,7 @@ def main():
     ]
     if any(d in args.url for d in gtwc_domains):
         print('🏁 Using GTWC parser')
+        validate_gtwc_filter_selection(html, url)
         results = parse_gtwc(html)
     elif 'britishgt.com' in args.url:
         print('🏁 Using British GT parser')
