@@ -353,21 +353,6 @@ def extract_sro_session_candidates(
     meeting_id: str,
 ) -> list[SessionCandidate]:
     soup = BeautifulSoup(html, "html.parser")
-    direct_urls: dict[str, str] = {}
-    for link in soup.select("a[href]"):
-        label = normalize(link.get_text(" ", strip=True))
-        direct_url = urljoin(base_url, str(link.get("href") or "").strip())
-        parts = [part for part in urlparse(direct_url).path.split("/") if part]
-        # A published result has /results/<year>/<event>/<session>. Before a
-        # result exists, SRO sometimes links the label back to the event root.
-        if (
-            label
-            and len(parts) >= 4
-            and parts[0] == "results"
-            and re.fullmatch(r"20\d{2}", parts[1])
-        ):
-            direct_urls[label] = direct_url
-
     candidates: list[SessionCandidate] = []
     for option in soup.select("#filter_race_id option[value]"):
         session_id = str(option.get("value") or "").strip()
@@ -378,7 +363,7 @@ def extract_sro_session_candidates(
         candidates.append(SessionCandidate(
             label=label,
             code=normalized_label.upper(),
-            url=direct_urls.get(normalized_label) or sro_results_url(
+            url=sro_results_url(
                 base_url,
                 filter_season_id=season_id,
                 filter_meeting_id=meeting_id,
@@ -546,6 +531,11 @@ def session_for_matching(series: str, sessions: list[dict[str, Any]], index: int
         1 for previous in sessions[:index + 1]
         if supercars_session_role(previous) == role
     )
+    if role in {"qualifying", "shootout"}:
+        session_data["_eventQualifyingOrdinal"] = sum(
+            1 for previous in sessions[:index + 1]
+            if supercars_session_role(previous) in {"qualifying", "shootout"}
+        )
     session_data["_eventRole"] = role
     return session_data
 
@@ -675,12 +665,9 @@ def preferred_session_codes(series: str, session_data: dict[str, Any]) -> list[s
         if role == "practice":
             session_number = ordinal or number or 1
             return [f"FP{session_number}", "FIP", "FP"]
-        if role == "qualifying":
-            session_number = ordinal or number or 1
+        if role in {"qualifying", "shootout"}:
+            session_number = session_data.get("_eventQualifyingOrdinal") or ordinal or number or 1
             return [f"Q{session_number}", "Q"]
-        if role == "shootout":
-            session_number = ordinal or 1
-            return [f"SO{session_number}"]
         if role == "race":
             session_number = ordinal or number or 1
             return [f"RACE{session_number}", "RACE"]
