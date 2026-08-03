@@ -13794,26 +13794,6 @@
     "id": "indycar-2026-r16",
     "seriesId": "indycar",
     "roundNumber": 16,
-    "raceName": "Snap-on Makers and Fixers 250",
-    "circuitName": "Milwaukee Mile",
-    "city": "West Allis",
-    "country": "United States",
-    "countryCode": "US",
-    "sessions": [
-      {
-        "id": "indycar-2026-r16-s1",
-        "name": "Race",
-        "kind": "race",
-        "date": "2026-08-29",
-        "timeLocal": "14:30",
-        "durationMinutes": 120
-      }
-    ]
-  },
-  {
-    "id": "indycar-2026-r17",
-    "seriesId": "indycar",
-    "roundNumber": 17,
     "raceName": "Snap-on Milwaukee Mile 250",
     "circuitName": "Milwaukee Mile",
     "city": "West Allis",
@@ -13821,11 +13801,37 @@
     "countryCode": "US",
     "sessions": [
       {
-        "id": "indycar-2026-r17-s1",
-        "name": "Race",
+        "id": "indycar-2026-r16-s1",
+        "name": "Practice",
+        "kind": "practice",
+        "date": "2026-08-28",
+        "timeLocal": "18:00",
+        "durationMinutes": 90,
+        "isOval": true
+      },
+      {
+        "id": "indycar-2026-r16-s1785742214507",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-08-29",
+        "timeLocal": "11:00",
+        "durationMinutes": 90,
+        "isOval": true
+      },
+      {
+        "id": "indycar-2026-r16-s1785742231211",
+        "name": "Race 1",
+        "kind": "qualifying",
+        "date": "2026-08-29",
+        "timeLocal": "14:30",
+        "durationMinutes": 120
+      },
+      {
+        "id": "indycar-2026-r16-s1785742191933",
+        "name": "Race 2",
         "kind": "race",
         "date": "2026-08-30",
-        "timeLocal": "14:30",
+        "timeLocal": "13:00",
         "durationMinutes": 120
       }
     ]
@@ -13842,6 +13848,38 @@
     "sessions": [
       {
         "id": "indycar-2026-r18-s1",
+        "name": "Practice 1",
+        "kind": "practice",
+        "date": "2026-09-04",
+        "timeLocal": "17:00",
+        "durationMinutes": 90
+      },
+      {
+        "id": "indycar-2026-r18-s1785742332298",
+        "name": "Practice 2",
+        "kind": "practice",
+        "date": "2026-09-05",
+        "timeLocal": "13:00",
+        "durationMinutes": 90
+      },
+      {
+        "id": "indycar-2026-r18-s1785742373736",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-09-05",
+        "timeLocal": "16:30",
+        "durationMinutes": 70
+      },
+      {
+        "id": "indycar-2026-r18-s1785742397447",
+        "name": "Final Practice",
+        "kind": "practice",
+        "date": "2026-09-05",
+        "timeLocal": "20:00",
+        "durationMinutes": 70
+      },
+      {
+        "id": "indycar-2026-r18-s1785742330186",
         "name": "Race",
         "kind": "race",
         "date": "2026-09-06",
