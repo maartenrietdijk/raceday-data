@@ -438,7 +438,7 @@
         "name": "Practice",
         "kind": "practice",
         "date": "2026-08-29",
-        "timeLocal": null,
+        "timeLocal": "09:00",
         "durationMinutes": 60
       },
       {
@@ -446,7 +446,7 @@
         "name": "Qualifying",
         "kind": "qualifying",
         "date": "2026-08-29",
-        "timeLocal": null,
+        "timeLocal": "12:30",
         "durationMinutes": 30
       },
       {
@@ -455,7 +455,7 @@
         "kind": "race",
         "date": "2026-08-30",
         "timeLocal": "11:00",
-        "durationMinutes": 60
+        "durationMinutes": 75
       }
     ]
   },
@@ -471,10 +471,18 @@
     "sessions": [
       {
         "id": "indynxt-2026-monterey-practice",
-        "name": "Practice",
+        "name": "Practice 1",
         "kind": "practice",
         "date": "2026-09-04",
-        "timeLocal": null,
+        "timeLocal": "16:00",
+        "durationMinutes": 60
+      },
+      {
+        "id": "indynxt-2026-monterey-s1785742055231",
+        "name": "Practice 2",
+        "kind": "practice",
+        "date": "2026-09-04",
+        "timeLocal": "18:30",
         "durationMinutes": 60
       },
       {
@@ -482,15 +490,23 @@
         "name": "Qualifying",
         "kind": "qualifying",
         "date": "2026-09-05",
-        "timeLocal": null,
+        "timeLocal": "15:00",
         "durationMinutes": 30
       },
       {
         "id": "indynxt-2026-monterey-r1",
-        "name": "Race",
+        "name": "Race 1 ",
         "kind": "race",
         "date": "2026-09-05",
         "timeLocal": "18:30",
+        "durationMinutes": 60
+      },
+      {
+        "id": "indynxt-2026-monterey-s1785742087438",
+        "name": "Race 2",
+        "kind": "race",
+        "date": "2026-09-06",
+        "timeLocal": "12:30",
         "durationMinutes": 60
       }
     ]
