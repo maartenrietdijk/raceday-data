@@ -137,6 +137,19 @@ def fetch_page(url: str) -> str:
     for attempt in range(3):
         time.sleep(2 + attempt * 3)  # 2s, 5s, 8s
         resp = requests.get(url, headers=get_headers(url), timeout=30)
+        if resp.status_code == 429 and "btcc.net" in url:
+            # BTCC rate-limits GitHub-hosted runners. Jina's read-only reader
+            # retrieves the same public page and returns its table as
+            # Markdown; parse_btcc supports that format as a fallback.
+            proxy_url = "https://r.jina.ai/http://" + url.split("://", 1)[1]
+            proxy = requests.get(
+                proxy_url,
+                headers={"User-Agent": USER_AGENTS[0], "Accept": "text/markdown"},
+                timeout=45,
+            )
+            if proxy.ok and proxy.text.strip():
+                print("ℹ️ BTCC direct request was rate-limited; using read-only page fallback")
+                return proxy.text
         resp.raise_for_status()
         html = resp.text
         # Check if we got a real page
@@ -641,6 +654,8 @@ def parse_btcc(html: str, session_name: str = "") -> list:
     select the table by the RaceDay session name and then parse its columns:
     ``P/ No/ Name/ Entry/ Laps/ Time/ Gap/ [Best/] On/``.
     """
+    if "<table" not in html.lower() and "|" in html:
+        return parse_btcc_markdown(html, session_name)
     soup = BeautifulSoup(html, "html.parser")
     tables = []
     for table in soup.find_all("table"):
@@ -734,6 +749,45 @@ def parse_btcc(html: str, session_name: str = "") -> list:
             result.pop("speed", None)
         results.append(result)
     return results
+
+
+def parse_btcc_markdown(markdown: str, session_name: str = "") -> list:
+    """Parse the Markdown table returned by the BTCC rate-limit fallback."""
+    wanted = re.sub(r"[^a-z0-9]+", " ", session_name.lower()).strip()
+    sections = re.split(r"(?im)^#{1,4}\s+", markdown)
+    section = next((part for part in sections if wanted and wanted in part.lower()), markdown)
+    lines = [line.strip() for line in section.splitlines() if "|" in line]
+    header_index = next((i for i, line in enumerate(lines) if "name" in line.lower() and ("p/" in line.lower() or "pos" in line.lower())), None)
+    if header_index is None:
+        raise ValueError("No BTCC Markdown results table found")
+    headers = [cell.strip().upper() for cell in lines[header_index].strip("|").split("|")]
+    rows = []
+    for line in lines[header_index + 1:]:
+        cells = [cell.strip() for cell in line.strip("|").split("|")]
+        if not cells or all(re.fullmatch(r"[-: ]+", cell or "-") for cell in cells):
+            continue
+        if len(cells) >= len(headers):
+            rows.append(cells[:len(headers)])
+    # Reuse the HTML parser's exact field semantics with a tiny table shim.
+    class Cell:
+        def __init__(self, value): self.value = value
+        def get_text(self, *args, **kwargs): return self.value
+    class Row:
+        def __init__(self, values): self.values = values
+        def find_all(self, *args, **kwargs): return [Cell(value) for value in self.values]
+    class Table:
+        def __init__(self): self.rows = [Row(headers)] + [Row(row) for row in rows]
+        def find(self, *args, **kwargs): return self.rows[0]
+        def find_all(self, *args, **kwargs): return self.rows
+    class Document:
+        def find_all(self, *args, **kwargs): return [Table()]
+        def get_text(self, *args, **kwargs): return ""
+    original = BeautifulSoup
+    try:
+        globals()["BeautifulSoup"] = lambda *args, **kwargs: Document()
+        return parse_btcc("<table></table>", session_name)
+    finally:
+        globals()["BeautifulSoup"] = original
 
 
 def main():
