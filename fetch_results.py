@@ -45,6 +45,7 @@ SERIES_JSON = {
     "gtwca_am":     "gtwca_am_2026.json",
     "gtwca_as":     "gtwca_as_2026.json",
     "gtwca_au":     "gtwca_au_2026.json",
+    "btcc":         "btcc_2026.json",
 }
 
 # Rotate through different user agents to avoid detection
@@ -622,6 +623,109 @@ def parse_british_gt(html: str) -> list:
     return results
 
 
+def parse_btcc(html: str, session_name: str = "") -> list:
+    """Parse the official BTCC race-results page.
+
+    BTCC publishes all sessions for an event on one page (FP1, FP2,
+    Qualifying and the races).  The page has no stable per-session URL, so we
+    select the table by the RaceDay session name and then parse its columns:
+    ``P/ No/ Name/ Entry/ Laps/ Time/ Gap/ [Best/] On/``.
+    """
+    soup = BeautifulSoup(html, "html.parser")
+    tables = []
+    for table in soup.find_all("table"):
+        row = table.find("tr")
+        headers = [cell.get_text(" ", strip=True).upper() for cell in row.find_all(["th", "td"])] if row else []
+        if any(header in headers for header in ("P/", "P", "POS", "POSITION")) and any(
+            header in headers for header in ("NAME/", "NAME", "DRIVER")
+        ):
+            tables.append((table, headers))
+    if not tables:
+        raise ValueError("No BTCC results tables found on page")
+
+    normalized = re.sub(r"[^a-z0-9]+", " ", session_name.lower()).strip()
+    page_text = soup.get_text(" ", strip=True).lower()
+    has_qualifying_race = "qualifying race" in page_text
+    is_btcc_race = bool(re.search(r"\brace\s*[123]\b|qualifying race", normalized))
+    table_index = None
+    if "qualifying race" in normalized:
+        table_index = 3
+    elif "qualif" in normalized:
+        table_index = 2
+    elif re.search(r"race\s*([123])", normalized):
+        race_number = int(re.search(r"race\s*([123])", normalized).group(1))
+        table_index = (3 if has_qualifying_race else 2) + race_number
+    elif "practice" in normalized or re.search(r"\bfp\s*([12])", normalized):
+        number = re.search(r"(?:practice|fp)\s*([12])", normalized)
+        table_index = (int(number.group(1)) - 1) if number else 0
+    if table_index is None or table_index >= len(tables):
+        table_index = 0
+    table, headers = tables[table_index]
+
+    def col_idx(names):
+        for name in names:
+            if name in headers:
+                return headers.index(name)
+        return -1
+
+    pos_idx = col_idx(["P/", "P", "POS", "POSITION"])
+    number_idx = col_idx(["NO/", "NO", "CAR #", "#"])
+    driver_idx = col_idx(["NAME/", "NAME", "DRIVER"])
+    team_idx = col_idx(["ENTRY/", "ENTRY", "TEAM"])
+    laps_idx = col_idx(["LAPS/", "LAPS"])
+    time_idx = col_idx(["TIME/", "TIME"])
+    gap_idx = col_idx(["GAP/", "GAP"])
+    best_idx = col_idx(["BEST/", "BEST", "LAP TIME"])
+    qualifying_time_indices = [
+        index for index, header in enumerate(headers)
+        if re.fullmatch(r"Q\d+/?", header)
+    ]
+
+    results = []
+    for row in table.find_all("tr")[1:]:
+        cols = row.find_all(["td", "th"])
+        if len(cols) < 4:
+            continue
+        values = [cell.get_text(" ", strip=True) for cell in cols]
+        pos_text = values[pos_idx] if 0 <= pos_idx < len(values) else ""
+        if not pos_text:
+            continue
+        position = int(pos_text) if pos_text.isdigit() else pos_text.upper()
+        result = {"position": position}
+        for key, idx in (("number", number_idx), ("driver", driver_idx), ("team", team_idx), ("laps", laps_idx)):
+            if 0 <= idx < len(values) and values[idx] and values[idx] not in {"0", "-"}:
+                result[key] = values[idx]
+        time_value = values[time_idx] if 0 <= time_idx < len(values) else ""
+        if not time_value and qualifying_time_indices:
+            for index in reversed(qualifying_time_indices):
+                if index < len(values) and values[index] and values[index] != "0":
+                    time_value = values[index]
+                    break
+        gap_value = values[gap_idx] if 0 <= gap_idx < len(values) else ""
+        best_value = values[best_idx] if 0 <= best_idx < len(values) else ""
+        if position == 1:
+            if time_value and time_value != "0":
+                result["time"] = time_value
+        else:
+            if gap_value and gap_value != "0":
+                result["interval"] = gap_value if gap_value.startswith(("+", "-")) else "+" + gap_value
+            # For BTCC races Time/ is the total elapsed race time. RaceDay's
+            # speed field is the right place for that value on P2+; Best/ is
+            # only the optional fastest-lap column and must not replace it.
+            if is_btcc_race and time_value and time_value != "0":
+                result["speed"] = time_value
+            elif best_value and best_value != "0":
+                result["speed"] = best_value
+            elif time_value and time_value != "0" and "qualif" not in normalized and "practice" not in normalized:
+                result["speed"] = time_value
+        if position in {"DNF", "DNS", "DSQ", "DQ", "NS"}:
+            result.pop("time", None)
+            result.pop("interval", None)
+            result.pop("speed", None)
+        results.append(result)
+    return results
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--url",        required=True)
@@ -647,6 +751,7 @@ def main():
     # Check if session is oval from JSON
     is_oval = False
     is_race_session = False
+    session_name = ""
     with open(json_file, "r", encoding="utf-8") as f:
         rounds_check = json.load(f)
     for round_data in rounds_check:
@@ -655,6 +760,7 @@ def main():
                 is_oval = s.get("isOval", False)
                 kind = s.get("kind", "").lower()
                 name = s.get("name", "").lower()
+                session_name = s.get("name", "")
                 is_race_session = kind in ("race", "feature_race") or "race" in name
                 break
 
@@ -673,6 +779,9 @@ def main():
     elif 'britishgt.com' in args.url:
         print('🏁 Using British GT parser')
         results = parse_british_gt(html)
+    elif 'btcc.net' in args.url:
+        print(f'🏁 Using BTCC parser for {session_name or args.session_id}')
+        results = parse_btcc(html, session_name)
     else:
         results = parse_results(html, args.url, args.series, is_oval, is_race_session)
 

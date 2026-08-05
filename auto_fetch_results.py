@@ -78,6 +78,11 @@ SRO_SERIES = {
     "gtwca_aus": "https://www.gt-world-challenge-australia.com",
 }
 
+# BTCC publishes all sessions for one meeting on a single official page. The
+# session name is used by fetch_results.py to select the matching table, so a
+# session may safely point to the same event URL.
+SPECIAL_SOURCE_SERIES = {"btcc"}
+
 HEADERS = {
     "User-Agent": (
         "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
@@ -631,6 +636,8 @@ def preferred_session_codes(series: str, session_data: dict[str, Any]) -> list[s
         if "free practice 2" in name:
             return ["FP2"]
         if is_qualifying:
+            if series in {"moto2", "moto3"}:
+                return ["GRID", "Q3"]
             return [f"Q{number}"] if number else ["Q2", "Q"]
         if is_race:
             return ["RACE"]
@@ -733,8 +740,8 @@ def direct_motorsport_session_url(
         return None
     name = normalize(session_data.get("name"))
     kind = normalize(session_data.get("kind"))
-    is_indy_qualifying = (
-        series == "indycar"
+    is_dynamic_qualifying = (
+        series in {"indycar", "moto2", "moto3"}
         and ("qual" in name or "qual" in kind)
     )
     exact_primary = len(codes) == 1
@@ -744,9 +751,9 @@ def direct_motorsport_session_url(
         and bool(session_data.get("_eventRole"))
         and bool(session_data.get("_eventOrdinal"))
     )
-    if not (exact_primary or stable_wrc_code or stable_supercars_ordinal or is_indy_qualifying):
+    if not (exact_primary or stable_wrc_code or stable_supercars_ordinal or is_dynamic_qualifying):
         return None
-    direct_code = "Q3" if is_indy_qualifying else codes[0]
+    direct_code = "Q3" if is_dynamic_qualifying else codes[0]
     parsed = urlparse(event_url)
     clean_event_url = parsed._replace(query="", fragment="").geturl()
     return f"{clean_event_url}?{urlencode({'st': direct_code})}"
@@ -754,7 +761,7 @@ def direct_motorsport_session_url(
 
 def should_refresh_session_link(series: str, session_data: dict[str, Any]) -> bool:
     """Some sessions improve from a provisional tab to a final tab later."""
-    if series != "indycar":
+    if series not in {"indycar", "moto2", "moto3"}:
         return False
     name = normalize(session_data.get("name"))
     kind = normalize(session_data.get("kind"))
@@ -880,7 +887,7 @@ def run(args: argparse.Namespace) -> int:
             continue
         motorsport_series = MOTORSPORT_SERIES.get(series)
         sro_base_url = SRO_SERIES.get(series)
-        if not motorsport_series and not sro_base_url:
+        if not motorsport_series and not sro_base_url and series not in SPECIAL_SOURCE_SERIES:
             continue
         session_timezone = timezone_for_series(series, fallback_timezone)
         try:
@@ -936,6 +943,19 @@ def run(args: argparse.Namespace) -> int:
                 source_url = "" if should_refresh_session_link(series, session_data) else (
                     session_data.get("resultsUrl") or entry.get("sourceUrl") or ""
                 ).strip()
+                if not source_url and series == "btcc":
+                    # BTCC uses one event page for every session. Reuse the
+                    # first BTCC URL entered on the event so users only need
+                    # to paste it once; parse_btcc selects the right table by
+                    # the current session name.
+                    source_url = next(
+                        (
+                            str(other.get("resultsUrl") or "").strip()
+                            for other in round_sessions
+                            if str(other.get("resultsUrl") or "").strip()
+                        ),
+                        "",
+                    )
                 if not source_url:
                     if sro_base_url:
                         if series not in sro_season_cache:
