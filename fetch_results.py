@@ -138,18 +138,27 @@ def fetch_page(url: str) -> str:
         time.sleep(2 + attempt * 3)  # 2s, 5s, 8s
         resp = requests.get(url, headers=get_headers(url), timeout=30)
         if resp.status_code == 429 and "btcc.net" in url:
-            # BTCC rate-limits GitHub-hosted runners. Jina's read-only reader
-            # retrieves the same public page and returns its table as
-            # Markdown; parse_btcc supports that format as a fallback.
-            proxy_url = "https://r.jina.ai/http://" + url.split("://", 1)[1]
-            proxy = requests.get(
-                proxy_url,
-                headers={"User-Agent": USER_AGENTS[0], "Accept": "text/markdown"},
-                timeout=45,
-            )
-            if proxy.ok and proxy.text.strip():
-                print("ℹ️ BTCC direct request was rate-limited; using read-only page fallback")
-                return proxy.text
+            # BTCC rate-limits GitHub-hosted runners. Try public read-only
+            # mirrors before failing the workflow.
+            host_path = url.split("://", 1)[1]
+            proxy_urls = [
+                "https://r.jina.ai/http://" + host_path,
+                "https://btcc-net.translate.goog/" + host_path.split("/", 1)[1]
+                + "?_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=en",
+            ]
+            for proxy_url in proxy_urls:
+                try:
+                    proxy = requests.get(
+                        proxy_url,
+                        headers={"User-Agent": USER_AGENTS[0], "Accept": "text/html,text/markdown;q=0.9"},
+                        timeout=45,
+                    )
+                    if proxy.ok and proxy.text.strip():
+                        print(f"ℹ️ BTCC direct request was rate-limited; using fallback {proxy_url.split('/')[2]}")
+                        return proxy.text
+                    print(f"⚠️ BTCC fallback returned HTTP {proxy.status_code}: {proxy_url}")
+                except requests.RequestException as error:
+                    print(f"⚠️ BTCC fallback unavailable: {error}")
         resp.raise_for_status()
         html = resp.text
         # Check if we got a real page
