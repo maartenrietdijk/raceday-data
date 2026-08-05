@@ -101,9 +101,11 @@ def normalize_results_url(value: str) -> str:
     # The editor can receive a copied Markdown link from chat/browser output:
     # ``[https://example.test](https://example.test)``.  Keep only its actual
     # href before handing it to requests.
-    markdown_match = re.fullmatch(r"\[[^]]+\]\((https?://[^)]+)\)", value)
+    markdown_match = re.search(r"https?://[^)\s>]+", value)
     if markdown_match:
-        value = markdown_match.group(1)
+        # This also handles HTML/Markdown wrappers and labels containing
+        # brackets, which can be introduced when a link is copied from chat.
+        value = markdown_match.group(0)
     value = value.strip().strip("<>")
     parsed = urlsplit(value)
     path = parsed.path
