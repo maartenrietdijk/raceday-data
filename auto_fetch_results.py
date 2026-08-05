@@ -78,11 +78,6 @@ SRO_SERIES = {
     "gtwca_aus": "https://www.gt-world-challenge-australia.com",
 }
 
-# BTCC publishes all sessions for one meeting on a single official page. The
-# session name is used by fetch_results.py to select the matching table, so a
-# session may safely point to the same event URL.
-SPECIAL_SOURCE_SERIES = {"btcc"}
-
 HEADERS = {
     "User-Agent": (
         "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
@@ -887,7 +882,7 @@ def run(args: argparse.Namespace) -> int:
             continue
         motorsport_series = MOTORSPORT_SERIES.get(series)
         sro_base_url = SRO_SERIES.get(series)
-        if not motorsport_series and not sro_base_url and series not in SPECIAL_SOURCE_SERIES:
+        if not motorsport_series and not sro_base_url:
             continue
         session_timezone = timezone_for_series(series, fallback_timezone)
         try:
@@ -943,19 +938,6 @@ def run(args: argparse.Namespace) -> int:
                 source_url = "" if should_refresh_session_link(series, session_data) else (
                     session_data.get("resultsUrl") or entry.get("sourceUrl") or ""
                 ).strip()
-                if not source_url and series == "btcc":
-                    # BTCC uses one event page for every session. Reuse the
-                    # first BTCC URL entered on the event so users only need
-                    # to paste it once; parse_btcc selects the right table by
-                    # the current session name.
-                    source_url = next(
-                        (
-                            str(other.get("resultsUrl") or "").strip()
-                            for other in round_sessions
-                            if str(other.get("resultsUrl") or "").strip()
-                        ),
-                        "",
-                    )
                 if not source_url:
                     if sro_base_url:
                         if series not in sro_season_cache:
