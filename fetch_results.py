@@ -97,7 +97,15 @@ def results_are_usable(results: list) -> bool:
 
 def normalize_results_url(value: str) -> str:
     """Normalize result URLs without corrupting SRO filter query values."""
-    parsed = urlsplit(value.strip())
+    value = str(value or "").strip()
+    # The editor can receive a copied Markdown link from chat/browser output:
+    # ``[https://example.test](https://example.test)``.  Keep only its actual
+    # href before handing it to requests.
+    markdown_match = re.fullmatch(r"\[[^]]+\]\((https?://[^)]+)\)", value)
+    if markdown_match:
+        value = markdown_match.group(1)
+    value = value.strip().strip("<>")
+    parsed = urlsplit(value)
     path = parsed.path
     query = parsed.query
     if query:
