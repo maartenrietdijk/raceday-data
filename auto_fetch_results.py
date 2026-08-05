@@ -608,10 +608,12 @@ def preferred_session_codes(series: str, session_data: dict[str, Any]) -> list[s
             return ["RACE"]
 
     if series == "indycar":
-        if "warm" in name or "final practice" in name:
-            return ["FIP", "FP2"]
+        if "warm" in name:
+            return ["W"]
+        if "high line" in name or "final practice" in name:
+            return ["FP2"]
         if is_qualifying:
-            return ["Q", "CQ", "Q2", "Q1"]
+            return ["GRID", "Q3"]
         if is_practice:
             return [f"FP{number}"] if number else ["FP1", "FIP"]
         if is_race:
@@ -619,7 +621,7 @@ def preferred_session_codes(series: str, session_data: dict[str, Any]) -> list[s
 
     if series in {"motogp", "moto2", "moto3"}:
         if "sprint" in name:
-            return ["SPR"]
+            return ["SPRINT"]
         if "warm" in name:
             return ["W"]
         if "free practice 1" in name:
@@ -729,6 +731,12 @@ def direct_motorsport_session_url(
     codes = preferred_session_codes(series, session_data)
     if not codes:
         return None
+    name = normalize(session_data.get("name"))
+    kind = normalize(session_data.get("kind"))
+    is_indy_qualifying = (
+        series == "indycar"
+        and ("qual" in name or "qual" in kind)
+    )
     exact_primary = len(codes) == 1
     stable_wrc_code = series == "wrc"
     stable_supercars_ordinal = (
@@ -736,11 +744,21 @@ def direct_motorsport_session_url(
         and bool(session_data.get("_eventRole"))
         and bool(session_data.get("_eventOrdinal"))
     )
-    if not (exact_primary or stable_wrc_code or stable_supercars_ordinal):
+    if not (exact_primary or stable_wrc_code or stable_supercars_ordinal or is_indy_qualifying):
         return None
+    direct_code = "Q3" if is_indy_qualifying else codes[0]
     parsed = urlparse(event_url)
     clean_event_url = parsed._replace(query="", fragment="").geturl()
-    return f"{clean_event_url}?{urlencode({'st': codes[0]})}"
+    return f"{clean_event_url}?{urlencode({'st': direct_code})}"
+
+
+def should_refresh_session_link(series: str, session_data: dict[str, Any]) -> bool:
+    """Some sessions improve from a provisional tab to a final tab later."""
+    if series != "indycar":
+        return False
+    name = normalize(session_data.get("name"))
+    kind = normalize(session_data.get("kind"))
+    return "qual" in name or "qual" in kind
 
 
 def first_fetch_at(session_data: dict[str, Any], timezone: ZoneInfo) -> datetime | None:
@@ -915,7 +933,9 @@ def run(args: argparse.Namespace) -> int:
                         save_state(Path(args.state), state)
                     return 0
 
-                source_url = (session_data.get("resultsUrl") or entry.get("sourceUrl") or "").strip()
+                source_url = "" if should_refresh_session_link(series, session_data) else (
+                    session_data.get("resultsUrl") or entry.get("sourceUrl") or ""
+                ).strip()
                 if not source_url:
                     if sro_base_url:
                         if series not in sro_season_cache:
