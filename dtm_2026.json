@@ -1,15 +1,21 @@
 [
   {
+    "id": "dtm-2026-r01",
+    "seriesId": "dtm",
+    "roundNumber": 1,
+    "raceName": "Red Bull Ring",
     "circuitName": "Red Bull Ring",
-    "countryCode": "AT",
     "city": "Spielberg",
     "country": "Austria",
-    "roundNumber": 1,
-    "seriesId": "dtm",
-    "id": "dtm-2026-r01",
-    "raceName": "Red Bull Ring",
+    "countryCode": "AT",
     "sessions": [
       {
+        "id": "dtm-2026-r01-s1",
+        "name": "Practice 1",
+        "kind": "practice",
+        "date": "2026-04-24",
+        "timeLocal": "11:05",
+        "durationMinutes": 45,
         "results": [
           {
             "number": "25",
@@ -199,20 +205,15 @@
             "interval": "+1.903",
             "speed": "1'30.470"
           }
-        ],
-        "id": "dtm-2026-r01-s1",
-        "durationMinutes": 45,
-        "timeLocal": "11:05",
-        "date": "2026-04-24",
-        "name": "Practice 1",
-        "kind": "practice"
+        ]
       },
       {
-        "timeLocal": "15:55",
-        "date": "2026-04-24",
+        "id": "dtm-2026-r01-s2",
         "name": "Practice 2",
         "kind": "practice",
-        "id": "dtm-2026-r01-s2",
+        "date": "2026-04-24",
+        "timeLocal": "15:55",
+        "durationMinutes": 45,
         "results": [
           {
             "number": "22",
@@ -402,12 +403,15 @@
             "position": 21,
             "number": "8"
           }
-        ],
-        "durationMinutes": 45
+        ]
       },
       {
-        "kind": "qualifying",
         "id": "dtm-2026-r01-s3",
+        "name": "Qualifying 1",
+        "kind": "qualifying",
+        "date": "2026-04-25",
+        "timeLocal": "09:10",
+        "durationMinutes": 30,
         "results": [
           {
             "number": "80",
@@ -597,18 +601,15 @@
             "interval": "+1.604",
             "team": "TGI Team Lamborghini by GRT"
           }
-        ],
-        "timeLocal": "09:10",
-        "name": "Qualifying 1",
-        "date": "2026-04-25",
-        "durationMinutes": 30
+        ]
       },
       {
-        "kind": "race",
-        "durationMinutes": 55,
-        "name": "Race 1",
         "id": "dtm-2026-r01-s4",
+        "name": "Race 1",
+        "kind": "race",
         "date": "2026-04-25",
+        "timeLocal": "13:30",
+        "durationMinutes": 55,
         "results": [
           {
             "number": "91",
@@ -790,12 +791,15 @@
             "team": "Dörr Motorsport",
             "position": "DNF"
           }
-        ],
-        "timeLocal": "13:30"
+        ]
       },
       {
-        "timeLocal": "09:15",
         "id": "dtm-2026-r01-s5",
+        "name": "Qualifying 2",
+        "kind": "qualifying",
+        "date": "2026-04-26",
+        "timeLocal": "09:15",
+        "durationMinutes": 30,
         "results": [
           {
             "team": "Schubert Motorsport",
@@ -985,17 +989,14 @@
             "laps": "8",
             "position": 21
           }
-        ],
-        "date": "2026-04-26",
-        "name": "Qualifying 2",
-        "kind": "qualifying",
-        "durationMinutes": 30
+        ]
       },
       {
-        "kind": "race",
         "id": "dtm-2026-r01-s6",
-        "timeLocal": "13:30",
+        "name": "Race 2",
+        "kind": "race",
         "date": "2026-04-26",
+        "timeLocal": "13:30",
         "durationMinutes": 55,
         "results": [
           {
@@ -1184,18 +1185,27 @@
             "position": "DNF",
             "driver": "T. Kalender"
           }
-        ],
-        "name": "Race 2"
+        ]
       }
     ]
   },
   {
+    "id": "dtm-2026-r02",
+    "seriesId": "dtm",
+    "roundNumber": 2,
+    "raceName": "Zandvoort",
+    "circuitName": "Circuit Zandvoort",
+    "city": "Zandvoort",
+    "country": "Netherlands",
     "countryCode": "NL",
     "sessions": [
       {
-        "date": "2026-05-22",
-        "kind": "practice",
+        "id": "dtm-2026-r02-s1",
         "name": "Practice 1",
+        "kind": "practice",
+        "date": "2026-05-22",
+        "timeLocal": "12:00",
+        "durationMinutes": 55,
         "results": [
           {
             "team": "Emil Frey Racing",
@@ -1385,18 +1395,15 @@
             "position": 21,
             "number": "64"
           }
-        ],
-        "id": "dtm-2026-r02-s1",
-        "durationMinutes": 55,
-        "timeLocal": "12:00"
+        ]
       },
       {
+        "id": "dtm-2026-r02-s2",
+        "name": "Practice 2",
+        "kind": "practice",
         "date": "2026-05-22",
         "timeLocal": "16:20",
-        "name": "Practice 2",
-        "id": "dtm-2026-r02-s2",
         "durationMinutes": 55,
-        "kind": "practice",
         "results": [
           {
             "team": "Emil Frey Racing",
@@ -1589,12 +1596,12 @@
         ]
       },
       {
-        "timeLocal": "09:45",
-        "date": "2026-05-23",
-        "name": "Qualifying 1",
         "id": "dtm-2026-r02-s3",
-        "durationMinutes": 30,
+        "name": "Qualifying 1",
         "kind": "qualifying",
+        "date": "2026-05-23",
+        "timeLocal": "09:45",
+        "durationMinutes": 30,
         "results": [
           {
             "number": "14",
@@ -1766,11 +1773,12 @@
         ]
       },
       {
-        "durationMinutes": 55,
-        "timeLocal": "13:30",
+        "id": "dtm-2026-r02-s4",
+        "name": "Race 1",
         "kind": "race",
         "date": "2026-05-23",
-        "name": "Race 1",
+        "timeLocal": "13:30",
+        "durationMinutes": 55,
         "results": [
           {
             "number": "14",
@@ -1952,15 +1960,15 @@
             "position": "DNF",
             "team": "Land-Motorsport"
           }
-        ],
-        "id": "dtm-2026-r02-s4"
+        ]
       },
       {
-        "durationMinutes": 30,
-        "timeLocal": "09:40",
+        "id": "dtm-2026-r02-s5",
+        "name": "Qualifying 2",
         "kind": "qualifying",
         "date": "2026-05-24",
-        "name": "Qualifying 2",
+        "timeLocal": "09:40",
+        "durationMinutes": 30,
         "results": [
           {
             "number": "3",
@@ -2129,10 +2137,15 @@
             "team": "HRT Ford Performance",
             "speed": "1'34.581"
           }
-        ],
-        "id": "dtm-2026-r02-s5"
+        ]
       },
       {
+        "id": "dtm-2026-r02-s6",
+        "name": "Race 2",
+        "kind": "race",
+        "date": "2026-05-24",
+        "timeLocal": "13:30",
+        "durationMinutes": 55,
         "results": [
           {
             "number": "3",
@@ -2316,29 +2329,27 @@
             "number": "64",
             "driver": "F. Wiebelhaus"
           }
-        ],
-        "id": "dtm-2026-r02-s6",
-        "kind": "race",
-        "date": "2026-05-24",
-        "durationMinutes": 55,
-        "timeLocal": "13:30",
-        "name": "Race 2"
+        ]
       }
-    ],
-    "circuitName": "Circuit Zandvoort",
-    "raceName": "Zandvoort",
-    "roundNumber": 2,
-    "seriesId": "dtm",
-    "country": "Netherlands",
-    "city": "Zandvoort",
-    "id": "dtm-2026-r02"
+    ]
   },
   {
+    "id": "dtm-2026-r03",
+    "seriesId": "dtm",
+    "roundNumber": 3,
+    "raceName": "Lausitzring",
+    "circuitName": "Lausitzring",
+    "city": "Klettwitz",
+    "country": "Germany",
     "countryCode": "DE",
     "sessions": [
       {
+        "id": "dtm-2026-r03-s1",
         "name": "Practice 1",
         "kind": "practice",
+        "date": "2026-06-19",
+        "timeLocal": "11:40",
+        "durationMinutes": 55,
         "results": [
           {
             "team": "HRT Ford Performance",
@@ -2528,15 +2539,15 @@
             "number": "16",
             "position": 21
           }
-        ],
-        "id": "dtm-2026-r03-s1",
-        "timeLocal": "11:40",
-        "date": "2026-06-19",
-        "durationMinutes": 55
+        ]
       },
       {
-        "durationMinutes": 45,
+        "id": "dtm-2026-r03-s2",
+        "name": "Practice 2",
+        "kind": "practice",
         "date": "2026-06-19",
+        "timeLocal": "16:10",
+        "durationMinutes": 45,
         "results": [
           {
             "team": "Mercedes-AMG Team Ravenol",
@@ -2726,15 +2737,15 @@
             "laps": "22",
             "speed": "1'21.161"
           }
-        ],
-        "timeLocal": "16:10",
-        "name": "Practice 2",
-        "kind": "practice",
-        "id": "dtm-2026-r03-s2"
+        ]
       },
       {
+        "id": "dtm-2026-r03-s3",
+        "name": "Qualifying 1",
+        "kind": "qualifying",
         "date": "2026-06-20",
         "timeLocal": "09:00",
+        "durationMinutes": 30,
         "results": [
           {
             "team": "Comtoyou Racing",
@@ -2924,15 +2935,15 @@
             "number": "16",
             "interval": "+0.937"
           }
-        ],
-        "kind": "qualifying",
-        "name": "Qualifying 1",
-        "id": "dtm-2026-r03-s3",
-        "durationMinutes": 30
+        ]
       },
       {
+        "id": "dtm-2026-r03-s4",
+        "name": "Race 1",
+        "kind": "race",
         "date": "2026-06-20",
         "timeLocal": "13:30",
+        "durationMinutes": 55,
         "results": [
           {
             "team": "Red Bull Team Abt",
@@ -3081,19 +3092,15 @@
             "position": "DNS",
             "laps": "0"
           }
-        ],
-        "kind": "race",
-        "name": "Race 1",
-        "id": "dtm-2026-r03-s4",
-        "durationMinutes": 55
+        ]
       },
       {
-        "durationMinutes": 30,
+        "id": "dtm-2026-r03-s5",
         "name": "Qualifying 2",
         "kind": "qualifying",
         "date": "2026-06-21",
-        "id": "dtm-2026-r03-s5",
         "timeLocal": "09:05",
+        "durationMinutes": 30,
         "results": [
           {
             "team": "HRT Ford Performance",
@@ -3286,12 +3293,12 @@
         ]
       },
       {
-        "durationMinutes": 55,
-        "name": "Race 2",
-        "timeLocal": "13:30",
         "id": "dtm-2026-r03-s6",
+        "name": "Race 2",
         "kind": "race",
         "date": "2026-06-21",
+        "timeLocal": "13:30",
+        "durationMinutes": 55,
         "results": [
           {
             "team": "Emil Frey Racing",
@@ -3475,29 +3482,25 @@
           }
         ]
       }
-    ],
-    "circuitName": "Lausitzring",
-    "id": "dtm-2026-r03",
-    "seriesId": "dtm",
-    "raceName": "Lausitzring",
-    "city": "Klettwitz",
-    "roundNumber": 3,
-    "country": "Germany"
+    ]
   },
   {
-    "circuitName": "Norisring",
-    "raceName": "Norisring",
-    "country": "Germany",
+    "id": "dtm-2026-r04",
     "seriesId": "dtm",
     "roundNumber": 4,
+    "raceName": "Norisring",
+    "circuitName": "Norisring",
+    "city": "Nuremberg",
+    "country": "Germany",
+    "countryCode": "DE",
     "sessions": [
       {
-        "name": "Practice 1",
-        "timeLocal": "11:30",
         "id": "dtm-2026-r04-s1",
-        "durationMinutes": 45,
+        "name": "Practice 1",
         "kind": "practice",
         "date": "2026-07-03",
+        "timeLocal": "11:30",
+        "durationMinutes": 45,
         "results": [
           {
             "driver": "M. Engel",
@@ -3690,11 +3693,12 @@
         ]
       },
       {
-        "name": "Practice 2",
-        "date": "2026-07-03",
-        "durationMinutes": 45,
         "id": "dtm-2026-r04-s2",
+        "name": "Practice 2",
         "kind": "practice",
+        "date": "2026-07-03",
+        "timeLocal": "16:00",
+        "durationMinutes": 45,
         "results": [
           {
             "driver": "B. Dörr",
@@ -3884,15 +3888,15 @@
             "position": 21,
             "team": "Schubert Motorsport"
           }
-        ],
-        "timeLocal": "16:00"
+        ]
       },
       {
-        "name": "Qualifying 1",
-        "date": "2026-07-04",
-        "durationMinutes": 60,
         "id": "dtm-2026-r04-s3",
+        "name": "Qualifying 1",
         "kind": "qualifying",
+        "date": "2026-07-04",
+        "timeLocal": "09:35",
+        "durationMinutes": 60,
         "results": [
           {
             "driver": "N. Thiim",
@@ -4020,15 +4024,15 @@
             "position": 21,
             "team": "Dörr Motorsport"
           }
-        ],
-        "timeLocal": "09:35"
+        ]
       },
       {
-        "name": "Race 1",
-        "date": "2026-07-04",
-        "durationMinutes": 55,
         "id": "dtm-2026-r04-s4",
+        "name": "Race 1",
         "kind": "race",
+        "date": "2026-07-04",
+        "timeLocal": "13:30",
+        "durationMinutes": 55,
         "results": [
           {
             "driver": "N. Thiim",
@@ -4208,15 +4212,15 @@
             "team": "Schubert Motorsport",
             "laps": "4"
           }
-        ],
-        "timeLocal": "13:30"
+        ]
       },
       {
-        "name": "Qualifying 2",
-        "date": "2026-07-05",
-        "durationMinutes": 30,
         "id": "dtm-2026-r04-s5",
+        "name": "Qualifying 2",
         "kind": "qualifying",
+        "date": "2026-07-05",
+        "timeLocal": "09:10",
+        "durationMinutes": 30,
         "results": [
           {
             "driver": "N. Thiim",
@@ -4332,15 +4336,15 @@
             "position": 19,
             "driver": "L. Engstler"
           }
-        ],
-        "timeLocal": "09:10"
+        ]
       },
       {
+        "id": "dtm-2026-r04-s6",
         "name": "Race 2",
         "kind": "race",
-        "id": "dtm-2026-r04-s6",
-        "durationMinutes": 55,
+        "date": "2026-07-05",
         "timeLocal": "13:30",
+        "durationMinutes": 55,
         "results": [
           {
             "number": "7",
@@ -4506,24 +4510,26 @@
             "team": "Emil Frey Racing",
             "position": "DNF"
           }
-        ],
-        "date": "2026-07-05"
+        ]
       }
-    ],
-    "countryCode": "DE",
-    "city": "Nuremberg",
-    "id": "dtm-2026-r04"
+    ]
   },
   {
+    "id": "dtm-2026-r05",
+    "seriesId": "dtm",
+    "roundNumber": 5,
+    "raceName": "Oschersleben",
     "circuitName": "Motorsport Arena Oschersleben",
-    "countryCode": "DE",
+    "city": "Oschersleben",
     "country": "Germany",
+    "countryCode": "DE",
     "sessions": [
       {
-        "timeLocal": "11:00",
-        "kind": "practice",
         "id": "dtm-2026-r05-s1",
+        "name": "Practice 1",
+        "kind": "practice",
         "date": "2026-07-24",
+        "timeLocal": "11:00",
         "durationMinutes": 55,
         "results": [
           {
@@ -4705,10 +4711,15 @@
             "number": "8",
             "driver": "N. Baert"
           }
-        ],
-        "name": "Practice 1"
+        ]
       },
       {
+        "id": "dtm-2026-r05-s2",
+        "name": "Practice 2",
+        "kind": "practice",
+        "date": "2026-07-24",
+        "timeLocal": "15:35",
+        "durationMinutes": 55,
         "results": [
           {
             "number": "91",
@@ -4889,17 +4900,15 @@
             "number": "8",
             "driver": "N. Baert"
           }
-        ],
-        "timeLocal": "15:35",
-        "name": "Practice 2",
-        "kind": "practice",
-        "durationMinutes": 55,
-        "id": "dtm-2026-r05-s2",
-        "date": "2026-07-24"
+        ]
       },
       {
-        "timeLocal": "09:45",
+        "id": "dtm-2026-r05-s3",
+        "name": "Qualifying 1",
         "kind": "qualifying",
+        "date": "2026-07-25",
+        "timeLocal": "09:45",
+        "durationMinutes": 30,
         "results": [
           {
             "number": "91",
@@ -5080,19 +5089,15 @@
             "driver": "N. Baert",
             "number": "8"
           }
-        ],
-        "id": "dtm-2026-r05-s3",
-        "durationMinutes": 30,
-        "name": "Qualifying 1",
-        "date": "2026-07-25"
+        ]
       },
       {
-        "timeLocal": "13:30",
-        "durationMinutes": 55,
         "id": "dtm-2026-r05-s4",
-        "date": "2026-07-25",
         "name": "Race 1",
         "kind": "race",
+        "date": "2026-07-25",
+        "timeLocal": "13:30",
+        "durationMinutes": 55,
         "results": [
           {
             "number": "91",
@@ -5265,6 +5270,11 @@
       },
       {
         "id": "dtm-2026-r05-s5",
+        "name": "Qualifying 2",
+        "kind": "qualifying",
+        "date": "2026-07-26",
+        "timeLocal": "09:25",
+        "durationMinutes": 30,
         "results": [
           {
             "number": "91",
@@ -5445,15 +5455,15 @@
             "team": "Comtoyou Racing",
             "position": 20
           }
-        ],
-        "timeLocal": "09:25",
-        "durationMinutes": 30,
-        "kind": "qualifying",
-        "name": "Qualifying 2",
-        "date": "2026-07-26"
+        ]
       },
       {
+        "id": "dtm-2026-r05-s6",
+        "name": "Race 2",
+        "kind": "race",
         "date": "2026-07-26",
+        "timeLocal": "13:30",
+        "durationMinutes": 55,
         "results": [
           {
             "position": 1,
@@ -5630,197 +5640,187 @@
             "number": "64",
             "laps": "10"
           }
-        ],
-        "name": "Race 2",
-        "timeLocal": "13:30",
-        "kind": "race",
-        "durationMinutes": 55,
-        "id": "dtm-2026-r05-s6"
+        ]
       }
-    ],
-    "raceName": "Oschersleben",
-    "roundNumber": 5,
-    "seriesId": "dtm",
-    "id": "dtm-2026-r05",
-    "city": "Oschersleben"
+    ]
   },
   {
+    "id": "dtm-2026-r06",
     "seriesId": "dtm",
     "roundNumber": 6,
-    "countryCode": "DE",
     "raceName": "Nürburgring",
     "circuitName": "Nürburgring Grand Prix Circuit",
-    "country": "Germany",
-    "id": "dtm-2026-r06",
     "city": "Nürburg",
+    "country": "Germany",
+    "countryCode": "DE",
     "sessions": [
       {
-        "date": "2026-08-14",
-        "kind": "practice",
         "id": "dtm-2026-r06-s1",
         "name": "Practice 1",
-        "timeLocal": "10:40",
+        "kind": "practice",
+        "date": "2026-08-14",
+        "timeLocal": "11:30",
         "durationMinutes": 45
       },
       {
         "id": "dtm-2026-r06-s2",
-        "kind": "practice",
         "name": "Practice 2",
+        "kind": "practice",
         "date": "2026-08-14",
-        "timeLocal": "15:35",
+        "timeLocal": "16:00",
         "durationMinutes": 45
       },
       {
         "id": "dtm-2026-r06-s3",
-        "kind": "qualifying",
         "name": "Qualifying 1",
+        "kind": "qualifying",
         "date": "2026-08-15",
+        "timeLocal": "09:55",
+        "durationMinutes": 30
+      },
+      {
+        "id": "dtm-2026-r06-s4",
+        "name": "Race 1",
+        "kind": "race",
+        "date": "2026-08-15",
+        "timeLocal": "13:30",
+        "durationMinutes": 55
+      },
+      {
+        "id": "dtm-2026-r06-s5",
+        "name": "Qualifying 2",
+        "kind": "qualifying",
+        "date": "2026-08-16",
+        "timeLocal": "09:10",
+        "durationMinutes": 30
+      },
+      {
+        "id": "dtm-2026-r06-s6",
+        "name": "Race 2",
+        "kind": "race",
+        "date": "2026-08-16",
+        "timeLocal": "13:30",
+        "durationMinutes": 55
+      }
+    ]
+  },
+  {
+    "id": "dtm-2026-r07",
+    "seriesId": "dtm",
+    "roundNumber": 7,
+    "raceName": "Sachsenring",
+    "circuitName": "Sachsenring",
+    "city": "Hohenstein-Ernstthal",
+    "country": "Germany",
+    "countryCode": "DE",
+    "sessions": [
+      {
+        "id": "dtm-2026-r07-s1",
+        "name": "Practice 1",
+        "kind": "practice",
+        "date": "2026-09-11",
+        "timeLocal": "11:30",
+        "durationMinutes": 45
+      },
+      {
+        "id": "dtm-2026-r07-s2",
+        "name": "Practice 2",
+        "kind": "practice",
+        "date": "2026-09-11",
+        "timeLocal": "15:30",
+        "durationMinutes": 45
+      },
+      {
+        "id": "dtm-2026-r07-s3",
+        "name": "Qualifying 1",
+        "kind": "qualifying",
+        "date": "2026-09-12",
+        "timeLocal": "09:10",
+        "durationMinutes": 30
+      },
+      {
+        "id": "dtm-2026-r07-s4",
+        "name": "Race 1",
+        "kind": "race",
+        "date": "2026-09-12",
+        "timeLocal": "13:30",
+        "durationMinutes": 55
+      },
+      {
+        "id": "dtm-2026-r07-s5",
+        "name": "Qualifying 2",
+        "kind": "qualifying",
+        "date": "2026-09-13",
+        "timeLocal": "09:20",
+        "durationMinutes": 30
+      },
+      {
+        "id": "dtm-2026-r07-s6",
+        "name": "Race 2",
+        "kind": "race",
+        "date": "2026-09-13",
+        "timeLocal": "13:30",
+        "durationMinutes": 55
+      }
+    ]
+  },
+  {
+    "id": "dtm-2026-r08",
+    "seriesId": "dtm",
+    "roundNumber": 8,
+    "raceName": "Hockenheimring",
+    "circuitName": "Hockenheimring Baden-Württemberg",
+    "city": "Hockenheim",
+    "country": "Germany",
+    "countryCode": "DE",
+    "sessions": [
+      {
+        "id": "dtm-2026-r08-s1",
+        "name": "Practice 1",
+        "kind": "practice",
+        "date": "2026-10-09",
+        "timeLocal": "11:05",
+        "durationMinutes": 45
+      },
+      {
+        "id": "dtm-2026-r08-s2",
+        "name": "Practice 2",
+        "kind": "practice",
+        "date": "2026-10-09",
+        "timeLocal": "15:30",
+        "durationMinutes": 45
+      },
+      {
+        "id": "dtm-2026-r08-s3",
+        "name": "Qualifying 1",
+        "kind": "qualifying",
+        "date": "2026-10-10",
         "timeLocal": "09:35",
         "durationMinutes": 30
       },
       {
-        "kind": "race",
-        "date": "2026-08-15",
-        "durationMinutes": 55,
+        "id": "dtm-2026-r08-s4",
         "name": "Race 1",
-        "timeLocal": "13:30",
-        "id": "dtm-2026-r06-s4"
-      },
-      {
-        "kind": "qualifying",
-        "date": "2026-08-16",
-        "durationMinutes": 30,
-        "name": "Qualifying 2",
-        "timeLocal": "09:00",
-        "id": "dtm-2026-r06-s5"
-      },
-      {
-        "kind": "race",
-        "date": "2026-08-16",
-        "durationMinutes": 55,
-        "name": "Race 2",
-        "timeLocal": "13:30",
-        "id": "dtm-2026-r06-s6"
-      }
-    ]
-  },
-  {
-    "seriesId": "dtm",
-    "roundNumber": 7,
-    "countryCode": "DE",
-    "raceName": "Sachsenring",
-    "circuitName": "Sachsenring",
-    "country": "Germany",
-    "id": "dtm-2026-r07",
-    "city": "Hohenstein-Ernstthal",
-    "sessions": [
-      {
-        "kind": "practice",
-        "date": "2026-09-11",
-        "durationMinutes": 45,
-        "name": "Practice 1",
-        "timeLocal": "11:30",
-        "id": "dtm-2026-r07-s1"
-      },
-      {
-        "kind": "practice",
-        "date": "2026-09-11",
-        "durationMinutes": 45,
-        "name": "Practice 2",
-        "timeLocal": "15:30",
-        "id": "dtm-2026-r07-s2"
-      },
-      {
-        "kind": "qualifying",
-        "date": "2026-09-12",
-        "durationMinutes": 30,
-        "name": "Qualifying 1",
-        "timeLocal": "09:10",
-        "id": "dtm-2026-r07-s3"
-      },
-      {
-        "kind": "race",
-        "date": "2026-09-12",
-        "durationMinutes": 55,
-        "name": "Race 1",
-        "timeLocal": "13:30",
-        "id": "dtm-2026-r07-s4"
-      },
-      {
-        "kind": "qualifying",
-        "date": "2026-09-13",
-        "durationMinutes": 30,
-        "name": "Qualifying 2",
-        "timeLocal": "09:20",
-        "id": "dtm-2026-r07-s5"
-      },
-      {
-        "kind": "race",
-        "date": "2026-09-13",
-        "durationMinutes": 55,
-        "name": "Race 2",
-        "timeLocal": "13:30",
-        "id": "dtm-2026-r07-s6"
-      }
-    ]
-  },
-  {
-    "seriesId": "dtm",
-    "roundNumber": 8,
-    "countryCode": "DE",
-    "raceName": "Hockenheimring",
-    "circuitName": "Hockenheimring Baden-Württemberg",
-    "country": "Germany",
-    "id": "dtm-2026-r08",
-    "city": "Hockenheim",
-    "sessions": [
-      {
-        "kind": "practice",
-        "date": "2026-10-09",
-        "durationMinutes": 45,
-        "name": "Practice 1",
-        "timeLocal": "11:05",
-        "id": "dtm-2026-r08-s1"
-      },
-      {
-        "kind": "practice",
-        "date": "2026-10-09",
-        "durationMinutes": 45,
-        "name": "Practice 2",
-        "timeLocal": "15:30",
-        "id": "dtm-2026-r08-s2"
-      },
-      {
-        "kind": "qualifying",
-        "date": "2026-10-10",
-        "durationMinutes": 30,
-        "name": "Qualifying 1",
-        "timeLocal": "09:35",
-        "id": "dtm-2026-r08-s3"
-      },
-      {
         "kind": "race",
         "date": "2026-10-10",
-        "durationMinutes": 55,
-        "name": "Race 1",
         "timeLocal": "13:30",
-        "id": "dtm-2026-r08-s4"
+        "durationMinutes": 55
       },
       {
+        "id": "dtm-2026-r08-s5",
+        "name": "Qualifying 2",
         "kind": "qualifying",
         "date": "2026-10-11",
-        "durationMinutes": 30,
-        "name": "Qualifying 2",
         "timeLocal": "09:30",
-        "id": "dtm-2026-r08-s5"
+        "durationMinutes": 30
       },
       {
+        "id": "dtm-2026-r08-s6",
+        "name": "Race 2",
         "kind": "race",
         "date": "2026-10-11",
-        "durationMinutes": 55,
-        "name": "Race 2",
         "timeLocal": "13:30",
-        "id": "dtm-2026-r08-s6"
+        "durationMinutes": 55
       }
     ]
   }
