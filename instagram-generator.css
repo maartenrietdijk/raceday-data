@@ -1,0 +1,209 @@
+@font-face {
+  font-family: 'Inter';
+  src: url('instagram-assets/fonts/InterVariable.woff2') format('woff2-variations');
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+:root {
+  --sans: 'Inter', sans-serif;
+  --display: 'Inter', sans-serif;
+  --mono: 'Inter', sans-serif;
+}
+
+body, button, input, select, textarea { font-family: 'Inter', sans-serif; }
+
+.instagram-modal-backdrop {
+  align-items: stretch;
+  justify-content: stretch;
+  padding: 24px;
+  background: rgba(0, 0, 0, .62);
+  backdrop-filter: blur(28px) saturate(130%);
+}
+
+.instagram-modal {
+  width: min(1440px, 100%);
+  max-width: none;
+  height: calc(100vh - 48px);
+  margin: auto;
+  padding: 0;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  background: rgba(19, 19, 21, .96);
+  border-color: rgba(255, 255, 255, .1);
+  border-radius: 24px;
+  box-shadow: 0 32px 96px rgba(0, 0, 0, .5), inset 0 1px rgba(255, 255, 255, .06);
+}
+
+.instagram-modal-header {
+  min-height: 72px;
+  padding: 16px 20px 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, .07);
+}
+
+.instagram-modal-title { min-width: 0; }
+.instagram-modal-title h2 { margin: 0 0 3px; color: #f5f5f7; font-size: 18px; font-weight: 650; letter-spacing: -.02em; }
+.instagram-modal-title p { margin: 0; color: #8d8d99; font-size: 12px; }
+.instagram-modal-actions { display: flex; align-items: center; gap: 8px; }
+.instagram-modal-actions .btn { border-radius: 999px; font-weight: 600; }
+.instagram-modal-actions .btn:active, .instagram-preview-nav button:active { transform: scale(.97); }
+
+.instagram-workspace {
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(310px, 390px) minmax(0, 1fr);
+}
+
+.instagram-controls {
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, .018);
+  border-right: 1px solid rgba(255, 255, 255, .07);
+}
+
+.instagram-controls-summary {
+  padding: 18px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, .07);
+}
+
+.instagram-controls-summary strong { display: block; margin-bottom: 4px; color: #f5f5f7; font-size: 14px; }
+.instagram-controls-summary span { color: #898994; font-size: 12px; line-height: 1.45; }
+
+.instagram-warning {
+  display: none;
+  margin: 14px 16px 0;
+  padding: 11px 12px;
+  border: 1px solid rgba(255, 59, 48, .25);
+  background: rgba(255, 59, 48, .08);
+  border-radius: 12px;
+  color: #ff9aa4;
+  font-size: 12px;
+  line-height: 1.45;
+}
+.instagram-warning.show { display: block; }
+
+.instagram-session-list { overflow: auto; padding: 10px 12px 18px; }
+.instagram-day-label {
+  padding: 13px 6px 6px;
+  color: #73737e;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.instagram-session-toggle {
+  width: 100%;
+  min-height: 56px;
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 8px;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  color: #f1f1f4;
+  text-align: left;
+  cursor: pointer;
+  transition: background 140ms ease, transform 140ms cubic-bezier(.23,1,.32,1);
+}
+.instagram-session-toggle:hover { background: #202025; }
+.instagram-session-toggle:active { transform: scale(.985); }
+.instagram-session-toggle input { width: 16px; height: 16px; accent-color: #e8001a; pointer-events: none; }
+.instagram-session-copy { min-width: 0; }
+.instagram-session-copy strong { display: block; overflow: hidden; color: #ececf0; font-size: 12px; text-overflow: ellipsis; white-space: nowrap; }
+.instagram-session-copy span { display: block; margin-top: 3px; overflow: hidden; color: #777782; font-size: 11px; text-overflow: ellipsis; white-space: nowrap; }
+.instagram-session-time { color: #a7a7b1; font: 600 11px var(--mono); }
+
+.instagram-preview-pane {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  background:
+    radial-gradient(circle at 76% 10%, rgba(160,0,16,.14), transparent 34%),
+    #09090b;
+}
+
+.instagram-canvas-stage {
+  min-height: 0;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+#instagramCanvas {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  background: #100508;
+  box-shadow: 0 20px 64px rgba(0, 0, 0, .58);
+}
+
+.instagram-preview-nav {
+  min-height: 58px;
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  border-top: 1px solid rgba(255, 255, 255, .07);
+  color: #8b8b96;
+  font: 600 12px var(--mono);
+}
+.instagram-preview-nav button {
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(255, 255, 255, .1);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .05);
+  color: #ececf0;
+  cursor: pointer;
+  transition: border-color 140ms ease, transform 140ms cubic-bezier(.23,1,.32,1);
+}
+.instagram-preview-nav button:hover { border-color: #676772; }
+.instagram-preview-nav button:disabled { opacity: .28; cursor: default; }
+
+@media (max-width: 900px) {
+  .instagram-modal-backdrop { padding: 0; }
+  .instagram-modal { width: 100%; height: 100%; border: 0; border-radius: 0; }
+  .instagram-workspace { grid-template-columns: 1fr; grid-template-rows: minmax(330px, 56vh) minmax(280px, 44vh); }
+  .instagram-preview-pane { grid-row: 1; }
+  .instagram-controls { grid-row: 2; border: 0; border-top: 1px solid #29292f; }
+  .instagram-controls-summary { padding: 12px 16px; }
+  .instagram-warning { margin-top: 10px; }
+  .instagram-session-list { padding-bottom: 24px; }
+  .instagram-canvas-stage { padding: 12px; }
+  .instagram-modal-title p { display: none; }
+  .instagram-modal-actions .btn-ghost { display: none; }
+}
+
+@media (max-width: 560px) {
+  .instagram-modal-header { min-height: 60px; padding: 10px 12px 10px 16px; }
+  .instagram-modal-actions { gap: 4px; }
+  .instagram-modal-actions .btn { padding: 8px 10px; font-size: 11px; }
+  .instagram-workspace { grid-template-rows: minmax(280px, 51vh) minmax(300px, 49vh); }
+  .instagram-preview-nav { min-height: 48px; padding: 6px 10px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .instagram-session-toggle, .instagram-modal-actions .btn, .instagram-preview-nav button { transition: none; }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .instagram-modal-backdrop { background: rgba(0, 0, 0, .88); backdrop-filter: none; }
+  .instagram-modal { background: #131315; }
+}

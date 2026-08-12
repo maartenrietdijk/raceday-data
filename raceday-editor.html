@@ -5,9 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RaceDay Calendar Editor</title>
 <meta name="color-scheme" content="light dark">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js" defer></script>
 <script>
   (() => {
@@ -32,9 +29,9 @@
     --subtle:    #3a3a46;
     --green:     #00c96e;
     --amber:     #f5a623;
-    --mono:      'DM Mono', monospace;
-    --sans:      'DM Sans', sans-serif;
-    --display:   'Syne', sans-serif;
+    --mono:      'Inter', sans-serif;
+    --sans:      'Inter', sans-serif;
+    --display:   'Inter', sans-serif;
     --radius:    12px;
     --radius-sm: 7px;
   }
@@ -887,6 +884,7 @@
     *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
   }
 </style>
+<link rel="stylesheet" href="instagram-generator.css?v=20260812-5">
 </head>
 <body>
 
@@ -1007,6 +1005,43 @@
       <button class="btn btn-ghost" onclick="closeScreenshotImport()">Annuleer</button>
       <button class="btn btn-surface" id="ocrScanBtn" onclick="scanScreenshots()">Lees screenshots</button>
       <button class="btn btn-primary" id="ocrImportBtn" onclick="importScreenshotSessions()" disabled>Voeg sessies toe</button>
+    </div>
+  </div>
+</div>
+
+<!-- GitHub Settings Modal -->
+<div class="modal-backdrop instagram-modal-backdrop" id="instagramModal" role="dialog" aria-modal="true" aria-labelledby="instagramModalTitle">
+  <div class="modal instagram-modal">
+    <div class="instagram-modal-header">
+      <div class="instagram-modal-title">
+        <h2 id="instagramModalTitle">Instagram-weekendschema</h2>
+        <p>Vaste RaceDay-template · 1080 × 1350 px · Europe/Amsterdam</p>
+      </div>
+      <div class="instagram-modal-actions">
+        <button class="btn btn-ghost btn-sm" id="instagramDownloadAll" onclick="downloadInstagramPng(true)">Download alle PNG’s</button>
+        <button class="btn btn-primary btn-sm" id="instagramDownload" onclick="downloadInstagramPng(false)">Download PNG</button>
+        <button class="btn-icon" onclick="closeInstagramGenerator()" aria-label="Sluit Instagram-preview">×</button>
+      </div>
+    </div>
+    <div class="instagram-workspace">
+      <aside class="instagram-controls" aria-label="Sessieselectie">
+        <div class="instagram-controls-summary">
+          <strong>Sessies in deze export</strong>
+          <span id="instagramSelectionSummary">Sessies voorbereiden…</span>
+        </div>
+        <div class="instagram-warning" id="instagramWarning" role="status"></div>
+        <div class="instagram-session-list" id="instagramSessionList"></div>
+      </aside>
+      <section class="instagram-preview-pane" aria-label="Instagram-preview">
+        <div class="instagram-canvas-stage">
+          <canvas id="instagramCanvas" width="1080" height="1350" aria-label="Preview van de Instagram-post"></canvas>
+        </div>
+        <div class="instagram-preview-nav">
+          <button id="instagramPrevious" onclick="navigateInstagramSlide(-1)" aria-label="Vorige slide">←</button>
+          <span id="instagramSlideLabel">1 / 1</span>
+          <button id="instagramNext" onclick="navigateInstagramSlide(1)" aria-label="Volgende slide">→</button>
+        </div>
+      </section>
     </div>
   </div>
 </div>
@@ -1471,7 +1506,10 @@ function renderDashboard() {
               <div class="dashboard-card-kicker">Nu relevant</div>
               <div class="dashboard-card-title">Dit weekend</div>
             </div>
-            <span class="event-range">${new Intl.DateTimeFormat('nl-NL', { day: 'numeric', month: 'long' }).format(weekend.start)} – ${new Intl.DateTimeFormat('nl-NL', { day: 'numeric', month: 'long' }).format(new Date(weekend.end.getTime() - 86400000))}</span>
+            <div style="display:flex;align-items:center;justify-content:flex-end;gap:10px;flex-wrap:wrap">
+              <span class="event-range">${new Intl.DateTimeFormat('nl-NL', { day: 'numeric', month: 'long' }).format(weekend.start)} – ${new Intl.DateTimeFormat('nl-NL', { day: 'numeric', month: 'long' }).format(new Date(weekend.end.getTime() - 86400000))}</span>
+              <button class="btn btn-primary btn-sm" onclick="event.stopPropagation();openInstagramGenerator()">Create Instagram post</button>
+            </div>
           </div>
           ${weekendEvents.length ? weekendEvents.map(renderEventRow).join('') : '<div class="empty compact"><h3>Geen event dit weekend</h3><p>De eerstvolgende races staan hieronder.</p></div>'}
         </section>
@@ -2913,5 +2951,7 @@ if (state.github.token && state.github.repo) {
   loadFromGitHub();
 }
 </script>
+<script src="instagram-assets/logo-bundle.js?v=20260812-3"></script>
+<script src="instagram-generator.js?v=20260812-10"></script>
 </body>
 </html>
