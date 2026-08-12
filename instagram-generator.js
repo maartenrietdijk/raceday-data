@@ -5,7 +5,17 @@
   const WIDTH = 1080;
   const HEIGHT = 1350;
   const DISPLAY_ZONE = 'Europe/Amsterdam';
-  const MAX_SESSIONS_PER_SLIDE = 7;
+  const MAX_SESSIONS_PER_SLIDE = 8;
+  const CONTENT_TOP = 286;
+  const CONTENT_BOTTOM = 1194;
+  const ROW_HEIGHT = 96;
+  const GROUP_HEADER_HEIGHT = 64;
+  const GROUP_BOTTOM_PADDING = 14;
+  const GROUP_GAP = 24;
+  const STORE_BADGES = {
+    apple: 'instagram-assets/branding/app-store-badge.svg',
+    google: 'instagram-assets/branding/google-play-badge.svg',
+  };
   const PANEL_RADIUS = 10;
   const BACKGROUND_LAYER_OPACITY = .8;
   const DEFAULT_ON = new Set(['race', 'featureRace', 'sprintRace', 'qualifying', 'sprintQualifying', 'hyperpole']);
@@ -193,22 +203,33 @@
       if (last?.dayKey === item.dayKey) last.items.push(item);
       else groups.push({ dayKey: item.dayKey, items: [item], continuation: false });
     });
-    const chunks = groups.flatMap(group => {
-      const result = [];
-      for (let index = 0; index < group.items.length; index += MAX_SESSIONS_PER_SLIDE) {
-        result.push({ dayKey: group.dayKey, items: group.items.slice(index, index + MAX_SESSIONS_PER_SLIDE), continuation: index > 0 });
-      }
-      return result;
-    });
     const slides = [];
-    let slide = { groups: [], count: 0 };
-    chunks.forEach(group => {
-      if (slide.count && slide.count + group.items.length > MAX_SESSIONS_PER_SLIDE) {
-        slides.push(slide);
-        slide = { groups: [], count: 0 };
+    let slide = { groups: [], count: 0, height: 0 };
+    groups.forEach(group => {
+      let itemIndex = 0;
+      while (itemIndex < group.items.length) {
+        const gap = slide.groups.length ? GROUP_GAP : 0;
+        const availableHeight = CONTENT_BOTTOM - CONTENT_TOP - slide.height - gap - GROUP_HEADER_HEIGHT - GROUP_BOTTOM_PADDING;
+        const availableCount = Math.min(
+          MAX_SESSIONS_PER_SLIDE - slide.count,
+          Math.max(0, Math.floor(availableHeight / ROW_HEIGHT)),
+        );
+        if (!availableCount) {
+          if (slide.count) slides.push(slide);
+          slide = { groups: [], count: 0, height: 0 };
+          continue;
+        }
+        const items = group.items.slice(itemIndex, itemIndex + availableCount);
+        const chunk = { dayKey: group.dayKey, items, continuation: itemIndex > 0 };
+        slide.groups.push(chunk);
+        slide.count += items.length;
+        slide.height += gap + GROUP_HEADER_HEIGHT + GROUP_BOTTOM_PADDING + items.length * ROW_HEIGHT;
+        itemIndex += items.length;
+        if (itemIndex < group.items.length) {
+          slides.push(slide);
+          slide = { groups: [], count: 0, height: 0 };
+        }
       }
-      slide.groups.push(group);
-      slide.count += group.items.length;
     });
     if (slide.count) slides.push(slide);
     return slides;
@@ -258,7 +279,11 @@
   async function preloadAssets(items) {
     const configs = items.map(item => window.RACEDAY_INSTAGRAM_LOGOS?.[item.seriesId]).filter(Boolean);
     const brandIcon = window.RACEDAY_INSTAGRAM_BRAND?.icon;
-    await Promise.all([...configs.map(config => loadImage(config.src)), loadImage(brandIcon)]);
+    await Promise.all([
+      ...configs.map(config => loadImage(config.src)),
+      loadImage(brandIcon),
+      ...Object.values(STORE_BADGES).map(loadImage),
+    ]);
   }
 
   function drawFlag(ctx, code, x, y, width = 38, height = 25) {
@@ -403,9 +428,11 @@
     topGlow.addColorStop(0, 'rgba(142,0,24,.34)'); topGlow.addColorStop(.48, 'rgba(92,0,16,.14)');
     topGlow.addColorStop(1, 'rgba(86,0,14,0)');
     ctx.fillStyle = topGlow; ctx.fillRect(290, 0, 790, 720);
-    const bottomGlow = ctx.createRadialGradient(80, 1400, 10, 80, 1400, 590);
-    bottomGlow.addColorStop(0, 'rgba(94,0,17,.18)'); bottomGlow.addColorStop(1, 'rgba(80,0,13,0)');
-    ctx.fillStyle = bottomGlow; ctx.fillRect(0, 820, 700, 530);
+    const bottomGlow = ctx.createRadialGradient(0, 1320, 10, 0, 1320, 720);
+    bottomGlow.addColorStop(0, 'rgba(174,0,29,.42)');
+    bottomGlow.addColorStop(.48, 'rgba(105,0,19,.18)');
+    bottomGlow.addColorStop(1, 'rgba(80,0,13,0)');
+    ctx.fillStyle = bottomGlow; ctx.fillRect(0, 660, 760, 690);
     ctx.restore();
 
     ctx.save();
@@ -578,7 +605,14 @@
     ctx.fillStyle = 'rgba(255,255,255,.09)'; ctx.fillRect(68, 1236, 944, 1);
     drawBrandIcon(ctx, 68, 1266, 48, 13);
     ctx.fillStyle = '#f5f5f7'; ctx.font = '650 26px Inter, sans-serif'; ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic'; ctx.fillText('RaceDay', 132, 1300);
-    if (totalSlides > 1) { ctx.fillStyle='#77777f';ctx.font='550 15px Inter, sans-serif';ctx.textAlign='right';ctx.fillText(`${slideNumber} of ${totalSlides}`, 1010, 1297); }
+    drawStoreBadge(ctx, 646, 1264, 174, 50, 'apple');
+    drawStoreBadge(ctx, 832, 1264, 173, 50, 'google');
+    if (totalSlides > 1) { ctx.fillStyle='#77777f';ctx.font='550 14px Inter, sans-serif';ctx.textAlign='center';ctx.fillText(`${slideNumber} of ${totalSlides}`, 530, 1297); }
+  }
+
+  function drawStoreBadge(ctx, x, y, width, height, store) {
+    const image = instagramState.images.get(STORE_BADGES[store]);
+    if (image) ctx.drawImage(image, x, y, width, height);
   }
 
   function renderSlide(index = instagramState.slideIndex) {
@@ -593,9 +627,8 @@
       ctx.fillStyle = '#fff';ctx.font='650 38px Inter, sans-serif';ctx.textAlign='center';ctx.fillText('No sessions selected', WIDTH/2, 650);
       ctx.fillStyle='#92929d';ctx.font='500 22px Inter, sans-serif';ctx.fillText('Select at least one session to create a post.', WIDTH/2, 692);
     } else {
-      const rowHeight = 96;
-      let y = 286;
-      slide.groups.forEach((group, groupIndex) => { if (groupIndex) y += 12; y = drawDayGroup(ctx, group, y, rowHeight); });
+      let y = CONTENT_TOP;
+      slide.groups.forEach((group, groupIndex) => { if (groupIndex) y += GROUP_GAP; y = drawDayGroup(ctx, group, y, ROW_HEIGHT); });
     }
     drawFooter(ctx, index + 1, totalSlides);
     updateNavigation();
