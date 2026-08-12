@@ -1,234 +1,237 @@
 [
   {
-    "roundNumber": 1,
-    "country": "Brazil",
-    "circuitName": "Sambadrome Anhembi",
     "id": "formulae-2026-r01",
-    "city": "São Paulo",
-    "countryCode": "BR",
     "seriesId": "formulae",
+    "roundNumber": 1,
     "raceName": "São Paulo E-Prix",
+    "circuitName": "Sambadrome Anhembi",
+    "city": "São Paulo",
+    "country": "Brazil",
+    "countryCode": "BR",
     "sessions": [
       {
-        "durationMinutes": 45,
         "id": "formulae-2026-r01-s1",
-        "date": "2025-12-06",
         "name": "Practice",
+        "kind": "practice",
+        "date": "2025-12-06",
         "timeLocal": "16:30",
-        "kind": "practice"
+        "durationMinutes": 45
       },
       {
-        "durationMinutes": 30,
         "id": "formulae-2026-r01-s2",
-        "date": "2025-12-06",
         "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2025-12-06",
         "timeLocal": "19:00",
-        "kind": "qualifying"
+        "durationMinutes": 30
       },
       {
-        "durationMinutes": 45,
         "id": "formulae-2026-r01-s3",
+        "name": "Race",
+        "kind": "race",
         "date": "2025-12-06",
-        "name": "Race",
         "timeLocal": "21:00",
-        "kind": "race"
+        "durationMinutes": 45
       }
     ]
   },
   {
-    "roundNumber": 2,
-    "country": "Mexico",
-    "circuitName": "Autódromo Hermanos Rodríguez",
     "id": "formulae-2026-r02",
-    "city": "Mexico City",
-    "countryCode": "MX",
     "seriesId": "formulae",
+    "roundNumber": 2,
     "raceName": "Mexico City E-Prix",
+    "circuitName": "Autódromo Hermanos Rodríguez",
+    "city": "Mexico City",
+    "country": "Mexico",
+    "countryCode": "MX",
     "sessions": [
       {
-        "durationMinutes": 45,
         "id": "formulae-2026-r02-s1",
-        "date": "2026-01-10",
         "name": "Practice",
+        "kind": "practice",
+        "date": "2026-01-10",
         "timeLocal": "21:30",
-        "kind": "practice"
+        "durationMinutes": 45
       },
       {
-        "durationMinutes": 30,
         "id": "formulae-2026-r02-s2",
+        "name": "Qualifying",
+        "kind": "qualifying",
         "date": "2026-01-10",
-        "name": "Qualifying",
         "timeLocal": "23:00",
-        "kind": "qualifying"
+        "durationMinutes": 30
       },
       {
-        "name": "Race",
-        "durationMinutes": 45,
         "id": "formulae-2026-r02-s3",
+        "name": "Race",
         "kind": "race",
+        "date": "2026-01-11",
         "timeLocal": "01:00",
-        "date": "2026-01-11"
+        "durationMinutes": 45
       }
     ]
   },
   {
-    "roundNumber": 3,
-    "country": "United States",
-    "circuitName": "Miami International Autodrome",
     "id": "formulae-2026-r03",
-    "city": "Miami",
-    "countryCode": "US",
     "seriesId": "formulae",
+    "roundNumber": 3,
     "raceName": "Miami E-Prix",
+    "circuitName": "Miami International Autodrome",
+    "city": "Miami",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
-        "name": "Practice",
-        "durationMinutes": 45,
         "id": "formulae-2026-r03-s1",
+        "name": "Practice",
         "kind": "practice",
+        "date": "2026-01-31",
         "timeLocal": "21:30",
-        "date": "2026-01-31"
+        "durationMinutes": 45
       },
       {
-        "name": "Qualifying",
-        "durationMinutes": 30,
         "id": "formulae-2026-r03-s2",
+        "name": "Qualifying",
         "kind": "qualifying",
+        "date": "2026-01-31",
         "timeLocal": "23:00",
-        "date": "2026-01-31"
+        "durationMinutes": 30
       },
       {
-        "name": "Race",
-        "durationMinutes": 45,
         "id": "formulae-2026-r03-s3",
+        "name": "Race",
         "kind": "race",
+        "date": "2026-02-01",
         "timeLocal": "01:00",
-        "date": "2026-02-01"
+        "durationMinutes": 45
       }
     ]
   },
   {
-    "roundNumber": 4,
-    "country": "Saudi Arabia",
-    "circuitName": "Jeddah Corniche Circuit",
     "id": "formulae-2026-r04",
-    "city": "Jeddah",
-    "countryCode": "SA",
     "seriesId": "formulae",
+    "roundNumber": 4,
     "raceName": "Jeddah E-Prix 1",
-    "sessions": [
-      {
-        "name": "Practice",
-        "id": "formulae-2026-r04-s1",
-        "timeLocal": "17:00",
-        "kind": "practice",
-        "date": "2026-02-13",
-        "durationMinutes": 45
-      },
-      {
-        "name": "Qualifying",
-        "id": "formulae-2026-r04-s2",
-        "timeLocal": "19:30",
-        "kind": "qualifying",
-        "date": "2026-02-13",
-        "durationMinutes": 30
-      },
-      {
-        "name": "Race",
-        "id": "formulae-2026-r04-s3",
-        "timeLocal": "21:05",
-        "kind": "race",
-        "date": "2026-02-13",
-        "durationMinutes": 45
-      }
-    ]
-  },
-  {
-    "roundNumber": 5,
-    "country": "Saudi Arabia",
     "circuitName": "Jeddah Corniche Circuit",
-    "id": "formulae-2026-r05",
     "city": "Jeddah",
+    "country": "Saudi Arabia",
     "countryCode": "SA",
-    "seriesId": "formulae",
-    "raceName": "Jeddah E-Prix 2",
     "sessions": [
       {
+        "id": "formulae-2026-r04-s1",
         "name": "Practice",
-        "id": "formulae-2026-r05-s1",
-        "timeLocal": "17:00",
         "kind": "practice",
-        "date": "2026-02-14",
+        "date": "2026-02-13",
+        "timeLocal": "17:00",
         "durationMinutes": 45
       },
       {
+        "id": "formulae-2026-r04-s2",
         "name": "Qualifying",
-        "id": "formulae-2026-r05-s2",
-        "timeLocal": "19:30",
         "kind": "qualifying",
-        "date": "2026-02-14",
+        "date": "2026-02-13",
+        "timeLocal": "19:30",
         "durationMinutes": 30
       },
       {
+        "id": "formulae-2026-r04-s3",
         "name": "Race",
-        "id": "formulae-2026-r05-s3",
-        "timeLocal": "21:05",
         "kind": "race",
-        "date": "2026-02-14",
+        "date": "2026-02-13",
+        "timeLocal": "21:05",
         "durationMinutes": 45
       }
     ]
   },
   {
-    "roundNumber": 6,
-    "country": "Spain",
-    "circuitName": "Circuito de Madrid-Jarama",
-    "id": "formulae-2026-r06",
-    "city": "Madrid",
-    "countryCode": "ES",
+    "id": "formulae-2026-r05",
     "seriesId": "formulae",
-    "raceName": "Madrid E-Prix",
+    "roundNumber": 5,
+    "raceName": "Jeddah E-Prix 2",
+    "circuitName": "Jeddah Corniche Circuit",
+    "city": "Jeddah",
+    "country": "Saudi Arabia",
+    "countryCode": "SA",
     "sessions": [
       {
+        "id": "formulae-2026-r05-s1",
         "name": "Practice",
+        "kind": "practice",
+        "date": "2026-02-14",
+        "timeLocal": "17:00",
+        "durationMinutes": 45
+      },
+      {
+        "id": "formulae-2026-r05-s2",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-02-14",
+        "timeLocal": "19:30",
+        "durationMinutes": 30
+      },
+      {
+        "id": "formulae-2026-r05-s3",
+        "name": "Race",
+        "kind": "race",
+        "date": "2026-02-14",
+        "timeLocal": "21:05",
+        "durationMinutes": 45
+      }
+    ]
+  },
+  {
+    "id": "formulae-2026-r06",
+    "seriesId": "formulae",
+    "roundNumber": 6,
+    "raceName": "Madrid E-Prix",
+    "circuitName": "Circuito de Madrid-Jarama",
+    "city": "Madrid",
+    "country": "Spain",
+    "countryCode": "ES",
+    "sessions": [
+      {
         "id": "formulae-2026-r06-s1",
-        "timeLocal": "17:30",
+        "name": "Practice",
         "kind": "practice",
         "date": "2026-03-20",
+        "timeLocal": "17:30",
         "durationMinutes": 45
       },
       {
-        "name": "Qualifying",
         "id": "formulae-2026-r06-s2",
-        "timeLocal": "11:40",
+        "name": "Qualifying",
         "kind": "qualifying",
         "date": "2026-03-21",
+        "timeLocal": "11:40",
         "durationMinutes": 30
       },
       {
-        "timeLocal": "16:05",
         "id": "formulae-2026-r06-s3",
         "name": "Race",
         "kind": "race",
         "date": "2026-03-21",
+        "timeLocal": "16:05",
         "durationMinutes": 45
       }
     ]
   },
   {
-    "roundNumber": 7,
-    "country": "Germany",
-    "circuitName": "Tempelhof Airport Street Circuit",
     "id": "formulae-2026-r07",
-    "city": "Berlin",
-    "countryCode": "DE",
     "seriesId": "formulae",
+    "roundNumber": 7,
     "raceName": "Berlin E-Prix 1",
+    "circuitName": "Tempelhof Airport Street Circuit",
+    "city": "Berlin",
+    "country": "Germany",
+    "countryCode": "DE",
     "sessions": [
       {
-        "durationMinutes": 55,
-        "timeLocal": "16:00",
         "id": "formulae-2026-r07-s1",
+        "name": "Practice 1",
+        "kind": "practice",
+        "date": "2026-05-01",
+        "timeLocal": "16:00",
+        "durationMinutes": 55,
         "results": [
           {
             "number": "77",
@@ -390,15 +393,15 @@
             "driver": "L. di Grassi",
             "interval": "+0.899"
           }
-        ],
-        "date": "2026-05-01",
-        "kind": "practice",
-        "name": "Practice 1"
+        ]
       },
       {
-        "durationMinutes": 55,
-        "timeLocal": "09:30",
         "id": "formulae-2026-r07-s2",
+        "name": "Practice 2",
+        "kind": "practice",
+        "date": "2026-05-02",
+        "timeLocal": "09:30",
+        "durationMinutes": 55,
         "results": [
           {
             "time": "57.357",
@@ -560,15 +563,15 @@
             "driver": "O. Rowland",
             "number": "1"
           }
-        ],
-        "date": "2026-05-02",
-        "kind": "practice",
-        "name": "Practice 2"
+        ]
       },
       {
-        "durationMinutes": 70,
-        "timeLocal": "11:40",
         "id": "formulae-2026-r07-s3",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-05-02",
+        "timeLocal": "11:40",
+        "durationMinutes": 70,
         "results": [
           {
             "position": 1,
@@ -710,15 +713,15 @@
             "driver": "N. Nato",
             "team": "Nissan"
           }
-        ],
-        "date": "2026-05-02",
-        "kind": "qualifying",
-        "name": "Qualifying"
+        ]
       },
       {
-        "durationMinutes": 55,
-        "timeLocal": "16:05",
         "id": "formulae-2026-r07-s4",
+        "name": "Race",
+        "kind": "race",
+        "date": "2026-05-02",
+        "timeLocal": "16:05",
+        "durationMinutes": 55,
         "results": [
           {
             "time": "1:37.851",
@@ -880,30 +883,27 @@
             "position": "DNF",
             "team": "Cupra Kiro"
           }
-        ],
-        "date": "2026-05-02",
-        "kind": "race",
-        "name": "Race"
+        ]
       }
     ]
   },
   {
-    "roundNumber": 8,
-    "country": "Germany",
-    "circuitName": "Tempelhof Airport Street Circuit",
     "id": "formulae-2026-r08",
-    "city": "Berlin",
-    "countryCode": "DE",
     "seriesId": "formulae",
+    "roundNumber": 8,
     "raceName": "Berlin E-Prix 2",
+    "circuitName": "Tempelhof Airport Street Circuit",
+    "city": "Berlin",
+    "country": "Germany",
+    "countryCode": "DE",
     "sessions": [
       {
-        "durationMinutes": 55,
-        "timeLocal": "09:30",
-        "name": "Practice 3",
-        "date": "2026-05-03",
         "id": "formulae-2026-r08-s1",
+        "name": "Practice 3",
         "kind": "practice",
+        "date": "2026-05-03",
+        "timeLocal": "09:30",
+        "durationMinutes": 55,
         "results": [
           {
             "time": "57.581",
@@ -1068,20 +1068,20 @@
         ]
       },
       {
-        "date": "2026-05-03",
-        "name": "Qualifying",
-        "timeLocal": "11:40",
-        "durationMinutes": 68,
         "id": "formulae-2026-r08-s2",
-        "kind": "qualifying"
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-05-03",
+        "timeLocal": "11:40",
+        "durationMinutes": 68
       },
       {
-        "durationMinutes": 55,
-        "timeLocal": "16:05",
-        "date": "2026-05-03",
-        "name": "Race",
         "id": "formulae-2026-r08-s3",
+        "name": "Race",
         "kind": "race",
+        "date": "2026-05-03",
+        "timeLocal": "16:05",
+        "durationMinutes": 55,
         "results": [
           {
             "driver": "M. Evans",
@@ -1248,20 +1248,20 @@
     ]
   },
   {
-    "roundNumber": 9,
-    "country": "Monaco",
-    "circuitName": "Circuit de Monaco",
     "id": "formulae-2026-r09",
-    "city": "Monaco",
-    "countryCode": "MC",
     "seriesId": "formulae",
+    "roundNumber": 9,
     "raceName": "Monaco E-Prix 1",
+    "circuitName": "Circuit de Monaco",
+    "city": "Monaco",
+    "country": "Monaco",
+    "countryCode": "MC",
     "sessions": [
       {
+        "id": "formulae-2026-r09-s1",
+        "name": "Practice 1",
         "kind": "practice",
         "date": "2026-05-16",
-        "name": "Practice 1",
-        "id": "formulae-2026-r09-s1",
         "timeLocal": "07:30",
         "durationMinutes": 45,
         "results": [
@@ -1447,8 +1447,12 @@
         ]
       },
       {
-        "timeLocal": "09:10",
+        "id": "formulae-2026-r09-s2",
         "name": "Practice 2",
+        "kind": "practice",
+        "date": "2026-05-16",
+        "timeLocal": "09:10",
+        "durationMinutes": 45,
         "results": [
           {
             "team": "Mahindra Racing",
@@ -1629,15 +1633,15 @@
             "driver": "Z. Maloney",
             "position": 20
           }
-        ],
-        "id": "formulae-2026-r09-s2",
-        "date": "2026-05-16",
-        "durationMinutes": 45,
-        "kind": "practice"
+        ]
       },
       {
-        "timeLocal": "10:40",
+        "id": "formulae-2026-r09-s3",
         "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-05-16",
+        "timeLocal": "10:40",
+        "durationMinutes": 30,
         "results": [
           {
             "team": "Cupra Kiro",
@@ -1794,19 +1798,15 @@
             "number": "22",
             "team": "LOLA YAMAHA ABT FORMULA E TEAM"
           }
-        ],
-        "id": "formulae-2026-r09-s3",
-        "date": "2026-05-16",
-        "durationMinutes": 30,
-        "kind": "qualifying"
+        ]
       },
       {
-        "timeLocal": "15:05",
-        "date": "2026-05-16",
         "id": "formulae-2026-r09-s4",
         "name": "Race",
-        "durationMinutes": 45,
         "kind": "race",
+        "date": "2026-05-16",
+        "timeLocal": "15:05",
+        "durationMinutes": 45,
         "results": [
           {
             "laps": "29",
@@ -1988,17 +1988,22 @@
     ]
   },
   {
-    "circuitName": "Circuit de Monaco",
-    "countryCode": "MC",
-    "roundNumber": 10,
-    "country": "Monaco",
     "id": "formulae-2026-r10",
-    "city": "Monaco",
     "seriesId": "formulae",
+    "roundNumber": 10,
     "raceName": "Monaco E-Prix 2",
+    "circuitName": "Circuit de Monaco",
+    "city": "Monaco",
+    "country": "Monaco",
+    "countryCode": "MC",
     "sessions": [
       {
+        "id": "formulae-2026-r10-s1",
+        "name": "Practice",
+        "kind": "practice",
         "date": "2026-05-17",
+        "timeLocal": "08:30",
+        "durationMinutes": 45,
         "results": [
           {
             "laps": "18",
@@ -2179,15 +2184,15 @@
             "driver": "N. Cassidy",
             "position": 20
           }
-        ],
-        "durationMinutes": 45,
-        "name": "Practice",
-        "timeLocal": "08:30",
-        "id": "formulae-2026-r10-s1",
-        "kind": "practice"
+        ]
       },
       {
+        "id": "formulae-2026-r10-s2",
+        "name": "Qualifying",
+        "kind": "qualifying",
         "date": "2026-05-17",
+        "timeLocal": "10:40",
+        "durationMinutes": 30,
         "results": [
           {
             "driver": "D. Ticktum",
@@ -2309,20 +2314,15 @@
             "position": 20,
             "number": "22"
           }
-        ],
-        "durationMinutes": 30,
-        "name": "Qualifying",
-        "timeLocal": "10:40",
-        "id": "formulae-2026-r10-s2",
-        "kind": "qualifying"
+        ]
       },
       {
-        "date": "2026-05-17",
-        "kind": "race",
         "id": "formulae-2026-r10-s3",
-        "durationMinutes": 45,
-        "timeLocal": "15:05",
         "name": "Race",
+        "kind": "race",
+        "date": "2026-05-17",
+        "timeLocal": "15:05",
+        "durationMinutes": 45,
         "results": [
           {
             "laps": "28",
@@ -2504,141 +2504,146 @@
     ]
   },
   {
-    "city": "Sanya",
-    "countryCode": "CN",
     "id": "formulae-2026-r11",
-    "country": "China",
-    "circuitName": "Sanya Street Circuit",
+    "seriesId": "formulae",
     "roundNumber": 11,
     "raceName": "Sanya E-Prix",
-    "seriesId": "formulae",
+    "circuitName": "Sanya Street Circuit",
+    "city": "Sanya",
+    "country": "China",
+    "countryCode": "CN",
     "sessions": [
       {
-        "date": "2026-06-19",
-        "kind": "practice",
-        "timeLocal": "10:30",
         "id": "formulae-2026-r11-s1",
         "name": "Practice 1",
+        "kind": "practice",
+        "date": "2026-06-19",
+        "timeLocal": "10:30",
         "durationMinutes": 55
       },
       {
-        "date": "2026-06-20",
-        "kind": "practice",
-        "timeLocal": "02:30",
         "id": "formulae-2026-r11-s1780903967862",
         "name": "Practice 2",
+        "kind": "practice",
+        "date": "2026-06-20",
+        "timeLocal": "02:30",
         "durationMinutes": 55
       },
       {
-        "date": "2026-06-20",
-        "kind": "qualifying",
-        "timeLocal": "04:40",
         "id": "formulae-2026-r11-s2",
         "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-06-20",
+        "timeLocal": "04:40",
         "durationMinutes": 70
       },
       {
-        "date": "2026-06-20",
-        "kind": "race",
-        "timeLocal": "09:00",
         "id": "formulae-2026-r11-s3",
         "name": "Race",
+        "kind": "race",
+        "date": "2026-06-20",
+        "timeLocal": "09:00",
         "durationMinutes": 60
       }
     ]
   },
   {
-    "city": "Shanghai",
-    "countryCode": "CN",
     "id": "formulae-2026-r12",
-    "country": "China",
-    "circuitName": "Shanghai International Circuit",
+    "seriesId": "formulae",
     "roundNumber": 12,
     "raceName": "Shanghai E-Prix 1",
-    "seriesId": "formulae",
+    "circuitName": "Shanghai International Circuit",
+    "city": "Shanghai",
+    "country": "China",
+    "countryCode": "CN",
     "sessions": [
       {
-        "date": "2026-07-03",
-        "kind": "practice",
-        "timeLocal": "10:00",
         "id": "formulae-2026-r12-s1",
         "name": "Practice 1",
+        "kind": "practice",
+        "date": "2026-07-03",
+        "timeLocal": "10:00",
         "durationMinutes": 45
       },
       {
-        "date": "2026-07-04",
-        "kind": "practice",
-        "timeLocal": "02:30",
         "id": "formulae-2026-r12-s2",
         "name": "Practice 2",
+        "kind": "practice",
+        "date": "2026-07-04",
+        "timeLocal": "02:30",
         "durationMinutes": 45
       },
       {
-        "date": "2026-07-04",
-        "kind": "qualifying",
-        "timeLocal": "04:40",
         "id": "formulae-2026-r12-s3",
         "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-07-04",
+        "timeLocal": "04:40",
         "durationMinutes": 90
       },
       {
-        "date": "2026-07-04",
-        "kind": "race",
-        "timeLocal": "09:05",
         "id": "formulae-2026-r12-s4",
         "name": "Race",
+        "kind": "race",
+        "date": "2026-07-04",
+        "timeLocal": "09:05",
         "durationMinutes": 45
       }
     ]
   },
   {
-    "city": "Shanghai",
-    "countryCode": "CN",
     "id": "formulae-2026-r13",
-    "country": "China",
-    "circuitName": "Shanghai International Circuit",
+    "seriesId": "formulae",
     "roundNumber": 13,
     "raceName": "Shanghai E-Prix 2",
-    "seriesId": "formulae",
+    "circuitName": "Shanghai International Circuit",
+    "city": "Shanghai",
+    "country": "China",
+    "countryCode": "CN",
     "sessions": [
       {
-        "date": "2026-07-05",
-        "kind": "practice",
-        "timeLocal": "00:00",
         "id": "formulae-2026-r13-s1",
         "name": "Practice",
+        "kind": "practice",
+        "date": "2026-07-05",
+        "timeLocal": "00:00",
         "durationMinutes": 45
       },
       {
-        "date": "2026-07-05",
-        "kind": "qualifying",
-        "timeLocal": "02:00",
         "id": "formulae-2026-r13-s2",
         "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-07-05",
+        "timeLocal": "02:00",
         "durationMinutes": 30
       },
       {
-        "date": "2026-07-05",
-        "kind": "race",
-        "timeLocal": "06:05",
         "id": "formulae-2026-r13-s3",
         "name": "Race",
+        "kind": "race",
+        "date": "2026-07-05",
+        "timeLocal": "06:05",
         "durationMinutes": 45
       }
     ]
   },
   {
-    "city": "Tokyo",
-    "countryCode": "JP",
     "id": "formulae-2026-r14",
-    "country": "Japan",
-    "circuitName": "Tokyo Big Sight",
+    "seriesId": "formulae",
     "roundNumber": 14,
     "raceName": "Tokyo E-Prix 1",
-    "seriesId": "formulae",
+    "circuitName": "Tokyo Big Sight",
+    "city": "Tokyo",
+    "country": "Japan",
+    "countryCode": "JP",
     "sessions": [
       {
+        "id": "formulae-2026-r14-s1",
         "name": "Practice 1",
+        "kind": "practice",
+        "date": "2026-07-24",
+        "timeLocal": "12:00",
+        "durationMinutes": 55,
         "results": [
           {
             "number": "48",
@@ -2819,17 +2824,15 @@
             "interval": "+3.911",
             "driver": "P. Martí"
           }
-        ],
-        "kind": "practice",
-        "timeLocal": "12:00",
-        "id": "formulae-2026-r14-s1",
-        "durationMinutes": 55,
-        "date": "2026-07-24"
+        ]
       },
       {
+        "id": "formulae-2026-r14-s2",
+        "name": "Practice 2",
+        "kind": "practice",
         "date": "2026-07-25",
         "timeLocal": "06:30",
-        "name": "Practice 2",
+        "durationMinutes": 55,
         "results": [
           {
             "number": "48",
@@ -3010,15 +3013,15 @@
             "number": "28",
             "driver": "F. Drugovich"
           }
-        ],
-        "kind": "practice",
-        "durationMinutes": 55,
-        "id": "formulae-2026-r14-s2"
+        ]
       },
       {
+        "id": "formulae-2026-r14-s3",
+        "name": "Qualifying",
+        "kind": "qualifying",
         "date": "2026-07-25",
         "timeLocal": "08:40",
-        "name": "Qualifying",
+        "durationMinutes": 30,
         "results": [
           {
             "number": "27",
@@ -3140,39 +3143,42 @@
             "number": "28",
             "position": 20
           }
-        ],
-        "kind": "qualifying",
-        "durationMinutes": 30,
-        "id": "formulae-2026-r14-s3"
+        ]
       },
       {
         "id": "formulae-2026-r14-s4",
-        "timeLocal": "13:05",
         "name": "Race",
-        "date": "2026-07-25",
         "kind": "race",
+        "date": "2026-07-25",
+        "timeLocal": "13:05",
         "durationMinutes": 45
       }
     ]
   },
   {
+    "id": "formulae-2026-r15",
+    "seriesId": "formulae",
+    "roundNumber": 15,
     "raceName": "Tokyo E-Prix 2",
+    "circuitName": "Tokyo Big Sight",
+    "city": "Tokyo",
     "country": "Japan",
+    "countryCode": "JP",
     "sessions": [
       {
         "id": "formulae-2026-r15-s1",
-        "timeLocal": "06:30",
         "name": "Practice 3",
-        "date": "2026-07-26",
         "kind": "practice",
+        "date": "2026-07-26",
+        "timeLocal": "06:30",
         "durationMinutes": 55
       },
       {
         "id": "formulae-2026-r15-s2",
-        "timeLocal": "08:40",
         "name": "Qualifying",
-        "date": "2026-07-26",
         "kind": "qualifying",
+        "date": "2026-07-26",
+        "timeLocal": "08:40",
         "durationMinutes": 65,
         "results": [
           {
@@ -3298,8 +3304,12 @@
         ]
       },
       {
-        "kind": "race",
+        "id": "formulae-2026-r15-s3",
         "name": "Race",
+        "kind": "race",
+        "date": "2026-07-26",
+        "timeLocal": "13:05",
+        "durationMinutes": 55,
         "results": [
           {
             "position": 1,
@@ -3472,98 +3482,88 @@
             "driver": "P. Martí",
             "team": "Cupra Kiro"
           }
-        ],
-        "id": "formulae-2026-r15-s3",
-        "durationMinutes": 55,
-        "timeLocal": "13:05",
-        "date": "2026-07-26"
+        ]
       }
-    ],
-    "roundNumber": 15,
-    "countryCode": "JP",
-    "id": "formulae-2026-r15",
-    "circuitName": "Tokyo Big Sight",
-    "seriesId": "formulae",
-    "city": "Tokyo"
+    ]
   },
   {
+    "id": "formulae-2026-r16",
+    "seriesId": "formulae",
+    "roundNumber": 16,
+    "raceName": "London E-Prix 1",
+    "circuitName": "ExCeL Circuit",
+    "city": "London",
+    "country": "United Kingdom",
+    "countryCode": "GB",
     "sessions": [
       {
         "id": "formulae-2026-r16-s1",
-        "timeLocal": "16:00",
         "name": "Practice 1",
-        "date": "2026-08-13",
         "kind": "practice",
+        "date": "2026-08-14",
+        "timeLocal": "17:00",
         "durationMinutes": 45
       },
       {
         "id": "formulae-2026-r16-s2",
-        "timeLocal": "09:30",
         "name": "Practice 2",
-        "date": "2026-08-14",
         "kind": "practice",
+        "date": "2026-08-15",
+        "timeLocal": "09:30",
         "durationMinutes": 45
       },
       {
         "id": "formulae-2026-r16-s3",
-        "timeLocal": "11:40",
         "name": "Qualifying",
-        "date": "2026-08-14",
         "kind": "qualifying",
-        "durationMinutes": 30
+        "date": "2026-08-15",
+        "timeLocal": "11:40",
+        "durationMinutes": 70
       },
       {
         "id": "formulae-2026-r16-s4",
-        "timeLocal": "16:05",
         "name": "Race",
-        "date": "2026-08-15",
         "kind": "race",
+        "date": "2026-08-15",
+        "timeLocal": "16:05",
         "durationMinutes": 45
       }
-    ],
-    "country": "United Kingdom",
-    "countryCode": "GB",
-    "id": "formulae-2026-r16",
-    "roundNumber": 16,
-    "city": "London",
-    "raceName": "London E-Prix 1",
-    "seriesId": "formulae",
-    "circuitName": "ExCeL Circuit"
+    ]
   },
   {
+    "id": "formulae-2026-r17",
+    "seriesId": "formulae",
+    "roundNumber": 17,
+    "raceName": "London E-Prix 2",
+    "circuitName": "ExCeL Circuit",
+    "city": "London",
+    "country": "United Kingdom",
+    "countryCode": "GB",
     "sessions": [
       {
         "id": "formulae-2026-r17-s1",
-        "timeLocal": "09:30",
-        "name": "Practice",
-        "date": "2026-08-15",
+        "name": "Practice 3",
         "kind": "practice",
+        "date": "2026-08-16",
+        "timeLocal": "09:30",
         "durationMinutes": 45
       },
       {
         "id": "formulae-2026-r17-s2",
-        "timeLocal": "11:40",
         "name": "Qualifying",
-        "date": "2026-08-15",
         "kind": "qualifying",
+        "date": "2026-08-16",
+        "timeLocal": "11:40",
         "durationMinutes": 30
       },
       {
         "id": "formulae-2026-r17-s3",
-        "timeLocal": "16:05",
         "name": "Race",
-        "date": "2026-08-16",
         "kind": "race",
+        "date": "2026-08-16",
+        "timeLocal": "16:05",
         "durationMinutes": 45
       }
-    ],
-    "country": "United Kingdom",
-    "countryCode": "GB",
-    "id": "formulae-2026-r17",
-    "roundNumber": 17,
-    "city": "London",
-    "raceName": "London E-Prix 2",
-    "seriesId": "formulae",
-    "circuitName": "ExCeL Circuit"
+    ]
   }
 ]
