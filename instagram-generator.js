@@ -5,7 +5,9 @@
   const WIDTH = 1080;
   const HEIGHT = 1350;
   const DISPLAY_ZONE = 'Europe/Amsterdam';
-  const MAX_SESSIONS_PER_SLIDE = 6;
+  const MAX_SESSIONS_PER_SLIDE = 7;
+  const PANEL_RADIUS = 10;
+  const BACKGROUND_LAYER_OPACITY = .8;
   const DEFAULT_ON = new Set(['race', 'featureRace', 'sprintRace', 'qualifying', 'sprintQualifying', 'hyperpole']);
   const DEFAULT_OFF = new Set(['practice', 'testing', 'shakedown']);
   const LABELS = {
@@ -25,7 +27,7 @@
   const instagramState = {
     allSessions: [], selectedIds: new Set(), slides: [], slideIndex: 0,
     images: new Map(), warnings: [], weekend: null, sourceWarningCount: 0,
-    assetLoadComplete: false,
+    assetLoadComplete: false, mode: 'sessions', selectedDay: '', displayItems: [],
   };
 
   // ── Weekend and session selection ─────────────────────────────────────────
@@ -128,6 +130,12 @@
     const warnings = [];
     (state.series || []).forEach(series => {
       (state.data[series.id] || []).forEach((round, roundIndex) => {
+        const roundDayKeys = (round.sessions || []).map(roundSession => {
+          const roundInstant = sessionInstant(roundSession, series.id);
+          return roundInstant ? localDateKey(roundInstant) : rawSessionDate(roundSession);
+        }).filter(Boolean).sort();
+        const eventStart = roundDayKeys[0] || weekend.start;
+        const eventEnd = roundDayKeys[roundDayKeys.length - 1] || eventStart;
         (round.sessions || []).forEach((session, sessionIndex) => {
           const date = rawSessionDate(session);
           if (!date) {
@@ -147,6 +155,8 @@
             countryCode: String(round.countryCode || '').trim().toUpperCase(),
             eventName: round.raceName || round.circuitName || round.city || 'Event name TBC',
             circuitName: round.circuitName || round.city || '',
+            eventUid: `${series.id}:${round.id || roundIndex}`,
+            eventStart, eventEnd,
             enabledByDefault: defaultEnabled(session.kind),
           });
         });
@@ -201,6 +211,34 @@
       slide.count += group.items.length;
     });
     if (slide.count) slides.push(slide);
+    return slides;
+  }
+
+  function buildOverviewItems(sessions) {
+    const events = new Map();
+    sessions.forEach(item => {
+      if (!events.has(item.eventUid)) {
+        events.set(item.eventUid, {
+          ...item,
+          uid: `event:${item.eventUid}`,
+          overview: true,
+          dateRange: formatCompactDateRange(item.eventStart, item.eventEnd),
+        });
+      }
+    });
+    return [...events.values()].sort((a, b) => a.eventStart.localeCompare(b.eventStart) || a.seriesName.localeCompare(b.seriesName));
+  }
+
+  function buildOverviewSlides(items) {
+    const slides = [];
+    for (let index = 0; index < items.length; index += MAX_SESSIONS_PER_SLIDE) {
+      slides.push({ groups: [{
+        dayKey: instagramState.weekend.start,
+        items: items.slice(index, index + MAX_SESSIONS_PER_SLIDE),
+        continuation: index > 0,
+        overview: true,
+      }], count: Math.min(MAX_SESSIONS_PER_SLIDE, items.length - index) });
+    }
     return slides;
   }
 
@@ -271,20 +309,6 @@
     return true;
   }
 
-  function drawCircularFlag(ctx, code, x, y, size = 28) {
-    ctx.save();
-    ctx.beginPath();
-    ctx.arc(x + size / 2, y + size / 2, size / 2, 0, Math.PI * 2);
-    ctx.clip();
-    drawFlag(ctx, code, x, y, size, size);
-    ctx.restore();
-    ctx.strokeStyle = 'rgba(255,255,255,.28)';
-    ctx.lineWidth = 1.5;
-    ctx.beginPath();
-    ctx.arc(x + size / 2, y + size / 2, size / 2 - .75, 0, Math.PI * 2);
-    ctx.stroke();
-  }
-
   function drawNordicCross(ctx, code, x, y, w, h) {
     const colors = { FI:['#003580',null], SE:['#fecc00',null], DK:['#fff',null], NO:['#fff','#00205b'] }[code];
     ctx.fillStyle=colors[0]; ctx.fillRect(x+w*.29,y,w*.14,h);ctx.fillRect(x,y+h*.42,w,h*.18);
@@ -316,12 +340,27 @@
   function formatHeaderDates(weekend) {
     const parse = value => new Date(`${value}T12:00:00Z`);
     const start = parse(weekend.start), end = parse(weekend.end);
+    if (weekend.start === weekend.end) {
+      return new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(start);
+    }
     const sameMonth = start.getUTCMonth() === end.getUTCMonth();
     const month = new Intl.DateTimeFormat('en-GB', { month: 'long', timeZone: 'UTC' }).format(start);
     if (sameMonth) return `${start.getUTCDate()}–${end.getUTCDate()} ${month} ${start.getUTCFullYear()}`;
     const startLabel = new Intl.DateTimeFormat('en-GB', { day:'numeric', month:'long', timeZone:'UTC' }).format(start);
     const endLabel = new Intl.DateTimeFormat('en-GB', { day:'numeric', month:'long', year:'numeric', timeZone:'UTC' }).format(end);
     return `${startLabel} – ${endLabel}`;
+  }
+
+  function formatCompactDateRange(startKey, endKey) {
+    const parse = value => new Date(`${value}T12:00:00Z`);
+    const start = parse(startKey), end = parse(endKey);
+    const monthFormat = new Intl.DateTimeFormat('en-GB', { month: 'short', timeZone: 'UTC' });
+    const startMonth = monthFormat.format(start), endMonth = monthFormat.format(end);
+    if (startKey === endKey) return `${start.getUTCDate()} ${startMonth}`;
+    if (start.getUTCFullYear() === end.getUTCFullYear() && start.getUTCMonth() === end.getUTCMonth()) {
+      return `${start.getUTCDate()}–${end.getUTCDate()} ${endMonth}`;
+    }
+    return `${start.getUTCDate()} ${startMonth}–${end.getUTCDate()} ${endMonth}`;
   }
 
   function isoWeek(dateKey) {
@@ -342,15 +381,42 @@
   }
 
   function drawBackground(ctx) {
-    const gradient = ctx.createLinearGradient(0, 0, WIDTH, HEIGHT);
-    gradient.addColorStop(0, '#29040b'); gradient.addColorStop(.34, '#160207'); gradient.addColorStop(.72, '#09090b'); gradient.addColorStop(1, '#260309');
-    ctx.fillStyle = gradient; ctx.fillRect(0, 0, WIDTH, HEIGHT);
-    const topGlow = ctx.createRadialGradient(920, 30, 30, 920, 30, 620);
-    topGlow.addColorStop(0, 'rgba(255,0,35,.38)'); topGlow.addColorStop(1, 'rgba(255,0,35,0)');
-    ctx.fillStyle = topGlow; ctx.fillRect(300, 0, 780, 650);
-    const bottomGlow = ctx.createRadialGradient(130, 1360, 10, 130, 1360, 520);
-    bottomGlow.addColorStop(0, 'rgba(190,0,25,.32)'); bottomGlow.addColorStop(1, 'rgba(190,0,25,0)');
+    const base = ctx.createLinearGradient(0, 0, WIDTH, HEIGHT);
+    base.addColorStop(0, '#080405'); base.addColorStop(.34, '#050506');
+    base.addColorStop(.72, '#060506'); base.addColorStop(1, '#100207');
+    ctx.fillStyle = base; ctx.fillRect(0, 0, WIDTH, HEIGHT);
+
+    ctx.save();
+    ctx.globalAlpha = BACKGROUND_LAYER_OPACITY;
+    ctx.globalCompositeOperation = 'soft-light';
+    const colorWash = ctx.createLinearGradient(0, HEIGHT, WIDTH, 0);
+    colorWash.addColorStop(0, 'rgba(92,0,15,.34)');
+    colorWash.addColorStop(.46, 'rgba(24,8,11,.08)');
+    colorWash.addColorStop(1, 'rgba(185,0,29,.48)');
+    ctx.fillStyle = colorWash; ctx.fillRect(0, 0, WIDTH, HEIGHT);
+    ctx.restore();
+
+    ctx.save();
+    ctx.globalAlpha = BACKGROUND_LAYER_OPACITY;
+    ctx.globalCompositeOperation = 'screen';
+    const topGlow = ctx.createRadialGradient(1060, 40, 20, 1060, 40, 720);
+    topGlow.addColorStop(0, 'rgba(142,0,24,.34)'); topGlow.addColorStop(.48, 'rgba(92,0,16,.14)');
+    topGlow.addColorStop(1, 'rgba(86,0,14,0)');
+    ctx.fillStyle = topGlow; ctx.fillRect(290, 0, 790, 720);
+    const bottomGlow = ctx.createRadialGradient(80, 1400, 10, 80, 1400, 590);
+    bottomGlow.addColorStop(0, 'rgba(94,0,17,.18)'); bottomGlow.addColorStop(1, 'rgba(80,0,13,0)');
     ctx.fillStyle = bottomGlow; ctx.fillRect(0, 820, 700, 530);
+    ctx.restore();
+
+    ctx.save();
+    ctx.globalAlpha = BACKGROUND_LAYER_OPACITY;
+    ctx.globalCompositeOperation = 'multiply';
+    const vignette = ctx.createRadialGradient(WIDTH * .52, HEIGHT * .42, 260, WIDTH * .52, HEIGHT * .42, 880);
+    vignette.addColorStop(0, 'rgba(0,0,0,0)');
+    vignette.addColorStop(.7, 'rgba(0,0,0,.08)');
+    vignette.addColorStop(1, 'rgba(0,0,0,.38)');
+    ctx.fillStyle = vignette; ctx.fillRect(0, 0, WIDTH, HEIGHT);
+    ctx.restore();
   }
 
   function drawBrandIcon(ctx, x, y, size, radius = 16) {
@@ -362,7 +428,28 @@
     ctx.restore();
   }
 
+  function drawClockIcon(ctx, centerX, centerY, size = 16) {
+    ctx.save();
+    ctx.strokeStyle = '#ff4054';
+    ctx.lineWidth = 1.8;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, size / 2, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(centerX, centerY);
+    ctx.lineTo(centerX, centerY - size * .26);
+    ctx.moveTo(centerX, centerY);
+    ctx.lineTo(centerX + size * .21, centerY + size * .13);
+    ctx.stroke();
+    ctx.restore();
+  }
+
   function drawHeader(ctx, slideNumber, totalSlides) {
+    const headerRange = instagramState.mode === 'day'
+      ? { start: instagramState.selectedDay, end: instagramState.selectedDay }
+      : instagramState.weekend;
     ctx.textBaseline = 'alphabetic'; ctx.textAlign = 'left';
     drawBrandIcon(ctx, 68, 56, 58, 15);
     ctx.fillStyle = '#ffffff'; ctx.font = '650 25px Inter, sans-serif';
@@ -373,24 +460,37 @@
       ctx.fillStyle = '#7f7f87'; ctx.font = '550 16px Inter, sans-serif';
       ctx.fillText(`${slideNumber} of ${totalSlides}`, 1008, 111);
     }
-    ctx.textAlign = 'left'; ctx.fillStyle = '#ffffff'; ctx.font = '700 70px Inter, sans-serif';
-    ctx.fillText('Upcoming races', 68, 198);
-    ctx.fillStyle = '#a6a6ad'; ctx.font = '500 24px Inter, sans-serif';
-    ctx.fillText(formatHeaderDates(instagramState.weekend), 72, 244);
-    const selectedZones = [...new Set(instagramState.allSessions
+    ctx.textAlign = 'left'; ctx.fillStyle = '#ffffff'; ctx.font = '700 64px Inter, sans-serif';
+    ctx.fillText('Upcoming races', 68, 185);
+    ctx.fillStyle = '#a6a6ad'; ctx.font = '500 22px Inter, sans-serif';
+    ctx.fillText(formatHeaderDates(headerRange), 72, 226);
+    const selectedZones = [...new Set(instagramState.displayItems
       .filter(item => instagramState.selectedIds.has(item.uid) && !item.isTbc && item.zone)
       .map(item => item.zone))];
-    const zoneLabel = selectedZones.length ? selectedZones.join(' / ') : localTimeInfo(new Date(`${instagramState.weekend.start}T12:00:00Z`)).zone;
-    ctx.fillStyle = '#8f8f96'; ctx.font = '550 18px Inter, sans-serif'; ctx.textAlign = 'right';
-    ctx.fillText(`All times are ${zoneLabel}`, 1008, 244);
-    ctx.fillStyle = 'rgba(255,255,255,.09)'; ctx.fillRect(68, 284, 944, 1);
+    if (instagramState.mode !== 'overview') {
+      const zoneLabel = selectedZones.length ? selectedZones.join(' / ') : localTimeInfo(new Date(`${headerRange.start}T12:00:00Z`)).zone;
+      const zoneText = `All times are ${zoneLabel}`;
+      const badgeHeight = 40, badgePadding = 15, clockSize = 16, badgeGap = 10;
+      ctx.font = '550 17px Inter, sans-serif';
+      const badgeWidth = Math.ceil(ctx.measureText(zoneText).width + (badgePadding * 2) + clockSize + badgeGap);
+      const badgeX = 1008 - badgeWidth, badgeY = 199;
+      const badgeFill = ctx.createLinearGradient(badgeX, badgeY, badgeX, badgeY + badgeHeight);
+      badgeFill.addColorStop(0, 'rgba(28,25,27,.92)'); badgeFill.addColorStop(1, 'rgba(13,12,14,.92)');
+      fillRoundRect(ctx, badgeX, badgeY, badgeWidth, badgeHeight, PANEL_RADIUS, badgeFill);
+      ctx.strokeStyle = 'rgba(255,255,255,.14)'; ctx.lineWidth = 1;
+      roundedPath(ctx, badgeX + .5, badgeY + .5, badgeWidth - 1, badgeHeight - 1, PANEL_RADIUS - .5); ctx.stroke();
+      drawClockIcon(ctx, badgeX + badgePadding + clockSize / 2, badgeY + badgeHeight / 2, clockSize);
+      ctx.fillStyle = '#c5c5cb'; ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+      ctx.fillText(zoneText, badgeX + badgePadding + clockSize + badgeGap, badgeY + badgeHeight / 2 + .5);
+      ctx.textBaseline = 'alphabetic';
+    }
+    ctx.fillStyle = 'rgba(255,255,255,.09)'; ctx.fillRect(68, 260, 944, 1);
   }
 
   function drawLogo(ctx, item, x, y, width, height) {
     const config = window.RACEDAY_INSTAGRAM_LOGOS?.[item.seriesId];
     const image = config ? instagramState.images.get(config.src) : null;
-    fillRoundRect(ctx, x, y, width, height, 14, 'rgba(255,255,255,.055)');
-    ctx.save(); roundedPath(ctx, x, y, width, height, 14); ctx.clip();
+    ctx.save();
     if (image) {
       const size = Math.min(config.maxWidth || width, width) * (config.scale || 1);
       ctx.filter = config.mono ? 'grayscale(1) brightness(0) invert(1)' : 'none';
@@ -406,58 +506,72 @@
   function drawSessionRow(ctx, item, y, rowHeight) {
     const x = 52, width = 976;
     const rowX = x + 20, rowWidth = width - 40;
-    fillRoundRect(ctx, rowX, y + 7, rowWidth, rowHeight - 14, 12, '#202023');
-    const logoW = 122, logoH = 70, logoX = rowX + 20, logoY = y + (rowHeight - logoH) / 2;
+    fillRoundRect(ctx, rowX, y + 6, rowWidth, rowHeight - 12, PANEL_RADIUS, '#202023');
+    const logoW = 122, logoH = 60, logoX = rowX + 20, logoY = y + (rowHeight - logoH) / 2;
     drawLogo(ctx, item, logoX, logoY, logoW, logoH);
     const copyX = rowX + 162;
     ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic';
     ctx.fillStyle = '#f7f7f8'; ctx.font = '650 24px Inter, sans-serif';
-    const eventTitle = truncateText(ctx, item.eventName, 338);
-    ctx.fillText(eventTitle, copyX, y + 52);
-    drawCircularFlag(ctx, item.countryCode, copyX + ctx.measureText(eventTitle).width + 12, y + 29, 28);
+    const eventTitle = truncateText(ctx, item.eventName, item.overview ? 555 : 338);
+    ctx.fillText(eventTitle, copyX, y + 46);
+    drawFlag(ctx, item.countryCode, copyX + ctx.measureText(eventTitle).width + 12, y + 27, 32, 22);
     ctx.fillStyle = '#8e8e96'; ctx.font = '500 16px Inter, sans-serif';
     const subline = item.circuitName && item.circuitName !== item.eventName ? `${item.seriesName} · ${item.circuitName}` : item.seriesName;
-    ctx.fillText(truncateText(ctx, subline, 390), copyX, y + 77);
-    const label = sessionLabel(item), labelX = x + 592, labelW = 178, labelH = 52;
+    ctx.fillText(truncateText(ctx, subline, 390), copyX, y + 70);
+    const label = item.overview ? '' : sessionLabel(item), labelX = x + 592, labelW = 178, labelH = 48;
     const labelY = y + (rowHeight - labelH) / 2;
-    fillRoundRect(ctx, labelX, labelY, labelW, labelH, 9, 'rgba(255,255,255,.018)');
-    ctx.strokeStyle = 'rgba(255,255,255,.22)'; ctx.lineWidth = 1.5;
-    roundedPath(ctx, labelX + .75, labelY + .75, labelW - 1.5, labelH - 1.5, 8.25); ctx.stroke();
-    let labelFontSize = label.length > 17 ? 14 : 16;
-    ctx.font = `650 ${labelFontSize}px Inter, sans-serif`;
-    while (labelFontSize > 12 && ctx.measureText(label).width > labelW - 22) {
-      labelFontSize -= 1;
+    if (!item.overview) {
+      fillRoundRect(ctx, labelX, labelY, labelW, labelH, PANEL_RADIUS, 'rgba(255,255,255,.018)');
+      ctx.strokeStyle = 'rgba(255,255,255,.22)'; ctx.lineWidth = 1.5;
+      roundedPath(ctx, labelX + .75, labelY + .75, labelW - 1.5, labelH - 1.5, PANEL_RADIUS - .75); ctx.stroke();
+      let labelFontSize = label.length > 17 ? 14 : 16;
       ctx.font = `650 ${labelFontSize}px Inter, sans-serif`;
+      while (labelFontSize > 12 && ctx.measureText(label).width > labelW - 22) {
+        labelFontSize -= 1; ctx.font = `650 ${labelFontSize}px Inter, sans-serif`;
+      }
+      ctx.fillStyle = '#b8b8bf'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.fillText(label, labelX + labelW/2, y + rowHeight/2 + 1);
     }
-    ctx.fillStyle = '#b8b8bf'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-    ctx.fillText(label, labelX + labelW/2, y + rowHeight/2 + 1);
     const timeX = x + 790, timeW = 146;
-    fillRoundRect(ctx, timeX, labelY, timeW, labelH, 9, '#000000');
+    fillRoundRect(ctx, timeX, labelY, timeW, labelH, PANEL_RADIUS, '#000000');
     ctx.fillStyle = '#fff'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-    ctx.font = item.isTbc ? '650 17px Inter, sans-serif' : '700 28px Inter, sans-serif';
-    ctx.fillText(item.time, timeX + timeW/2, y + rowHeight / 2 + 1);
+    ctx.font = item.overview ? '650 19px Inter, sans-serif' : item.isTbc ? '650 17px Inter, sans-serif' : '700 28px Inter, sans-serif';
+    ctx.fillText(item.overview ? item.dateRange : item.time, timeX + timeW/2, y + rowHeight / 2 + 1);
   }
 
   function drawDayGroup(ctx, group, y, rowHeight) {
-    const x = 52, width = 976, headerHeight = 64;
-    const totalHeight = headerHeight + group.items.length * rowHeight;
-    ctx.save(); roundedPath(ctx, x, y, width, totalHeight, 22); ctx.clip();
-    const panelGradient = ctx.createLinearGradient(x, y, x + width, y + totalHeight);
-    panelGradient.addColorStop(0, '#1d0a0e'); panelGradient.addColorStop(1, '#0d0d0f');
-    ctx.fillStyle = panelGradient; ctx.fillRect(x, y, width, totalHeight);
-    ctx.fillStyle = '#231014'; ctx.fillRect(x, y, width, headerHeight);
+    const x = 52, width = 976, headerHeight = 64, bottomPadding = 14;
+    const totalHeight = headerHeight + group.items.length * rowHeight + bottomPadding;
+    const contentX = x + 20, contentWidth = width - 40;
+    ctx.save();
+    ctx.shadowColor = 'rgba(0,0,0,.28)'; ctx.shadowBlur = 22; ctx.shadowOffsetY = 9;
+    const panelGradient = ctx.createLinearGradient(x, y, x, y + totalHeight);
+    panelGradient.addColorStop(0, 'rgba(29,26,29,.94)');
+    panelGradient.addColorStop(.16, 'rgba(21,19,22,.93)');
+    panelGradient.addColorStop(.62, 'rgba(12,11,14,.91)');
+    panelGradient.addColorStop(1, 'rgba(8,7,10,.88)');
+    fillRoundRect(ctx, x, y, width, totalHeight, PANEL_RADIUS, panelGradient);
+    ctx.restore();
+    const insideBorder = ctx.createLinearGradient(x, y, x + width, y + totalHeight);
+    insideBorder.addColorStop(0, 'rgba(255,255,255,.17)');
+    insideBorder.addColorStop(.48, 'rgba(255,255,255,.085)');
+    insideBorder.addColorStop(1, 'rgba(174,62,76,.12)');
+    ctx.strokeStyle = insideBorder; ctx.lineWidth = 1.25;
+    roundedPath(ctx, x + .75, y + .75, width - 1.5, totalHeight - 1.5, PANEL_RADIUS - .75); ctx.stroke();
+    ctx.strokeStyle = 'rgba(255,255,255,.025)'; ctx.lineWidth = 1;
+    roundedPath(ctx, x + 2.25, y + 2.25, width - 4.5, totalHeight - 4.5, PANEL_RADIUS - 2.25); ctx.stroke();
     const heading = dayHeading(group.dayKey);
     ctx.fillStyle = '#f7f7f8'; ctx.font = '650 24px Inter, sans-serif'; ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
-    const dayLabel = `${heading.day.toUpperCase()}${group.continuation ? ' · CONTINUED' : ''}`;
-    ctx.fillText(dayLabel, x + 24, y + headerHeight/2 + 1);
-    const dateX = x + 24 + ctx.measureText(dayLabel).width + 20;
+    const dayLabel = `${group.overview ? 'THIS WEEKEND' : heading.day.toUpperCase()}${group.continuation ? ' · CONTINUED' : ''}`;
+    const headingX = contentX;
+    const headingY = y + 35;
+    ctx.fillText(dayLabel, headingX, headingY);
+    const dateX = headingX + ctx.measureText(dayLabel).width + 20;
     ctx.fillStyle = '#929299'; ctx.font = '550 20px Inter, sans-serif'; ctx.textAlign = 'left';
-    ctx.fillText(heading.date.toUpperCase(), dateX, y + headerHeight/2 + 1);
+    ctx.fillText(group.overview ? formatCompactDateRange(instagramState.weekend.start, instagramState.weekend.end).toUpperCase() : heading.date.toUpperCase(), dateX, headingY);
     let rowY = y + headerHeight;
     group.items.forEach(item => { drawSessionRow(ctx, item, rowY, rowHeight); rowY += rowHeight; });
-    ctx.restore();
-    ctx.strokeStyle = 'rgba(255,88,105,.18)'; ctx.lineWidth = 1; roundedPath(ctx, x + .5, y + .5, width - 1, totalHeight - 1, 22); ctx.stroke();
-    return rowY;
+    return rowY + bottomPadding;
   }
 
   function drawFooter(ctx, slideNumber, totalSlides) {
@@ -479,9 +593,9 @@
       ctx.fillStyle = '#fff';ctx.font='650 38px Inter, sans-serif';ctx.textAlign='center';ctx.fillText('No sessions selected', WIDTH/2, 650);
       ctx.fillStyle='#92929d';ctx.font='500 22px Inter, sans-serif';ctx.fillText('Select at least one session to create a post.', WIDTH/2, 692);
     } else {
-      const rowHeight = 108;
-      let y = 316;
-      slide.groups.forEach((group, groupIndex) => { if (groupIndex) y += 14; y = drawDayGroup(ctx, group, y, rowHeight); });
+      const rowHeight = 96;
+      let y = 286;
+      slide.groups.forEach((group, groupIndex) => { if (groupIndex) y += 12; y = drawDayGroup(ctx, group, y, rowHeight); });
     }
     drawFooter(ctx, index + 1, totalSlides);
     updateNavigation();
@@ -490,7 +604,7 @@
   // ── Preview UI and PNG export ─────────────────────────────────────────────
 
   function rebuildWarnings() {
-    const selected = instagramState.allSessions.filter(item => instagramState.selectedIds.has(item.uid));
+    const selected = instagramState.displayItems.filter(item => instagramState.selectedIds.has(item.uid));
     const missingLogos = [...new Set(selected.filter(item => {
       const config = window.RACEDAY_INSTAGRAM_LOGOS?.[item.seriesId];
       return !config || (instagramState.assetLoadComplete && !instagramState.images.has(config.src));
@@ -509,27 +623,57 @@
   function renderSessionControls() {
     const list = document.getElementById('instagramSessionList');
     if (!list) return;
-    if (!instagramState.allSessions.length) { list.innerHTML = '<div class="empty compact"><h3>Geen sessies</h3><p>Synchroniseer de kalender en probeer opnieuw.</p></div>'; return; }
+    if (!instagramState.displayItems.length) { list.innerHTML = '<div class="empty compact"><h3>Geen gegevens</h3><p>Voor deze keuze zijn geen races gevonden.</p></div>'; return; }
     let previousDay = '';
-    list.innerHTML = instagramState.allSessions.map(item => {
+    list.innerHTML = instagramState.displayItems.map(item => {
       const heading = dayHeading(item.dayKey);
-      const day = previousDay !== item.dayKey ? `<div class="instagram-day-label">${heading.day} · ${heading.date}</div>` : '';
+      const day = instagramState.mode !== 'overview' && previousDay !== item.dayKey ? `<div class="instagram-day-label">${heading.day} · ${heading.date}</div>` : '';
       previousDay = item.dayKey;
+      const primary = item.overview ? item.eventName : `${item.eventName} · ${sessionLabel(item)}`;
+      const secondary = item.overview ? item.seriesName : item.seriesName;
+      const trailing = item.overview ? item.dateRange : item.time;
       return `${day}<label class="instagram-session-toggle">
         <input type="checkbox" data-instagram-uid="${esc(item.uid)}" ${instagramState.selectedIds.has(item.uid) ? 'checked' : ''} onchange="toggleInstagramSession(this.dataset.instagramUid, this.checked)">
-        <span class="instagram-session-copy"><strong>${esc(item.eventName)} · ${esc(sessionLabel(item))}</strong><span>${esc(item.seriesName)}</span></span>
-        <span class="instagram-session-time">${esc(item.time)}</span>
+        <span class="instagram-session-copy"><strong>${esc(primary)}</strong><span>${esc(secondary)}</span></span>
+        <span class="instagram-session-time">${esc(trailing)}</span>
       </label>`;
     }).join('');
   }
 
   function rebuildSlides() {
-    const selected = instagramState.allSessions.filter(item => instagramState.selectedIds.has(item.uid));
-    instagramState.slides = buildSlides(selected);
+    const selected = instagramState.displayItems.filter(item => instagramState.selectedIds.has(item.uid));
+    instagramState.slides = instagramState.mode === 'overview' ? buildOverviewSlides(selected) : buildSlides(selected);
     instagramState.slideIndex = Math.min(instagramState.slideIndex, Math.max(0, instagramState.slides.length - 1));
     rebuildWarnings(); renderSlide();
     const selectedLabel = document.getElementById('instagramSelectionSummary');
-    if (selectedLabel) selectedLabel.textContent = `${selected.length} van ${instagramState.allSessions.length} sessies geselecteerd · ${Math.max(1, instagramState.slides.length)} slide${instagramState.slides.length === 1 ? '' : 's'}`;
+    const noun = instagramState.mode === 'overview' ? 'events' : 'sessies';
+    if (selectedLabel) selectedLabel.textContent = `${selected.length} van ${instagramState.displayItems.length} ${noun} geselecteerd · ${Math.max(1, instagramState.slides.length)} slide${instagramState.slides.length === 1 ? '' : 's'}`;
+  }
+
+  function refreshDisplayItems() {
+    if (instagramState.mode === 'overview') {
+      instagramState.displayItems = buildOverviewItems(instagramState.allSessions);
+      instagramState.selectedIds = new Set(instagramState.displayItems.map(item => item.uid));
+    } else {
+      instagramState.displayItems = instagramState.mode === 'day'
+        ? instagramState.allSessions.filter(item => item.dayKey === instagramState.selectedDay)
+        : instagramState.allSessions;
+      instagramState.selectedIds = new Set(instagramState.displayItems.filter(item => item.enabledByDefault).map(item => item.uid));
+    }
+    instagramState.slideIndex = 0;
+    const formatControls = document.querySelector('.instagram-format-controls');
+    formatControls?.classList.toggle('day-mode', instagramState.mode === 'day');
+    renderSessionControls(); rebuildSlides();
+  }
+
+  function setInstagramMode(mode) {
+    instagramState.mode = ['sessions', 'day', 'overview'].includes(mode) ? mode : 'sessions';
+    refreshDisplayItems();
+  }
+
+  function setInstagramDay(dayKey) {
+    instagramState.selectedDay = dayKey;
+    if (instagramState.mode === 'day') refreshDisplayItems();
   }
 
   function updateNavigation() {
@@ -548,10 +692,25 @@
     instagramState.allSessions = result.sessions;
     instagramState.sourceWarningCount = result.warnings.length;
     instagramState.assetLoadComplete = false;
+    instagramState.mode = 'sessions';
+    instagramState.selectedDay = result.sessions.find(item => item.enabledByDefault)?.dayKey || result.sessions[0]?.dayKey || instagramState.weekend.start;
+    instagramState.displayItems = result.sessions;
     instagramState.selectedIds = new Set(result.sessions.filter(item => item.enabledByDefault).map(item => item.uid));
     instagramState.slideIndex = 0;
     const modal = document.getElementById('instagramModal');
     modal?.classList.add('show'); document.body.style.overflow = 'hidden';
+    const modeSelect = document.getElementById('instagramMode');
+    if (modeSelect) modeSelect.value = instagramState.mode;
+    const daySelect = document.getElementById('instagramDay');
+    if (daySelect) {
+      const days = [...new Set(result.sessions.map(item => item.dayKey))];
+      daySelect.innerHTML = days.map(dayKey => {
+        const heading = dayHeading(dayKey);
+        return `<option value="${esc(dayKey)}">${esc(heading.day)} · ${esc(heading.date)}</option>`;
+      }).join('');
+      daySelect.value = instagramState.selectedDay;
+    }
+    document.querySelector('.instagram-format-controls')?.classList.remove('day-mode');
     renderSessionControls(); rebuildWarnings();
     await Promise.all([
       preloadAssets(result.sessions),
@@ -593,7 +752,7 @@
     showStatus('Assets en lettertypen voorbereiden…', 'loading');
     await document.fonts.load('700 70px Inter');
     await document.fonts.ready;
-    const selected = instagramState.allSessions.filter(item => instagramState.selectedIds.has(item.uid));
+    const selected = instagramState.displayItems.filter(item => instagramState.selectedIds.has(item.uid));
     await preloadAssets(selected);
   }
 
@@ -624,10 +783,12 @@
   window.openInstagramGenerator = openInstagramGenerator;
   window.closeInstagramGenerator = closeInstagramGenerator;
   window.toggleInstagramSession = toggleInstagramSession;
+  window.setInstagramMode = setInstagramMode;
+  window.setInstagramDay = setInstagramDay;
   window.navigateInstagramSlide = navigateInstagramSlide;
   window.downloadInstagramPng = downloadInstagramPng;
   window.RaceDayInstagram = {
-    collectWeekendSessions, buildSlides, sessionInstant, localTimeInfo, sessionLabel,
+    collectWeekendSessions, buildSlides, buildOverviewItems, sessionInstant, localTimeInfo, sessionLabel,
     weekendRangeFor, renderSlide, state: instagramState, WIDTH, HEIGHT,
   };
 })();
