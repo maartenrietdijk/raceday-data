@@ -884,7 +884,7 @@
     *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
   }
 </style>
-<link rel="stylesheet" href="instagram-generator.css?v=20260812-6">
+<link rel="stylesheet" href="instagram-generator.css?v=20260813-7">
 </head>
 <body>
 
@@ -1026,6 +1026,8 @@
     <div class="instagram-workspace">
       <aside class="instagram-controls" aria-label="Sessieselectie">
         <div class="instagram-format-controls">
+          <label for="instagramPostTitle">Titel in de post</label>
+          <input id="instagramPostTitle" type="text" value="Upcoming races" maxlength="42" autocomplete="off" oninput="setInstagramTitle(this.value)" placeholder="Upcoming races">
           <label for="instagramMode">Type overzicht</label>
           <select id="instagramMode" onchange="setInstagramMode(this.value)">
             <option value="sessions">Weekendschema met tijden</option>
@@ -2962,6 +2964,6 @@ if (state.github.token && state.github.repo) {
 }
 </script>
 <script src="instagram-assets/logo-bundle.js?v=20260812-3"></script>
-<script src="instagram-generator.js?v=20260812-23"></script>
+<script src="instagram-generator.js?v=20260813-25"></script>
 </body>
 </html>

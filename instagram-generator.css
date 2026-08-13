@@ -84,16 +84,24 @@ body, button, input, select, textarea { font-family: 'Inter', sans-serif; }
   font-size: 11px;
   font-weight: 650;
 }
-.instagram-format-controls select {
+.instagram-format-controls select,
+.instagram-format-controls input {
   width: 100%;
   min-height: 38px;
-  padding: 0 34px 0 12px;
+  padding: 0 12px;
   border: 1px solid rgba(255,255,255,.11);
   border-radius: 10px;
   background: #202024;
   color: #f4f4f6;
   font: 600 12px 'Inter', sans-serif;
   color-scheme: dark;
+}
+.instagram-format-controls select { padding-right: 34px; }
+.instagram-format-controls input:focus,
+.instagram-format-controls select:focus {
+  outline: none;
+  border-color: rgba(255, 64, 84, .62);
+  box-shadow: 0 0 0 3px rgba(255, 48, 69, .1);
 }
 .instagram-day-picker { display: none; }
 .instagram-format-controls.day-mode .instagram-day-picker { display: block; }

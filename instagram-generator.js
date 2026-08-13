@@ -38,6 +38,7 @@
     allSessions: [], selectedIds: new Set(), slides: [], slideIndex: 0,
     images: new Map(), warnings: [], weekend: null, sourceWarningCount: 0,
     assetLoadComplete: false, mode: 'sessions', selectedDay: '', displayItems: [],
+    title: 'Upcoming races',
   };
 
   // ── Weekend and session selection ─────────────────────────────────────────
@@ -487,8 +488,15 @@
       ctx.fillStyle = '#7f7f87'; ctx.font = '550 16px Inter, sans-serif';
       ctx.fillText(`${slideNumber} of ${totalSlides}`, 1008, 111);
     }
-    ctx.textAlign = 'left'; ctx.fillStyle = '#ffffff'; ctx.font = '700 64px Inter, sans-serif';
-    ctx.fillText('Upcoming races', 68, 185);
+    ctx.textAlign = 'left'; ctx.fillStyle = '#ffffff';
+    const postTitle = instagramState.title || 'Upcoming races';
+    let titleSize = 64;
+    ctx.font = `700 ${titleSize}px Inter, sans-serif`;
+    while (titleSize > 44 && ctx.measureText(postTitle).width > 720) {
+      titleSize -= 1;
+      ctx.font = `700 ${titleSize}px Inter, sans-serif`;
+    }
+    ctx.fillText(truncateText(ctx, postTitle, 720), 68, 185);
     ctx.fillStyle = '#a6a6ad'; ctx.font = '500 22px Inter, sans-serif';
     ctx.fillText(formatHeaderDates(headerRange), 72, 226);
     const selectedZones = [...new Set(instagramState.displayItems
@@ -709,6 +717,11 @@
     if (instagramState.mode === 'day') refreshDisplayItems();
   }
 
+  function setInstagramTitle(value) {
+    instagramState.title = String(value || '').trimStart().slice(0, 42) || 'Upcoming races';
+    renderSlide();
+  }
+
   function updateNavigation() {
     const total = Math.max(1, instagramState.slides.length);
     const label = document.getElementById('instagramSlideLabel');
@@ -726,6 +739,7 @@
     instagramState.sourceWarningCount = result.warnings.length;
     instagramState.assetLoadComplete = false;
     instagramState.mode = 'sessions';
+    instagramState.title = 'Upcoming races';
     instagramState.selectedDay = result.sessions.find(item => item.enabledByDefault)?.dayKey || result.sessions[0]?.dayKey || instagramState.weekend.start;
     instagramState.displayItems = result.sessions;
     instagramState.selectedIds = new Set(result.sessions.filter(item => item.enabledByDefault).map(item => item.uid));
@@ -734,6 +748,8 @@
     modal?.classList.add('show'); document.body.style.overflow = 'hidden';
     const modeSelect = document.getElementById('instagramMode');
     if (modeSelect) modeSelect.value = instagramState.mode;
+    const titleInput = document.getElementById('instagramPostTitle');
+    if (titleInput) titleInput.value = instagramState.title;
     const daySelect = document.getElementById('instagramDay');
     if (daySelect) {
       const days = [...new Set(result.sessions.map(item => item.dayKey))];
@@ -818,6 +834,7 @@
   window.toggleInstagramSession = toggleInstagramSession;
   window.setInstagramMode = setInstagramMode;
   window.setInstagramDay = setInstagramDay;
+  window.setInstagramTitle = setInstagramTitle;
   window.navigateInstagramSlide = navigateInstagramSlide;
   window.downloadInstagramPng = downloadInstagramPng;
   window.RaceDayInstagram = {
