@@ -3287,12 +3287,30 @@
     "countryCode": "US",
     "sessions": [
       {
+        "id": "nascar_trucks-2026-18-s2",
+        "name": "Practice",
+        "kind": "practice",
+        "date": "2026-08-21",
+        "timeLocal": "16:00",
+        "durationMinutes": 60,
+        "isOval": true
+      },
+      {
+        "id": "nascar_trucks-2026-18-s1786946280311",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-08-21",
+        "timeLocal": "17:05",
+        "durationMinutes": 60,
+        "isOval": true
+      },
+      {
         "id": "nascar_trucks-2026-18-race",
         "name": "Race",
         "kind": "race",
         "date": "2026-08-22",
         "timeLocal": "13:30",
-        "durationMinutes": 60
+        "durationMinutes": 150
       }
     ]
   },
