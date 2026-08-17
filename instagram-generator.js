@@ -39,7 +39,7 @@
     allSessions: [], selectedIds: new Set(), slides: [], slideIndex: 0,
     images: new Map(), warnings: [], weekend: null, sourceWarningCount: 0,
     assetLoadComplete: false, mode: 'sessions', selectedDay: '', displayItems: [],
-    title: 'Upcoming races', seriesOrder: [], draggedSeriesId: '', logoScales: {},
+    title: 'Upcoming races', seriesOrder: [], draggedSeriesId: '', logoScales: {}, controlTab: 'sessions',
   };
 
   function loadLogoScales() {
@@ -665,9 +665,7 @@
     if (!list) return;
     const names = new Map(instagramState.allSessions.map(item => [item.seriesId, item.seriesName]));
     const ids = instagramState.seriesOrder.filter(id => names.has(id));
-    list.innerHTML = ids.map((id, index) => {
-      const scalePercent = Math.round(logoScaleFor(id) * 100);
-      return `<div class="instagram-series-order-item" data-series-id="${esc(id)}"
+    list.innerHTML = ids.map((id, index) => `<div class="instagram-series-order-item" data-series-id="${esc(id)}"
         ondragover="event.preventDefault()" ondrop="dropInstagramSeries(event, this.dataset.seriesId)">
       <div class="instagram-series-order-main">
         <span class="instagram-series-order-handle" draggable="true" aria-label="Sleep ${esc(names.get(id))}"
@@ -677,19 +675,32 @@
         <button type="button" ${index === 0 ? 'disabled' : ''} onclick="moveInstagramSeries(this.closest('[data-series-id]').dataset.seriesId, -1)" aria-label="Verplaats ${esc(names.get(id))} omhoog">↑</button>
         <button type="button" ${index === ids.length - 1 ? 'disabled' : ''} onclick="moveInstagramSeries(this.closest('[data-series-id]').dataset.seriesId, 1)" aria-label="Verplaats ${esc(names.get(id))} omlaag">↓</button>
       </div>
-      <label class="instagram-logo-scale">
-        <span>Logogrootte</span>
-        <input type="range" min="45" max="125" step="5" value="${scalePercent}" data-series-id="${esc(id)}"
-          oninput="setInstagramLogoScale(this.dataset.seriesId, this.value, this)" aria-label="Logogrootte ${esc(names.get(id))}">
-        <output>${scalePercent}%</output>
-        <button type="button" onclick="resetInstagramLogoScale(this.closest('[data-series-id]').dataset.seriesId)" aria-label="Herstel logogrootte ${esc(names.get(id))}" title="Herstel naar 100%">↺</button>
-      </label>
-    </div>`;
+    </div>`).join('');
+  }
+
+  function renderLogoScaleControls() {
+    const list = document.getElementById('instagramLogoScaleList');
+    if (!list) return;
+    const names = new Map(instagramState.allSessions.map(item => [item.seriesId, item.seriesName]));
+    list.innerHTML = instagramState.seriesOrder.filter(id => names.has(id)).map(id => {
+      const scalePercent = Math.round(logoScaleFor(id) * 100);
+      return `<div class="instagram-logo-scale-item" data-series-id="${esc(id)}">
+        <div class="instagram-logo-scale-title">
+          <strong>${esc(names.get(id))}</strong>
+          <output>${scalePercent}%</output>
+        </div>
+        <div class="instagram-logo-scale-control">
+          <input type="range" min="45" max="125" step="5" value="${scalePercent}" data-series-id="${esc(id)}"
+            oninput="setInstagramLogoScale(this.dataset.seriesId, this.value, this)" aria-label="Logogrootte ${esc(names.get(id))}">
+          <button type="button" onclick="resetInstagramLogoScale(this.closest('[data-series-id]').dataset.seriesId)" aria-label="Herstel logogrootte ${esc(names.get(id))}" title="Herstel naar 100%">↺</button>
+        </div>
+      </div>`;
     }).join('');
   }
 
   function applySeriesOrderChange() {
     renderSeriesOrder();
+    renderLogoScaleControls();
     renderSessionControls();
     rebuildSlides();
   }
@@ -708,7 +719,7 @@
     if (Math.abs(scale - 1) < .001) delete instagramState.logoScales[seriesId];
     else instagramState.logoScales[seriesId] = scale;
     saveLogoScales();
-    const output = input?.closest('.instagram-logo-scale')?.querySelector('output');
+    const output = input?.closest('.instagram-logo-scale-item')?.querySelector('output');
     if (output) output.value = `${Math.round(scale * 100)}%`;
     renderSlide();
   }
@@ -716,8 +727,21 @@
   function resetInstagramLogoScale(seriesId) {
     delete instagramState.logoScales[seriesId];
     saveLogoScales();
-    renderSeriesOrder();
+    renderLogoScaleControls();
     renderSlide();
+  }
+
+  function setInstagramControlTab(tab) {
+    instagramState.controlTab = tab === 'logos' ? 'logos' : 'sessions';
+    const showLogos = instagramState.controlTab === 'logos';
+    document.getElementById('instagramSessionsPanel')?.classList.toggle('active', !showLogos);
+    document.getElementById('instagramLogosPanel')?.classList.toggle('active', showLogos);
+    const sessionsTab = document.getElementById('instagramSessionsTab');
+    const logosTab = document.getElementById('instagramLogosTab');
+    sessionsTab?.classList.toggle('active', !showLogos);
+    logosTab?.classList.toggle('active', showLogos);
+    sessionsTab?.setAttribute('aria-selected', String(!showLogos));
+    logosTab?.setAttribute('aria-selected', String(showLogos));
   }
 
   function startInstagramSeriesDrag(event, seriesId) {
@@ -844,6 +868,7 @@
 
   async function openInstagramGenerator() {
     instagramState.logoScales = loadLogoScales();
+    instagramState.controlTab = 'sessions';
     instagramState.weekend = weekendRangeFor();
     const result = collectWeekendSessions(instagramState.weekend);
     instagramState.allSessions = result.sessions;
@@ -874,7 +899,7 @@
       daySelect.value = instagramState.selectedDay;
     }
     document.querySelector('.instagram-format-controls')?.classList.remove('day-mode');
-    renderSeriesOrder(); renderSessionControls(); rebuildWarnings();
+    renderSeriesOrder(); renderLogoScaleControls(); setInstagramControlTab('sessions'); renderSessionControls(); rebuildWarnings();
     await Promise.all([
       preloadAssets(result.sessions),
       document.fonts.load('700 70px Inter'),
@@ -951,6 +976,7 @@
   window.setInstagramTitle = setInstagramTitle;
   window.setInstagramLogoScale = setInstagramLogoScale;
   window.resetInstagramLogoScale = resetInstagramLogoScale;
+  window.setInstagramControlTab = setInstagramControlTab;
   window.moveInstagramSeries = moveInstagramSeries;
   window.startInstagramSeriesDrag = startInstagramSeriesDrag;
   window.endInstagramSeriesDrag = endInstagramSeriesDrag;

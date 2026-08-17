@@ -884,7 +884,7 @@
     *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
   }
 </style>
-<link rel="stylesheet" href="instagram-generator.css?v=20260817-8">
+<link rel="stylesheet" href="instagram-generator.css?v=20260817-10">
 </head>
 <body>
 
@@ -1045,12 +1045,25 @@
           </div>
           <div class="instagram-series-order" id="instagramSeriesOrder"></div>
         </div>
-        <div class="instagram-controls-summary">
-          <strong>Sessies in deze export</strong>
-          <span id="instagramSelectionSummary">Sessies voorbereiden…</span>
+        <div class="instagram-control-panel active" id="instagramSessionsPanel">
+          <div class="instagram-controls-summary">
+            <strong>Sessies in deze export</strong>
+            <span id="instagramSelectionSummary">Sessies voorbereiden…</span>
+          </div>
+          <div class="instagram-warning" id="instagramWarning" role="status"></div>
+          <div class="instagram-session-list" id="instagramSessionList"></div>
         </div>
-        <div class="instagram-warning" id="instagramWarning" role="status"></div>
-        <div class="instagram-session-list" id="instagramSessionList"></div>
+        <div class="instagram-control-panel" id="instagramLogosPanel">
+          <div class="instagram-logo-settings-header">
+            <strong>Logoformaten</strong>
+            <span>Pas alleen het logo aan; de indeling blijft vast.</span>
+          </div>
+          <div class="instagram-logo-scale-list" id="instagramLogoScaleList"></div>
+        </div>
+        <div class="instagram-control-tabs" role="tablist" aria-label="Generatorinstellingen">
+          <button class="active" id="instagramSessionsTab" type="button" role="tab" aria-selected="true" onclick="setInstagramControlTab('sessions')">Sessies</button>
+          <button id="instagramLogosTab" type="button" role="tab" aria-selected="false" onclick="setInstagramControlTab('logos')">Logoformaten</button>
+        </div>
       </aside>
       <section class="instagram-preview-pane" aria-label="Instagram-preview">
         <div class="instagram-canvas-stage">
@@ -2973,6 +2986,6 @@ if (state.github.token && state.github.repo) {
 </script>
 <script src="instagram-assets/logo-bundle.js?v=20260817-4"></script>
 <script src="instagram-assets/logo-overrides.js?v=20260817-1"></script>
-<script src="instagram-generator.js?v=20260817-26"></script>
+<script src="instagram-generator.js?v=20260817-28"></script>
 </body>
 </html>

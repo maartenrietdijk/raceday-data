@@ -119,7 +119,7 @@ body, button, input, select, textarea { font-family: 'Inter', sans-serif; }
 }
 .instagram-series-order-heading strong { color: #f1f1f4; font-size: 12px; }
 .instagram-series-order-heading span { color: #74747e; font-size: 10px; }
-.instagram-series-order { display: grid; gap: 5px; }
+.instagram-series-order { max-height: 158px; display: grid; gap: 5px; overflow: auto; }
 .instagram-series-order-item {
   padding: 4px;
   border: 1px solid rgba(255,255,255,.08);
@@ -141,7 +141,7 @@ body, button, input, select, textarea { font-family: 'Inter', sans-serif; }
 .instagram-series-order-handle { color: #696974; letter-spacing: -2px; cursor: grab; }
 .instagram-series-order-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .instagram-series-order-main button,
-.instagram-logo-scale button {
+.instagram-logo-scale-control button {
   width: 28px;
   height: 28px;
   border: 0;
@@ -152,30 +152,70 @@ body, button, input, select, textarea { font-family: 'Inter', sans-serif; }
 }
 .instagram-series-order-item button:hover:not(:disabled) { background: rgba(255,255,255,.1); color: #fff; }
 .instagram-series-order-item button:disabled { opacity: .25; cursor: default; }
-.instagram-logo-scale {
-  min-height: 30px;
-  display: grid;
-  grid-template-columns: 62px minmax(60px,1fr) 36px 28px;
-  align-items: center;
-  gap: 7px;
-  padding: 1px 0 3px 5px;
-  color: #73737e;
-  font-size: 9px;
-  font-weight: 650;
+
+.instagram-control-panel {
+  min-height: 0;
+  flex: 1;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
 }
-.instagram-logo-scale input {
+.instagram-control-panel.active { display: flex; }
+.instagram-control-tabs {
+  flex: 0 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  margin: 0;
+  padding: 8px 12px 10px;
+  border-top: 1px solid rgba(255,255,255,.07);
+  background: rgba(17,17,20,.94);
+  backdrop-filter: blur(18px) saturate(150%);
+}
+.instagram-control-tabs button {
+  min-height: 36px;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  color: #777781;
+  font: 650 11px 'Inter', sans-serif;
+  cursor: pointer;
+}
+.instagram-control-tabs button.active {
+  background: rgba(255,255,255,.085);
+  color: #f4f4f6;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.07);
+}
+.instagram-control-tabs button:active { transform: scale(.98); }
+.instagram-logo-settings-header {
+  padding: 18px 20px 14px;
+  border-bottom: 1px solid rgba(255,255,255,.07);
+}
+.instagram-logo-settings-header strong { display: block; color: #f5f5f7; font-size: 14px; }
+.instagram-logo-settings-header span { display: block; margin-top: 4px; color: #85858f; font-size: 11px; line-height: 1.4; }
+.instagram-logo-scale-list { min-height: 0; flex: 1; overflow: auto; padding: 10px 12px 18px; }
+.instagram-logo-scale-item {
+  padding: 11px 10px 10px;
+  border-bottom: 1px solid rgba(255,255,255,.065);
+}
+.instagram-logo-scale-title { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.instagram-logo-scale-title strong { overflow: hidden; color: #e8e8ec; font-size: 12px; text-overflow: ellipsis; white-space: nowrap; }
+.instagram-logo-scale-title output { color: #a5a5ae; font: 600 10px 'Inter', sans-serif; }
+.instagram-logo-scale-control {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) 28px;
+  align-items: center;
+  gap: 10px;
+  margin-top: 7px;
+}
+.instagram-logo-scale-control input {
   width: 100%;
-  height: 20px;
+  height: 22px;
   margin: 0;
   accent-color: #ff3045;
   cursor: ew-resize;
 }
-.instagram-logo-scale output {
-  color: #a8a8b0;
-  font: 600 10px 'Inter', sans-serif;
-  text-align: right;
-}
-.instagram-logo-scale button { color: #777781; font-size: 15px; }
+.instagram-logo-scale-control button { color: #777781; font-size: 15px; }
 
 .instagram-controls-summary strong { display: block; margin-bottom: 4px; color: #f5f5f7; font-size: 14px; }
 .instagram-controls-summary span { color: #898994; font-size: 12px; line-height: 1.45; }
@@ -193,7 +233,7 @@ body, button, input, select, textarea { font-family: 'Inter', sans-serif; }
 }
 .instagram-warning.show { display: block; }
 
-.instagram-session-list { overflow: auto; padding: 10px 12px 18px; }
+.instagram-session-list { min-height: 0; flex: 1; overflow: auto; padding: 10px 12px 18px; }
 .instagram-day-label {
   padding: 13px 6px 6px;
   color: #73737e;
