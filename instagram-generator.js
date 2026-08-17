@@ -33,13 +33,34 @@
     supercars: 'Australia/Sydney',
   };
   const FLAG_ROOT = 'instagram-assets/flags/1x1';
+  const LOGO_SCALE_STORAGE_KEY = 'raceday_instagram_logo_scales';
 
   const instagramState = {
     allSessions: [], selectedIds: new Set(), slides: [], slideIndex: 0,
     images: new Map(), warnings: [], weekend: null, sourceWarningCount: 0,
     assetLoadComplete: false, mode: 'sessions', selectedDay: '', displayItems: [],
-    title: 'Upcoming races', seriesOrder: [], draggedSeriesId: '',
+    title: 'Upcoming races', seriesOrder: [], draggedSeriesId: '', logoScales: {},
   };
+
+  function loadLogoScales() {
+    try {
+      const stored = JSON.parse(localStorage.getItem(LOGO_SCALE_STORAGE_KEY) || '{}');
+      return Object.fromEntries(Object.entries(stored).flatMap(([seriesId, value]) => {
+        const scale = Number(value);
+        return Number.isFinite(scale) && scale >= .45 && scale <= 1.25 ? [[seriesId, scale]] : [];
+      }));
+    } catch (_) {
+      return {};
+    }
+  }
+
+  function saveLogoScales() {
+    localStorage.setItem(LOGO_SCALE_STORAGE_KEY, JSON.stringify(instagramState.logoScales));
+  }
+
+  function logoScaleFor(seriesId) {
+    return instagramState.logoScales[seriesId] || 1;
+  }
 
   // ── Weekend and session selection ─────────────────────────────────────────
 
@@ -495,8 +516,9 @@
     const config = window.RACEDAY_INSTAGRAM_LOGOS?.[item.seriesId];
     const image = config ? instagramState.images.get(config.src) : null;
     ctx.save();
+    ctx.beginPath(); ctx.rect(x, y, width, height); ctx.clip();
     if (image) {
-      const size = Math.min(config.maxWidth || width, width) * (config.scale || 1);
+      const size = Math.min(config.maxWidth || width, width) * (config.scale || 1) * logoScaleFor(item.seriesId);
       ctx.filter = config.mono ? 'grayscale(1) brightness(0) invert(1)' : 'none';
       ctx.globalAlpha = .95;
       ctx.drawImage(image, x + width / 2 - size / 2 + (config.x || 0), y + height / 2 - size / 2 + (config.y || 0), size, size);
@@ -643,15 +665,27 @@
     if (!list) return;
     const names = new Map(instagramState.allSessions.map(item => [item.seriesId, item.seriesName]));
     const ids = instagramState.seriesOrder.filter(id => names.has(id));
-    list.innerHTML = ids.map((id, index) => `<div class="instagram-series-order-item" draggable="true"
-      data-series-id="${esc(id)}" ondragstart="startInstagramSeriesDrag(event, this.dataset.seriesId)"
-      ondragend="endInstagramSeriesDrag(event)" ondragover="event.preventDefault()"
-      ondrop="dropInstagramSeries(event, this.dataset.seriesId)">
-      <span class="instagram-series-order-handle" aria-hidden="true">••</span>
-      <span class="instagram-series-order-name">${esc(names.get(id))}</span>
-      <button type="button" ${index === 0 ? 'disabled' : ''} onclick="moveInstagramSeries(this.closest('[data-series-id]').dataset.seriesId, -1)" aria-label="Verplaats ${esc(names.get(id))} omhoog">↑</button>
-      <button type="button" ${index === ids.length - 1 ? 'disabled' : ''} onclick="moveInstagramSeries(this.closest('[data-series-id]').dataset.seriesId, 1)" aria-label="Verplaats ${esc(names.get(id))} omlaag">↓</button>
-    </div>`).join('');
+    list.innerHTML = ids.map((id, index) => {
+      const scalePercent = Math.round(logoScaleFor(id) * 100);
+      return `<div class="instagram-series-order-item" data-series-id="${esc(id)}"
+        ondragover="event.preventDefault()" ondrop="dropInstagramSeries(event, this.dataset.seriesId)">
+      <div class="instagram-series-order-main">
+        <span class="instagram-series-order-handle" draggable="true" aria-label="Sleep ${esc(names.get(id))}"
+          ondragstart="startInstagramSeriesDrag(event, this.closest('[data-series-id]').dataset.seriesId)"
+          ondragend="endInstagramSeriesDrag(event)">••</span>
+        <span class="instagram-series-order-name">${esc(names.get(id))}</span>
+        <button type="button" ${index === 0 ? 'disabled' : ''} onclick="moveInstagramSeries(this.closest('[data-series-id]').dataset.seriesId, -1)" aria-label="Verplaats ${esc(names.get(id))} omhoog">↑</button>
+        <button type="button" ${index === ids.length - 1 ? 'disabled' : ''} onclick="moveInstagramSeries(this.closest('[data-series-id]').dataset.seriesId, 1)" aria-label="Verplaats ${esc(names.get(id))} omlaag">↓</button>
+      </div>
+      <label class="instagram-logo-scale">
+        <span>Logogrootte</span>
+        <input type="range" min="45" max="125" step="5" value="${scalePercent}" data-series-id="${esc(id)}"
+          oninput="setInstagramLogoScale(this.dataset.seriesId, this.value, this)" aria-label="Logogrootte ${esc(names.get(id))}">
+        <output>${scalePercent}%</output>
+        <button type="button" onclick="resetInstagramLogoScale(this.closest('[data-series-id]').dataset.seriesId)" aria-label="Herstel logogrootte ${esc(names.get(id))}" title="Herstel naar 100%">↺</button>
+      </label>
+    </div>`;
+    }).join('');
   }
 
   function applySeriesOrderChange() {
@@ -668,15 +702,33 @@
     applySeriesOrderChange();
   }
 
+  function setInstagramLogoScale(seriesId, percent, input) {
+    const scale = Math.max(.45, Math.min(1.25, Number(percent) / 100));
+    if (!Number.isFinite(scale)) return;
+    if (Math.abs(scale - 1) < .001) delete instagramState.logoScales[seriesId];
+    else instagramState.logoScales[seriesId] = scale;
+    saveLogoScales();
+    const output = input?.closest('.instagram-logo-scale')?.querySelector('output');
+    if (output) output.value = `${Math.round(scale * 100)}%`;
+    renderSlide();
+  }
+
+  function resetInstagramLogoScale(seriesId) {
+    delete instagramState.logoScales[seriesId];
+    saveLogoScales();
+    renderSeriesOrder();
+    renderSlide();
+  }
+
   function startInstagramSeriesDrag(event, seriesId) {
     instagramState.draggedSeriesId = seriesId;
-    event.currentTarget?.classList.add('dragging');
+    event.currentTarget?.closest('.instagram-series-order-item')?.classList.add('dragging');
     event.dataTransfer.effectAllowed = 'move';
     event.dataTransfer.setData('text/plain', seriesId);
   }
 
   function endInstagramSeriesDrag(event) {
-    event.currentTarget?.classList.remove('dragging');
+    event.currentTarget?.closest('.instagram-series-order-item')?.classList.remove('dragging');
     instagramState.draggedSeriesId = '';
   }
 
@@ -699,6 +751,8 @@
       const config = window.RACEDAY_INSTAGRAM_LOGOS?.[item.seriesId];
       return !config || (instagramState.assetLoadComplete && !instagramState.images.has(config.src));
     }).map(item => item.seriesName))];
+    const selectedFlagSources = [...new Set(selected.map(item => flagSrc(item.countryCode)).filter(Boolean))];
+    const loadedFlagCount = selectedFlagSources.filter(src => instagramState.images.has(src)).length;
     const missingCountries = selected.filter(item => {
       const src = flagSrc(item.countryCode);
       return !src || (instagramState.assetLoadComplete && !instagramState.images.has(src));
@@ -707,7 +761,11 @@
     if (!instagramState.allSessions.length) messages.push('Geen sessies gevonden voor dit weekend. Synchroniseer eerst de kalender.');
     if (instagramState.sourceWarningCount) messages.push(`${instagramState.sourceWarningCount} sessie(s) zonder geldige datum zijn overgeslagen.`);
     if (missingLogos.length) messages.push(`Tekstfallback voor ontbrekend logo: ${missingLogos.join(', ')}.`);
-    if (missingCountries) messages.push(`${missingCountries} sessie(s) gebruiken een neutrale vlagfallback.`);
+    if (instagramState.assetLoadComplete && selectedFlagSources.length && loadedFlagCount === 0) {
+      messages.push('De lokale vlagassets ontbreken. Upload de volledige map instagram-assets/flags naar GitHub.');
+    } else if (missingCountries) {
+      messages.push(`${missingCountries} sessie(s) gebruiken een neutrale vlagfallback.`);
+    }
     instagramState.warnings = messages;
     const warning = document.getElementById('instagramWarning');
     if (warning) { warning.textContent = messages.join(' '); warning.classList.toggle('show', Boolean(messages.length)); }
@@ -785,6 +843,7 @@
   }
 
   async function openInstagramGenerator() {
+    instagramState.logoScales = loadLogoScales();
     instagramState.weekend = weekendRangeFor();
     const result = collectWeekendSessions(instagramState.weekend);
     instagramState.allSessions = result.sessions;
@@ -890,6 +949,8 @@
   window.setInstagramMode = setInstagramMode;
   window.setInstagramDay = setInstagramDay;
   window.setInstagramTitle = setInstagramTitle;
+  window.setInstagramLogoScale = setInstagramLogoScale;
+  window.resetInstagramLogoScale = resetInstagramLogoScale;
   window.moveInstagramSeries = moveInstagramSeries;
   window.startInstagramSeriesDrag = startInstagramSeriesDrag;
   window.endInstagramSeriesDrag = endInstagramSeriesDrag;
