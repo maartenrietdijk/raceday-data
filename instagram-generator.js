@@ -33,6 +33,7 @@
     supercars: 'Australia/Sydney',
   };
   const FLAG_ROOT = 'instagram-assets/flags/1x1';
+  const FLAG_DATA_URL_CACHE = new Map();
   const LOGO_SCALE_STORAGE_KEY = 'raceday_instagram_logo_scales';
 
   const instagramState = {
@@ -300,7 +301,15 @@
 
   function flagSrc(code) {
     const value = String(code || '').trim().toLowerCase();
-    return /^[a-z]{2}$/.test(value) ? `${FLAG_ROOT}/${value}.svg` : '';
+    if (!/^[a-z]{2}$/.test(value)) return '';
+    const bundledSvg = window.RACEDAY_INSTAGRAM_FLAG_SVGS?.[value];
+    if (bundledSvg) {
+      if (!FLAG_DATA_URL_CACHE.has(value)) {
+        FLAG_DATA_URL_CACHE.set(value, `data:image/svg+xml;charset=utf-8,${encodeURIComponent(bundledSvg)}`);
+      }
+      return FLAG_DATA_URL_CACHE.get(value);
+    }
+    return `${FLAG_ROOT}/${value}.svg`;
   }
 
   async function preloadAssets(items) {
@@ -786,7 +795,7 @@
     if (instagramState.sourceWarningCount) messages.push(`${instagramState.sourceWarningCount} sessie(s) zonder geldige datum zijn overgeslagen.`);
     if (missingLogos.length) messages.push(`Tekstfallback voor ontbrekend logo: ${missingLogos.join(', ')}.`);
     if (instagramState.assetLoadComplete && selectedFlagSources.length && loadedFlagCount === 0) {
-      messages.push('De lokale vlagassets ontbreken. Upload de volledige map instagram-assets/flags naar GitHub.');
+      messages.push('De lokale vlagassets ontbreken. Upload instagram-assets/flag-bundle.js naar GitHub.');
     } else if (missingCountries) {
       messages.push(`${missingCountries} sessie(s) gebruiken een neutrale vlagfallback.`);
     }
