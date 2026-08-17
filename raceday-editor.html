@@ -884,7 +884,7 @@
     *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
   }
 </style>
-<link rel="stylesheet" href="instagram-generator.css?v=20260813-7">
+<link rel="stylesheet" href="instagram-generator.css?v=20260817-8">
 </head>
 <body>
 
@@ -1032,10 +1032,18 @@
           <select id="instagramMode" onchange="setInstagramMode(this.value)">
             <option value="sessions">Weekendschema met tijden</option>
             <option value="day">Schema voor één dag</option>
+            <option value="dayNoTimes">Eén dag zonder tijden</option>
             <option value="overview">Weekendoverzicht zonder tijden</option>
           </select>
           <label class="instagram-day-picker" id="instagramDayPicker" for="instagramDay">Kies een dag</label>
           <select class="instagram-day-picker" id="instagramDay" onchange="setInstagramDay(this.value)"></select>
+        </div>
+        <div class="instagram-series-order-wrap">
+          <div class="instagram-series-order-heading">
+            <strong>Volgorde series</strong>
+            <span>Sleep of gebruik de pijlen</span>
+          </div>
+          <div class="instagram-series-order" id="instagramSeriesOrder"></div>
         </div>
         <div class="instagram-controls-summary">
           <strong>Sessies in deze export</strong>
@@ -2963,7 +2971,8 @@ if (state.github.token && state.github.repo) {
   loadFromGitHub();
 }
 </script>
-<script src="instagram-assets/logo-bundle.js?v=20260812-3"></script>
-<script src="instagram-generator.js?v=20260813-25"></script>
+<script src="instagram-assets/logo-bundle.js?v=20260817-4"></script>
+<script src="instagram-assets/logo-overrides.js?v=20260817-1"></script>
+<script src="instagram-generator.js?v=20260817-26"></script>
 </body>
 </html>

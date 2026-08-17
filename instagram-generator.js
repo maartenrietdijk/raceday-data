@@ -32,13 +32,13 @@
     indynxt: 'America/New_York', imsa: 'America/New_York',
     supercars: 'Australia/Sydney',
   };
-  const VALID_FLAG_CODES = new Set(['NL','FR','IT','DE','BE','AT','ES','HU','BG','RO','IE','LU','PL','MC','ID','RU','UA','EE','LV','LT','AE','BH','QA','JP','BR','US','GB','AU','NZ','CA','MX','AR','ZA','FI','SE','NO','DK','CH','CZ','SK','SI','HR','PT','GR','TR','SA','CN','KR','TH','MY','SG','AZ','IN']);
+  const FLAG_ROOT = 'instagram-assets/flags/1x1';
 
   const instagramState = {
     allSessions: [], selectedIds: new Set(), slides: [], slideIndex: 0,
     images: new Map(), warnings: [], weekend: null, sourceWarningCount: 0,
     assetLoadComplete: false, mode: 'sessions', selectedDay: '', displayItems: [],
-    title: 'Upcoming races',
+    title: 'Upcoming races', seriesOrder: [], draggedSeriesId: '',
   };
 
   // ── Weekend and session selection ─────────────────────────────────────────
@@ -277,71 +277,40 @@
     });
   }
 
+  function flagSrc(code) {
+    const value = String(code || '').trim().toLowerCase();
+    return /^[a-z]{2}$/.test(value) ? `${FLAG_ROOT}/${value}.svg` : '';
+  }
+
   async function preloadAssets(items) {
     const configs = items.map(item => window.RACEDAY_INSTAGRAM_LOGOS?.[item.seriesId]).filter(Boolean);
+    const flags = [...new Set(items.map(item => flagSrc(item.countryCode)).filter(Boolean))];
     const brandIcon = window.RACEDAY_INSTAGRAM_BRAND?.icon;
     await Promise.all([
       ...configs.map(config => loadImage(config.src)),
+      ...flags.map(loadImage),
       loadImage(brandIcon),
       ...Object.values(STORE_BADGES).map(loadImage),
     ]);
   }
 
-  function drawFlag(ctx, code, x, y, width = 38, height = 25) {
+  function drawFlag(ctx, code, x, y, width = 26, height = 26) {
     ctx.save();
     roundedPath(ctx, x, y, width, height, 3);
     ctx.clip();
-    const horizontal = colors => colors.forEach((color, index) => {
-      ctx.fillStyle = color; ctx.fillRect(x, y + height * index / colors.length, width, height / colors.length + 1);
-    });
-    const vertical = colors => colors.forEach((color, index) => {
-      ctx.fillStyle = color; ctx.fillRect(x + width * index / colors.length, y, width / colors.length + 1, height);
-    });
-    if (!VALID_FLAG_CODES.has(code)) {
+    const image = instagramState.images.get(flagSrc(code));
+    if (!image) {
       ctx.fillStyle = '#3b3b43'; ctx.fillRect(x, y, width, height);
       ctx.fillStyle = '#a4a4ad'; ctx.font = '700 11px Inter, sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(code || '—', x + width / 2, y + height / 2 + .5);
       ctx.restore();
       ctx.strokeStyle = '#62626c'; ctx.lineWidth = 1; roundedPath(ctx, x, y, width, height, 3); ctx.stroke();
       return false;
     }
-    const horizontalMap = {
-      NL:['#ae1c28','#fff','#21468b'], DE:['#000','#dd0000','#ffce00'], BE:['#000','#ffd90c','#ef3340'],
-      AT:['#ed2939','#fff','#ed2939'], HU:['#ce2939','#fff','#477050'], BG:['#fff','#00966e','#d62612'],
-      RU:['#fff','#0039a6','#d52b1e'], UA:['#0057b7','#ffd700'], EE:['#4891d9','#000','#fff'],
-      LV:['#9e3039','#fff','#9e3039'], LT:['#fdb913','#006a44','#c1272d'], LU:['#ed2939','#fff','#00a1de'],
-      PL:['#fff','#dc143c'], ID:['#ce1126','#fff'], MC:['#ce1126','#fff'], AE:['#00732f','#fff','#000'],
-      BH:['#fff','#ce1126'], QA:['#fff','#8a1538'], JP:['#fff'], UA:['#0057b7','#ffd700'],
-      AR:['#74acdf','#fff','#74acdf'], FI:['#fff'], SE:['#006aa7'], NO:['#ba0c2f'], DK:['#c60c30'],
-      CH:['#d52b1e'], CZ:['#fff','#d7141a'], SK:['#fff','#0b4ea2','#ee1c25'], SI:['#fff','#005da4','#ed1c24'],
-      HR:['#ff0000','#fff','#171796'], PT:['#046a38'], GR:['#0d5eaf','#fff','#0d5eaf','#fff','#0d5eaf'],
-      TR:['#e30a17'], SA:['#006c35'], CN:['#de2910'], KR:['#fff'], TH:['#a51931','#f4f5f8','#2d2a4a','#f4f5f8','#a51931'],
-      MY:['#cc0001','#fff','#cc0001','#fff','#cc0001'], SG:['#ef3340','#fff'], AZ:['#00b5e2','#ef3340','#509e2f'],
-      IN:['#ff9933','#fff','#138808'], ZA:['#007749'], BR:['#009c3b'], US:['#b22234','#fff','#b22234','#fff','#b22234','#fff','#b22234'],
-      GB:['#012169'], AU:['#012169'], NZ:['#012169'], CA:['#fff'], MX:['#fff'],
-    };
-    const verticalMap = { FR:['#0055a4','#fff','#ef4135'], IT:['#009246','#fff','#ce2b37'], IE:['#169b62','#fff','#ff883e'], RO:['#002b7f','#fcd116','#ce1126'], ES:['#aa151b','#f1bf00','#aa151b'] };
-    if (verticalMap[code]) vertical(verticalMap[code]); else horizontal(horizontalMap[code] || ['#2c2c33','#777']);
-    ctx.fillStyle = '#fff';
-    if (code === 'JP') { ctx.fillStyle = '#bc002d'; ctx.beginPath(); ctx.arc(x + width/2, y + height/2, height*.26, 0, Math.PI*2); ctx.fill(); }
-    if (['FI','SE','NO','DK'].includes(code)) drawNordicCross(ctx, code, x, y, width, height);
-    if (code === 'CH') { ctx.fillRect(x+width*.43,y+height*.22,width*.14,height*.56); ctx.fillRect(x+width*.29,y+height*.41,width*.42,height*.18); }
-    if (code === 'BR') { ctx.fillStyle='#ffdf00'; diamond(ctx,x+width*.5,y+height*.5,width*.34,height*.38); ctx.fill(); ctx.fillStyle='#002776'; ctx.beginPath();ctx.arc(x+width*.5,y+height*.5,height*.2,0,Math.PI*2);ctx.fill(); }
-    if (code === 'CA') { ctx.fillStyle='#d80621';ctx.fillRect(x,y,width*.24,height);ctx.fillRect(x+width*.76,y,width*.24,height);ctx.fillRect(x+width*.47,y+height*.27,width*.06,height*.48); }
-    if (code === 'MX') { ctx.fillStyle='#006847';ctx.fillRect(x,y,width/3,height);ctx.fillStyle='#ce1126';ctx.fillRect(x+width*2/3,y,width/3,height); }
-    if (['GB','AU','NZ'].includes(code)) drawUnionJack(ctx,x,y,width*(code==='GB'?1:.52),height*(code==='GB'?1:.55));
-    if (code === 'US') { ctx.fillStyle='#3c3b6e';ctx.fillRect(x,y,width*.46,height*.54); }
+    ctx.drawImage(image, x, y, width, height);
     ctx.restore();
     ctx.strokeStyle = 'rgba(255,255,255,.24)'; ctx.lineWidth = 1; roundedPath(ctx, x, y, width, height, 3); ctx.stroke();
     return true;
   }
-
-  function drawNordicCross(ctx, code, x, y, w, h) {
-    const colors = { FI:['#003580',null], SE:['#fecc00',null], DK:['#fff',null], NO:['#fff','#00205b'] }[code];
-    ctx.fillStyle=colors[0]; ctx.fillRect(x+w*.29,y,w*.14,h);ctx.fillRect(x,y+h*.42,w,h*.18);
-    if(colors[1]){ctx.fillStyle=colors[1];ctx.fillRect(x+w*.325,y,w*.07,h);ctx.fillRect(x,y+h*.465,w,h*.08);}
-  }
-  function drawUnionJack(ctx,x,y,w,h){ctx.fillStyle='#fff';ctx.fillRect(x+w*.43,y,w*.14,h);ctx.fillRect(x,y+h*.42,w,h*.18);ctx.strokeStyle='#fff';ctx.lineWidth=5;ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x+w,y+h);ctx.moveTo(x+w,y);ctx.lineTo(x,y+h);ctx.stroke();ctx.strokeStyle='#c8102e';ctx.lineWidth=2;ctx.stroke();ctx.fillStyle='#c8102e';ctx.fillRect(x+w*.47,y,w*.07,h);ctx.fillRect(x,y+h*.47,w,h*.09);}
-  function diamond(ctx,cx,cy,rx,ry){ctx.beginPath();ctx.moveTo(cx,cy-ry);ctx.lineTo(cx+rx,cy);ctx.lineTo(cx,cy+ry);ctx.lineTo(cx-rx,cy);ctx.closePath();}
 
   // ── Fixed canvas template ─────────────────────────────────────────────────
 
@@ -475,7 +444,7 @@
   }
 
   function drawHeader(ctx, slideNumber, totalSlides) {
-    const headerRange = instagramState.mode === 'day'
+    const headerRange = ['day', 'dayNoTimes'].includes(instagramState.mode)
       ? { start: instagramState.selectedDay, end: instagramState.selectedDay }
       : instagramState.weekend;
     ctx.textBaseline = 'alphabetic'; ctx.textAlign = 'left';
@@ -502,7 +471,7 @@
     const selectedZones = [...new Set(instagramState.displayItems
       .filter(item => instagramState.selectedIds.has(item.uid) && !item.isTbc && item.zone)
       .map(item => item.zone))];
-    if (instagramState.mode !== 'overview') {
+    if (!['overview', 'dayNoTimes'].includes(instagramState.mode)) {
       const zoneLabel = selectedZones.length ? selectedZones.join(' / ') : localTimeInfo(new Date(`${headerRange.start}T12:00:00Z`)).zone;
       const zoneText = `All times are ${zoneLabel}`;
       const badgeHeight = 40, badgePadding = 15, clockSize = 16, badgeGap = 10;
@@ -549,13 +518,14 @@
     ctx.fillStyle = '#f7f7f8'; ctx.font = '650 24px Inter, sans-serif';
     const eventTitle = truncateText(ctx, item.eventName, item.overview ? 555 : 338);
     ctx.fillText(eventTitle, copyX, y + 46);
-    drawFlag(ctx, item.countryCode, copyX + ctx.measureText(eventTitle).width + 12, y + 27, 32, 22);
+    drawFlag(ctx, item.countryCode, copyX + ctx.measureText(eventTitle).width + 12, y + 24, 26, 26);
     ctx.fillStyle = '#8e8e96'; ctx.font = '500 16px Inter, sans-serif';
     const subline = item.circuitName && item.circuitName !== item.eventName ? `${item.seriesName} · ${item.circuitName}` : item.seriesName;
     ctx.fillText(truncateText(ctx, subline, 390), copyX, y + 70);
     const label = item.overview ? '' : sessionLabel(item), labelX = x + 592, labelW = 178, labelH = 48;
     const labelY = y + (rowHeight - labelH) / 2;
-    if (!item.overview) {
+    const dayWithoutTimes = instagramState.mode === 'dayNoTimes';
+    if (!item.overview && !dayWithoutTimes) {
       fillRoundRect(ctx, labelX, labelY, labelW, labelH, PANEL_RADIUS, 'rgba(255,255,255,.018)');
       ctx.strokeStyle = 'rgba(255,255,255,.22)'; ctx.lineWidth = 1.5;
       roundedPath(ctx, labelX + .75, labelY + .75, labelW - 1.5, labelH - 1.5, PANEL_RADIUS - .75); ctx.stroke();
@@ -570,8 +540,14 @@
     const timeX = x + 790, timeW = 146;
     fillRoundRect(ctx, timeX, labelY, timeW, labelH, PANEL_RADIUS, '#000000');
     ctx.fillStyle = '#fff'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-    ctx.font = item.overview ? '650 19px Inter, sans-serif' : item.isTbc ? '650 17px Inter, sans-serif' : '700 28px Inter, sans-serif';
-    ctx.fillText(item.overview ? item.dateRange : item.time, timeX + timeW/2, y + rowHeight / 2 + 1);
+    const rightLabel = item.overview ? item.dateRange : dayWithoutTimes ? label : item.time;
+    let rightFontSize = item.overview ? 19 : dayWithoutTimes ? 15 : item.isTbc ? 17 : 28;
+    ctx.font = `${dayWithoutTimes ? 650 : 700} ${rightFontSize}px Inter, sans-serif`;
+    while (rightFontSize > 11 && ctx.measureText(rightLabel).width > timeW - 18) {
+      rightFontSize -= 1;
+      ctx.font = `${dayWithoutTimes ? 650 : 700} ${rightFontSize}px Inter, sans-serif`;
+    }
+    ctx.fillText(rightLabel, timeX + timeW/2, y + rowHeight / 2 + 1);
   }
 
   function drawDayGroup(ctx, group, y, rowHeight) {
@@ -644,13 +620,89 @@
 
   // ── Preview UI and PNG export ─────────────────────────────────────────────
 
+  function orderedItems(items) {
+    const order = new Map(instagramState.seriesOrder.map((id, index) => [id, index]));
+    return [...items].sort((a, b) => {
+      if (instagramState.mode !== 'overview') {
+        const dayDifference = a.dayKey.localeCompare(b.dayKey);
+        if (dayDifference) return dayDifference;
+      }
+      const seriesDifference = (order.get(a.seriesId) ?? 9999) - (order.get(b.seriesId) ?? 9999);
+      if (seriesDifference) return seriesDifference;
+      if (instagramState.mode === 'overview') {
+        const eventDifference = a.eventStart.localeCompare(b.eventStart);
+        if (eventDifference) return eventDifference;
+      }
+      return ((a.instant?.getTime() ?? Number.MAX_SAFE_INTEGER) - (b.instant?.getTime() ?? Number.MAX_SAFE_INTEGER)) ||
+        a.eventName.localeCompare(b.eventName);
+    });
+  }
+
+  function renderSeriesOrder() {
+    const list = document.getElementById('instagramSeriesOrder');
+    if (!list) return;
+    const names = new Map(instagramState.allSessions.map(item => [item.seriesId, item.seriesName]));
+    const ids = instagramState.seriesOrder.filter(id => names.has(id));
+    list.innerHTML = ids.map((id, index) => `<div class="instagram-series-order-item" draggable="true"
+      data-series-id="${esc(id)}" ondragstart="startInstagramSeriesDrag(event, this.dataset.seriesId)"
+      ondragend="endInstagramSeriesDrag(event)" ondragover="event.preventDefault()"
+      ondrop="dropInstagramSeries(event, this.dataset.seriesId)">
+      <span class="instagram-series-order-handle" aria-hidden="true">••</span>
+      <span class="instagram-series-order-name">${esc(names.get(id))}</span>
+      <button type="button" ${index === 0 ? 'disabled' : ''} onclick="moveInstagramSeries(this.closest('[data-series-id]').dataset.seriesId, -1)" aria-label="Verplaats ${esc(names.get(id))} omhoog">↑</button>
+      <button type="button" ${index === ids.length - 1 ? 'disabled' : ''} onclick="moveInstagramSeries(this.closest('[data-series-id]').dataset.seriesId, 1)" aria-label="Verplaats ${esc(names.get(id))} omlaag">↓</button>
+    </div>`).join('');
+  }
+
+  function applySeriesOrderChange() {
+    renderSeriesOrder();
+    renderSessionControls();
+    rebuildSlides();
+  }
+
+  function moveInstagramSeries(seriesId, direction) {
+    const index = instagramState.seriesOrder.indexOf(seriesId);
+    const next = index + Number(direction);
+    if (index < 0 || next < 0 || next >= instagramState.seriesOrder.length) return;
+    [instagramState.seriesOrder[index], instagramState.seriesOrder[next]] = [instagramState.seriesOrder[next], instagramState.seriesOrder[index]];
+    applySeriesOrderChange();
+  }
+
+  function startInstagramSeriesDrag(event, seriesId) {
+    instagramState.draggedSeriesId = seriesId;
+    event.currentTarget?.classList.add('dragging');
+    event.dataTransfer.effectAllowed = 'move';
+    event.dataTransfer.setData('text/plain', seriesId);
+  }
+
+  function endInstagramSeriesDrag(event) {
+    event.currentTarget?.classList.remove('dragging');
+    instagramState.draggedSeriesId = '';
+  }
+
+  function dropInstagramSeries(event, targetId) {
+    event.preventDefault();
+    const sourceId = instagramState.draggedSeriesId || event.dataTransfer.getData('text/plain');
+    if (!sourceId || sourceId === targetId) return;
+    const sourceIndex = instagramState.seriesOrder.indexOf(sourceId);
+    const targetIndex = instagramState.seriesOrder.indexOf(targetId);
+    if (sourceIndex < 0 || targetIndex < 0) return;
+    instagramState.seriesOrder.splice(sourceIndex, 1);
+    instagramState.seriesOrder.splice(targetIndex, 0, sourceId);
+    instagramState.draggedSeriesId = '';
+    applySeriesOrderChange();
+  }
+
   function rebuildWarnings() {
     const selected = instagramState.displayItems.filter(item => instagramState.selectedIds.has(item.uid));
     const missingLogos = [...new Set(selected.filter(item => {
       const config = window.RACEDAY_INSTAGRAM_LOGOS?.[item.seriesId];
       return !config || (instagramState.assetLoadComplete && !instagramState.images.has(config.src));
     }).map(item => item.seriesName))];
-    const missingCountries = selected.filter(item => !VALID_FLAG_CODES.has(item.countryCode)).length;
+    const missingCountries = selected.filter(item => {
+      const src = flagSrc(item.countryCode);
+      return !src || (instagramState.assetLoadComplete && !instagramState.images.has(src));
+    }).length;
     const messages = [];
     if (!instagramState.allSessions.length) messages.push('Geen sessies gevonden voor dit weekend. Synchroniseer eerst de kalender.');
     if (instagramState.sourceWarningCount) messages.push(`${instagramState.sourceWarningCount} sessie(s) zonder geldige datum zijn overgeslagen.`);
@@ -666,13 +718,13 @@
     if (!list) return;
     if (!instagramState.displayItems.length) { list.innerHTML = '<div class="empty compact"><h3>Geen gegevens</h3><p>Voor deze keuze zijn geen races gevonden.</p></div>'; return; }
     let previousDay = '';
-    list.innerHTML = instagramState.displayItems.map(item => {
+    list.innerHTML = orderedItems(instagramState.displayItems).map(item => {
       const heading = dayHeading(item.dayKey);
       const day = instagramState.mode !== 'overview' && previousDay !== item.dayKey ? `<div class="instagram-day-label">${heading.day} · ${heading.date}</div>` : '';
       previousDay = item.dayKey;
       const primary = item.overview ? item.eventName : `${item.eventName} · ${sessionLabel(item)}`;
       const secondary = item.overview ? item.seriesName : item.seriesName;
-      const trailing = item.overview ? item.dateRange : item.time;
+      const trailing = item.overview ? item.dateRange : instagramState.mode === 'dayNoTimes' ? sessionLabel(item) : item.time;
       return `${day}<label class="instagram-session-toggle">
         <input type="checkbox" data-instagram-uid="${esc(item.uid)}" ${instagramState.selectedIds.has(item.uid) ? 'checked' : ''} onchange="toggleInstagramSession(this.dataset.instagramUid, this.checked)">
         <span class="instagram-session-copy"><strong>${esc(primary)}</strong><span>${esc(secondary)}</span></span>
@@ -682,7 +734,7 @@
   }
 
   function rebuildSlides() {
-    const selected = instagramState.displayItems.filter(item => instagramState.selectedIds.has(item.uid));
+    const selected = orderedItems(instagramState.displayItems.filter(item => instagramState.selectedIds.has(item.uid)));
     instagramState.slides = instagramState.mode === 'overview' ? buildOverviewSlides(selected) : buildSlides(selected);
     instagramState.slideIndex = Math.min(instagramState.slideIndex, Math.max(0, instagramState.slides.length - 1));
     rebuildWarnings(); renderSlide();
@@ -696,25 +748,25 @@
       instagramState.displayItems = buildOverviewItems(instagramState.allSessions);
       instagramState.selectedIds = new Set(instagramState.displayItems.map(item => item.uid));
     } else {
-      instagramState.displayItems = instagramState.mode === 'day'
+      instagramState.displayItems = ['day', 'dayNoTimes'].includes(instagramState.mode)
         ? instagramState.allSessions.filter(item => item.dayKey === instagramState.selectedDay)
         : instagramState.allSessions;
       instagramState.selectedIds = new Set(instagramState.displayItems.filter(item => item.enabledByDefault).map(item => item.uid));
     }
     instagramState.slideIndex = 0;
     const formatControls = document.querySelector('.instagram-format-controls');
-    formatControls?.classList.toggle('day-mode', instagramState.mode === 'day');
+    formatControls?.classList.toggle('day-mode', ['day', 'dayNoTimes'].includes(instagramState.mode));
     renderSessionControls(); rebuildSlides();
   }
 
   function setInstagramMode(mode) {
-    instagramState.mode = ['sessions', 'day', 'overview'].includes(mode) ? mode : 'sessions';
+    instagramState.mode = ['sessions', 'day', 'dayNoTimes', 'overview'].includes(mode) ? mode : 'sessions';
     refreshDisplayItems();
   }
 
   function setInstagramDay(dayKey) {
     instagramState.selectedDay = dayKey;
-    if (instagramState.mode === 'day') refreshDisplayItems();
+    if (['day', 'dayNoTimes'].includes(instagramState.mode)) refreshDisplayItems();
   }
 
   function setInstagramTitle(value) {
@@ -740,6 +792,9 @@
     instagramState.assetLoadComplete = false;
     instagramState.mode = 'sessions';
     instagramState.title = 'Upcoming races';
+    const presentSeries = new Set(result.sessions.map(item => item.seriesId));
+    instagramState.seriesOrder = (state.series || []).map(series => series.id).filter(id => presentSeries.has(id));
+    instagramState.draggedSeriesId = '';
     instagramState.selectedDay = result.sessions.find(item => item.enabledByDefault)?.dayKey || result.sessions[0]?.dayKey || instagramState.weekend.start;
     instagramState.displayItems = result.sessions;
     instagramState.selectedIds = new Set(result.sessions.filter(item => item.enabledByDefault).map(item => item.uid));
@@ -760,7 +815,7 @@
       daySelect.value = instagramState.selectedDay;
     }
     document.querySelector('.instagram-format-controls')?.classList.remove('day-mode');
-    renderSessionControls(); rebuildWarnings();
+    renderSeriesOrder(); renderSessionControls(); rebuildWarnings();
     await Promise.all([
       preloadAssets(result.sessions),
       document.fonts.load('700 70px Inter'),
@@ -835,6 +890,10 @@
   window.setInstagramMode = setInstagramMode;
   window.setInstagramDay = setInstagramDay;
   window.setInstagramTitle = setInstagramTitle;
+  window.moveInstagramSeries = moveInstagramSeries;
+  window.startInstagramSeriesDrag = startInstagramSeriesDrag;
+  window.endInstagramSeriesDrag = endInstagramSeriesDrag;
+  window.dropInstagramSeries = dropInstagramSeries;
   window.navigateInstagramSlide = navigateInstagramSlide;
   window.downloadInstagramPng = downloadInstagramPng;
   window.RaceDayInstagram = {
