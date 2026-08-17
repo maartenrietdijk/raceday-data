@@ -980,6 +980,30 @@
   </div>
 </div>
 
+<!-- Rename Series Modal -->
+<div class="modal-backdrop" id="renameSeriesModal">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="renameSeriesTitle">
+    <h2 id="renameSeriesTitle">Serienaam wijzigen</h2>
+    <p>Alleen de zichtbare naam verandert. De serie-ID, kalenderdata, logo-koppeling en GitHub-bestandsnaam blijven hetzelfde.</p>
+    <div class="modal-fields">
+      <div class="field">
+        <label>Serie-ID</label>
+        <input type="text" id="renameSeriesIdDisplay" readonly aria-readonly="true" />
+        <input type="hidden" id="renameSeriesId" />
+      </div>
+      <div class="field">
+        <label for="renameSeriesName">Weergavenaam</label>
+        <input type="text" id="renameSeriesName" maxlength="80" autocomplete="off"
+          onkeydown="if(event.key==='Enter')confirmRenameSeries()" />
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeModal('renameSeriesModal')">Annuleer</button>
+      <button class="btn btn-primary" onclick="confirmRenameSeries()">Naam opslaan</button>
+    </div>
+  </div>
+</div>
+
 <!-- Screenshot Session Import Modal -->
 <div class="modal-backdrop" id="screenshotImportModal">
   <div class="modal modal-wide">
@@ -1414,6 +1438,7 @@ function renderMain() {
         <div class="section-meta">${rounds.length} rondes · ${series.id}_2026.json</div>
       </div>
       <div class="section-actions">
+        <button class="btn btn-ghost btn-sm" onclick="showRenameSeries('${series.id}')">Naam wijzigen</button>
         <div class="tab-switcher">
           <button class="tab-btn ${tab==='calendar'?'active':''}" onclick="switchTab('calendar')">Agenda</button>
           <button class="tab-btn ${tab==='standings'?'active':''}" onclick="switchTab('standings')">Klassement</button>
@@ -2928,6 +2953,36 @@ function confirmAddSeries() {
   closeModal('addSeriesModal');
   renderSidebar();
   selectSeries(id);
+}
+
+function showRenameSeries(id = state.activeSeries) {
+  const series = state.series.find(item => item.id === id);
+  if (!series) return showStatus('Selecteer eerst een serie', 'error');
+  document.getElementById('renameSeriesId').value = series.id;
+  document.getElementById('renameSeriesIdDisplay').value = `${series.id}_2026.json`;
+  const nameInput = document.getElementById('renameSeriesName');
+  nameInput.value = series.name;
+  document.getElementById('renameSeriesModal').classList.add('show');
+  requestAnimationFrame(() => { nameInput.focus(); nameInput.select(); });
+}
+
+function confirmRenameSeries() {
+  const id = document.getElementById('renameSeriesId').value;
+  const name = document.getElementById('renameSeriesName').value.trim();
+  const series = state.series.find(item => item.id === id);
+  if (!series) return showStatus('Serie niet gevonden', 'error');
+  if (!name) return showStatus('Vul een serienaam in', 'error');
+  if (name.length > 80) return showStatus('De serienaam mag maximaal 80 tekens bevatten', 'error');
+  if (series.name === name) {
+    closeModal('renameSeriesModal');
+    return;
+  }
+  series.name = name;
+  save();
+  closeModal('renameSeriesModal');
+  renderSidebar();
+  renderMain();
+  showStatus(`✓ Serienaam gewijzigd naar ${name}`, 'success');
 }
 
 // ── Utilities ──────────────────────────────────────────────────────────────────
