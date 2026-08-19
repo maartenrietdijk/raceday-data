@@ -32,10 +32,17 @@
         "durationMinutes": 45
       },
       {
-        "id": "alms-2026-27-r01-r",
+        "id": "alms-2026-27-r01-r1",
         "name": "Race 1",
         "kind": "race",
         "date": "2026-11-14",
+        "durationMinutes": 240
+      },
+      {
+        "id": "alms-2026-27-r01-r2",
+        "name": "Race 2",
+        "kind": "race",
+        "date": "2026-11-15",
         "durationMinutes": 240
       }
     ]
@@ -45,17 +52,45 @@
     "seriesId": "alms",
     "seasonId": "2026-2027",
     "roundNumber": 2,
-    "raceName": "4 Hours of Le Castellet",
-    "circuitName": "Circuit Paul Ricard",
-    "city": "Le Castellet",
-    "country": "France",
-    "countryCode": "FR",
+    "raceName": "4 Hours of Jerez",
+    "circuitName": "Circuito de Jerez - Ángel Nieto",
+    "city": "Jerez de la Frontera",
+    "country": "Spain",
+    "countryCode": "ES",
     "sessions": [
       {
-        "id": "alms-2026-27-r02-r",
+        "id": "alms-2026-27-r02-p1",
+        "name": "Practice 1",
+        "kind": "practice",
+        "date": "2027-01-15",
+        "durationMinutes": 90
+      },
+      {
+        "id": "alms-2026-27-r02-p2",
+        "name": "Practice 2",
+        "kind": "practice",
+        "date": "2027-01-15",
+        "durationMinutes": 90
+      },
+      {
+        "id": "alms-2026-27-r02-q",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2027-01-16",
+        "durationMinutes": 45
+      },
+      {
+        "id": "alms-2026-27-r02-r1",
+        "name": "Race 1",
+        "kind": "race",
+        "date": "2027-01-16",
+        "durationMinutes": 240
+      },
+      {
+        "id": "alms-2026-27-r02-r2",
         "name": "Race 2",
         "kind": "race",
-        "date": "2026-11-15",
+        "date": "2027-01-17",
         "durationMinutes": 240
       }
     ]
@@ -65,116 +100,42 @@
     "seriesId": "alms",
     "seasonId": "2026-2027",
     "roundNumber": 3,
-    "raceName": "4 Hours of Jerez",
-    "circuitName": "Circuito de Jerez - Ángel Nieto",
-    "city": "Jerez de la Frontera",
-    "country": "Spain",
-    "countryCode": "ES",
+    "raceName": "4 Hours of Portimão",
+    "circuitName": "Autódromo Internacional do Algarve",
+    "city": "Portimão",
+    "country": "Portugal",
+    "countryCode": "PT",
     "sessions": [
       {
         "id": "alms-2026-27-r03-p1",
         "name": "Practice 1",
         "kind": "practice",
-        "date": "2027-01-15",
+        "date": "2027-02-19",
         "durationMinutes": 90
       },
       {
         "id": "alms-2026-27-r03-p2",
         "name": "Practice 2",
         "kind": "practice",
-        "date": "2027-01-15",
+        "date": "2027-02-19",
         "durationMinutes": 90
       },
       {
         "id": "alms-2026-27-r03-q",
         "name": "Qualifying",
         "kind": "qualifying",
-        "date": "2027-01-16",
-        "durationMinutes": 45
-      },
-      {
-        "id": "alms-2026-27-r03-r",
-        "name": "Race 1",
-        "kind": "race",
-        "date": "2027-01-16",
-        "durationMinutes": 240
-      }
-    ]
-  },
-  {
-    "id": "alms-2026-27-r04",
-    "seriesId": "alms",
-    "seasonId": "2026-2027",
-    "roundNumber": 4,
-    "raceName": "4 Hours of Jerez",
-    "circuitName": "Circuito de Jerez - Ángel Nieto",
-    "city": "Jerez de la Frontera",
-    "country": "Spain",
-    "countryCode": "ES",
-    "sessions": [
-      {
-        "id": "alms-2026-27-r04-r",
-        "name": "Race 2",
-        "kind": "race",
-        "date": "2027-01-17",
-        "durationMinutes": 240
-      }
-    ]
-  },
-  {
-    "id": "alms-2026-27-r05",
-    "seriesId": "alms",
-    "seasonId": "2026-2027",
-    "roundNumber": 5,
-    "raceName": "4 Hours of Portimão",
-    "circuitName": "Autódromo Internacional do Algarve",
-    "city": "Portimão",
-    "country": "Portugal",
-    "countryCode": "PT",
-    "sessions": [
-      {
-        "id": "alms-2026-27-r05-p1",
-        "name": "Practice 1",
-        "kind": "practice",
-        "date": "2027-02-19",
-        "durationMinutes": 90
-      },
-      {
-        "id": "alms-2026-27-r05-p2",
-        "name": "Practice 2",
-        "kind": "practice",
-        "date": "2027-02-19",
-        "durationMinutes": 90
-      },
-      {
-        "id": "alms-2026-27-r05-q",
-        "name": "Qualifying",
-        "kind": "qualifying",
         "date": "2027-02-20",
         "durationMinutes": 45
       },
       {
-        "id": "alms-2026-27-r05-r",
+        "id": "alms-2026-27-r03-r1",
         "name": "Race 1",
         "kind": "race",
         "date": "2027-02-20",
         "durationMinutes": 240
-      }
-    ]
-  },
-  {
-    "id": "alms-2026-27-r06",
-    "seriesId": "alms",
-    "seasonId": "2026-2027",
-    "roundNumber": 6,
-    "raceName": "4 Hours of Portimão",
-    "circuitName": "Autódromo Internacional do Algarve",
-    "city": "Portimão",
-    "country": "Portugal",
-    "countryCode": "PT",
-    "sessions": [
+      },
       {
-        "id": "alms-2026-27-r06-r",
+        "id": "alms-2026-27-r03-r2",
         "name": "Race 2",
         "kind": "race",
         "date": "2027-02-21",
