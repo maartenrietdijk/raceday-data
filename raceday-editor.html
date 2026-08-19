@@ -638,14 +638,13 @@
   [data-theme="dark"] .dashboard-card { border: 1px solid var(--border); }
   .round-card { margin-bottom: 12px; overflow: clip; }
   .round-card:hover { border-color: var(--border); }
-  .round-card.next-upcoming {
-    background: color-mix(in srgb, var(--text) 4%, var(--bg));
-    box-shadow: 0 0 0 2px color-mix(in srgb, var(--text) 18%, transparent), var(--shadow);
-  }
-  .round-card.next-upcoming .round-header { box-shadow: inset 3px 0 0 var(--text); }
+  .round-card.next-upcoming { background: var(--bg); box-shadow: var(--shadow); }
+  .round-card.next-upcoming .round-header { box-shadow: inset 6px 0 0 var(--text); }
+  .round-card.next-upcoming .round-name { flex: 0 1 auto; }
+  .round-card.next-upcoming .round-meta { margin-left: auto; }
   .next-upcoming-badge {
-    flex: 0 0 auto; padding: 5px 8px; border-radius: 999px;
-    background: var(--text); color: var(--bg); font: 700 9.5px var(--sans);
+    flex: 0 0 auto; padding: 0;
+    background: transparent; color: var(--muted); font: 700 9.5px var(--sans);
     letter-spacing: .06em; text-transform: uppercase; white-space: nowrap;
   }
   .round-header { min-height: 68px; padding: 14px 20px; gap: 14px; }
@@ -1091,6 +1090,8 @@
           <select id="instagramMode" onchange="setInstagramMode(this.value)">
             <option value="sessions">Weekendschema met tijden</option>
             <option value="day">Schema voor één dag</option>
+            <option value="seriesWeekend">Weekendschema per serie</option>
+            <option value="seriesDay">Dagschema per serie</option>
             <option value="dayNoTimes">Eén dag zonder tijden</option>
             <option value="overview">Weekendoverzicht zonder tijden</option>
           </select>
@@ -3271,6 +3272,6 @@ if (state.github.token && state.github.repo) {
 <script src="instagram-assets/logo-bundle.js?v=20260817-4"></script>
 <script src="instagram-assets/logo-overrides.js?v=20260817-1"></script>
 <script src="instagram-assets/flag-bundle.js?v=20260817-1"></script>
-<script src="instagram-generator.js?v=20260817-29"></script>
+<script src="instagram-generator.js?v=20260819-30"></script>
 </body>
 </html>
