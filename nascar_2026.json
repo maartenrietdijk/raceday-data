@@ -1,192 +1,197 @@
 [
   {
-    "raceName": "Daytona 500",
     "id": "nascar-2026-r01",
     "seriesId": "nascar",
+    "roundNumber": 1,
+    "raceName": "Daytona 500",
+    "circuitName": "Daytona International Speedway",
+    "city": "Daytona Beach",
     "country": "United States",
     "countryCode": "US",
     "sessions": [
       {
-        "timeLocal": "13:30",
-        "name": "Race",
-        "durationMinutes": 240,
-        "date": "2026-02-15",
         "id": "nascar-2026-r01-s1",
-        "kind": "race"
+        "name": "Race",
+        "kind": "race",
+        "date": "2026-02-15",
+        "timeLocal": "13:30",
+        "durationMinutes": 240
       }
-    ],
-    "roundNumber": 1,
-    "circuitName": "Daytona International Speedway",
-    "city": "Daytona Beach"
+    ]
   },
   {
-    "raceName": "Autotrader 400",
     "id": "nascar-2026-r02",
     "seriesId": "nascar",
+    "roundNumber": 2,
+    "raceName": "Autotrader 400",
+    "circuitName": "EchoPark Speedway",
+    "city": "Hampton",
     "country": "United States",
     "countryCode": "US",
     "sessions": [
       {
-        "timeLocal": "15:00",
-        "name": "Race",
-        "durationMinutes": 240,
-        "date": "2026-02-22",
         "id": "nascar-2026-r02-s1",
-        "kind": "race"
+        "name": "Race",
+        "kind": "race",
+        "date": "2026-02-22",
+        "timeLocal": "15:00",
+        "durationMinutes": 240
       }
-    ],
-    "roundNumber": 2,
-    "circuitName": "EchoPark Speedway",
-    "city": "Hampton"
+    ]
   },
   {
-    "raceName": "DuraMAX Texas Grand Prix",
     "id": "nascar-2026-r03",
     "seriesId": "nascar",
+    "roundNumber": 3,
+    "raceName": "DuraMAX Texas Grand Prix",
+    "circuitName": "Circuit of the Americas",
+    "city": "Austin",
     "country": "United States",
     "countryCode": "US",
     "sessions": [
       {
-        "timeLocal": "15:30",
-        "name": "Race",
-        "durationMinutes": 240,
-        "date": "2026-03-01",
         "id": "nascar-2026-r03-s1",
-        "kind": "race"
+        "name": "Race",
+        "kind": "race",
+        "date": "2026-03-01",
+        "timeLocal": "15:30",
+        "durationMinutes": 240
       }
-    ],
-    "roundNumber": 3,
-    "circuitName": "Circuit of the Americas",
-    "city": "Austin"
+    ]
   },
   {
-    "raceName": "Straight Talk Wireless 500",
     "id": "nascar-2026-r04",
     "seriesId": "nascar",
+    "roundNumber": 4,
+    "raceName": "Straight Talk Wireless 500",
+    "circuitName": "Phoenix Raceway",
+    "city": "Avondale",
     "country": "United States",
     "countryCode": "US",
     "sessions": [
       {
-        "timeLocal": "15:00",
-        "name": "Race",
-        "durationMinutes": 240,
-        "date": "2026-03-08",
         "id": "nascar-2026-r04-s1",
-        "kind": "race"
+        "name": "Race",
+        "kind": "race",
+        "date": "2026-03-08",
+        "timeLocal": "15:00",
+        "durationMinutes": 240
       }
-    ],
-    "roundNumber": 4,
-    "circuitName": "Phoenix Raceway",
-    "city": "Avondale"
+    ]
   },
   {
-    "raceName": "Pennzoil 400",
     "id": "nascar-2026-r05",
     "seriesId": "nascar",
-    "country": "United States",
-    "countryCode": "US",
-    "sessions": [
-      {
-        "timeLocal": "16:00",
-        "name": "Race",
-        "durationMinutes": 240,
-        "date": "2026-03-15",
-        "id": "nascar-2026-r05-s1",
-        "kind": "race"
-      }
-    ],
     "roundNumber": 5,
+    "raceName": "Pennzoil 400",
     "circuitName": "Las Vegas Motor Speedway",
-    "city": "Las Vegas"
-  },
-  {
+    "city": "Las Vegas",
+    "country": "United States",
     "countryCode": "US",
-    "roundNumber": 6,
     "sessions": [
       {
-        "durationMinutes": 240,
+        "id": "nascar-2026-r05-s1",
         "name": "Race",
-        "id": "nascar-2026-r06-s1",
-        "date": "2026-03-22",
         "kind": "race",
-        "timeLocal": "15:00"
+        "date": "2026-03-15",
+        "timeLocal": "16:00",
+        "durationMinutes": 240
       }
-    ],
-    "seriesId": "nascar",
-    "circuitName": "Darlington Raceway",
-    "raceName": "Goodyear 400",
-    "country": "United States",
+    ]
+  },
+  {
     "id": "nascar-2026-r06",
-    "city": "Darlington"
-  },
-  {
+    "seriesId": "nascar",
+    "roundNumber": 6,
+    "raceName": "Goodyear 400",
+    "circuitName": "Darlington Raceway",
+    "city": "Darlington",
+    "country": "United States",
     "countryCode": "US",
-    "roundNumber": 7,
     "sessions": [
       {
-        "durationMinutes": 240,
+        "id": "nascar-2026-r06-s1",
         "name": "Race",
-        "id": "nascar-2026-r07-s1",
-        "date": "2026-03-29",
         "kind": "race",
-        "timeLocal": "15:30"
+        "date": "2026-03-22",
+        "timeLocal": "15:00",
+        "durationMinutes": 240
       }
-    ],
-    "seriesId": "nascar",
-    "circuitName": "Martinsville Speedway",
-    "raceName": "Cook Out 400",
-    "country": "United States",
+    ]
+  },
+  {
     "id": "nascar-2026-r07",
-    "city": "Ridgeway"
+    "seriesId": "nascar",
+    "roundNumber": 7,
+    "raceName": "Cook Out 400",
+    "circuitName": "Martinsville Speedway",
+    "city": "Ridgeway",
+    "country": "United States",
+    "countryCode": "US",
+    "sessions": [
+      {
+        "id": "nascar-2026-r07-s1",
+        "name": "Race",
+        "kind": "race",
+        "date": "2026-03-29",
+        "timeLocal": "15:30",
+        "durationMinutes": 240
+      }
+    ]
   },
   {
     "id": "nascar-2026-r08",
+    "seriesId": "nascar",
     "roundNumber": 8,
+    "raceName": "Food City 500",
     "circuitName": "Bristol Motor Speedway",
+    "city": "Bristol",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
-        "durationMinutes": 60,
         "id": "nascar-2026-r08-s2",
         "name": "Practice",
-        "date": "2026-04-11",
         "kind": "practice",
-        "timeLocal": "16:30"
+        "date": "2026-04-11",
+        "timeLocal": "16:30",
+        "durationMinutes": 60
       },
       {
-        "durationMinutes": 60,
         "id": "nascar-2026-r08-s1775565875409",
         "name": "Qualifying",
-        "date": "2026-04-11",
         "kind": "qualifying",
-        "timeLocal": "17:40"
+        "date": "2026-04-11",
+        "timeLocal": "17:40",
+        "durationMinutes": 60
       },
       {
-        "durationMinutes": 240,
         "id": "nascar-2026-r08-s1",
         "name": "Race",
-        "date": "2026-04-12",
         "kind": "race",
-        "timeLocal": "15:00"
+        "date": "2026-04-12",
+        "timeLocal": "15:00",
+        "durationMinutes": 240
       }
-    ],
-    "countryCode": "US",
-    "seriesId": "nascar",
-    "raceName": "Food City 500",
-    "country": "United States",
-    "city": "Bristol"
+    ]
   },
   {
     "id": "nascar-2026-r09",
+    "seriesId": "nascar",
     "roundNumber": 9,
+    "raceName": "AdventHealth 400",
     "circuitName": "Kansas Speedway",
+    "city": "Kansas City",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
-        "name": "Practice",
-        "durationMinutes": 60,
         "id": "nascar-2026-r09-s1776086690107",
+        "name": "Practice",
         "kind": "practice",
-        "timeLocal": "16:00",
         "date": "2026-04-18",
+        "timeLocal": "16:00",
+        "durationMinutes": 60,
         "results": [
           {
             "time": "29.559",
@@ -487,12 +492,12 @@
         ]
       },
       {
-        "name": "Qualifying",
-        "durationMinutes": 60,
         "id": "nascar-2026-r09-s1776086698148",
+        "name": "Qualifying",
         "kind": "qualifying",
-        "timeLocal": "17:00",
         "date": "2026-04-18",
+        "timeLocal": "17:00",
+        "durationMinutes": 60,
         "results": [
           {
             "team": "23XI Racing",
@@ -793,12 +798,12 @@
         ]
       },
       {
-        "durationMinutes": 240,
-        "name": "Race",
         "id": "nascar-2026-r09-s1",
+        "name": "Race",
         "kind": "race",
         "date": "2026-04-19",
         "timeLocal": "14:00",
+        "durationMinutes": 240,
         "results": [
           {
             "team": "23XI Racing",
@@ -1098,33 +1103,33 @@
           }
         ]
       }
-    ],
-    "countryCode": "US",
-    "seriesId": "nascar",
-    "raceName": "AdventHealth 400",
-    "country": "United States",
-    "city": "Kansas City"
+    ]
   },
   {
     "id": "nascar-2026-r10",
+    "seriesId": "nascar",
     "roundNumber": 10,
+    "raceName": "Jack Link's 500",
     "circuitName": "Talladega Superspeedway",
+    "city": "Lincoln",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
-        "timeLocal": "10:30",
-        "date": "2026-04-25",
-        "durationMinutes": 100,
-        "kind": "qualifying",
+        "id": "nascar-2026-r10-s1776712871550",
         "name": "Qualifying",
-        "id": "nascar-2026-r10-s1776712871550"
+        "kind": "qualifying",
+        "date": "2026-04-25",
+        "timeLocal": "10:30",
+        "durationMinutes": 100
       },
       {
-        "durationMinutes": 240,
-        "date": "2026-04-26",
         "id": "nascar-2026-r10-s1",
-        "kind": "race",
-        "timeLocal": "15:00",
         "name": "Race",
+        "kind": "race",
+        "date": "2026-04-26",
+        "timeLocal": "15:00",
+        "durationMinutes": 240,
         "results": [
           {
             "number": "77",
@@ -1448,23 +1453,25 @@
           }
         ]
       }
-    ],
-    "countryCode": "US",
-    "seriesId": "nascar",
-    "raceName": "Jack Link's 500",
-    "country": "United States",
-    "city": "Lincoln"
+    ]
   },
   {
     "id": "nascar-2026-r11",
+    "seriesId": "nascar",
     "roundNumber": 11,
+    "raceName": "Würth 400",
     "circuitName": "Texas Motor Speedway",
+    "city": "Fort Worth",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
         "id": "nascar-2026-r11-s1777405696032",
         "name": "Practice",
         "kind": "practice",
         "date": "2026-05-02",
+        "timeLocal": "12:30",
+        "durationMinutes": 60,
         "results": [
           {
             "laps": "34",
@@ -1770,15 +1777,15 @@
             "interval": "+2.3653",
             "number": "66"
           }
-        ],
-        "durationMinutes": 60,
-        "timeLocal": "12:30"
+        ]
       },
       {
         "id": "nascar-2026-r11-s1777405691692",
         "name": "Qualifying",
         "kind": "qualifying",
         "date": "2026-05-02",
+        "timeLocal": "13:30",
+        "durationMinutes": 60,
         "results": [
           {
             "driver": "C. Hocevar",
@@ -2082,15 +2089,15 @@
             "laps": "0",
             "team": "Richard Childress Racing"
           }
-        ],
-        "durationMinutes": 60,
-        "timeLocal": "13:30"
+        ]
       },
       {
         "id": "nascar-2026-r11-s1",
         "name": "Race",
         "kind": "race",
         "date": "2026-05-03",
+        "timeLocal": "15:30",
+        "durationMinutes": 240,
         "results": [
           {
             "driver": "C. Elliott",
@@ -2396,25 +2403,26 @@
             "number": "20",
             "laps": "68"
           }
-        ],
-        "durationMinutes": 240,
-        "timeLocal": "15:30"
+        ]
       }
-    ],
-    "countryCode": "US",
-    "seriesId": "nascar",
-    "raceName": "Würth 400",
-    "country": "United States",
-    "city": "Fort Worth"
+    ]
   },
   {
     "id": "nascar-2026-r12",
+    "seriesId": "nascar",
     "roundNumber": 12,
+    "raceName": "Go Bowling at The Glen",
     "circuitName": "Watkins Glen International",
+    "city": "Watkins Glen",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
-        "timeLocal": "13:00",
+        "id": "nascar-2026-r12-s1",
         "name": "Practice",
+        "kind": "practice",
+        "date": "2026-05-09",
+        "timeLocal": "13:00",
         "durationMinutes": 60,
         "results": [
           {
@@ -2758,16 +2766,15 @@
             "laps": "6",
             "number": "78"
           }
-        ],
-        "kind": "practice",
-        "date": "2026-05-09",
-        "id": "nascar-2026-r12-s1"
+        ]
       },
       {
+        "id": "nascar-2026-r12-s1778161280737",
         "name": "Qualifying",
-        "durationMinutes": 50,
+        "kind": "qualifying",
         "date": "2026-05-09",
         "timeLocal": "14:10",
+        "durationMinutes": 50,
         "results": [
           {
             "team": "TrackHouse Racing",
@@ -3110,14 +3117,15 @@
             "driver": "K. Legge",
             "laps": "14"
           }
-        ],
-        "id": "nascar-2026-r12-s1778161280737",
-        "kind": "qualifying"
+        ]
       },
       {
+        "id": "nascar-2026-r12-s1778161278445",
+        "name": "Race",
         "kind": "race",
-        "timeLocal": "15:00",
         "date": "2026-05-10",
+        "timeLocal": "15:00",
+        "durationMinutes": 240,
         "results": [
           {
             "team": "TrackHouse Racing",
@@ -3460,30 +3468,27 @@
             "laps": "85",
             "team": "Team Penske"
           }
-        ],
-        "id": "nascar-2026-r12-s1778161278445",
-        "durationMinutes": 240,
-        "name": "Race"
+        ]
       }
-    ],
-    "countryCode": "US",
-    "seriesId": "nascar",
-    "raceName": "Go Bowling at The Glen",
-    "country": "United States",
-    "city": "Watkins Glen"
+    ]
   },
   {
-    "raceName": "Coca-Cola 600",
+    "id": "nascar-2026-r13",
     "seriesId": "nascar",
-    "country": "United States",
+    "roundNumber": 13,
+    "raceName": "Coca-Cola 600",
+    "circuitName": "Charlotte Motor Speedway",
     "city": "Concord",
+    "country": "United States",
     "countryCode": "US",
     "sessions": [
       {
-        "durationMinutes": 60,
         "id": "nascar-2026-r13-s1",
+        "name": "Practice",
         "kind": "practice",
+        "date": "2026-05-23",
         "timeLocal": "13:30",
+        "durationMinutes": 60,
         "results": [
           {
             "team": "Hyak Motorsports",
@@ -3835,25 +3840,23 @@
             "laps": "32",
             "team": "Garage 66"
           }
-        ],
-        "name": "Practice",
-        "date": "2026-05-23"
+        ]
       },
       {
-        "name": "Qualifying",
-        "date": "2026-05-23",
         "id": "nascar-2026-r13-s1779090573845",
+        "name": "Qualifying",
         "kind": "qualifying",
+        "date": "2026-05-23",
         "timeLocal": "14:40",
         "durationMinutes": 60
       },
       {
-        "date": "2026-05-24",
         "id": "nascar-2026-r13-s1779090571884",
-        "kind": "race",
-        "durationMinutes": 240,
         "name": "Race",
+        "kind": "race",
+        "date": "2026-05-24",
         "timeLocal": "18:00",
+        "durationMinutes": 240,
         "results": [
           {
             "driver": "D. Suarez",
@@ -4207,40 +4210,41 @@
           }
         ]
       }
-    ],
-    "id": "nascar-2026-r13",
-    "circuitName": "Charlotte Motor Speedway",
-    "roundNumber": 13
+    ]
   },
   {
+    "id": "nascar-2026-r14",
+    "seriesId": "nascar",
     "roundNumber": 14,
+    "raceName": "Cracker Barrel 400",
+    "circuitName": "Nashville Superspeedway",
     "city": "Lebanon",
     "country": "United States",
     "countryCode": "US",
-    "id": "nascar-2026-r14",
-    "circuitName": "Nashville Superspeedway",
-    "raceName": "Cracker Barrel 400",
-    "seriesId": "nascar",
     "sessions": [
       {
+        "id": "nascar-2026-r14-s1",
+        "name": "Practice",
+        "kind": "practice",
         "date": "2026-05-30",
         "timeLocal": "16:30",
-        "durationMinutes": 60,
-        "kind": "practice",
-        "name": "Practice",
-        "id": "nascar-2026-r14-s1"
+        "durationMinutes": 60
       },
       {
+        "id": "nascar-2026-r14-s1779792579022",
+        "name": "Qualifying",
+        "kind": "qualifying",
         "date": "2026-05-30",
         "timeLocal": "17:40",
-        "durationMinutes": 70,
-        "kind": "qualifying",
-        "name": "Qualifying",
-        "id": "nascar-2026-r14-s1779792579022"
+        "durationMinutes": 70
       },
       {
         "id": "nascar-2026-r14-s1779792576226",
         "name": "Race",
+        "kind": "race",
+        "date": "2026-05-31",
+        "timeLocal": "19:00",
+        "durationMinutes": 240,
         "results": [
           {
             "laps": "300",
@@ -4583,27 +4587,27 @@
             "speed": "40'51.810",
             "interval": "+229 Laps"
           }
-        ],
-        "durationMinutes": 240,
-        "date": "2026-05-31",
-        "kind": "race",
-        "timeLocal": "19:00"
+        ]
       }
     ]
   },
   {
-    "circuitName": "Michigan International Speedway",
-    "raceName": "FireKeepers Casino 400",
-    "roundNumber": 15,
-    "city": "Brooklyn",
+    "id": "nascar-2026-r15",
     "seriesId": "nascar",
+    "roundNumber": 15,
+    "raceName": "FireKeepers Casino 400",
+    "circuitName": "Michigan International Speedway",
+    "city": "Brooklyn",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
         "id": "nascar-2026-r15-s1",
+        "name": "Practice",
+        "kind": "practice",
+        "date": "2026-06-06",
         "timeLocal": "17:00",
         "durationMinutes": 70,
-        "kind": "practice",
-        "name": "Practice",
         "results": [
           {
             "laps": "19",
@@ -4901,15 +4905,15 @@
             "team": "NY Racing Team",
             "laps": "12"
           }
-        ],
-        "date": "2026-06-06"
+        ]
       },
       {
         "id": "nascar-2026-r15-s1780334049557",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-06-06",
         "timeLocal": "18:10",
         "durationMinutes": 60,
-        "kind": "qualifying",
-        "name": "Qualifying",
         "results": [
           {
             "number": "11",
@@ -5169,14 +5173,15 @@
             "driver": "J. Berry",
             "position": 37
           }
-        ],
-        "date": "2026-06-06"
+        ]
       },
       {
-        "kind": "race",
+        "id": "nascar-2026-r15-s1780334047335",
         "name": "Race",
-        "durationMinutes": 120,
+        "kind": "race",
+        "date": "2026-06-07",
         "timeLocal": "15:00",
+        "durationMinutes": 120,
         "results": [
           {
             "time": "3:13'39.196",
@@ -5510,26 +5515,26 @@
             "position": 37,
             "driver": "C. Zilisch"
           }
-        ],
-        "id": "nascar-2026-r15-s1780334047335",
-        "date": "2026-06-07"
+        ]
       }
-    ],
-    "country": "United States",
-    "id": "nascar-2026-r15",
-    "countryCode": "US"
+    ]
   },
   {
+    "id": "nascar-2026-r16",
+    "seriesId": "nascar",
     "roundNumber": 16,
     "raceName": "The Great American Getaway 400",
-    "id": "nascar-2026-r16",
+    "circuitName": "Pocono Raceway",
+    "city": "Long Pond",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
-        "timeLocal": "13:00",
         "id": "nascar-2026-r16-s1",
-        "date": "2026-06-13",
         "name": "Practice",
         "kind": "practice",
+        "date": "2026-06-13",
+        "timeLocal": "13:00",
         "durationMinutes": 60,
         "results": [
           {
@@ -5876,11 +5881,12 @@
         ]
       },
       {
-        "durationMinutes": 70,
+        "id": "nascar-2026-r16-s2",
         "name": "Qualifying",
-        "timeLocal": "14:10",
         "kind": "qualifying",
         "date": "2026-06-13",
+        "timeLocal": "14:10",
+        "durationMinutes": 70,
         "results": [
           {
             "time": "51.948",
@@ -6221,12 +6227,14 @@
             "position": 38,
             "laps": "0"
           }
-        ],
-        "id": "nascar-2026-r16-s2"
+        ]
       },
       {
+        "id": "nascar-2026-r16-s3",
         "name": "Race",
+        "kind": "race",
         "date": "2026-06-14",
+        "timeLocal": "13:00",
         "durationMinutes": 175,
         "results": [
           {
@@ -6570,25 +6578,26 @@
             "interval": "+114 Laps",
             "position": 38
           }
-        ],
-        "timeLocal": "13:00",
-        "kind": "race",
-        "id": "nascar-2026-r16-s3"
+        ]
       }
-    ],
-    "city": "Long Pond",
-    "country": "United States",
-    "seriesId": "nascar",
-    "countryCode": "US",
-    "circuitName": "Pocono Raceway"
+    ]
   },
   {
+    "id": "nascar-2026-r17",
+    "seriesId": "nascar",
     "roundNumber": 17,
     "raceName": "Anduril 250",
-    "id": "nascar-2026-r17",
+    "circuitName": "Coronado Street Course",
+    "city": "San Diego",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
+        "id": "nascar-2026-r17-s1",
+        "name": "Practice",
+        "kind": "practice",
         "date": "2026-06-19",
+        "timeLocal": "17:00",
         "durationMinutes": 90,
         "results": [
           {
@@ -6932,14 +6941,14 @@
             "number": "43",
             "driver": "E. Jones"
           }
-        ],
-        "timeLocal": "17:00",
-        "kind": "practice",
-        "name": "Practice",
-        "id": "nascar-2026-r17-s1"
+        ]
       },
       {
+        "id": "nascar-2026-r17-s1781507174964",
+        "name": "Qualifying",
+        "kind": "qualifying",
         "date": "2026-06-20",
+        "timeLocal": "14:30",
         "durationMinutes": 70,
         "results": [
           {
@@ -7253,13 +7262,15 @@
             "interval": "+1'10.955",
             "number": "51"
           }
-        ],
-        "timeLocal": "14:30",
-        "kind": "qualifying",
-        "name": "Qualifying",
-        "id": "nascar-2026-r17-s1781507174964"
+        ]
       },
       {
+        "id": "nascar-2026-r17-s1781507174480",
+        "name": "Race",
+        "kind": "race",
+        "date": "2026-06-21",
+        "timeLocal": "16:00",
+        "durationMinutes": 115,
         "results": [
           {
             "driver": "C. Heim",
@@ -7611,30 +7622,27 @@
             "number": "20",
             "speed": "1:21'48.499"
           }
-        ],
-        "id": "nascar-2026-r17-s1781507174480",
-        "date": "2026-06-21",
-        "durationMinutes": 115,
-        "name": "Race",
-        "kind": "race",
-        "timeLocal": "16:00"
+        ]
       }
-    ],
-    "city": "San Diego",
-    "country": "United States",
-    "seriesId": "nascar",
-    "countryCode": "US",
-    "circuitName": "Coronado Street Course"
+    ]
   },
   {
+    "id": "nascar-2026-r18",
+    "seriesId": "nascar",
+    "roundNumber": 18,
+    "raceName": "Toyota/Save Mart 350",
+    "circuitName": "Sonoma Raceway",
+    "city": "Sonoma",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
-        "date": "2026-06-27",
         "id": "nascar-2026-r18-s1",
-        "kind": "practice",
-        "durationMinutes": 60,
-        "timeLocal": "14:00",
         "name": "Practice",
+        "kind": "practice",
+        "date": "2026-06-27",
+        "timeLocal": "14:00",
+        "durationMinutes": 60,
         "results": [
           {
             "driver": "R. Blaney",
@@ -7962,12 +7970,12 @@
         ]
       },
       {
-        "date": "2026-06-27",
         "id": "nascar-2026-r18-s1782217866904",
-        "kind": "qualifying",
-        "durationMinutes": 50,
-        "timeLocal": "15:10",
         "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-06-27",
+        "timeLocal": "15:10",
+        "durationMinutes": 50,
         "results": [
           {
             "driver": "T. Gibbs",
@@ -8259,8 +8267,11 @@
         ]
       },
       {
-        "kind": "race",
         "id": "nascar-2026-r18-s1782217866362",
+        "name": "Race",
+        "kind": "race",
+        "date": "2026-06-28",
+        "timeLocal": "15:30",
         "durationMinutes": 240,
         "results": [
           {
@@ -8586,33 +8597,27 @@
             "position": 36,
             "laps": "106"
           }
-        ],
-        "date": "2026-06-28",
-        "timeLocal": "15:30",
-        "name": "Race"
+        ]
       }
-    ],
-    "country": "United States",
-    "city": "Sonoma",
-    "circuitName": "Sonoma Raceway",
-    "seriesId": "nascar",
-    "id": "nascar-2026-r18",
-    "roundNumber": 18,
-    "countryCode": "US",
-    "raceName": "Toyota/Save Mart 350"
+    ]
   },
   {
+    "id": "nascar-2026-r19",
+    "seriesId": "nascar",
+    "roundNumber": 19,
+    "raceName": "Chicagoland 400",
+    "circuitName": "Chicagoland Speedway",
+    "city": "Joliet",
     "country": "United States",
     "countryCode": "US",
-    "circuitName": "Chicagoland Speedway",
-    "id": "nascar-2026-r19",
     "sessions": [
       {
-        "durationMinutes": 60,
-        "kind": "practice",
         "id": "nascar-2026-r19-s1",
-        "timeLocal": "18:00",
         "name": "Practice",
+        "kind": "practice",
+        "date": "2026-07-03",
+        "timeLocal": "18:00",
+        "durationMinutes": 60,
         "results": [
           {
             "driver": "R. Herbst",
@@ -8955,15 +8960,15 @@
             "speed": "31.351",
             "position": 38
           }
-        ],
-        "date": "2026-07-03"
+        ]
       },
       {
-        "durationMinutes": 60,
-        "kind": "qualifying",
         "id": "nascar-2026-r19-s1782672251909",
-        "timeLocal": "15:00",
         "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-07-04",
+        "timeLocal": "15:00",
+        "durationMinutes": 60,
         "results": [
           {
             "driver": "D. Hamlin",
@@ -9264,13 +9269,15 @@
             "number": "71",
             "team": "Spire Motorsports"
           }
-        ],
-        "date": "2026-07-04"
+        ]
       },
       {
+        "id": "nascar-2026-r19-s1782672251450",
+        "name": "Race",
+        "kind": "race",
         "date": "2026-07-05",
         "timeLocal": "18:00",
-        "name": "Race",
+        "durationMinutes": 240,
         "results": [
           {
             "number": "19",
@@ -9613,24 +9620,27 @@
             "speed": "1.491",
             "driver": "C. Zilisch"
           }
-        ],
-        "durationMinutes": 240,
-        "kind": "race",
-        "id": "nascar-2026-r19-s1782672251450"
+        ]
       }
-    ],
-    "raceName": "Chicagoland 400",
-    "city": "Joliet",
-    "seriesId": "nascar",
-    "roundNumber": 19
+    ]
   },
   {
+    "id": "nascar-2026-r20",
+    "seriesId": "nascar",
+    "roundNumber": 20,
+    "raceName": "Quaker State 400",
+    "circuitName": "EchoPark Speedway",
+    "city": "Hampton",
     "country": "United States",
     "countryCode": "US",
-    "circuitName": "EchoPark Speedway",
-    "id": "nascar-2026-r20",
     "sessions": [
       {
+        "id": "nascar-2026-r20-s2",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-07-11",
+        "timeLocal": "16:30",
+        "durationMinutes": 90,
         "results": [
           {
             "number": "12",
@@ -9933,16 +9943,12 @@
             "team": "Garage 66",
             "number": "66"
           }
-        ],
-        "date": "2026-07-11",
-        "id": "nascar-2026-r20-s2",
-        "name": "Qualifying",
-        "durationMinutes": 90,
-        "kind": "qualifying",
-        "timeLocal": "16:30"
+        ]
       },
       {
+        "id": "nascar-2026-r20-s1",
         "name": "Race",
+        "kind": "race",
         "date": "2026-07-12",
         "timeLocal": "19:00",
         "durationMinutes": 240,
@@ -10288,45 +10294,43 @@
             "position": 38,
             "driver": "B. McLeod"
           }
-        ],
-        "id": "nascar-2026-r20-s1",
-        "kind": "race"
+        ]
       }
-    ],
-    "raceName": "Quaker State 400",
-    "city": "Hampton",
-    "roundNumber": 20,
-    "seriesId": "nascar"
+    ]
   },
   {
     "id": "nascar-2026-r21",
-    "countryCode": "US",
-    "circuitName": "North Wilkesboro Speedway",
-    "raceName": "Window World 450",
+    "seriesId": "nascar",
     "roundNumber": 21,
+    "raceName": "Window World 450",
+    "circuitName": "North Wilkesboro Speedway",
+    "city": "North Wilkesboro",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
+        "id": "nascar-2026-r21-s1",
+        "name": "Practice",
         "kind": "practice",
         "date": "2026-07-18",
         "timeLocal": "17:00",
-        "name": "Practice",
-        "durationMinutes": 60,
-        "id": "nascar-2026-r21-s1"
+        "durationMinutes": 60
       },
       {
+        "id": "nascar-2026-r21-s1783887015525",
+        "name": "Qualifying (cancelled)",
         "kind": "qualifying",
         "date": "2026-07-18",
         "timeLocal": "18:10",
-        "name": "Qualifying (cancelled)",
-        "durationMinutes": 1,
-        "id": "nascar-2026-r21-s1783887015525"
+        "durationMinutes": 1
       },
       {
+        "id": "nascar-2026-r21-s1783887015331",
+        "name": "Race",
+        "kind": "race",
+        "date": "2026-07-19",
         "timeLocal": "19:00",
         "durationMinutes": 240,
-        "id": "nascar-2026-r21-s1783887015331",
-        "date": "2026-07-19",
-        "kind": "race",
         "results": [
           {
             "position": 1,
@@ -10660,28 +10664,26 @@
             "number": "16",
             "interval": "+260 Laps"
           }
-        ],
-        "name": "Race"
+        ]
       }
-    ],
-    "country": "United States",
-    "seriesId": "nascar",
-    "city": "North Wilkesboro"
+    ]
   },
   {
     "id": "nascar-2026-r22",
-    "roundNumber": 22,
-    "countryCode": "US",
-    "country": "United States",
-    "city": "Speedway",
-    "raceName": "Brickyard 400",
     "seriesId": "nascar",
+    "roundNumber": 22,
+    "raceName": "Brickyard 400",
+    "circuitName": "Indianapolis Motor Speedway",
+    "city": "Speedway",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
+        "id": "nascar-2026-r22-s1",
         "name": "Practice",
-        "timeLocal": "13:00",
         "kind": "practice",
         "date": "2026-07-24",
+        "timeLocal": "13:00",
         "durationMinutes": 60,
         "results": [
           {
@@ -10996,11 +10998,15 @@
             "laps": "5",
             "position": 39
           }
-        ],
-        "id": "nascar-2026-r22-s1"
+        ]
       },
       {
+        "id": "nascar-2026-r22-s1784642553802",
+        "name": "Qualifying",
         "kind": "qualifying",
+        "date": "2026-07-25",
+        "timeLocal": "13:30",
+        "durationMinutes": 60,
         "results": [
           {
             "position": 1,
@@ -11352,17 +11358,12 @@
             "team": "Live Fast Motorsports",
             "laps": "1"
           }
-        ],
-        "timeLocal": "13:30",
-        "date": "2026-07-25",
-        "name": "Qualifying",
-        "id": "nascar-2026-r22-s1784642553802",
-        "durationMinutes": 60
+        ]
       },
       {
+        "id": "nascar-2026-r22-s1784642553652",
         "name": "Race",
         "kind": "race",
-        "id": "nascar-2026-r22-s1784642553652",
         "date": "2026-07-26",
         "timeLocal": "14:00",
         "durationMinutes": 30,
@@ -11719,22 +11720,25 @@
           }
         ]
       }
-    ],
-    "circuitName": "Indianapolis Motor Speedway"
+    ]
   },
   {
-    "seriesId": "nascar",
-    "raceName": "Iowa Corn 350",
-    "city": "Newton",
-    "circuitName": "Iowa Speedway",
-    "countryCode": "US",
     "id": "nascar-2026-r23",
+    "seriesId": "nascar",
+    "roundNumber": 23,
+    "raceName": "Iowa Corn 350",
+    "circuitName": "Iowa Speedway",
+    "city": "Newton",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
+        "id": "nascar-2026-r23-s1785133438308",
         "name": "Practice",
+        "kind": "practice",
+        "date": "2026-08-08",
         "timeLocal": "14:05",
         "durationMinutes": 60,
-        "date": "2026-08-08",
         "results": [
           {
             "position": 1,
@@ -12024,15 +12028,15 @@
             "driver": "C. Custer",
             "team": "Haas Factory Team"
           }
-        ],
-        "kind": "practice",
-        "id": "nascar-2026-r23-s1785133438308"
+        ]
       },
       {
         "id": "nascar-2026-r23-s1785133397032",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-08-08",
         "timeLocal": "15:10",
         "durationMinutes": 60,
-        "date": "2026-08-08",
         "results": [
           {
             "time": "134.191 mph",
@@ -12322,11 +12326,15 @@
             "driver": "C. Custer",
             "number": "41"
           }
-        ],
-        "kind": "qualifying",
-        "name": "Qualifying"
+        ]
       },
       {
+        "id": "nascar-2026-r23-s1",
+        "name": "Race",
+        "kind": "race",
+        "date": "2026-08-09",
+        "timeLocal": "15:30",
+        "durationMinutes": 240,
         "results": [
           {
             "team": "Joe Gibbs Racing",
@@ -12651,34 +12659,27 @@
             "position": 36,
             "speed": "1'15.839"
           }
-        ],
-        "date": "2026-08-09",
-        "durationMinutes": 240,
-        "name": "Race",
-        "kind": "race",
-        "timeLocal": "15:30",
-        "id": "nascar-2026-r23-s1"
+        ]
       }
-    ],
-    "roundNumber": 23,
-    "country": "United States"
+    ]
   },
   {
-    "raceName": "Cook Out 400",
-    "city": "Richmond",
-    "seriesId": "nascar",
-    "circuitName": "Richmond Raceway",
-    "roundNumber": 24,
-    "countryCode": "US",
     "id": "nascar-2026-r24",
+    "seriesId": "nascar",
+    "roundNumber": 24,
+    "raceName": "Cook Out 400",
+    "circuitName": "Richmond Raceway",
+    "city": "Richmond",
     "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
-        "durationMinutes": 60,
         "id": "nascar-2026-r24-s2",
+        "name": "Practice",
         "kind": "practice",
         "date": "2026-08-14",
         "timeLocal": "15:30",
+        "durationMinutes": 60,
         "results": [
           {
             "team": "Spire Motorsports",
@@ -13012,13 +13013,14 @@
             "interval": "+0.895",
             "speed": "23.784"
           }
-        ],
-        "name": "Practice"
+        ]
       },
       {
-        "date": "2026-08-14",
-        "kind": "qualifying",
         "id": "nascar-2026-r24-s1786353549806",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-08-14",
+        "timeLocal": "16:40",
         "durationMinutes": 60,
         "results": [
           {
@@ -13351,13 +13353,14 @@
             "laps": "0",
             "team": "Rick Ware Racing"
           }
-        ],
-        "timeLocal": "16:40",
-        "name": "Qualifying"
+        ]
       },
       {
         "id": "nascar-2026-r24-s1",
         "name": "Race",
+        "kind": "race",
+        "date": "2026-08-15",
+        "timeLocal": "19:00",
         "durationMinutes": 240,
         "results": [
           {
@@ -13692,22 +13695,27 @@
             "number": "77",
             "laps": "279"
           }
-        ],
-        "timeLocal": "19:00",
-        "date": "2026-08-15",
-        "kind": "race"
+        ]
       }
     ]
   },
   {
     "id": "nascar-2026-r25",
-    "countryCode": "US",
     "seriesId": "nascar",
+    "roundNumber": 25,
+    "raceName": "Mobil 1 301",
+    "circuitName": "New Hampshire Motor Speedway",
+    "city": "Loudon",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
         "id": "nascar-2026-r25-s1786946633751",
-        "date": "2026-08-22",
         "name": "Practice",
+        "kind": "qualifying",
+        "date": "2026-08-22",
+        "timeLocal": "10:30",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "45",
@@ -13997,15 +14005,15 @@
             "time": "127.718 mph",
             "team": "Rick Ware Racing"
           }
-        ],
-        "kind": "qualifying",
-        "durationMinutes": 60,
-        "timeLocal": "10:30"
+        ]
       },
       {
         "id": "nascar-2026-r25-s1786946661014",
-        "date": "2026-08-22",
         "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-08-22",
+        "timeLocal": "11:35",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "45",
@@ -14295,16 +14303,13 @@
             "time": "127.718 mph",
             "team": "Rick Ware Racing"
           }
-        ],
-        "kind": "qualifying",
-        "durationMinutes": 60,
-        "timeLocal": "11:35"
+        ]
       },
       {
         "id": "nascar-2026-r25-s1",
+        "name": "Race",
         "kind": "race",
         "date": "2026-08-23",
-        "name": "Race",
         "timeLocal": "14:00",
         "durationMinutes": 240,
         "results": [
@@ -14633,241 +14638,254 @@
           }
         ]
       }
-    ],
-    "country": "United States",
-    "roundNumber": 25,
-    "city": "Loudon",
-    "raceName": "Mobil 1 301",
-    "circuitName": "New Hampshire Motor Speedway"
+    ]
   },
   {
-    "city": "Daytona Beach",
-    "countryCode": "US",
+    "id": "nascar-2026-r26",
     "seriesId": "nascar",
+    "roundNumber": 26,
+    "raceName": "Coke Zero Sugar 400",
+    "circuitName": "Daytona International Speedway",
+    "city": "Daytona Beach",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
-        "id": "nascar-2026-r26-s1",
+        "id": "nascar-2026-r26-s1787574899448",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-08-28",
+        "timeLocal": "17:00",
+        "durationMinutes": 60,
+        "isOval": true
+      },
+      {
+        "id": "nascar-2026-r26-s1787574897500",
+        "name": "Race",
         "kind": "race",
         "date": "2026-08-29",
-        "name": "Race",
         "timeLocal": "19:30",
         "durationMinutes": 240
       }
-    ],
-    "country": "United States",
-    "roundNumber": 26,
-    "id": "nascar-2026-r26",
-    "raceName": "Coke Zero Sugar 400",
-    "circuitName": "Daytona International Speedway"
+    ]
   },
   {
-    "city": "Darlington",
-    "countryCode": "US",
+    "id": "nascar-2026-r27",
     "seriesId": "nascar",
+    "roundNumber": 27,
+    "raceName": "Cook Out Southern 500",
+    "circuitName": "Darlington Raceway",
+    "city": "Darlington",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
         "id": "nascar-2026-r27-s1",
+        "name": "Race",
         "kind": "race",
         "date": "2026-09-06",
-        "name": "Race",
         "timeLocal": "17:00",
         "durationMinutes": 240
       }
-    ],
-    "country": "United States",
-    "roundNumber": 27,
-    "id": "nascar-2026-r27",
-    "raceName": "Cook Out Southern 500",
-    "circuitName": "Darlington Raceway"
+    ]
   },
   {
-    "city": "Madison",
-    "countryCode": "US",
+    "id": "nascar-2026-r28",
     "seriesId": "nascar",
+    "roundNumber": 28,
+    "raceName": "Enjoy Illinois 300",
+    "circuitName": "World Wide Technology Raceway",
+    "city": "Madison",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
         "id": "nascar-2026-r28-s1",
+        "name": "Race",
         "kind": "race",
         "date": "2026-09-13",
-        "name": "Race",
         "timeLocal": "15:00",
         "durationMinutes": 240
       }
-    ],
-    "country": "United States",
-    "roundNumber": 28,
-    "id": "nascar-2026-r28",
-    "raceName": "Enjoy Illinois 300",
-    "circuitName": "World Wide Technology Raceway"
+    ]
   },
   {
-    "city": "Bristol",
-    "countryCode": "US",
+    "id": "nascar-2026-r29",
     "seriesId": "nascar",
+    "roundNumber": 29,
+    "raceName": "Bass Pro Shops Night Race",
+    "circuitName": "Bristol Motor Speedway",
+    "city": "Bristol",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
         "id": "nascar-2026-r29-s1",
+        "name": "Race",
         "kind": "race",
         "date": "2026-09-19",
-        "name": "Race",
         "timeLocal": "19:30",
         "durationMinutes": 240
       }
-    ],
-    "country": "United States",
-    "roundNumber": 29,
-    "id": "nascar-2026-r29",
-    "raceName": "Bass Pro Shops Night Race",
-    "circuitName": "Bristol Motor Speedway"
+    ]
   },
   {
-    "city": "Kansas City",
-    "countryCode": "US",
+    "id": "nascar-2026-r30",
     "seriesId": "nascar",
+    "roundNumber": 30,
+    "raceName": "Hollywood Casino 400",
+    "circuitName": "Kansas Speedway",
+    "city": "Kansas City",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
         "id": "nascar-2026-r30-s1",
+        "name": "Race",
         "kind": "race",
         "date": "2026-09-27",
-        "name": "Race",
         "timeLocal": "15:00",
         "durationMinutes": 240
       }
-    ],
-    "country": "United States",
-    "roundNumber": 30,
-    "id": "nascar-2026-r30",
-    "raceName": "Hollywood Casino 400",
-    "circuitName": "Kansas Speedway"
+    ]
   },
   {
+    "id": "nascar-2026-r31",
+    "seriesId": "nascar",
+    "roundNumber": 31,
+    "raceName": "South Point 400",
+    "circuitName": "Las Vegas Motor Speedway",
+    "city": "Las Vegas",
     "country": "United States",
     "countryCode": "US",
-    "raceName": "South Point 400",
-    "seriesId": "nascar",
-    "id": "nascar-2026-r31",
-    "city": "Las Vegas",
-    "roundNumber": 31,
     "sessions": [
       {
         "id": "nascar-2026-r31-s1",
+        "name": "Race",
         "kind": "race",
         "date": "2026-10-04",
-        "name": "Race",
         "timeLocal": "17:30",
         "durationMinutes": 240
       }
-    ],
-    "circuitName": "Las Vegas Motor Speedway"
+    ]
   },
   {
+    "id": "nascar-2026-r32",
+    "seriesId": "nascar",
+    "roundNumber": 32,
+    "raceName": "Bank of America 400",
+    "circuitName": "Charlotte Motor Speedway",
+    "city": "Concord",
     "country": "United States",
     "countryCode": "US",
-    "raceName": "Bank of America 400",
-    "seriesId": "nascar",
-    "id": "nascar-2026-r32",
-    "city": "Concord",
-    "roundNumber": 32,
     "sessions": [
       {
         "id": "nascar-2026-r32-s1",
+        "name": "Race",
         "kind": "race",
         "date": "2026-10-11",
-        "name": "Race",
         "timeLocal": "15:00",
         "durationMinutes": 240
       }
-    ],
-    "circuitName": "Charlotte Motor Speedway"
+    ]
   },
   {
+    "id": "nascar-2026-r33",
+    "seriesId": "nascar",
+    "roundNumber": 33,
+    "raceName": "Freeway Insurance 500",
+    "circuitName": "Phoenix Raceway",
+    "city": "Avondale",
     "country": "United States",
     "countryCode": "US",
-    "raceName": "Freeway Insurance 500",
-    "seriesId": "nascar",
-    "id": "nascar-2026-r33",
-    "city": "Avondale",
-    "roundNumber": 33,
     "sessions": [
       {
         "id": "nascar-2026-r33-s1",
+        "name": "Race",
         "kind": "race",
         "date": "2026-10-18",
-        "name": "Race",
+        "timeLocal": null,
         "durationMinutes": 240
       }
-    ],
-    "circuitName": "Phoenix Raceway"
+    ]
   },
   {
+    "id": "nascar-2026-r34",
+    "seriesId": "nascar",
+    "roundNumber": 34,
+    "raceName": "YellaWood 500",
+    "circuitName": "Talladega Superspeedway",
+    "city": "Lincoln",
     "country": "United States",
     "countryCode": "US",
-    "raceName": "YellaWood 500",
-    "seriesId": "nascar",
-    "id": "nascar-2026-r34",
-    "city": "Lincoln",
-    "roundNumber": 34,
     "sessions": [
       {
         "id": "nascar-2026-r34-s1",
+        "name": "Race",
         "kind": "race",
         "date": "2026-10-25",
-        "name": "Race",
         "timeLocal": "14:00",
         "durationMinutes": 240
       }
-    ],
-    "circuitName": "Talladega Superspeedway"
+    ]
   },
   {
+    "id": "nascar-2026-r35",
+    "seriesId": "nascar",
+    "roundNumber": 35,
+    "raceName": "Xfinity 500",
+    "circuitName": "Martinsville Speedway",
+    "city": "Ridgeway",
     "country": "United States",
     "countryCode": "US",
-    "raceName": "Xfinity 500",
-    "seriesId": "nascar",
-    "id": "nascar-2026-r35",
-    "city": "Ridgeway",
-    "roundNumber": 35,
     "sessions": [
       {
         "id": "nascar-2026-r35-s1",
+        "name": "Race",
         "kind": "race",
         "date": "2026-11-01",
-        "name": "Race",
+        "timeLocal": null,
         "durationMinutes": 240
       }
-    ],
-    "circuitName": "Martinsville Speedway"
+    ]
   },
   {
+    "id": "nascar-2026-r36",
+    "seriesId": "nascar",
+    "roundNumber": 36,
+    "raceName": "Straight Talk Wireless 400",
+    "circuitName": "Homestead-Miami Speedway",
+    "city": "Homestead",
     "country": "United States",
     "countryCode": "US",
-    "raceName": "Straight Talk Wireless 400",
-    "seriesId": "nascar",
-    "id": "nascar-2026-r36",
-    "city": "Homestead",
-    "roundNumber": 36,
     "sessions": [
       {
         "id": "nascar-2026-r36-s1",
+        "name": "Race",
         "kind": "race",
         "date": "2026-11-08",
-        "name": "Race",
         "timeLocal": "15:00",
         "durationMinutes": 240
       }
-    ],
-    "circuitName": "Homestead-Miami Speedway"
+    ]
   },
   {
+    "id": "nascar-2026-r37",
+    "seriesId": "nascar",
+    "roundNumber": 37,
+    "raceName": "NASCAR All-Star Race",
+    "circuitName": "Dover Motor Speedway",
+    "city": "Dover",
     "country": "United States",
     "countryCode": "US",
-    "raceName": "NASCAR All-Star Race",
-    "seriesId": "nascar",
-    "id": "nascar-2026-r37",
-    "city": "Dover",
-    "roundNumber": 37,
     "sessions": [
       {
+        "id": "nascar-2026-r37-s1",
+        "name": "Practice",
+        "kind": "practice",
+        "date": "2026-05-15",
+        "timeLocal": "15:00",
+        "durationMinutes": 60,
         "results": [
           {
             "time": "157.950 mph",
@@ -15157,21 +15175,15 @@
             "laps": "31",
             "time": "152.265 mph"
           }
-        ],
-        "kind": "practice",
-        "durationMinutes": 60,
-        "date": "2026-05-15",
-        "name": "Practice",
-        "timeLocal": "15:00",
-        "id": "nascar-2026-r37-s1"
+        ]
       },
       {
-        "date": "2026-05-16",
-        "name": "Qualifying",
-        "timeLocal": "12:00",
         "id": "nascar-2026-r37-s1778503585265",
-        "durationMinutes": 60,
+        "name": "Qualifying",
         "kind": "qualifying",
+        "date": "2026-05-16",
+        "timeLocal": "12:00",
+        "durationMinutes": 60,
         "results": [
           {
             "driver": "D. Hamlin",
@@ -15491,11 +15503,12 @@
         ]
       },
       {
+        "id": "nascar-2026-r37-s1779044731035",
+        "name": "Race",
         "kind": "race",
+        "date": "2026-05-17",
         "timeLocal": "13:00",
         "durationMinutes": 180,
-        "name": "Race",
-        "date": "2026-05-17",
         "results": [
           {
             "driver": "D. Hamlin",
@@ -15730,10 +15743,8 @@
             "driver": "K. Larson",
             "laps": "134"
           }
-        ],
-        "id": "nascar-2026-r37-s1779044731035"
+        ]
       }
-    ],
-    "circuitName": "Dover Motor Speedway"
+    ]
   }
 ]
