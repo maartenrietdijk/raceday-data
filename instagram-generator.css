@@ -105,7 +105,7 @@ body, button, input, select, textarea { font-family: 'Inter', sans-serif; }
 }
 .instagram-visibility-controls {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 4px;
   padding: 3px;
   border: 1px solid rgba(255,255,255,.08);
@@ -118,7 +118,8 @@ body, button, input, select, textarea { font-family: 'Inter', sans-serif; }
   border-radius: 8px;
   background: transparent;
   color: #777781;
-  font: 650 11px 'Inter', sans-serif;
+  padding: 0 6px;
+  font: 650 10px 'Inter', sans-serif;
   cursor: pointer;
 }
 .instagram-visibility-controls button.active {

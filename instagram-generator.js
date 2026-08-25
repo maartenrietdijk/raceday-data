@@ -5,8 +5,10 @@
   const WIDTH = 1080;
   const HEIGHT = 1350;
   const DISPLAY_ZONE = 'Europe/Amsterdam';
-  const MAX_SESSIONS_PER_SLIDE = 8;
-  const CONTENT_TOP = 286;
+  const DEFAULT_MAX_SESSIONS_PER_SLIDE = 8;
+  const COMPACT_MAX_SESSIONS_PER_SLIDE = 9;
+  const DEFAULT_CONTENT_TOP = 286;
+  const COMPACT_CONTENT_TOP = 246;
   const CONTENT_BOTTOM = 1194;
   const ROW_HEIGHT = 96;
   const GROUP_HEADER_HEIGHT = 64;
@@ -40,7 +42,7 @@
     allSessions: [], selectedIds: new Set(), slides: [], slideIndex: 0,
     images: new Map(), warnings: [], weekend: null, sourceWarningCount: 0,
     assetLoadComplete: false, mode: 'sessions', selectedDay: '', displayItems: [],
-    title: 'Upcoming races', showTitle: true, showDate: true,
+    title: 'Upcoming races', showTitle: true, showDate: true, showTopMeta: true,
     seriesOrder: [], draggedSeriesId: '', logoScales: {}, controlTab: 'sessions',
   };
 
@@ -219,6 +221,14 @@
 
   // ── Slide distribution ────────────────────────────────────────────────────
 
+  function contentTop() {
+    return instagramState.showTopMeta ? DEFAULT_CONTENT_TOP : COMPACT_CONTENT_TOP;
+  }
+
+  function maxSessionsPerSlide() {
+    return instagramState.showTopMeta ? DEFAULT_MAX_SESSIONS_PER_SLIDE : COMPACT_MAX_SESSIONS_PER_SLIDE;
+  }
+
   function buildSlides(selected) {
     if (!selected.length) return [];
     const groups = [];
@@ -233,9 +243,9 @@
       let itemIndex = 0;
       while (itemIndex < group.items.length) {
         const gap = slide.groups.length ? GROUP_GAP : 0;
-        const availableHeight = CONTENT_BOTTOM - CONTENT_TOP - slide.height - gap - GROUP_HEADER_HEIGHT - GROUP_BOTTOM_PADDING;
+        const availableHeight = CONTENT_BOTTOM - contentTop() - slide.height - gap - GROUP_HEADER_HEIGHT - GROUP_BOTTOM_PADDING;
         const availableCount = Math.min(
-          MAX_SESSIONS_PER_SLIDE - slide.count,
+          maxSessionsPerSlide() - slide.count,
           Math.max(0, Math.floor(availableHeight / ROW_HEIGHT)),
         );
         if (!availableCount) {
@@ -276,13 +286,14 @@
 
   function buildOverviewSlides(items) {
     const slides = [];
-    for (let index = 0; index < items.length; index += MAX_SESSIONS_PER_SLIDE) {
+    const capacity = maxSessionsPerSlide();
+    for (let index = 0; index < items.length; index += capacity) {
       slides.push({ groups: [{
         dayKey: instagramState.weekend.start,
-        items: items.slice(index, index + MAX_SESSIONS_PER_SLIDE),
+        items: items.slice(index, index + capacity),
         continuation: index > 0,
         overview: true,
-      }], count: Math.min(MAX_SESSIONS_PER_SLIDE, items.length - index) });
+      }], count: Math.min(capacity, items.length - index) });
     }
     return slides;
   }
@@ -482,11 +493,13 @@
     drawBrandIcon(ctx, 68, 56, 58, 15);
     ctx.fillStyle = '#ffffff'; ctx.font = '650 25px Inter, sans-serif';
     ctx.fillText('RaceDay', 143, 93);
-    ctx.fillStyle = '#ff3045'; ctx.font = '650 18px Inter, sans-serif'; ctx.textAlign = 'right';
-    ctx.fillText(`Race week ${isoWeek(instagramState.weekend.start)}`, 1008, 81);
-    if (totalSlides > 1) {
-      ctx.fillStyle = '#7f7f87'; ctx.font = '550 16px Inter, sans-serif';
-      ctx.fillText(`${slideNumber} of ${totalSlides}`, 1008, 111);
+    if (instagramState.showTopMeta) {
+      ctx.fillStyle = '#ff3045'; ctx.font = '650 18px Inter, sans-serif'; ctx.textAlign = 'right';
+      ctx.fillText(`Race week ${isoWeek(instagramState.weekend.start)}`, 1008, 81);
+      if (totalSlides > 1) {
+        ctx.fillStyle = '#7f7f87'; ctx.font = '550 16px Inter, sans-serif';
+        ctx.fillText(`${slideNumber} of ${totalSlides}`, 1008, 111);
+      }
     }
     ctx.textAlign = 'left'; ctx.fillStyle = '#ffffff';
     const postTitle = instagramState.title || 'Upcoming races';
@@ -510,7 +523,7 @@
       const badgeHeight = 40, badgePadding = 15, clockSize = 16, badgeGap = 10;
       ctx.font = '550 17px Inter, sans-serif';
       const badgeWidth = Math.ceil(ctx.measureText(zoneText).width + (badgePadding * 2) + clockSize + badgeGap);
-      const badgeX = 1008 - badgeWidth, badgeY = 199;
+      const badgeX = 1008 - badgeWidth, badgeY = instagramState.showTopMeta ? 199 : 65;
       const badgeFill = ctx.createLinearGradient(badgeX, badgeY, badgeX, badgeY + badgeHeight);
       badgeFill.addColorStop(0, 'rgba(28,25,27,.92)'); badgeFill.addColorStop(1, 'rgba(13,12,14,.92)');
       fillRoundRect(ctx, badgeX, badgeY, badgeWidth, badgeHeight, PANEL_RADIUS, badgeFill);
@@ -521,7 +534,7 @@
       ctx.fillText(zoneText, badgeX + badgePadding + clockSize + badgeGap, badgeY + badgeHeight / 2 + .5);
       ctx.textBaseline = 'alphabetic';
     }
-    ctx.fillStyle = 'rgba(255,255,255,.09)'; ctx.fillRect(68, 260, 944, 1);
+    ctx.fillStyle = 'rgba(255,255,255,.09)'; ctx.fillRect(68, instagramState.showTopMeta ? 260 : 236, 944, 1);
   }
 
   function drawLogo(ctx, item, x, y, width, height) {
@@ -645,7 +658,7 @@
       ctx.fillStyle = '#fff';ctx.font='650 38px Inter, sans-serif';ctx.textAlign='center';ctx.fillText('No sessions selected', WIDTH/2, 650);
       ctx.fillStyle='#92929d';ctx.font='500 22px Inter, sans-serif';ctx.fillText('Select at least one session to create a post.', WIDTH/2, 692);
     } else {
-      let y = CONTENT_TOP;
+      let y = contentTop();
       slide.groups.forEach((group, groupIndex) => { if (groupIndex) y += GROUP_GAP; y = drawDayGroup(ctx, group, y, ROW_HEIGHT); });
     }
     drawFooter(ctx, index + 1, totalSlides);
@@ -871,15 +884,18 @@
   function toggleInstagramHeaderPart(part) {
     if (part === 'title') instagramState.showTitle = !instagramState.showTitle;
     else if (part === 'date') instagramState.showDate = !instagramState.showDate;
+    else if (part === 'topMeta') instagramState.showTopMeta = !instagramState.showTopMeta;
     else return;
     updateHeaderVisibilityControls();
-    renderSlide();
+    if (part === 'topMeta') rebuildSlides();
+    else renderSlide();
   }
 
   function updateHeaderVisibilityControls() {
     const titleButton = document.getElementById('instagramTitleVisibility');
     const dateButton = document.getElementById('instagramDateVisibility');
-    [[titleButton, instagramState.showTitle], [dateButton, instagramState.showDate]].forEach(([button, visible]) => {
+    const topMetaButton = document.getElementById('instagramTopMetaVisibility');
+    [[titleButton, instagramState.showTitle], [dateButton, instagramState.showDate], [topMetaButton, instagramState.showTopMeta]].forEach(([button, visible]) => {
       button?.classList.toggle('active', visible);
       button?.setAttribute('aria-pressed', String(visible));
     });
@@ -907,6 +923,7 @@
     instagramState.title = 'Upcoming races';
     instagramState.showTitle = true;
     instagramState.showDate = true;
+    instagramState.showTopMeta = true;
     const presentSeries = new Set(result.sessions.map(item => item.seriesId));
     instagramState.seriesOrder = (state.series || []).map(series => series.id).filter(id => presentSeries.has(id));
     instagramState.draggedSeriesId = '';
