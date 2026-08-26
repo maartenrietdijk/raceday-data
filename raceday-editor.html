@@ -559,6 +559,10 @@
     gap: 10px; min-height: 42px; margin: 0 0 2px; padding: 9px 9px;
     border-radius: 3px; color: var(--text2); transition: background .15s, color .15s, transform .15s;
   }
+  button.series-item {
+    width: 100%; border: 0; background: transparent; appearance: none; -webkit-appearance: none;
+    color: var(--text2); font: inherit; text-align: left; -webkit-tap-highlight-color: transparent;
+  }
   .series-item:hover { background: var(--bg2); color: var(--text); }
   .series-item.active { background: var(--accent); color: var(--accent-fg); }
   .series-item.active::before { display: none; }
@@ -569,8 +573,6 @@
   .series-count { color: inherit; opacity: .6; font: 500 10px var(--sans); }
   .series-grip { color: inherit; opacity: .35; cursor: grab; font-size: 13px; user-select: none; }
   .series-grip:active { cursor: grabbing; }
-  .series-mobile-order { display: none; align-items: center; gap: 2px; }
-  .series-mobile-order button { width: 34px; height: 34px; border: 0; border-radius: 3px; background: var(--bg2); color: var(--text); }
   .sidebar-dashboard { margin: 0 10px 8px; }
   .sidebar-dashboard .series-item { padding: 10px 12px; }
   .sidebar-footer {
@@ -638,15 +640,6 @@
   [data-theme="dark"] .dashboard-card { border: 1px solid var(--border); }
   .round-card { margin-bottom: 12px; overflow: clip; }
   .round-card:hover { border-color: var(--border); }
-  .round-card.next-upcoming { background: var(--bg); box-shadow: var(--shadow); }
-  .round-card.next-upcoming .round-header { box-shadow: inset 6px 0 0 var(--text); }
-  .round-card.next-upcoming .round-name { flex: 0 1 auto; }
-  .round-card.next-upcoming .round-meta { margin-left: auto; }
-  .next-upcoming-badge {
-    flex: 0 0 auto; padding: 0;
-    background: transparent; color: var(--muted); font: 700 9.5px var(--sans);
-    letter-spacing: .06em; text-transform: uppercase; white-space: nowrap;
-  }
   .round-header { min-height: 68px; padding: 14px 20px; gap: 14px; }
   .round-num { min-width: 38px; padding: 4px 7px; border: 0; border-radius: 3px; background: var(--bg2); color: var(--muted); font: 600 10.5px var(--sans); }
   .round-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 14.5px; font-weight: 600; }
@@ -710,6 +703,13 @@
   .event-row { display: grid; grid-template-columns: 54px 10px minmax(0, 1fr) auto; gap: 14px; align-items: center; min-height: 76px; padding: 12px 20px; border-bottom: 1px solid var(--border2); cursor: pointer; transition: background .12s; }
   .event-row:last-child { border-bottom: 0; }
   .event-row:hover { background: var(--bg2); }
+  .event-row.is-next {
+    background: linear-gradient(90deg, color-mix(in srgb, var(--red) 10%, transparent), transparent 72%);
+    box-shadow: inset 3px 0 0 var(--red);
+  }
+  .event-row.is-next:hover {
+    background: linear-gradient(90deg, color-mix(in srgb, var(--red) 14%, transparent), var(--bg2) 78%);
+  }
   .event-date { text-align: center; }
   .event-day { font-size: 20px; line-height: 1; font-weight: 700; letter-spacing: -.04em; }
   .event-month { margin-top: 3px; color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
@@ -817,10 +817,9 @@
     .sidebar-overlay { z-index: 180; background: rgba(0,0,0,.48); backdrop-filter: blur(3px); }
     .sidebar-close { display: inline-flex; }
     .sidebar-brand { display: flex; align-items: flex-start; justify-content: space-between; padding-top: 20px; }
-    .series-mobile-order { display: flex; }
-    .series-mobile-order button { width: 44px; height: 44px; }
     .series-count, .series-grip { display: none; }
-    .series-item { min-height: 54px; }
+    .series-item { min-height: 54px; touch-action: manipulation; }
+    .series-item:active { background: var(--bg2); }
     .main { margin-left: 0; }
     .main-inner { width: 100%; padding: 94px 16px calc(48px + env(safe-area-inset-bottom)); }
     .section-heading { align-items: stretch; flex-direction: column; gap: 16px; }
@@ -895,7 +894,7 @@
     *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
   }
 </style>
-<link rel="stylesheet" href="instagram-generator.css?v=20260819-11">
+<link rel="stylesheet" href="instagram-generator.css?v=20260825-12">
 </head>
 <body>
 
@@ -1086,12 +1085,15 @@
         <div class="instagram-format-controls">
           <label for="instagramPostTitle">Titel in de post</label>
           <input id="instagramPostTitle" type="text" value="Upcoming races" maxlength="42" autocomplete="off" oninput="setInstagramTitle(this.value)" placeholder="Upcoming races">
+          <div class="instagram-visibility-controls" role="group" aria-label="Zichtbare koponderdelen">
+            <button class="active" id="instagramTitleVisibility" type="button" aria-pressed="true" onclick="toggleInstagramHeaderPart('title')">Titel</button>
+            <button class="active" id="instagramDateVisibility" type="button" aria-pressed="true" onclick="toggleInstagramHeaderPart('date')">Datum</button>
+            <button class="active" id="instagramTopMetaVisibility" type="button" aria-pressed="true" onclick="toggleInstagramHeaderPart('topMeta')">Raceweek + pagina</button>
+          </div>
           <label for="instagramMode">Type overzicht</label>
           <select id="instagramMode" onchange="setInstagramMode(this.value)">
             <option value="sessions">Weekendschema met tijden</option>
             <option value="day">Schema voor één dag</option>
-            <option value="seriesWeekend">Weekendschema per serie</option>
-            <option value="seriesDay">Dagschema per serie</option>
             <option value="dayNoTimes">Eén dag zonder tijden</option>
             <option value="overview">Weekendoverzicht zonder tijden</option>
           </select>
@@ -1100,10 +1102,9 @@
         </div>
         <div class="instagram-series-order-wrap">
           <div class="instagram-series-order-heading">
-            <strong id="instagramSeriesControlTitle">Volgorde series</strong>
-            <span id="instagramSeriesControlHint">Sleep of gebruik de pijlen</span>
+            <strong>Volgorde series</strong>
+            <span>Sleep of gebruik de pijlen</span>
           </div>
-          <select class="instagram-series-picker" id="instagramSeriesPicker" onchange="setInstagramSeries(this.value)" aria-label="Kies serie"></select>
           <div class="instagram-series-order" id="instagramSeriesOrder"></div>
         </div>
         <div class="instagram-control-panel active" id="instagramSessionsPanel">
@@ -1525,18 +1526,15 @@ function renderSidebar() {
     const rounds = (state.data[s.id] || []).length;
     const active = s.id === state.activeSeries ? ' active' : '';
     return `
-      <div class="series-item${active}" onclick="selectSeries('${s.id}')"
+      <button type="button" class="series-item${active}" onclick="selectSeries('${s.id}')"
+        aria-label="Open ${esc(s.name)}"
         ondragover="dragSeriesOver(event)" ondrop="dragSeriesDrop(event,${i})">
         <span class="series-grip" draggable="true" title="Sleep om te sorteren"
           onclick="event.stopPropagation()" ondragstart="dragSeriesStart(event,${i})" ondragend="dragSeriesEnd()">⠿</span>
         <div class="series-dot" style="background:${s.color}"></div>
         <span class="series-name">${esc(s.name)}</span>
         <span class="series-count">${rounds}</span>
-        <span class="series-mobile-order">
-          <button onclick="event.stopPropagation();moveSeries(${i},${i-1})" aria-label="${esc(s.name)} omhoog" ${i === 0 ? 'disabled' : ''}>↑</button>
-          <button onclick="event.stopPropagation();moveSeries(${i},${i+1})" aria-label="${esc(s.name)} omlaag" ${i === state.series.length-1 ? 'disabled' : ''}>↓</button>
-        </span>
-      </div>`;
+      </button>`;
   }).join('');
   if (!filtered.length) list.innerHTML = '<div class="empty compact"><p>Geen series gevonden.</p></div>';
   document.getElementById('seriesTotal').textContent = `${state.series.length} series`;
@@ -1622,7 +1620,6 @@ function renderMain() {
     return;
   }
   const rounds = editableRounds(series.id);
-  const nextRoundIndex = nextUpcomingRoundIndex(rounds);
   const selectedFilename = activeCalendarFilename(series.id);
   const calendarFiles = calendarFilesForSeries(series.id);
   const tab = state.activeTab || 'calendar';
@@ -1668,7 +1665,7 @@ function renderMain() {
                 <h3>Nog geen rondes</h3>
                 <p>Voeg de eerste ronde toe om deze kalender op te bouwen.</p>
                </div>`
-            : rounds.map((r, i) => renderRound(r, i, series, i === nextRoundIndex)).join('')}
+            : rounds.map((r, i) => renderRound(r, i, series)).join('')}
         </div>
       ` : renderStandingsTab(series)}
     </div>
@@ -1687,15 +1684,6 @@ function roundDateRange(round) {
   const dates = (round.sessions || []).map(sessionDateValue).filter(Boolean).sort();
   if (!dates.length) return null;
   return { start: dates[0], end: dates[dates.length - 1] };
-}
-
-function nextUpcomingRoundIndex(rounds) {
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  return (rounds || [])
-    .map((round, index) => ({ index, range: roundDateRange(round) }))
-    .filter(item => item.range && dateAtMidnight(item.range.end) >= today)
-    .sort((a, b) => a.range.start.localeCompare(b.range.start))[0]?.index ?? -1;
 }
 
 function dateAtMidnight(value) {
@@ -1733,9 +1721,9 @@ function eventRangeLabel(event) {
   return `${format.format(dateAtMidnight(event.start)).replace('.', '')} – ${format.format(dateAtMidnight(event.end)).replace('.', '')}`;
 }
 
-function renderEventRow(event) {
+function renderEventRow(event, highlighted = false) {
   return `
-    <div class="event-row" onclick="selectSeries('${event.series.id}')">
+    <div class="event-row${highlighted ? ' is-next' : ''}" onclick="selectSeries('${event.series.id}')">
       <div class="event-date">
         <div class="event-day">${formatEventDate(event.start, 'day')}</div>
         <div class="event-month">${formatEventDate(event.start, 'month')}</div>
@@ -1783,7 +1771,7 @@ function renderDashboard() {
               <button class="btn btn-primary btn-sm" onclick="event.stopPropagation();openInstagramGenerator()">Create Instagram post</button>
             </div>
           </div>
-          ${weekendEvents.length ? weekendEvents.map(renderEventRow).join('') : '<div class="empty compact"><h3>Geen event dit weekend</h3><p>De eerstvolgende races staan hieronder.</p></div>'}
+          ${weekendEvents.length ? weekendEvents.map(event => renderEventRow(event)).join('') : '<div class="empty compact"><h3>Geen event dit weekend</h3><p>De eerstvolgende races staan hieronder.</p></div>'}
         </section>
         <section class="dashboard-card">
           <div class="dashboard-card-header">
@@ -1792,7 +1780,7 @@ function renderDashboard() {
               <div class="dashboard-card-title">Aankomende events</div>
             </div>
           </div>
-          ${upcoming.length ? upcoming.map(renderEventRow).join('') : '<div class="empty compact"><h3>Nog geen aankomende events</h3><p>Synchroniseer met GitHub of voeg datums aan een serie toe.</p></div>'}
+          ${upcoming.length ? upcoming.map((event, index) => renderEventRow(event, index === 0)).join('') : '<div class="empty compact"><h3>Nog geen aankomende events</h3><p>Synchroniseer met GitHub of voeg datums aan een serie toe.</p></div>'}
         </section>
       </div>
       <div style="display:flex;flex-direction:column;gap:18px">
@@ -2050,11 +2038,11 @@ async function publishStandingsToGitHub() {
 
 // ── Round rendering ────────────────────────────────────────────────────────────
 
-function renderRound(r, i, series, isNextUpcoming = false) {
+function renderRound(r, i, series) {
   const sessionRows = (r.sessions || []).map((s, si) => renderSession(s, i, si)).join('');
   const supportsAutoResults = AUTO_RESULTS_SERIES.has(state.activeSeries);
   return `
-    <div class="round-card${isNextUpcoming ? ' next-upcoming' : ''}" id="round_${i}" data-round-index="${i}"
+    <div class="round-card" id="round_${i}" data-round-index="${i}"
       ondragover="dragRoundOver(event,${i})" ondrop="dragRoundDrop(event,${i})">
       <div class="round-header" onclick="toggleRound(${i})">
         <span class="round-drag-handle drag-handle" draggable="true" title="Sleep event om te verplaatsen"
@@ -2062,7 +2050,6 @@ function renderRound(r, i, series, isNextUpcoming = false) {
           onpointerdown="startPointerReorder(event,'round',0,${i})">⠿</span>
         <span class="round-num">R${r.roundNumber || i+1}</span>
         <span class="round-name">${esc(r.raceName || 'Naamloze ronde')}</span>
-        ${isNextUpcoming ? '<span class="next-upcoming-badge">Volgende event</span>' : ''}
         <span class="round-meta">${r.city ? `${esc(r.city)}, ${esc(r.country || '')}` : ''}</span>
         <div class="round-order-actions" style="display:flex;gap:2px;margin-left:8px">
           <button class="btn-icon" onclick="event.stopPropagation();moveRound(${i},${i-1})" title="Ronde omhoog" ${i === 0 ? 'disabled' : ''}>↑</button>
@@ -3273,6 +3260,6 @@ if (state.github.token && state.github.repo) {
 <script src="instagram-assets/logo-bundle.js?v=20260817-4"></script>
 <script src="instagram-assets/logo-overrides.js?v=20260817-1"></script>
 <script src="instagram-assets/flag-bundle.js?v=20260817-1"></script>
-<script src="instagram-generator.js?v=20260819-31"></script>
+<script src="instagram-generator.js?v=20260826-32"></script>
 </body>
 </html>
