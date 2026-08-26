@@ -5,10 +5,8 @@
   const WIDTH = 1080;
   const HEIGHT = 1350;
   const DISPLAY_ZONE = 'Europe/Amsterdam';
-  const DEFAULT_MAX_SESSIONS_PER_SLIDE = 8;
-  const COMPACT_MAX_SESSIONS_PER_SLIDE = 9;
-  const DEFAULT_CONTENT_TOP = 286;
-  const COMPACT_CONTENT_TOP = 246;
+  const MAX_SESSIONS_PER_SLIDE = 8;
+  const CONTENT_TOP = 286;
   const CONTENT_BOTTOM = 1194;
   const ROW_HEIGHT = 96;
   const GROUP_HEADER_HEIGHT = 64;
@@ -42,8 +40,7 @@
     allSessions: [], selectedIds: new Set(), slides: [], slideIndex: 0,
     images: new Map(), warnings: [], weekend: null, sourceWarningCount: 0,
     assetLoadComplete: false, mode: 'sessions', selectedDay: '', displayItems: [],
-    title: 'Upcoming races', showTitle: true, showDate: true, showTopMeta: true,
-    seriesOrder: [], draggedSeriesId: '', logoScales: {}, controlTab: 'sessions',
+    title: 'Upcoming races', seriesOrder: [], selectedSeriesId: '', draggedSeriesId: '', logoScales: {}, controlTab: 'sessions',
   };
 
   function loadLogoScales() {
@@ -221,14 +218,6 @@
 
   // ── Slide distribution ────────────────────────────────────────────────────
 
-  function contentTop() {
-    return instagramState.showTopMeta ? DEFAULT_CONTENT_TOP : COMPACT_CONTENT_TOP;
-  }
-
-  function maxSessionsPerSlide() {
-    return instagramState.showTopMeta ? DEFAULT_MAX_SESSIONS_PER_SLIDE : COMPACT_MAX_SESSIONS_PER_SLIDE;
-  }
-
   function buildSlides(selected) {
     if (!selected.length) return [];
     const groups = [];
@@ -243,9 +232,9 @@
       let itemIndex = 0;
       while (itemIndex < group.items.length) {
         const gap = slide.groups.length ? GROUP_GAP : 0;
-        const availableHeight = CONTENT_BOTTOM - contentTop() - slide.height - gap - GROUP_HEADER_HEIGHT - GROUP_BOTTOM_PADDING;
+        const availableHeight = CONTENT_BOTTOM - CONTENT_TOP - slide.height - gap - GROUP_HEADER_HEIGHT - GROUP_BOTTOM_PADDING;
         const availableCount = Math.min(
-          maxSessionsPerSlide() - slide.count,
+          MAX_SESSIONS_PER_SLIDE - slide.count,
           Math.max(0, Math.floor(availableHeight / ROW_HEIGHT)),
         );
         if (!availableCount) {
@@ -286,16 +275,40 @@
 
   function buildOverviewSlides(items) {
     const slides = [];
-    const capacity = maxSessionsPerSlide();
-    for (let index = 0; index < items.length; index += capacity) {
+    for (let index = 0; index < items.length; index += MAX_SESSIONS_PER_SLIDE) {
       slides.push({ groups: [{
         dayKey: instagramState.weekend.start,
-        items: items.slice(index, index + capacity),
+        items: items.slice(index, index + MAX_SESSIONS_PER_SLIDE),
         continuation: index > 0,
         overview: true,
-      }], count: Math.min(capacity, items.length - index) });
+      }], count: Math.min(MAX_SESSIONS_PER_SLIDE, items.length - index) });
     }
     return slides;
+  }
+
+  function buildSeriesSlides(items) {
+    const order = new Map(instagramState.seriesOrder.map((id, index) => [id, index]));
+    const groups = new Map();
+    items.forEach(item => {
+      if (!groups.has(item.seriesId)) groups.set(item.seriesId, []);
+      groups.get(item.seriesId).push(item);
+    });
+
+    return [...groups.entries()]
+      .sort(([left], [right]) => (order.get(left) ?? 9999) - (order.get(right) ?? 9999))
+      .flatMap(([, seriesItems]) => {
+        const sorted = [...seriesItems].sort((a, b) =>
+          a.dayKey.localeCompare(b.dayKey) ||
+          ((a.instant?.getTime() ?? Number.MAX_SAFE_INTEGER) - (b.instant?.getTime() ?? Number.MAX_SAFE_INTEGER)) ||
+          a.eventName.localeCompare(b.eventName));
+        const seriesName = sorted[0]?.seriesName || '';
+        return buildSlides(sorted).map(slide => ({
+          ...slide,
+          seriesId: sorted[0]?.seriesId || '',
+          seriesName,
+          groups: slide.groups.map(group => ({ ...group, seriesHeading: seriesName })),
+        }));
+      });
   }
 
   // ── Local logo and flag resolution ────────────────────────────────────────
@@ -486,20 +499,18 @@
   }
 
   function drawHeader(ctx, slideNumber, totalSlides) {
-    const headerRange = ['day', 'dayNoTimes'].includes(instagramState.mode)
+    const headerRange = ['day', 'dayNoTimes', 'seriesDay'].includes(instagramState.mode)
       ? { start: instagramState.selectedDay, end: instagramState.selectedDay }
       : instagramState.weekend;
     ctx.textBaseline = 'alphabetic'; ctx.textAlign = 'left';
     drawBrandIcon(ctx, 68, 56, 58, 15);
     ctx.fillStyle = '#ffffff'; ctx.font = '650 25px Inter, sans-serif';
     ctx.fillText('RaceDay', 143, 93);
-    if (instagramState.showTopMeta) {
-      ctx.fillStyle = '#ff3045'; ctx.font = '650 18px Inter, sans-serif'; ctx.textAlign = 'right';
-      ctx.fillText(`Race week ${isoWeek(instagramState.weekend.start)}`, 1008, 81);
-      if (totalSlides > 1) {
-        ctx.fillStyle = '#7f7f87'; ctx.font = '550 16px Inter, sans-serif';
-        ctx.fillText(`${slideNumber} of ${totalSlides}`, 1008, 111);
-      }
+    ctx.fillStyle = '#ff3045'; ctx.font = '650 18px Inter, sans-serif'; ctx.textAlign = 'right';
+    ctx.fillText(`Race week ${isoWeek(instagramState.weekend.start)}`, 1008, 81);
+    if (totalSlides > 1) {
+      ctx.fillStyle = '#7f7f87'; ctx.font = '550 16px Inter, sans-serif';
+      ctx.fillText(`${slideNumber} of ${totalSlides}`, 1008, 111);
     }
     ctx.textAlign = 'left'; ctx.fillStyle = '#ffffff';
     const postTitle = instagramState.title || 'Upcoming races';
@@ -509,11 +520,9 @@
       titleSize -= 1;
       ctx.font = `700 ${titleSize}px Inter, sans-serif`;
     }
-    if (instagramState.showTitle) ctx.fillText(truncateText(ctx, postTitle, 720), 68, 185);
-    if (instagramState.showDate) {
-      ctx.fillStyle = '#a6a6ad'; ctx.font = '500 22px Inter, sans-serif';
-      ctx.fillText(formatHeaderDates(headerRange), 72, 226);
-    }
+    ctx.fillText(truncateText(ctx, postTitle, 720), 68, 185);
+    ctx.fillStyle = '#a6a6ad'; ctx.font = '500 22px Inter, sans-serif';
+    ctx.fillText(formatHeaderDates(headerRange), 72, 226);
     const selectedZones = [...new Set(instagramState.displayItems
       .filter(item => instagramState.selectedIds.has(item.uid) && !item.isTbc && item.zone)
       .map(item => item.zone))];
@@ -523,7 +532,7 @@
       const badgeHeight = 40, badgePadding = 15, clockSize = 16, badgeGap = 10;
       ctx.font = '550 17px Inter, sans-serif';
       const badgeWidth = Math.ceil(ctx.measureText(zoneText).width + (badgePadding * 2) + clockSize + badgeGap);
-      const badgeX = 1008 - badgeWidth, badgeY = instagramState.showTopMeta ? 199 : 65;
+      const badgeX = 1008 - badgeWidth, badgeY = 199;
       const badgeFill = ctx.createLinearGradient(badgeX, badgeY, badgeX, badgeY + badgeHeight);
       badgeFill.addColorStop(0, 'rgba(28,25,27,.92)'); badgeFill.addColorStop(1, 'rgba(13,12,14,.92)');
       fillRoundRect(ctx, badgeX, badgeY, badgeWidth, badgeHeight, PANEL_RADIUS, badgeFill);
@@ -534,7 +543,7 @@
       ctx.fillText(zoneText, badgeX + badgePadding + clockSize + badgeGap, badgeY + badgeHeight / 2 + .5);
       ctx.textBaseline = 'alphabetic';
     }
-    ctx.fillStyle = 'rgba(255,255,255,.09)'; ctx.fillRect(68, instagramState.showTopMeta ? 260 : 236, 944, 1);
+    ctx.fillStyle = 'rgba(255,255,255,.09)'; ctx.fillRect(68, 260, 944, 1);
   }
 
   function drawLogo(ctx, item, x, y, width, height) {
@@ -620,13 +629,18 @@
     roundedPath(ctx, x + 2.25, y + 2.25, width - 4.5, totalHeight - 4.5, PANEL_RADIUS - 2.25); ctx.stroke();
     const heading = dayHeading(group.dayKey);
     ctx.fillStyle = '#f7f7f8'; ctx.font = '650 24px Inter, sans-serif'; ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
-    const dayLabel = `${group.overview ? 'THIS WEEKEND' : heading.day.toUpperCase()}${group.continuation ? ' · CONTINUED' : ''}`;
+    const dayLabel = `${group.overview ? 'THIS WEEKEND' : group.seriesHeading ? group.seriesHeading.toUpperCase() : heading.day.toUpperCase()}${group.continuation ? ' · CONTINUED' : ''}`;
     const headingX = contentX;
     const headingY = y + 35;
     ctx.fillText(dayLabel, headingX, headingY);
     const dateX = headingX + ctx.measureText(dayLabel).width + 20;
     ctx.fillStyle = '#929299'; ctx.font = '550 20px Inter, sans-serif'; ctx.textAlign = 'left';
-    ctx.fillText(group.overview ? formatCompactDateRange(instagramState.weekend.start, instagramState.weekend.end).toUpperCase() : heading.date.toUpperCase(), dateX, headingY);
+    const groupDateLabel = group.overview
+      ? formatCompactDateRange(instagramState.weekend.start, instagramState.weekend.end).toUpperCase()
+      : group.seriesHeading
+        ? `${heading.day} · ${heading.date}`.toUpperCase()
+        : heading.date.toUpperCase();
+    ctx.fillText(groupDateLabel, dateX, headingY);
     let rowY = y + headerHeight;
     group.items.forEach(item => { drawSessionRow(ctx, item, rowY, rowHeight); rowY += rowHeight; });
     return rowY + bottomPadding;
@@ -658,7 +672,7 @@
       ctx.fillStyle = '#fff';ctx.font='650 38px Inter, sans-serif';ctx.textAlign='center';ctx.fillText('No sessions selected', WIDTH/2, 650);
       ctx.fillStyle='#92929d';ctx.font='500 22px Inter, sans-serif';ctx.fillText('Select at least one session to create a post.', WIDTH/2, 692);
     } else {
-      let y = contentTop();
+      let y = CONTENT_TOP;
       slide.groups.forEach((group, groupIndex) => { if (groupIndex) y += GROUP_GAP; y = drawDayGroup(ctx, group, y, ROW_HEIGHT); });
     }
     drawFooter(ctx, index + 1, totalSlides);
@@ -670,6 +684,19 @@
   function orderedItems(items) {
     const order = new Map(instagramState.seriesOrder.map((id, index) => [id, index]));
     return [...items].sort((a, b) => {
+      if (instagramState.mode === 'day') {
+        return ((a.instant?.getTime() ?? Number.MAX_SAFE_INTEGER) - (b.instant?.getTime() ?? Number.MAX_SAFE_INTEGER)) ||
+          ((order.get(a.seriesId) ?? 9999) - (order.get(b.seriesId) ?? 9999)) ||
+          a.eventName.localeCompare(b.eventName);
+      }
+      if (['seriesWeekend', 'seriesDay'].includes(instagramState.mode)) {
+        const seriesDifference = (order.get(a.seriesId) ?? 9999) - (order.get(b.seriesId) ?? 9999);
+        if (seriesDifference) return seriesDifference;
+        const dayDifference = a.dayKey.localeCompare(b.dayKey);
+        if (dayDifference) return dayDifference;
+        return ((a.instant?.getTime() ?? Number.MAX_SAFE_INTEGER) - (b.instant?.getTime() ?? Number.MAX_SAFE_INTEGER)) ||
+          a.eventName.localeCompare(b.eventName);
+      }
       if (instagramState.mode !== 'overview') {
         const dayDifference = a.dayKey.localeCompare(b.dayKey);
         if (dayDifference) return dayDifference;
@@ -690,6 +717,21 @@
     if (!list) return;
     const names = new Map(instagramState.allSessions.map(item => [item.seriesId, item.seriesName]));
     const ids = instagramState.seriesOrder.filter(id => names.has(id));
+    const isSeriesMode = ['seriesWeekend', 'seriesDay'].includes(instagramState.mode);
+    if (!ids.includes(instagramState.selectedSeriesId)) {
+      instagramState.selectedSeriesId = ids[0] || '';
+    }
+    const wrap = list.closest('.instagram-series-order-wrap');
+    wrap?.classList.toggle('series-mode', isSeriesMode);
+    const title = document.getElementById('instagramSeriesControlTitle');
+    const hint = document.getElementById('instagramSeriesControlHint');
+    if (title) title.textContent = isSeriesMode ? 'Selecteer serie' : 'Volgorde series';
+    if (hint) hint.textContent = isSeriesMode ? 'Alle sessies worden geselecteerd' : 'Sleep of gebruik de pijlen';
+    const picker = document.getElementById('instagramSeriesPicker');
+    if (picker) {
+      picker.innerHTML = ids.map(id => `<option value="${esc(id)}">${esc(names.get(id))}</option>`).join('');
+      picker.value = instagramState.selectedSeriesId;
+    }
     list.innerHTML = ids.map((id, index) => `<div class="instagram-series-order-item" data-series-id="${esc(id)}"
         ondragover="event.preventDefault()" ondrop="dropInstagramSeries(event, this.dataset.seriesId)">
       <div class="instagram-series-order-main">
@@ -707,7 +749,10 @@
     const list = document.getElementById('instagramLogoScaleList');
     if (!list) return;
     const names = new Map(instagramState.allSessions.map(item => [item.seriesId, item.seriesName]));
-    list.innerHTML = instagramState.seriesOrder.filter(id => names.has(id)).map(id => {
+    const ids = ['seriesWeekend', 'seriesDay'].includes(instagramState.mode)
+      ? [instagramState.selectedSeriesId].filter(id => names.has(id))
+      : instagramState.seriesOrder.filter(id => names.has(id));
+    list.innerHTML = ids.map(id => {
       const scalePercent = Math.round(logoScaleFor(id) * 100);
       return `<div class="instagram-logo-scale-item" data-series-id="${esc(id)}">
         <div class="instagram-logo-scale-title">
@@ -824,11 +869,16 @@
     const list = document.getElementById('instagramSessionList');
     if (!list) return;
     if (!instagramState.displayItems.length) { list.innerHTML = '<div class="empty compact"><h3>Geen gegevens</h3><p>Voor deze keuze zijn geen races gevonden.</p></div>'; return; }
-    let previousDay = '';
+    let previousGroup = '';
     list.innerHTML = orderedItems(instagramState.displayItems).map(item => {
       const heading = dayHeading(item.dayKey);
-      const day = instagramState.mode !== 'overview' && previousDay !== item.dayKey ? `<div class="instagram-day-label">${heading.day} · ${heading.date}</div>` : '';
-      previousDay = item.dayKey;
+      const isSeriesMode = ['seriesWeekend', 'seriesDay'].includes(instagramState.mode);
+      const groupKey = isSeriesMode ? `${item.seriesId}:${item.dayKey}` : item.dayKey;
+      const groupLabel = isSeriesMode
+        ? `${item.seriesName} · ${heading.day} · ${heading.date}`
+        : `${heading.day} · ${heading.date}`;
+      const day = instagramState.mode !== 'overview' && previousGroup !== groupKey ? `<div class="instagram-day-label">${esc(groupLabel)}</div>` : '';
+      previousGroup = groupKey;
       const primary = item.overview ? item.eventName : `${item.eventName} · ${sessionLabel(item)}`;
       const secondary = item.overview ? item.seriesName : item.seriesName;
       const trailing = item.overview ? item.dateRange : instagramState.mode === 'dayNoTimes' ? sessionLabel(item) : item.time;
@@ -842,7 +892,11 @@
 
   function rebuildSlides() {
     const selected = orderedItems(instagramState.displayItems.filter(item => instagramState.selectedIds.has(item.uid)));
-    instagramState.slides = instagramState.mode === 'overview' ? buildOverviewSlides(selected) : buildSlides(selected);
+    instagramState.slides = instagramState.mode === 'overview'
+      ? buildOverviewSlides(selected)
+      : ['seriesWeekend', 'seriesDay'].includes(instagramState.mode)
+        ? buildSeriesSlides(selected)
+        : buildSlides(selected);
     instagramState.slideIndex = Math.min(instagramState.slideIndex, Math.max(0, instagramState.slides.length - 1));
     rebuildWarnings(); renderSlide();
     const selectedLabel = document.getElementById('instagramSelectionSummary');
@@ -850,55 +904,67 @@
     if (selectedLabel) selectedLabel.textContent = `${selected.length} van ${instagramState.displayItems.length} ${noun} geselecteerd · ${Math.max(1, instagramState.slides.length)} slide${instagramState.slides.length === 1 ? '' : 's'}`;
   }
 
+  function syncInstagramDayOptions() {
+    const daySelect = document.getElementById('instagramDay');
+    if (!daySelect) return;
+    const isSeriesMode = ['seriesWeekend', 'seriesDay'].includes(instagramState.mode);
+    const source = isSeriesMode && instagramState.selectedSeriesId
+      ? instagramState.allSessions.filter(item => item.seriesId === instagramState.selectedSeriesId)
+      : instagramState.allSessions;
+    const days = [...new Set(source.map(item => item.dayKey))];
+    if (!days.includes(instagramState.selectedDay)) {
+      instagramState.selectedDay = days[0] || instagramState.weekend?.start || '';
+    }
+    daySelect.innerHTML = days.map(dayKey => {
+      const heading = dayHeading(dayKey);
+      return `<option value="${esc(dayKey)}">${esc(heading.day)} · ${esc(heading.date)}</option>`;
+    }).join('');
+    daySelect.value = instagramState.selectedDay;
+  }
+
   function refreshDisplayItems() {
+    renderSeriesOrder();
+    syncInstagramDayOptions();
     if (instagramState.mode === 'overview') {
       instagramState.displayItems = buildOverviewItems(instagramState.allSessions);
       instagramState.selectedIds = new Set(instagramState.displayItems.map(item => item.uid));
     } else {
-      instagramState.displayItems = ['day', 'dayNoTimes'].includes(instagramState.mode)
-        ? instagramState.allSessions.filter(item => item.dayKey === instagramState.selectedDay)
+      const isSeriesMode = ['seriesWeekend', 'seriesDay'].includes(instagramState.mode);
+      const seriesItems = isSeriesMode
+        ? instagramState.allSessions.filter(item => item.seriesId === instagramState.selectedSeriesId)
         : instagramState.allSessions;
-      instagramState.selectedIds = new Set(instagramState.displayItems.filter(item => item.enabledByDefault).map(item => item.uid));
+      instagramState.displayItems = ['day', 'dayNoTimes', 'seriesDay'].includes(instagramState.mode)
+        ? seriesItems.filter(item => item.dayKey === instagramState.selectedDay)
+        : seriesItems;
+      instagramState.selectedIds = new Set(instagramState.displayItems
+        .filter(item => isSeriesMode || item.enabledByDefault)
+        .map(item => item.uid));
     }
     instagramState.slideIndex = 0;
     const formatControls = document.querySelector('.instagram-format-controls');
-    formatControls?.classList.toggle('day-mode', ['day', 'dayNoTimes'].includes(instagramState.mode));
-    renderSessionControls(); rebuildSlides();
+    formatControls?.classList.toggle('day-mode', ['day', 'dayNoTimes', 'seriesDay'].includes(instagramState.mode));
+    renderLogoScaleControls(); renderSessionControls(); rebuildSlides();
   }
 
   function setInstagramMode(mode) {
-    instagramState.mode = ['sessions', 'day', 'dayNoTimes', 'overview'].includes(mode) ? mode : 'sessions';
+    instagramState.mode = ['sessions', 'day', 'seriesWeekend', 'seriesDay', 'dayNoTimes', 'overview'].includes(mode) ? mode : 'sessions';
     refreshDisplayItems();
   }
 
   function setInstagramDay(dayKey) {
     instagramState.selectedDay = dayKey;
-    if (['day', 'dayNoTimes'].includes(instagramState.mode)) refreshDisplayItems();
+    if (['day', 'dayNoTimes', 'seriesDay'].includes(instagramState.mode)) refreshDisplayItems();
+  }
+
+  function setInstagramSeries(seriesId) {
+    if (!instagramState.seriesOrder.includes(seriesId)) return;
+    instagramState.selectedSeriesId = seriesId;
+    refreshDisplayItems();
   }
 
   function setInstagramTitle(value) {
     instagramState.title = String(value || '').trimStart().slice(0, 42) || 'Upcoming races';
     renderSlide();
-  }
-
-  function toggleInstagramHeaderPart(part) {
-    if (part === 'title') instagramState.showTitle = !instagramState.showTitle;
-    else if (part === 'date') instagramState.showDate = !instagramState.showDate;
-    else if (part === 'topMeta') instagramState.showTopMeta = !instagramState.showTopMeta;
-    else return;
-    updateHeaderVisibilityControls();
-    if (part === 'topMeta') rebuildSlides();
-    else renderSlide();
-  }
-
-  function updateHeaderVisibilityControls() {
-    const titleButton = document.getElementById('instagramTitleVisibility');
-    const dateButton = document.getElementById('instagramDateVisibility');
-    const topMetaButton = document.getElementById('instagramTopMetaVisibility');
-    [[titleButton, instagramState.showTitle], [dateButton, instagramState.showDate], [topMetaButton, instagramState.showTopMeta]].forEach(([button, visible]) => {
-      button?.classList.toggle('active', visible);
-      button?.setAttribute('aria-pressed', String(visible));
-    });
   }
 
   function updateNavigation() {
@@ -921,11 +987,9 @@
     instagramState.assetLoadComplete = false;
     instagramState.mode = 'sessions';
     instagramState.title = 'Upcoming races';
-    instagramState.showTitle = true;
-    instagramState.showDate = true;
-    instagramState.showTopMeta = true;
     const presentSeries = new Set(result.sessions.map(item => item.seriesId));
     instagramState.seriesOrder = (state.series || []).map(series => series.id).filter(id => presentSeries.has(id));
+    instagramState.selectedSeriesId = instagramState.seriesOrder[0] || '';
     instagramState.draggedSeriesId = '';
     instagramState.selectedDay = result.sessions.find(item => item.enabledByDefault)?.dayKey || result.sessions[0]?.dayKey || instagramState.weekend.start;
     instagramState.displayItems = result.sessions;
@@ -937,16 +1001,7 @@
     if (modeSelect) modeSelect.value = instagramState.mode;
     const titleInput = document.getElementById('instagramPostTitle');
     if (titleInput) titleInput.value = instagramState.title;
-    updateHeaderVisibilityControls();
-    const daySelect = document.getElementById('instagramDay');
-    if (daySelect) {
-      const days = [...new Set(result.sessions.map(item => item.dayKey))];
-      daySelect.innerHTML = days.map(dayKey => {
-        const heading = dayHeading(dayKey);
-        return `<option value="${esc(dayKey)}">${esc(heading.day)} · ${esc(heading.date)}</option>`;
-      }).join('');
-      daySelect.value = instagramState.selectedDay;
-    }
+    syncInstagramDayOptions();
     document.querySelector('.instagram-format-controls')?.classList.remove('day-mode');
     renderSeriesOrder(); renderLogoScaleControls(); setInstagramControlTab('sessions'); renderSessionControls(); rebuildWarnings();
     await Promise.all([
@@ -1022,8 +1077,8 @@
   window.toggleInstagramSession = toggleInstagramSession;
   window.setInstagramMode = setInstagramMode;
   window.setInstagramDay = setInstagramDay;
+  window.setInstagramSeries = setInstagramSeries;
   window.setInstagramTitle = setInstagramTitle;
-  window.toggleInstagramHeaderPart = toggleInstagramHeaderPart;
   window.setInstagramLogoScale = setInstagramLogoScale;
   window.resetInstagramLogoScale = resetInstagramLogoScale;
   window.setInstagramControlTab = setInstagramControlTab;
