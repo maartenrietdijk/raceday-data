@@ -640,6 +640,13 @@
   [data-theme="dark"] .dashboard-card { border: 1px solid var(--border); }
   .round-card { margin-bottom: 12px; overflow: clip; }
   .round-card:hover { border-color: var(--border); }
+  .round-card.is-next {
+    background: linear-gradient(90deg, color-mix(in srgb, var(--red) 10%, var(--bg)), var(--bg) 46%);
+    border-color: color-mix(in srgb, var(--red) 30%, var(--border));
+    box-shadow: var(--shadow), inset 3px 0 0 var(--red);
+  }
+  .round-card.is-next:hover { border-color: color-mix(in srgb, var(--red) 42%, var(--border)); }
+  .round-card.is-next .round-num { background: var(--red-dim); color: var(--red); }
   .round-header { min-height: 68px; padding: 14px 20px; gap: 14px; }
   .round-num { min-width: 38px; padding: 4px 7px; border: 0; border-radius: 3px; background: var(--bg2); color: var(--muted); font: 600 10.5px var(--sans); }
   .round-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 14.5px; font-weight: 600; }
@@ -1620,6 +1627,7 @@ function renderMain() {
     return;
   }
   const rounds = editableRounds(series.id);
+  const nextRoundIndex = nextUpcomingRoundIndex(rounds);
   const selectedFilename = activeCalendarFilename(series.id);
   const calendarFiles = calendarFilesForSeries(series.id);
   const tab = state.activeTab || 'calendar';
@@ -1665,7 +1673,7 @@ function renderMain() {
                 <h3>Nog geen rondes</h3>
                 <p>Voeg de eerste ronde toe om deze kalender op te bouwen.</p>
                </div>`
-            : rounds.map((r, i) => renderRound(r, i, series)).join('')}
+            : rounds.map((r, i) => renderRound(r, i, series, i === nextRoundIndex)).join('')}
         </div>
       ` : renderStandingsTab(series)}
     </div>
@@ -1684,6 +1692,16 @@ function roundDateRange(round) {
   const dates = (round.sessions || []).map(sessionDateValue).filter(Boolean).sort();
   if (!dates.length) return null;
   return { start: dates[0], end: dates[dates.length - 1] };
+}
+
+function nextUpcomingRoundIndex(rounds) {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const next = rounds
+    .map((round, index) => ({ index, range: roundDateRange(round) }))
+    .filter(item => item.range && dateAtMidnight(item.range.end) >= today)
+    .sort((a, b) => a.range.start.localeCompare(b.range.start))[0];
+  return next?.index ?? -1;
 }
 
 function dateAtMidnight(value) {
@@ -2038,11 +2056,11 @@ async function publishStandingsToGitHub() {
 
 // ── Round rendering ────────────────────────────────────────────────────────────
 
-function renderRound(r, i, series) {
+function renderRound(r, i, series, highlighted = false) {
   const sessionRows = (r.sessions || []).map((s, si) => renderSession(s, i, si)).join('');
   const supportsAutoResults = AUTO_RESULTS_SERIES.has(state.activeSeries);
   return `
-    <div class="round-card" id="round_${i}" data-round-index="${i}"
+    <div class="round-card${highlighted ? ' is-next' : ''}" id="round_${i}" data-round-index="${i}"
       ondragover="dragRoundOver(event,${i})" ondrop="dragRoundDrop(event,${i})">
       <div class="round-header" onclick="toggleRound(${i})">
         <span class="round-drag-handle drag-handle" draggable="true" title="Sleep event om te verplaatsen"
