@@ -1406,8 +1406,10 @@ function load() {
   } catch { state.series = DEFAULT_SERIES; }
   rebuildCombinedData();
   // Load GitHub credentials separately
-  const gh = localStorage.getItem('raceday_gh');
-  if (gh) try { state.github = { ...state.github, ...JSON.parse(gh) }; } catch {}
+  try {
+    const gh = localStorage.getItem('raceday_gh');
+    if (gh) state.github = { ...state.github, ...JSON.parse(gh) };
+  } catch {}
 }
 
 async function loadFromGitHub() {
@@ -1507,17 +1509,31 @@ async function loadFromGitHub() {
 
 function save() {
   rebuildCombinedData();
-  localStorage.setItem('raceday_editor', JSON.stringify({
-    series:        state.series,
-    data:          state.data,
+  // `state.data` is derived from calendarFiles. Persisting both copies nearly
+  // doubled the payload and exhausted Web Storage much sooner on iOS.
+  const editorPayload = JSON.stringify({
+    series: state.series,
     calendarFiles: state.calendarFiles,
     activeCalendarFiles: state.activeCalendarFiles,
     calendarSeasonIds: state.calendarSeasonIds,
-    standings:     state.standings,
+    standings: state.standings,
     standingsMeta: state.standingsMeta,
     standingsUrls: state.standingsUrls,
-  }));
-  localStorage.setItem('raceday_gh', JSON.stringify(state.github));
+  });
+  try {
+    if (localStorage.getItem('raceday_editor') !== editorPayload) {
+      localStorage.setItem('raceday_editor', editorPayload);
+    }
+    const githubPayload = JSON.stringify(state.github);
+    if (localStorage.getItem('raceday_gh') !== githubPayload) {
+      localStorage.setItem('raceday_gh', githubPayload);
+    }
+    return true;
+  } catch (error) {
+    console.warn('Lokale editoropslag is niet beschikbaar:', error);
+    showStatus('Lokale opslag is vol of geblokkeerd. De wijziging blijft nu zichtbaar, maar kon niet op dit apparaat worden bewaard.', 'error');
+    return false;
+  }
 }
 
 // ── Render Sidebar ─────────────────────────────────────────────────────────────
@@ -3278,6 +3294,6 @@ if (state.github.token && state.github.repo) {
 <script src="instagram-assets/logo-bundle.js?v=20260826-5"></script>
 <script src="instagram-assets/logo-overrides.js?v=20260817-1"></script>
 <script src="instagram-assets/flag-bundle.js?v=20260826-2"></script>
-<script src="instagram-generator.js?v=20260826-33"></script>
+<script src="instagram-generator.js?v=20260826-34"></script>
 </body>
 </html>

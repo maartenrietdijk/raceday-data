@@ -39,6 +39,7 @@
   const FLAG_ROOT = 'instagram-assets/flags/4x3';
   const FLAG_DATA_URL_CACHE = new Map();
   const LOGO_SCALE_STORAGE_KEY = 'raceday_instagram_logo_scales';
+  let logoScaleStorageWarningShown = false;
 
   const instagramState = {
     allSessions: [], selectedIds: new Set(), slides: [], slideIndex: 0,
@@ -61,7 +62,15 @@
   }
 
   function saveLogoScales() {
-    localStorage.setItem(LOGO_SCALE_STORAGE_KEY, JSON.stringify(instagramState.logoScales));
+    try {
+      localStorage.setItem(LOGO_SCALE_STORAGE_KEY, JSON.stringify(instagramState.logoScales));
+    } catch (error) {
+      console.warn('Logoformaten konden niet lokaal worden bewaard:', error);
+      if (!logoScaleStorageWarningShown) {
+        logoScaleStorageWarningShown = true;
+        window.showStatus?.('Het logoformaat blijft actief, maar kon niet op dit apparaat worden onthouden.', 'error');
+      }
+    }
   }
 
   function logoScaleFor(seriesId) {
