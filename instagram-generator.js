@@ -36,7 +36,7 @@
     indynxt: 'America/New_York', imsa: 'America/New_York',
     supercars: 'Australia/Sydney',
   };
-  const FLAG_ROOT = 'instagram-assets/flags/1x1';
+  const FLAG_ROOT = 'instagram-assets/flags/4x3';
   const FLAG_DATA_URL_CACHE = new Map();
   const LOGO_SCALE_STORAGE_KEY = 'raceday_instagram_logo_scales';
 
@@ -349,7 +349,7 @@
     ]);
   }
 
-  function drawFlag(ctx, code, x, y, width = 26, height = 26) {
+  function drawFlag(ctx, code, x, y, width = 32, height = 24) {
     ctx.save();
     roundedPath(ctx, x, y, width, height, 3);
     ctx.clip();
@@ -578,7 +578,7 @@
     ctx.fillStyle = '#f7f7f8'; ctx.font = '650 24px Inter, sans-serif';
     const eventTitle = truncateText(ctx, item.eventName, item.overview ? 555 : 338);
     ctx.fillText(eventTitle, copyX, y + 46);
-    drawFlag(ctx, item.countryCode, copyX + ctx.measureText(eventTitle).width + 12, y + 24, 26, 26);
+    drawFlag(ctx, item.countryCode, copyX + ctx.measureText(eventTitle).width + 12, y + 25, 32, 24);
     ctx.fillStyle = '#8e8e96'; ctx.font = '500 16px Inter, sans-serif';
     const subline = item.circuitName && item.circuitName !== item.eventName ? `${item.seriesName} · ${item.circuitName}` : item.seriesName;
     ctx.fillText(truncateText(ctx, subline, 390), copyX, y + 70);
