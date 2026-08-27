@@ -50,6 +50,9 @@
   };
 
   function loadLogoScales() {
+    if (window.matchMedia('(max-width: 760px)').matches) {
+      return {};
+    }
     try {
       const stored = JSON.parse(localStorage.getItem(LOGO_SCALE_STORAGE_KEY) || '{}');
       return Object.fromEntries(Object.entries(stored).flatMap(([seriesId, value]) => {
@@ -62,6 +65,9 @@
   }
 
   function saveLogoScales() {
+    if (window.matchMedia('(max-width: 760px)').matches) {
+      return;
+    }
     try {
       localStorage.setItem(LOGO_SCALE_STORAGE_KEY, JSON.stringify(instagramState.logoScales));
     } catch (error) {
