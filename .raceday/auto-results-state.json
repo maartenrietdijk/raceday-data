@@ -1958,8 +1958,10 @@
     },
     "indycar-2026-r16-s1": {
       "foundAt": "2026-08-28T23:41:04.452339+00:00",
-      "completedChecks": [],
-      "lastCheckedAt": "2026-08-28T23:41:04.452339+00:00",
+      "completedChecks": [
+        "60m"
+      ],
+      "lastCheckedAt": "2026-08-29T00:51:04.915128+00:00",
       "lastResultHash": "0bb6276685b3b85c744077adfa2749782611e3346a3e0151e946995bac413604",
       "sourceUrl": "https://www.motorsport.com/indycar/results/2026/milwaukee-race-1-664380/?st=FP1"
     },
@@ -1969,6 +1971,20 @@
       "lastCheckedAt": "2026-08-29T00:21:04.014009+00:00",
       "lastResultHash": "310b63dfab4c9d13d0f2e7a2776041cec4da62836b2ce223f7ba41e4e214894d",
       "sourceUrl": "https://www.motorsport.com/nascar-os/results/2026/daytona-664509/?st=RACE"
+    },
+    "gtwca-asia-2026-r05-s1787575749956": {
+      "foundAt": "2026-08-29T00:51:04.915128+00:00",
+      "completedChecks": [],
+      "lastCheckedAt": "2026-08-29T00:51:04.915128+00:00",
+      "lastResultHash": "8a87c4e438850480d08a30b765f02948ed3ba8557dd8c58bf8c33d372b4c4b33",
+      "sourceUrl": "https://www.gt-world-challenge-asia.com/results?filter_season_id=10&filter_meeting_id=84&filter_race_id=488"
+    },
+    "gtwca-asia-2026-r05-s1787575846839": {
+      "foundAt": "2026-08-29T00:51:04.915128+00:00",
+      "completedChecks": [],
+      "lastCheckedAt": "2026-08-29T00:51:04.915128+00:00",
+      "lastResultHash": "4b716fd527a0c7339858b3ba08f992d01360c7df7702c070bd20f425300a3a61",
+      "sourceUrl": "https://www.gt-world-challenge-asia.com/results?filter_season_id=10&filter_meeting_id=84&filter_race_id=489"
     }
   }
 }
