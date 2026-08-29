@@ -702,14 +702,20 @@
         const dayDifference = a.dayKey.localeCompare(b.dayKey);
         if (dayDifference) return dayDifference;
       }
+      // Schedules that show times must be chronological across all series.
+      // Sessions without a confirmed time stay at the end of their day.
+      if (!['overview', 'dayNoTimes'].includes(instagramState.mode)) {
+        const timeDifference = (a.instant?.getTime() ?? Number.MAX_SAFE_INTEGER) -
+          (b.instant?.getTime() ?? Number.MAX_SAFE_INTEGER);
+        if (timeDifference) return timeDifference;
+      }
       const seriesDifference = (order.get(a.seriesId) ?? 9999) - (order.get(b.seriesId) ?? 9999);
       if (seriesDifference) return seriesDifference;
       if (instagramState.mode === 'overview') {
         const eventDifference = a.eventStart.localeCompare(b.eventStart);
         if (eventDifference) return eventDifference;
       }
-      return ((a.instant?.getTime() ?? Number.MAX_SAFE_INTEGER) - (b.instant?.getTime() ?? Number.MAX_SAFE_INTEGER)) ||
-        a.eventName.localeCompare(b.eventName);
+      return a.eventName.localeCompare(b.eventName) || a.uid.localeCompare(b.uid);
     });
   }
 
