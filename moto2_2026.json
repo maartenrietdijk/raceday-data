@@ -1,592 +1,593 @@
 [
   {
     "id": "moto2-2026-01",
-    "city": "Buriram",
+    "seriesId": "moto2",
     "roundNumber": 1,
+    "raceName": "Grand Prix of Thailand",
+    "circuitName": "Chang International Circuit",
+    "city": "Buriram",
+    "country": "Thailand",
+    "countryCode": "TH",
     "sessions": [
       {
-        "date": "2026-02-27",
-        "durationMinutes": 60,
-        "kind": "practice",
-        "timeLocal": "03:50",
         "id": "moto2-2026-01-fp1",
-        "name": "Free Practice 1"
-      },
-      {
+        "name": "Free Practice 1",
+        "kind": "practice",
         "date": "2026-02-27",
-        "durationMinutes": 60,
-        "kind": "practice",
-        "timeLocal": "08:05",
+        "timeLocal": "03:50",
+        "durationMinutes": 60
+      },
+      {
         "id": "moto2-2026-01-prac",
-        "name": "Practice"
-      },
-      {
-        "date": "2026-02-28",
-        "durationMinutes": 60,
+        "name": "Practice",
         "kind": "practice",
-        "timeLocal": "03:25",
+        "date": "2026-02-27",
+        "timeLocal": "08:05",
+        "durationMinutes": 60
+      },
+      {
         "id": "moto2-2026-01-fp2",
-        "name": "Free Practice 2"
-      },
-      {
+        "name": "Free Practice 2",
+        "kind": "practice",
         "date": "2026-02-28",
-        "durationMinutes": 60,
-        "kind": "qualifying",
-        "timeLocal": "07:40",
-        "id": "moto2-2026-01-qual",
-        "name": "Qualifying"
+        "timeLocal": "03:25",
+        "durationMinutes": 60
       },
       {
-        "date": "2026-03-01",
-        "durationMinutes": 60,
-        "kind": "race",
-        "timeLocal": "07:15",
+        "id": "moto2-2026-01-qual",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-02-28",
+        "timeLocal": "07:40",
+        "durationMinutes": 60
+      },
+      {
         "id": "moto2-2026-01-race",
-        "name": "Race"
+        "name": "Race",
+        "kind": "race",
+        "date": "2026-03-01",
+        "timeLocal": "07:15",
+        "durationMinutes": 60
       }
-    ],
-    "circuitName": "Chang International Circuit",
-    "seriesId": "moto2",
-    "raceName": "Grand Prix of Thailand",
-    "countryCode": "TH",
-    "country": "Thailand"
+    ]
   },
   {
     "id": "moto2-2026-02",
-    "city": "Goiânia",
+    "seriesId": "moto2",
     "roundNumber": 2,
+    "raceName": "Grand Prix of Brazil",
+    "circuitName": "Autódromo Internacional Ayrton Senna",
+    "city": "Goiânia",
+    "country": "Brazil",
+    "countryCode": "BR",
     "sessions": [
       {
-        "date": "2026-03-20",
-        "durationMinutes": 60,
-        "kind": "practice",
-        "timeLocal": "15:00",
         "id": "moto2-2026-02-fp1",
-        "name": "Free Practice 1"
-      },
-      {
+        "name": "Free Practice 1",
+        "kind": "practice",
         "date": "2026-03-20",
-        "durationMinutes": 60,
-        "kind": "practice",
-        "timeLocal": "19:05",
+        "timeLocal": "15:00",
+        "durationMinutes": 60
+      },
+      {
         "id": "moto2-2026-02-prac",
-        "name": "Practice"
-      },
-      {
-        "date": "2026-03-22",
-        "durationMinutes": 60,
+        "name": "Practice",
         "kind": "practice",
-        "timeLocal": "13:25",
+        "date": "2026-03-20",
+        "timeLocal": "19:05",
+        "durationMinutes": 60
+      },
+      {
         "id": "moto2-2026-02-fp2",
-        "name": "Free Practice 2"
+        "name": "Free Practice 2",
+        "kind": "practice",
+        "date": "2026-03-22",
+        "timeLocal": "13:25",
+        "durationMinutes": 60
       },
       {
-        "date": "2026-03-22",
-        "durationMinutes": 60,
-        "kind": "qualifying",
-        "timeLocal": "13:40",
         "id": "moto2-2026-02-qual",
-        "name": "Qualifying"
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-03-22",
+        "timeLocal": "13:40",
+        "durationMinutes": 60
       },
       {
-        "date": "2026-03-22",
-        "durationMinutes": 60,
-        "kind": "race",
-        "timeLocal": "17:25",
         "id": "moto2-2026-02-race",
-        "name": "Race"
+        "name": "Race",
+        "kind": "race",
+        "date": "2026-03-22",
+        "timeLocal": "17:25",
+        "durationMinutes": 60
       }
-    ],
-    "circuitName": "Autódromo Internacional Ayrton Senna",
-    "seriesId": "moto2",
-    "raceName": "Grand Prix of Brazil",
-    "countryCode": "BR",
-    "country": "Brazil"
+    ]
   },
   {
     "id": "moto2-2026-03",
-    "city": "Austin",
+    "seriesId": "moto2",
     "roundNumber": 3,
+    "raceName": "Grand Prix of the Americas",
+    "circuitName": "Circuit of the Americas",
+    "city": "Austin",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
-        "date": "2026-03-27",
-        "durationMinutes": 60,
-        "kind": "practice",
-        "timeLocal": "15:50",
         "id": "moto2-2026-03-fp1",
-        "name": "Free Practice 1"
-      },
-      {
+        "name": "Free Practice 1",
+        "kind": "practice",
         "date": "2026-03-27",
-        "durationMinutes": 60,
-        "kind": "practice",
-        "timeLocal": "20:05",
+        "timeLocal": "15:50",
+        "durationMinutes": 60
+      },
+      {
         "id": "moto2-2026-03-prac",
-        "name": "Practice"
-      },
-      {
-        "date": "2026-03-28",
-        "durationMinutes": 60,
+        "name": "Practice",
         "kind": "practice",
-        "timeLocal": "15:25",
+        "date": "2026-03-27",
+        "timeLocal": "20:05",
+        "durationMinutes": 60
+      },
+      {
         "id": "moto2-2026-03-fp2",
-        "name": "Free Practice 2"
-      },
-      {
+        "name": "Free Practice 2",
+        "kind": "practice",
         "date": "2026-03-28",
-        "durationMinutes": 60,
-        "kind": "qualifying",
-        "timeLocal": "19:40",
-        "id": "moto2-2026-03-qual",
-        "name": "Qualifying"
+        "timeLocal": "15:25",
+        "durationMinutes": 60
       },
       {
-        "date": "2026-03-29",
-        "durationMinutes": 60,
-        "kind": "race",
-        "timeLocal": "20:15",
+        "id": "moto2-2026-03-qual",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-03-28",
+        "timeLocal": "19:40",
+        "durationMinutes": 60
+      },
+      {
         "id": "moto2-2026-03-race",
-        "name": "Race"
+        "name": "Race",
+        "kind": "race",
+        "date": "2026-03-29",
+        "timeLocal": "20:15",
+        "durationMinutes": 60
       }
-    ],
-    "circuitName": "Circuit of the Americas",
-    "seriesId": "moto2",
-    "raceName": "Grand Prix of the Americas",
-    "countryCode": "US",
-    "country": "United States"
+    ]
   },
   {
     "id": "moto2-2026-04",
+    "seriesId": "moto2",
     "roundNumber": 4,
+    "raceName": "Grand Prix of Spain",
+    "circuitName": "Circuito de Jerez",
     "city": "Jerez de la Frontera",
+    "country": "Spain",
+    "countryCode": "ES",
     "sessions": [
       {
-        "date": "2026-04-24",
         "id": "moto2-2026-04-fp1",
-        "timeLocal": "09:50",
-        "durationMinutes": 60,
         "name": "Free Practice 1",
-        "kind": "practice"
-      },
-      {
+        "kind": "practice",
         "date": "2026-04-24",
+        "timeLocal": "09:50",
+        "durationMinutes": 60
+      },
+      {
         "id": "moto2-2026-04-prac",
-        "timeLocal": "14:05",
-        "durationMinutes": 60,
         "name": "Practice",
-        "kind": "practice"
+        "kind": "practice",
+        "date": "2026-04-24",
+        "timeLocal": "14:05",
+        "durationMinutes": 60
       },
       {
-        "date": "2026-04-25",
         "id": "moto2-2026-04-fp2",
-        "timeLocal": "09:25",
-        "durationMinutes": 60,
         "name": "Free Practice 2",
-        "kind": "practice"
-      },
-      {
+        "kind": "practice",
         "date": "2026-04-25",
-        "id": "moto2-2026-04-qual",
-        "timeLocal": "13:40",
-        "durationMinutes": 60,
-        "name": "Qualifying",
-        "kind": "qualifying"
+        "timeLocal": "09:25",
+        "durationMinutes": 60
       },
       {
-        "date": "2026-04-26",
+        "id": "moto2-2026-04-qual",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-04-25",
+        "timeLocal": "13:40",
+        "durationMinutes": 60
+      },
+      {
         "id": "moto2-2026-04-race",
-        "timeLocal": "12:15",
-        "durationMinutes": 60,
         "name": "Race",
-        "kind": "race"
+        "kind": "race",
+        "date": "2026-04-26",
+        "timeLocal": "12:15",
+        "durationMinutes": 60
       }
-    ],
-    "raceName": "Grand Prix of Spain",
-    "seriesId": "moto2",
-    "circuitName": "Circuito de Jerez",
-    "countryCode": "ES",
-    "country": "Spain"
+    ]
   },
   {
     "id": "moto2-2026-05",
-    "city": "Le Mans",
+    "seriesId": "moto2",
     "roundNumber": 5,
+    "raceName": "Grand Prix of France",
+    "circuitName": "Le Mans Circuit Bugatti",
+    "city": "Le Mans",
+    "country": "France",
+    "countryCode": "FR",
     "sessions": [
       {
         "id": "moto2-2026-05-fp1",
+        "name": "Free Practice 1",
         "kind": "practice",
         "date": "2026-05-08",
-        "name": "Free Practice 1",
         "timeLocal": "09:50",
         "durationMinutes": 60
       },
       {
         "id": "moto2-2026-05-prac",
+        "name": "Practice",
         "kind": "practice",
         "date": "2026-05-08",
-        "name": "Practice",
         "timeLocal": "14:05",
         "durationMinutes": 60
       },
       {
         "id": "moto2-2026-05-fp2",
-        "date": "2026-05-09",
         "name": "Free Practice 2",
         "kind": "practice",
+        "date": "2026-05-09",
         "timeLocal": "09:25",
         "durationMinutes": 60
       },
       {
         "id": "moto2-2026-05-qual",
-        "date": "2026-05-09",
         "name": "Qualifying",
         "kind": "qualifying",
+        "date": "2026-05-09",
         "timeLocal": "13:40",
         "durationMinutes": 60
       },
       {
         "id": "moto2-2026-05-race",
-        "date": "2026-05-10",
         "name": "Race",
         "kind": "race",
+        "date": "2026-05-10",
         "timeLocal": "12:15",
         "durationMinutes": 60
       }
-    ],
-    "raceName": "Grand Prix of France",
-    "seriesId": "moto2",
-    "circuitName": "Le Mans Circuit Bugatti",
-    "countryCode": "FR",
-    "country": "France"
+    ]
   },
   {
     "id": "moto2-2026-06",
+    "seriesId": "moto2",
     "roundNumber": 6,
+    "raceName": "Grand Prix of Catalonia",
+    "circuitName": "Circuit de Barcelona-Catalunya",
     "city": "Barcelona",
+    "country": "Spain",
+    "countryCode": "ES",
     "sessions": [
       {
+        "id": "moto2-2026-06-fp1",
         "name": "Free Practice 1",
+        "kind": "practice",
         "date": "2026-05-15",
         "timeLocal": "09:50",
-        "id": "moto2-2026-06-fp1",
-        "durationMinutes": 60,
-        "kind": "practice"
+        "durationMinutes": 60
       },
       {
+        "id": "moto2-2026-06-prac",
         "name": "Practice",
+        "kind": "practice",
         "date": "2026-05-15",
         "timeLocal": "14:05",
-        "id": "moto2-2026-06-prac",
-        "durationMinutes": 60,
-        "kind": "practice"
+        "durationMinutes": 60
       },
       {
+        "id": "moto2-2026-06-fp2",
         "name": "Free Practice 2",
+        "kind": "practice",
         "date": "2026-05-16",
         "timeLocal": "09:25",
-        "id": "moto2-2026-06-fp2",
-        "durationMinutes": 60,
-        "kind": "practice"
+        "durationMinutes": 60
       },
       {
+        "id": "moto2-2026-06-qual",
         "name": "Qualifying",
+        "kind": "qualifying",
         "date": "2026-05-16",
         "timeLocal": "13:40",
-        "id": "moto2-2026-06-qual",
-        "durationMinutes": 60,
-        "kind": "qualifying"
+        "durationMinutes": 60
       },
       {
+        "id": "moto2-2026-06-race",
         "name": "Race",
+        "kind": "race",
         "date": "2026-05-17",
         "timeLocal": "12:15",
-        "id": "moto2-2026-06-race",
-        "durationMinutes": 60,
-        "kind": "race"
+        "durationMinutes": 60
       }
-    ],
-    "raceName": "Grand Prix of Catalonia",
-    "seriesId": "moto2",
-    "circuitName": "Circuit de Barcelona-Catalunya",
-    "countryCode": "ES",
-    "country": "Spain"
+    ]
   },
   {
     "id": "moto2-2026-07",
+    "seriesId": "moto2",
     "roundNumber": 7,
+    "raceName": "Grand Prix of Italy",
+    "circuitName": "Autodromo del Mugello",
     "city": "Mugello",
+    "country": "Italy",
+    "countryCode": "IT",
     "sessions": [
       {
-        "date": "2026-05-29",
         "id": "moto2-2026-07-fp1",
-        "kind": "practice",
-        "durationMinutes": 60,
         "name": "Free Practice 1",
-        "timeLocal": "09:50"
-      },
-      {
+        "kind": "practice",
         "date": "2026-05-29",
+        "timeLocal": "09:50",
+        "durationMinutes": 60
+      },
+      {
         "id": "moto2-2026-07-prac",
-        "kind": "practice",
-        "durationMinutes": 60,
         "name": "Practice",
-        "timeLocal": "14:05"
-      },
-      {
-        "date": "2026-05-30",
-        "id": "moto2-2026-07-fp2",
         "kind": "practice",
-        "durationMinutes": 60,
+        "date": "2026-05-29",
+        "timeLocal": "14:05",
+        "durationMinutes": 60
+      },
+      {
+        "id": "moto2-2026-07-fp2",
         "name": "Free Practice 2",
-        "timeLocal": "09:25"
-      },
-      {
+        "kind": "practice",
         "date": "2026-05-30",
-        "id": "moto2-2026-07-qual",
-        "kind": "qualifying",
-        "durationMinutes": 60,
-        "name": "Qualifying",
-        "timeLocal": "13:40"
+        "timeLocal": "09:25",
+        "durationMinutes": 60
       },
       {
-        "date": "2026-05-31",
+        "id": "moto2-2026-07-qual",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-05-30",
+        "timeLocal": "13:40",
+        "durationMinutes": 60
+      },
+      {
         "id": "moto2-2026-07-race",
-        "kind": "race",
-        "durationMinutes": 60,
         "name": "Race",
-        "timeLocal": "12:15"
+        "kind": "race",
+        "date": "2026-05-31",
+        "timeLocal": "12:15",
+        "durationMinutes": 60
       }
-    ],
-    "circuitName": "Autodromo del Mugello",
-    "seriesId": "moto2",
-    "raceName": "Grand Prix of Italy",
-    "countryCode": "IT",
-    "country": "Italy"
+    ]
   },
   {
     "id": "moto2-2026-08",
+    "seriesId": "moto2",
     "roundNumber": 8,
+    "raceName": "Grand Prix of Hungary",
+    "circuitName": "Balaton Park Circuit",
     "city": "Nagyvázsony",
+    "country": "Hungary",
+    "countryCode": "HU",
     "sessions": [
       {
-        "date": "2026-06-05",
         "id": "moto2-2026-08-fp1",
-        "kind": "practice",
-        "durationMinutes": 60,
         "name": "Free Practice 1",
-        "timeLocal": "09:50"
-      },
-      {
+        "kind": "practice",
         "date": "2026-06-05",
+        "timeLocal": "09:50",
+        "durationMinutes": 60
+      },
+      {
         "id": "moto2-2026-08-prac",
-        "kind": "practice",
-        "durationMinutes": 60,
         "name": "Practice",
-        "timeLocal": "14:05"
-      },
-      {
-        "date": "2026-06-06",
-        "id": "moto2-2026-08-fp2",
         "kind": "practice",
-        "durationMinutes": 60,
+        "date": "2026-06-05",
+        "timeLocal": "14:05",
+        "durationMinutes": 60
+      },
+      {
+        "id": "moto2-2026-08-fp2",
         "name": "Free Practice 2",
-        "timeLocal": "09:25"
-      },
-      {
+        "kind": "practice",
         "date": "2026-06-06",
-        "id": "moto2-2026-08-qual",
-        "kind": "qualifying",
-        "durationMinutes": 60,
-        "name": "Qualifying",
-        "timeLocal": "13:40"
+        "timeLocal": "09:25",
+        "durationMinutes": 60
       },
       {
-        "date": "2026-06-07",
+        "id": "moto2-2026-08-qual",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-06-06",
+        "timeLocal": "13:40",
+        "durationMinutes": 60
+      },
+      {
         "id": "moto2-2026-08-race",
-        "kind": "race",
-        "durationMinutes": 60,
         "name": "Race",
-        "timeLocal": "12:15"
+        "kind": "race",
+        "date": "2026-06-07",
+        "timeLocal": "12:15",
+        "durationMinutes": 60
       }
-    ],
-    "circuitName": "Balaton Park Circuit",
-    "seriesId": "moto2",
-    "raceName": "Grand Prix of Hungary",
-    "countryCode": "HU",
-    "country": "Hungary"
+    ]
   },
   {
     "id": "moto2-2026-09",
+    "seriesId": "moto2",
     "roundNumber": 9,
+    "raceName": "Grand Prix of Czechia",
+    "circuitName": "Automotodrom Brno",
     "city": "Brno",
+    "country": "Czech Republic",
+    "countryCode": "CZ",
     "sessions": [
       {
-        "date": "2026-06-19",
         "id": "moto2-2026-09-fp1",
-        "kind": "practice",
-        "durationMinutes": 60,
         "name": "Free Practice 1",
-        "timeLocal": "09:50"
-      },
-      {
+        "kind": "practice",
         "date": "2026-06-19",
+        "timeLocal": "09:50",
+        "durationMinutes": 60
+      },
+      {
         "id": "moto2-2026-09-prac",
-        "kind": "practice",
-        "durationMinutes": 60,
         "name": "Practice",
-        "timeLocal": "14:05"
-      },
-      {
-        "date": "2026-06-20",
-        "id": "moto2-2026-09-fp2",
         "kind": "practice",
-        "durationMinutes": 60,
+        "date": "2026-06-19",
+        "timeLocal": "14:05",
+        "durationMinutes": 60
+      },
+      {
+        "id": "moto2-2026-09-fp2",
         "name": "Free Practice 2",
-        "timeLocal": "09:25"
-      },
-      {
+        "kind": "practice",
         "date": "2026-06-20",
-        "id": "moto2-2026-09-qual",
-        "kind": "qualifying",
-        "durationMinutes": 60,
-        "name": "Qualifying",
-        "timeLocal": "13:40"
+        "timeLocal": "09:25",
+        "durationMinutes": 60
       },
       {
-        "date": "2026-06-21",
+        "id": "moto2-2026-09-qual",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-06-20",
+        "timeLocal": "13:40",
+        "durationMinutes": 60
+      },
+      {
         "id": "moto2-2026-09-race",
-        "durationMinutes": 60,
         "name": "Race",
         "kind": "race",
-        "timeLocal": "12:15"
+        "date": "2026-06-21",
+        "timeLocal": "12:15",
+        "durationMinutes": 60
       }
-    ],
-    "circuitName": "Automotodrom Brno",
-    "seriesId": "moto2",
-    "raceName": "Grand Prix of Czechia",
-    "countryCode": "CZ",
-    "country": "Czech Republic"
+    ]
   },
   {
     "id": "moto2-2026-10",
+    "seriesId": "moto2",
     "roundNumber": 10,
+    "raceName": "Grand Prix of the Netherlands",
+    "circuitName": "TT Circuit Assen",
     "city": "Assen",
+    "country": "Netherlands",
+    "countryCode": "NL",
     "sessions": [
       {
-        "date": "2026-06-26",
         "id": "moto2-2026-10-fp1",
-        "durationMinutes": 60,
         "name": "Free Practice 1",
         "kind": "practice",
-        "timeLocal": "09:50"
+        "date": "2026-06-26",
+        "timeLocal": "09:50",
+        "durationMinutes": 60
       },
       {
-        "date": "2026-06-26",
         "id": "moto2-2026-10-prac",
-        "durationMinutes": 60,
         "name": "Practice",
         "kind": "practice",
-        "timeLocal": "14:05"
+        "date": "2026-06-26",
+        "timeLocal": "14:05",
+        "durationMinutes": 60
       },
       {
-        "date": "2026-06-27",
         "id": "moto2-2026-10-fp2",
-        "durationMinutes": 60,
         "name": "Free Practice 2",
         "kind": "practice",
-        "timeLocal": "09:25"
+        "date": "2026-06-27",
+        "timeLocal": "09:25",
+        "durationMinutes": 60
       },
       {
-        "date": "2026-06-27",
         "id": "moto2-2026-10-qual",
-        "durationMinutes": 60,
         "name": "Qualifying",
         "kind": "qualifying",
-        "timeLocal": "13:40"
+        "date": "2026-06-27",
+        "timeLocal": "13:40",
+        "durationMinutes": 60
       },
       {
-        "date": "2026-06-28",
         "id": "moto2-2026-10-race",
-        "durationMinutes": 60,
         "name": "Race",
         "kind": "race",
-        "timeLocal": "12:15"
+        "date": "2026-06-28",
+        "timeLocal": "12:15",
+        "durationMinutes": 60
       }
-    ],
-    "raceName": "Grand Prix of the Netherlands",
-    "seriesId": "moto2",
-    "circuitName": "TT Circuit Assen",
-    "countryCode": "NL",
-    "country": "Netherlands"
+    ]
   },
   {
     "id": "moto2-2026-11",
+    "seriesId": "moto2",
     "roundNumber": 11,
+    "raceName": "Grand Prix of Germany",
+    "circuitName": "Sachsenring",
     "city": "Hohenstein-Ernstthal",
+    "country": "Germany",
+    "countryCode": "DE",
     "sessions": [
       {
-        "date": "2026-07-10",
         "id": "moto2-2026-11-fp1",
-        "durationMinutes": 40,
         "name": "Free Practice 1",
         "kind": "practice",
-        "timeLocal": "11:50"
+        "date": "2026-07-10",
+        "timeLocal": "11:50",
+        "durationMinutes": 40
       },
       {
-        "date": "2026-07-10",
         "id": "moto2-2026-11-prac",
-        "durationMinutes": 40,
         "name": "Practice",
         "kind": "practice",
-        "timeLocal": "16:05"
+        "date": "2026-07-10",
+        "timeLocal": "16:05",
+        "durationMinutes": 40
       },
       {
-        "date": "2026-07-11",
         "id": "moto2-2026-11-fp2",
-        "durationMinutes": 40,
         "name": "Free Practice 2",
         "kind": "practice",
-        "timeLocal": "11:25"
+        "date": "2026-07-11",
+        "timeLocal": "11:25",
+        "durationMinutes": 40
       },
       {
-        "date": "2026-07-11",
         "id": "moto2-2026-11-qual",
-        "durationMinutes": 45,
         "name": "Qualifying",
         "kind": "qualifying",
-        "timeLocal": "15:40"
+        "date": "2026-07-11",
+        "timeLocal": "15:40",
+        "durationMinutes": 45
       },
       {
-        "date": "2026-07-12",
         "id": "moto2-2026-11-race",
-        "durationMinutes": 60,
         "name": "Race",
         "kind": "race",
-        "timeLocal": "12:15"
+        "date": "2026-07-12",
+        "timeLocal": "12:15",
+        "durationMinutes": 60
       }
-    ],
-    "raceName": "Grand Prix of Germany",
-    "seriesId": "moto2",
-    "circuitName": "Sachsenring",
-    "countryCode": "DE",
-    "country": "Germany"
+    ]
   },
   {
-    "circuitName": "Silverstone Circuit",
     "id": "moto2-2026-12",
-    "roundNumber": 12,
     "seriesId": "moto2",
+    "roundNumber": 12,
+    "raceName": "Grand Prix of Great Britain",
+    "circuitName": "Silverstone Circuit",
     "city": "Silverstone",
     "country": "Great Britain",
     "countryCode": "GB",
-    "raceName": "Grand Prix of Great Britain",
     "sessions": [
       {
+        "id": "moto2-2026-12-fp1",
         "name": "Free Practice 1",
+        "kind": "practice",
         "date": "2026-08-07",
         "timeLocal": "11:50",
-        "id": "moto2-2026-12-fp1",
-        "kind": "practice",
+        "durationMinutes": 60,
         "results": [
           {
             "time": "2'02.333",
@@ -839,11 +840,15 @@
             "speed": "2'08.155",
             "number": "72"
           }
-        ],
-        "durationMinutes": 60
+        ]
       },
       {
+        "id": "moto2-2026-12-prac",
+        "name": "Practice",
         "kind": "practice",
+        "date": "2026-08-07",
+        "timeLocal": "16:05",
+        "durationMinutes": 60,
         "results": [
           {
             "time": "2'01.815",
@@ -1096,18 +1101,15 @@
             "number": "85",
             "speed": "2'04.470"
           }
-        ],
-        "date": "2026-08-07",
-        "id": "moto2-2026-12-prac",
-        "timeLocal": "16:05",
-        "durationMinutes": 60,
-        "name": "Practice"
+        ]
       },
       {
-        "durationMinutes": 60,
-        "timeLocal": "11:25",
         "id": "moto2-2026-12-fp2",
         "name": "Free Practice 2",
+        "kind": "practice",
+        "date": "2026-08-08",
+        "timeLocal": "11:25",
+        "durationMinutes": 60,
         "results": [
           {
             "time": "2'02.221",
@@ -1360,13 +1362,15 @@
             "interval": "+2.091",
             "laps": "11"
           }
-        ],
-        "date": "2026-08-08",
-        "kind": "practice"
+        ]
       },
       {
+        "id": "moto2-2026-12-qual",
         "name": "Qualifying",
         "kind": "qualifying",
+        "date": "2026-08-08",
+        "timeLocal": "15:40",
+        "durationMinutes": 60,
         "results": [
           {
             "time": "2'01.483",
@@ -1527,16 +1531,15 @@
             "number": "64",
             "laps": "2"
           }
-        ],
-        "id": "moto2-2026-12-qual",
-        "timeLocal": "15:40",
-        "durationMinutes": 60,
-        "date": "2026-08-08"
+        ]
       },
       {
         "id": "moto2-2026-12-race",
-        "timeLocal": "12:15",
+        "name": "Race",
         "kind": "race",
+        "date": "2026-08-09",
+        "timeLocal": "12:15",
+        "durationMinutes": 60,
         "results": [
           {
             "position": 1,
@@ -1783,29 +1786,27 @@
             "number": "95",
             "laps": "0"
           }
-        ],
-        "durationMinutes": 60,
-        "date": "2026-08-09",
-        "name": "Race"
+        ]
       }
     ]
   },
   {
-    "country": "Spain",
     "id": "moto2-2026-13",
-    "countryCode": "ES",
-    "roundNumber": 13,
-    "city": "Alcaniz",
-    "raceName": "Grand Prix of Aragon",
     "seriesId": "moto2",
+    "roundNumber": 13,
+    "raceName": "Grand Prix of Aragon",
+    "circuitName": "MotorLand Aragon",
+    "city": "Alcaniz",
+    "country": "Spain",
+    "countryCode": "ES",
     "sessions": [
       {
-        "date": "2026-08-28",
         "id": "moto2-2026-13-fp1",
-        "durationMinutes": 60,
         "name": "Free Practice 1",
         "kind": "practice",
+        "date": "2026-08-28",
         "timeLocal": "09:50",
+        "durationMinutes": 60,
         "results": [
           {
             "position": 1,
@@ -2070,12 +2071,12 @@
         ]
       },
       {
-        "date": "2026-08-28",
         "id": "moto2-2026-13-prac",
-        "durationMinutes": 60,
         "name": "Practice",
         "kind": "practice",
+        "date": "2026-08-28",
         "timeLocal": "14:05",
+        "durationMinutes": 60,
         "results": [
           {
             "position": 1,
@@ -2340,12 +2341,12 @@
         ]
       },
       {
-        "date": "2026-08-29",
         "id": "moto2-2026-13-fp2",
-        "durationMinutes": 60,
         "name": "Free Practice 2",
         "kind": "practice",
+        "date": "2026-08-29",
         "timeLocal": "09:25",
+        "durationMinutes": 60,
         "results": [
           {
             "position": 1,
@@ -2610,12 +2611,12 @@
         ]
       },
       {
-        "date": "2026-08-29",
         "id": "moto2-2026-13-qual",
-        "durationMinutes": 60,
         "name": "Qualifying",
         "kind": "qualifying",
+        "date": "2026-08-29",
         "timeLocal": "13:40",
+        "durationMinutes": 60,
         "results": [
           {
             "position": 1,
@@ -2851,12 +2852,12 @@
         ]
       },
       {
-        "date": "2026-08-30",
         "id": "moto2-2026-13-race",
-        "durationMinutes": 60,
         "name": "Race",
         "kind": "race",
+        "date": "2026-08-30",
         "timeLocal": "12:15",
+        "durationMinutes": 60,
         "results": [
           {
             "position": 1,
@@ -3114,475 +3115,474 @@
           }
         ]
       }
-    ],
-    "circuitName": "MotorLand Aragon"
+    ]
   },
   {
-    "country": "San Marino",
     "id": "moto2-2026-14",
-    "countryCode": "SM",
+    "seriesId": "moto2",
     "roundNumber": 14,
-    "city": "Misano Adriatico",
     "raceName": "Grand Prix of San Marino",
-    "seriesId": "moto2",
+    "circuitName": "Misano World Circuit",
+    "city": "Misano Adriatico",
+    "country": "San Marino",
+    "countryCode": "SM",
     "sessions": [
       {
-        "date": "2026-09-11",
         "id": "moto2-2026-14-fp1",
-        "durationMinutes": 60,
         "name": "Free Practice 1",
         "kind": "practice",
-        "timeLocal": "09:50"
-      },
-      {
         "date": "2026-09-11",
+        "timeLocal": "09:50",
+        "durationMinutes": 60
+      },
+      {
         "id": "moto2-2026-14-prac",
-        "durationMinutes": 60,
         "name": "Practice",
         "kind": "practice",
-        "timeLocal": "14:05"
+        "date": "2026-09-11",
+        "timeLocal": "14:05",
+        "durationMinutes": 60
       },
       {
-        "date": "2026-09-12",
         "id": "moto2-2026-14-fp2",
-        "durationMinutes": 60,
         "name": "Free Practice 2",
         "kind": "practice",
-        "timeLocal": "09:25"
+        "date": "2026-09-12",
+        "timeLocal": "09:25",
+        "durationMinutes": 60
       },
       {
-        "date": "2026-09-12",
         "id": "moto2-2026-14-qual",
-        "durationMinutes": 60,
         "name": "Qualifying",
         "kind": "qualifying",
-        "timeLocal": "13:40"
+        "date": "2026-09-12",
+        "timeLocal": "13:40",
+        "durationMinutes": 60
       },
       {
-        "date": "2026-09-13",
         "id": "moto2-2026-14-race",
-        "durationMinutes": 60,
         "name": "Race",
         "kind": "race",
-        "timeLocal": "12:15"
+        "date": "2026-09-13",
+        "timeLocal": "12:15",
+        "durationMinutes": 60
       }
-    ],
-    "circuitName": "Misano World Circuit"
+    ]
   },
   {
-    "country": "Austria",
     "id": "moto2-2026-15",
-    "countryCode": "AT",
-    "roundNumber": 15,
-    "city": "Spielberg",
-    "raceName": "Grand Prix of Austria",
     "seriesId": "moto2",
+    "roundNumber": 15,
+    "raceName": "Grand Prix of Austria",
+    "circuitName": "Red Bull Ring",
+    "city": "Spielberg",
+    "country": "Austria",
+    "countryCode": "AT",
     "sessions": [
       {
-        "date": "2026-09-18",
         "id": "moto2-2026-15-fp1",
-        "durationMinutes": 60,
         "name": "Free Practice 1",
         "kind": "practice",
-        "timeLocal": "09:50"
+        "date": "2026-09-18",
+        "timeLocal": "09:50",
+        "durationMinutes": 60
       },
       {
-        "date": "2026-09-18",
         "id": "moto2-2026-15-prac",
-        "durationMinutes": 60,
         "name": "Practice",
         "kind": "practice",
-        "timeLocal": "14:05"
+        "date": "2026-09-18",
+        "timeLocal": "14:05",
+        "durationMinutes": 60
       },
       {
-        "date": "2026-09-19",
         "id": "moto2-2026-15-fp2",
-        "durationMinutes": 60,
         "name": "Free Practice 2",
         "kind": "practice",
-        "timeLocal": "09:25"
+        "date": "2026-09-19",
+        "timeLocal": "09:25",
+        "durationMinutes": 60
       },
       {
-        "date": "2026-09-19",
         "id": "moto2-2026-15-qual",
-        "durationMinutes": 60,
         "name": "Qualifying",
         "kind": "qualifying",
-        "timeLocal": "13:40"
+        "date": "2026-09-19",
+        "timeLocal": "13:40",
+        "durationMinutes": 60
       },
       {
-        "date": "2026-09-20",
         "id": "moto2-2026-15-race",
-        "durationMinutes": 60,
         "name": "Race",
         "kind": "race",
-        "timeLocal": "12:15"
+        "date": "2026-09-20",
+        "timeLocal": "12:15",
+        "durationMinutes": 60
       }
-    ],
-    "circuitName": "Red Bull Ring"
+    ]
   },
   {
-    "country": "Japan",
     "id": "moto2-2026-16",
-    "countryCode": "JP",
-    "roundNumber": 16,
-    "city": "Motegi",
-    "raceName": "Grand Prix of Japan",
     "seriesId": "moto2",
+    "roundNumber": 16,
+    "raceName": "Grand Prix of Japan",
+    "circuitName": "Mobility Resort Motegi",
+    "city": "Motegi",
+    "country": "Japan",
+    "countryCode": "JP",
     "sessions": [
       {
-        "date": "2026-10-02",
         "id": "moto2-2026-16-fp1",
-        "durationMinutes": 60,
         "name": "Free Practice 1",
         "kind": "practice",
-        "timeLocal": "02:50"
+        "date": "2026-10-02",
+        "timeLocal": "02:50",
+        "durationMinutes": 60
       },
       {
         "id": "moto2-2026-16-prac",
-        "kind": "practice",
-        "timeLocal": "07:05",
         "name": "Practice",
-        "durationMinutes": 60,
-        "date": "2026-10-02"
+        "kind": "practice",
+        "date": "2026-10-02",
+        "timeLocal": "07:05",
+        "durationMinutes": 60
       },
       {
         "id": "moto2-2026-16-fp2",
-        "kind": "practice",
-        "timeLocal": "02:25",
         "name": "Free Practice 2",
-        "durationMinutes": 60,
-        "date": "2026-10-03"
+        "kind": "practice",
+        "date": "2026-10-03",
+        "timeLocal": "02:25",
+        "durationMinutes": 60
       },
       {
         "id": "moto2-2026-16-qual",
-        "kind": "qualifying",
-        "timeLocal": "06:40",
         "name": "Qualifying",
-        "durationMinutes": 60,
-        "date": "2026-10-03"
+        "kind": "qualifying",
+        "date": "2026-10-03",
+        "timeLocal": "06:40",
+        "durationMinutes": 60
       },
       {
         "id": "moto2-2026-16-race",
-        "kind": "race",
-        "timeLocal": "05:15",
         "name": "Race",
-        "durationMinutes": 60,
-        "date": "2026-10-04"
+        "kind": "race",
+        "date": "2026-10-04",
+        "timeLocal": "05:15",
+        "durationMinutes": 60
       }
-    ],
-    "circuitName": "Mobility Resort Motegi"
+    ]
   },
   {
-    "country": "Indonesia",
     "id": "moto2-2026-17",
-    "countryCode": "ID",
-    "city": "Lombok",
+    "seriesId": "moto2",
     "roundNumber": 17,
     "raceName": "Grand Prix of Indonesia",
-    "seriesId": "moto2",
+    "circuitName": "Mandalika International Circuit",
+    "city": "Lombok",
+    "country": "Indonesia",
+    "countryCode": "ID",
     "sessions": [
       {
         "id": "moto2-2026-17-fp1",
-        "kind": "practice",
-        "timeLocal": "03:50",
         "name": "Free Practice 1",
-        "durationMinutes": 60,
-        "date": "2026-10-09"
+        "kind": "practice",
+        "date": "2026-10-09",
+        "timeLocal": "03:50",
+        "durationMinutes": 60
       },
       {
         "id": "moto2-2026-17-prac",
-        "kind": "practice",
-        "timeLocal": "08:05",
         "name": "Practice",
-        "durationMinutes": 60,
-        "date": "2026-10-09"
+        "kind": "practice",
+        "date": "2026-10-09",
+        "timeLocal": "08:05",
+        "durationMinutes": 60
       },
       {
         "id": "moto2-2026-17-fp2",
-        "kind": "practice",
-        "timeLocal": "03:25",
         "name": "Free Practice 2",
-        "durationMinutes": 60,
-        "date": "2026-10-10"
+        "kind": "practice",
+        "date": "2026-10-10",
+        "timeLocal": "03:25",
+        "durationMinutes": 60
       },
       {
         "id": "moto2-2026-17-qual",
-        "kind": "qualifying",
-        "timeLocal": "07:40",
         "name": "Qualifying",
-        "durationMinutes": 60,
-        "date": "2026-10-10"
+        "kind": "qualifying",
+        "date": "2026-10-10",
+        "timeLocal": "07:40",
+        "durationMinutes": 60
       },
       {
         "id": "moto2-2026-17-race",
-        "kind": "race",
-        "timeLocal": "07:15",
         "name": "Race",
-        "durationMinutes": 60,
-        "date": "2026-10-11"
+        "kind": "race",
+        "date": "2026-10-11",
+        "timeLocal": "07:15",
+        "durationMinutes": 60
       }
-    ],
-    "circuitName": "Mandalika International Circuit"
+    ]
   },
   {
+    "id": "moto2-2026-18",
+    "seriesId": "moto2",
     "roundNumber": 18,
     "raceName": "Grand Prix of Australia",
-    "id": "moto2-2026-18",
-    "countryCode": "AU",
-    "seriesId": "moto2",
+    "circuitName": "Phillip Island Circuit",
     "city": "Phillip Island",
+    "country": "Australia",
+    "countryCode": "AU",
     "sessions": [
       {
         "id": "moto2-2026-18-fp1",
-        "kind": "practice",
-        "timeLocal": "00:50",
         "name": "Free Practice 1",
-        "durationMinutes": 60,
-        "date": "2026-10-23"
+        "kind": "practice",
+        "date": "2026-10-23",
+        "timeLocal": "00:50",
+        "durationMinutes": 60
       },
       {
         "id": "moto2-2026-18-prac",
-        "kind": "practice",
-        "timeLocal": "05:05",
         "name": "Practice",
-        "durationMinutes": 60,
-        "date": "2026-10-23"
+        "kind": "practice",
+        "date": "2026-10-23",
+        "timeLocal": "05:05",
+        "durationMinutes": 60
       },
       {
         "id": "moto2-2026-18-fp2",
-        "kind": "practice",
-        "timeLocal": "00:25",
         "name": "Free Practice 2",
-        "durationMinutes": 60,
-        "date": "2026-10-24"
+        "kind": "practice",
+        "date": "2026-10-24",
+        "timeLocal": "00:25",
+        "durationMinutes": 60
       },
       {
         "id": "moto2-2026-18-qual",
-        "kind": "qualifying",
-        "timeLocal": "04:40",
         "name": "Qualifying",
-        "durationMinutes": 60,
-        "date": "2026-10-24"
+        "kind": "qualifying",
+        "date": "2026-10-24",
+        "timeLocal": "04:40",
+        "durationMinutes": 60
       },
       {
         "id": "moto2-2026-18-race",
-        "kind": "race",
-        "timeLocal": "02:15",
         "name": "Race",
-        "durationMinutes": 60,
-        "date": "2026-10-25"
+        "kind": "race",
+        "date": "2026-10-25",
+        "timeLocal": "02:15",
+        "durationMinutes": 60
       }
-    ],
-    "country": "Australia",
-    "circuitName": "Phillip Island Circuit"
+    ]
   },
   {
+    "id": "moto2-2026-19",
+    "seriesId": "moto2",
     "roundNumber": 19,
     "raceName": "Grand Prix of Malaysia",
-    "id": "moto2-2026-19",
-    "countryCode": "MY",
-    "seriesId": "moto2",
+    "circuitName": "Sepang International Circuit",
     "city": "Sepang",
+    "country": "Malaysia",
+    "countryCode": "MY",
     "sessions": [
       {
         "id": "moto2-2026-19-fp1",
-        "kind": "practice",
-        "timeLocal": "02:50",
         "name": "Free Practice 1",
-        "durationMinutes": 60,
-        "date": "2026-10-30"
+        "kind": "practice",
+        "date": "2026-10-30",
+        "timeLocal": "02:50",
+        "durationMinutes": 60
       },
       {
         "id": "moto2-2026-19-prac",
-        "kind": "practice",
-        "timeLocal": "07:05",
         "name": "Practice",
-        "durationMinutes": 60,
-        "date": "2026-10-30"
+        "kind": "practice",
+        "date": "2026-10-30",
+        "timeLocal": "07:05",
+        "durationMinutes": 60
       },
       {
         "id": "moto2-2026-19-fp2",
-        "kind": "practice",
-        "timeLocal": "02:25",
         "name": "Free Practice 2",
-        "durationMinutes": 60,
-        "date": "2026-10-31"
+        "kind": "practice",
+        "date": "2026-10-31",
+        "timeLocal": "02:25",
+        "durationMinutes": 60
       },
       {
         "id": "moto2-2026-19-qual",
-        "kind": "qualifying",
-        "timeLocal": "06:40",
         "name": "Qualifying",
-        "durationMinutes": 60,
-        "date": "2026-10-31"
+        "kind": "qualifying",
+        "date": "2026-10-31",
+        "timeLocal": "06:40",
+        "durationMinutes": 60
       },
       {
         "id": "moto2-2026-19-race",
-        "kind": "race",
-        "timeLocal": "06:15",
         "name": "Race",
-        "durationMinutes": 60,
-        "date": "2026-11-01"
+        "kind": "race",
+        "date": "2026-11-01",
+        "timeLocal": "06:15",
+        "durationMinutes": 60
       }
-    ],
-    "country": "Malaysia",
-    "circuitName": "Sepang International Circuit"
+    ]
   },
   {
+    "id": "moto2-2026-20",
+    "seriesId": "moto2",
     "roundNumber": 20,
     "raceName": "Grand Prix of Qatar",
-    "id": "moto2-2026-20",
-    "countryCode": "QA",
-    "seriesId": "moto2",
+    "circuitName": "Lusail International Circuit",
     "city": "Lusail",
+    "country": "Qatar",
+    "countryCode": "QA",
     "sessions": [
       {
         "id": "moto2-2026-20-fp1",
-        "kind": "practice",
-        "timeLocal": "12:50",
         "name": "Free Practice 1",
-        "durationMinutes": 60,
-        "date": "2026-11-06"
+        "kind": "practice",
+        "date": "2026-11-06",
+        "timeLocal": "12:50",
+        "durationMinutes": 60
       },
       {
         "id": "moto2-2026-20-prac",
-        "kind": "practice",
-        "timeLocal": "17:05",
         "name": "Practice",
-        "durationMinutes": 60,
-        "date": "2026-11-06"
+        "kind": "practice",
+        "date": "2026-11-06",
+        "timeLocal": "17:05",
+        "durationMinutes": 60
       },
       {
         "id": "moto2-2026-20-fp2",
-        "kind": "practice",
-        "timeLocal": "12:15",
         "name": "Free Practice 2",
-        "durationMinutes": 60,
-        "date": "2026-11-07"
+        "kind": "practice",
+        "date": "2026-11-07",
+        "timeLocal": "12:15",
+        "durationMinutes": 60
       },
       {
         "id": "moto2-2026-20-qual",
-        "kind": "qualifying",
-        "timeLocal": "16:40",
         "name": "Qualifying",
-        "durationMinutes": 60,
-        "date": "2026-11-07"
+        "kind": "qualifying",
+        "date": "2026-11-07",
+        "timeLocal": "16:40",
+        "durationMinutes": 60
       },
       {
         "id": "moto2-2026-20-race",
-        "kind": "race",
-        "timeLocal": "16:15",
         "name": "Race",
-        "durationMinutes": 60,
-        "date": "2026-11-08"
+        "kind": "race",
+        "date": "2026-11-08",
+        "timeLocal": "16:15",
+        "durationMinutes": 60
       }
-    ],
-    "country": "Qatar",
-    "circuitName": "Lusail International Circuit"
+    ]
   },
   {
+    "id": "moto2-2026-21",
+    "seriesId": "moto2",
     "roundNumber": 21,
     "raceName": "Grand Prix of Portugal",
-    "id": "moto2-2026-21",
-    "countryCode": "PT",
-    "seriesId": "moto2",
+    "circuitName": "Algarve International Circuit",
     "city": "Portimão",
+    "country": "Portugal",
+    "countryCode": "PT",
     "sessions": [
       {
         "id": "moto2-2026-21-fp1",
-        "kind": "practice",
-        "timeLocal": "11:50",
         "name": "Free Practice 1",
-        "durationMinutes": 60,
-        "date": "2026-11-13"
+        "kind": "practice",
+        "date": "2026-11-13",
+        "timeLocal": "11:50",
+        "durationMinutes": 60
       },
       {
         "id": "moto2-2026-21-prac",
-        "kind": "practice",
-        "timeLocal": "16:05",
         "name": "Practice",
-        "durationMinutes": 60,
-        "date": "2026-11-13"
+        "kind": "practice",
+        "date": "2026-11-13",
+        "timeLocal": "16:05",
+        "durationMinutes": 60
       },
       {
         "id": "moto2-2026-21-fp2",
-        "kind": "practice",
-        "timeLocal": "11:25",
         "name": "Free Practice 2",
-        "durationMinutes": 60,
-        "date": "2026-11-14"
+        "kind": "practice",
+        "date": "2026-11-14",
+        "timeLocal": "11:25",
+        "durationMinutes": 60
       },
       {
         "id": "moto2-2026-21-qual",
-        "kind": "qualifying",
-        "timeLocal": "15:40",
         "name": "Qualifying",
-        "durationMinutes": 60,
-        "date": "2026-11-14"
+        "kind": "qualifying",
+        "date": "2026-11-14",
+        "timeLocal": "15:40",
+        "durationMinutes": 60
       },
       {
         "id": "moto2-2026-21-race",
-        "kind": "race",
-        "timeLocal": "13:15",
         "name": "Race",
-        "durationMinutes": 60,
-        "date": "2026-11-15"
+        "kind": "race",
+        "date": "2026-11-15",
+        "timeLocal": "13:15",
+        "durationMinutes": 60
       }
-    ],
-    "country": "Portugal",
-    "circuitName": "Algarve International Circuit"
+    ]
   },
   {
+    "id": "moto2-2026-22",
+    "seriesId": "moto2",
     "roundNumber": 22,
     "raceName": "Grand Prix of Valencia",
-    "id": "moto2-2026-22",
-    "countryCode": "ES",
-    "seriesId": "moto2",
+    "circuitName": "Circuit Ricardo Tormo",
     "city": "Valencia",
+    "country": "Spain",
+    "countryCode": "ES",
     "sessions": [
       {
         "id": "moto2-2026-22-fp1",
-        "kind": "practice",
-        "timeLocal": "10:50",
         "name": "Free Practice 1",
-        "durationMinutes": 60,
-        "date": "2026-11-20"
+        "kind": "practice",
+        "date": "2026-11-20",
+        "timeLocal": "10:50",
+        "durationMinutes": 60
       },
       {
         "id": "moto2-2026-22-prac",
-        "kind": "practice",
-        "timeLocal": "15:05",
         "name": "Practice",
-        "durationMinutes": 60,
-        "date": "2026-11-20"
+        "kind": "practice",
+        "date": "2026-11-20",
+        "timeLocal": "15:05",
+        "durationMinutes": 60
       },
       {
         "id": "moto2-2026-22-fp2",
-        "kind": "practice",
-        "timeLocal": "10:25",
         "name": "Free Practice 2",
-        "durationMinutes": 60,
-        "date": "2026-11-21"
+        "kind": "practice",
+        "date": "2026-11-21",
+        "timeLocal": "10:25",
+        "durationMinutes": 60
       },
       {
         "id": "moto2-2026-22-qual",
-        "kind": "qualifying",
-        "timeLocal": "14:40",
         "name": "Qualifying",
-        "durationMinutes": 60,
-        "date": "2026-11-21"
+        "kind": "qualifying",
+        "date": "2026-11-21",
+        "timeLocal": "14:40",
+        "durationMinutes": 60
       },
       {
         "id": "moto2-2026-22-race",
-        "kind": "race",
-        "timeLocal": "12:15",
         "name": "Race",
-        "durationMinutes": 60,
-        "date": "2026-11-22"
+        "kind": "race",
+        "date": "2026-11-22",
+        "timeLocal": "12:15",
+        "durationMinutes": 60
       }
-    ],
-    "country": "Spain",
-    "circuitName": "Circuit Ricardo Tormo"
+    ]
   }
 ]
