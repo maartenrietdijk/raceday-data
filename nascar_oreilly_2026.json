@@ -4705,7 +4705,7 @@
     "id": "nascar_oreilly-2026-25",
     "seriesId": "nascar_oreilly",
     "roundNumber": 25,
-    "raceName": "O'Reilly Auto Parts Series Race at Darlington",
+    "raceName": "Fleetio 200",
     "circuitName": "Darlington Raceway",
     "city": "Darlington",
     "country": "United States",
@@ -4713,6 +4713,24 @@
     "sessions": [
       {
         "id": "nascar_oreilly-2026-25-race",
+        "name": "Practice",
+        "kind": "practice",
+        "date": "2026-09-05",
+        "timeLocal": "13:30",
+        "durationMinutes": 60,
+        "isOval": true
+      },
+      {
+        "id": "nascar_oreilly-2026-25-s1788168318732",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-09-05",
+        "timeLocal": "14:35",
+        "durationMinutes": 60,
+        "isOval": true
+      },
+      {
+        "id": "nascar_oreilly-2026-25-s1788168314974",
         "name": "Race",
         "kind": "race",
         "date": "2026-09-05",
