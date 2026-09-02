@@ -15,7 +15,8 @@
         "kind": "practice",
         "date": "2027-02-12",
         "timeLocal": null,
-        "durationMinutes": 60
+        "durationMinutes": 60,
+        "isOval": true
       },
       {
         "id": "nascar-2027-clash-s2",
@@ -23,7 +24,8 @@
         "kind": "qualifying",
         "date": "2027-02-12",
         "timeLocal": null,
-        "durationMinutes": 60
+        "durationMinutes": 60,
+        "isOval": true
       },
       {
         "id": "nascar-2027-clash-s3",
@@ -39,7 +41,7 @@
     "id": "nascar-2027-duel-1",
     "seriesId": "nascar",
     "roundNumber": 0,
-    "raceName": "Duel 1 at DAYTONA",
+    "raceName": "Duels at Daytona",
     "circuitName": "Daytona International Speedway",
     "city": "Daytona Beach",
     "country": "United States",
@@ -47,27 +49,15 @@
     "sessions": [
       {
         "id": "nascar-2027-duel-1-s1",
-        "name": "Race",
+        "name": "Duel 1",
         "kind": "race",
         "date": "2027-02-18",
         "timeLocal": null,
         "durationMinutes": 60
-      }
-    ]
-  },
-  {
-    "id": "nascar-2027-duel-2",
-    "seriesId": "nascar",
-    "roundNumber": 0,
-    "raceName": "Duel 2 at DAYTONA",
-    "circuitName": "Daytona International Speedway",
-    "city": "Daytona Beach",
-    "country": "United States",
-    "countryCode": "US",
-    "sessions": [
+      },
       {
-        "id": "nascar-2027-duel-2-s1",
-        "name": "Race",
+        "id": "nascar-2027-duel-1-s1788358326991",
+        "name": "Duel 2",
         "kind": "race",
         "date": "2027-02-18",
         "timeLocal": null,
@@ -91,7 +81,8 @@
         "kind": "practice",
         "date": "2027-02-20",
         "timeLocal": null,
-        "durationMinutes": 60
+        "durationMinutes": 60,
+        "isOval": true
       },
       {
         "id": "nascar-2027-r01-s2",
@@ -99,7 +90,8 @@
         "kind": "qualifying",
         "date": "2027-02-20",
         "timeLocal": null,
-        "durationMinutes": 60
+        "durationMinutes": 60,
+        "isOval": true
       },
       {
         "id": "nascar-2027-r01-s3",
@@ -127,7 +119,8 @@
         "kind": "practice",
         "date": "2027-02-27",
         "timeLocal": null,
-        "durationMinutes": 60
+        "durationMinutes": 60,
+        "isOval": true
       },
       {
         "id": "nascar-2027-r02-s2",
@@ -135,7 +128,8 @@
         "kind": "qualifying",
         "date": "2027-02-27",
         "timeLocal": null,
-        "durationMinutes": 60
+        "durationMinutes": 60,
+        "isOval": true
       },
       {
         "id": "nascar-2027-r02-s3",
@@ -207,7 +201,8 @@
         "kind": "practice",
         "date": "2027-03-13",
         "timeLocal": null,
-        "durationMinutes": 60
+        "durationMinutes": 60,
+        "isOval": true
       },
       {
         "id": "nascar-2027-r04-s2",
@@ -215,7 +210,8 @@
         "kind": "qualifying",
         "date": "2027-03-13",
         "timeLocal": null,
-        "durationMinutes": 60
+        "durationMinutes": 60,
+        "isOval": true
       },
       {
         "id": "nascar-2027-r04-s3",
