@@ -222,35 +222,51 @@
     "countryCode": "JP",
     "sessions": [
       {
-        "id": "igtc-2026-r04-s1",
-        "name": "Practice 1",
+        "id": "igtc-2026-r04-s1788351508511",
+        "name": "Test Session 1",
         "kind": "practice",
         "date": "2026-09-11",
-        "timeLocal": null,
+        "timeLocal": "02:10",
+        "durationMinutes": 60
+      },
+      {
+        "id": "igtc-2026-r04-s1788351509434",
+        "name": "Test Session 2",
+        "kind": "practice",
+        "date": "2026-09-11",
+        "timeLocal": "05:10",
+        "durationMinutes": 60
+      },
+      {
+        "id": "igtc-2026-r04-s1",
+        "name": "Night Practice",
+        "kind": "practice",
+        "date": "2026-09-11",
+        "timeLocal": "10:50",
         "durationMinutes": 60
       },
       {
         "id": "igtc-2026-r04-s2",
-        "name": "Practice 2",
-        "kind": "practice",
+        "name": "Pre Qualifying",
+        "kind": "qualifying",
         "date": "2026-09-12",
-        "timeLocal": null,
-        "durationMinutes": 60
+        "timeLocal": "03:40",
+        "durationMinutes": 30
       },
       {
         "id": "igtc-2026-r04-s3",
         "name": "Qualifying",
         "kind": "qualifying",
         "date": "2026-09-12",
-        "timeLocal": null,
-        "durationMinutes": 30
+        "timeLocal": "10:35",
+        "durationMinutes": 60
       },
       {
         "id": "igtc-2026-r04-s4",
         "name": "1000km Race",
         "kind": "race",
         "date": "2026-09-13",
-        "timeLocal": null,
+        "timeLocal": "05:50",
         "durationMinutes": 360
       }
     ]
