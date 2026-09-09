@@ -575,6 +575,11 @@
   .series-grip:active { cursor: grabbing; }
   .sidebar-dashboard { margin: 0 10px 8px; }
   .sidebar-dashboard .series-item { padding: 10px 12px; }
+  .proposal-count {
+    min-width: 22px; padding: 3px 6px; border-radius: 999px; background: var(--red-dim); color: var(--red);
+    font: 700 10px var(--mono); text-align: center;
+  }
+  .series-item.active .proposal-count { background: color-mix(in srgb, var(--accent-fg) 18%, transparent); color: inherit; }
   .sidebar-footer {
     display: flex; align-items: center; justify-content: space-between; gap: 8px;
     padding: 12px 14px; border-top: 1px solid var(--border2); color: var(--muted); font-size: 11px;
@@ -735,6 +740,31 @@
   .summary-note { margin-top: 6px; color: var(--muted); font-size: 12px; }
   .empty.compact { padding: 40px 24px; }
 
+  .proposal-toolbar { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; }
+  .proposal-toolbar .field { min-width: 190px; }
+  .proposal-toolbar select { min-height: 44px; }
+  .proposal-event { margin-bottom: 14px; overflow: hidden; border-radius: 6px; background: var(--bg); box-shadow: var(--shadow); }
+  [data-theme="dark"] .proposal-event { border: 1px solid var(--border); }
+  .proposal-event-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 20px; border-bottom: 1px solid var(--border2); }
+  .proposal-event-title { font-size: 15px; font-weight: 700; }
+  .proposal-event-meta { margin-top: 3px; color: var(--muted); font-size: 12px; }
+  .proposal-row { display: grid; grid-template-columns: minmax(150px, .8fr) minmax(260px, 1.35fr) minmax(220px, 1fr); gap: 18px; padding: 18px 20px; border-bottom: 1px solid var(--border2); }
+  .proposal-row:last-child { border-bottom: 0; }
+  .proposal-name { font-weight: 650; }
+  .proposal-detail, .proposal-source { color: var(--text2); font-size: 12.5px; line-height: 1.55; }
+  .proposal-value-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 10px; align-items: center; }
+  .proposal-value { padding: 10px 12px; border-radius: 4px; background: var(--bg2); }
+  .proposal-value strong { display: block; margin-top: 3px; color: var(--text); font: 650 14px var(--mono); }
+  .proposal-arrow { color: var(--muted); }
+  .proposal-actions { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 12px; }
+  .proposal-badges { display: flex; flex-wrap: wrap; gap: 6px; margin: 7px 0 0; }
+  .proposal-badge { padding: 4px 7px; border-radius: 999px; background: var(--bg3); color: var(--text2); font-size: 10px; font-weight: 700; letter-spacing: .03em; text-transform: uppercase; }
+  .proposal-badge.new { background: var(--green-bg); color: var(--green); }
+  .proposal-badge.warning { background: var(--amber-bg); color: var(--amber); }
+  .proposal-badge.closed { opacity: .65; }
+  .proposal-warning { margin-top: 8px; color: var(--amber); font-size: 12px; }
+  .proposal-source a { color: var(--text); text-underline-offset: 3px; }
+
   .modal-backdrop { padding: 20px; background: rgba(0,0,0,.5); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
   .modal-backdrop.show { animation: fade-in .18s ease; }
   @keyframes fade-in { from { opacity: 0; } }
@@ -884,6 +914,14 @@
     .event-range { display: none; }
     .summary-stat { min-height: 112px; padding: 16px; }
     .summary-value { margin-top: 16px; font-size: 27px; }
+    .proposal-toolbar { display: grid; grid-template-columns: 1fr; }
+    .proposal-toolbar .field { min-width: 0; }
+    .proposal-event-header { align-items: flex-start; flex-direction: column; padding: 15px 14px; }
+    .proposal-event-header .btn { width: 100%; }
+    .proposal-row { grid-template-columns: 1fr; gap: 12px; padding: 16px 14px; }
+    .proposal-value-grid { grid-template-columns: 1fr; }
+    .proposal-arrow { transform: rotate(90deg); justify-self: center; }
+    .proposal-actions .btn { flex: 1 1 140px; }
     .modal-backdrop { align-items: flex-end; padding: 0; }
     .modal { width: 100%; max-width: none; max-height: 92dvh; padding: 24px 18px calc(22px + env(safe-area-inset-bottom)); border-radius: 12px 12px 0 0; }
     .modal-actions { position: sticky; bottom: 0; margin: 0 -18px -22px; padding: 14px 18px calc(14px + env(safe-area-inset-bottom)); background: var(--bg); }
@@ -921,7 +959,7 @@
   <div class="header-actions">
     <button class="btn btn-ghost btn-sm desktop-secondary" onclick="showGitHubSettings()">Instellingen</button>
     <button class="btn btn-ghost btn-sm desktop-secondary" onclick="exportJSON()">Exporteer</button>
-    <button class="btn btn-primary btn-sm" onclick="publishToGitHub()">
+    <button class="btn btn-primary btn-sm" onclick="publishCurrentView()">
       <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
       Publiceer
     </button>
@@ -941,10 +979,15 @@
       <button class="btn-icon sidebar-close" onclick="toggleSidebar()" aria-label="Sluit seriesmenu">×</button>
     </div>
     <div class="sidebar-dashboard" id="dashboardNav">
-      <div class="series-item active" onclick="selectDashboard()">
+      <button type="button" class="series-item active" onclick="selectDashboard()">
         <span style="font-size:15px">⌂</span>
         <span class="series-name">Overzicht</span>
-      </div>
+      </button>
+      <button type="button" class="series-item" id="proposalsNav" onclick="selectProposals()">
+        <span style="font-size:15px" aria-hidden="true">◫</span>
+        <span class="series-name">Voorstellen</span>
+        <span class="proposal-count" id="proposalCount" aria-label="0 openstaande voorstellen">0</span>
+      </button>
     </div>
     <div class="series-search">
       <div class="series-search-wrap">
@@ -1180,6 +1223,7 @@
   </div>
 </div>
 
+<script src="proposal-logic.js?v=20260909-1"></script>
 <script>
 // ── State ──────────────────────────────────────────────────────────────────────
 
@@ -1239,9 +1283,17 @@ let state = {
   standingsMeta: {},    // {seriesId: {updatedAt, updatedAfterRoundId, updatedAfterRoundName}}
   standingsUrls: {},    // {seriesId: url}
   activeTab: 'calendar', // 'calendar' | 'standings'
+  activeView: 'dashboard', // 'dashboard' | 'series' | 'proposals'
   activeSeries: null,
+  proposals: [],
+  proposalSources: [],
+  proposalGeneratedAt: null,
+  proposalUndo: {},
+  dirtyProposalFiles: [],
   github: { token: '', repo: '', branch: 'main', path: '' }
 };
+let proposalFilters = { seriesId: '', status: '' };
+let proposalLoadState = { status: 'idle', error: '' };
 let seriesQuery = '';
 let seriesDragIndex = null;
 
@@ -1401,6 +1453,11 @@ function load() {
       state.standings    = parsed.standings    || {};
       state.standingsMeta = parsed.standingsMeta || {};
       state.standingsUrls = parsed.standingsUrls || {};
+      state.proposals     = parsed.proposals || [];
+      state.proposalSources = parsed.proposalSources || [];
+      state.proposalGeneratedAt = parsed.proposalGeneratedAt || null;
+      state.proposalUndo  = parsed.proposalUndo || {};
+      state.dirtyProposalFiles = parsed.dirtyProposalFiles || [];
       state.github       = parsed.github       || state.github;
     } else {
       state.series = DEFAULT_SERIES;
@@ -1419,6 +1476,7 @@ async function loadFromGitHub() {
   if (!token || !repo) return;
 
   showStatus('Gegevens synchroniseren met GitHub…', 'loading');
+  proposalLoadState = { status: 'loading', error: '' };
   const [owner, repoName] = repo.split('/');
 
   try {
@@ -1467,6 +1525,37 @@ async function loadFromGitHub() {
     });
     state.series.forEach(series => ensureActiveCalendarFile(series.id));
     rebuildCombinedData();
+
+    // Proposal state lives separately from published calendar files. Loading it
+    // never mutates a calendar; review actions below copy values into local draft state.
+    try {
+      const proposalPath = `${basePath}.raceday/session-time-proposals.json`;
+      const proposalResp = await fetch(`https://api.github.com/repos/${owner}/${repoName}/contents/${proposalPath}?ref=${state.github.branch || 'main'}`, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Accept': 'application/vnd.github+json',
+        }
+      });
+      if (proposalResp.ok) {
+        const proposalFile = await proposalResp.json();
+        const proposalText = decodeURIComponent(escape(atob(proposalFile.content.replace(/\s/g, ''))));
+        const proposalStore = JSON.parse(proposalText);
+        state.proposals = Array.isArray(proposalStore.proposals) ? proposalStore.proposals : [];
+        state.proposalSources = Array.isArray(proposalStore.sourcesUsed) ? proposalStore.sourcesUsed : [];
+        state.proposalGeneratedAt = proposalStore.generatedAt || null;
+        proposalLoadState = { status: 'loaded', error: '' };
+      } else if (proposalResp.status !== 404) {
+        console.warn(`Could not load proposal store: GitHub ${proposalResp.status}`);
+        proposalLoadState = { status: 'error', error: `GitHub ${proposalResp.status}` };
+      } else {
+        state.proposals = [];
+        state.proposalSources = [];
+        proposalLoadState = { status: 'loaded', error: '' };
+      }
+    } catch (e) {
+      console.warn('Could not load proposal store:', e);
+      proposalLoadState = { status: 'error', error: e.message || String(e) };
+    }
 
     // Load standings files (*_standings_2026.json)
     const basePath2 = state.github.path ? `${state.github.path}/` : '';
@@ -1521,6 +1610,11 @@ function save() {
     standings: state.standings,
     standingsMeta: state.standingsMeta,
     standingsUrls: state.standingsUrls,
+    proposals: state.proposals,
+    proposalSources: state.proposalSources,
+    proposalGeneratedAt: state.proposalGeneratedAt,
+    proposalUndo: state.proposalUndo,
+    dirtyProposalFiles: state.dirtyProposalFiles,
   });
   try {
     if (localStorage.getItem('raceday_editor') !== editorPayload) {
@@ -1563,7 +1657,14 @@ function renderSidebar() {
   }).join('');
   if (!filtered.length) list.innerHTML = '<div class="empty compact"><p>Geen series gevonden.</p></div>';
   document.getElementById('seriesTotal').textContent = `${state.series.length} series`;
-  document.querySelector('#dashboardNav .series-item')?.classList.toggle('active', !state.activeSeries);
+  document.querySelector('#dashboardNav .series-item')?.classList.toggle('active', state.activeView === 'dashboard');
+  document.getElementById('proposalsNav')?.classList.toggle('active', state.activeView === 'proposals');
+  const proposalCount = RaceDayProposals.openCount(state.proposals);
+  const proposalBadge = document.getElementById('proposalCount');
+  if (proposalBadge) {
+    proposalBadge.textContent = proposalCount;
+    proposalBadge.setAttribute('aria-label', `${proposalCount} openstaande voorstellen`);
+  }
 }
 
 function filterSeries(value) {
@@ -1617,6 +1718,7 @@ function toggleSidebar() {
 
 function selectDashboard() {
   state.activeSeries = null;
+  state.activeView = 'dashboard';
   renderSidebar();
   renderMain();
   if (window.innerWidth <= 760 && document.querySelector('.sidebar').classList.contains('open')) toggleSidebar();
@@ -1624,7 +1726,17 @@ function selectDashboard() {
 
 function selectSeries(id) {
   state.activeSeries = id;
+  state.activeView = 'series';
   ensureActiveCalendarFile(id);
+  save();
+  renderSidebar();
+  renderMain();
+  if (window.innerWidth <= 760 && document.querySelector('.sidebar').classList.contains('open')) toggleSidebar();
+}
+
+function selectProposals() {
+  state.activeSeries = null;
+  state.activeView = 'proposals';
   save();
   renderSidebar();
   renderMain();
@@ -1639,6 +1751,10 @@ function switchTab(tab) {
 }
 
 function renderMain() {
+  if (state.activeView === 'proposals') {
+    renderProposals();
+    return;
+  }
   const series = state.series.find(s => s.id === state.activeSeries);
   if (!series) {
     renderDashboard();
@@ -1834,6 +1950,191 @@ function renderDashboard() {
         <button class="btn btn-primary" onclick="${configured ? 'loadFromGitHub()' : 'showGitHubSettings()'}">${configured ? 'Synchroniseer met GitHub' : 'Koppel GitHub'}</button>
       </div>
     </div>`;
+}
+
+// ── Official session-time proposals ──────────────────────────────────────────
+
+function proposalStatusLabel(status) {
+  return ({
+    open: 'Open', requires_review: 'Handmatige controle', unresolved: 'Geen betrouwbare tijd',
+    accepted: 'Geaccepteerd', rejected: 'Afgewezen', superseded: 'Vervangen',
+  })[status] || status;
+}
+
+function proposalTypeLabel(type) {
+  return ({
+    'time-update': 'Tijdcorrectie', 'new-session': 'Nieuwe sessie', conflict: 'Conflict', unresolved: 'Onopgelost',
+  })[type] || type;
+}
+
+function proposalDateTime(value) {
+  if (!value?.date) return 'TBC';
+  return `${value.date}${value.timeLocal ? ` · ${value.timeLocal}` : ' · TBC'}`;
+}
+
+function proposalIsStale(proposal) {
+  if (proposal.stale) return true;
+  const checked = Date.parse(proposal.source?.checkedAt || '');
+  return Number.isFinite(checked) && Date.now() - checked > 14 * 86400000 && ['open', 'requires_review'].includes(proposal.status);
+}
+
+function proposalSeriesOptions() {
+  const ids = [...new Set(state.proposals.map(item => item.seriesId))].sort();
+  return ids.map(id => {
+    const name = state.proposals.find(item => item.seriesId === id)?.seriesName || formatSeriesName(id);
+    return `<option value="${esc(id)}" ${proposalFilters.seriesId === id ? 'selected' : ''}>${esc(name)}</option>`;
+  }).join('');
+}
+
+function renderProposalRow(proposal) {
+  const isOpen = proposal.status === 'open' && proposal.proposed && !proposalIsStale(proposal);
+  const canReject = ['open', 'requires_review'].includes(proposal.status);
+  const canUndo = proposal.status === 'accepted' ? Boolean(state.proposalUndo[proposal.fingerprint]) : proposal.status === 'rejected';
+  const sourceTime = proposal.sourceTime
+    ? `${proposal.sourceTime.date} · ${proposal.sourceTime.time}<br>${esc(proposal.sourceTime.timeZone)}`
+    : 'Niet betrouwbaar vastgesteld';
+  const checked = proposal.source?.checkedAt
+    ? new Intl.DateTimeFormat('nl-NL', { dateStyle: 'medium', timeStyle: 'short' }).format(new Date(proposal.source.checkedAt))
+    : 'onbekend';
+  return `<article class="proposal-row" data-status="${esc(proposal.status)}">
+    <div>
+      <div class="proposal-name">${esc(proposal.sessionName || 'Onbekende sessie')}</div>
+      <div class="proposal-badges">
+        <span class="proposal-badge ${proposal.proposalType === 'new-session' ? 'new' : ''}">${esc(proposalTypeLabel(proposal.proposalType))}</span>
+        <span class="proposal-badge ${['requires_review','unresolved','conflict'].includes(proposal.status) ? 'warning' : proposal.status !== 'open' ? 'closed' : ''}">${esc(proposalStatusLabel(proposal.status))}</span>
+        ${proposalIsStale(proposal) ? '<span class="proposal-badge warning">Verouderd</span>' : ''}
+      </div>
+      ${proposal.reason && proposal.reason !== 'Official session time is available.' ? `<div class="proposal-warning">${esc(proposal.reason)}</div>` : ''}
+      ${proposal.lastScanError ? `<div class="proposal-warning">Laatste scan: ${esc(proposal.lastScanError)}</div>` : ''}
+    </div>
+    <div class="proposal-detail">
+      <div class="proposal-value-grid">
+        <div class="proposal-value">Huidig<strong>${esc(proposalDateTime(proposal.current))}</strong></div>
+        <span class="proposal-arrow" aria-hidden="true">→</span>
+        <div class="proposal-value">Voorstel<strong>${esc(proposalDateTime(proposal.proposed))}</strong></div>
+      </div>
+      ${proposal.dateChanged ? '<div class="proposal-warning">Let op: de kalenderdatum verandert door de tijdzoneconversie.</div>' : ''}
+      ${proposal.proposed ? `<div style="margin-top:8px">Editorzone: <strong>${esc(proposal.editorTimeZone)}</strong> · UTC: <span style="font-family:var(--mono)">${esc(proposal.proposed.utcInstant)}</span></div>` : ''}
+      <div class="proposal-actions">
+        ${isOpen ? `<button class="btn btn-primary btn-sm" onclick="acceptProposal('${proposal.fingerprint}')">Accepteren</button>` : ''}
+        ${canReject ? `<button class="btn btn-ghost btn-sm" onclick="rejectProposal('${proposal.fingerprint}')">Afwijzen</button>` : ''}
+        ${canUndo ? `<button class="btn btn-ghost btn-sm" onclick="undoProposalDecision('${proposal.fingerprint}')">Ongedaan maken</button>` : ''}
+      </div>
+    </div>
+    <div class="proposal-source">
+      <strong>Officiële brontijd</strong><br>${sourceTime}<br><br>
+      Gecontroleerd: ${esc(checked)}
+      ${proposal.source?.lastModified ? `<br>Bronversie: ${esc(proposal.source.lastModified)}` : ''}<br>
+      ${proposal.source?.finalUrl ? `<a href="${esc(proposal.source.finalUrl)}" target="_blank" rel="noopener noreferrer">Officiële bron bekijken ↗</a>` : 'Geen bronlink beschikbaar'}
+    </div>
+  </article>`;
+}
+
+function renderProposals() {
+  const content = document.getElementById('mainContent');
+  if (proposalLoadState.status === 'loading' && !state.proposals.length) {
+    content.innerHTML = '<div class="empty"><span class="spin"></span><h3>Voorstellen laden…</h3><p>De officiële broncontrole wordt ingelezen.</p></div>';
+    return;
+  }
+  if (proposalLoadState.status === 'error' && !state.proposals.length) {
+    content.innerHTML = `<div class="empty"><h3>Voorstellen konden niet worden geladen</h3><p>${esc(proposalLoadState.error)}</p><button class="btn btn-primary" onclick="loadFromGitHub()">Opnieuw proberen</button></div>`;
+    return;
+  }
+  const filtered = RaceDayProposals.filtered(state.proposals, proposalFilters);
+  const groups = Object.values(RaceDayProposals.grouped(state.proposals, proposalFilters));
+  const openCount = RaceDayProposals.openCount(state.proposals);
+  const checkedLabel = state.proposalGeneratedAt
+    ? new Intl.DateTimeFormat('nl-NL', { dateStyle: 'medium', timeStyle: 'short' }).format(new Date(state.proposalGeneratedAt))
+    : 'nog niet uitgevoerd';
+  content.innerHTML = `
+    <div class="section-heading">
+      <div><div class="section-title">Voorstellen</div><div class="section-meta">${openCount} te beoordelen · laatste scan ${esc(checkedLabel)}</div></div>
+      <div class="section-actions"><button class="btn btn-ghost btn-sm" onclick="loadFromGitHub()">Vernieuwen</button></div>
+    </div>
+    <div class="proposal-toolbar" aria-label="Voorstelfilters">
+      <div class="field"><label for="proposalSeriesFilter">Serie</label><select id="proposalSeriesFilter" onchange="setProposalFilter('seriesId',this.value)"><option value="">Alle series</option>${proposalSeriesOptions()}</select></div>
+      <div class="field"><label for="proposalStatusFilter">Status</label><select id="proposalStatusFilter" onchange="setProposalFilter('status',this.value)">
+        <option value="">Alle statussen</option>${['open','requires_review','unresolved','accepted','rejected','superseded'].map(status => `<option value="${status}" ${proposalFilters.status === status ? 'selected' : ''}>${proposalStatusLabel(status)}</option>`).join('')}
+      </select></div>
+    </div>
+    ${groups.length ? groups.map(group => `<section class="proposal-event">
+      <div class="proposal-event-header"><div><div class="proposal-event-title">${esc(group.eventName)}</div><div class="proposal-event-meta">${esc(group.seriesName)} · ${esc(group.calendarFile)} · ${group.proposals.length} voorstel(len)</div></div>
+      ${group.proposals.some(item => item.status === 'open' && item.proposed && !proposalIsStale(item)) ? `<button class="btn btn-primary btn-sm" onclick="acceptEventProposals('${esc(group.calendarFile)}','${esc(group.eventId)}')">Alles van dit event accepteren</button>` : ''}</div>
+      ${group.proposals.map(renderProposalRow).join('')}
+    </section>`).join('') : `<div class="empty"><h3>${state.proposals.length ? 'Geen voorstellen voor deze filters' : 'Geen voorstellen'}</h3><p>${state.proposals.length ? 'Pas de serie- of statusfilter aan.' : 'Draai de officiële sessietijdscanner en synchroniseer daarna opnieuw.'}</p></div>`}
+    ${filtered.length ? `<p class="section-meta">${filtered.length} zichtbaar van ${state.proposals.length} · beslissingen blijven concept totdat je publiceert.</p>` : ''}`;
+}
+
+function setProposalFilter(key, value) {
+  proposalFilters[key] = value || '';
+  renderProposals();
+}
+
+function proposalByFingerprint(fingerprint) {
+  return state.proposals.find(item => item.fingerprint === fingerprint);
+}
+
+function markProposalFileDirty(filename) {
+  if (filename && !state.dirtyProposalFiles.includes(filename)) state.dirtyProposalFiles.push(filename);
+}
+
+function acceptProposal(fingerprint, deferRender = false) {
+  const proposal = proposalByFingerprint(fingerprint);
+  if (!proposal) return showStatus('Voorstel niet gevonden', 'error');
+  if (proposalIsStale(proposal)) return showStatus('Vernieuw eerst de officiële broncontrole; dit voorstel is verouderd.', 'error');
+  try {
+    state.proposalUndo[fingerprint] = RaceDayProposals.apply(state.calendarFiles, proposal);
+    proposal.status = 'accepted';
+    proposal.decisionAt = new Date().toISOString();
+    markProposalFileDirty(proposal.calendarFile);
+    save();
+    if (!deferRender) { renderSidebar(); renderProposals(); showStatus(`✓ ${proposal.sessionName} verwerkt in concept`, 'success'); }
+    return true;
+  } catch (error) {
+    if (!deferRender) showStatus(error.message, 'error');
+    return false;
+  }
+}
+
+function acceptEventProposals(calendarFile, eventId) {
+  const targets = state.proposals.filter(item => item.calendarFile === calendarFile && item.eventId === eventId && item.status === 'open' && item.proposed && !proposalIsStale(item));
+  const calendarSnapshot = JSON.parse(JSON.stringify(state.calendarFiles[calendarFile]));
+  const proposalSnapshot = JSON.parse(JSON.stringify(state.proposals));
+  const undoSnapshot = JSON.parse(JSON.stringify(state.proposalUndo));
+  for (const proposal of targets) {
+    if (!acceptProposal(proposal.fingerprint, true)) {
+      state.calendarFiles[calendarFile] = calendarSnapshot;
+      state.proposals = proposalSnapshot;
+      state.proposalUndo = undoSnapshot;
+      return showStatus('Event kon niet volledig worden verwerkt; niets is gewijzigd.', 'error');
+    }
+  }
+  save(); renderSidebar(); renderProposals();
+  showStatus(`✓ ${targets.length} voorstel(len) verwerkt in concept`, 'success');
+}
+
+function rejectProposal(fingerprint) {
+  const proposal = proposalByFingerprint(fingerprint);
+  if (!proposal || !['open', 'requires_review'].includes(proposal.status)) return;
+  proposal.status = 'rejected';
+  proposal.decisionAt = new Date().toISOString();
+  save(); renderSidebar(); renderProposals();
+  showStatus(`${proposal.sessionName} afgewezen`, 'success');
+}
+
+function undoProposalDecision(fingerprint) {
+  const proposal = proposalByFingerprint(fingerprint);
+  if (!proposal) return;
+  try {
+    const wasAccepted = proposal.status === 'accepted';
+    if (wasAccepted) RaceDayProposals.undo(state.calendarFiles, proposal, state.proposalUndo[fingerprint]);
+    proposal.status = 'open';
+    delete proposal.decisionAt;
+    delete state.proposalUndo[fingerprint];
+    if (wasAccepted) markProposalFileDirty(proposal.calendarFile);
+    save(); renderSidebar(); renderProposals();
+    showStatus(`✓ Beslissing voor ${proposal.sessionName} ongedaan gemaakt`, 'success');
+  } catch (error) { showStatus(error.message, 'error'); }
 }
 
 // ── Standings Tab ──────────────────────────────────────────────────────────────
@@ -2871,7 +3172,11 @@ function deleteSession(ri, si) {
 // ── JSON Export ────────────────────────────────────────────────────────────────
 
 function buildJSON(seriesId) {
-  const rounds = editableRounds(seriesId).map(r => ({
+  return buildCalendarFileJSON(editableRounds(seriesId), seriesId);
+}
+
+function buildCalendarFileJSON(sourceRounds, seriesId) {
+  const rounds = (sourceRounds || []).map(r => ({
     id: r.id,
     seriesId: r.seriesId || seriesId,
     ...(r.seasonId ? { seasonId: r.seasonId } : {}),
@@ -3183,6 +3488,66 @@ async function publishToGitHub() {
     return false;
   } catch (e) {
     showStatus(`Mislukt: ${e.message}`, 'error');
+    return false;
+  }
+}
+
+function publishCurrentView() {
+  return state.activeView === 'proposals' ? publishProposalChanges() : publishToGitHub();
+}
+
+async function uploadGitHubTextFile(relativePath, content, message) {
+  const { token, repo, branch, path } = state.github;
+  const repositoryPath = path ? `${path.replace(/\/$/,'')}/${relativePath}` : relativePath;
+  const apiBase = `https://api.github.com/repos/${repo}/contents/${repositoryPath}`;
+  const headers = {
+    'Authorization': `token ${token}`,
+    'Accept': 'application/vnd.github+json',
+    'Content-Type': 'application/json',
+  };
+  let sha = null;
+  const existingResponse = await fetch(`${apiBase}?ref=${branch}`, { headers });
+  if (existingResponse.ok) sha = (await existingResponse.json()).sha;
+  else if (existingResponse.status !== 404) throw new Error(`GitHub ${existingResponse.status} bij ${relativePath}`);
+  const encoded = btoa(unescape(encodeURIComponent(content)));
+  const response = await fetch(apiBase, {
+    method: 'PUT', headers,
+    body: JSON.stringify({ message, content: encoded, branch, ...(sha ? { sha } : {}) }),
+  });
+  if (![200, 201].includes(response.status)) {
+    const error = await response.json().catch(() => ({}));
+    throw new Error(error.message || `GitHub ${response.status} bij ${relativePath}`);
+  }
+}
+
+function buildProposalStoreJSON() {
+  return JSON.stringify({
+    schemaVersion: 1,
+    generatedAt: state.proposalGeneratedAt,
+    proposals: state.proposals,
+    sourcesUsed: state.proposalSources,
+  }, null, 2);
+}
+
+async function publishProposalChanges() {
+  const { token, repo } = state.github;
+  if (!token || !repo) return showStatus('Stel eerst je GitHub-token en repository in', 'error');
+  if (!token.startsWith('gh') || !repo.includes('/')) return showStatus('Controleer je GitHub-instellingen', 'error');
+  const files = [...new Set(state.dirtyProposalFiles)].filter(filename => state.calendarFiles[filename]);
+  showStatus(`Conceptwijzigingen publiceren (${files.length + 1} bestand(en))…`, 'loading');
+  try {
+    for (const filename of files) {
+      const parsed = parseCalendarFilename(filename);
+      if (!parsed) throw new Error(`Ongeldig kalenderbestand: ${filename}`);
+      await uploadGitHubTextFile(filename, buildCalendarFileJSON(state.calendarFiles[filename], parsed.seriesId), `Review official session-time proposals in ${filename}`);
+    }
+    await uploadGitHubTextFile('.raceday/session-time-proposals.json', buildProposalStoreJSON(), 'Update official session-time proposal decisions');
+    state.dirtyProposalFiles = [];
+    save();
+    showStatus('✓ Voorstelbeslissingen en geaccepteerde conceptwijzigingen gepubliceerd', 'success');
+    return true;
+  } catch (error) {
+    showStatus(`Publiceren mislukt: ${error.message}`, 'error');
     return false;
   }
 }

@@ -1,0 +1,151 @@
+{
+  "schemaVersion": 1,
+  "editorTimeZones": {
+    "default": "Europe/Amsterdam",
+    "nascar": "America/New_York",
+    "nascar_oreilly": "America/New_York",
+    "nascar_trucks": "America/New_York"
+  },
+  "series": [
+    {
+      "seriesId": "f2",
+      "name": "FIA Formula 2",
+      "startUrl": "https://www.fiaformula2.com/en/racing/{year}",
+      "allowedDomains": ["fiaformula2.com", "www.fiaformula2.com"],
+      "sourceKind": "fia-track-time",
+      "eventDiscovery": "Follow the official event link from the season racing page and prefer Track time.",
+      "sourceTimeZone": "track",
+      "notes": "My time is browser-local and must not be used. A track IANA timezone is required before proposing a time."
+    },
+    {
+      "seriesId": "f3",
+      "name": "FIA Formula 3",
+      "startUrl": "https://www.fiaformula3.com/en/racing/{year}",
+      "allowedDomains": ["fiaformula3.com", "www.fiaformula3.com"],
+      "sourceKind": "fia-track-time",
+      "eventDiscovery": "Follow the official event link from the season racing page and prefer Track time.",
+      "sourceTimeZone": "track",
+      "notes": "My time is browser-local and must not be used. A track IANA timezone is required before proposing a time."
+    },
+    {
+      "seriesId": "nascar",
+      "name": "NASCAR Cup Series",
+      "startUrl": "https://www.nascar.com/weekend-schedule/",
+      "calendarUrl": "https://www.nascar.com/nascar-cup-series/{year}/schedule/",
+      "allowedDomains": ["nascar.com", "www.nascar.com"],
+      "sourceKind": "nascar-et",
+      "eventDiscovery": "Open the stable weekend schedule on every run, follow its redirect, and match the official Cup schedule by event, venue and date.",
+      "sourceTimeZone": "America/New_York",
+      "notes": "ET is interpreted as America/New_York so EST and EDT follow the event date."
+    },
+    {
+      "seriesId": "nascar_oreilly",
+      "name": "NASCAR O'Reilly Auto Parts Series",
+      "startUrl": "https://www.nascar.com/weekend-schedule/",
+      "calendarUrl": "https://www.nascar.com/nascar-oreilly-auto-parts-series/{year}/schedule/",
+      "allowedDomains": ["nascar.com", "www.nascar.com"],
+      "sourceKind": "nascar-et",
+      "eventDiscovery": "Open the stable weekend schedule on every run, follow its redirect, and match the official O'Reilly schedule by event, venue and date.",
+      "sourceTimeZone": "America/New_York",
+      "notes": "ET is interpreted as America/New_York so EST and EDT follow the event date."
+    },
+    {
+      "seriesId": "nascar_trucks",
+      "name": "NASCAR Craftsman Truck Series",
+      "startUrl": "https://www.nascar.com/weekend-schedule/",
+      "calendarUrl": "https://www.nascar.com/nascar-craftsman-truck-series/{year}/schedule/",
+      "allowedDomains": ["nascar.com", "www.nascar.com"],
+      "sourceKind": "nascar-et",
+      "eventDiscovery": "Open the stable weekend schedule on every run, follow its redirect, and match the official Truck schedule by event, venue and date.",
+      "sourceTimeZone": "America/New_York",
+      "notes": "ET is interpreted as America/New_York so EST and EDT follow the event date."
+    },
+    {
+      "seriesId": "nascareuro",
+      "name": "NASCAR Euro Series",
+      "startUrl": "https://www.nascar.eu/",
+      "allowedDomains": ["nascar.eu", "www.nascar.eu"],
+      "sourceKind": "official-track-time",
+      "eventDiscovery": "Follow Schedule/Tickets to the official event page or official linked timetable.",
+      "sourceTimeZone": "track",
+      "notes": "Store the final nascar.eu URL after redirects from the former domain."
+    },
+    {
+      "seriesId": "gtwce",
+      "name": "GT World Challenge Europe",
+      "startUrl": "https://www.gt-world-challenge-europe.com/calendar",
+      "allowedDomains": ["gt-world-challenge-europe.com", "www.gt-world-challenge-europe.com"],
+      "sourceKind": "sro-event-timetable",
+      "eventDiscovery": "Follow Event Info and prefer the event timetable or linked official PDF.",
+      "sourceTimeZone": "track",
+      "notes": "The editor stores this series in Europe/Amsterdam."
+    },
+    {
+      "seriesId": "gtwca_am",
+      "name": "GT World Challenge America",
+      "startUrl": "https://www.gt-world-challenge-america.com/calendar",
+      "allowedDomains": ["gt-world-challenge-america.com", "www.gt-world-challenge-america.com"],
+      "sourceKind": "sro-event-timetable",
+      "eventDiscovery": "Follow Event Info and prefer the event timetable or linked official PDF.",
+      "sourceTimeZone": "track",
+      "notes": "The editor stores this series in Europe/Amsterdam."
+    },
+    {
+      "seriesId": "gtwca_asia",
+      "name": "GT World Challenge Asia",
+      "startUrl": "https://www.gt-world-challenge-asia.com/calendar",
+      "allowedDomains": ["gt-world-challenge-asia.com", "www.gt-world-challenge-asia.com"],
+      "sourceKind": "sro-event-timetable",
+      "eventDiscovery": "Follow Event Info and prefer the event timetable or linked official PDF.",
+      "sourceTimeZone": "track",
+      "notes": "The editor stores this series in Europe/Amsterdam."
+    },
+    {
+      "seriesId": "gtwca_aus",
+      "name": "GT World Challenge Australia",
+      "startUrl": "https://www.gt-world-challenge-australia.com/calendar",
+      "allowedDomains": ["gt-world-challenge-australia.com", "www.gt-world-challenge-australia.com"],
+      "sourceKind": "sro-event-timetable",
+      "eventDiscovery": "Follow Event Info and prefer the event timetable or linked official PDF.",
+      "sourceTimeZone": "track",
+      "notes": "The editor stores this series in Europe/Amsterdam."
+    }
+  ],
+  "eventTimeZones": {
+    "barber motorsports park": "America/Chicago",
+    "indianapolis motor speedway": "America/New_York",
+    "sydney motorsport park": "Australia/Sydney",
+    "adelaide grand final": "Australia/Adelaide",
+    "beijing street circuit": "Asia/Shanghai",
+    "shanghai international circuit": "Asia/Shanghai",
+    "circuit paul ricard": "Europe/Paris",
+    "brands hatch": "Europe/London",
+    "imola": "Europe/Rome",
+    "spa-francorchamps": "Europe/Brussels",
+    "nurburgring": "Europe/Berlin",
+    "nürburgring": "Europe/Berlin",
+    "zandvoort": "Europe/Amsterdam",
+    "barcelona": "Europe/Madrid",
+    "portimao": "Europe/Lisbon",
+    "portimão": "Europe/Lisbon",
+    "monza": "Europe/Rome",
+    "misano": "Europe/Rome",
+    "magny-cours": "Europe/Paris",
+    "hungaroring": "Europe/Budapest",
+    "bahrain": "Asia/Bahrain",
+    "jeddah": "Asia/Riyadh",
+    "melbourne": "Australia/Melbourne",
+    "monaco": "Europe/Monaco",
+    "baku": "Asia/Baku",
+    "lusail": "Asia/Qatar",
+    "yas marina": "Asia/Dubai"
+  },
+  "knownEventUrls": {
+    "nascar:nascar-2026-r33": "https://www.nascar.com/tickets/",
+    "nascar:nascar-2026-r35": "https://www.nascar.com/tickets/",
+    "gtwca_am:gtwca-am-2026-r06": "https://www.gt-world-challenge-america.com/event/116/barber-motorsports-park",
+    "gtwca_am:gtwca-am-2026-r07": "https://www.gt-world-challenge-america.com/event/117/indianpolis-8-hour",
+    "gtwca_aus:gtwca-aus-2026-r05": "https://www.gt-world-challenge-australia.com/event/24/Sydney",
+    "gtwca_aus:gtwca-aus-2026-r06": "https://www.gt-world-challenge-australia.com/event/28/adelaide-grand-final"
+  }
+}
