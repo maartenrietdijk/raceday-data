@@ -1,408 +1,3426 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-09T15:26:07Z",
+  "generatedAt": "2026-09-09T20:41:39Z",
   "proposals": [
     {
-      "seriesId": "british_gt",
-      "seriesName": "British GT Championship",
-      "calendarFile": "british_gt_2026.json",
-      "eventId": "british_gt-2026-r06",
-      "eventName": "Brands Hatch",
-      "roundNumber": 6,
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2027.json",
+      "eventId": "dtm-2027-r05",
+      "eventName": "Circuit Zandvoort",
+      "roundNumber": 5,
       "source": {
-        "stableUrl": "https://www.britishgt.com/images/results/113/Event%20Timetable%20-%2026-27.09.26%20-%20BH%20GP%20-%20Issue%20ONE.pdf",
-        "finalUrl": "https://www.britishgt.com/images/results/113/Event%20Timetable%20-%2026-27.09.26%20-%20BH%20GP%20-%20Issue%20ONE.pdf",
-        "title": "Official timetable PDF",
-        "checkedAt": "2026-09-09T15:26:07Z",
-        "lastModified": "Wed, 29 Jul 2026 13:26:22 GMT"
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=circuit-zandvoort-2027&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
       },
-      "proposalType": "new-session",
-      "sessionId": null,
-      "sessionName": "Free Practice",
+      "proposalType": "unresolved",
+      "sessionId": "dtm-2027-r05-s1",
+      "sessionName": "Practice 1",
       "current": {
-        "date": null,
+        "date": "2027-08-06",
         "timeLocal": null,
-        "durationMinutes": null
+        "durationMinutes": 55
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet",
+      "fingerprint": "197c0cf9a6b109e0084074c74ef6ea0380970885c4942a84466ebe3298d389e8",
+      "id": "schedule-197c0cf9a6b109e0"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2027.json",
+      "eventId": "dtm-2027-r05",
+      "eventName": "Circuit Zandvoort",
+      "roundNumber": 5,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=circuit-zandvoort-2027&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "dtm-2027-r05-s2",
+      "sessionName": "Practice 2",
+      "current": {
+        "date": "2027-08-06",
+        "timeLocal": null,
+        "durationMinutes": 55
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet",
+      "fingerprint": "744fe91384a1f98e415e66b1bb1b21abea914b5367504ee55ca9d526a45b9aa7",
+      "id": "schedule-744fe91384a1f98e"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2027.json",
+      "eventId": "dtm-2027-r05",
+      "eventName": "Circuit Zandvoort",
+      "roundNumber": 5,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=circuit-zandvoort-2027&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "dtm-2027-r05-s3",
+      "sessionName": "Qualifying 1",
+      "current": {
+        "date": "2027-08-07",
+        "timeLocal": null,
+        "durationMinutes": 30
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet",
+      "fingerprint": "1b51268634889d4703ee1cef1de66b09410c2e5d52e2d257f50e7c2770d0b7b9",
+      "id": "schedule-1b51268634889d47"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2027.json",
+      "eventId": "dtm-2027-r05",
+      "eventName": "Circuit Zandvoort",
+      "roundNumber": 5,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=circuit-zandvoort-2027&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "dtm-2027-r05-s5",
+      "sessionName": "Qualifying 2",
+      "current": {
+        "date": "2027-08-08",
+        "timeLocal": null,
+        "durationMinutes": 30
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet",
+      "fingerprint": "afde987c80e9fbdd3804708ee85d6ee20ec1fa7d8f66350fe78e1acd696784a5",
+      "id": "schedule-afde987c80e9fbdd"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2027.json",
+      "eventId": "dtm-2027-r05",
+      "eventName": "Circuit Zandvoort",
+      "roundNumber": 5,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=circuit-zandvoort-2027&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "dtm-2027-r05-s4",
+      "sessionName": "Race 1",
+      "current": {
+        "date": "2027-08-07",
+        "timeLocal": null,
+        "durationMinutes": 55
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet",
+      "fingerprint": "9ecdcdc5c93720f170dc26f508f1e47f4693ed960bc7362e9c582cab1adfd311",
+      "id": "schedule-9ecdcdc5c93720f1"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2027.json",
+      "eventId": "dtm-2027-r05",
+      "eventName": "Circuit Zandvoort",
+      "roundNumber": 5,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=circuit-zandvoort-2027&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "dtm-2027-r05-s6",
+      "sessionName": "Race 2",
+      "current": {
+        "date": "2027-08-08",
+        "timeLocal": null,
+        "durationMinutes": 55
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet",
+      "fingerprint": "3dd7071c3104c88f11958eb4c93b2d772f4ebae9efd1fecc0ea6a5da8b6b788f",
+      "id": "schedule-3dd7071c3104c88f"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2027.json",
+      "eventId": "dtm-2027-r03",
+      "eventName": "Dekra Lausitzring",
+      "roundNumber": 3,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=dekra-lausitzring-2027&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "dtm-2027-r03-s1",
+      "sessionName": "Practice 1",
+      "current": {
+        "date": "2027-06-18",
+        "timeLocal": null,
+        "durationMinutes": 55
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet",
+      "fingerprint": "b96f6341c98b2b0949e3f67bf122eb281938878780eb808a4c31a908de98ca97",
+      "id": "schedule-b96f6341c98b2b09"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2027.json",
+      "eventId": "dtm-2027-r03",
+      "eventName": "Dekra Lausitzring",
+      "roundNumber": 3,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=dekra-lausitzring-2027&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "dtm-2027-r03-s2",
+      "sessionName": "Practice 2",
+      "current": {
+        "date": "2027-06-18",
+        "timeLocal": null,
+        "durationMinutes": 45
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet",
+      "fingerprint": "9f1efb4f886634a5afbb7a09e6f5cea02a3dddfd82a4185a731b219726d5e30d",
+      "id": "schedule-9f1efb4f886634a5"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2027.json",
+      "eventId": "dtm-2027-r03",
+      "eventName": "Dekra Lausitzring",
+      "roundNumber": 3,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=dekra-lausitzring-2027&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "dtm-2027-r03-s3",
+      "sessionName": "Qualifying 1",
+      "current": {
+        "date": "2027-06-19",
+        "timeLocal": null,
+        "durationMinutes": 30
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet",
+      "fingerprint": "9f2dd9e16415cf27bf92039bbd54f233cf66f7c6d54f43658defb67d0cfbe4d1",
+      "id": "schedule-9f2dd9e16415cf27"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2027.json",
+      "eventId": "dtm-2027-r03",
+      "eventName": "Dekra Lausitzring",
+      "roundNumber": 3,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=dekra-lausitzring-2027&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "dtm-2027-r03-s5",
+      "sessionName": "Qualifying 2",
+      "current": {
+        "date": "2027-06-20",
+        "timeLocal": null,
+        "durationMinutes": 30
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet",
+      "fingerprint": "dc337a07579765425afa9a4289a5133f9caa947e7473486c5c6e44ada90e025d",
+      "id": "schedule-dc337a0757976542"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2027.json",
+      "eventId": "dtm-2027-r03",
+      "eventName": "Dekra Lausitzring",
+      "roundNumber": 3,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=dekra-lausitzring-2027&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "dtm-2027-r03-s4",
+      "sessionName": "Race 1",
+      "current": {
+        "date": "2027-06-19",
+        "timeLocal": null,
+        "durationMinutes": 55
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet",
+      "fingerprint": "35020d2f668b5c0c0a65f04ac4c7ecdc16a36896a13ea044b3a7a4319397b575",
+      "id": "schedule-35020d2f668b5c0c"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2027.json",
+      "eventId": "dtm-2027-r03",
+      "eventName": "Dekra Lausitzring",
+      "roundNumber": 3,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=dekra-lausitzring-2027&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "dtm-2027-r03-s6",
+      "sessionName": "Race 2",
+      "current": {
+        "date": "2027-06-20",
+        "timeLocal": null,
+        "durationMinutes": 55
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet",
+      "fingerprint": "5b3055d2a145e540d66dc49e5442c7798567c9f30d7b81442bf64114e9d750a5",
+      "id": "schedule-5b3055d2a145e540"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2027.json",
+      "eventId": "dtm-2027-r08",
+      "eventName": "Hockenheimring",
+      "roundNumber": 8,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=hockenheimring-2027&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "dtm-2027-r08-s1",
+      "sessionName": "Practice 1",
+      "current": {
+        "date": "2027-10-08",
+        "timeLocal": null,
+        "durationMinutes": 45
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet",
+      "fingerprint": "c27f6d43658ff8e08a8e373419d7107c178a4c23aee4d6e07f4026b244dfe6e6",
+      "id": "schedule-c27f6d43658ff8e0"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2027.json",
+      "eventId": "dtm-2027-r08",
+      "eventName": "Hockenheimring",
+      "roundNumber": 8,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=hockenheimring-2027&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "dtm-2027-r08-s2",
+      "sessionName": "Practice 2",
+      "current": {
+        "date": "2027-10-08",
+        "timeLocal": null,
+        "durationMinutes": 45
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet",
+      "fingerprint": "5805c021b551b1b73bdaf9472291038fa098a112cea181032bd3468ba776f0c1",
+      "id": "schedule-5805c021b551b1b7"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2027.json",
+      "eventId": "dtm-2027-r08",
+      "eventName": "Hockenheimring",
+      "roundNumber": 8,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=hockenheimring-2027&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "dtm-2027-r08-s3",
+      "sessionName": "Qualifying 1",
+      "current": {
+        "date": "2027-10-09",
+        "timeLocal": null,
+        "durationMinutes": 30
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet",
+      "fingerprint": "651414f4e53c0f6d3420ae19a143b500f87910dc5b8f596d1db670231b89cfe6",
+      "id": "schedule-651414f4e53c0f6d"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2027.json",
+      "eventId": "dtm-2027-r08",
+      "eventName": "Hockenheimring",
+      "roundNumber": 8,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=hockenheimring-2027&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "dtm-2027-r08-s5",
+      "sessionName": "Qualifying 2",
+      "current": {
+        "date": "2027-10-10",
+        "timeLocal": null,
+        "durationMinutes": 30
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet",
+      "fingerprint": "7c23c0ec37a129b9b7cd556184eaf2d1c337ce5223c538352199e1703a54d737",
+      "id": "schedule-7c23c0ec37a129b9"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2027.json",
+      "eventId": "dtm-2027-r08",
+      "eventName": "Hockenheimring",
+      "roundNumber": 8,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=hockenheimring-2027&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "dtm-2027-r08-s4",
+      "sessionName": "Race 1",
+      "current": {
+        "date": "2027-10-09",
+        "timeLocal": null,
+        "durationMinutes": 55
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet",
+      "fingerprint": "f8be37d1bb2bf9e0acf17ba5256a0f8eb132aaf5cf83a26ce17dc8ed86f2f6f4",
+      "id": "schedule-f8be37d1bb2bf9e0"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2027.json",
+      "eventId": "dtm-2027-r08",
+      "eventName": "Hockenheimring",
+      "roundNumber": 8,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=hockenheimring-2027&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "dtm-2027-r08-s6",
+      "sessionName": "Race 2",
+      "current": {
+        "date": "2027-10-10",
+        "timeLocal": null,
+        "durationMinutes": 55
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet",
+      "fingerprint": "b23c43d05afc58c5c7e7ca593bc40c703d221b04aa56b73e306d612e89ca4a0f",
+      "id": "schedule-b23c43d05afc58c5"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2026.json",
+      "eventId": "dtm-2026-r03",
+      "eventName": "Lausitzring",
+      "roundNumber": 3,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=lausitzring-2026&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "verification",
+      "sessionId": "dtm-2026-r03-s1",
+      "sessionName": "Practice 1",
+      "current": {
+        "date": "2026-06-19",
+        "timeLocal": "11:40",
+        "durationMinutes": 55
       },
       "sourceTime": {
-        "date": "2026-09-26",
-        "time": "09:25",
-        "timeZone": "Europe/London"
+        "date": "2026-06-19",
+        "time": "11:40",
+        "timeZone": "Europe/Berlin"
       },
       "editorTimeZone": "Europe/Amsterdam",
       "proposed": {
-        "date": "2026-09-26",
-        "timeLocal": "10:25",
-        "durationMinutes": 60,
-        "name": "Free Practice",
+        "date": "2026-06-19",
+        "timeLocal": "11:40",
+        "durationMinutes": 55,
+        "name": "Free Practice 1",
         "kind": "practice",
-        "utcInstant": "2026-09-26T08:25:00Z",
-        "sessionId": "british_gt-2026-r06-s2"
+        "utcInstant": "2026-06-19T09:40:00Z",
+        "sessionId": "dtm-2026-r03-s1"
       },
       "dateChanged": false,
-      "status": "open",
-      "reason": "Official session time is available.",
-      "fingerprint": "5530141f515ba0cd29a1dae767da693a2a2dc1d58a87ad1d1e7150d71e5530ba",
-      "id": "schedule-5530141f515ba0cd"
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "65a5918376723197396932e35e6122d6b5178d601c273beae3f2825a2c69c724",
+      "id": "schedule-65a5918376723197"
     },
     {
-      "seriesId": "british_gt",
-      "seriesName": "British GT Championship",
-      "calendarFile": "british_gt_2026.json",
-      "eventId": "british_gt-2026-r06",
-      "eventName": "Brands Hatch",
-      "roundNumber": 6,
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2026.json",
+      "eventId": "dtm-2026-r03",
+      "eventName": "Lausitzring",
+      "roundNumber": 3,
       "source": {
-        "stableUrl": "https://www.britishgt.com/images/results/113/Event%20Timetable%20-%2026-27.09.26%20-%20BH%20GP%20-%20Issue%20ONE.pdf",
-        "finalUrl": "https://www.britishgt.com/images/results/113/Event%20Timetable%20-%2026-27.09.26%20-%20BH%20GP%20-%20Issue%20ONE.pdf",
-        "title": "Official timetable PDF",
-        "checkedAt": "2026-09-09T15:26:07Z",
-        "lastModified": "Wed, 29 Jul 2026 13:26:22 GMT"
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=lausitzring-2026&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
       },
-      "proposalType": "new-session",
-      "sessionId": null,
-      "sessionName": "Pre Qualifying",
+      "proposalType": "verification",
+      "sessionId": "dtm-2026-r03-s2",
+      "sessionName": "Practice 2",
       "current": {
-        "date": null,
-        "timeLocal": null,
-        "durationMinutes": null
+        "date": "2026-06-19",
+        "timeLocal": "16:10",
+        "durationMinutes": 45
       },
       "sourceTime": {
-        "date": "2026-09-26",
-        "time": "11:45",
-        "timeZone": "Europe/London"
+        "date": "2026-06-19",
+        "time": "16:10",
+        "timeZone": "Europe/Berlin"
       },
       "editorTimeZone": "Europe/Amsterdam",
       "proposed": {
-        "date": "2026-09-26",
-        "timeLocal": "12:45",
-        "durationMinutes": 60,
-        "name": "Pre Qualifying",
-        "kind": "qualifying",
-        "utcInstant": "2026-09-26T10:45:00Z",
-        "sessionId": "british_gt-2026-r06-s3"
+        "date": "2026-06-19",
+        "timeLocal": "16:10",
+        "durationMinutes": 45,
+        "name": "Free Practice 2",
+        "kind": "practice",
+        "utcInstant": "2026-06-19T14:10:00Z",
+        "sessionId": "dtm-2026-r03-s2"
       },
       "dateChanged": false,
-      "status": "open",
-      "reason": "Official session time is available.",
-      "fingerprint": "4e857f5bf9753d9a2ba73ae4e27ff03f8f920d737f1be37eb0eb640f9f93ab3a",
-      "id": "schedule-4e857f5bf9753d9a"
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "b6501ad02decc951d9ed4aa9dcbb47b8d34db5ff3dca7a12ba4d20687c55feaf",
+      "id": "schedule-b6501ad02decc951"
     },
     {
-      "seriesId": "british_gt",
-      "seriesName": "British GT Championship",
-      "calendarFile": "british_gt_2026.json",
-      "eventId": "british_gt-2026-r06",
-      "eventName": "Brands Hatch",
-      "roundNumber": 6,
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2026.json",
+      "eventId": "dtm-2026-r03",
+      "eventName": "Lausitzring",
+      "roundNumber": 3,
       "source": {
-        "stableUrl": "https://www.britishgt.com/images/results/113/Event%20Timetable%20-%2026-27.09.26%20-%20BH%20GP%20-%20Issue%20ONE.pdf",
-        "finalUrl": "https://www.britishgt.com/images/results/113/Event%20Timetable%20-%2026-27.09.26%20-%20BH%20GP%20-%20Issue%20ONE.pdf",
-        "title": "Official timetable PDF",
-        "checkedAt": "2026-09-09T15:26:07Z",
-        "lastModified": "Wed, 29 Jul 2026 13:26:22 GMT"
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=lausitzring-2026&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
       },
-      "proposalType": "new-session",
-      "sessionId": null,
-      "sessionName": "Qualifying 1 - GT3",
+      "proposalType": "verification",
+      "sessionId": "dtm-2026-r03-s3",
+      "sessionName": "Qualifying 1",
       "current": {
-        "date": null,
-        "timeLocal": null,
-        "durationMinutes": null
+        "date": "2026-06-20",
+        "timeLocal": "09:00",
+        "durationMinutes": 30
       },
       "sourceTime": {
-        "date": "2026-09-26",
-        "time": "16:15",
-        "timeZone": "Europe/London"
+        "date": "2026-06-20",
+        "time": "09:00",
+        "timeZone": "Europe/Berlin"
       },
       "editorTimeZone": "Europe/Amsterdam",
       "proposed": {
-        "date": "2026-09-26",
-        "timeLocal": "17:15",
-        "durationMinutes": 10,
-        "name": "Qualifying 1 - GT3",
+        "date": "2026-06-20",
+        "timeLocal": "09:00",
+        "durationMinutes": 20,
+        "name": "Qualifying 1",
         "kind": "qualifying",
-        "utcInstant": "2026-09-26T15:15:00Z",
-        "sessionId": "british_gt-2026-r06-s4"
+        "utcInstant": "2026-06-20T07:00:00Z",
+        "sessionId": "dtm-2026-r03-s3"
       },
       "dateChanged": false,
-      "status": "open",
-      "reason": "Official session time is available.",
-      "fingerprint": "e8f585bf4818ac5df2ce812361d24da902f4ae4f179cd60a7f1ec9e2003018bd",
-      "id": "schedule-e8f585bf4818ac5d"
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "8303f096e66aa5f1cdd4af1cb69866a48a7460706996faac5238dcf87179ebef",
+      "id": "schedule-8303f096e66aa5f1"
     },
     {
-      "seriesId": "british_gt",
-      "seriesName": "British GT Championship",
-      "calendarFile": "british_gt_2026.json",
-      "eventId": "british_gt-2026-r06",
-      "eventName": "Brands Hatch",
-      "roundNumber": 6,
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2026.json",
+      "eventId": "dtm-2026-r03",
+      "eventName": "Lausitzring",
+      "roundNumber": 3,
       "source": {
-        "stableUrl": "https://www.britishgt.com/images/results/113/Event%20Timetable%20-%2026-27.09.26%20-%20BH%20GP%20-%20Issue%20ONE.pdf",
-        "finalUrl": "https://www.britishgt.com/images/results/113/Event%20Timetable%20-%2026-27.09.26%20-%20BH%20GP%20-%20Issue%20ONE.pdf",
-        "title": "Official timetable PDF",
-        "checkedAt": "2026-09-09T15:26:07Z",
-        "lastModified": "Wed, 29 Jul 2026 13:26:22 GMT"
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=lausitzring-2026&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
       },
-      "proposalType": "new-session",
-      "sessionId": null,
-      "sessionName": "Qualifying 2 - GT3",
+      "proposalType": "verification",
+      "sessionId": "dtm-2026-r03-s5",
+      "sessionName": "Qualifying 2",
       "current": {
-        "date": null,
-        "timeLocal": null,
-        "durationMinutes": null
+        "date": "2026-06-21",
+        "timeLocal": "09:05",
+        "durationMinutes": 30
       },
       "sourceTime": {
-        "date": "2026-09-26",
-        "time": "16:29",
-        "timeZone": "Europe/London"
+        "date": "2026-06-21",
+        "time": "09:05",
+        "timeZone": "Europe/Berlin"
       },
       "editorTimeZone": "Europe/Amsterdam",
       "proposed": {
-        "date": "2026-09-26",
-        "timeLocal": "17:29",
-        "durationMinutes": 10,
-        "name": "Qualifying 2 - GT3",
+        "date": "2026-06-21",
+        "timeLocal": "09:05",
+        "durationMinutes": 20,
+        "name": "Qualifying 2",
         "kind": "qualifying",
-        "utcInstant": "2026-09-26T15:29:00Z",
-        "sessionId": "british_gt-2026-r06-s5"
+        "utcInstant": "2026-06-21T07:05:00Z",
+        "sessionId": "dtm-2026-r03-s5"
       },
       "dateChanged": false,
-      "status": "open",
-      "reason": "Official session time is available.",
-      "fingerprint": "fd9f2e34198a13bdf71941d6a45d5f96c1944363a6c609bdfadb9176d346660f",
-      "id": "schedule-fd9f2e34198a13bd"
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "80d277a505563db8fe07b66103ae36cdb4ec637eba82425683af192bbc040065",
+      "id": "schedule-80d277a505563db8"
     },
     {
-      "seriesId": "british_gt",
-      "seriesName": "British GT Championship",
-      "calendarFile": "british_gt_2026.json",
-      "eventId": "british_gt-2026-r06",
-      "eventName": "Brands Hatch",
-      "roundNumber": 6,
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2026.json",
+      "eventId": "dtm-2026-r03",
+      "eventName": "Lausitzring",
+      "roundNumber": 3,
       "source": {
-        "stableUrl": "https://www.britishgt.com/images/results/113/Event%20Timetable%20-%2026-27.09.26%20-%20BH%20GP%20-%20Issue%20ONE.pdf",
-        "finalUrl": "https://www.britishgt.com/images/results/113/Event%20Timetable%20-%2026-27.09.26%20-%20BH%20GP%20-%20Issue%20ONE.pdf",
-        "title": "Official timetable PDF",
-        "checkedAt": "2026-09-09T15:26:07Z",
-        "lastModified": "Wed, 29 Jul 2026 13:26:22 GMT"
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=lausitzring-2026&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
       },
-      "proposalType": "new-session",
-      "sessionId": null,
-      "sessionName": "Qualifying 3 - GT4",
+      "proposalType": "verification",
+      "sessionId": "dtm-2026-r03-s4",
+      "sessionName": "Race 1",
       "current": {
-        "date": null,
-        "timeLocal": null,
-        "durationMinutes": null
+        "date": "2026-06-20",
+        "timeLocal": "13:30",
+        "durationMinutes": 55
       },
       "sourceTime": {
-        "date": "2026-09-26",
-        "time": "16:43",
-        "timeZone": "Europe/London"
-      },
-      "editorTimeZone": "Europe/Amsterdam",
-      "proposed": {
-        "date": "2026-09-26",
-        "timeLocal": "17:43",
-        "durationMinutes": 10,
-        "name": "Qualifying 3 - GT4",
-        "kind": "qualifying",
-        "utcInstant": "2026-09-26T15:43:00Z",
-        "sessionId": "british_gt-2026-r06-s6"
-      },
-      "dateChanged": false,
-      "status": "open",
-      "reason": "Official session time is available.",
-      "fingerprint": "6ef8788e0e3785c5c2b4596b8fb63376ae628c998b62b06ea0414028b5600aeb",
-      "id": "schedule-6ef8788e0e3785c5"
-    },
-    {
-      "seriesId": "british_gt",
-      "seriesName": "British GT Championship",
-      "calendarFile": "british_gt_2026.json",
-      "eventId": "british_gt-2026-r06",
-      "eventName": "Brands Hatch",
-      "roundNumber": 6,
-      "source": {
-        "stableUrl": "https://www.britishgt.com/images/results/113/Event%20Timetable%20-%2026-27.09.26%20-%20BH%20GP%20-%20Issue%20ONE.pdf",
-        "finalUrl": "https://www.britishgt.com/images/results/113/Event%20Timetable%20-%2026-27.09.26%20-%20BH%20GP%20-%20Issue%20ONE.pdf",
-        "title": "Official timetable PDF",
-        "checkedAt": "2026-09-09T15:26:07Z",
-        "lastModified": "Wed, 29 Jul 2026 13:26:22 GMT"
-      },
-      "proposalType": "new-session",
-      "sessionId": null,
-      "sessionName": "Qualifying 4 - GT4",
-      "current": {
-        "date": null,
-        "timeLocal": null,
-        "durationMinutes": null
-      },
-      "sourceTime": {
-        "date": "2026-09-26",
-        "time": "16:58",
-        "timeZone": "Europe/London"
-      },
-      "editorTimeZone": "Europe/Amsterdam",
-      "proposed": {
-        "date": "2026-09-26",
-        "timeLocal": "17:58",
-        "durationMinutes": 10,
-        "name": "Qualifying 4 - GT4",
-        "kind": "qualifying",
-        "utcInstant": "2026-09-26T15:58:00Z",
-        "sessionId": "british_gt-2026-r06-s7"
-      },
-      "dateChanged": false,
-      "status": "open",
-      "reason": "Official session time is available.",
-      "fingerprint": "ef6fa732e9c9e3226c4581341a6d7b83aa7c12cd91d7c96cf6c1f87ce9091d1c",
-      "id": "schedule-ef6fa732e9c9e322"
-    },
-    {
-      "seriesId": "british_gt",
-      "seriesName": "British GT Championship",
-      "calendarFile": "british_gt_2026.json",
-      "eventId": "british_gt-2026-r06",
-      "eventName": "Brands Hatch",
-      "roundNumber": 6,
-      "source": {
-        "stableUrl": "https://www.britishgt.com/images/results/113/Event%20Timetable%20-%2026-27.09.26%20-%20BH%20GP%20-%20Issue%20ONE.pdf",
-        "finalUrl": "https://www.britishgt.com/images/results/113/Event%20Timetable%20-%2026-27.09.26%20-%20BH%20GP%20-%20Issue%20ONE.pdf",
-        "title": "Official timetable PDF",
-        "checkedAt": "2026-09-09T15:26:07Z",
-        "lastModified": "Wed, 29 Jul 2026 13:26:22 GMT"
-      },
-      "proposalType": "time-update",
-      "sessionId": "british_gt-2026-r06-s1",
-      "sessionName": "Race",
-      "current": {
-        "date": "2026-09-27",
-        "timeLocal": null,
-        "durationMinutes": 60
-      },
-      "sourceTime": {
-        "date": "2026-09-27",
+        "date": "2026-06-20",
         "time": "13:30",
-        "timeZone": "Europe/London"
+        "timeZone": "Europe/Berlin"
       },
       "editorTimeZone": "Europe/Amsterdam",
       "proposed": {
-        "date": "2026-09-27",
-        "timeLocal": "14:30",
-        "durationMinutes": 120,
-        "name": "Race",
+        "date": "2026-06-20",
+        "timeLocal": "13:30",
+        "durationMinutes": 60,
+        "name": "Race 1",
         "kind": "race",
-        "utcInstant": "2026-09-27T12:30:00Z",
-        "sessionId": "british_gt-2026-r06-s1"
+        "utcInstant": "2026-06-20T11:30:00Z",
+        "sessionId": "dtm-2026-r03-s4"
       },
       "dateChanged": false,
-      "status": "open",
-      "reason": "Official session time is available.",
-      "fingerprint": "1286ebdeb7b43a83c050be56e9ba72c2b2516ee045657e7708a53ed49b95233b",
-      "id": "schedule-1286ebdeb7b43a83",
-      "replacesFingerprint": "ec4d85f5c97dfba69510370a53407c898fd4829c7d2e0569d7a82a9315f298fa"
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "36d28a4def9921fca72e5d47fe703d71b6ae4471e7ddf75c2bb8214e22eddf1a",
+      "id": "schedule-36d28a4def9921fc"
     },
     {
-      "seriesId": "british_gt",
-      "seriesName": "British GT Championship",
-      "calendarFile": "british_gt_2026.json",
-      "eventId": "british_gt-2026-r06",
-      "eventName": "Brands Hatch",
-      "roundNumber": 6,
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2026.json",
+      "eventId": "dtm-2026-r03",
+      "eventName": "Lausitzring",
+      "roundNumber": 3,
       "source": {
-        "stableUrl": "https://www.britishgt.com/calendar",
-        "finalUrl": "https://www.britishgt.com/event/113/brands-hatch",
-        "title": "Brands Hatch, Great Britain, 26 - 27 September 2026 | British GT Championship",
-        "checkedAt": "2026-09-09T15:13:16Z",
-        "lastModified": "Wed, 09 Sep 2026 15:13:18 GMT"
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=lausitzring-2026&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
       },
-      "proposalType": "time-update",
-      "sessionId": "british_gt-2026-r06-s1",
-      "sessionName": "Race",
+      "proposalType": "verification",
+      "sessionId": "dtm-2026-r03-s6",
+      "sessionName": "Race 2",
       "current": {
-        "date": "2026-09-27",
+        "date": "2026-06-21",
+        "timeLocal": "13:30",
+        "durationMinutes": 55
+      },
+      "sourceTime": {
+        "date": "2026-06-21",
+        "time": "13:30",
+        "timeZone": "Europe/Berlin"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-06-21",
+        "timeLocal": "13:30",
+        "durationMinutes": 60,
+        "name": "Race 2",
+        "kind": "race",
+        "utcInstant": "2026-06-21T11:30:00Z",
+        "sessionId": "dtm-2026-r03-s6"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "6f95491f070ff8825dd138783e8f386cdd48ae3be0f14b8a779a48bd491b71a6",
+      "id": "schedule-6f95491f070ff882"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2027.json",
+      "eventId": "dtm-2027-r02",
+      "eventName": "Motorsport Arena Oschersleben",
+      "roundNumber": 2,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=motorsport-arena-oschersleben-2027&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "dtm-2027-r02-s1",
+      "sessionName": "Practice 1",
+      "current": {
+        "date": "2027-05-07",
         "timeLocal": null,
+        "durationMinutes": 55
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet",
+      "fingerprint": "088b35cfdb50f4e78392e0cf8b5c2df63944f250f7ba4e2a0d14ba4c996ade5e",
+      "id": "schedule-088b35cfdb50f4e7"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2027.json",
+      "eventId": "dtm-2027-r02",
+      "eventName": "Motorsport Arena Oschersleben",
+      "roundNumber": 2,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=motorsport-arena-oschersleben-2027&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "dtm-2027-r02-s2",
+      "sessionName": "Practice 2",
+      "current": {
+        "date": "2027-05-07",
+        "timeLocal": null,
+        "durationMinutes": 55
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet",
+      "fingerprint": "74f0c3a2eb614944d55cd45e3e993ff579045c36b1d3d68895f977f66ef59b64",
+      "id": "schedule-74f0c3a2eb614944"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2027.json",
+      "eventId": "dtm-2027-r02",
+      "eventName": "Motorsport Arena Oschersleben",
+      "roundNumber": 2,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=motorsport-arena-oschersleben-2027&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "dtm-2027-r02-s3",
+      "sessionName": "Qualifying 1",
+      "current": {
+        "date": "2027-05-08",
+        "timeLocal": null,
+        "durationMinutes": 30
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet",
+      "fingerprint": "ca03204654f5a55af6fc920abd67239108c23256e271154fabce509e6e7e9320",
+      "id": "schedule-ca03204654f5a55a"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2027.json",
+      "eventId": "dtm-2027-r02",
+      "eventName": "Motorsport Arena Oschersleben",
+      "roundNumber": 2,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=motorsport-arena-oschersleben-2027&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "dtm-2027-r02-s5",
+      "sessionName": "Qualifying 2",
+      "current": {
+        "date": "2027-05-09",
+        "timeLocal": null,
+        "durationMinutes": 30
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet",
+      "fingerprint": "2d90315eb04f65b7a80565d7d7659ed251b09553d98b97e39dd3fc7f8096a46b",
+      "id": "schedule-2d90315eb04f65b7"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2027.json",
+      "eventId": "dtm-2027-r02",
+      "eventName": "Motorsport Arena Oschersleben",
+      "roundNumber": 2,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=motorsport-arena-oschersleben-2027&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "dtm-2027-r02-s4",
+      "sessionName": "Race 1",
+      "current": {
+        "date": "2027-05-08",
+        "timeLocal": null,
+        "durationMinutes": 55
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet",
+      "fingerprint": "5d260e0681a7ab3b7e62d54411d03647851bebde83d4f3b19c59920c35bec13a",
+      "id": "schedule-5d260e0681a7ab3b"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2027.json",
+      "eventId": "dtm-2027-r02",
+      "eventName": "Motorsport Arena Oschersleben",
+      "roundNumber": 2,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=motorsport-arena-oschersleben-2027&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "dtm-2027-r02-s6",
+      "sessionName": "Race 2",
+      "current": {
+        "date": "2027-05-09",
+        "timeLocal": null,
+        "durationMinutes": 55
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet",
+      "fingerprint": "79c5955c2f209ec70fd5cdda23270b5921027a6c04b83fc5df406ed6c7078da6",
+      "id": "schedule-79c5955c2f209ec7"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2026.json",
+      "eventId": "dtm-2026-r04",
+      "eventName": "Norisring",
+      "roundNumber": 4,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=norisring-2026&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "verification",
+      "sessionId": "dtm-2026-r04-s1",
+      "sessionName": "Practice 1",
+      "current": {
+        "date": "2026-07-03",
+        "timeLocal": "11:30",
+        "durationMinutes": 45
+      },
+      "sourceTime": {
+        "date": "2026-07-03",
+        "time": "11:30",
+        "timeZone": "Europe/Berlin"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-07-03",
+        "timeLocal": "11:30",
+        "durationMinutes": 55,
+        "name": "Free Practice 1",
+        "kind": "practice",
+        "utcInstant": "2026-07-03T09:30:00Z",
+        "sessionId": "dtm-2026-r04-s1"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "bfaf714074dcff31ed12619c3d2420e33d34e8bb573f61baf620e6f6a5eaba3b",
+      "id": "schedule-bfaf714074dcff31"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2027.json",
+      "eventId": "dtm-2027-r04",
+      "eventName": "Norisring",
+      "roundNumber": 4,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=norisring-2027&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "dtm-2027-r04-s1",
+      "sessionName": "Practice 1",
+      "current": {
+        "date": "2027-07-02",
+        "timeLocal": null,
+        "durationMinutes": 45
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet",
+      "fingerprint": "df6c9187ef70bc15843bcc5ef3f0713a4a18f680a6af2683c2e27d8ba251397d",
+      "id": "schedule-df6c9187ef70bc15"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2026.json",
+      "eventId": "dtm-2026-r04",
+      "eventName": "Norisring",
+      "roundNumber": 4,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=norisring-2026&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "verification",
+      "sessionId": "dtm-2026-r04-s2",
+      "sessionName": "Practice 2",
+      "current": {
+        "date": "2026-07-03",
+        "timeLocal": "16:00",
+        "durationMinutes": 45
+      },
+      "sourceTime": {
+        "date": "2026-07-03",
+        "time": "16:00",
+        "timeZone": "Europe/Berlin"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-07-03",
+        "timeLocal": "16:00",
+        "durationMinutes": 45,
+        "name": "Free Practice 2",
+        "kind": "practice",
+        "utcInstant": "2026-07-03T14:00:00Z",
+        "sessionId": "dtm-2026-r04-s2"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "8e0850ccc6314899a6302cf5b449818603c104f63e89ca3d51578a3b3a71d733",
+      "id": "schedule-8e0850ccc6314899"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2027.json",
+      "eventId": "dtm-2027-r04",
+      "eventName": "Norisring",
+      "roundNumber": 4,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=norisring-2027&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "dtm-2027-r04-s2",
+      "sessionName": "Practice 2",
+      "current": {
+        "date": "2027-07-02",
+        "timeLocal": null,
+        "durationMinutes": 45
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet",
+      "fingerprint": "f40c5607391598977b9c6008870bf8d1f578c1120121b41a4dc6426b89070015",
+      "id": "schedule-f40c560739159897"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2026.json",
+      "eventId": "dtm-2026-r04",
+      "eventName": "Norisring",
+      "roundNumber": 4,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=norisring-2026&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "verification",
+      "sessionId": "dtm-2026-r04-s3",
+      "sessionName": "Qualifying 1",
+      "current": {
+        "date": "2026-07-04",
+        "timeLocal": "09:35",
         "durationMinutes": 60
       },
       "sourceTime": {
-        "date": "2026-09-27",
-        "time": "00:00",
-        "timeZone": "Europe/London"
+        "date": "2026-07-04",
+        "time": "09:35",
+        "timeZone": "Europe/Berlin"
       },
       "editorTimeZone": "Europe/Amsterdam",
       "proposed": {
-        "date": "2026-09-27",
-        "timeLocal": "01:00",
-        "durationMinutes": 60,
-        "name": "Race",
-        "kind": "race",
-        "utcInstant": "2026-09-26T23:00:00Z",
-        "sessionId": "british_gt-2026-r06-s1"
+        "date": "2026-07-04",
+        "timeLocal": "09:35",
+        "durationMinutes": 20,
+        "name": "Qualifying 1 Group A",
+        "kind": "qualifying",
+        "utcInstant": "2026-07-04T07:35:00Z",
+        "sessionId": "dtm-2026-r04-s3"
       },
       "dateChanged": false,
-      "status": "superseded",
-      "reason": "Official session time is available.",
-      "fingerprint": "ec4d85f5c97dfba69510370a53407c898fd4829c7d2e0569d7a82a9315f298fa",
-      "id": "schedule-ec4d85f5c97dfba6",
-      "supersededAt": "2026-09-09T15:26:07Z",
-      "supersededBy": "1286ebdeb7b43a83c050be56e9ba72c2b2516ee045657e7708a53ed49b95233b"
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "b6c6e2f20d0ddc2b6c68a8004468c91a7767761c7bb5193784331cfb21c0a830",
+      "id": "schedule-b6c6e2f20d0ddc2b"
     },
     {
-      "seriesId": "british_gt",
-      "seriesName": "British GT Championship",
-      "calendarFile": "british_gt_2026.json",
-      "eventId": "british_gt-2026-r06",
-      "eventName": "Brands Hatch",
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2027.json",
+      "eventId": "dtm-2027-r04",
+      "eventName": "Norisring",
+      "roundNumber": 4,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=norisring-2027&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "dtm-2027-r04-s3",
+      "sessionName": "Qualifying 1",
+      "current": {
+        "date": "2027-07-03",
+        "timeLocal": null,
+        "durationMinutes": 60
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet",
+      "fingerprint": "e345336769268c6a9542e9dada188b5e605f18e4b32074cc4f5c1f817191b07c",
+      "id": "schedule-e345336769268c6a"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2026.json",
+      "eventId": "dtm-2026-r04",
+      "eventName": "Norisring",
+      "roundNumber": 4,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=norisring-2026&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "verification",
+      "sessionId": "dtm-2026-r04-s5",
+      "sessionName": "Qualifying 2",
+      "current": {
+        "date": "2026-07-05",
+        "timeLocal": "09:10",
+        "durationMinutes": 30
+      },
+      "sourceTime": {
+        "date": "2026-07-05",
+        "time": "09:10",
+        "timeZone": "Europe/Berlin"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-07-05",
+        "timeLocal": "09:10",
+        "durationMinutes": 20,
+        "name": "Qualifying 2 Group B",
+        "kind": "qualifying",
+        "utcInstant": "2026-07-05T07:10:00Z",
+        "sessionId": "dtm-2026-r04-s5"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "228d010616af5d226397ad01975dcb8fd67d09ca4992bbc7cdb8bc0366d4c5b2",
+      "id": "schedule-228d010616af5d22"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2027.json",
+      "eventId": "dtm-2027-r04",
+      "eventName": "Norisring",
+      "roundNumber": 4,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=norisring-2027&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "dtm-2027-r04-s5",
+      "sessionName": "Qualifying 2",
+      "current": {
+        "date": "2027-07-04",
+        "timeLocal": null,
+        "durationMinutes": 30
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet",
+      "fingerprint": "daa4c217c331c183c831a692ea44ab5ebd22d6d1bcb7174778af017a6082db9a",
+      "id": "schedule-daa4c217c331c183"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2026.json",
+      "eventId": "dtm-2026-r04",
+      "eventName": "Norisring",
+      "roundNumber": 4,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=norisring-2026&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "verification",
+      "sessionId": "dtm-2026-r04-s4",
+      "sessionName": "Race 1",
+      "current": {
+        "date": "2026-07-04",
+        "timeLocal": "13:30",
+        "durationMinutes": 55
+      },
+      "sourceTime": {
+        "date": "2026-07-04",
+        "time": "13:30",
+        "timeZone": "Europe/Berlin"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-07-04",
+        "timeLocal": "13:30",
+        "durationMinutes": 60,
+        "name": "Race 1",
+        "kind": "race",
+        "utcInstant": "2026-07-04T11:30:00Z",
+        "sessionId": "dtm-2026-r04-s4"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "be00d54624eec4c63520e5ff2e40f1925c4470a2ebc4a14922d26e7087953999",
+      "id": "schedule-be00d54624eec4c6"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2027.json",
+      "eventId": "dtm-2027-r04",
+      "eventName": "Norisring",
+      "roundNumber": 4,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=norisring-2027&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "dtm-2027-r04-s4",
+      "sessionName": "Race 1",
+      "current": {
+        "date": "2027-07-03",
+        "timeLocal": null,
+        "durationMinutes": 55
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet",
+      "fingerprint": "83715e4eb6237517ca05ccdcf44794f784c83361b8bfd505f07bc27161bf6ce5",
+      "id": "schedule-83715e4eb6237517"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2026.json",
+      "eventId": "dtm-2026-r04",
+      "eventName": "Norisring",
+      "roundNumber": 4,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=norisring-2026&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "verification",
+      "sessionId": "dtm-2026-r04-s6",
+      "sessionName": "Race 2",
+      "current": {
+        "date": "2026-07-05",
+        "timeLocal": "13:30",
+        "durationMinutes": 55
+      },
+      "sourceTime": {
+        "date": "2026-07-05",
+        "time": "13:45",
+        "timeZone": "Europe/Berlin"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-07-05",
+        "timeLocal": "13:45",
+        "durationMinutes": 60,
+        "name": "Race 2",
+        "kind": "race",
+        "utcInstant": "2026-07-05T11:45:00Z",
+        "sessionId": "dtm-2026-r04-s6"
+      },
+      "dateChanged": false,
+      "status": "mismatch",
+      "reason": "Debugcontrole: de ingevulde sessie wijkt af van de officiële bron.",
+      "debug": true,
+      "fingerprint": "3a95cc74d8c8979029f09ba8f1f37d82e867cd85b8020fce64b1d2ba75024e36",
+      "id": "schedule-3a95cc74d8c89790"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2027.json",
+      "eventId": "dtm-2027-r04",
+      "eventName": "Norisring",
+      "roundNumber": 4,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=norisring-2027&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "dtm-2027-r04-s6",
+      "sessionName": "Race 2",
+      "current": {
+        "date": "2027-07-04",
+        "timeLocal": null,
+        "durationMinutes": 55
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet",
+      "fingerprint": "37407597c061a7088c0d4b227d0738bb18678cb4d2469904ecccd2b2c15ffc5f",
+      "id": "schedule-37407597c061a708"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2026.json",
+      "eventId": "dtm-2026-r06",
+      "eventName": "Nürburgring",
       "roundNumber": 6,
       "source": {
-        "stableUrl": "https://www.britishgt.com/images/results/113/Event%20Timetable%20-%2026-27.09.26%20-%20BH%20GP%20-%20Issue%20ONE.pdf",
-        "finalUrl": "https://www.britishgt.com/images/results/113/Event%20Timetable%20-%2026-27.09.26%20-%20BH%20GP%20-%20Issue%20ONE.pdf",
-        "title": "Official timetable PDF",
-        "checkedAt": "2026-09-09T15:26:07Z",
-        "lastModified": "Wed, 29 Jul 2026 13:26:22 GMT"
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=nuerburgring-2026&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "verification",
+      "sessionId": "dtm-2026-r06-s1",
+      "sessionName": "Practice 1",
+      "current": {
+        "date": "2026-08-14",
+        "timeLocal": "10:40",
+        "durationMinutes": 45
+      },
+      "sourceTime": {
+        "date": "2026-08-14",
+        "time": "11:30",
+        "timeZone": "Europe/Berlin"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-08-14",
+        "timeLocal": "11:30",
+        "durationMinutes": 55,
+        "name": "Free Practice 1",
+        "kind": "practice",
+        "utcInstant": "2026-08-14T09:30:00Z",
+        "sessionId": "dtm-2026-r06-s1"
+      },
+      "dateChanged": false,
+      "status": "mismatch",
+      "reason": "Debugcontrole: de ingevulde sessie wijkt af van de officiële bron.",
+      "debug": true,
+      "fingerprint": "c71b51ef7b632218d76f52b5b7831a65478acf2c078da5f0a68afe4ea4795ccc",
+      "id": "schedule-c71b51ef7b632218"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2027.json",
+      "eventId": "dtm-2027-r06",
+      "eventName": "Nürburgring",
+      "roundNumber": 6,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=nuerburgring-2027&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "dtm-2027-r06-s1",
+      "sessionName": "Practice 1",
+      "current": {
+        "date": "2027-08-20",
+        "timeLocal": null,
+        "durationMinutes": 45
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet",
+      "fingerprint": "9ca305b5a63abeca7e87aff3a0b30f8f1a97a08868e795a56a5086507930840e",
+      "id": "schedule-9ca305b5a63abeca"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2026.json",
+      "eventId": "dtm-2026-r06",
+      "eventName": "Nürburgring",
+      "roundNumber": 6,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=nuerburgring-2026&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "verification",
+      "sessionId": "dtm-2026-r06-s2",
+      "sessionName": "Practice 2",
+      "current": {
+        "date": "2026-08-14",
+        "timeLocal": "15:35",
+        "durationMinutes": 45
+      },
+      "sourceTime": {
+        "date": "2026-08-14",
+        "time": "16:00",
+        "timeZone": "Europe/Berlin"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-08-14",
+        "timeLocal": "16:00",
+        "durationMinutes": 45,
+        "name": "Free Practice 2",
+        "kind": "practice",
+        "utcInstant": "2026-08-14T14:00:00Z",
+        "sessionId": "dtm-2026-r06-s2"
+      },
+      "dateChanged": false,
+      "status": "mismatch",
+      "reason": "Debugcontrole: de ingevulde sessie wijkt af van de officiële bron.",
+      "debug": true,
+      "fingerprint": "904a4a1870855997b4253612110fc1af9f6b58a3fa0e38e7f92d1dfd1e31eaa5",
+      "id": "schedule-904a4a1870855997"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2027.json",
+      "eventId": "dtm-2027-r06",
+      "eventName": "Nürburgring",
+      "roundNumber": 6,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=nuerburgring-2027&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "dtm-2027-r06-s2",
+      "sessionName": "Practice 2",
+      "current": {
+        "date": "2027-08-20",
+        "timeLocal": null,
+        "durationMinutes": 45
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet",
+      "fingerprint": "056e54266026aa3e1b83a68ce174c7a118da2bb1acbfb9c62b9b215663ce90b8",
+      "id": "schedule-056e54266026aa3e"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2026.json",
+      "eventId": "dtm-2026-r06",
+      "eventName": "Nürburgring",
+      "roundNumber": 6,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=nuerburgring-2026&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "verification",
+      "sessionId": "dtm-2026-r06-s3",
+      "sessionName": "Qualifying 1",
+      "current": {
+        "date": "2026-08-15",
+        "timeLocal": "09:35",
+        "durationMinutes": 30
+      },
+      "sourceTime": {
+        "date": "2026-08-15",
+        "time": "09:55",
+        "timeZone": "Europe/Berlin"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-08-15",
+        "timeLocal": "09:55",
+        "durationMinutes": 20,
+        "name": "Qualifying 1",
+        "kind": "qualifying",
+        "utcInstant": "2026-08-15T07:55:00Z",
+        "sessionId": "dtm-2026-r06-s3"
+      },
+      "dateChanged": false,
+      "status": "mismatch",
+      "reason": "Debugcontrole: de ingevulde sessie wijkt af van de officiële bron.",
+      "debug": true,
+      "fingerprint": "389e73434799c4bfba06a5f96e4ad62674c7f356a77ca637c7caa948a05eaf5b",
+      "id": "schedule-389e73434799c4bf"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2027.json",
+      "eventId": "dtm-2027-r06",
+      "eventName": "Nürburgring",
+      "roundNumber": 6,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=nuerburgring-2027&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "dtm-2027-r06-s3",
+      "sessionName": "Qualifying 1",
+      "current": {
+        "date": "2027-08-21",
+        "timeLocal": null,
+        "durationMinutes": 30
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet",
+      "fingerprint": "8362169607c806396d393c327294f5b4fffc267045e7dd8602048e84542393bb",
+      "id": "schedule-8362169607c80639"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2026.json",
+      "eventId": "dtm-2026-r06",
+      "eventName": "Nürburgring",
+      "roundNumber": 6,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=nuerburgring-2026&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "verification",
+      "sessionId": "dtm-2026-r06-s5",
+      "sessionName": "Qualifying 2",
+      "current": {
+        "date": "2026-08-16",
+        "timeLocal": "09:00",
+        "durationMinutes": 30
+      },
+      "sourceTime": {
+        "date": "2026-08-16",
+        "time": "09:10",
+        "timeZone": "Europe/Berlin"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-08-16",
+        "timeLocal": "09:10",
+        "durationMinutes": 20,
+        "name": "Qualifying 2",
+        "kind": "qualifying",
+        "utcInstant": "2026-08-16T07:10:00Z",
+        "sessionId": "dtm-2026-r06-s5"
+      },
+      "dateChanged": false,
+      "status": "mismatch",
+      "reason": "Debugcontrole: de ingevulde sessie wijkt af van de officiële bron.",
+      "debug": true,
+      "fingerprint": "091376de4e7c70eaa0592bb9f4ceedd9896a18aa6b94f135b7d297286510eeef",
+      "id": "schedule-091376de4e7c70ea"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2027.json",
+      "eventId": "dtm-2027-r06",
+      "eventName": "Nürburgring",
+      "roundNumber": 6,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=nuerburgring-2027&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "dtm-2027-r06-s5",
+      "sessionName": "Qualifying 2",
+      "current": {
+        "date": "2027-08-22",
+        "timeLocal": null,
+        "durationMinutes": 30
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet",
+      "fingerprint": "752673a63d870cbb7426aac104c6c70c26ccd1d854c58c7831e0862ac19198e2",
+      "id": "schedule-752673a63d870cbb"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2026.json",
+      "eventId": "dtm-2026-r06",
+      "eventName": "Nürburgring",
+      "roundNumber": 6,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=nuerburgring-2026&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "verification",
+      "sessionId": "dtm-2026-r06-s4",
+      "sessionName": "Race 1",
+      "current": {
+        "date": "2026-08-15",
+        "timeLocal": "13:30",
+        "durationMinutes": 55
+      },
+      "sourceTime": {
+        "date": "2026-08-15",
+        "time": "13:30",
+        "timeZone": "Europe/Berlin"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-08-15",
+        "timeLocal": "13:30",
+        "durationMinutes": 60,
+        "name": "Race 1",
+        "kind": "race",
+        "utcInstant": "2026-08-15T11:30:00Z",
+        "sessionId": "dtm-2026-r06-s4"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "6a4ae162de9359d35e547245bbcad1081135d3e1db4d47514c71a461211b798d",
+      "id": "schedule-6a4ae162de9359d3"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2027.json",
+      "eventId": "dtm-2027-r06",
+      "eventName": "Nürburgring",
+      "roundNumber": 6,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=nuerburgring-2027&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "dtm-2027-r06-s4",
+      "sessionName": "Race 1",
+      "current": {
+        "date": "2027-08-21",
+        "timeLocal": null,
+        "durationMinutes": 55
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet",
+      "fingerprint": "d2090b32773064de53a8e9785afa53090a06977e71c33a85315bfba24537853d",
+      "id": "schedule-d2090b32773064de"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2026.json",
+      "eventId": "dtm-2026-r06",
+      "eventName": "Nürburgring",
+      "roundNumber": 6,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=nuerburgring-2026&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "verification",
+      "sessionId": "dtm-2026-r06-s6",
+      "sessionName": "Race 2",
+      "current": {
+        "date": "2026-08-16",
+        "timeLocal": "13:30",
+        "durationMinutes": 55
+      },
+      "sourceTime": {
+        "date": "2026-08-16",
+        "time": "13:30",
+        "timeZone": "Europe/Berlin"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-08-16",
+        "timeLocal": "13:30",
+        "durationMinutes": 60,
+        "name": "Race 2",
+        "kind": "race",
+        "utcInstant": "2026-08-16T11:30:00Z",
+        "sessionId": "dtm-2026-r06-s6"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "fe4e1290d17f80846a97a77648d6ef239841cb9c3cf862bc50a680620d8e76c3",
+      "id": "schedule-fe4e1290d17f8084"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2027.json",
+      "eventId": "dtm-2027-r06",
+      "eventName": "Nürburgring",
+      "roundNumber": 6,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=nuerburgring-2027&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "dtm-2027-r06-s6",
+      "sessionName": "Race 2",
+      "current": {
+        "date": "2027-08-22",
+        "timeLocal": null,
+        "durationMinutes": 55
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet",
+      "fingerprint": "0785d1e13873b7cdf9bc4583fddcedaf45223e767a87a5e0b699a9d1578436a4",
+      "id": "schedule-0785d1e13873b7cd"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2026.json",
+      "eventId": "dtm-2026-r05",
+      "eventName": "Oschersleben",
+      "roundNumber": 5,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=oschersleben-2026&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "verification",
+      "sessionId": "dtm-2026-r05-s1",
+      "sessionName": "Practice 1",
+      "current": {
+        "date": "2026-07-24",
+        "timeLocal": "11:00",
+        "durationMinutes": 55
+      },
+      "sourceTime": {
+        "date": "2026-07-24",
+        "time": "11:00",
+        "timeZone": "Europe/Berlin"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-07-24",
+        "timeLocal": "11:00",
+        "durationMinutes": 55,
+        "name": "Free Practice 1",
+        "kind": "practice",
+        "utcInstant": "2026-07-24T09:00:00Z",
+        "sessionId": "dtm-2026-r05-s1"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "7c1a74101c53f178e0e41f9aadc7c521116ca7bc3b7185f79a8bad4e7ae798b4",
+      "id": "schedule-7c1a74101c53f178"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2026.json",
+      "eventId": "dtm-2026-r05",
+      "eventName": "Oschersleben",
+      "roundNumber": 5,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=oschersleben-2026&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "verification",
+      "sessionId": "dtm-2026-r05-s2",
+      "sessionName": "Practice 2",
+      "current": {
+        "date": "2026-07-24",
+        "timeLocal": "15:35",
+        "durationMinutes": 55
+      },
+      "sourceTime": {
+        "date": "2026-07-24",
+        "time": "15:35",
+        "timeZone": "Europe/Berlin"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-07-24",
+        "timeLocal": "15:35",
+        "durationMinutes": 45,
+        "name": "Free Practice 2",
+        "kind": "practice",
+        "utcInstant": "2026-07-24T13:35:00Z",
+        "sessionId": "dtm-2026-r05-s2"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "8c334bb28eb4203566a7138d7b0c6627028b515e0fdf03fe36590212f92a80c7",
+      "id": "schedule-8c334bb28eb42035"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2026.json",
+      "eventId": "dtm-2026-r05",
+      "eventName": "Oschersleben",
+      "roundNumber": 5,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=oschersleben-2026&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "verification",
+      "sessionId": "dtm-2026-r05-s3",
+      "sessionName": "Qualifying 1",
+      "current": {
+        "date": "2026-07-25",
+        "timeLocal": "09:45",
+        "durationMinutes": 30
+      },
+      "sourceTime": {
+        "date": "2026-07-25",
+        "time": "09:45",
+        "timeZone": "Europe/Berlin"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-07-25",
+        "timeLocal": "09:45",
+        "durationMinutes": 20,
+        "name": "Qualifying 1",
+        "kind": "qualifying",
+        "utcInstant": "2026-07-25T07:45:00Z",
+        "sessionId": "dtm-2026-r05-s3"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "fd0a6140622749e9ac65968171b00c9a2f21dcdb9dd3f0acb4145bea3944b3a8",
+      "id": "schedule-fd0a6140622749e9"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2026.json",
+      "eventId": "dtm-2026-r05",
+      "eventName": "Oschersleben",
+      "roundNumber": 5,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=oschersleben-2026&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "verification",
+      "sessionId": "dtm-2026-r05-s5",
+      "sessionName": "Qualifying 2",
+      "current": {
+        "date": "2026-07-26",
+        "timeLocal": "09:25",
+        "durationMinutes": 30
+      },
+      "sourceTime": {
+        "date": "2026-07-26",
+        "time": "09:25",
+        "timeZone": "Europe/Berlin"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-07-26",
+        "timeLocal": "09:25",
+        "durationMinutes": 30,
+        "name": "Qualifying 2",
+        "kind": "qualifying",
+        "utcInstant": "2026-07-26T07:25:00Z",
+        "sessionId": "dtm-2026-r05-s5"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "a8e8d02667b7018062602bd04844220602c754e0f64f63314c1bee721a77454c",
+      "id": "schedule-a8e8d02667b70180"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2026.json",
+      "eventId": "dtm-2026-r05",
+      "eventName": "Oschersleben",
+      "roundNumber": 5,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=oschersleben-2026&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "verification",
+      "sessionId": "dtm-2026-r05-s4",
+      "sessionName": "Race 1",
+      "current": {
+        "date": "2026-07-25",
+        "timeLocal": "13:30",
+        "durationMinutes": 55
+      },
+      "sourceTime": {
+        "date": "2026-07-25",
+        "time": "13:30",
+        "timeZone": "Europe/Berlin"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-07-25",
+        "timeLocal": "13:30",
+        "durationMinutes": 60,
+        "name": "Race 1",
+        "kind": "race",
+        "utcInstant": "2026-07-25T11:30:00Z",
+        "sessionId": "dtm-2026-r05-s4"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "90d7a8c4c9a6a758fa874c7a27fad18e11e16dde356a6268ed5fa583510b2c09",
+      "id": "schedule-90d7a8c4c9a6a758"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2026.json",
+      "eventId": "dtm-2026-r05",
+      "eventName": "Oschersleben",
+      "roundNumber": 5,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=oschersleben-2026&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "verification",
+      "sessionId": "dtm-2026-r05-s6",
+      "sessionName": "Race 2",
+      "current": {
+        "date": "2026-07-26",
+        "timeLocal": "13:30",
+        "durationMinutes": 55
+      },
+      "sourceTime": {
+        "date": "2026-07-26",
+        "time": "13:30",
+        "timeZone": "Europe/Berlin"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-07-26",
+        "timeLocal": "13:30",
+        "durationMinutes": 55,
+        "name": "Race 2",
+        "kind": "race",
+        "utcInstant": "2026-07-26T11:30:00Z",
+        "sessionId": "dtm-2026-r05-s6"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "062c8e3dc8a2d4dfbac6413aee3d63265c65befbf521aee713f86a226b78179f",
+      "id": "schedule-062c8e3dc8a2d4df"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2026.json",
+      "eventId": "dtm-2026-r01",
+      "eventName": "Red Bull Ring",
+      "roundNumber": 1,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=red-bull-ring-2026&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
       },
       "proposalType": "new-session",
       "sessionId": null,
-      "sessionName": "Warm Up",
+      "sessionName": "Free practice 3",
       "current": {
         "date": null,
         "timeLocal": null,
         "durationMinutes": null
       },
       "sourceTime": {
-        "date": "2026-09-27",
-        "time": "10:00",
-        "timeZone": "Europe/London"
+        "date": "2026-04-24",
+        "time": "16:00",
+        "timeZone": "Europe/Vienna"
       },
       "editorTimeZone": "Europe/Amsterdam",
       "proposed": {
-        "date": "2026-09-27",
-        "timeLocal": "11:00",
-        "durationMinutes": 15,
-        "name": "Warm Up",
+        "date": "2026-04-24",
+        "timeLocal": "16:00",
+        "durationMinutes": 45,
+        "name": "Free practice 3",
         "kind": "practice",
-        "utcInstant": "2026-09-27T09:00:00Z",
-        "sessionId": "british_gt-2026-r06-s8"
+        "utcInstant": "2026-04-24T14:00:00Z",
+        "sessionId": "dtm-2026-r01-s9"
       },
       "dateChanged": false,
       "status": "open",
       "reason": "Official session time is available.",
-      "fingerprint": "d2f143e235f7c30a9c3a3f1a43950ecfb4ba39f317cbb18c11453dd4aaefbfa6",
-      "id": "schedule-d2f143e235f7c30a"
+      "debug": false,
+      "fingerprint": "818826a6ef30d1dadce789d63490744709080a0345631212c1b5eb21539d2dd9",
+      "id": "schedule-818826a6ef30d1da"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2026.json",
+      "eventId": "dtm-2026-r01",
+      "eventName": "Red Bull Ring",
+      "roundNumber": 1,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=red-bull-ring-2026&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "verification",
+      "sessionId": "dtm-2026-r01-s1",
+      "sessionName": "Practice 1",
+      "current": {
+        "date": "2026-04-24",
+        "timeLocal": "11:05",
+        "durationMinutes": 45
+      },
+      "sourceTime": {
+        "date": "2026-04-24",
+        "time": "10:25",
+        "timeZone": "Europe/Vienna"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-04-24",
+        "timeLocal": "10:25",
+        "durationMinutes": 35,
+        "name": "Free practice 1",
+        "kind": "practice",
+        "utcInstant": "2026-04-24T08:25:00Z",
+        "sessionId": "dtm-2026-r01-s1"
+      },
+      "dateChanged": false,
+      "status": "mismatch",
+      "reason": "Debugcontrole: de ingevulde sessie wijkt af van de officiële bron.",
+      "debug": true,
+      "fingerprint": "324a9d255ff962ea85e542c4f1bd6a89a9f938642f4e391b8ba51a35c5777a60",
+      "id": "schedule-324a9d255ff962ea"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2027.json",
+      "eventId": "dtm-2027-r01",
+      "eventName": "Red Bull Ring",
+      "roundNumber": 1,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=red-bull-ring-2027&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "dtm-2027-r01-s1",
+      "sessionName": "Practice 1",
+      "current": {
+        "date": "2027-04-23",
+        "timeLocal": null,
+        "durationMinutes": 45
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet",
+      "fingerprint": "733efca14cf272678d893bd306ba4b1385a474fdaf742c13e269f127ec6c7152",
+      "id": "schedule-733efca14cf27267"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2026.json",
+      "eventId": "dtm-2026-r01",
+      "eventName": "Red Bull Ring",
+      "roundNumber": 1,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=red-bull-ring-2026&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "verification",
+      "sessionId": "dtm-2026-r01-s2",
+      "sessionName": "Practice 2",
+      "current": {
+        "date": "2026-04-24",
+        "timeLocal": "15:55",
+        "durationMinutes": 45
+      },
+      "sourceTime": {
+        "date": "2026-04-24",
+        "time": "12:15",
+        "timeZone": "Europe/Vienna"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-04-24",
+        "timeLocal": "12:15",
+        "durationMinutes": 20,
+        "name": "Free practice 2",
+        "kind": "practice",
+        "utcInstant": "2026-04-24T10:15:00Z",
+        "sessionId": "dtm-2026-r01-s2"
+      },
+      "dateChanged": false,
+      "status": "mismatch",
+      "reason": "Debugcontrole: de ingevulde sessie wijkt af van de officiële bron.",
+      "debug": true,
+      "fingerprint": "e2b1b9f4125544b216a67fc4fbbd8a0258e0e3c33220b8ae9870fc4768b0bf82",
+      "id": "schedule-e2b1b9f4125544b2"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2027.json",
+      "eventId": "dtm-2027-r01",
+      "eventName": "Red Bull Ring",
+      "roundNumber": 1,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=red-bull-ring-2027&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "dtm-2027-r01-s2",
+      "sessionName": "Practice 2",
+      "current": {
+        "date": "2027-04-23",
+        "timeLocal": null,
+        "durationMinutes": 45
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet",
+      "fingerprint": "a2ccba7d44f0c41a28125bd23c49ce2d54f4a5629f4c241946201b3686718f1a",
+      "id": "schedule-a2ccba7d44f0c41a"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2026.json",
+      "eventId": "dtm-2026-r01",
+      "eventName": "Red Bull Ring",
+      "roundNumber": 1,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=red-bull-ring-2026&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "verification",
+      "sessionId": "dtm-2026-r01-s3",
+      "sessionName": "Qualifying 1",
+      "current": {
+        "date": "2026-04-25",
+        "timeLocal": "09:10",
+        "durationMinutes": 30
+      },
+      "sourceTime": {
+        "date": "2026-04-25",
+        "time": "09:40",
+        "timeZone": "Europe/Vienna"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-04-25",
+        "timeLocal": "09:40",
+        "durationMinutes": 20,
+        "name": "Qualifying 1",
+        "kind": "qualifying",
+        "utcInstant": "2026-04-25T07:40:00Z",
+        "sessionId": "dtm-2026-r01-s3"
+      },
+      "dateChanged": false,
+      "status": "mismatch",
+      "reason": "Debugcontrole: de ingevulde sessie wijkt af van de officiële bron.",
+      "debug": true,
+      "fingerprint": "ff8721200af4fb92916252bcb0f225074707d767d9148ac302b6d736c0c2eb09",
+      "id": "schedule-ff8721200af4fb92"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2027.json",
+      "eventId": "dtm-2027-r01",
+      "eventName": "Red Bull Ring",
+      "roundNumber": 1,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=red-bull-ring-2027&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "dtm-2027-r01-s3",
+      "sessionName": "Qualifying 1",
+      "current": {
+        "date": "2027-04-24",
+        "timeLocal": null,
+        "durationMinutes": 30
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet",
+      "fingerprint": "83c211fe61b3e86a8c9fd2ae9aef388d75417d54c265b2a12f8d397584ad45eb",
+      "id": "schedule-83c211fe61b3e86a"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2026.json",
+      "eventId": "dtm-2026-r01",
+      "eventName": "Red Bull Ring",
+      "roundNumber": 1,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=red-bull-ring-2026&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "verification",
+      "sessionId": "dtm-2026-r01-s5",
+      "sessionName": "Qualifying 2",
+      "current": {
+        "date": "2026-04-26",
+        "timeLocal": "09:15",
+        "durationMinutes": 30
+      },
+      "sourceTime": {
+        "date": "2026-04-26",
+        "time": "09:30",
+        "timeZone": "Europe/Vienna"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-04-26",
+        "timeLocal": "09:30",
+        "durationMinutes": 20,
+        "name": "Qualifying 2",
+        "kind": "qualifying",
+        "utcInstant": "2026-04-26T07:30:00Z",
+        "sessionId": "dtm-2026-r01-s5"
+      },
+      "dateChanged": false,
+      "status": "mismatch",
+      "reason": "Debugcontrole: de ingevulde sessie wijkt af van de officiële bron.",
+      "debug": true,
+      "fingerprint": "4ada4e3b913d7c3ba6424a586d21b515493b35f28e8a0dc5e224f4e74ec0e494",
+      "id": "schedule-4ada4e3b913d7c3b"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2027.json",
+      "eventId": "dtm-2027-r01",
+      "eventName": "Red Bull Ring",
+      "roundNumber": 1,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=red-bull-ring-2027&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "dtm-2027-r01-s5",
+      "sessionName": "Qualifying 2",
+      "current": {
+        "date": "2027-04-25",
+        "timeLocal": null,
+        "durationMinutes": 30
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet",
+      "fingerprint": "0528f9341eae996a9026c63e5bf8cc5991b634ad983dff3378e2d7cd20c471a2",
+      "id": "schedule-0528f9341eae996a"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2026.json",
+      "eventId": "dtm-2026-r01",
+      "eventName": "Red Bull Ring",
+      "roundNumber": 1,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=red-bull-ring-2026&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "verification",
+      "sessionId": "dtm-2026-r01-s4",
+      "sessionName": "Race 1",
+      "current": {
+        "date": "2026-04-25",
+        "timeLocal": "13:30",
+        "durationMinutes": 55
+      },
+      "sourceTime": {
+        "date": "2026-04-25",
+        "time": "13:30",
+        "timeZone": "Europe/Vienna"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-04-25",
+        "timeLocal": "13:30",
+        "durationMinutes": 60,
+        "name": "Race 1",
+        "kind": "race",
+        "utcInstant": "2026-04-25T11:30:00Z",
+        "sessionId": "dtm-2026-r01-s4"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "66119211d4c263e8111ab1ba3539ea1cf13e2f63a9064a30933462bae5c43aa4",
+      "id": "schedule-66119211d4c263e8"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2027.json",
+      "eventId": "dtm-2027-r01",
+      "eventName": "Red Bull Ring",
+      "roundNumber": 1,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=red-bull-ring-2027&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "dtm-2027-r01-s4",
+      "sessionName": "Race 1",
+      "current": {
+        "date": "2027-04-24",
+        "timeLocal": null,
+        "durationMinutes": 55
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet",
+      "fingerprint": "91268862e44a9747023f61a119884e092cb6f9912e505633c8b9766b679e5317",
+      "id": "schedule-91268862e44a9747"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2026.json",
+      "eventId": "dtm-2026-r01",
+      "eventName": "Red Bull Ring",
+      "roundNumber": 1,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=red-bull-ring-2026&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "verification",
+      "sessionId": "dtm-2026-r01-s6",
+      "sessionName": "Race 2",
+      "current": {
+        "date": "2026-04-26",
+        "timeLocal": "13:30",
+        "durationMinutes": 55
+      },
+      "sourceTime": {
+        "date": "2026-04-26",
+        "time": "13:30",
+        "timeZone": "Europe/Vienna"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-04-26",
+        "timeLocal": "13:30",
+        "durationMinutes": 60,
+        "name": "Race 2",
+        "kind": "race",
+        "utcInstant": "2026-04-26T11:30:00Z",
+        "sessionId": "dtm-2026-r01-s6"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "b3e19340a4f870c3a93db198b5e900ca3d1cdd4a5e172081cb8e36f5c9dbc8ca",
+      "id": "schedule-b3e19340a4f870c3"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2027.json",
+      "eventId": "dtm-2027-r01",
+      "eventName": "Red Bull Ring",
+      "roundNumber": 1,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=red-bull-ring-2027&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "dtm-2027-r01-s6",
+      "sessionName": "Race 2",
+      "current": {
+        "date": "2027-04-25",
+        "timeLocal": null,
+        "durationMinutes": 55
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet",
+      "fingerprint": "68091248060dace8bb53ff037e82f12536ff2e740dc0453adb4801f4e4cdfe02",
+      "id": "schedule-68091248060dace8"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2026.json",
+      "eventId": "dtm-2026-r07",
+      "eventName": "Sachsenring",
+      "roundNumber": 7,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=sachsenring-2026&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "verification",
+      "sessionId": "dtm-2026-r07-s1",
+      "sessionName": "Practice 1",
+      "current": {
+        "date": "2026-09-11",
+        "timeLocal": "11:30",
+        "durationMinutes": 45
+      },
+      "sourceTime": {
+        "date": "2026-09-11",
+        "time": "11:30",
+        "timeZone": "Europe/Berlin"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-09-11",
+        "timeLocal": "11:30",
+        "durationMinutes": 2935,
+        "name": "Free Practice 1",
+        "kind": "practice",
+        "utcInstant": "2026-09-11T09:30:00Z",
+        "sessionId": "dtm-2026-r07-s1"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "8262aa449623a971873ee853ab1088d0db5daa186733a93a8cc2bfa4b5884bc6",
+      "id": "schedule-8262aa449623a971"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2027.json",
+      "eventId": "dtm-2027-r07",
+      "eventName": "Sachsenring",
+      "roundNumber": 7,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=sachsenring-2027&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "dtm-2027-r07-s1",
+      "sessionName": "Practice 1",
+      "current": {
+        "date": "2027-09-24",
+        "timeLocal": null,
+        "durationMinutes": 45
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet",
+      "fingerprint": "60f8365dd98cc36e425e19ef8e47b68990dd77ca4524eb4fc5e23127e81d93c3",
+      "id": "schedule-60f8365dd98cc36e"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2026.json",
+      "eventId": "dtm-2026-r07",
+      "eventName": "Sachsenring",
+      "roundNumber": 7,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=sachsenring-2026&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "verification",
+      "sessionId": "dtm-2026-r07-s2",
+      "sessionName": "Practice 2",
+      "current": {
+        "date": "2026-09-11",
+        "timeLocal": "15:50",
+        "durationMinutes": 45
+      },
+      "sourceTime": {
+        "date": "2026-09-11",
+        "time": "15:50",
+        "timeZone": "Europe/Berlin"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-09-11",
+        "timeLocal": "15:50",
+        "durationMinutes": 2925,
+        "name": "Free Practice 2",
+        "kind": "practice",
+        "utcInstant": "2026-09-11T13:50:00Z",
+        "sessionId": "dtm-2026-r07-s2"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "b5c9edd36d37ff553dfc79bced452ae6c8ccc0ec38a597133eb60bbeadd2fbe0",
+      "id": "schedule-b5c9edd36d37ff55"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2027.json",
+      "eventId": "dtm-2027-r07",
+      "eventName": "Sachsenring",
+      "roundNumber": 7,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=sachsenring-2027&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "dtm-2027-r07-s2",
+      "sessionName": "Practice 2",
+      "current": {
+        "date": "2027-09-24",
+        "timeLocal": null,
+        "durationMinutes": 45
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet",
+      "fingerprint": "950e25368acb2791dcc856e6435adafd81ac7fc1091a79f8c4a88bc61f748f9b",
+      "id": "schedule-950e25368acb2791"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2026.json",
+      "eventId": "dtm-2026-r07",
+      "eventName": "Sachsenring",
+      "roundNumber": 7,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=sachsenring-2026&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "verification",
+      "sessionId": "dtm-2026-r07-s3",
+      "sessionName": "Qualifying 1",
+      "current": {
+        "date": "2026-09-12",
+        "timeLocal": "09:55",
+        "durationMinutes": 30
+      },
+      "sourceTime": {
+        "date": "2026-09-12",
+        "time": "09:55",
+        "timeZone": "Europe/Berlin"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-09-12",
+        "timeLocal": "09:55",
+        "durationMinutes": 20,
+        "name": "Qualifying 1",
+        "kind": "qualifying",
+        "utcInstant": "2026-09-12T07:55:00Z",
+        "sessionId": "dtm-2026-r07-s3"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "90c3947da92d1cf0723f444619019b64005f125770b9ca0d089a366635699c8b",
+      "id": "schedule-90c3947da92d1cf0"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2027.json",
+      "eventId": "dtm-2027-r07",
+      "eventName": "Sachsenring",
+      "roundNumber": 7,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=sachsenring-2027&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "dtm-2027-r07-s3",
+      "sessionName": "Qualifying 1",
+      "current": {
+        "date": "2027-09-25",
+        "timeLocal": null,
+        "durationMinutes": 30
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet",
+      "fingerprint": "25bf7f9bea8c8f512bda5af0a81345e1a4502c0380d24f5831a3e4003d5c9e5c",
+      "id": "schedule-25bf7f9bea8c8f51"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2027.json",
+      "eventId": "dtm-2027-r07",
+      "eventName": "Sachsenring",
+      "roundNumber": 7,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=sachsenring-2027&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "dtm-2027-r07-s5",
+      "sessionName": "Qualifying 2",
+      "current": {
+        "date": "2027-09-26",
+        "timeLocal": null,
+        "durationMinutes": 30
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet",
+      "fingerprint": "aa2567a897d7fc45077b33a770e1a6b474368c925827668abfc6426b5c7a4965",
+      "id": "schedule-aa2567a897d7fc45"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2026.json",
+      "eventId": "dtm-2026-r07",
+      "eventName": "Sachsenring",
+      "roundNumber": 7,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=sachsenring-2026&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "verification",
+      "sessionId": "dtm-2026-r07-s4",
+      "sessionName": "Race 1",
+      "current": {
+        "date": "2026-09-12",
+        "timeLocal": "13:30",
+        "durationMinutes": 55
+      },
+      "sourceTime": {
+        "date": "2026-09-12",
+        "time": "13:30",
+        "timeZone": "Europe/Berlin"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-09-12",
+        "timeLocal": "13:30",
+        "durationMinutes": 60,
+        "name": "Race 1",
+        "kind": "race",
+        "utcInstant": "2026-09-12T11:30:00Z",
+        "sessionId": "dtm-2026-r07-s4"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "65b1141df9ba44aa127fedcd69ca6a5880ed86f2fde758970ba69eb4b9452d3b",
+      "id": "schedule-65b1141df9ba44aa"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2027.json",
+      "eventId": "dtm-2027-r07",
+      "eventName": "Sachsenring",
+      "roundNumber": 7,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=sachsenring-2027&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "dtm-2027-r07-s4",
+      "sessionName": "Race 1",
+      "current": {
+        "date": "2027-09-25",
+        "timeLocal": null,
+        "durationMinutes": 55
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet",
+      "fingerprint": "814cb71315b76a2f0b3609c13d182d7036ae97873c67f9d5615401dabfef927a",
+      "id": "schedule-814cb71315b76a2f"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2026.json",
+      "eventId": "dtm-2026-r07",
+      "eventName": "Sachsenring",
+      "roundNumber": 7,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=sachsenring-2026&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "verification",
+      "sessionId": "dtm-2026-r07-s6",
+      "sessionName": "Race 2",
+      "current": {
+        "date": "2026-09-13",
+        "timeLocal": "13:30",
+        "durationMinutes": 55
+      },
+      "sourceTime": {
+        "date": "2026-09-13",
+        "time": "13:30",
+        "timeZone": "Europe/Berlin"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-09-13",
+        "timeLocal": "13:30",
+        "durationMinutes": 60,
+        "name": "Race 2",
+        "kind": "race",
+        "utcInstant": "2026-09-13T11:30:00Z",
+        "sessionId": "dtm-2026-r07-s6"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "a18cbf92968bb24cc8c2e05e6894edd68eadeb66094a1bc7c8980108790c716f",
+      "id": "schedule-a18cbf92968bb24c"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2027.json",
+      "eventId": "dtm-2027-r07",
+      "eventName": "Sachsenring",
+      "roundNumber": 7,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=sachsenring-2027&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "dtm-2027-r07-s6",
+      "sessionName": "Race 2",
+      "current": {
+        "date": "2027-09-26",
+        "timeLocal": null,
+        "durationMinutes": 55
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet",
+      "fingerprint": "3b8144664a1a03fc05937798367cdd8a76cb07f6d5dcc8ba75c81b80c62e7e94",
+      "id": "schedule-3b8144664a1a03fc"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2026.json",
+      "eventId": "dtm-2026-r02",
+      "eventName": "Zandvoort",
+      "roundNumber": 2,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=zandvoort-2026&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "verification",
+      "sessionId": "dtm-2026-r02-s1",
+      "sessionName": "Practice 1",
+      "current": {
+        "date": "2026-05-22",
+        "timeLocal": "12:00",
+        "durationMinutes": 55
+      },
+      "sourceTime": {
+        "date": "2026-05-22",
+        "time": "12:00",
+        "timeZone": "Europe/Amsterdam"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-05-22",
+        "timeLocal": "12:00",
+        "durationMinutes": 55,
+        "name": "Free Practice 1",
+        "kind": "practice",
+        "utcInstant": "2026-05-22T10:00:00Z",
+        "sessionId": "dtm-2026-r02-s1"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "128dc1b2b5ea981505f989adb48f03135fd1cb3d7fc1380d73ce3c4067a62614",
+      "id": "schedule-128dc1b2b5ea9815"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2026.json",
+      "eventId": "dtm-2026-r02",
+      "eventName": "Zandvoort",
+      "roundNumber": 2,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=zandvoort-2026&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "verification",
+      "sessionId": "dtm-2026-r02-s2",
+      "sessionName": "Practice 2",
+      "current": {
+        "date": "2026-05-22",
+        "timeLocal": "16:20",
+        "durationMinutes": 55
+      },
+      "sourceTime": {
+        "date": "2026-05-22",
+        "time": "16:20",
+        "timeZone": "Europe/Amsterdam"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-05-22",
+        "timeLocal": "16:20",
+        "durationMinutes": 45,
+        "name": "Free Practice 2",
+        "kind": "practice",
+        "utcInstant": "2026-05-22T14:20:00Z",
+        "sessionId": "dtm-2026-r02-s2"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "3baa452e5b0a443e4b145ec46bc70e6622c59439d1a101f05cdecb35d2288f2b",
+      "id": "schedule-3baa452e5b0a443e"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2026.json",
+      "eventId": "dtm-2026-r02",
+      "eventName": "Zandvoort",
+      "roundNumber": 2,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=zandvoort-2026&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "verification",
+      "sessionId": "dtm-2026-r02-s3",
+      "sessionName": "Qualifying 1",
+      "current": {
+        "date": "2026-05-23",
+        "timeLocal": "09:45",
+        "durationMinutes": 30
+      },
+      "sourceTime": {
+        "date": "2026-05-23",
+        "time": "09:45",
+        "timeZone": "Europe/Amsterdam"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-05-23",
+        "timeLocal": "09:45",
+        "durationMinutes": 20,
+        "name": "Qualifying 1",
+        "kind": "qualifying",
+        "utcInstant": "2026-05-23T07:45:00Z",
+        "sessionId": "dtm-2026-r02-s3"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "358d21b03393aac0706676ae4ba3eacc5bb41619a0416a7b1a2571bfe087ccee",
+      "id": "schedule-358d21b03393aac0"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2026.json",
+      "eventId": "dtm-2026-r02",
+      "eventName": "Zandvoort",
+      "roundNumber": 2,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=zandvoort-2026&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "verification",
+      "sessionId": "dtm-2026-r02-s5",
+      "sessionName": "Qualifying 2",
+      "current": {
+        "date": "2026-05-24",
+        "timeLocal": "09:40",
+        "durationMinutes": 30
+      },
+      "sourceTime": {
+        "date": "2026-05-24",
+        "time": "09:40",
+        "timeZone": "Europe/Amsterdam"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-05-24",
+        "timeLocal": "09:40",
+        "durationMinutes": 20,
+        "name": "Qualifying 2",
+        "kind": "qualifying",
+        "utcInstant": "2026-05-24T07:40:00Z",
+        "sessionId": "dtm-2026-r02-s5"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "92a3e179859c7a1bb42658fea5d21ccfc1c88183f51868b009e2f9f94f37daed",
+      "id": "schedule-92a3e179859c7a1b"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2026.json",
+      "eventId": "dtm-2026-r02",
+      "eventName": "Zandvoort",
+      "roundNumber": 2,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=zandvoort-2026&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "verification",
+      "sessionId": "dtm-2026-r02-s4",
+      "sessionName": "Race 1",
+      "current": {
+        "date": "2026-05-23",
+        "timeLocal": "13:30",
+        "durationMinutes": 55
+      },
+      "sourceTime": {
+        "date": "2026-05-23",
+        "time": "13:35",
+        "timeZone": "Europe/Amsterdam"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-05-23",
+        "timeLocal": "13:35",
+        "durationMinutes": 60,
+        "name": "Race 1",
+        "kind": "race",
+        "utcInstant": "2026-05-23T11:35:00Z",
+        "sessionId": "dtm-2026-r02-s4"
+      },
+      "dateChanged": false,
+      "status": "mismatch",
+      "reason": "Debugcontrole: de ingevulde sessie wijkt af van de officiële bron.",
+      "debug": true,
+      "fingerprint": "68a5711da89926f29dc33ee23d07543e791115ec00a789b102098bdc8def2885",
+      "id": "schedule-68a5711da89926f2"
+    },
+    {
+      "seriesId": "dtm",
+      "seriesName": "DTM",
+      "calendarFile": "dtm_2026.json",
+      "eventId": "dtm-2026-r02",
+      "eventName": "Zandvoort",
+      "roundNumber": 2,
+      "source": {
+        "stableUrl": "https://www.dtm.com/en/events",
+        "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=zandvoort-2026&lang=en",
+        "title": "Official timetable",
+        "checkedAt": "2026-09-09T20:41:39Z",
+        "lastModified": null
+      },
+      "proposalType": "verification",
+      "sessionId": "dtm-2026-r02-s6",
+      "sessionName": "Race 2",
+      "current": {
+        "date": "2026-05-24",
+        "timeLocal": "13:30",
+        "durationMinutes": 55
+      },
+      "sourceTime": {
+        "date": "2026-05-24",
+        "time": "13:30",
+        "timeZone": "Europe/Amsterdam"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-05-24",
+        "timeLocal": "13:30",
+        "durationMinutes": 60,
+        "name": "Race 2",
+        "kind": "race",
+        "utcInstant": "2026-05-24T11:30:00Z",
+        "sessionId": "dtm-2026-r02-s6"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "308aa59a2842db76b1e91121efeb5c6b09707094f127c892b891c7801fc2dad6",
+      "id": "schedule-308aa59a2842db76"
     }
   ],
   "sourcesUsed": [
     {
-      "seriesId": "british_gt",
-      "eventId": "british_gt-2026-r06",
-      "eventName": "Brands Hatch",
-      "stableUrl": "https://www.britishgt.com/calendar",
-      "finalUrl": "https://www.britishgt.com/images/results/113/Event%20Timetable%20-%2026-27.09.26%20-%20BH%20GP%20-%20Issue%20ONE.pdf",
-      "title": "Official timetable PDF",
-      "checkedAt": "2026-09-09T15:26:07Z",
-      "lastModified": "Wed, 29 Jul 2026 13:26:22 GMT"
+      "seriesId": "dtm",
+      "eventId": "dtm-2027-r05",
+      "eventName": "Circuit Zandvoort",
+      "stableUrl": "https://www.dtm.com/en/events",
+      "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=circuit-zandvoort-2027&lang=en",
+      "title": "Official timetable",
+      "checkedAt": "2026-09-09T20:41:39Z",
+      "lastModified": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet"
+    },
+    {
+      "seriesId": "dtm",
+      "eventId": "dtm-2027-r03",
+      "eventName": "Dekra Lausitzring",
+      "stableUrl": "https://www.dtm.com/en/events",
+      "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=dekra-lausitzring-2027&lang=en",
+      "title": "Official timetable",
+      "checkedAt": "2026-09-09T20:41:39Z",
+      "lastModified": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet"
+    },
+    {
+      "seriesId": "dtm",
+      "eventId": "dtm-2026-r08",
+      "eventName": "Hockenheimring",
+      "stableUrl": "https://www.dtm.com/en/events",
+      "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=hockenheimring-2026&lang=en",
+      "title": "Official timetable",
+      "checkedAt": "2026-09-09T20:41:39Z",
+      "lastModified": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet"
+    },
+    {
+      "seriesId": "dtm",
+      "eventId": "dtm-2027-r08",
+      "eventName": "Hockenheimring",
+      "stableUrl": "https://www.dtm.com/en/events",
+      "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=hockenheimring-2027&lang=en",
+      "title": "Official timetable",
+      "checkedAt": "2026-09-09T20:41:39Z",
+      "lastModified": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet"
+    },
+    {
+      "seriesId": "dtm",
+      "eventId": "dtm-2026-r03",
+      "eventName": "Lausitzring",
+      "stableUrl": "https://www.dtm.com/en/events",
+      "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=lausitzring-2026&lang=en",
+      "title": "Official timetable",
+      "checkedAt": "2026-09-09T20:41:39Z",
+      "lastModified": null
+    },
+    {
+      "seriesId": "dtm",
+      "eventId": "dtm-2027-r02",
+      "eventName": "Motorsport Arena Oschersleben",
+      "stableUrl": "https://www.dtm.com/en/events",
+      "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=motorsport-arena-oschersleben-2027&lang=en",
+      "title": "Official timetable",
+      "checkedAt": "2026-09-09T20:41:39Z",
+      "lastModified": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet"
+    },
+    {
+      "seriesId": "dtm",
+      "eventId": "dtm-2026-r04",
+      "eventName": "Norisring",
+      "stableUrl": "https://www.dtm.com/en/events",
+      "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=norisring-2026&lang=en",
+      "title": "Official timetable",
+      "checkedAt": "2026-09-09T20:41:39Z",
+      "lastModified": null
+    },
+    {
+      "seriesId": "dtm",
+      "eventId": "dtm-2027-r04",
+      "eventName": "Norisring",
+      "stableUrl": "https://www.dtm.com/en/events",
+      "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=norisring-2027&lang=en",
+      "title": "Official timetable",
+      "checkedAt": "2026-09-09T20:41:39Z",
+      "lastModified": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet"
+    },
+    {
+      "seriesId": "dtm",
+      "eventId": "dtm-2026-r06",
+      "eventName": "Nürburgring",
+      "stableUrl": "https://www.dtm.com/en/events",
+      "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=nuerburgring-2026&lang=en",
+      "title": "Official timetable",
+      "checkedAt": "2026-09-09T20:41:39Z",
+      "lastModified": null
+    },
+    {
+      "seriesId": "dtm",
+      "eventId": "dtm-2027-r06",
+      "eventName": "Nürburgring",
+      "stableUrl": "https://www.dtm.com/en/events",
+      "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=nuerburgring-2027&lang=en",
+      "title": "Official timetable",
+      "checkedAt": "2026-09-09T20:41:39Z",
+      "lastModified": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet"
+    },
+    {
+      "seriesId": "dtm",
+      "eventId": "dtm-2026-r05",
+      "eventName": "Oschersleben",
+      "stableUrl": "https://www.dtm.com/en/events",
+      "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=oschersleben-2026&lang=en",
+      "title": "Official timetable",
+      "checkedAt": "2026-09-09T20:41:39Z",
+      "lastModified": null
+    },
+    {
+      "seriesId": "dtm",
+      "eventId": "dtm-2026-r01",
+      "eventName": "Red Bull Ring",
+      "stableUrl": "https://www.dtm.com/en/events",
+      "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=red-bull-ring-2026&lang=en",
+      "title": "Official timetable",
+      "checkedAt": "2026-09-09T20:41:39Z",
+      "lastModified": null
+    },
+    {
+      "seriesId": "dtm",
+      "eventId": "dtm-2027-r01",
+      "eventName": "Red Bull Ring",
+      "stableUrl": "https://www.dtm.com/en/events",
+      "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=red-bull-ring-2027&lang=en",
+      "title": "Official timetable",
+      "checkedAt": "2026-09-09T20:41:39Z",
+      "lastModified": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet"
+    },
+    {
+      "seriesId": "dtm",
+      "eventId": "dtm-2026-r07",
+      "eventName": "Sachsenring",
+      "stableUrl": "https://www.dtm.com/en/events",
+      "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=sachsenring-2026&lang=en",
+      "title": "Official timetable",
+      "checkedAt": "2026-09-09T20:41:39Z",
+      "lastModified": null
+    },
+    {
+      "seriesId": "dtm",
+      "eventId": "dtm-2027-r07",
+      "eventName": "Sachsenring",
+      "stableUrl": "https://www.dtm.com/en/events",
+      "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=sachsenring-2027&lang=en",
+      "title": "Official timetable",
+      "checkedAt": "2026-09-09T20:41:39Z",
+      "lastModified": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet"
+    },
+    {
+      "seriesId": "dtm",
+      "eventId": "dtm-2026-r02",
+      "eventName": "Zandvoort",
+      "stableUrl": "https://www.dtm.com/en/events",
+      "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=zandvoort-2026&lang=en",
+      "title": "Official timetable",
+      "checkedAt": "2026-09-09T20:41:39Z",
+      "lastModified": null
     }
   ]
 }
