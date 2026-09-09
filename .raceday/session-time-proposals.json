@@ -1,7 +1,309 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-09T15:13:16Z",
+  "generatedAt": "2026-09-09T15:26:07Z",
   "proposals": [
+    {
+      "seriesId": "british_gt",
+      "seriesName": "British GT Championship",
+      "calendarFile": "british_gt_2026.json",
+      "eventId": "british_gt-2026-r06",
+      "eventName": "Brands Hatch",
+      "roundNumber": 6,
+      "source": {
+        "stableUrl": "https://www.britishgt.com/images/results/113/Event%20Timetable%20-%2026-27.09.26%20-%20BH%20GP%20-%20Issue%20ONE.pdf",
+        "finalUrl": "https://www.britishgt.com/images/results/113/Event%20Timetable%20-%2026-27.09.26%20-%20BH%20GP%20-%20Issue%20ONE.pdf",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-09-09T15:26:07Z",
+        "lastModified": "Wed, 29 Jul 2026 13:26:22 GMT"
+      },
+      "proposalType": "new-session",
+      "sessionId": null,
+      "sessionName": "Free Practice",
+      "current": {
+        "date": null,
+        "timeLocal": null,
+        "durationMinutes": null
+      },
+      "sourceTime": {
+        "date": "2026-09-26",
+        "time": "09:25",
+        "timeZone": "Europe/London"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-09-26",
+        "timeLocal": "10:25",
+        "durationMinutes": 60,
+        "name": "Free Practice",
+        "kind": "practice",
+        "utcInstant": "2026-09-26T08:25:00Z",
+        "sessionId": "british_gt-2026-r06-s2"
+      },
+      "dateChanged": false,
+      "status": "open",
+      "reason": "Official session time is available.",
+      "fingerprint": "5530141f515ba0cd29a1dae767da693a2a2dc1d58a87ad1d1e7150d71e5530ba",
+      "id": "schedule-5530141f515ba0cd"
+    },
+    {
+      "seriesId": "british_gt",
+      "seriesName": "British GT Championship",
+      "calendarFile": "british_gt_2026.json",
+      "eventId": "british_gt-2026-r06",
+      "eventName": "Brands Hatch",
+      "roundNumber": 6,
+      "source": {
+        "stableUrl": "https://www.britishgt.com/images/results/113/Event%20Timetable%20-%2026-27.09.26%20-%20BH%20GP%20-%20Issue%20ONE.pdf",
+        "finalUrl": "https://www.britishgt.com/images/results/113/Event%20Timetable%20-%2026-27.09.26%20-%20BH%20GP%20-%20Issue%20ONE.pdf",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-09-09T15:26:07Z",
+        "lastModified": "Wed, 29 Jul 2026 13:26:22 GMT"
+      },
+      "proposalType": "new-session",
+      "sessionId": null,
+      "sessionName": "Pre Qualifying",
+      "current": {
+        "date": null,
+        "timeLocal": null,
+        "durationMinutes": null
+      },
+      "sourceTime": {
+        "date": "2026-09-26",
+        "time": "11:45",
+        "timeZone": "Europe/London"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-09-26",
+        "timeLocal": "12:45",
+        "durationMinutes": 60,
+        "name": "Pre Qualifying",
+        "kind": "qualifying",
+        "utcInstant": "2026-09-26T10:45:00Z",
+        "sessionId": "british_gt-2026-r06-s3"
+      },
+      "dateChanged": false,
+      "status": "open",
+      "reason": "Official session time is available.",
+      "fingerprint": "4e857f5bf9753d9a2ba73ae4e27ff03f8f920d737f1be37eb0eb640f9f93ab3a",
+      "id": "schedule-4e857f5bf9753d9a"
+    },
+    {
+      "seriesId": "british_gt",
+      "seriesName": "British GT Championship",
+      "calendarFile": "british_gt_2026.json",
+      "eventId": "british_gt-2026-r06",
+      "eventName": "Brands Hatch",
+      "roundNumber": 6,
+      "source": {
+        "stableUrl": "https://www.britishgt.com/images/results/113/Event%20Timetable%20-%2026-27.09.26%20-%20BH%20GP%20-%20Issue%20ONE.pdf",
+        "finalUrl": "https://www.britishgt.com/images/results/113/Event%20Timetable%20-%2026-27.09.26%20-%20BH%20GP%20-%20Issue%20ONE.pdf",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-09-09T15:26:07Z",
+        "lastModified": "Wed, 29 Jul 2026 13:26:22 GMT"
+      },
+      "proposalType": "new-session",
+      "sessionId": null,
+      "sessionName": "Qualifying 1 - GT3",
+      "current": {
+        "date": null,
+        "timeLocal": null,
+        "durationMinutes": null
+      },
+      "sourceTime": {
+        "date": "2026-09-26",
+        "time": "16:15",
+        "timeZone": "Europe/London"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-09-26",
+        "timeLocal": "17:15",
+        "durationMinutes": 10,
+        "name": "Qualifying 1 - GT3",
+        "kind": "qualifying",
+        "utcInstant": "2026-09-26T15:15:00Z",
+        "sessionId": "british_gt-2026-r06-s4"
+      },
+      "dateChanged": false,
+      "status": "open",
+      "reason": "Official session time is available.",
+      "fingerprint": "e8f585bf4818ac5df2ce812361d24da902f4ae4f179cd60a7f1ec9e2003018bd",
+      "id": "schedule-e8f585bf4818ac5d"
+    },
+    {
+      "seriesId": "british_gt",
+      "seriesName": "British GT Championship",
+      "calendarFile": "british_gt_2026.json",
+      "eventId": "british_gt-2026-r06",
+      "eventName": "Brands Hatch",
+      "roundNumber": 6,
+      "source": {
+        "stableUrl": "https://www.britishgt.com/images/results/113/Event%20Timetable%20-%2026-27.09.26%20-%20BH%20GP%20-%20Issue%20ONE.pdf",
+        "finalUrl": "https://www.britishgt.com/images/results/113/Event%20Timetable%20-%2026-27.09.26%20-%20BH%20GP%20-%20Issue%20ONE.pdf",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-09-09T15:26:07Z",
+        "lastModified": "Wed, 29 Jul 2026 13:26:22 GMT"
+      },
+      "proposalType": "new-session",
+      "sessionId": null,
+      "sessionName": "Qualifying 2 - GT3",
+      "current": {
+        "date": null,
+        "timeLocal": null,
+        "durationMinutes": null
+      },
+      "sourceTime": {
+        "date": "2026-09-26",
+        "time": "16:29",
+        "timeZone": "Europe/London"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-09-26",
+        "timeLocal": "17:29",
+        "durationMinutes": 10,
+        "name": "Qualifying 2 - GT3",
+        "kind": "qualifying",
+        "utcInstant": "2026-09-26T15:29:00Z",
+        "sessionId": "british_gt-2026-r06-s5"
+      },
+      "dateChanged": false,
+      "status": "open",
+      "reason": "Official session time is available.",
+      "fingerprint": "fd9f2e34198a13bdf71941d6a45d5f96c1944363a6c609bdfadb9176d346660f",
+      "id": "schedule-fd9f2e34198a13bd"
+    },
+    {
+      "seriesId": "british_gt",
+      "seriesName": "British GT Championship",
+      "calendarFile": "british_gt_2026.json",
+      "eventId": "british_gt-2026-r06",
+      "eventName": "Brands Hatch",
+      "roundNumber": 6,
+      "source": {
+        "stableUrl": "https://www.britishgt.com/images/results/113/Event%20Timetable%20-%2026-27.09.26%20-%20BH%20GP%20-%20Issue%20ONE.pdf",
+        "finalUrl": "https://www.britishgt.com/images/results/113/Event%20Timetable%20-%2026-27.09.26%20-%20BH%20GP%20-%20Issue%20ONE.pdf",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-09-09T15:26:07Z",
+        "lastModified": "Wed, 29 Jul 2026 13:26:22 GMT"
+      },
+      "proposalType": "new-session",
+      "sessionId": null,
+      "sessionName": "Qualifying 3 - GT4",
+      "current": {
+        "date": null,
+        "timeLocal": null,
+        "durationMinutes": null
+      },
+      "sourceTime": {
+        "date": "2026-09-26",
+        "time": "16:43",
+        "timeZone": "Europe/London"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-09-26",
+        "timeLocal": "17:43",
+        "durationMinutes": 10,
+        "name": "Qualifying 3 - GT4",
+        "kind": "qualifying",
+        "utcInstant": "2026-09-26T15:43:00Z",
+        "sessionId": "british_gt-2026-r06-s6"
+      },
+      "dateChanged": false,
+      "status": "open",
+      "reason": "Official session time is available.",
+      "fingerprint": "6ef8788e0e3785c5c2b4596b8fb63376ae628c998b62b06ea0414028b5600aeb",
+      "id": "schedule-6ef8788e0e3785c5"
+    },
+    {
+      "seriesId": "british_gt",
+      "seriesName": "British GT Championship",
+      "calendarFile": "british_gt_2026.json",
+      "eventId": "british_gt-2026-r06",
+      "eventName": "Brands Hatch",
+      "roundNumber": 6,
+      "source": {
+        "stableUrl": "https://www.britishgt.com/images/results/113/Event%20Timetable%20-%2026-27.09.26%20-%20BH%20GP%20-%20Issue%20ONE.pdf",
+        "finalUrl": "https://www.britishgt.com/images/results/113/Event%20Timetable%20-%2026-27.09.26%20-%20BH%20GP%20-%20Issue%20ONE.pdf",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-09-09T15:26:07Z",
+        "lastModified": "Wed, 29 Jul 2026 13:26:22 GMT"
+      },
+      "proposalType": "new-session",
+      "sessionId": null,
+      "sessionName": "Qualifying 4 - GT4",
+      "current": {
+        "date": null,
+        "timeLocal": null,
+        "durationMinutes": null
+      },
+      "sourceTime": {
+        "date": "2026-09-26",
+        "time": "16:58",
+        "timeZone": "Europe/London"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-09-26",
+        "timeLocal": "17:58",
+        "durationMinutes": 10,
+        "name": "Qualifying 4 - GT4",
+        "kind": "qualifying",
+        "utcInstant": "2026-09-26T15:58:00Z",
+        "sessionId": "british_gt-2026-r06-s7"
+      },
+      "dateChanged": false,
+      "status": "open",
+      "reason": "Official session time is available.",
+      "fingerprint": "ef6fa732e9c9e3226c4581341a6d7b83aa7c12cd91d7c96cf6c1f87ce9091d1c",
+      "id": "schedule-ef6fa732e9c9e322"
+    },
+    {
+      "seriesId": "british_gt",
+      "seriesName": "British GT Championship",
+      "calendarFile": "british_gt_2026.json",
+      "eventId": "british_gt-2026-r06",
+      "eventName": "Brands Hatch",
+      "roundNumber": 6,
+      "source": {
+        "stableUrl": "https://www.britishgt.com/images/results/113/Event%20Timetable%20-%2026-27.09.26%20-%20BH%20GP%20-%20Issue%20ONE.pdf",
+        "finalUrl": "https://www.britishgt.com/images/results/113/Event%20Timetable%20-%2026-27.09.26%20-%20BH%20GP%20-%20Issue%20ONE.pdf",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-09-09T15:26:07Z",
+        "lastModified": "Wed, 29 Jul 2026 13:26:22 GMT"
+      },
+      "proposalType": "time-update",
+      "sessionId": "british_gt-2026-r06-s1",
+      "sessionName": "Race",
+      "current": {
+        "date": "2026-09-27",
+        "timeLocal": null,
+        "durationMinutes": 60
+      },
+      "sourceTime": {
+        "date": "2026-09-27",
+        "time": "13:30",
+        "timeZone": "Europe/London"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-09-27",
+        "timeLocal": "14:30",
+        "durationMinutes": 120,
+        "name": "Race",
+        "kind": "race",
+        "utcInstant": "2026-09-27T12:30:00Z",
+        "sessionId": "british_gt-2026-r06-s1"
+      },
+      "dateChanged": false,
+      "status": "open",
+      "reason": "Official session time is available.",
+      "fingerprint": "1286ebdeb7b43a83c050be56e9ba72c2b2516ee045657e7708a53ed49b95233b",
+      "id": "schedule-1286ebdeb7b43a83",
+      "replacesFingerprint": "ec4d85f5c97dfba69510370a53407c898fd4829c7d2e0569d7a82a9315f298fa"
+    },
     {
       "seriesId": "british_gt",
       "seriesName": "British GT Championship",
@@ -40,10 +342,55 @@
         "sessionId": "british_gt-2026-r06-s1"
       },
       "dateChanged": false,
-      "status": "open",
+      "status": "superseded",
       "reason": "Official session time is available.",
       "fingerprint": "ec4d85f5c97dfba69510370a53407c898fd4829c7d2e0569d7a82a9315f298fa",
-      "id": "schedule-ec4d85f5c97dfba6"
+      "id": "schedule-ec4d85f5c97dfba6",
+      "supersededAt": "2026-09-09T15:26:07Z",
+      "supersededBy": "1286ebdeb7b43a83c050be56e9ba72c2b2516ee045657e7708a53ed49b95233b"
+    },
+    {
+      "seriesId": "british_gt",
+      "seriesName": "British GT Championship",
+      "calendarFile": "british_gt_2026.json",
+      "eventId": "british_gt-2026-r06",
+      "eventName": "Brands Hatch",
+      "roundNumber": 6,
+      "source": {
+        "stableUrl": "https://www.britishgt.com/images/results/113/Event%20Timetable%20-%2026-27.09.26%20-%20BH%20GP%20-%20Issue%20ONE.pdf",
+        "finalUrl": "https://www.britishgt.com/images/results/113/Event%20Timetable%20-%2026-27.09.26%20-%20BH%20GP%20-%20Issue%20ONE.pdf",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-09-09T15:26:07Z",
+        "lastModified": "Wed, 29 Jul 2026 13:26:22 GMT"
+      },
+      "proposalType": "new-session",
+      "sessionId": null,
+      "sessionName": "Warm Up",
+      "current": {
+        "date": null,
+        "timeLocal": null,
+        "durationMinutes": null
+      },
+      "sourceTime": {
+        "date": "2026-09-27",
+        "time": "10:00",
+        "timeZone": "Europe/London"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-09-27",
+        "timeLocal": "11:00",
+        "durationMinutes": 15,
+        "name": "Warm Up",
+        "kind": "practice",
+        "utcInstant": "2026-09-27T09:00:00Z",
+        "sessionId": "british_gt-2026-r06-s8"
+      },
+      "dateChanged": false,
+      "status": "open",
+      "reason": "Official session time is available.",
+      "fingerprint": "d2f143e235f7c30a9c3a3f1a43950ecfb4ba39f317cbb18c11453dd4aaefbfa6",
+      "id": "schedule-d2f143e235f7c30a"
     }
   ],
   "sourcesUsed": [
@@ -52,10 +399,10 @@
       "eventId": "british_gt-2026-r06",
       "eventName": "Brands Hatch",
       "stableUrl": "https://www.britishgt.com/calendar",
-      "finalUrl": "https://www.britishgt.com/event/113/brands-hatch",
-      "title": "Brands Hatch, Great Britain, 26 - 27 September 2026 | British GT Championship",
-      "checkedAt": "2026-09-09T15:13:16Z",
-      "lastModified": "Wed, 09 Sep 2026 15:13:18 GMT"
+      "finalUrl": "https://www.britishgt.com/images/results/113/Event%20Timetable%20-%2026-27.09.26%20-%20BH%20GP%20-%20Issue%20ONE.pdf",
+      "title": "Official timetable PDF",
+      "checkedAt": "2026-09-09T15:26:07Z",
+      "lastModified": "Wed, 29 Jul 2026 13:26:22 GMT"
     }
   ]
 }
