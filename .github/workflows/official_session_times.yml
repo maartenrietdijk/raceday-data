@@ -7,6 +7,10 @@ on:
         description: 'Optional RaceDay series id; empty scans every in-scope TBC series'
         required: false
         type: string
+      event:
+        description: 'Optional exact RaceDay event id'
+        required: false
+        type: string
   schedule:
     # Three checks per week. The scanner is idempotent and never edits calendars.
     - cron: '17 6 * * 1,3,5'
@@ -40,11 +44,14 @@ jobs:
       - name: Scan official schedules
         shell: bash
         run: |
+          args=()
           if [ -n "${{ inputs.series }}" ]; then
-            python official_schedule_scanner.py --series "${{ inputs.series }}"
-          else
-            python official_schedule_scanner.py
+            args+=(--series "${{ inputs.series }}")
           fi
+          if [ -n "${{ inputs.event }}" ]; then
+            args+=(--event "${{ inputs.event }}")
+          fi
+          python official_schedule_scanner.py "${args[@]}"
 
       - name: Commit proposal store only
         run: |
