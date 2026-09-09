@@ -1993,7 +1993,12 @@ function proposalTypeLabel(type) {
 
 function proposalDateTime(value) {
   if (!value?.date) return 'TBC';
-  return `${value.date}${value.timeLocal ? ` · ${value.timeLocal}` : ' · TBC'}`;
+  return `${proposalDateLabel(value.date)}${value.timeLocal ? ` · ${value.timeLocal}` : ' · TBC'}`;
+}
+
+function proposalDateLabel(value) {
+  const match = String(value || '').match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  return match ? `${match[3]}-${match[2]}-${match[1]}` : value;
 }
 
 function proposalReasonLabel(reason) {
@@ -2028,7 +2033,7 @@ function renderProposalRow(proposal) {
   const canReject = ['open', 'requires_review'].includes(proposal.status);
   const canUndo = proposal.status === 'accepted' ? Boolean(state.proposalUndo[proposal.fingerprint]) : proposal.status === 'rejected';
   const sourceTime = proposal.sourceTime
-    ? `${proposal.sourceTime.date} · ${proposal.sourceTime.time}<br>${esc(proposal.sourceTime.timeZone)}`
+    ? `${proposalDateLabel(proposal.sourceTime.date)} · ${proposal.sourceTime.time}<br>${esc(proposal.sourceTime.timeZone)}`
     : 'Niet betrouwbaar vastgesteld';
   const checked = proposal.source?.checkedAt
     ? new Intl.DateTimeFormat('nl-NL', { dateStyle: 'medium', timeStyle: 'short' }).format(new Date(proposal.source.checkedAt))

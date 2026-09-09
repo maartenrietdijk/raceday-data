@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import html
+import io
 import json
 import logging
 import os
@@ -24,7 +25,7 @@ from datetime import date, datetime, time, timezone
 from pathlib import Path
 from typing import Dict, Iterable, List, Optional, Sequence, Tuple
 from urllib.error import HTTPError, URLError
-from urllib.parse import urljoin, urlparse
+from urllib.parse import quote, urljoin, urlparse
 from urllib.request import Request, urlopen
 from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
@@ -200,6 +201,56 @@ def fetch_url_with_curl(url: str, allowed_domains: Sequence[str]) -> FetchResult
     return FetchResult(url, final_url, page_title(body), body, None)
 
 
+def extract_pdf_text(data: bytes) -> str:
+    try:
+        from pypdf import PdfReader
+    except ImportError as exc:
+        raise SourceError("PDF-uitlezer ontbreekt; installeer pypdf") from exc
+    try:
+        pages = [(page.extract_text() or "") for page in PdfReader(io.BytesIO(data)).pages]
+    except Exception as exc:
+        raise SourceError("officiële timetable-PDF kon niet worden uitgelezen: {}".format(exc)) from exc
+    text = "\f".join(pages)
+    if not text.strip():
+        raise SourceError("officiële timetable-PDF bevat geen uitleesbare tekst")
+    return text
+
+
+def fetch_pdf_url(url: str, allowed_domains: Sequence[str]) -> FetchResult:
+    if not allowed_url(url, allowed_domains):
+        raise SourceError("PDF-domain is not allowlisted: {}".format(url))
+    url = quote(url, safe=":/?&=#%")
+    request = Request(url, headers={"User-Agent": USER_AGENT, "Accept": "application/pdf"})
+    try:
+        with urlopen(request, timeout=25, context=tls_context()) as response:
+            final_url = response.geturl()
+            if not allowed_url(final_url, allowed_domains):
+                raise SourceError("PDF redirect left official allowlist: {}".format(final_url))
+            data = response.read(8_000_000)
+            return FetchResult(url, final_url, "Official timetable PDF", extract_pdf_text(data), response.headers.get("Last-Modified"))
+    except URLError as exc:
+        if "CERTIFICATE_VERIFY_FAILED" not in str(exc):
+            raise SourceError("could not read official timetable PDF {}: {}".format(url, exc)) from exc
+    marker = b"\nRACEDAY_FINAL_URL:"
+    try:
+        result = subprocess.run(
+            ["curl", "--fail", "--location", "--max-time", "25", "--max-filesize", "8000000",
+             "--silent", "--show-error", "--user-agent", USER_AGENT,
+             "--write-out", marker.decode() + "%{url_effective}", url],
+            check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+        )
+    except (OSError, subprocess.CalledProcessError) as curl_exc:
+        detail = getattr(curl_exc, "stderr", b"")
+        raise SourceError("could not read official timetable PDF: {}".format(detail.decode("utf-8", "replace").strip())) from curl_exc
+    if marker not in result.stdout:
+        raise SourceError("verified curl did not report the final timetable PDF URL")
+    data, final_bytes = result.stdout.rsplit(marker, 1)
+    final_url = final_bytes.decode("utf-8", "replace").strip()
+    if not allowed_url(final_url, allowed_domains):
+        raise SourceError("PDF redirect left official allowlist: {}".format(final_url))
+    return FetchResult(url, final_url, "Official timetable PDF", extract_pdf_text(data), None)
+
+
 def fixture_result(path: Path, stable_url: str) -> FetchResult:
     body = path.read_text(encoding="utf-8")
     final_match = re.search(r'<meta\s+name="raceday-final-url"\s+content="([^"]+)"', body, re.I)
@@ -225,6 +276,15 @@ def discover_event_url(calendar: FetchResult, event: dict, year: int) -> Optiona
         if score > best[0]:
             best = (score, url)
     return best[1] if best[0] >= 0.14 else None
+
+
+def discover_timetable_pdf(event_page: FetchResult) -> Optional[str]:
+    candidates = []
+    for url, label in extract_links(event_page.body, event_page.final_url):
+        if urlparse(url).path.lower().endswith(".pdf"):
+            priority = 2 if re.search(r"timetable|schedule|programme", "{} {}".format(label, url), re.I) else 1
+            candidates.append((priority, url))
+    return max(candidates, default=(0, None))[1]
 
 
 def html_tables(body: str) -> Iterable[Tuple[str, List[List[str]]]]:
@@ -331,6 +391,39 @@ def parse_nascar_text(fetch: FetchResult, event: dict, year: int, source_timezon
     else:
         session_date = date(int(date_match.group(3)), MONTHS[date_match.group(1).lower()], int(date_match.group(2))).isoformat()
     return [SourceSession("Race", session_date, parse_clock(time_match.group(1)), source_timezone)]
+
+
+def parse_british_gt_pdf(fetch: FetchResult, year: int, source_timezone: str) -> List[SourceSession]:
+    sessions: List[SourceSession] = []
+    for page_index, page in enumerate(fetch.body.split("\f")):
+        date_match = re.search(
+            r"\b(\d{1,2})\s*/\s*(\d{1,2})\s+"
+            r"(January|February|March|April|May|June|July|August|September|October|November|December)\s+(20\d{2})\b",
+            page, re.I,
+        )
+        if not date_match or int(date_match.group(4)) != year:
+            continue
+        days = [int(date_match.group(1)), int(date_match.group(2))]
+        day = days[min(page_index, len(days) - 1)]
+        session_date = date(year, MONTHS[date_match.group(3).lower()], day).isoformat()
+        for line in page.splitlines():
+            match = re.search(r"\bBritish GT Championship\s+\d+\s+(.+)$", line, re.I)
+            if not match:
+                continue
+            remainder = match.group(1).strip()
+            times = list(re.finditer(r"\b\d{2}:\d{2}\b", remainder))
+            if len(times) < 4:
+                continue
+            name = remainder[:times[0].start()].strip()
+            if re.fullmatch(r"Race\s+\d+", name, re.I):
+                name = "Race"
+            kind = normalize_kind(name)
+            if not kind:
+                continue
+            duration_hours, duration_minutes = map(int, times[0].group().split(":"))
+            duration = duration_hours * 60 + duration_minutes
+            sessions.append(SourceSession(name, session_date, times[2].group(), source_timezone, duration))
+    return sessions
 
 
 def strict_source_instant(session: SourceSession) -> datetime:
@@ -660,6 +753,12 @@ def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Opti
                 raise SourceError("no verified IANA track timezone is registered for this event")
             if cfg["sourceKind"] == "nascar-et":
                 sessions = parse_nascar_text(source, event, year, source_tz)
+            elif cfg["sourceKind"] == "british-gt-pdf":
+                pdf_url = discover_timetable_pdf(source)
+                if not pdf_url:
+                    raise SourceError("op de officiële eventpagina is nog geen timetable-PDF gepubliceerd")
+                source = fetch_pdf_url(pdf_url, cfg["allowedDomains"])
+                sessions = parse_british_gt_pdf(source, year, source_tz)
             else:
                 sessions = parse_official_tables(source, year, source_tz)
             if not sessions:

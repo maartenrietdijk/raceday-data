@@ -125,7 +125,7 @@
       "name": "British GT Championship",
       "startUrl": "https://www.britishgt.com/calendar",
       "allowedDomains": ["britishgt.com", "www.britishgt.com"],
-      "sourceKind": "sro-event-timetable",
+      "sourceKind": "british-gt-pdf",
       "eventDiscovery": "Follow Event Info or Event Timetable for the matching official British GT round.",
       "sourceTimeZone": "track",
       "notes": "British GT is an SRO championship; accept only official event timetable data."
@@ -195,6 +195,7 @@
     "gtwca_am:gtwca-am-2026-r06": "https://www.gt-world-challenge-america.com/event/116/barber-motorsports-park",
     "gtwca_am:gtwca-am-2026-r07": "https://www.gt-world-challenge-america.com/event/117/indianpolis-8-hour",
     "gtwca_aus:gtwca-aus-2026-r05": "https://www.gt-world-challenge-australia.com/event/24/Sydney",
-    "gtwca_aus:gtwca-aus-2026-r06": "https://www.gt-world-challenge-australia.com/event/28/adelaide-grand-final"
+    "gtwca_aus:gtwca-aus-2026-r06": "https://www.gt-world-challenge-australia.com/event/28/adelaide-grand-final",
+    "british_gt:british_gt-2026-r06": "https://www.britishgt.com/event/113/brands-hatch"
   }
 }

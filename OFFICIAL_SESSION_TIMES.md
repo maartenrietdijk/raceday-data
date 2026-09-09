@@ -44,6 +44,8 @@ Official track/local time is first resolved in its IANA zone, converted to one U
 
 `session-time-sources.json` is the maintained allowlist. Redirect targets must remain on an allowed official domain. Search snippets and secondary calendars are never parsed as evidence. Priority is event timetable or bulletin, event page, championship calendar, then official organizer/circuit page. The proposal store records both stable and final URLs, title, check time, source time/zone, editor time/zone, and source modification metadata when supplied.
 
+For British GT, the scanner follows the official **Event Timetable PDF** from the event page and extracts only rows labelled `British GT Championship`; support-series rows are ignored. The workflow installs the pinned `pypdf` reader for this step.
+
 Current series IDs in scope are `f2`, `f3`, `f1academy`, `nascar`, `nascar_oreilly`, `nascar_trucks`, `nascareuro`, `gtwce`, `gtwca_am`, `gtwca_asia`, `gtwca_aus`, `british_gt`, and `dtm`. A series is skipped completely when none of its calendar files contains a TBC session.
 
 ## Automation
