@@ -11,6 +11,11 @@ on:
         description: 'Optional exact RaceDay event id'
         required: false
         type: string
+      include_filled:
+        description: 'Debug: compare already-filled sessions without making them actionable'
+        required: false
+        default: false
+        type: boolean
   schedule:
     # Three checks per week. The scanner is idempotent and never edits calendars.
     - cron: '17 6 * * 1,3,5'
@@ -53,6 +58,9 @@ jobs:
           fi
           if [ -n "${{ inputs.event }}" ]; then
             args+=(--event "${{ inputs.event }}")
+          fi
+          if [ "${{ inputs.include_filled }}" = "true" ]; then
+            args+=(--include-filled)
           fi
           python official_schedule_scanner.py "${args[@]}"
 
