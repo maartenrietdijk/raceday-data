@@ -581,7 +581,7 @@ def merge_proposals(previous: Sequence[dict], current: Sequence[dict], generated
     return sorted(merged, key=lambda item: (item.get("eventName") or "", item.get("seriesName") or "", item.get("sessionName") or "", item.get("status") == "superseded"))
 
 
-def calendar_inventory(root: Path, scope: set) -> List[Tuple[str, dict]]:
+def calendar_inventory(root: Path, scope: set, event_ids: Optional[set] = None) -> List[Tuple[str, dict]]:
     inventory: List[Tuple[str, dict]] = []
     pattern = re.compile(r"^(.+)_([0-9]{4})\.json$")
     for path in sorted(root.glob("*_*.json")):
@@ -594,7 +594,9 @@ def calendar_inventory(root: Path, scope: set) -> List[Tuple[str, dict]]:
             LOG.error("Skipping invalid calendar %s: %s", path.name, exc)
             continue
         for event in rounds if isinstance(rounds, list) else []:
-            if any(session.get("timeLocal") is None for session in event.get("sessions", [])):
+            if event_ids and event.get("id") not in event_ids:
+                continue
+            if event_ids or any(session.get("timeLocal") is None for session in event.get("sessions", [])):
                 inventory.append((path.name, event))
     return inventory
 
@@ -608,12 +610,12 @@ def resolve_event_timezone(registry: dict, series_cfg: dict, event: dict) -> Opt
     return max(matches)[1] if matches else None
 
 
-def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Optional[set], checked_at: str, fixtures_only: bool = False) -> dict:
+def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Optional[set], checked_at: str, fixtures_only: bool = False, only_events: Optional[set] = None) -> dict:
     series_by_id = {item["seriesId"]: item for item in registry["series"]}
     scope = set(series_by_id)
     if only_series:
         scope &= only_series
-    inventory = calendar_inventory(root, scope)
+    inventory = calendar_inventory(root, scope, only_events)
     LOG.info("Found %d in-scope events with TBC sessions", len(inventory))
     proposals: List[dict] = []
     source_overview: Dict[str, dict] = {}
@@ -693,6 +695,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--fixtures-dir", type=Path, help="Read fixed official HTML fixtures instead of the network when available")
     parser.add_argument("--fixtures-only", action="store_true", help="Never use the network when a requested fixture is absent")
     parser.add_argument("--series", action="append", help="Limit to an in-scope RaceDay series id (repeatable)")
+    parser.add_argument("--event", action="append", help="Limit to a specific RaceDay event id (repeatable)")
     parser.add_argument("--now", help="Fixed ISO timestamp for deterministic runs")
     parser.add_argument("--dry-run", action="store_true", help="Print the result without writing the proposal store")
     parser.add_argument("--verbose", action="store_true")
@@ -707,7 +710,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     output_path = (args.output or root / ".raceday" / "session-time-proposals.json").resolve()
     registry = json.loads(registry_path.read_text(encoding="utf-8"))
     checked_at = args.now or datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
-    result = scan(root, registry, args.fixtures_dir, set(args.series or []), checked_at, args.fixtures_only)
+    result = scan(root, registry, args.fixtures_dir, set(args.series or []), checked_at, args.fixtures_only, set(args.event or []))
     previous = []
     if output_path.exists():
         try:

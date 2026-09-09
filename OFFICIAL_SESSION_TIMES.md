@@ -15,6 +15,7 @@ Useful safe variants:
 ```bash
 python3 official_schedule_scanner.py --dry-run
 python3 official_schedule_scanner.py --series gtwca_aus --verbose
+python3 official_schedule_scanner.py --series f2 --event f2-2026-r01
 python3 official_schedule_scanner.py --fixtures-dir tests/fixtures/official --fixtures-only --now 2026-09-09T12:00:00Z
 ```
 
@@ -43,11 +44,11 @@ Official track/local time is first resolved in its IANA zone, converted to one U
 
 `session-time-sources.json` is the maintained allowlist. Redirect targets must remain on an allowed official domain. Search snippets and secondary calendars are never parsed as evidence. Priority is event timetable or bulletin, event page, championship calendar, then official organizer/circuit page. The proposal store records both stable and final URLs, title, check time, source time/zone, editor time/zone, and source modification metadata when supplied.
 
-Current series IDs in scope are `f2`, `f3`, `nascar`, `nascar_oreilly`, `nascar_trucks`, `nascareuro`, `gtwce`, `gtwca_am`, `gtwca_asia`, and `gtwca_aus`. A series is skipped completely when none of its calendar files contains a TBC session.
+Current series IDs in scope are `f2`, `f3`, `f1academy`, `nascar`, `nascar_oreilly`, `nascar_trucks`, `nascareuro`, `gtwce`, `gtwca_am`, `gtwca_asia`, `gtwca_aus`, `british_gt`, and `dtm`. A series is skipped completely when none of its calendar files contains a TBC session.
 
 ## Automation
 
-`.github/workflows/official_session_times.yml` runs Monday, Wednesday, and Friday at 06:17 UTC and supports manual dispatch for one series. It uses the repository's existing serialized write queue and commits only the proposal store. No secret other than GitHub's built-in repository token is required.
+`.github/workflows/official_session_times.yml` runs Monday, Wednesday, and Friday at 06:17 UTC and supports manual dispatch for one series or one exact event. It uses the repository's existing serialized write queue and commits only the proposal store. No secret other than GitHub's built-in repository token is required.
 
 ## Tests
 

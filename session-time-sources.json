@@ -28,6 +28,16 @@
       "notes": "My time is browser-local and must not be used. A track IANA timezone is required before proposing a time."
     },
     {
+      "seriesId": "f1academy",
+      "name": "F1 Academy",
+      "startUrl": "https://www.f1academy.com/Racing-Series/Calendar",
+      "allowedDomains": ["f1academy.com", "www.f1academy.com"],
+      "sourceKind": "fia-track-time",
+      "eventDiscovery": "Follow the official Schedule link for the matching round and use only track-local times.",
+      "sourceTimeZone": "track",
+      "notes": "Browser-local time labels must not be used. A track IANA timezone is required before proposing a time."
+    },
+    {
       "seriesId": "nascar",
       "name": "NASCAR Cup Series",
       "startUrl": "https://www.nascar.com/weekend-schedule/",
@@ -109,6 +119,26 @@
       "eventDiscovery": "Follow Event Info and prefer the event timetable or linked official PDF.",
       "sourceTimeZone": "track",
       "notes": "The editor stores this series in Europe/Amsterdam."
+    },
+    {
+      "seriesId": "british_gt",
+      "name": "British GT Championship",
+      "startUrl": "https://www.britishgt.com/calendar",
+      "allowedDomains": ["britishgt.com", "www.britishgt.com"],
+      "sourceKind": "sro-event-timetable",
+      "eventDiscovery": "Follow Event Info or Event Timetable for the matching official British GT round.",
+      "sourceTimeZone": "track",
+      "notes": "British GT is an SRO championship; accept only official event timetable data."
+    },
+    {
+      "seriesId": "dtm",
+      "name": "DTM",
+      "startUrl": "https://www.dtm.com/en/events",
+      "allowedDomains": ["dtm.com", "www.dtm.com"],
+      "sourceKind": "official-track-time",
+      "eventDiscovery": "Follow more info for the matching official DTM event and prefer its published schedule.",
+      "sourceTimeZone": "track",
+      "notes": "Use only the official DTM event programme with a verified track timezone."
     }
   ],
   "eventTimeZones": {
@@ -138,7 +168,26 @@
     "monaco": "Europe/Monaco",
     "baku": "Asia/Baku",
     "lusail": "Asia/Qatar",
-    "yas marina": "Asia/Dubai"
+    "yas marina": "Asia/Dubai",
+    "miami": "America/New_York",
+    "circuit gilles villeneuve": "America/Toronto",
+    "montreal": "America/Toronto",
+    "silverstone": "Europe/London",
+    "red bull ring": "Europe/Vienna",
+    "spielberg": "Europe/Vienna",
+    "madrid": "Europe/Madrid",
+    "circuit of the americas": "America/Chicago",
+    "austin": "America/Chicago",
+    "las vegas": "America/Los_Angeles",
+    "oulton park": "Europe/London",
+    "snetterton": "Europe/London",
+    "donington": "Europe/London",
+    "brands hatch": "Europe/London",
+    "lausitzring": "Europe/Berlin",
+    "norisring": "Europe/Berlin",
+    "oschersleben": "Europe/Berlin",
+    "sachsenring": "Europe/Berlin",
+    "hockenheimring": "Europe/Berlin"
   },
   "knownEventUrls": {
     "nascar:nascar-2026-r33": "https://www.nascar.com/tickets/",

@@ -741,7 +741,7 @@
   .empty.compact { padding: 40px 24px; }
 
   .proposal-toolbar { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; }
-  .proposal-toolbar .field { min-width: 190px; }
+  .proposal-toolbar .field { min-width: 170px; flex: 1 1 170px; }
   .proposal-toolbar select { min-height: 44px; }
   .proposal-event { margin-bottom: 14px; overflow: hidden; border-radius: 6px; background: var(--bg); box-shadow: var(--shadow); }
   [data-theme="dark"] .proposal-event { border: 1px solid var(--border); }
@@ -1223,7 +1223,7 @@
   </div>
 </div>
 
-<script src="proposal-logic.js?v=20260909-1"></script>
+<script src="proposal-logic.js?v=20260909-2"></script>
 <script>
 // ── State ──────────────────────────────────────────────────────────────────────
 
@@ -1273,6 +1273,12 @@ const AUTO_RESULTS_SERIES = new Set([
   'motogp', 'moto2', 'moto3', 'wrc', 'dtm', 'supercars', 'wsbk',
 ]);
 
+const OFFICIAL_TIME_SERIES = new Set([
+  'f2', 'f3', 'f1academy', 'nascar', 'nascar_oreilly', 'nascar_trucks',
+  'nascareuro', 'gtwce', 'gtwca_am', 'gtwca_asia', 'gtwca_aus',
+  'british_gt', 'dtm',
+]);
+
 let state = {
   series: [],           // [{id, name, color}]
   data: {},             // Combined {seriesId: [RaceRound]} for dashboard/tools
@@ -1292,7 +1298,7 @@ let state = {
   dirtyProposalFiles: [],
   github: { token: '', repo: '', branch: 'main', path: '' }
 };
-let proposalFilters = { seriesId: '', status: '' };
+let proposalFilters = { seriesId: '', status: 'active', year: '', periodDays: '' };
 let proposalLoadState = { status: 'idle', error: '' };
 let seriesQuery = '';
 let seriesDragIndex = null;
@@ -1475,6 +1481,13 @@ async function loadFromGitHub() {
   const { token, repo } = state.github;
   if (!token || !repo) return;
 
+  const pendingCalendarDrafts = Object.fromEntries((state.dirtyProposalFiles || [])
+    .filter(filename => state.calendarFiles[filename])
+    .map(filename => [filename, state.calendarFiles[filename]]));
+  const localProposalDecisions = new Map((state.proposals || [])
+    .filter(item => ['accepted', 'rejected', 'superseded'].includes(item.status))
+    .map(item => [item.fingerprint, item]));
+
   showStatus('Gegevens synchroniseren met GitHub…', 'loading');
   proposalLoadState = { status: 'loading', error: '' };
   const [owner, repoName] = repo.split('/');
@@ -1518,7 +1531,7 @@ async function loadFromGitHub() {
         console.warn(`Could not load ${file.name}:`, e);
       }
     }
-    state.calendarFiles = loadedCalendarFiles;
+    state.calendarFiles = { ...loadedCalendarFiles, ...pendingCalendarDrafts };
     Object.entries(loadedCalendarFiles).forEach(([filename, rounds]) => {
       const explicitSeasonId = rounds.find(round => round.seasonId)?.seasonId;
       if (explicitSeasonId) state.calendarSeasonIds[filename] = explicitSeasonId;
@@ -1540,7 +1553,18 @@ async function loadFromGitHub() {
         const proposalFile = await proposalResp.json();
         const proposalText = decodeURIComponent(escape(atob(proposalFile.content.replace(/\s/g, ''))));
         const proposalStore = JSON.parse(proposalText);
-        state.proposals = Array.isArray(proposalStore.proposals) ? proposalStore.proposals : [];
+        const remoteProposals = Array.isArray(proposalStore.proposals) ? proposalStore.proposals : [];
+        state.proposals = remoteProposals.map(item => {
+          const local = localProposalDecisions.get(item.fingerprint);
+          if (!local) return item;
+          return {
+            ...item,
+            status: local.status,
+            ...(local.decisionAt ? { decisionAt: local.decisionAt } : {}),
+            ...(local.supersededAt ? { supersededAt: local.supersededAt } : {}),
+            ...(local.supersededBy ? { supersededBy: local.supersededBy } : {}),
+          };
+        });
         state.proposalSources = Array.isArray(proposalStore.sourcesUsed) ? proposalStore.sourcesUsed : [];
         state.proposalGeneratedAt = proposalStore.generatedAt || null;
         proposalLoadState = { status: 'loaded', error: '' };
@@ -1972,6 +1996,13 @@ function proposalDateTime(value) {
   return `${value.date}${value.timeLocal ? ` · ${value.timeLocal}` : ' · TBC'}`;
 }
 
+function proposalReasonLabel(reason) {
+  return ({
+    'official page contains no reliably parseable race sessions yet': 'De officiële pagina bevat nog geen betrouwbaar uitleesbare racesessies.',
+    'No unambiguous matching session was found on the official source.': 'Op de officiële bron is geen eenduidig overeenkomende sessie gevonden.',
+  })[reason] || reason;
+}
+
 function proposalIsStale(proposal) {
   if (proposal.stale) return true;
   const checked = Date.parse(proposal.source?.checkedAt || '');
@@ -1984,6 +2015,12 @@ function proposalSeriesOptions() {
     const name = state.proposals.find(item => item.seriesId === id)?.seriesName || formatSeriesName(id);
     return `<option value="${esc(id)}" ${proposalFilters.seriesId === id ? 'selected' : ''}>${esc(name)}</option>`;
   }).join('');
+}
+
+function proposalYearOptions() {
+  const years = [...new Set(state.proposals.map(RaceDayProposals.proposalDate)
+    .map(value => String(value || '').match(/^(\d{4})/)?.[1]).filter(Boolean))].sort();
+  return years.map(year => `<option value="${year}" ${proposalFilters.year === year ? 'selected' : ''}>${year}</option>`).join('');
 }
 
 function renderProposalRow(proposal) {
@@ -2004,8 +2041,8 @@ function renderProposalRow(proposal) {
         <span class="proposal-badge ${['requires_review','unresolved','conflict'].includes(proposal.status) ? 'warning' : proposal.status !== 'open' ? 'closed' : ''}">${esc(proposalStatusLabel(proposal.status))}</span>
         ${proposalIsStale(proposal) ? '<span class="proposal-badge warning">Verouderd</span>' : ''}
       </div>
-      ${proposal.reason && proposal.reason !== 'Official session time is available.' ? `<div class="proposal-warning">${esc(proposal.reason)}</div>` : ''}
-      ${proposal.lastScanError ? `<div class="proposal-warning">Laatste scan: ${esc(proposal.lastScanError)}</div>` : ''}
+      ${proposal.reason && proposal.reason !== 'Official session time is available.' ? `<div class="proposal-warning">${esc(proposalReasonLabel(proposal.reason))}</div>` : ''}
+      ${proposal.lastScanError ? `<div class="proposal-warning">Laatste scan: ${esc(proposalReasonLabel(proposal.lastScanError))}</div>` : ''}
     </div>
     <div class="proposal-detail">
       <div class="proposal-value-grid">
@@ -2054,7 +2091,11 @@ function renderProposals() {
     <div class="proposal-toolbar" aria-label="Voorstelfilters">
       <div class="field"><label for="proposalSeriesFilter">Serie</label><select id="proposalSeriesFilter" onchange="setProposalFilter('seriesId',this.value)"><option value="">Alle series</option>${proposalSeriesOptions()}</select></div>
       <div class="field"><label for="proposalStatusFilter">Status</label><select id="proposalStatusFilter" onchange="setProposalFilter('status',this.value)">
-        <option value="">Alle statussen</option>${['open','requires_review','unresolved','accepted','rejected','superseded'].map(status => `<option value="${status}" ${proposalFilters.status === status ? 'selected' : ''}>${proposalStatusLabel(status)}</option>`).join('')}
+        <option value="active" ${proposalFilters.status === 'active' ? 'selected' : ''}>Openstaand</option><option value="" ${proposalFilters.status === '' ? 'selected' : ''}>Alle statussen</option>${['open','requires_review','unresolved','accepted','rejected','superseded'].map(status => `<option value="${status}" ${proposalFilters.status === status ? 'selected' : ''}>${proposalStatusLabel(status)}</option>`).join('')}
+      </select></div>
+      <div class="field"><label for="proposalYearFilter">Jaar</label><select id="proposalYearFilter" onchange="setProposalFilter('year',this.value)"><option value="">Alle jaren</option>${proposalYearOptions()}</select></div>
+      <div class="field"><label for="proposalPeriodFilter">Komende periode</label><select id="proposalPeriodFilter" onchange="setProposalFilter('periodDays',this.value)">
+        <option value="">Alle datums</option><option value="7" ${proposalFilters.periodDays === '7' ? 'selected' : ''}>Deze week</option><option value="14" ${proposalFilters.periodDays === '14' ? 'selected' : ''}>Komende 2 weken</option><option value="30" ${proposalFilters.periodDays === '30' ? 'selected' : ''}>Komende maand</option><option value="60" ${proposalFilters.periodDays === '60' ? 'selected' : ''}>Komende 2 maanden</option>
       </select></div>
     </div>
     ${groups.length ? groups.map(group => `<section class="proposal-event">
@@ -2086,6 +2127,13 @@ function acceptProposal(fingerprint, deferRender = false) {
     state.proposalUndo[fingerprint] = RaceDayProposals.apply(state.calendarFiles, proposal);
     proposal.status = 'accepted';
     proposal.decisionAt = new Date().toISOString();
+    state.proposals.forEach(item => {
+      if (item !== proposal && ['open', 'requires_review'].includes(item.status) && RaceDayProposals.sameTarget(item, proposal)) {
+        item.status = 'superseded';
+        item.supersededAt = proposal.decisionAt;
+        item.supersededBy = proposal.fingerprint;
+      }
+    });
     markProposalFileDirty(proposal.calendarFile);
     save();
     if (!deferRender) { renderSidebar(); renderProposals(); showStatus(`✓ ${proposal.sessionName} verwerkt in concept`, 'success'); }
@@ -2378,6 +2426,7 @@ async function publishStandingsToGitHub() {
 function renderRound(r, i, series, highlighted = false) {
   const sessionRows = (r.sessions || []).map((s, si) => renderSession(s, i, si)).join('');
   const supportsAutoResults = AUTO_RESULTS_SERIES.has(state.activeSeries);
+  const supportsOfficialTimes = OFFICIAL_TIME_SERIES.has(state.activeSeries);
   return `
     <div class="round-card${highlighted ? ' is-next' : ''}" id="round_${i}" data-round-index="${i}"
       ondragover="dragRoundOver(event,${i})" ondrop="dragRoundDrop(event,${i})">
@@ -2442,6 +2491,9 @@ function renderRound(r, i, series, highlighted = false) {
           <div class="sessions-label">
             Sessies
             <span style="display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end">
+              <button class="btn btn-surface btn-sm" id="scanOfficialBtn_${i}" onclick="scanOfficialEvent(${i})"
+                title="Zoek officiële sessietijden voor alleen dit event"
+                ${supportsOfficialTimes ? '' : 'disabled'}>Zoek officiële tijden</button>
               <button class="btn btn-primary btn-sm" id="fetchEventBtn_${i}" onclick="fetchEventResults(${i})"
                 title="${supportsAutoResults ? 'Haal alle vindbare sessieresultaten op via Motorsport.com' : 'Automatisch ophalen is voor deze serie nog niet beschikbaar'}"
                 ${supportsAutoResults ? '' : 'disabled'}>Alles ophalen</button>
@@ -3323,6 +3375,46 @@ async function fetchEventResults(ri) {
     showStatus(`Event ophalen mislukt: ${err.message}`, 'error');
   } finally {
     if (btn) { btn.disabled = false; btn.textContent = originalText; }
+  }
+}
+
+async function scanOfficialEvent(ri) {
+  if (!OFFICIAL_TIME_SERIES.has(state.activeSeries)) {
+    return showStatus('De officiële sessietijdscanner ondersteunt deze serie nog niet', 'error');
+  }
+  const round = editableRounds()?.[ri];
+  if (!round?.id) return showStatus('Geef dit event eerst een ronde-ID', 'error');
+  if (!state.github?.token || !state.github?.repo) {
+    return showStatus('Stel eerst je GitHub-token en repository in', 'error');
+  }
+  const button = document.getElementById(`scanOfficialBtn_${ri}`);
+  const originalText = button?.textContent || 'Zoek officiële tijden';
+  if (button) { button.disabled = true; button.textContent = 'Zoekactie starten…'; }
+  try {
+    const [owner, repo] = state.github.repo.split('/');
+    if (!owner || !repo) throw new Error('Gebruik eigenaar/repository bij GitHub-instellingen');
+    const response = await fetch(`https://api.github.com/repos/${owner}/${repo}/actions/workflows/official_session_times.yml/dispatches`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${state.github.token}`,
+        'Accept': 'application/vnd.github+json',
+        'Content-Type': 'application/json',
+        'X-GitHub-Api-Version': '2022-11-28',
+      },
+      body: JSON.stringify({
+        ref: state.github.branch || 'main',
+        inputs: { series: state.activeSeries, event: round.id },
+      }),
+    });
+    if (response.status !== 204) {
+      const error = await response.json().catch(() => ({}));
+      throw new Error(error.message || `GitHub error ${response.status}`);
+    }
+    showStatus(`✓ Zoekactie gestart voor ${round.raceName || round.id} — vernieuw de voorstellen over ongeveer 30 seconden`, 'success');
+  } catch (error) {
+    showStatus(`Zoekactie mislukt: ${error.message}`, 'error');
+  } finally {
+    if (button) { button.disabled = false; button.textContent = originalText; }
   }
 }
 

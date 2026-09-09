@@ -4,6 +4,23 @@
   root.RaceDayProposals = api;
 })(typeof globalThis !== 'undefined' ? globalThis : this, function () {
   const REVIEWABLE = new Set(['open', 'requires_review']);
+  const ACTIVE = new Set(['open', 'requires_review', 'unresolved']);
+
+  function proposalDate(item) {
+    return item?.proposed?.date || item?.sourceTime?.date || item?.current?.date || '';
+  }
+
+  function sameTarget(left, right) {
+    if (!left || !right) return false;
+    const leftSession = left.proposed?.sessionId || left.sessionId || '';
+    const rightSession = right.proposed?.sessionId || right.sessionId || '';
+    return left.calendarFile === right.calendarFile &&
+      left.eventId === right.eventId &&
+      leftSession === rightSession &&
+      (left.proposed?.date || '') === (right.proposed?.date || '') &&
+      (left.proposed?.timeLocal || '') === (right.proposed?.timeLocal || '') &&
+      (left.proposed?.name || left.sessionName || '') === (right.proposed?.name || right.sessionName || '');
+  }
 
   function openCount(items) {
     return (items || []).filter(item => REVIEWABLE.has(item.status)).length;
@@ -12,7 +29,19 @@
   function filtered(items, filters = {}) {
     return (items || []).filter(item => {
       if (filters.seriesId && item.seriesId !== filters.seriesId) return false;
-      if (filters.status && item.status !== filters.status) return false;
+      if (filters.status === 'active' && !ACTIVE.has(item.status)) return false;
+      if (filters.status && filters.status !== 'active' && item.status !== filters.status) return false;
+      const itemDate = proposalDate(item);
+      if (filters.year && !itemDate.startsWith(`${filters.year}-`)) return false;
+      if (filters.periodDays) {
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(itemDate)) return false;
+        const today = new Date(filters.now || Date.now());
+        today.setHours(0, 0, 0, 0);
+        const end = new Date(today);
+        end.setDate(today.getDate() + Number(filters.periodDays));
+        const eventDate = new Date(`${itemDate}T00:00:00`);
+        if (eventDate < today || eventDate >= end) return false;
+      }
       return true;
     });
   }
@@ -48,8 +77,14 @@
     const { round } = findTarget(calendarFiles, proposal);
     if (!Array.isArray(round.sessions)) round.sessions = [];
     if (proposal.proposalType === 'new-session') {
-      if (round.sessions.some(item => item.id === proposal.proposed.sessionId)) {
-        throw new Error('Deze conceptsessie bestaat al.');
+      const existing = round.sessions.find(item => item.id === proposal.proposed.sessionId);
+      if (existing) {
+        const sameValues = existing.name === proposal.proposed.name &&
+          existing.kind === proposal.proposed.kind &&
+          existing.date === proposal.proposed.date &&
+          existing.timeLocal === proposal.proposed.timeLocal;
+        if (sameValues) return { type: 'noop', sessionId: existing.id };
+        throw new Error('Er bestaat al een andere conceptsessie met deze ID. Controleer het event handmatig.');
       }
       const created = {
         id: proposal.proposed.sessionId,
@@ -80,6 +115,7 @@
   function undo(calendarFiles, proposal, undoRecord) {
     const { round } = findTarget(calendarFiles, proposal);
     if (!undoRecord) throw new Error('Geen ongedaan-maakgegevens beschikbaar.');
+    if (undoRecord.type === 'noop') return;
     if (undoRecord.type === 'new-session') {
       const index = round.sessions.findIndex(item => item.id === undoRecord.sessionId);
       if (index >= 0) round.sessions.splice(index, 1);
@@ -90,5 +126,5 @@
     round.sessions[index] = JSON.parse(JSON.stringify(undoRecord.before));
   }
 
-  return { REVIEWABLE, openCount, filtered, grouped, apply, undo };
+  return { REVIEWABLE, ACTIVE, openCount, filtered, grouped, proposalDate, sameTarget, apply, undo };
 });
