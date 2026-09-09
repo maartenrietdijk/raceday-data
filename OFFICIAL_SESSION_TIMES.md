@@ -16,6 +16,7 @@ Useful safe variants:
 python3 official_schedule_scanner.py --dry-run
 python3 official_schedule_scanner.py --series gtwca_aus --verbose
 python3 official_schedule_scanner.py --series f2 --event f2-2026-r01
+python3 official_schedule_scanner.py --series dtm --include-filled --dry-run
 python3 official_schedule_scanner.py --fixtures-dir tests/fixtures/official --fixtures-only --now 2026-09-09T12:00:00Z
 ```
 
@@ -28,6 +29,8 @@ The result is `.raceday/session-time-proposals.json`. Repeated runs with unchang
 3. Compare official source time, IANA timezone, UTC instant, and the editor value.
 4. Accept, reject, or undo. Conflicts and unresolved items cannot be accepted.
 5. Use **Publiceer** on the proposal page. Only calendar files changed by accepted proposals plus the proposal decision file are uploaded. The normal publication step remains mandatory.
+
+Accepted items disappear from the default **Openstaand** view immediately after acceptance. They remain available under **Alle statussen** or **Geaccepteerd** until the accepted calendar change has been published and the next scan reconciles the proposal store. A debug scan is intentionally separate: it can show `Komt overeen` or `Wijkt af` for sessions that already have a time, without making either result actionable.
 
 There is deliberately no global “accept all” action. Event-level acceptance includes only reliable `open` proposals for that event and rolls back atomically if one item fails.
 
@@ -46,7 +49,7 @@ Official track/local time is first resolved in its IANA zone, converted to one U
 
 For British GT, the scanner follows the official **Event Timetable PDF** from the event page and extracts only rows labelled `British GT Championship`; support-series rows are ignored. The workflow installs the pinned `pypdf` reader for this step.
 
-Current series IDs in scope are `f2`, `f3`, `f1academy`, `nascar`, `nascar_oreilly`, `nascar_trucks`, `nascareuro`, `gtwce`, `gtwca_am`, `gtwca_asia`, `gtwca_aus`, `british_gt`, and `dtm`. A series is skipped completely when none of its calendar files contains a TBC session.
+Current series IDs in scope are `f2`, `f3`, `f1academy`, `nascar`, `nascar_oreilly`, `nascar_trucks`, `nascareuro`, `gtwce`, `gtwca_am`, `gtwca_asia`, `gtwca_aus`, `british_gt`, `dtm`, `wec`, `alms`, `lemanscup`, `indycar`, `indynxt`, and `imsa`. WEC, ALMS, Le Mans Cup, INDYCAR, INDY NXT, and IMSA use official schedule documents where available; the scanner prefers a linked official PDF over a timetable page. DTM uses the public official DTM event API because its event pages render the timetable only after JavaScript loads. A series is skipped completely when none of its calendar files contains a TBC session, unless `--include-filled` is used for the proposals-page debug check.
 
 ## Automation
 

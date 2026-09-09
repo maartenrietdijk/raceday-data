@@ -9,6 +9,7 @@ TBC sessions and writes its idempotent result to
 from __future__ import annotations
 
 import argparse
+import gzip
 import hashlib
 import html
 import io
@@ -20,6 +21,7 @@ import ssl
 import subprocess
 import sys
 import unicodedata
+import zlib
 from dataclasses import dataclass
 from datetime import date, datetime, time, timezone
 from pathlib import Path
@@ -84,6 +86,10 @@ def normalize(value: object) -> str:
     text = unicodedata.normalize("NFKD", str(value or ""))
     text = "".join(c for c in text if not unicodedata.combining(c)).lower()
     return " ".join(re.findall(r"[a-z0-9]+", text))
+
+
+def url_slug(value: object) -> str:
+    return normalize(value).replace(" ", "-")
 
 
 def tokens(value: object) -> set:
@@ -161,7 +167,20 @@ def fetch_url(url: str, allowed_domains: Sequence[str]) -> FetchResult:
             final_url = response.geturl()
             if not allowed_url(final_url, allowed_domains):
                 raise SourceError("redirect left official allowlist: {}".format(final_url))
-            body = response.read(8_000_000).decode(response.headers.get_content_charset() or "utf-8", "replace")
+            data = response.read(8_000_001)
+            if len(data) > 8_000_000:
+                raise SourceError("official source is larger than the 8 MB safety limit")
+            content_encoding = (response.headers.get("Content-Encoding") or "").lower()
+            try:
+                if "gzip" in content_encoding:
+                    data = gzip.decompress(data)
+                elif "deflate" in content_encoding:
+                    data = zlib.decompress(data)
+            except (OSError, zlib.error) as exc:
+                raise SourceError("official source compression could not be decoded") from exc
+            if len(data) > 8_000_000:
+                raise SourceError("expanded official source is larger than the 8 MB safety limit")
+            body = data.decode(response.headers.get_content_charset() or "utf-8", "replace")
             return FetchResult(
                 stable_url=url,
                 final_url=final_url,
@@ -184,7 +203,7 @@ def fetch_url_with_curl(url: str, allowed_domains: Sequence[str]) -> FetchResult
     marker = "\nRACEDAY_FINAL_URL:"
     try:
         result = subprocess.run(
-            ["curl", "--fail", "--location", "--max-time", "25", "--max-filesize", "8000000",
+            ["curl", "--fail", "--location", "--compressed", "--max-time", "25", "--max-filesize", "8000000",
              "--silent", "--show-error", "--user-agent", USER_AGENT,
              "--write-out", marker + "%{url_effective}", url],
             check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True,
@@ -269,10 +288,16 @@ def discover_event_url(calendar: FetchResult, event: dict, year: int) -> Optiona
         event.get("raceName", ""), event.get("circuitName", ""), event.get("city", ""), year
     )
     best: Tuple[float, Optional[str]] = (0.0, None)
-    for url, label in extract_links(calendar.body, calendar.final_url):
-        if not re.search(r"event|racing|schedule|timetable", url, re.I):
+    for link in re.finditer(r"<a\b[^>]*href=[\"']([^\"']+)[\"'][^>]*>(.*?)</a>", calendar.body, re.I | re.S):
+        url = urljoin(calendar.final_url, html.unescape(link.group(1)))
+        label = strip_tags(link.group(2))
+        if not re.search(r"event|racing|race|schedule|timetable|programme|document|results", "{} {}".format(url, label), re.I):
             continue
-        score = similarity(target, "{} {}".format(label, url.replace("-", " ")))
+        nearby = strip_tags(calendar.body[max(0, link.start() - 700):link.end()])
+        direct_score = similarity(target, "{} {}".format(label, url.replace("-", " ")))
+        target_tokens, nearby_tokens = tokens(target), tokens(nearby)
+        context_score = len(target_tokens & nearby_tokens) / len(target_tokens) if target_tokens else 0.0
+        score = max(direct_score, context_score * 0.8)
         if score > best[0]:
             best = (score, url)
     return best[1] if best[0] >= 0.14 else None
@@ -281,10 +306,29 @@ def discover_event_url(calendar: FetchResult, event: dict, year: int) -> Optiona
 def discover_timetable_pdf(event_page: FetchResult) -> Optional[str]:
     candidates = []
     for url, label in extract_links(event_page.body, event_page.final_url):
-        if urlparse(url).path.lower().endswith(".pdf"):
-            priority = 2 if re.search(r"timetable|schedule|programme", "{} {}".format(label, url), re.I) else 1
+        combined = "{} {}".format(label, url)
+        is_document = urlparse(url).path.lower().endswith(".pdf") or "/document/download/" in url or "pdf" in label.lower()
+        if is_document and re.search(r"timetable|schedule|programme", combined, re.I):
+            if re.search(r"weekend.?schedule", combined, re.I):
+                priority = 5
+            elif re.search(r"\bofficial\b", combined, re.I):
+                priority = 4
+            elif re.search(r"timetable", combined, re.I):
+                priority = 3
+            elif re.search(r"\bprovisional\b", combined, re.I):
+                priority = 1
+            else:
+                priority = 2
             candidates.append((priority, url))
     return max(candidates, default=(0, None))[1]
+
+
+def discover_event_calendar(event_page: FetchResult) -> Optional[str]:
+    for url, label in extract_links(event_page.body, event_page.final_url):
+        combined = "{} {}".format(label, url)
+        if "/race/calendar/" in urlparse(url).path.lower() or re.search(r"add to (?:my )?calendar", combined, re.I):
+            return url
+    return None
 
 
 def html_tables(body: str) -> Iterable[Tuple[str, List[List[str]]]]:
@@ -426,6 +470,220 @@ def parse_british_gt_pdf(fetch: FetchResult, year: int, source_timezone: str) ->
     return sessions
 
 
+def document_lines(body: str) -> List[str]:
+    if re.search(r"<html|<body|<div|<table", body, re.I):
+        body = re.sub(r"</(?:div|p|li|tr|h[1-6]|section|article)>|<br\s*/?>", "\n", body, flags=re.I)
+        body = re.sub(r"<[^>]+>", " ", body)
+        body = html.unescape(body)
+    return [" ".join(line.split()) for line in body.splitlines() if line.strip()]
+
+
+def parse_document_date(line: str, year: int) -> Optional[str]:
+    month_names = "January|February|March|April|May|June|July|August|September|October|November|December"
+    month_first = re.search(r"\b(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)?[,]?\s*(%s)\s+(\d{1,2})(?:[,]?\s+(20\d{2}))?\b" % month_names, line, re.I)
+    day_first = re.search(r"\b(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)?[,]?\s*(\d{1,2})\s+(%s)(?:\s+(20\d{2}))?\b" % month_names, line, re.I)
+    numeric = re.search(r"\b(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun)[a-z]*[,]?\s+(\d{1,2})/(\d{1,2})(?:/(20\d{2}))?\b", line, re.I)
+    if month_first:
+        return date(int(month_first.group(3) or year), MONTHS[month_first.group(1).lower()], int(month_first.group(2))).isoformat()
+    if day_first:
+        return date(int(day_first.group(3) or year), MONTHS[day_first.group(2).lower()], int(day_first.group(1))).isoformat()
+    if numeric:
+        return date(int(numeric.group(3) or year), int(numeric.group(1)), int(numeric.group(2))).isoformat()
+    return None
+
+
+def parse_official_schedule_document(fetch: FetchResult, year: int, source_timezone: str, categories: Sequence[str]) -> List[SourceSession]:
+    sessions: List[SourceSession] = []
+    current_date: Optional[str] = None
+    category_terms = [normalize(value) for value in categories]
+    session_pattern = re.compile(
+        r"\b(hyperpole|free\s+practice(?:\s*#?\d+)?|practice(?:\s*#?\d+)?|"
+        r"qualifying(?:\s+(?:session\s+)?#?\d+)?(?:\s*-\s*(?:gt3|gt4))?|"
+        r"qualifications?|warm\s*up|race(?:\s*#?\d+)?)\b",
+        re.I,
+    )
+    excluded = ("press conference", "briefing", "inspection", "track walk", "pit walk", "grid walk", "formation lap", "recon lap", "course clearance", "autograph", "finish:")
+    lines = document_lines(fetch.body)
+    for index, line in enumerate(lines):
+        parsed_date = parse_document_date(line, year)
+        if parsed_date:
+            current_date = parsed_date
+        if not current_date:
+            continue
+        # Official programme pages commonly render one session as three
+        # adjacent text nodes: time range, championship, session name. Start
+        # at the time node and only look forward; looking at a sliding window
+        # from every line can accidentally pair a time with the next session.
+        if not re.search(r"\b\d{1,2}:\d{2}", line):
+            continue
+        preceding_row: List[str] = []
+        for preceding in reversed(lines[max(0, index - 4):index]):
+            if re.search(r"\b\d{1,2}:\d{2}", preceding) or parse_document_date(preceding, year):
+                break
+            preceding_row.insert(0, preceding)
+        # IndyCar PDFs place the championship on the line before a timed
+        # activity, and put race titles plus lap counts before the start time.
+        # Only bring that prefix in for those shapes so ordinary timetable
+        # rows cannot inherit the previous session's label.
+        # A timed Indy activity already has its category immediately before
+        # it. Stop at the time line: looking forward would attach the category
+        # of the next championship and make one row match both series. Race
+        # titles with lap counts use the same prefix-only layout.
+        if session_pattern.search(line) or any("laps" in normalize(value) for value in preceding_row):
+            row = preceding_row + [line]
+        else:
+            row = [line]
+            for following in lines[index + 1:index + 4]:
+                # DTM-style programme pages put championship and session name
+                # after the clock. A new clock/date starts the next row.
+                if re.search(r"\b\d{1,2}:\d{2}", following) or parse_document_date(following, year):
+                    break
+                row.append(following)
+        segment = " ".join(row)
+        normalized_segment = normalize(segment)
+        if not any(term in normalized_segment for term in category_terms):
+            continue
+        if any(term in normalized_segment for term in excluded):
+            continue
+        name_match = session_pattern.search(segment)
+        clocks = list(re.finditer(r"\b\d{1,2}:\d{2}\s*(?:[AP]M)?\b", segment, re.I))
+        if not clocks:
+            continue
+        name = " ".join(name_match.group(1).split()) if name_match else ("Race" if "laps" in normalized_segment else "")
+        kind = normalize_kind(name)
+        if not kind:
+            continue
+        try:
+            start = parse_clock(clocks[0].group())
+        except ValueError:
+            continue
+        duration = None
+        if len(clocks) > 1:
+            try:
+                start_value = datetime.strptime(start, "%H:%M")
+                end_value = datetime.strptime(parse_clock(clocks[1].group()), "%H:%M")
+                minutes = int((end_value - start_value).total_seconds() // 60)
+                duration = minutes if minutes > 0 else minutes + 24 * 60
+            except ValueError:
+                pass
+        sessions.append(SourceSession(name, current_date, start, source_timezone, duration))
+    unique = {}
+    for session in sessions:
+        unique[(normalize(session.name), session.date, session.local_time)] = session
+    return list(unique.values())
+
+
+def parse_ical_datetime(key: str, value: str, fallback_timezone: str) -> Optional[datetime]:
+    try:
+        parsed = datetime.strptime(value.rstrip("Z"), "%Y%m%dT%H%M%S")
+    except ValueError:
+        try:
+            parsed = datetime.strptime(value.rstrip("Z"), "%Y%m%dT%H%M")
+        except ValueError:
+            return None
+    if value.endswith("Z"):
+        return parsed.replace(tzinfo=timezone.utc)
+    tzid = re.search(r"(?:^|;)TZID=([^;:]+)", key, re.I)
+    zone_name = tzid.group(1) if tzid else fallback_timezone
+    try:
+        return parsed.replace(tzinfo=ZoneInfo(zone_name))
+    except ZoneInfoNotFoundError:
+        return None
+
+
+def parse_ical_sessions(fetch: FetchResult, year: int, source_timezone: str) -> List[SourceSession]:
+    unfolded: List[str] = []
+    for raw_line in fetch.body.replace("\r\n", "\n").replace("\r", "\n").split("\n"):
+        if raw_line.startswith((" ", "\t")) and unfolded:
+            unfolded[-1] += raw_line[1:]
+        else:
+            unfolded.append(raw_line)
+    sessions: List[SourceSession] = []
+    current: Dict[str, Tuple[str, str]] = {}
+    inside = False
+    for line in unfolded:
+        if line == "BEGIN:VEVENT":
+            current, inside = {}, True
+            continue
+        if line == "END:VEVENT" and inside:
+            summary_entry = current.get("SUMMARY")
+            start_entry = current.get("DTSTART")
+            end_entry = current.get("DTEND")
+            if summary_entry and start_entry:
+                summary = summary_entry[1]
+                for encoded, decoded in ((r"\n", " "), (r"\,", ","), (r"\;", ";"), (r"\\", "\\")):
+                    summary = summary.replace(encoded, decoded)
+                name = summary.split(" - ", 1)[-1].strip()
+                start = parse_ical_datetime(*start_entry, source_timezone)
+                end = parse_ical_datetime(*end_entry, source_timezone) if end_entry else None
+                if start and normalize_kind(name):
+                    local_start = start.astimezone(ZoneInfo(source_timezone))
+                    if local_start.year == year:
+                        duration = int((end - start).total_seconds() // 60) if end else None
+                        sessions.append(SourceSession(
+                            name, local_start.date().isoformat(), local_start.strftime("%H:%M"),
+                            source_timezone, duration if duration and duration > 0 else None,
+                            start.astimezone(timezone.utc).strftime("%H:%M"),
+                        ))
+            current, inside = {}, False
+            continue
+        if not inside or ":" not in line:
+            continue
+        key, value = line.split(":", 1)
+        base_key = key.split(";", 1)[0].upper()
+        if base_key in {"SUMMARY", "DTSTART", "DTEND"}:
+            current[base_key] = (key, value)
+    return sessions
+
+
+def parse_dtm_api(fetch: FetchResult, year: int, source_timezone: str) -> List[SourceSession]:
+    """Parse the public official DTM event API.
+
+    DTM stores timetable instants as ISO-8601 values with an explicit UTC
+    offset. Convert those instants to track time before handing them to the
+    normal timezone pipeline; treating the clock component as local would
+    shift European events by one or two hours.
+    """
+    try:
+        payload = json.loads(fetch.body)
+    except json.JSONDecodeError as exc:
+        raise SourceError("officiële DTM-API gaf geen geldige JSON terug") from exc
+    events = payload.get("events") if isinstance(payload, dict) else None
+    if not isinstance(events, list) or not events:
+        return []
+    try:
+        track_zone = ZoneInfo(source_timezone)
+    except ZoneInfoNotFoundError as exc:
+        raise SourceError("unknown IANA timezone {}".format(source_timezone)) from exc
+    sessions: List[SourceSession] = []
+    for item in events[0].get("timetable", []):
+        if item.get("raceSeries") != "DTM":
+            continue
+        name = " ".join(str(item.get("label") or "").split())
+        if not normalize_kind(name):
+            continue
+        try:
+            start = datetime.fromisoformat(str(item.get("start") or "").replace("Z", "+00:00"))
+            end = datetime.fromisoformat(str(item.get("end") or "").replace("Z", "+00:00"))
+        except ValueError:
+            continue
+        if start.tzinfo is None or end.tzinfo is None:
+            continue
+        local_start = start.astimezone(track_zone)
+        if local_start.year != year:
+            continue
+        duration = int((end - start).total_seconds() // 60)
+        sessions.append(SourceSession(
+            name,
+            local_start.date().isoformat(),
+            local_start.strftime("%H:%M"),
+            source_timezone,
+            duration if duration > 0 else None,
+            start.astimezone(timezone.utc).strftime("%H:%M"),
+        ))
+    return sessions
+
+
 def strict_source_instant(session: SourceSession) -> datetime:
     try:
         zone = ZoneInfo(session.timezone)
@@ -481,7 +739,8 @@ def match_session(source: SourceSession, sessions: Sequence[dict]) -> Tuple[Opti
             return generic[0], "official source has numbered {} sessions but the editor has one unnumbered session".format(source_kind)
         return None, None
     if len(same_kind) == 1 and source_number is None:
-        if tokens(source.name) & tokens(same_kind[0].get("name", "")):
+        generic_qualifying = normalize(source.name) in {"qualifying", "qualification", "qualifications", "qualifying session"}
+        if source_kind == "race" or generic_qualifying or tokens(source.name) & tokens(same_kind[0].get("name", "")):
             return same_kind[0], None
         return None, None
     if same_kind:
@@ -553,16 +812,20 @@ def build_event_proposals(
     official_sessions: Sequence[SourceSession],
     editor_timezone: str,
     checked_at: str,
+    include_filled: bool = False,
 ) -> List[dict]:
     proposals: List[dict] = []
     existing = event.get("sessions", [])
     matched_ids = set()
-    for official in official_sessions:
+    for official in sorted(official_sessions, key=lambda item: (item.date, item.local_time, normalize(item.name))):
         kind = normalize_kind(official.name)
         if not kind:
             continue
         matched, conflict = match_session(official, existing)
-        if matched and matched.get("timeLocal") is not None:
+        if matched and matched.get("id") in matched_ids:
+            continue
+        filled_session = bool(matched and matched.get("timeLocal") is not None)
+        if filled_session and not include_filled:
             matched_ids.add(matched.get("id"))
             continue
         try:
@@ -570,9 +833,10 @@ def build_event_proposals(
         except SourceError as exc:
             conflict = str(exc)
             proposed_date = proposed_time = utc_instant = None
+        is_match = bool(filled_session and matched.get("date") == proposed_date and matched.get("timeLocal") == proposed_time)
         proposal = proposal_base(series_cfg, filename, event, source, checked_at)
         proposal.update({
-            "proposalType": "conflict" if conflict else ("time-update" if matched else "new-session"),
+            "proposalType": "verification" if filled_session else ("conflict" if conflict else ("time-update" if matched else "new-session")),
             "sessionId": matched.get("id") if matched else None,
             "sessionName": matched.get("name") if matched else official.name,
             "current": {
@@ -592,13 +856,17 @@ def build_event_proposals(
                 "sessionId": (matched or {}).get("id") or "{}-s{}".format(event.get("id"), len(existing) + len(proposals) + 1),
             },
             "dateChanged": bool(matched and proposed_date and matched.get("date") != proposed_date),
-            "status": "requires_review" if conflict else "open",
-            "reason": conflict or "Official session time is available.",
+            "status": ("verified" if is_match else "mismatch") if filled_session else ("requires_review" if conflict else "open"),
+            "reason": (
+                "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron."
+                if is_match else "Debugcontrole: de ingevulde sessie wijkt af van de officiële bron."
+            ) if filled_session else (conflict or "Official session time is available."),
+            "debug": filled_session,
         })
         fp_data = {
             "seriesId": proposal["seriesId"], "eventId": proposal["eventId"],
             "sessionId": proposal["sessionId"], "source": source.final_url,
-            "sourceTime": proposal["sourceTime"], "proposed": proposal["proposed"],
+            "sourceTime": proposal["sourceTime"], "proposed": proposal["proposed"], "debug": filled_session,
         }
         proposal["fingerprint"] = fingerprint(fp_data)
         proposal["id"] = "schedule-" + proposal["fingerprint"][:16]
@@ -674,7 +942,7 @@ def merge_proposals(previous: Sequence[dict], current: Sequence[dict], generated
     return sorted(merged, key=lambda item: (item.get("eventName") or "", item.get("seriesName") or "", item.get("sessionName") or "", item.get("status") == "superseded"))
 
 
-def calendar_inventory(root: Path, scope: set, event_ids: Optional[set] = None) -> List[Tuple[str, dict]]:
+def calendar_inventory(root: Path, scope: set, event_ids: Optional[set] = None, include_filled: bool = False) -> List[Tuple[str, dict]]:
     inventory: List[Tuple[str, dict]] = []
     pattern = re.compile(r"^(.+)_([0-9]{4})\.json$")
     for path in sorted(root.glob("*_*.json")):
@@ -689,7 +957,7 @@ def calendar_inventory(root: Path, scope: set, event_ids: Optional[set] = None) 
         for event in rounds if isinstance(rounds, list) else []:
             if event_ids and event.get("id") not in event_ids:
                 continue
-            if event_ids or any(session.get("timeLocal") is None for session in event.get("sessions", [])):
+            if event_ids or include_filled or any(session.get("timeLocal") is None for session in event.get("sessions", [])):
                 inventory.append((path.name, event))
     return inventory
 
@@ -703,12 +971,20 @@ def resolve_event_timezone(registry: dict, series_cfg: dict, event: dict) -> Opt
     return max(matches)[1] if matches else None
 
 
-def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Optional[set], checked_at: str, fixtures_only: bool = False, only_events: Optional[set] = None) -> dict:
+def resolve_event_year(event: dict, fallback: int) -> int:
+    for session in event.get("sessions", []):
+        value = str(session.get("date") or "")
+        if re.fullmatch(r"20\d{2}-\d{2}-\d{2}", value):
+            return int(value[:4])
+    return fallback
+
+
+def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Optional[set], checked_at: str, fixtures_only: bool = False, only_events: Optional[set] = None, include_filled: bool = False) -> dict:
     series_by_id = {item["seriesId"]: item for item in registry["series"]}
     scope = set(series_by_id)
     if only_series:
         scope &= only_series
-    inventory = calendar_inventory(root, scope, only_events)
+    inventory = calendar_inventory(root, scope, only_events, include_filled)
     LOG.info("Found %d in-scope events with TBC sessions", len(inventory))
     proposals: List[dict] = []
     source_overview: Dict[str, dict] = {}
@@ -718,13 +994,16 @@ def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Opti
         cfg = series_by_id[series_id]
         year_match = re.search(r"_(\d{4})\.json$", filename)
         year = int(year_match.group(1))
+        event_year = resolve_event_year(event, year)
         stable_url = cfg["startUrl"].replace("{year}", str(year))
         source_tz = resolve_event_timezone(registry, cfg, event)
         fixture = fixtures / "{}__{}.html".format(series_id, event.get("id")) if fixtures else None
         source = FetchResult(stable_url, stable_url, "Official source", "", None)
+        source_candidates: List[FetchResult] = []
         try:
             if fixture and fixture.exists():
                 source = fixture_result(fixture, stable_url)
+                source_candidates = [source]
             elif fixtures_only:
                 raise SourceError("no fixed official fixture is available for this event")
             else:
@@ -732,39 +1011,93 @@ def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Opti
                 if known:
                     source = fetch_url(known, cfg["allowedDomains"])
                     source = FetchResult(stable_url, source.final_url, source.title, source.body, source.last_modified)
+                    source_candidates = [source]
                 else:
-                    calendar_url = cfg.get("calendarUrl", stable_url).replace("{year}", str(year))
-                    if calendar_url not in calendar_cache:
-                        calendar_cache[calendar_url] = fetch_url(calendar_url, cfg["allowedDomains"])
-                    calendar = calendar_cache[calendar_url]
-                    event_url = discover_event_url(calendar, event, year)
-                    source = fetch_url(event_url, cfg["allowedDomains"]) if event_url else calendar
-                    source = FetchResult(stable_url, source.final_url, source.title, source.body, source.last_modified)
+                    event_urls: List[str] = []
+                    if cfg.get("eventUrlTemplate"):
+                        slug = cfg.get("eventSlugAliases", {}).get(normalize(event.get("raceName")), url_slug(event.get("raceName")))
+                        templates = [cfg["eventUrlTemplate"]] + list(cfg.get("eventUrlFallbackTemplates", []))
+                        event_urls = [template.replace("{year}", str(event_year)).replace("{slug}", slug) for template in templates]
+                    else:
+                        calendar_url = cfg.get("calendarUrl", stable_url).replace("{year}", str(year))
+                        if calendar_url not in calendar_cache:
+                            calendar_cache[calendar_url] = fetch_url(calendar_url, cfg["allowedDomains"])
+                        calendar = calendar_cache[calendar_url]
+                        discovered = discover_event_url(calendar, event, year)
+                        event_urls = [discovered] if discovered else []
+                    if event_urls:
+                        fetch_errors = []
+                        for event_url in event_urls:
+                            try:
+                                event_is_pdf = bool(urlparse(event_url).path.lower().endswith(".pdf") or "/document/download/" in event_url)
+                                fetched = fetch_pdf_url(event_url, cfg["allowedDomains"]) if event_is_pdf else fetch_url(event_url, cfg["allowedDomains"])
+                                candidate = FetchResult(stable_url, fetched.final_url, fetched.title, fetched.body, fetched.last_modified)
+                                source_candidates.append(candidate)
+                            except SourceError as exc:
+                                fetch_errors.append(str(exc))
+                        if not source_candidates and fetch_errors:
+                            raise SourceError(fetch_errors[-1])
+                        source = source_candidates[0]
+                    else:
+                        source = calendar
+                        source_candidates = [source]
             if not allowed_url(source.final_url, cfg["allowedDomains"]):
                 raise SourceError("final source URL is not official: {}".format(source.final_url))
             source_title_years = set(re.findall(r"\b20\d{2}\b", source.title))
-            if source_title_years and str(year) not in source_title_years:
+            expected_years = {str(year), str(event_year)}
+            if source_title_years and source_title_years.isdisjoint(expected_years):
                 raise SourceError(
                     "official event page is for {} rather than calendar year {}".format(
-                        ", ".join(sorted(source_title_years)), year
+                        ", ".join(sorted(source_title_years)), event_year
                     )
                 )
             if not source_tz:
                 raise SourceError("no verified IANA track timezone is registered for this event")
             if cfg["sourceKind"] == "nascar-et":
-                sessions = parse_nascar_text(source, event, year, source_tz)
+                sessions = parse_nascar_text(source, event, event_year, source_tz)
             elif cfg["sourceKind"] == "british-gt-pdf":
                 pdf_url = discover_timetable_pdf(source)
                 if not pdf_url:
                     raise SourceError("op de officiële eventpagina is nog geen timetable-PDF gepubliceerd")
                 source = fetch_pdf_url(pdf_url, cfg["allowedDomains"])
-                sessions = parse_british_gt_pdf(source, year, source_tz)
+                sessions = parse_british_gt_pdf(source, event_year, source_tz)
+            elif cfg["sourceKind"] == "dtm-api":
+                sessions = parse_dtm_api(source, event_year, source_tz)
+            elif cfg["sourceKind"] == "official-schedule-document":
+                sessions = []
+                document_candidates = source_candidates or [source]
+                for candidate in document_candidates:
+                    document, parsed = candidate, []
+                    pdf_url = discover_timetable_pdf(candidate) if candidate.title != "Official timetable PDF" else None
+                    if pdf_url:
+                        try:
+                            document = fetch_pdf_url(pdf_url, cfg["allowedDomains"])
+                            parsed = parse_official_schedule_document(document, event_year, source_tz, cfg.get("documentCategories", [cfg["name"]]))
+                        except SourceError as exc:
+                            LOG.info("Official PDF could not be used for %s: %s", event.get("id"), exc)
+                    if not parsed:
+                        calendar_url = discover_event_calendar(candidate)
+                        if calendar_url:
+                            try:
+                                calendar_source = fetch_url(calendar_url, cfg["allowedDomains"])
+                                calendar_source = FetchResult(stable_url, calendar_source.final_url, "Official event calendar", calendar_source.body, calendar_source.last_modified)
+                                calendar_sessions = parse_ical_sessions(calendar_source, event_year, source_tz)
+                                if calendar_sessions:
+                                    document, parsed = calendar_source, calendar_sessions
+                            except SourceError as exc:
+                                LOG.info("Official event calendar could not be used for %s: %s", event.get("id"), exc)
+                    if not parsed:
+                        document = candidate
+                        parsed = parse_official_schedule_document(document, event_year, source_tz, cfg.get("documentCategories", [cfg["name"]]))
+                    if parsed:
+                        source, sessions = document, parsed
+                        break
             else:
-                sessions = parse_official_tables(source, year, source_tz)
+                sessions = parse_official_tables(source, event_year, source_tz)
             if not sessions:
                 raise SourceError("official page contains no reliably parseable race sessions yet")
             editor_tz = registry.get("editorTimeZones", {}).get(series_id, registry["editorTimeZones"]["default"])
-            proposals.extend(build_event_proposals(cfg, filename, event, source, sessions, editor_tz, checked_at))
+            proposals.extend(build_event_proposals(cfg, filename, event, source, sessions, editor_tz, checked_at, include_filled))
             source_overview["{}:{}".format(series_id, event.get("id"))] = {
                 "seriesId": series_id, "eventId": event.get("id"), "eventName": event.get("raceName"),
                 "stableUrl": stable_url, "finalUrl": source.final_url, "title": source.title,
@@ -795,6 +1128,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--fixtures-only", action="store_true", help="Never use the network when a requested fixture is absent")
     parser.add_argument("--series", action="append", help="Limit to an in-scope RaceDay series id (repeatable)")
     parser.add_argument("--event", action="append", help="Limit to a specific RaceDay event id (repeatable)")
+    parser.add_argument("--include-filled", action="store_true", help="Debug: compare already-filled sessions without making them actionable")
     parser.add_argument("--now", help="Fixed ISO timestamp for deterministic runs")
     parser.add_argument("--dry-run", action="store_true", help="Print the result without writing the proposal store")
     parser.add_argument("--verbose", action="store_true")
@@ -809,7 +1143,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     output_path = (args.output or root / ".raceday" / "session-time-proposals.json").resolve()
     registry = json.loads(registry_path.read_text(encoding="utf-8"))
     checked_at = args.now or datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
-    result = scan(root, registry, args.fixtures_dir, set(args.series or []), checked_at, args.fixtures_only, set(args.event or []))
+    result = scan(root, registry, args.fixtures_dir, set(args.series or []), checked_at, args.fixtures_only, set(args.event or []), args.include_filled)
     previous = []
     if output_path.exists():
         try:

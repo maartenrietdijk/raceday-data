@@ -740,7 +740,10 @@
   .summary-note { margin-top: 6px; color: var(--muted); font-size: 12px; }
   .empty.compact { padding: 40px 24px; }
 
-  .proposal-toolbar { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; }
+  .proposal-toolbar { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 18px; padding: 16px; border: 1px solid var(--border2); border-radius: 6px; background: var(--bg2); }
+  .proposal-toolbar-heading { display: flex; flex: 1 0 100%; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 2px; }
+  .proposal-toolbar-title { font-size: 13px; font-weight: 700; }
+  .proposal-toolbar-note { margin-top: 2px; color: var(--muted); font-size: 11.5px; }
   .proposal-toolbar .field { min-width: 170px; flex: 1 1 170px; }
   .proposal-toolbar select { min-height: 44px; }
   .proposal-event { margin-bottom: 14px; overflow: hidden; border-radius: 6px; background: var(--bg); box-shadow: var(--shadow); }
@@ -760,6 +763,7 @@
   .proposal-badges { display: flex; flex-wrap: wrap; gap: 6px; margin: 7px 0 0; }
   .proposal-badge { padding: 4px 7px; border-radius: 999px; background: var(--bg3); color: var(--text2); font-size: 10px; font-weight: 700; letter-spacing: .03em; text-transform: uppercase; }
   .proposal-badge.new { background: var(--green-bg); color: var(--green); }
+  .proposal-badge.verified { background: var(--green-bg); color: var(--green); }
   .proposal-badge.warning { background: var(--amber-bg); color: var(--amber); }
   .proposal-badge.closed { opacity: .65; }
   .proposal-warning { margin-top: 8px; color: var(--amber); font-size: 12px; }
@@ -914,7 +918,9 @@
     .event-range { display: none; }
     .summary-stat { min-height: 112px; padding: 16px; }
     .summary-value { margin-top: 16px; font-size: 27px; }
-    .proposal-toolbar { display: grid; grid-template-columns: 1fr; }
+    .proposal-toolbar { display: grid; grid-template-columns: 1fr; padding: 14px; }
+    .proposal-toolbar-heading { align-items: stretch; flex-direction: column; }
+    .proposal-toolbar-heading .btn { width: 100%; }
     .proposal-toolbar .field { min-width: 0; }
     .proposal-event-header { align-items: flex-start; flex-direction: column; padding: 15px 14px; }
     .proposal-event-header .btn { width: 100%; }
@@ -1276,7 +1282,7 @@ const AUTO_RESULTS_SERIES = new Set([
 const OFFICIAL_TIME_SERIES = new Set([
   'f2', 'f3', 'f1academy', 'nascar', 'nascar_oreilly', 'nascar_trucks',
   'nascareuro', 'gtwce', 'gtwca_am', 'gtwca_asia', 'gtwca_aus',
-  'british_gt', 'dtm',
+  'british_gt', 'dtm', 'wec', 'alms', 'lemanscup', 'indycar', 'indynxt', 'imsa',
 ]);
 
 let state = {
@@ -1982,12 +1988,13 @@ function proposalStatusLabel(status) {
   return ({
     open: 'Open', requires_review: 'Handmatige controle', unresolved: 'Geen betrouwbare tijd',
     accepted: 'Geaccepteerd', rejected: 'Afgewezen', superseded: 'Vervangen',
+    verified: 'Komt overeen', mismatch: 'Wijkt af',
   })[status] || status;
 }
 
 function proposalTypeLabel(type) {
   return ({
-    'time-update': 'Tijdcorrectie', 'new-session': 'Nieuwe sessie', conflict: 'Conflict', unresolved: 'Onopgelost',
+    'time-update': 'Tijdcorrectie', 'new-session': 'Nieuwe sessie', conflict: 'Conflict', unresolved: 'Onopgelost', verification: 'Debugcontrole',
   })[type] || type;
 }
 
@@ -2015,9 +2022,12 @@ function proposalIsStale(proposal) {
 }
 
 function proposalSeriesOptions() {
-  const ids = [...new Set(state.proposals.map(item => item.seriesId))].sort();
+  const ids = [...new Set([
+    ...state.proposals.map(item => item.seriesId),
+    ...state.series.filter(item => OFFICIAL_TIME_SERIES.has(item.id)).map(item => item.id),
+  ])].sort();
   return ids.map(id => {
-    const name = state.proposals.find(item => item.seriesId === id)?.seriesName || formatSeriesName(id);
+    const name = state.proposals.find(item => item.seriesId === id)?.seriesName || state.series.find(item => item.id === id)?.name || formatSeriesName(id);
     return `<option value="${esc(id)}" ${proposalFilters.seriesId === id ? 'selected' : ''}>${esc(name)}</option>`;
   }).join('');
 }
@@ -2043,7 +2053,7 @@ function renderProposalRow(proposal) {
       <div class="proposal-name">${esc(proposal.sessionName || 'Onbekende sessie')}</div>
       <div class="proposal-badges">
         <span class="proposal-badge ${proposal.proposalType === 'new-session' ? 'new' : ''}">${esc(proposalTypeLabel(proposal.proposalType))}</span>
-        <span class="proposal-badge ${['requires_review','unresolved','conflict'].includes(proposal.status) ? 'warning' : proposal.status !== 'open' ? 'closed' : ''}">${esc(proposalStatusLabel(proposal.status))}</span>
+        <span class="proposal-badge ${proposal.status === 'verified' ? 'verified' : ['requires_review','unresolved','mismatch','conflict'].includes(proposal.status) ? 'warning' : proposal.status !== 'open' ? 'closed' : ''}">${esc(proposalStatusLabel(proposal.status))}</span>
         ${proposalIsStale(proposal) ? '<span class="proposal-badge warning">Verouderd</span>' : ''}
       </div>
       ${proposal.reason && proposal.reason !== 'Official session time is available.' ? `<div class="proposal-warning">${esc(proposalReasonLabel(proposal.reason))}</div>` : ''}
@@ -2094,9 +2104,13 @@ function renderProposals() {
       <div class="section-actions"><button class="btn btn-ghost btn-sm" onclick="loadFromGitHub()">Vernieuwen</button></div>
     </div>
     <div class="proposal-toolbar" aria-label="Voorstelfilters">
+      <div class="proposal-toolbar-heading">
+        <div><div class="proposal-toolbar-title">Filters</div><div class="proposal-toolbar-note">Kies een serie om ook volledig ingevulde sessies via een debugscan te controleren.</div></div>
+        <button class="btn btn-ghost btn-sm" id="debugOfficialTimesBtn" onclick="debugOfficialTimes()">Debug: test ingevulde sessies</button>
+      </div>
       <div class="field"><label for="proposalSeriesFilter">Serie</label><select id="proposalSeriesFilter" onchange="setProposalFilter('seriesId',this.value)"><option value="">Alle series</option>${proposalSeriesOptions()}</select></div>
       <div class="field"><label for="proposalStatusFilter">Status</label><select id="proposalStatusFilter" onchange="setProposalFilter('status',this.value)">
-        <option value="active" ${proposalFilters.status === 'active' ? 'selected' : ''}>Openstaand</option><option value="" ${proposalFilters.status === '' ? 'selected' : ''}>Alle statussen</option>${['open','requires_review','unresolved','accepted','rejected','superseded'].map(status => `<option value="${status}" ${proposalFilters.status === status ? 'selected' : ''}>${proposalStatusLabel(status)}</option>`).join('')}
+        <option value="active" ${proposalFilters.status === 'active' ? 'selected' : ''}>Openstaand</option><option value="" ${proposalFilters.status === '' ? 'selected' : ''}>Alle statussen</option>${['open','requires_review','unresolved','accepted','rejected','verified','mismatch','superseded'].map(status => `<option value="${status}" ${proposalFilters.status === status ? 'selected' : ''}>${proposalStatusLabel(status)}</option>`).join('')}
       </select></div>
       <div class="field"><label for="proposalYearFilter">Jaar</label><select id="proposalYearFilter" onchange="setProposalFilter('year',this.value)"><option value="">Alle jaren</option>${proposalYearOptions()}</select></div>
       <div class="field"><label for="proposalPeriodFilter">Komende periode</label><select id="proposalPeriodFilter" onchange="setProposalFilter('periodDays',this.value)">
@@ -3420,6 +3434,45 @@ async function scanOfficialEvent(ri) {
     showStatus(`Zoekactie mislukt: ${error.message}`, 'error');
   } finally {
     if (button) { button.disabled = false; button.textContent = originalText; }
+  }
+}
+
+async function debugOfficialTimes() {
+  const seriesId = proposalFilters.seriesId;
+  if (!seriesId) return showStatus('Kies bij de filters eerst één serie voor de debugscan', 'error');
+  if (!OFFICIAL_TIME_SERIES.has(seriesId)) return showStatus('De officiële sessietijdscanner ondersteunt deze serie nog niet', 'error');
+  if (!state.github?.token || !state.github?.repo) return showStatus('Stel eerst je GitHub-token en repository in', 'error');
+  const button = document.getElementById('debugOfficialTimesBtn');
+  const originalText = button?.textContent || 'Debug: test ingevulde sessies';
+  if (button) { button.disabled = true; button.textContent = 'Debugscan starten…'; }
+  try {
+    const [owner, repo] = state.github.repo.split('/');
+    if (!owner || !repo) throw new Error('Gebruik eigenaar/repository bij GitHub-instellingen');
+    const response = await fetch(`https://api.github.com/repos/${owner}/${repo}/actions/workflows/official_session_times.yml/dispatches`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${state.github.token}`,
+        'Accept': 'application/vnd.github+json',
+        'Content-Type': 'application/json',
+        'X-GitHub-Api-Version': '2022-11-28',
+      },
+      body: JSON.stringify({
+        ref: state.github.branch || 'main',
+        inputs: { series: seriesId, event: '', include_filled: 'true' },
+      }),
+    });
+    if (response.status !== 204) {
+      const error = await response.json().catch(() => ({}));
+      throw new Error(error.message || `GitHub error ${response.status}`);
+    }
+    proposalFilters.status = '';
+    renderProposals();
+    showStatus(`✓ Debugscan voor ${state.series.find(item => item.id === seriesId)?.name || seriesId} gestart — vernieuw over ongeveer 30 seconden`, 'success');
+  } catch (error) {
+    showStatus(`Debugscan mislukt: ${error.message}`, 'error');
+  } finally {
+    const currentButton = document.getElementById('debugOfficialTimesBtn');
+    if (currentButton) { currentButton.disabled = false; currentButton.textContent = originalText; }
   }
 }
 
