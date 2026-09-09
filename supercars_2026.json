@@ -7402,9 +7402,45 @@
     ]
   },
   {
-    "id": "supercars-2026-10",
+    "id": "supercars-2026-11",
     "seriesId": "supercars",
     "roundNumber": 10,
+    "raceName": "Repco Bathurst 1000",
+    "circuitName": "Mount Panorama Circuit",
+    "city": "Bathurst",
+    "country": "Australia",
+    "countryCode": "AU",
+    "sessions": [
+      {
+        "id": "supercars-2026-11-s01",
+        "name": "Practice",
+        "kind": "practice",
+        "date": "2026-10-08",
+        "timeLocal": "09:15",
+        "durationMinutes": 60
+      },
+      {
+        "id": "supercars-2026-11-s02",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-10-09",
+        "timeLocal": "10:15",
+        "durationMinutes": 60
+      },
+      {
+        "id": "supercars-2026-11-s03",
+        "name": "Race",
+        "kind": "race",
+        "date": "2026-10-11",
+        "timeLocal": "11:15",
+        "durationMinutes": 60
+      }
+    ]
+  },
+  {
+    "id": "supercars-2026-10",
+    "seriesId": "supercars",
+    "roundNumber": 11,
     "raceName": "AirTouch 500 at The Bend",
     "circuitName": "The Bend Motorsport Park",
     "city": "Tailem Bend",
@@ -7416,7 +7452,7 @@
         "name": "Practice 1",
         "kind": "practice",
         "date": "2026-09-11",
-        "timeLocal": "10:55",
+        "timeLocal": "11:55",
         "durationMinutes": 60
       },
       {
@@ -7482,42 +7518,6 @@
         "date": "2026-09-13",
         "timeLocal": "14:15",
         "durationMinutes": 180
-      }
-    ]
-  },
-  {
-    "id": "supercars-2026-11",
-    "seriesId": "supercars",
-    "roundNumber": 11,
-    "raceName": "Repco Bathurst 1000",
-    "circuitName": "Mount Panorama Circuit",
-    "city": "Bathurst",
-    "country": "Australia",
-    "countryCode": "AU",
-    "sessions": [
-      {
-        "id": "supercars-2026-11-s01",
-        "name": "Practice",
-        "kind": "practice",
-        "date": "2026-10-08",
-        "timeLocal": "09:15",
-        "durationMinutes": 60
-      },
-      {
-        "id": "supercars-2026-11-s02",
-        "name": "Qualifying",
-        "kind": "qualifying",
-        "date": "2026-10-09",
-        "timeLocal": "10:15",
-        "durationMinutes": 60
-      },
-      {
-        "id": "supercars-2026-11-s03",
-        "name": "Race",
-        "kind": "race",
-        "date": "2026-10-11",
-        "timeLocal": "11:15",
-        "durationMinutes": 60
       }
     ]
   },
