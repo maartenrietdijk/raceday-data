@@ -38,6 +38,17 @@
       "notes": "Browser-local time labels must not be used. A track IANA timezone is required before proposing a time."
     },
     {
+      "seriesId": "formulae",
+      "name": "ABB FIA Formula E World Championship",
+      "startUrl": "https://www.fiaformulae.com/en/calendar",
+      "eventUrlTemplate": "https://www.fiaformulae.com/en/calendar/{season}/r{round}-{slug}?area=schedule&tab=schedule",
+      "allowedDomains": ["fiaformulae.com", "www.fiaformulae.com"],
+      "sourceKind": "formula-e-schedule",
+      "eventDiscovery": "Use the official round page or an official Formula E event preview that explicitly publishes local session times and UTC evidence.",
+      "sourceTimeZone": "track",
+      "notes": "Browser-local schedule values are not accepted without track-time or UTC evidence; rookie practice and fan-programme activities are ignored."
+    },
+    {
       "seriesId": "nascar",
       "name": "NASCAR Cup Series",
       "startUrl": "https://www.nascar.com/weekend-schedule/",
@@ -279,6 +290,13 @@
     "hungaroring": "Europe/Budapest",
     "bahrain": "Asia/Bahrain",
     "jeddah": "Asia/Riyadh",
+    "mexico city": "America/Mexico_City",
+    "tempelhof": "Europe/Berlin",
+    "berlin": "Europe/Berlin",
+    "sanya": "Asia/Shanghai",
+    "tokyo": "Asia/Tokyo",
+    "excel circuit": "Europe/London",
+    "london e prix": "Europe/London",
     "melbourne": "Australia/Melbourne",
     "monaco": "Europe/Monaco",
     "baku": "Asia/Baku",
@@ -340,6 +358,7 @@
     "gtwca_am:gtwca-am-2026-r07": "https://www.gt-world-challenge-america.com/event/117/indianpolis-8-hour",
     "gtwca_aus:gtwca-aus-2026-r05": "https://www.gt-world-challenge-australia.com/event/24/Sydney",
     "gtwca_aus:gtwca-aus-2026-r06": "https://www.gt-world-challenge-australia.com/event/28/adelaide-grand-final",
-    "british_gt:british_gt-2026-r06": "https://www.britishgt.com/event/113/brands-hatch"
+    "british_gt:british_gt-2026-r06": "https://www.britishgt.com/event/113/brands-hatch",
+    "formulae:formulae-2026-r03": "https://www.fiaformulae.com/en/news/826677/how-to-watch-the-2026-miami-e-prix"
   }
 }

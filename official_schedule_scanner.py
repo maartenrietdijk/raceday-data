@@ -92,6 +92,16 @@ def url_slug(value: object) -> str:
     return normalize(value).replace(" ", "-")
 
 
+def formula_e_slug(value: object) -> str:
+    raw = re.sub(r"\be\s*prix\b", " ", normalize(value))
+    raw = re.sub(r"\b\d+\b", " ", raw)
+    return "-".join(raw.split())
+
+
+def formula_e_season(calendar_year: int) -> str:
+    return "{}-{:02d}".format(calendar_year - 1, calendar_year % 100)
+
+
 def tokens(value: object) -> set:
     return {part for part in normalize(value).split() if len(part) > 1}
 
@@ -684,6 +694,59 @@ def parse_dtm_api(fetch: FetchResult, year: int, source_timezone: str) -> List[S
     return sessions
 
 
+def parse_formula_e_schedule(fetch: FetchResult, event: dict, year: int, source_timezone: str) -> List[SourceSession]:
+    """Parse official Formula E preview rows with track-local and UTC evidence."""
+    try:
+        track_zone = ZoneInfo(source_timezone)
+    except ZoneInfoNotFoundError as exc:
+        raise SourceError("unknown IANA timezone {}".format(source_timezone)) from exc
+    event_dates = {str(item.get("date")) for item in event.get("sessions", []) if item.get("date")}
+    sessions: List[SourceSession] = []
+    row_pattern = re.compile(
+        r"^\s*((?:free\s+)?practice(?:\s+\d+)?|qualifying|qualifications?|race(?:\s+\d+)?)\s*:",
+        re.I,
+    )
+    for line in document_lines(fetch.body):
+        if normalize(line).startswith("rookie free practice"):
+            continue
+        name_match = row_pattern.search(line)
+        local_match = re.search(r"\b(\d{1,2}:\d{2})\s*local\b", line, re.I)
+        session_date = parse_document_date(line, year)
+        if not name_match or not local_match or not session_date:
+            continue
+        if event_dates and session_date not in event_dates:
+            continue
+        name = " ".join(name_match.group(1).split())
+        if not normalize_kind(name):
+            continue
+        try:
+            local_clock = parse_clock(local_match.group(1))
+        except ValueError:
+            continue
+        utc_match = re.search(r"\b(\d{1,2}:\d{2})\s*UTC\b", line, re.I)
+        utc_hint = parse_clock(utc_match.group(1)) if utc_match else None
+        if utc_hint:
+            local = datetime.fromisoformat("{}T{}:00".format(session_date, local_clock)).replace(tzinfo=track_zone)
+            if local.astimezone(timezone.utc).strftime("%H:%M") != utc_hint:
+                continue
+        sessions.append(SourceSession(name, session_date, local_clock, source_timezone, None, utc_hint))
+
+    # Older RaceDay Formula E calendars intentionally contain one generic
+    # practice. If the official event/date selection also leaves one practice,
+    # use that existing label so debug matching is deterministic.
+    existing_practice = [item for item in event.get("sessions", []) if item.get("kind") == "practice"]
+    parsed_practice = [item for item in sessions if normalize_kind(item.name) == "practice"]
+    if len(existing_practice) == len(parsed_practice) == 1 and session_number(existing_practice[0].get("name", "")) is None:
+        official = parsed_practice[0]
+        sessions = [
+            SourceSession(existing_practice[0].get("name") or "Practice", item.date, item.local_time, item.timezone, item.duration_minutes, item.utc_hint)
+            if item is official else item
+            for item in sessions
+        ]
+    unique = {(normalize(item.name), item.date, item.local_time): item for item in sessions}
+    return list(unique.values())
+
+
 def strict_source_instant(session: SourceSession) -> datetime:
     try:
         zone = ZoneInfo(session.timezone)
@@ -1015,9 +1078,16 @@ def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Opti
                 else:
                     event_urls: List[str] = []
                     if cfg.get("eventUrlTemplate"):
-                        slug = cfg.get("eventSlugAliases", {}).get(normalize(event.get("raceName")), url_slug(event.get("raceName")))
+                        default_slug = formula_e_slug(event.get("raceName")) if cfg.get("sourceKind") == "formula-e-schedule" else url_slug(event.get("raceName"))
+                        slug = cfg.get("eventSlugAliases", {}).get(normalize(event.get("raceName")), default_slug)
                         templates = [cfg["eventUrlTemplate"]] + list(cfg.get("eventUrlFallbackTemplates", []))
-                        event_urls = [template.replace("{year}", str(event_year)).replace("{slug}", slug) for template in templates]
+                        event_urls = [
+                            template.replace("{year}", str(event_year))
+                            .replace("{season}", formula_e_season(year))
+                            .replace("{round}", str(event.get("roundNumber") or ""))
+                            .replace("{slug}", slug)
+                            for template in templates
+                        ]
                     else:
                         calendar_url = cfg.get("calendarUrl", stable_url).replace("{year}", str(year))
                         if calendar_url not in calendar_cache:
@@ -1063,6 +1133,8 @@ def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Opti
                 sessions = parse_british_gt_pdf(source, event_year, source_tz)
             elif cfg["sourceKind"] == "dtm-api":
                 sessions = parse_dtm_api(source, event_year, source_tz)
+            elif cfg["sourceKind"] == "formula-e-schedule":
+                sessions = parse_formula_e_schedule(source, event, event_year, source_tz)
             elif cfg["sourceKind"] == "official-schedule-document":
                 sessions = []
                 document_candidates = source_candidates or [source]
