@@ -1,19 +1,21 @@
 [
   {
-    "circuitName": "Autodromo Enzo e Dino Ferrari",
-    "raceName": "6 Hours of Imola",
-    "city": "Imola",
-    "country": "Italy",
-    "roundNumber": 1,
-    "countryCode": "IT",
     "id": "wec-2026-r01",
     "seriesId": "wec",
+    "roundNumber": 1,
+    "raceName": "6 Hours of Imola",
+    "circuitName": "Autodromo Enzo e Dino Ferrari",
+    "city": "Imola",
+    "country": "Italy",
+    "countryCode": "IT",
     "sessions": [
       {
+        "id": "wec-2026-r01-s1",
+        "name": "Practice 1",
+        "kind": "practice",
+        "date": "2026-04-17",
         "timeLocal": "11:15",
         "durationMinutes": 60,
-        "kind": "practice",
-        "name": "Practice 1",
         "results": [
           {
             "number": "83",
@@ -408,15 +410,15 @@
             ],
             "team": "Vista AF Corse"
           }
-        ],
-        "id": "wec-2026-r01-s1",
-        "date": "2026-04-17"
+        ]
       },
       {
+        "id": "wec-2026-r01-s2",
+        "name": "Practice 2",
+        "kind": "practice",
+        "date": "2026-04-17",
         "timeLocal": "16:00",
         "durationMinutes": 60,
-        "kind": "practice",
-        "name": "Practice 2",
         "results": [
           {
             "laps": "47",
@@ -811,15 +813,15 @@
             ],
             "laps": "44"
           }
-        ],
-        "id": "wec-2026-r01-s2",
-        "date": "2026-04-17"
+        ]
       },
       {
+        "id": "wec-2026-r01-s3",
+        "name": "Practice 3",
+        "kind": "practice",
+        "date": "2026-04-18",
         "timeLocal": "10:30",
         "durationMinutes": 60,
-        "kind": "practice",
-        "name": "Practice 3",
         "results": [
           {
             "position": 1,
@@ -1214,13 +1216,14 @@
             "number": "79",
             "interval": "+12.689"
           }
-        ],
-        "id": "wec-2026-r01-s3",
-        "date": "2026-04-18"
+        ]
       },
       {
-        "date": "2026-04-18",
+        "id": "wec-2026-r01-s4",
+        "name": "Qualifying",
         "kind": "qualifying",
+        "date": "2026-04-18",
+        "timeLocal": "14:30",
         "durationMinutes": 30,
         "results": [
           {
@@ -1581,14 +1584,14 @@
             "interval": "+13.872",
             "number": "54"
           }
-        ],
-        "id": "wec-2026-r01-s4",
-        "name": "Qualifying",
-        "timeLocal": "14:30"
+        ]
       },
       {
-        "date": "2026-04-19",
+        "id": "wec-2026-r01-s5",
+        "name": "6 Hour Race",
         "kind": "race",
+        "date": "2026-04-19",
+        "timeLocal": "13:00",
         "durationMinutes": 360,
         "results": [
           {
@@ -1984,21 +1987,25 @@
             "number": "87",
             "laps": "32"
           }
-        ],
-        "id": "wec-2026-r01-s5",
-        "name": "6 Hour Race",
-        "timeLocal": "13:00"
+        ]
       }
     ]
   },
   {
+    "id": "wec-2026-r02",
+    "seriesId": "wec",
+    "roundNumber": 2,
     "raceName": "6 Hours of Spa-Francorchamps",
+    "circuitName": "Circuit de Spa-Francorchamps",
+    "city": "Spa-Francorchamps",
+    "country": "Belgium",
+    "countryCode": "BE",
     "sessions": [
       {
+        "id": "wec-2026-r02-s1",
+        "name": "Practice 1",
         "kind": "practice",
         "date": "2026-05-07",
-        "name": "Practice 1",
-        "id": "wec-2026-r02-s1",
         "timeLocal": "11:00",
         "durationMinutes": 90,
         "results": [
@@ -2405,10 +2412,10 @@
         ]
       },
       {
+        "id": "wec-2026-r02-s2",
+        "name": "Practice 2",
         "kind": "practice",
         "date": "2026-05-07",
-        "name": "Practice 2",
-        "id": "wec-2026-r02-s2",
         "timeLocal": "15:40",
         "durationMinutes": 90,
         "results": [
@@ -2815,10 +2822,10 @@
         ]
       },
       {
+        "id": "wec-2026-r02-s3",
+        "name": "Practice 3",
         "kind": "practice",
         "date": "2026-05-08",
-        "name": "Practice 3",
-        "id": "wec-2026-r02-s3",
         "timeLocal": "10:10",
         "durationMinutes": 60,
         "results": [
@@ -3225,10 +3232,10 @@
         ]
       },
       {
+        "id": "wec-2026-r02-s4",
+        "name": "Qualifying",
         "kind": "qualifying",
         "date": "2026-05-08",
-        "name": "Qualifying",
-        "id": "wec-2026-r02-s4",
         "timeLocal": "14:30",
         "durationMinutes": 60,
         "results": [
@@ -3600,10 +3607,10 @@
         ]
       },
       {
+        "id": "wec-2026-r02-s5",
+        "name": "6 Hour Race",
         "kind": "race",
         "date": "2026-05-09",
-        "name": "6 Hour Race",
-        "id": "wec-2026-r02-s5",
         "timeLocal": "14:00",
         "durationMinutes": 360,
         "results": [
@@ -4003,22 +4010,25 @@
           }
         ]
       }
-    ],
-    "city": "Spa-Francorchamps",
-    "seriesId": "wec",
-    "country": "Belgium",
-    "circuitName": "Circuit de Spa-Francorchamps",
-    "id": "wec-2026-r02",
-    "roundNumber": 2,
-    "countryCode": "BE"
+    ]
   },
   {
+    "id": "wec-2026-r03",
+    "seriesId": "wec",
+    "roundNumber": 3,
     "raceName": "24 Hours of Le Mans",
+    "circuitName": "Circuit de la Sarthe",
+    "city": "Le Mans",
+    "country": "France",
+    "countryCode": "FR",
     "sessions": [
       {
         "id": "wec-2026-r03-s1",
         "name": "Practice 1",
         "kind": "practice",
+        "date": "2026-06-10",
+        "timeLocal": "14:00",
+        "durationMinutes": 120,
         "results": [
           {
             "drivers": [
@@ -4736,15 +4746,15 @@
               "V. Hasse-Clot"
             ]
           }
-        ],
-        "date": "2026-06-10",
-        "durationMinutes": 120,
-        "timeLocal": "14:00"
+        ]
       },
       {
         "id": "wec-2026-r03-s2",
         "name": "Qualifying",
         "kind": "qualifying",
+        "date": "2026-06-10",
+        "timeLocal": "18:45",
+        "durationMinutes": 60,
         "results": [
           {
             "laps": "9",
@@ -4961,15 +4971,15 @@
             "team": "PEUGEOT TOTALENERGIES",
             "number": "94"
           }
-        ],
-        "date": "2026-06-10",
-        "durationMinutes": 60,
-        "timeLocal": "18:45"
+        ]
       },
       {
         "id": "wec-2026-r03-s3",
         "name": "Practice 2",
         "kind": "practice",
+        "date": "2026-06-10",
+        "timeLocal": "22:00",
+        "durationMinutes": 120,
         "results": [
           {
             "laps": "26",
@@ -5687,15 +5697,15 @@
             "position": 62,
             "interval": "+32.244"
           }
-        ],
-        "date": "2026-06-10",
-        "durationMinutes": 120,
-        "timeLocal": "22:00"
+        ]
       },
       {
         "id": "wec-2026-r03-s4",
         "name": "Practice 3",
         "kind": "practice",
+        "date": "2026-06-11",
+        "timeLocal": "14:45",
+        "durationMinutes": 120,
         "results": [
           {
             "position": 1,
@@ -6413,17 +6423,15 @@
             "interval": "+33.401",
             "team": "IRON LYNX"
           }
-        ],
-        "date": "2026-06-11",
-        "durationMinutes": 120,
-        "timeLocal": "14:45"
+        ]
       },
       {
+        "id": "wec-2026-r03-s5",
+        "name": "Hyperpole",
+        "kind": "qualifying",
+        "date": "2026-06-11",
         "timeLocal": "20:00",
         "durationMinutes": 30,
-        "id": "wec-2026-r03-s5",
-        "kind": "qualifying",
-        "name": "Hyperpole",
         "results": [
           {
             "team": "INTER EUROPOL COMPETITION",
@@ -6773,15 +6781,15 @@
             "interval": "+21.552",
             "team": "The Bend Manthey"
           }
-        ],
-        "date": "2026-06-11"
+        ]
       },
       {
+        "id": "wec-2026-r03-s1781130496307",
+        "name": "Hyperpole 2 - LMP2 & LMGT3",
+        "kind": "qualifying",
+        "date": "2026-06-11",
         "timeLocal": "20:35",
         "durationMinutes": 15,
-        "id": "wec-2026-r03-s1781130496307",
-        "kind": "qualifying",
-        "name": "Hyperpole 2 - LMP2 & LMGT3",
         "results": [
           {
             "team": "Forestier Racing by Panis",
@@ -7013,10 +7021,15 @@
             "interval": "+22.811",
             "laps": "5"
           }
-        ],
-        "date": "2026-06-11"
+        ]
       },
       {
+        "id": "wec-2026-r03-s1781130506697",
+        "name": "Hyperpole 1 - Hypercar",
+        "kind": "qualifying",
+        "date": "2026-06-11",
+        "timeLocal": "21:05",
+        "durationMinutes": 20,
         "results": [
           {
             "team": "Alpine Endurance Team",
@@ -7197,15 +7210,15 @@
             "number": "8",
             "interval": "+1.560"
           }
-        ],
-        "date": "2026-06-11",
-        "durationMinutes": 20,
-        "timeLocal": "21:05",
-        "id": "wec-2026-r03-s1781130506697",
-        "kind": "qualifying",
-        "name": "Hyperpole 1 - Hypercar"
+        ]
       },
       {
+        "id": "wec-2026-r03-s1781130503263",
+        "name": "Hyperpole 2 - Hypercar",
+        "kind": "qualifying",
+        "date": "2026-06-11",
+        "timeLocal": "21:40",
+        "durationMinutes": 15,
         "results": [
           {
             "drivers": [
@@ -7326,15 +7339,15 @@
             "laps": "5",
             "team": "Genesis Magma Racing"
           }
-        ],
-        "date": "2026-06-11",
-        "id": "wec-2026-r03-s1781130503263",
-        "durationMinutes": 15,
-        "timeLocal": "21:40",
-        "kind": "qualifying",
-        "name": "Hyperpole 2 - Hypercar"
+        ]
       },
       {
+        "id": "wec-2026-r03-s6",
+        "name": "Practice 4",
+        "kind": "practice",
+        "date": "2026-06-11",
+        "timeLocal": "23:00",
+        "durationMinutes": 60,
         "results": [
           {
             "drivers": [
@@ -8051,15 +8064,15 @@
             "number": "27",
             "position": 62
           }
-        ],
-        "date": "2026-06-11",
-        "id": "wec-2026-r03-s6",
-        "durationMinutes": 60,
-        "timeLocal": "23:00",
-        "kind": "practice",
-        "name": "Practice 4"
+        ]
       },
       {
+        "id": "wec-2026-r03-s1779526945303",
+        "name": "Warmup",
+        "kind": "practice",
+        "date": "2026-06-13",
+        "timeLocal": "12:00",
+        "durationMinutes": 60,
         "results": [
           {
             "time": "3'26.540",
@@ -8764,15 +8777,15 @@
             ],
             "laps": "1"
           }
-        ],
-        "date": "2026-06-13",
-        "durationMinutes": 60,
-        "id": "wec-2026-r03-s1779526945303",
-        "timeLocal": "12:00",
-        "kind": "practice",
-        "name": "Warmup"
+        ]
       },
       {
+        "id": "wec-2026-r03-s7",
+        "name": "24 Hour Race",
+        "kind": "race",
+        "date": "2026-06-13",
+        "timeLocal": "16:00",
+        "durationMinutes": 1440,
         "results": [
           {
             "number": "7",
@@ -9477,36 +9490,27 @@
               "M. Bell"
             ]
           }
-        ],
-        "date": "2026-06-13",
-        "durationMinutes": 1440,
-        "timeLocal": "16:00",
-        "id": "wec-2026-r03-s7",
-        "kind": "race",
-        "name": "24 Hour Race"
+        ]
       }
-    ],
-    "city": "Le Mans",
-    "seriesId": "wec",
-    "country": "France",
-    "circuitName": "Circuit de la Sarthe",
-    "id": "wec-2026-r03",
-    "roundNumber": 3,
-    "countryCode": "FR"
+    ]
   },
   {
-    "circuitName": "Autódromo José Carlos Pace",
-    "city": "São Paulo",
+    "id": "wec-2026-r04",
+    "seriesId": "wec",
     "roundNumber": 4,
     "raceName": "6 Hours of São Paulo",
-    "seriesId": "wec",
-    "countryCode": "BR",
+    "circuitName": "Autódromo José Carlos Pace",
+    "city": "São Paulo",
     "country": "Brazil",
+    "countryCode": "BR",
     "sessions": [
       {
-        "name": "Practice 1",
-        "timeLocal": "16:00",
         "id": "wec-2026-r04-s1",
+        "name": "Practice 1",
+        "kind": "practice",
+        "date": "2026-07-10",
+        "timeLocal": "16:00",
+        "durationMinutes": 60,
         "results": [
           {
             "drivers": [
@@ -9910,15 +9914,15 @@
             "laps": "45",
             "interval": "+11.296"
           }
-        ],
-        "durationMinutes": 60,
-        "date": "2026-07-10",
-        "kind": "practice"
+        ]
       },
       {
-        "name": "Practice 2",
-        "timeLocal": "20:50",
         "id": "wec-2026-r04-s2",
+        "name": "Practice 2",
+        "kind": "practice",
+        "date": "2026-07-10",
+        "timeLocal": "20:50",
+        "durationMinutes": 60,
         "results": [
           {
             "drivers": [
@@ -10322,15 +10326,15 @@
               "A. Farfus"
             ]
           }
-        ],
-        "durationMinutes": 60,
-        "date": "2026-07-10",
-        "kind": "practice"
+        ]
       },
       {
-        "name": "Practice 3",
-        "timeLocal": "15:10",
         "id": "wec-2026-r04-s3",
+        "name": "Practice 3",
+        "kind": "practice",
+        "date": "2026-07-11",
+        "timeLocal": "15:10",
+        "durationMinutes": 60,
         "results": [
           {
             "drivers": [
@@ -10734,15 +10738,15 @@
             "number": "33",
             "laps": "33"
           }
-        ],
-        "durationMinutes": 60,
-        "date": "2026-07-11",
-        "kind": "practice"
+        ]
       },
       {
-        "name": "Qualifying",
-        "timeLocal": "19:30",
         "id": "wec-2026-r04-s4",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-07-11",
+        "timeLocal": "19:30",
+        "durationMinutes": 30,
         "results": [
           {
             "time": "1'23.041",
@@ -11111,15 +11115,15 @@
             "team": "Garage 59",
             "number": "58"
           }
-        ],
-        "date": "2026-07-11",
-        "durationMinutes": 30,
-        "kind": "qualifying"
+        ]
       },
       {
-        "name": "6 Hour Race",
-        "timeLocal": "16:30",
         "id": "wec-2026-r04-s5",
+        "name": "6 Hour Race",
+        "kind": "race",
+        "date": "2026-07-12",
+        "timeLocal": "16:30",
+        "durationMinutes": 360,
         "results": [
           {
             "laps": "0",
@@ -11488,24 +11492,26 @@
             "number": "23",
             "laps": "0"
           }
-        ],
-        "date": "2026-07-12",
-        "durationMinutes": 360,
-        "kind": "race"
+        ]
       }
-    ],
-    "id": "wec-2026-r04"
+    ]
   },
   {
-    "circuitName": "Circuit of the Americas",
-    "city": "Austin",
+    "id": "wec-2026-r05",
+    "seriesId": "wec",
     "roundNumber": 5,
     "raceName": "Lone Star Le Mans",
-    "seriesId": "wec",
-    "countryCode": "US",
+    "circuitName": "Circuit of the Americas",
+    "city": "Austin",
     "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
+        "id": "wec-2026-r05-s1",
+        "name": "Practice 1",
+        "kind": "practice",
+        "date": "2026-09-04",
+        "timeLocal": "18:30",
         "durationMinutes": 60,
         "results": [
           {
@@ -11962,19 +11968,15 @@
             "laps": "23",
             "speed": "2'08.746"
           }
-        ],
-        "name": "Practice 1",
-        "kind": "practice",
-        "date": "2026-09-04",
-        "id": "wec-2026-r05-s1",
-        "timeLocal": "18:30"
+        ]
       },
       {
-        "durationMinutes": 60,
+        "id": "wec-2026-r05-s2",
         "name": "Practice 2",
+        "kind": "practice",
         "date": "2026-09-04",
         "timeLocal": "23:00",
-        "kind": "practice",
+        "durationMinutes": 60,
         "results": [
           {
             "position": 1,
@@ -12430,14 +12432,15 @@
             "number": "23",
             "laps": "34"
           }
-        ],
-        "id": "wec-2026-r05-s2"
+        ]
       },
       {
-        "durationMinutes": 60,
-        "date": "2026-09-05",
+        "id": "wec-2026-r05-s3",
         "name": "Practice 3",
+        "kind": "practice",
+        "date": "2026-09-05",
         "timeLocal": "18:00",
+        "durationMinutes": 60,
         "results": [
           {
             "position": 1,
@@ -12893,17 +12896,15 @@
             "interval": "+14.981",
             "speed": "2'07.155"
           }
-        ],
-        "id": "wec-2026-r05-s3",
-        "kind": "practice"
+        ]
       },
       {
         "id": "wec-2026-r05-s4",
+        "name": "Qualifying",
         "kind": "qualifying",
+        "date": "2026-09-05",
         "timeLocal": "22:00",
         "durationMinutes": 30,
-        "name": "Qualifying",
-        "date": "2026-09-05",
         "results": [
           {
             "position": 1,
@@ -13328,11 +13329,11 @@
       },
       {
         "id": "wec-2026-r05-s5",
+        "name": "6 Hour Race",
         "kind": "race",
+        "date": "2026-09-06",
         "timeLocal": "20:00",
         "durationMinutes": 360,
-        "name": "6 Hour Race",
-        "date": "2026-09-06",
         "results": [
           {
             "position": 1,
@@ -13785,157 +13786,178 @@
           }
         ]
       }
-    ],
-    "id": "wec-2026-r05"
+    ]
   },
   {
-    "countryCode": "JP",
-    "roundNumber": 6,
-    "seriesId": "wec",
     "id": "wec-2026-r06",
+    "seriesId": "wec",
+    "roundNumber": 6,
+    "raceName": "6 Hours of Fuji",
+    "circuitName": "Fuji Speedway",
+    "city": "Oyama",
+    "country": "Japan",
+    "countryCode": "JP",
     "sessions": [
       {
         "id": "wec-2026-r06-s1",
-        "kind": "practice",
-        "timeLocal": "03:15",
-        "durationMinutes": 60,
         "name": "Practice 1",
-        "date": "2026-09-25"
+        "kind": "practice",
+        "date": "2026-09-25",
+        "timeLocal": "03:15",
+        "durationMinutes": 60
       },
       {
         "id": "wec-2026-r06-s2",
-        "kind": "practice",
-        "timeLocal": "07:30",
-        "durationMinutes": 60,
         "name": "Practice 2",
-        "date": "2026-09-25"
+        "kind": "practice",
+        "date": "2026-09-25",
+        "timeLocal": "07:30",
+        "durationMinutes": 60
       },
       {
         "id": "wec-2026-r06-s3",
-        "kind": "practice",
-        "timeLocal": "02:50",
-        "durationMinutes": 60,
         "name": "Practice 3",
-        "date": "2026-09-26"
+        "kind": "practice",
+        "date": "2026-09-26",
+        "timeLocal": "02:50",
+        "durationMinutes": 60
       },
       {
         "id": "wec-2026-r06-s4",
-        "kind": "qualifying",
-        "timeLocal": "07:20",
-        "durationMinutes": 30,
         "name": "Qualifying",
-        "date": "2026-09-26"
+        "kind": "qualifying",
+        "date": "2026-09-26",
+        "timeLocal": "07:20",
+        "durationMinutes": 30
       },
       {
         "id": "wec-2026-r06-s5",
-        "kind": "race",
-        "timeLocal": "04:00",
-        "durationMinutes": 360,
         "name": "6 Hour Race",
-        "date": "2026-09-27"
+        "kind": "race",
+        "date": "2026-09-27",
+        "timeLocal": "04:00",
+        "durationMinutes": 360
       }
-    ],
-    "country": "Japan",
-    "city": "Oyama",
-    "raceName": "6 Hours of Fuji",
-    "circuitName": "Fuji Speedway"
+    ]
   },
   {
-    "countryCode": "ES",
-    "roundNumber": 7,
-    "seriesId": "wec",
     "id": "wec-2026-r07",
+    "seriesId": "wec",
+    "roundNumber": 7,
+    "raceName": "6 Hours of Barcelona",
+    "circuitName": "Circuit de Barcelona-Catalunya",
+    "city": "Barcelona",
+    "country": "Spain",
+    "countryCode": "ES",
     "sessions": [
       {
         "id": "wec-2026-r07-s1",
-        "kind": "practice",
-        "durationMinutes": 60,
         "name": "Practice 1",
-        "date": "2026-10-16"
+        "kind": "practice",
+        "date": "2026-10-16",
+        "timeLocal": "11:00",
+        "durationMinutes": 90
       },
       {
         "id": "wec-2026-r07-s2",
-        "kind": "practice",
-        "durationMinutes": 60,
         "name": "Practice 2",
-        "date": "2026-10-16"
+        "kind": "practice",
+        "date": "2026-10-16",
+        "timeLocal": "15:50",
+        "durationMinutes": 90
       },
       {
         "id": "wec-2026-r07-s3",
-        "kind": "practice",
-        "durationMinutes": 60,
         "name": "Practice 3",
-        "date": "2026-10-17"
+        "kind": "practice",
+        "date": "2026-10-17",
+        "timeLocal": "10:10",
+        "durationMinutes": 60
       },
       {
         "id": "wec-2026-r07-s4",
-        "kind": "qualifying",
-        "timeLocal": "11:50",
-        "durationMinutes": 60,
         "name": "Qualifying",
-        "date": "2026-10-17"
+        "kind": "qualifying",
+        "date": "2026-10-17",
+        "timeLocal": "11:50",
+        "durationMinutes": 60
+      },
+      {
+        "id": "wec-2026-r07-s9",
+        "name": "Hyperpole - LMGT3",
+        "kind": "hyperpole",
+        "date": "2026-10-17",
+        "timeLocal": "12:10",
+        "durationMinutes": 10
+      },
+      {
+        "id": "wec-2026-r07-s10",
+        "name": "Hyperpole - HYPERCAR",
+        "kind": "hyperpole",
+        "date": "2026-10-17",
+        "timeLocal": "12:50",
+        "durationMinutes": 10
       },
       {
         "id": "wec-2026-r07-s5",
-        "kind": "race",
-        "timeLocal": "12:00",
-        "durationMinutes": 360,
         "name": "Race",
-        "date": "2026-10-18"
+        "kind": "race",
+        "date": "2026-10-18",
+        "timeLocal": "12:00",
+        "durationMinutes": 360
       }
-    ],
-    "country": "Spain",
-    "city": "Barcelona",
-    "raceName": "6 Hours of Barcelona",
-    "circuitName": "Circuit de Barcelona-Catalunya"
+    ]
   },
   {
-    "countryCode": "IT",
-    "roundNumber": 8,
-    "seriesId": "wec",
     "id": "wec-2026-r08",
+    "seriesId": "wec",
+    "roundNumber": 8,
+    "raceName": "6 Hours of Monza",
+    "circuitName": "Autodromo Nazionale Monza",
+    "city": "Monza",
+    "country": "Italy",
+    "countryCode": "IT",
     "sessions": [
       {
         "id": "wec-2026-r08-s1",
-        "kind": "practice",
-        "durationMinutes": 60,
         "name": "Practice 1",
-        "date": "2026-11-06"
+        "kind": "practice",
+        "date": "2026-11-06",
+        "timeLocal": "11:00",
+        "durationMinutes": 90
       },
       {
         "id": "wec-2026-r08-s2",
-        "kind": "practice",
-        "durationMinutes": 60,
         "name": "Practice 2",
-        "date": "2026-11-06"
+        "kind": "practice",
+        "date": "2026-11-06",
+        "timeLocal": "15:50",
+        "durationMinutes": 90
       },
       {
         "id": "wec-2026-r08-s3",
-        "kind": "practice",
-        "durationMinutes": 60,
         "name": "Practice 3",
-        "date": "2026-11-07"
+        "kind": "practice",
+        "date": "2026-11-07",
+        "timeLocal": "10:10",
+        "durationMinutes": 60
       },
       {
         "id": "wec-2026-r08-s4",
-        "kind": "qualifying",
-        "timeLocal": "14:20",
-        "durationMinutes": 60,
         "name": "Qualifying",
-        "date": "2026-11-07"
+        "kind": "qualifying",
+        "date": "2026-11-07",
+        "timeLocal": "14:20",
+        "durationMinutes": 60
       },
       {
         "id": "wec-2026-r08-s5",
-        "kind": "race",
-        "timeLocal": "11:00",
-        "durationMinutes": 360,
         "name": "Race",
-        "date": "2026-11-08"
+        "kind": "race",
+        "date": "2026-11-08",
+        "timeLocal": "11:00",
+        "durationMinutes": 360
       }
-    ],
-    "country": "Italy",
-    "city": "Monza",
-    "raceName": "6 Hours of Monza",
-    "circuitName": "Autodromo Nazionale Monza"
+    ]
   }
 ]
