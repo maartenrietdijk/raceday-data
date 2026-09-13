@@ -3883,9 +3883,10 @@
         "120m",
         "180m",
         "240m",
-        "300m"
+        "300m",
+        "360m"
       ],
-      "lastCheckedAt": "2026-09-13T14:51:23.361304+00:00",
+      "lastCheckedAt": "2026-09-13T15:51:39.071113+00:00",
       "lastResultHash": "b76c1628739fd0c30124ab8a9fb41431d9a1581a33b4bb917d95d35bec34cfb3",
       "sourceUrl": "https://www.motorsport.com/moto3/results/2026/misano-667388/?st=RACE"
     },
@@ -3895,9 +3896,10 @@
         "60m",
         "120m",
         "180m",
-        "240m"
+        "240m",
+        "300m"
       ],
-      "lastCheckedAt": "2026-09-13T15:01:37.401317+00:00",
+      "lastCheckedAt": "2026-09-13T15:51:39.071113+00:00",
       "lastResultHash": "2c8698a9718d5284ebd1833b7cbd6715b49ec9123bf5b406a69877f977f180e8",
       "sourceUrl": "https://www.motorsport.com/fia-f2/results/2026/madrid-667736/?st=RACE2"
     },
@@ -3944,10 +3946,19 @@
     },
     "f1-2026-r14-s5": {
       "foundAt": "2026-09-13T14:51:23.361304+00:00",
-      "completedChecks": [],
-      "lastCheckedAt": "2026-09-13T14:51:23.361304+00:00",
-      "lastResultHash": "a7b7cdb176636ead846dc6b1df035190a2f4654882323fd99c8fa55c1cd5ca47",
+      "completedChecks": [
+        "60m"
+      ],
+      "lastCheckedAt": "2026-09-13T15:51:39.071113+00:00",
+      "lastResultHash": "c4113db0d1c965e42e2739cb1f96670d2b324f327a5aed4db97a014fd6a12d2f",
       "sourceUrl": "https://www.motorsport.com/f1/results/2026/spanish-gp-662335/?st=RACE"
+    },
+    "elms-2026-r05-s4": {
+      "foundAt": "2026-09-13T15:51:39.071113+00:00",
+      "completedChecks": [],
+      "lastCheckedAt": "2026-09-13T15:51:39.071113+00:00",
+      "lastResultHash": "4c62cd6f8db329d2cc1a9d119a248fae158d2d0cf8835cda960c84213fb7053f",
+      "sourceUrl": "https://www.motorsport.com/elms/results/2026/4-hours-of-silverstone-668032/?st=RACE"
     }
   }
 }
