@@ -203,17 +203,17 @@ def fetch_url(url: str, allowed_domains: Sequence[str]) -> FetchResult:
                 body=body,
                 last_modified=response.headers.get("Last-Modified"),
             )
+    except HTTPError as exc:
+        host = (urlparse(url).hostname or "").lower()
+        if exc.code == 403 and host in {"imsa.com", "www.imsa.com"}:
+            return fetch_url_with_browser_fingerprint(url, allowed_domains)
+        raise SourceError("could not read official source {}: {}".format(url, exc)) from exc
     except URLError as exc:
         # Some older official SRO servers omit an intermediate certificate that
         # Xcode's Python cannot build, while the platform curl trust stack can.
         # Curl still performs full certificate verification; never use -k.
         if "CERTIFICATE_VERIFY_FAILED" in str(exc):
             return fetch_url_with_curl(url, allowed_domains)
-        raise SourceError("could not read official source {}: {}".format(url, exc)) from exc
-    except HTTPError as exc:
-        host = (urlparse(url).hostname or "").lower()
-        if exc.code == 403 and host in {"imsa.com", "www.imsa.com"}:
-            return fetch_url_with_browser_fingerprint(url, allowed_domains)
         raise SourceError("could not read official source {}: {}".format(url, exc)) from exc
     except TimeoutError as exc:
         raise SourceError("could not read official source {}: {}".format(url, exc)) from exc
