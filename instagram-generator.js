@@ -157,6 +157,13 @@
     return zonedWallTimeToUtc(date, time, SERIES_TIME_ZONES[seriesId] || DISPLAY_ZONE);
   }
 
+  function sessionEndDateKey(session, seriesId) {
+    const instant = sessionInstant(session, seriesId);
+    const duration = Number(session?.durationMinutes);
+    if (!instant || !Number.isFinite(duration) || duration <= 0) return null;
+    return localDateKey(new Date(instant.getTime() + duration * 60000));
+  }
+
   function localDateKey(date) {
     return new Intl.DateTimeFormat('en-CA', {
       timeZone: DISPLAY_ZONE, year: 'numeric', month: '2-digit', day: '2-digit',
@@ -184,9 +191,11 @@
     const warnings = [];
     (state.series || []).forEach(series => {
       (state.data[series.id] || []).forEach((round, roundIndex) => {
-        const roundDayKeys = (round.sessions || []).map(roundSession => {
+        const roundDayKeys = (round.sessions || []).flatMap(roundSession => {
           const roundInstant = sessionInstant(roundSession, series.id);
-          return roundInstant ? localDateKey(roundInstant) : rawSessionDate(roundSession);
+          const startDay = roundInstant ? localDateKey(roundInstant) : rawSessionDate(roundSession);
+          const endDay = sessionEndDateKey(roundSession, series.id);
+          return endDay && endDay !== startDay ? [startDay, endDay] : [startDay];
         }).filter(Boolean).sort();
         const eventStart = roundDayKeys[0] || weekend.start;
         const eventEnd = roundDayKeys[roundDayKeys.length - 1] || eventStart;
@@ -1081,7 +1090,7 @@
   window.navigateInstagramSlide = navigateInstagramSlide;
   window.downloadInstagramPng = downloadInstagramPng;
   window.RaceDayInstagram = {
-    collectWeekendSessions, buildSlides, buildOverviewItems, sessionInstant, localTimeInfo, sessionLabel,
+    collectWeekendSessions, buildSlides, buildOverviewItems, sessionInstant, sessionEndDateKey, localTimeInfo, sessionLabel,
     weekendRangeFor, renderSlide, contentTop, maxSessionsPerSlide, state: instagramState, WIDTH, HEIGHT,
   };
 })();
