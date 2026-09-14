@@ -81,31 +81,31 @@
       "seriesId": "nascar",
       "name": "NASCAR Cup Series",
       "startUrl": "https://www.nascar.com/weekend-schedule/",
-      "allowedDomains": ["nascar.com", "www.nascar.com"],
+      "allowedDomains": ["nascar.com", "www.nascar.com", "cf.nascar.com"],
       "sourceKind": "nascar-et",
       "eventDiscovery": "Always open the stable weekend schedule, follow its redirect to the event page published on Monday, and select only Cup sessions.",
       "sourceTimeZone": "America/New_York",
-      "notes": "ET is interpreted as America/New_York so EST and EDT follow the event date."
+      "notes": "The visible source stays the stable weekend page; its official cf.nascar.com schedule feed is used when Cloudflare blocks GitHub Actions. UTC feed times are converted using America/New_York."
     },
     {
       "seriesId": "nascar_oreilly",
       "name": "NASCAR O'Reilly Auto Parts Series",
       "startUrl": "https://www.nascar.com/weekend-schedule/",
-      "allowedDomains": ["nascar.com", "www.nascar.com"],
+      "allowedDomains": ["nascar.com", "www.nascar.com", "cf.nascar.com"],
       "sourceKind": "nascar-et",
       "eventDiscovery": "Always open the stable weekend schedule, follow its redirect to the event page published on Monday, and select only O'Reilly sessions.",
       "sourceTimeZone": "America/New_York",
-      "notes": "ET is interpreted as America/New_York so EST and EDT follow the event date."
+      "notes": "The visible source stays the stable weekend page; its official cf.nascar.com schedule feed is used when Cloudflare blocks GitHub Actions. UTC feed times are converted using America/New_York."
     },
     {
       "seriesId": "nascar_trucks",
       "name": "NASCAR Craftsman Truck Series",
       "startUrl": "https://www.nascar.com/weekend-schedule/",
-      "allowedDomains": ["nascar.com", "www.nascar.com"],
+      "allowedDomains": ["nascar.com", "www.nascar.com", "cf.nascar.com"],
       "sourceKind": "nascar-et",
       "eventDiscovery": "Always open the stable weekend schedule, follow its redirect to the event page published on Monday, and select only Truck sessions.",
       "sourceTimeZone": "America/New_York",
-      "notes": "ET is interpreted as America/New_York so EST and EDT follow the event date."
+      "notes": "The visible source stays the stable weekend page; its official cf.nascar.com schedule feed is used when Cloudflare blocks GitHub Actions. UTC feed times are converted using America/New_York."
     },
     {
       "seriesId": "nascareuro",
