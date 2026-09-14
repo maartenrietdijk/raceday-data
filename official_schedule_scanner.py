@@ -921,6 +921,65 @@ def parse_official_schedule_document(fetch: FetchResult, year: int, source_timez
     return list(unique.values())
 
 
+def parse_imsa_event_schedule(fetch: FetchResult, event: dict, year: int, source_timezone: str) -> List[SourceSession]:
+    """Read WeatherTech-only sessions from an IMSA event's Event Schedule."""
+    lines = document_lines(fetch.body)
+    start = next((index + 1 for index, line in enumerate(lines) if normalize(line) == "event schedule"), 0)
+    if not start:
+        return []
+    end = next(
+        (index for index in range(start, len(lines)) if normalize(lines[index]) in {"official partners", "more stories"}),
+        len(lines),
+    )
+    lines = lines[start:end]
+    sessions: List[SourceSession] = []
+    current_date: Optional[str] = None
+    race_name = normalize(event.get("raceName"))
+    for index, line in enumerate(lines):
+        parsed_date = parse_document_date(line, year)
+        if parsed_date:
+            current_date = parsed_date
+            continue
+        if not current_date or not re.search(r"\b\d{1,2}:\d{2}\s*[AP]M\b", line, re.I):
+            continue
+        row = [line]
+        for following in lines[index + 1:index + 3]:
+            if parse_document_date(following, year) or re.search(r"\b\d{1,2}:\d{2}\s*[AP]M\b", following, re.I):
+                break
+            row.append(following)
+        segment = " ".join(row)
+        clocks = list(re.finditer(r"\b\d{1,2}:\d{2}\s*[AP]M\b", segment, re.I))
+        if not clocks:
+            continue
+        label = re.sub(r"\b\d{1,2}:\d{2}\s*[AP]M\b|\bto\b|\bET\b", " ", segment, flags=re.I)
+        label = " ".join(label.split())
+        normalized_label = normalize(label)
+        is_weathertech = "weathertech championship" in normalized_label
+        is_main_race = bool(race_name and (race_name in normalized_label or similarity(race_name, normalized_label) >= 0.5))
+        if is_weathertech and "practice" in normalized_label:
+            number = re.search(r"\bpractice\s*(\d+)?", label, re.I)
+            name = "Practice{}".format(" " + number.group(1) if number and number.group(1) else "")
+        elif is_weathertech and "qualif" in normalized_label:
+            name = "Qualifying"
+        elif is_main_race:
+            name = "Race"
+        else:
+            continue
+        try:
+            local_time = parse_clock(clocks[0].group())
+        except ValueError:
+            continue
+        duration = None
+        if len(clocks) > 1:
+            start_clock = datetime.strptime(local_time, "%H:%M")
+            end_clock = datetime.strptime(parse_clock(clocks[1].group()), "%H:%M")
+            minutes = int((end_clock - start_clock).total_seconds() // 60)
+            duration = minutes if minutes > 0 else minutes + 24 * 60
+        sessions.append(SourceSession(name, current_date, local_time, source_timezone, duration))
+    unique = {(normalize(item.name), item.date, item.local_time): item for item in sessions}
+    return sorted(unique.values(), key=lambda item: (item.date, item.local_time, item.name))
+
+
 def parse_ical_datetime(key: str, value: str, fallback_timezone: str) -> Optional[datetime]:
     try:
         parsed = datetime.strptime(value.rstrip("Z"), "%Y%m%dT%H%M%S")
@@ -1188,7 +1247,9 @@ def proposal_base(series_cfg: dict, filename: str, event: dict, source: FetchRes
 def unresolved_proposals(series_cfg: dict, filename: str, event: dict, source: FetchResult, checked_at: str, reason: str) -> List[dict]:
     proposals = []
     for session in event.get("sessions", []):
-        if session.get("timeLocal") is not None:
+        # A dated TBC row already communicates everything the scanner knows.
+        # Do not show a meaningless date+TBC -> TBC proposal in the editor.
+        if session.get("timeLocal") is not None or session.get("date"):
             continue
         proposal = proposal_base(series_cfg, filename, event, source, checked_at)
         proposal.update({
@@ -1286,10 +1347,11 @@ def build_event_proposals(
         if matched:
             matched_ids.add(matched.get("id"))
 
-    # Every TBC session must either get a proposal or an explicit unresolved record.
+    # An undated TBC session must either get a proposal or an explicit unresolved
+    # record. A row whose date is already known needs no TBC -> TBC proposal.
     covered = {p.get("sessionId") for p in proposals if p.get("sessionId")}
     for session in existing:
-        if session.get("timeLocal") is None and session.get("id") not in covered:
+        if session.get("timeLocal") is None and not session.get("date") and session.get("id") not in covered:
             proposal = proposal_base(series_cfg, filename, event, source, checked_at)
             proposal.update({
                 "proposalType": "unresolved", "sessionId": session.get("id"),
@@ -1491,10 +1553,20 @@ def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Opti
                             for template in templates
                         ]
                     else:
-                        calendar_url = cfg.get("calendarUrl", stable_url).replace("{year}", str(year))
-                        if calendar_url not in calendar_cache:
-                            calendar_cache[calendar_url] = fetch_url(calendar_url, cfg["allowedDomains"])
-                        calendar = calendar_cache[calendar_url]
+                        calendar_urls = [cfg.get("calendarUrl", stable_url)] + list(cfg.get("startUrlFallbacks", []))
+                        calendar_urls = [url.replace("{year}", str(year)) for url in calendar_urls]
+                        calendar = None
+                        calendar_errors = []
+                        for calendar_url in calendar_urls:
+                            try:
+                                if calendar_url not in calendar_cache:
+                                    calendar_cache[calendar_url] = fetch_url(calendar_url, cfg["allowedDomains"])
+                                calendar = calendar_cache[calendar_url]
+                                break
+                            except SourceError as exc:
+                                calendar_errors.append(str(exc))
+                        if calendar is None:
+                            raise SourceError(calendar_errors[-1] if calendar_errors else "could not read official calendar")
                         discovered = discover_event_url(calendar, event, year)
                         event_urls = [discovered] if discovered else []
                     if event_urls:
@@ -1537,6 +1609,8 @@ def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Opti
                 sessions = parse_dtm_api(source, event_year, source_tz)
             elif cfg["sourceKind"] == "formula-e-schedule":
                 sessions = parse_formula_e_schedule(source, event, event_year, source_tz)
+            elif cfg["sourceKind"] == "imsa-event-schedule":
+                sessions = parse_imsa_event_schedule(source, event, event_year, source_tz)
             elif cfg["sourceKind"] == "supercars-embedded-schedule":
                 sessions = parse_supercars_schedule(source, event_year, source_tz, cfg["officialSeriesName"])
             elif cfg["sourceKind"] == "sro-event-timetable":
