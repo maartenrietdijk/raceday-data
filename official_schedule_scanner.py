@@ -210,8 +210,34 @@ def fetch_url(url: str, allowed_domains: Sequence[str]) -> FetchResult:
         if "CERTIFICATE_VERIFY_FAILED" in str(exc):
             return fetch_url_with_curl(url, allowed_domains)
         raise SourceError("could not read official source {}: {}".format(url, exc)) from exc
-    except (HTTPError, TimeoutError) as exc:
+    except HTTPError as exc:
+        host = (urlparse(url).hostname or "").lower()
+        if exc.code == 403 and host in {"imsa.com", "www.imsa.com"}:
+            return fetch_url_with_browser_fingerprint(url, allowed_domains)
         raise SourceError("could not read official source {}: {}".format(url, exc)) from exc
+    except TimeoutError as exc:
+        raise SourceError("could not read official source {}: {}".format(url, exc)) from exc
+
+
+def fetch_url_with_browser_fingerprint(url: str, allowed_domains: Sequence[str]) -> FetchResult:
+    """Retry IMSA's official site with a real browser TLS/HTTP fingerprint."""
+    try:
+        from curl_cffi import requests as browser_requests
+    except ImportError as exc:
+        raise SourceError("IMSA requires the curl_cffi browser reader") from exc
+    try:
+        response = browser_requests.get(url, impersonate="chrome", timeout=25, allow_redirects=True)
+        response.raise_for_status()
+    except Exception as exc:
+        raise SourceError("could not read official source {} with browser reader: {}".format(url, exc)) from exc
+    final_url = str(response.url)
+    if not allowed_url(final_url, allowed_domains):
+        raise SourceError("redirect left official allowlist: {}".format(final_url))
+    data = response.content
+    if len(data) > 8_000_000:
+        raise SourceError("official source is larger than the 8 MB safety limit")
+    body = response.text
+    return FetchResult(url, final_url, page_title(body), body, response.headers.get("Last-Modified"))
 
 
 def fetch_url_with_curl(url: str, allowed_domains: Sequence[str]) -> FetchResult:
@@ -315,6 +341,11 @@ def discover_event_url(calendar: FetchResult, event: dict, year: int) -> Optiona
         score = max(direct_score, context_score * 0.8)
         if "nascar.com" in (urlparse(url).hostname or "") and "/weekend-schedule/" in url:
             score += 0.35
+        if "imsa.com" in (urlparse(url).hostname or ""):
+            if "/events/" in urlparse(url).path.lower():
+                score += 0.5
+            elif "/news/" in urlparse(url).path.lower():
+                score -= 0.5
         if score > best[0]:
             best = (score, url)
     return best[1] if best[0] >= 0.14 else None
