@@ -288,13 +288,14 @@
     {
       "seriesId": "imsa",
       "name": "IMSA WeatherTech SportsCar Championship",
-      "startUrl": "https://www.imsa.com/competitors/{year}-imsa-weathertech-sportscar-championship-event-information/",
+      "startUrl": "https://www.imsa.com/weathertech/{year}-schedule/",
+      "startUrlFallbacks": ["https://www.imsa.com/weathertech/weathertech-{year}-schedule/"],
       "allowedDomains": ["imsa.com", "www.imsa.com"],
-      "sourceKind": "official-schedule-document",
+      "sourceKind": "imsa-event-schedule",
       "documentCategories": ["WeatherTech Championship", "IMSA WeatherTech SportsCar Championship"],
-      "eventDiscovery": "Prefer Official Schedule & SR, then Provisional Schedule & SR, from the official event resources.",
-      "sourceTimeZone": "track",
-      "notes": "Support-series rows in the shared IMSA schedule are excluded."
+      "eventDiscovery": "Open the matching Event Details page from the official WeatherTech season schedule and read its Event Schedule.",
+      "sourceTimeZone": "America/New_York",
+      "notes": "The IMSA event schedule is published in ET; support-series rows are excluded."
     }
   ],
   "eventTimeZones": {
