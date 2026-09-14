@@ -574,6 +574,12 @@ NASCAR_SERIES_MARKERS = {
     "nascar_trucks": ("nascar craftsman truck series", "nascar-craftsman-truck-series", "ncts"),
 }
 
+NASCAR_FEED_SERIES = {
+    "nascar": "series_1",
+    "nascar_oreilly": "series_2",
+    "nascar_trucks": "series_3",
+}
+
 
 def _nascar_date(value: str, year: int) -> Optional[str]:
     raw = html.unescape(value)
@@ -672,6 +678,73 @@ def parse_nascar_text(fetch: FetchResult, event: dict, year: int, source_timezon
     session_date = _nascar_date(window, year)
     time_match = re.search(r"\b\d{1,2}(?::\d{2})?\s*(?:a\.?m\.?|p\.?m\.?)\s*(?:ET|EST|EDT)\b", window, re.I)
     return [SourceSession("Race", session_date, parse_clock(time_match.group()), source_timezone)] if session_date and time_match else []
+
+
+def parse_nascar_feed(fetch: FetchResult, event: dict, year: int, source_timezone: str) -> List[SourceSession]:
+    """Parse NASCAR's public schedule cache when nascar.com blocks automation."""
+    try:
+        payload = json.loads(fetch.body)
+    except json.JSONDecodeError as exc:
+        raise SourceError("official NASCAR schedule feed returned invalid JSON") from exc
+
+    feed_key = NASCAR_FEED_SERIES.get(event.get("seriesId"))
+    races = payload.get(feed_key, []) if feed_key else []
+    target_name = normalize(event.get("raceName"))
+    target_track = normalize(event.get("circuitName"))
+    event_dates = []
+    for session in event.get("sessions", []):
+        try:
+            event_dates.append(date.fromisoformat(str(session.get("date"))))
+        except ValueError:
+            pass
+
+    candidates = []
+    for race in races:
+        if int(race.get("race_season") or 0) != year:
+            continue
+        race_track = normalize(race.get("track_name"))
+        if target_track and target_track not in race_track and race_track not in target_track:
+            continue
+        race_name = normalize(race.get("race_name"))
+        name_score = similarity(target_name, race_name)
+        if target_name and (target_name in race_name or race_name in target_name):
+            name_score += 2.0
+        try:
+            race_day = date.fromisoformat(str(race.get("date_scheduled", ""))[:10])
+            distance = min((abs((race_day - item).days) for item in event_dates), default=366)
+        except ValueError:
+            distance = 366
+        candidates.append((name_score, -distance, race))
+
+    if not candidates:
+        return []
+    race = max(candidates, key=lambda item: (item[0], item[1]))[2]
+    sessions = []
+    canonical_names = {1: "Practice", 2: "Qualifying", 3: "Race"}
+    for entry in race.get("schedule", []):
+        run_type = int(entry.get("run_type") or 0)
+        if run_type not in canonical_names:
+            continue
+        raw_instant = str(entry.get("start_time_utc") or "").strip()
+        if not raw_instant:
+            continue
+        try:
+            instant = datetime.fromisoformat(raw_instant.replace("Z", "+00:00"))
+            if instant.tzinfo is None:
+                instant = instant.replace(tzinfo=timezone.utc)
+            instant = instant.astimezone(timezone.utc)
+            local = instant.astimezone(ZoneInfo(source_timezone))
+        except (ValueError, ZoneInfoNotFoundError):
+            continue
+        sessions.append(SourceSession(
+            canonical_names[run_type],
+            local.date().isoformat(),
+            local.strftime("%H:%M"),
+            source_timezone,
+            utc_hint=instant.strftime("%H:%M"),
+        ))
+    unique = {(item.name, item.date, item.local_time): item for item in sessions}
+    return sorted(unique.values(), key=lambda item: (item.date, item.local_time, item.name))
 
 
 def parse_british_gt_pdf(fetch: FetchResult, year: int, source_timezone: str) -> List[SourceSession]:
@@ -1360,13 +1433,15 @@ def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Opti
             elif fixtures_only:
                 raise SourceError("no fixed official fixture is available for this event")
             elif cfg.get("sourceKind") == "nascar-et":
-                # NASCAR keeps this URL stable and redirects it to the active
-                # event page when the new weekend schedule is published.
-                # Never substitute a season overview, ticket page or stored
-                # event URL: the redirect target is the official source of truth.
-                if stable_url not in calendar_cache:
-                    calendar_cache[stable_url] = fetch_url(stable_url, cfg["allowedDomains"])
-                source = calendar_cache[stable_url]
+                # nascar.com blocks server-side scanners with Cloudflare. NASCAR's
+                # own public cache exposes the same weekend sessions without that
+                # browser-only barrier. Keep the stable weekend URL as the visible
+                # citation while reading the official machine-readable feed.
+                feed_url = "https://cf.nascar.com/cacher/{}/race_list_basic.json".format(event_year)
+                if feed_url not in calendar_cache:
+                    calendar_cache[feed_url] = fetch_url(feed_url, cfg["allowedDomains"])
+                feed = calendar_cache[feed_url]
+                source = FetchResult(stable_url, stable_url, "NASCAR official weekend schedule", feed.body, feed.last_modified)
                 source_candidates = [source]
             else:
                 known = registry.get("knownEventUrls", {}).get("{}:{}".format(series_id, event.get("id")))
@@ -1423,7 +1498,7 @@ def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Opti
             if not source_tz:
                 raise SourceError("no verified IANA track timezone is registered for this event")
             if cfg["sourceKind"] == "nascar-et":
-                sessions = parse_nascar_text(source, event, event_year, source_tz)
+                sessions = parse_nascar_feed(source, event, event_year, source_tz) if source.body.lstrip().startswith("{") else parse_nascar_text(source, event, event_year, source_tz)
             elif cfg["sourceKind"] == "british-gt-pdf":
                 pdf_url = discover_timetable_pdf(source)
                 if not pdf_url:
