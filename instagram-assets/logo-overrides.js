@@ -56,5 +56,23 @@
       y: 0,
       mono: false,
     },
+    supergt: {
+      file: 'supergt-dark.svg',
+      src: 'instagram-assets/logos/source/supergt-dark.svg',
+      scale: 1.12,
+      maxWidth: 160,
+      x: 0,
+      y: 0,
+      mono: false,
+    },
+    sf: {
+      file: 'sf-dark.svg',
+      src: 'instagram-assets/logos/source/sf-dark.svg',
+      scale: 1.1,
+      maxWidth: 158,
+      x: 0,
+      y: 0,
+      mono: false,
+    },
   });
 })();
