@@ -11,6 +11,7 @@
   const DEFAULT_CONTENT_TOP = 286;
   const COMPACT_CONTENT_TOP = 246;
   const MINIMAL_CONTENT_TOP = 150;
+  const HIDDEN_LOGO_OFFSET = 96;
   const CONTENT_BOTTOM = 1194;
   const ROW_HEIGHT = 96;
   const GROUP_HEADER_HEIGHT = 64;
@@ -45,7 +46,7 @@
     allSessions: [], selectedIds: new Set(), slides: [], slideIndex: 0,
     images: new Map(), warnings: [], weekend: null, sourceWarningCount: 0,
     assetLoadComplete: false, mode: 'sessions', selectedDay: '', displayItems: [],
-    title: 'Upcoming races', showTitle: true, showDate: true, showTopMeta: true,
+    title: 'Upcoming races', showLogo: true, showTitle: true, showDate: true, showTopMeta: true,
     seriesOrder: [], draggedSeriesId: '', logoScales: {}, controlTab: 'sessions',
   };
 
@@ -243,18 +244,22 @@
   }
 
   function contentTop() {
-    if (hasMinimalHeader()) return MINIMAL_CONTENT_TOP;
-    return instagramState.showTopMeta ? DEFAULT_CONTENT_TOP : COMPACT_CONTENT_TOP;
+    const base = hasMinimalHeader()
+      ? MINIMAL_CONTENT_TOP
+      : instagramState.showTopMeta ? DEFAULT_CONTENT_TOP : COMPACT_CONTENT_TOP;
+    return instagramState.showLogo ? base : base - HIDDEN_LOGO_OFFSET;
   }
 
   function maxSessionsPerSlide() {
-    if (hasMinimalHeader()) return MINIMAL_MAX_SESSIONS_PER_SLIDE;
-    return instagramState.showTopMeta ? DEFAULT_MAX_SESSIONS_PER_SLIDE : COMPACT_MAX_SESSIONS_PER_SLIDE;
+    const base = hasMinimalHeader()
+      ? MINIMAL_MAX_SESSIONS_PER_SLIDE
+      : instagramState.showTopMeta ? DEFAULT_MAX_SESSIONS_PER_SLIDE : COMPACT_MAX_SESSIONS_PER_SLIDE;
+    return base + (instagramState.showLogo ? 0 : 1);
   }
 
   function headerDividerY() {
-    if (hasMinimalHeader()) return 132;
-    return instagramState.showTopMeta ? 260 : 236;
+    const base = hasMinimalHeader() ? 132 : instagramState.showTopMeta ? 260 : 236;
+    return instagramState.showLogo ? base : base - HIDDEN_LOGO_OFFSET;
   }
 
   function buildSlides(selected) {
@@ -518,9 +523,11 @@
       ? { start: instagramState.selectedDay, end: instagramState.selectedDay }
       : instagramState.weekend;
     ctx.textBaseline = 'alphabetic'; ctx.textAlign = 'left';
-    drawBrandIcon(ctx, 68, 56, 58, 15);
-    ctx.fillStyle = '#ffffff'; ctx.font = '650 25px Inter, sans-serif';
-    ctx.fillText('RaceDay', 143, 93);
+    if (instagramState.showLogo) {
+      drawBrandIcon(ctx, 68, 56, 58, 15);
+      ctx.fillStyle = '#ffffff'; ctx.font = '650 25px Inter, sans-serif';
+      ctx.fillText('RaceDay', 143, 93);
+    }
     if (instagramState.showTopMeta) {
       ctx.fillStyle = '#ff3045'; ctx.font = '650 18px Inter, sans-serif'; ctx.textAlign = 'right';
       ctx.fillText(`Race week ${isoWeek(instagramState.weekend.start)}`, 1008, 81);
@@ -531,16 +538,17 @@
     }
     ctx.textAlign = 'left'; ctx.fillStyle = '#ffffff';
     const postTitle = instagramState.title || 'Upcoming races';
+    const compactOffset = instagramState.showLogo ? 0 : HIDDEN_LOGO_OFFSET;
     let titleSize = 64;
     ctx.font = `700 ${titleSize}px Inter, sans-serif`;
     while (titleSize > 44 && ctx.measureText(postTitle).width > 720) {
       titleSize -= 1;
       ctx.font = `700 ${titleSize}px Inter, sans-serif`;
     }
-    if (instagramState.showTitle) ctx.fillText(truncateText(ctx, postTitle, 720), 68, 185);
+    if (instagramState.showTitle) ctx.fillText(truncateText(ctx, postTitle, 720), 68, 185 - compactOffset);
     if (instagramState.showDate) {
       ctx.fillStyle = '#a6a6ad'; ctx.font = '500 22px Inter, sans-serif';
-      ctx.fillText(formatHeaderDates(headerRange), 72, 226);
+      ctx.fillText(formatHeaderDates(headerRange), 72, 226 - compactOffset);
     }
     const selectedZones = [...new Set(instagramState.displayItems
       .filter(item => instagramState.selectedIds.has(item.uid) && !item.isTbc && item.zone)
@@ -551,7 +559,10 @@
       const badgeHeight = 40, badgePadding = 15, clockSize = 16, badgeGap = 10;
       ctx.font = '550 17px Inter, sans-serif';
       const badgeWidth = Math.ceil(ctx.measureText(zoneText).width + (badgePadding * 2) + clockSize + badgeGap);
-      const badgeX = 1008 - badgeWidth, badgeY = instagramState.showTopMeta ? 199 : 65;
+      const badgeX = 1008 - badgeWidth;
+      const badgeY = instagramState.showTopMeta
+        ? (instagramState.showLogo ? 199 : 126)
+        : 65;
       const badgeFill = ctx.createLinearGradient(badgeX, badgeY, badgeX, badgeY + badgeHeight);
       badgeFill.addColorStop(0, 'rgba(28,25,27,.92)'); badgeFill.addColorStop(1, 'rgba(13,12,14,.92)');
       fillRoundRect(ctx, badgeX, badgeY, badgeWidth, badgeHeight, PANEL_RADIUS, badgeFill);
@@ -916,7 +927,8 @@
   }
 
   function toggleInstagramHeaderPart(part) {
-    if (part === 'title') instagramState.showTitle = !instagramState.showTitle;
+    if (part === 'logo') instagramState.showLogo = !instagramState.showLogo;
+    else if (part === 'title') instagramState.showTitle = !instagramState.showTitle;
     else if (part === 'date') instagramState.showDate = !instagramState.showDate;
     else if (part === 'topMeta') instagramState.showTopMeta = !instagramState.showTopMeta;
     else return;
@@ -925,10 +937,11 @@
   }
 
   function updateHeaderVisibilityControls() {
+    const logoButton = document.getElementById('instagramLogoVisibility');
     const titleButton = document.getElementById('instagramTitleVisibility');
     const dateButton = document.getElementById('instagramDateVisibility');
     const topMetaButton = document.getElementById('instagramTopMetaVisibility');
-    [[titleButton, instagramState.showTitle], [dateButton, instagramState.showDate], [topMetaButton, instagramState.showTopMeta]].forEach(([button, visible]) => {
+    [[logoButton, instagramState.showLogo], [titleButton, instagramState.showTitle], [dateButton, instagramState.showDate], [topMetaButton, instagramState.showTopMeta]].forEach(([button, visible]) => {
       button?.classList.toggle('active', visible);
       button?.setAttribute('aria-pressed', String(visible));
     });
@@ -954,6 +967,7 @@
     instagramState.assetLoadComplete = false;
     instagramState.mode = 'sessions';
     instagramState.title = 'Upcoming races';
+    instagramState.showLogo = true;
     instagramState.showTitle = true;
     instagramState.showDate = true;
     instagramState.showTopMeta = true;
@@ -1068,6 +1082,6 @@
   window.downloadInstagramPng = downloadInstagramPng;
   window.RaceDayInstagram = {
     collectWeekendSessions, buildSlides, buildOverviewItems, sessionInstant, localTimeInfo, sessionLabel,
-    weekendRangeFor, renderSlide, state: instagramState, WIDTH, HEIGHT,
+    weekendRangeFor, renderSlide, contentTop, maxSessionsPerSlide, state: instagramState, WIDTH, HEIGHT,
   };
 })();

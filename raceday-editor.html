@@ -966,7 +966,7 @@
     *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
   }
 </style>
-<link rel="stylesheet" href="instagram-generator.css?v=20260825-12">
+<link rel="stylesheet" href="instagram-generator.css?v=20260914-13">
 </head>
 <body>
 
@@ -1163,6 +1163,7 @@
           <label for="instagramPostTitle">Titel in de post</label>
           <input id="instagramPostTitle" type="text" value="Upcoming races" maxlength="42" autocomplete="off" oninput="setInstagramTitle(this.value)" placeholder="Upcoming races">
           <div class="instagram-visibility-controls" role="group" aria-label="Zichtbare koponderdelen">
+            <button class="active" id="instagramLogoVisibility" type="button" aria-pressed="true" onclick="toggleInstagramHeaderPart('logo')">RaceDay-logo</button>
             <button class="active" id="instagramTitleVisibility" type="button" aria-pressed="true" onclick="toggleInstagramHeaderPart('title')">Titel</button>
             <button class="active" id="instagramDateVisibility" type="button" aria-pressed="true" onclick="toggleInstagramHeaderPart('date')">Datum</button>
             <button class="active" id="instagramTopMetaVisibility" type="button" aria-pressed="true" onclick="toggleInstagramHeaderPart('topMeta')">Raceweek + pagina</button>
@@ -1288,6 +1289,8 @@ const DEFAULT_SERIES = [
   { id: 'british_gt',    name: 'British GT',       color: '#c0392b' },
   { id: 'nls',           name: 'NLS',              color: '#7f8c8d' },
   { id: 'supercars',     name: 'Supercars',        color: '#f1c40f' },
+  { id: 'supergt',       name: 'Super GT',         color: '#d70c17' },
+  { id: 'sf',            name: 'Super Formula',    color: '#ffffff' },
 ];
 
 // Keep this aligned with MOTORSPORT_SERIES in auto_fetch_results.py. Other
@@ -4018,9 +4021,9 @@ if (state.github.token && state.github.repo) {
   loadFromGitHub();
 }
 </script>
-<script src="instagram-assets/logo-bundle.js?v=20260826-5"></script>
+<script src="instagram-assets/logo-bundle.js?v=20260914-6"></script>
 <script src="instagram-assets/logo-overrides.js?v=20260902-2"></script>
 <script src="instagram-assets/flag-bundle.js?v=20260826-2"></script>
-<script src="instagram-generator.js?v=20260829-36"></script>
+<script src="instagram-generator.js?v=20260914-37"></script>
 </body>
 </html>
