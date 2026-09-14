@@ -1,131 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-14T09:58:27Z",
+  "generatedAt": "2026-09-14T10:34:25Z",
   "proposals": [
-    {
-      "seriesId": "gtwca_am",
-      "seriesName": "GT World Challenge America",
-      "calendarFile": "gtwca_am_2026.json",
-      "eventId": "gtwca-am-2026-r07",
-      "eventName": "Indianapolis 8 Hour",
-      "roundNumber": 7,
-      "source": {
-        "stableUrl": "https://www.gt-world-challenge-america.com/calendar",
-        "finalUrl": "https://www.gt-world-challenge-america.com/event/117/indianpolis-8-hour",
-        "title": "Indianapolis Motor Speedway, United States of America, 8 - 10 October 2026 | GT World Challenge America Powered by AWS",
-        "checkedAt": "2026-09-14T09:58:27Z",
-        "lastModified": "Mon, 14 Sep 2026 09:58:28 GMT"
-      },
-      "proposalType": "new-session",
-      "sessionId": null,
-      "sessionName": "Test Session",
-      "current": {
-        "date": null,
-        "timeLocal": null,
-        "durationMinutes": null
-      },
-      "sourceTime": {
-        "date": "2026-10-07",
-        "time": "15:25",
-        "timeZone": "America/New_York"
-      },
-      "editorTimeZone": "Europe/Amsterdam",
-      "proposed": {
-        "date": "2026-10-07",
-        "timeLocal": "21:25",
-        "durationMinutes": 60,
-        "name": "Test Session",
-        "kind": "testing",
-        "utcInstant": "2026-10-07T19:25:00Z",
-        "sessionId": "gtwca-am-2026-r07-s5"
-      },
-      "dateChanged": false,
-      "status": "open",
-      "reason": "Official session time is available.",
-      "debug": false,
-      "fingerprint": "a3dedb3b4a97c6ed90b4a0a64cf6a4d6ade09820fa02e6bc8434849e586d7ca3",
-      "id": "schedule-a3dedb3b4a97c6ed"
-    },
-    {
-      "seriesId": "gtwca_am",
-      "seriesName": "GT World Challenge America",
-      "calendarFile": "gtwca_am_2026.json",
-      "eventId": "gtwca-am-2026-r07",
-      "eventName": "Indianapolis 8 Hour",
-      "roundNumber": 7,
-      "source": {
-        "stableUrl": "https://www.gt-world-challenge-america.com/calendar",
-        "finalUrl": "https://www.gt-world-challenge-america.com/event/117/indianpolis-8-hour",
-        "title": "Indianapolis Motor Speedway, United States of America, 8 - 10 October 2026 | GT World Challenge America Powered by AWS",
-        "checkedAt": "2026-09-14T09:58:27Z",
-        "lastModified": "Mon, 14 Sep 2026 09:58:28 GMT"
-      },
-      "proposalType": "new-session",
-      "sessionId": null,
-      "sessionName": "Test Session",
-      "current": {
-        "date": null,
-        "timeLocal": null,
-        "durationMinutes": null
-      },
-      "sourceTime": {
-        "date": "2026-10-08",
-        "time": "10:45",
-        "timeZone": "America/New_York"
-      },
-      "editorTimeZone": "Europe/Amsterdam",
-      "proposed": {
-        "date": "2026-10-08",
-        "timeLocal": "16:45",
-        "durationMinutes": 60,
-        "name": "Test Session",
-        "kind": "testing",
-        "utcInstant": "2026-10-08T14:45:00Z",
-        "sessionId": "gtwca-am-2026-r07-s6"
-      },
-      "dateChanged": false,
-      "status": "open",
-      "reason": "Official session time is available.",
-      "debug": false,
-      "fingerprint": "aaf9584c3ad878d0ae70db38863eb4c27d391a95b3bb916546901594f38845c4",
-      "id": "schedule-aaf9584c3ad878d0"
-    },
-    {
-      "seriesId": "gtwca_am",
-      "seriesName": "GT World Challenge America",
-      "calendarFile": "gtwca_am_2026.json",
-      "eventId": "gtwca-am-2026-r07",
-      "eventName": "Indianapolis 8 Hour",
-      "roundNumber": 7,
-      "source": {
-        "stableUrl": "https://www.gt-world-challenge-america.com/calendar",
-        "finalUrl": "https://www.gt-world-challenge-america.com/event/117/indianpolis-8-hour",
-        "title": "Indianapolis Motor Speedway, United States of America, 8 - 10 October 2026 | GT World Challenge America Powered by AWS",
-        "checkedAt": "2026-09-14T09:58:27Z",
-        "lastModified": "Mon, 14 Sep 2026 09:58:28 GMT"
-      },
-      "proposalType": "conflict",
-      "sessionId": null,
-      "sessionName": "Free Practice",
-      "current": {
-        "date": null,
-        "timeLocal": null,
-        "durationMinutes": null
-      },
-      "sourceTime": {
-        "date": "2026-10-08",
-        "time": "19:00",
-        "timeZone": "America/New_York"
-      },
-      "editorTimeZone": "Europe/Amsterdam",
-      "proposed": null,
-      "dateChanged": false,
-      "status": "requires_review",
-      "reason": "multiple practice sessions make automatic matching ambiguous",
-      "debug": false,
-      "fingerprint": "50061d16aaf2ea22acc9c57ffdc70cf5a85db920c07d5a00ac9029115027a8dd",
-      "id": "schedule-50061d16aaf2ea22"
-    },
     {
       "seriesId": "gtwca_am",
       "seriesName": "GT World Challenge America",
@@ -152,10 +28,12 @@
       "editorTimeZone": "Europe/Amsterdam",
       "proposed": null,
       "dateChanged": false,
-      "status": "unresolved",
+      "status": "superseded",
       "reason": "No unambiguous matching session was found on the official source.",
       "fingerprint": "6edd6ac0358e3ac76391ce604512343489506f32db2942f2f88697798d098628",
-      "id": "schedule-6edd6ac0358e3ac7"
+      "id": "schedule-6edd6ac0358e3ac7",
+      "supersededAt": "2026-09-14T10:34:25Z",
+      "supersededBy": "5adfe5e37b02cac9e56c1ce026aaa68bc99720d70bb13a7a78eade2596c93a9e"
     },
     {
       "seriesId": "gtwca_am",
@@ -165,13 +43,103 @@
       "eventName": "Indianapolis 8 Hour",
       "roundNumber": 7,
       "source": {
-        "stableUrl": "https://www.gt-world-challenge-america.com/calendar",
-        "finalUrl": "https://www.gt-world-challenge-america.com/event/117/indianpolis-8-hour",
-        "title": "Indianapolis Motor Speedway, United States of America, 8 - 10 October 2026 | GT World Challenge America Powered by AWS",
-        "checkedAt": "2026-09-14T09:58:27Z",
-        "lastModified": "Mon, 14 Sep 2026 09:58:28 GMT"
+        "stableUrl": "https://www.gt-world-challenge-america.com/images/results/117/2026%20Indy%208%20Hour%20Provisional%20Event%20Schedule%20PUBLIC%20260807.pdf",
+        "finalUrl": "https://www.gt-world-challenge-america.com/images/results/117/2026%20Indy%208%20Hour%20Provisional%20Event%20Schedule%20PUBLIC%20260807.pdf",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-09-14T10:34:25Z",
+        "lastModified": "Fri, 11 Sep 2026 17:06:19 GMT"
       },
-      "proposalType": "conflict",
+      "proposalType": "time-update",
+      "sessionId": "gtwca-am-2026-r07-s1",
+      "sessionName": "Practice 1",
+      "current": {
+        "date": "2026-10-08",
+        "timeLocal": null,
+        "durationMinutes": 60
+      },
+      "sourceTime": {
+        "date": "2026-10-08",
+        "time": "18:50",
+        "timeZone": "America/New_York"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-10-09",
+        "timeLocal": "00:50",
+        "durationMinutes": 90,
+        "name": "Free Practice",
+        "kind": "practice",
+        "utcInstant": "2026-10-08T22:50:00Z",
+        "sessionId": "gtwca-am-2026-r07-s1"
+      },
+      "dateChanged": true,
+      "status": "open",
+      "reason": "Official session time is available.",
+      "debug": false,
+      "fingerprint": "5adfe5e37b02cac9e56c1ce026aaa68bc99720d70bb13a7a78eade2596c93a9e",
+      "id": "schedule-5adfe5e37b02cac9",
+      "replacesFingerprint": "6edd6ac0358e3ac76391ce604512343489506f32db2942f2f88697798d098628"
+    },
+    {
+      "seriesId": "gtwca_am",
+      "seriesName": "GT World Challenge America",
+      "calendarFile": "gtwca_am_2026.json",
+      "eventId": "gtwca-am-2026-r07",
+      "eventName": "Indianapolis 8 Hour",
+      "roundNumber": 7,
+      "source": {
+        "stableUrl": "https://www.gt-world-challenge-america.com/images/results/117/2026%20Indy%208%20Hour%20Provisional%20Event%20Schedule%20PUBLIC%20260807.pdf",
+        "finalUrl": "https://www.gt-world-challenge-america.com/images/results/117/2026%20Indy%208%20Hour%20Provisional%20Event%20Schedule%20PUBLIC%20260807.pdf",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-09-14T10:34:25Z",
+        "lastModified": "Fri, 11 Sep 2026 17:06:19 GMT"
+      },
+      "proposalType": "time-update",
+      "sessionId": "gtwca-am-2026-r07-s2",
+      "sessionName": "Practice 2",
+      "current": {
+        "date": "2026-10-09",
+        "timeLocal": null,
+        "durationMinutes": 60
+      },
+      "sourceTime": {
+        "date": "2026-10-09",
+        "time": "09:50",
+        "timeZone": "America/New_York"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-10-09",
+        "timeLocal": "15:50",
+        "durationMinutes": 90,
+        "name": "Pre-Qualifying",
+        "kind": "practice",
+        "utcInstant": "2026-10-09T13:50:00Z",
+        "sessionId": "gtwca-am-2026-r07-s2"
+      },
+      "dateChanged": false,
+      "status": "open",
+      "reason": "Official session time is available.",
+      "debug": false,
+      "fingerprint": "e2a48a79a6928822602be3b46e7c0317b2597e83992567cd6de1860922c327b0",
+      "id": "schedule-e2a48a79a6928822",
+      "replacesFingerprint": "03cb4ff68a9041f6466ec149ee7fc17b3ca178b8faeb2d5d7ad47b4f90e5894c"
+    },
+    {
+      "seriesId": "gtwca_am",
+      "seriesName": "GT World Challenge America",
+      "calendarFile": "gtwca_am_2026.json",
+      "eventId": "gtwca-am-2026-r07",
+      "eventName": "Indianapolis 8 Hour",
+      "roundNumber": 7,
+      "source": {
+        "stableUrl": "https://www.gt-world-challenge-america.com/images/results/117/2026%20Indy%208%20Hour%20Provisional%20Event%20Schedule%20PUBLIC%20260807.pdf",
+        "finalUrl": "https://www.gt-world-challenge-america.com/images/results/117/2026%20Indy%208%20Hour%20Provisional%20Event%20Schedule%20PUBLIC%20260807.pdf",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-09-14T10:34:25Z",
+        "lastModified": "Fri, 11 Sep 2026 17:06:19 GMT"
+      },
+      "proposalType": "time-update",
       "sessionId": "gtwca-am-2026-r07-s3",
       "sessionName": "Qualifying",
       "current": {
@@ -185,13 +153,154 @@
         "timeZone": "America/New_York"
       },
       "editorTimeZone": "Europe/Amsterdam",
-      "proposed": null,
+      "proposed": {
+        "date": "2026-10-09",
+        "timeLocal": "21:35",
+        "durationMinutes": 15,
+        "name": "Qualify Driver 1",
+        "kind": "qualifying",
+        "utcInstant": "2026-10-09T19:35:00Z",
+        "sessionId": "gtwca-am-2026-r07-s3"
+      },
       "dateChanged": false,
-      "status": "requires_review",
-      "reason": "official source has numbered qualifying sessions but the editor has one unnumbered session",
+      "status": "open",
+      "reason": "Official session time is available.",
       "debug": false,
-      "fingerprint": "ae40b54ded280e70d2b97e641c10068b8a3996a75c23f020f17a3e8a2a42686d",
-      "id": "schedule-ae40b54ded280e70"
+      "fingerprint": "01d89ce814be4dee4acd210b55c101ee30235c01e6c8c008c6c790012a10d176",
+      "id": "schedule-01d89ce814be4dee"
+    },
+    {
+      "seriesId": "gtwca_am",
+      "seriesName": "GT World Challenge America",
+      "calendarFile": "gtwca_am_2026.json",
+      "eventId": "gtwca-am-2026-r07",
+      "eventName": "Indianapolis 8 Hour",
+      "roundNumber": 7,
+      "source": {
+        "stableUrl": "https://www.gt-world-challenge-america.com/images/results/117/2026%20Indy%208%20Hour%20Provisional%20Event%20Schedule%20PUBLIC%20260807.pdf",
+        "finalUrl": "https://www.gt-world-challenge-america.com/images/results/117/2026%20Indy%208%20Hour%20Provisional%20Event%20Schedule%20PUBLIC%20260807.pdf",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-09-14T10:34:25Z",
+        "lastModified": "Fri, 11 Sep 2026 17:06:19 GMT"
+      },
+      "proposalType": "new-session",
+      "sessionId": null,
+      "sessionName": "Qualify Driver 2",
+      "current": {
+        "date": null,
+        "timeLocal": null,
+        "durationMinutes": null
+      },
+      "sourceTime": {
+        "date": "2026-10-09",
+        "time": "15:57",
+        "timeZone": "America/New_York"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-10-09",
+        "timeLocal": "21:57",
+        "durationMinutes": 15,
+        "name": "Qualify Driver 2",
+        "kind": "qualifying",
+        "utcInstant": "2026-10-09T19:57:00Z",
+        "sessionId": "gtwca-am-2026-r07-s8"
+      },
+      "dateChanged": false,
+      "status": "open",
+      "reason": "Official session time is available.",
+      "debug": false,
+      "fingerprint": "fe853d71846669743d56d0c75f05e30c2a4f6062f0e06f29f2c09191c8c1a561",
+      "id": "schedule-fe853d7184666974"
+    },
+    {
+      "seriesId": "gtwca_am",
+      "seriesName": "GT World Challenge America",
+      "calendarFile": "gtwca_am_2026.json",
+      "eventId": "gtwca-am-2026-r07",
+      "eventName": "Indianapolis 8 Hour",
+      "roundNumber": 7,
+      "source": {
+        "stableUrl": "https://www.gt-world-challenge-america.com/images/results/117/2026%20Indy%208%20Hour%20Provisional%20Event%20Schedule%20PUBLIC%20260807.pdf",
+        "finalUrl": "https://www.gt-world-challenge-america.com/images/results/117/2026%20Indy%208%20Hour%20Provisional%20Event%20Schedule%20PUBLIC%20260807.pdf",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-09-14T10:34:25Z",
+        "lastModified": "Fri, 11 Sep 2026 17:06:19 GMT"
+      },
+      "proposalType": "new-session",
+      "sessionId": null,
+      "sessionName": "Qualify Driver 3",
+      "current": {
+        "date": null,
+        "timeLocal": null,
+        "durationMinutes": null
+      },
+      "sourceTime": {
+        "date": "2026-10-09",
+        "time": "16:20",
+        "timeZone": "America/New_York"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-10-09",
+        "timeLocal": "22:20",
+        "durationMinutes": 15,
+        "name": "Qualify Driver 3",
+        "kind": "qualifying",
+        "utcInstant": "2026-10-09T20:20:00Z",
+        "sessionId": "gtwca-am-2026-r07-s9"
+      },
+      "dateChanged": false,
+      "status": "open",
+      "reason": "Official session time is available.",
+      "debug": false,
+      "fingerprint": "0294dde42b67d750877655d3492936eac8e1013206982142361f066eda13555b",
+      "id": "schedule-0294dde42b67d750",
+      "replacesFingerprint": "bcc90917f86319edb853ab79928d1f258fbe87d17534f2e59270752f19655987"
+    },
+    {
+      "seriesId": "gtwca_am",
+      "seriesName": "GT World Challenge America",
+      "calendarFile": "gtwca_am_2026.json",
+      "eventId": "gtwca-am-2026-r07",
+      "eventName": "Indianapolis 8 Hour",
+      "roundNumber": 7,
+      "source": {
+        "stableUrl": "https://www.gt-world-challenge-america.com/images/results/117/2026%20Indy%208%20Hour%20Provisional%20Event%20Schedule%20PUBLIC%20260807.pdf",
+        "finalUrl": "https://www.gt-world-challenge-america.com/images/results/117/2026%20Indy%208%20Hour%20Provisional%20Event%20Schedule%20PUBLIC%20260807.pdf",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-09-14T10:34:25Z",
+        "lastModified": "Fri, 11 Sep 2026 17:06:19 GMT"
+      },
+      "proposalType": "new-session",
+      "sessionId": null,
+      "sessionName": "Pole Shootout",
+      "current": {
+        "date": null,
+        "timeLocal": null,
+        "durationMinutes": null
+      },
+      "sourceTime": {
+        "date": "2026-10-09",
+        "time": "17:35",
+        "timeZone": "America/New_York"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-10-09",
+        "timeLocal": "23:35",
+        "durationMinutes": 15,
+        "name": "Pole Shootout",
+        "kind": "qualifying",
+        "utcInstant": "2026-10-09T21:35:00Z",
+        "sessionId": "gtwca-am-2026-r07-s10"
+      },
+      "dateChanged": false,
+      "status": "open",
+      "reason": "Official session time is available.",
+      "debug": false,
+      "fingerprint": "7237398b13b102af10800280eb873ff46c5b46efd8d02fe468a697ea468a2f3f",
+      "id": "schedule-7237398b13b102af"
     },
     {
       "seriesId": "gtwca_am",
@@ -231,11 +340,13 @@
         "sessionId": "gtwca-am-2026-r07-s9"
       },
       "dateChanged": false,
-      "status": "open",
+      "status": "superseded",
       "reason": "Official session time is available.",
       "debug": false,
       "fingerprint": "bcc90917f86319edb853ab79928d1f258fbe87d17534f2e59270752f19655987",
-      "id": "schedule-bcc90917f86319ed"
+      "id": "schedule-bcc90917f86319ed",
+      "supersededAt": "2026-09-14T10:34:25Z",
+      "supersededBy": "0294dde42b67d750877655d3492936eac8e1013206982142361f066eda13555b"
     },
     {
       "seriesId": "gtwca_am",
@@ -263,10 +374,57 @@
       "editorTimeZone": "Europe/Amsterdam",
       "proposed": null,
       "dateChanged": false,
-      "status": "unresolved",
+      "status": "superseded",
       "reason": "No unambiguous matching session was found on the official source.",
       "fingerprint": "03cb4ff68a9041f6466ec149ee7fc17b3ca178b8faeb2d5d7ad47b4f90e5894c",
-      "id": "schedule-03cb4ff68a9041f6"
+      "id": "schedule-03cb4ff68a9041f6",
+      "supersededAt": "2026-09-14T10:34:25Z",
+      "supersededBy": "e2a48a79a6928822602be3b46e7c0317b2597e83992567cd6de1860922c327b0"
+    },
+    {
+      "seriesId": "gtwca_am",
+      "seriesName": "GT World Challenge America",
+      "calendarFile": "gtwca_am_2026.json",
+      "eventId": "gtwca-am-2026-r07",
+      "eventName": "Indianapolis 8 Hour",
+      "roundNumber": 7,
+      "source": {
+        "stableUrl": "https://www.gt-world-challenge-america.com/images/results/117/2026%20Indy%208%20Hour%20Provisional%20Event%20Schedule%20PUBLIC%20260807.pdf",
+        "finalUrl": "https://www.gt-world-challenge-america.com/images/results/117/2026%20Indy%208%20Hour%20Provisional%20Event%20Schedule%20PUBLIC%20260807.pdf",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-09-14T10:34:25Z",
+        "lastModified": "Fri, 11 Sep 2026 17:06:19 GMT"
+      },
+      "proposalType": "time-update",
+      "sessionId": "gtwca-am-2026-r07-s4",
+      "sessionName": "8 Hour Race",
+      "current": {
+        "date": "2026-10-10",
+        "timeLocal": null,
+        "durationMinutes": 480
+      },
+      "sourceTime": {
+        "date": "2026-10-10",
+        "time": "12:30",
+        "timeZone": "America/New_York"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-10-10",
+        "timeLocal": "18:30",
+        "durationMinutes": 480,
+        "name": "Race",
+        "kind": "race",
+        "utcInstant": "2026-10-10T16:30:00Z",
+        "sessionId": "gtwca-am-2026-r07-s4"
+      },
+      "dateChanged": false,
+      "status": "open",
+      "reason": "Official session time is available.",
+      "debug": false,
+      "fingerprint": "a928f7c0c39f68df6d13cf8b65827d0af4aa50a1beea1b43b09834a97ba8948a",
+      "id": "schedule-a928f7c0c39f68df",
+      "replacesFingerprint": "4eb7c2ea930166d881e64696ac233387ca3dc7b4655c8128bd99289d9b7de3f9"
     },
     {
       "seriesId": "gtwca_am",
@@ -306,11 +464,13 @@
         "sessionId": "gtwca-am-2026-r07-s4"
       },
       "dateChanged": false,
-      "status": "open",
+      "status": "superseded",
       "reason": "Official session time is available.",
       "debug": false,
       "fingerprint": "4eb7c2ea930166d881e64696ac233387ca3dc7b4655c8128bd99289d9b7de3f9",
-      "id": "schedule-4eb7c2ea930166d8"
+      "id": "schedule-4eb7c2ea930166d8",
+      "supersededAt": "2026-09-14T10:34:25Z",
+      "supersededBy": "a928f7c0c39f68df6d13cf8b65827d0af4aa50a1beea1b43b09834a97ba8948a"
     }
   ],
   "sourcesUsed": [
@@ -319,10 +479,10 @@
       "eventId": "gtwca-am-2026-r07",
       "eventName": "Indianapolis 8 Hour",
       "stableUrl": "https://www.gt-world-challenge-america.com/calendar",
-      "finalUrl": "https://www.gt-world-challenge-america.com/event/117/indianpolis-8-hour",
-      "title": "Indianapolis Motor Speedway, United States of America, 8 - 10 October 2026 | GT World Challenge America Powered by AWS",
-      "checkedAt": "2026-09-14T09:58:27Z",
-      "lastModified": "Mon, 14 Sep 2026 09:58:28 GMT"
+      "finalUrl": "https://www.gt-world-challenge-america.com/images/results/117/2026%20Indy%208%20Hour%20Provisional%20Event%20Schedule%20PUBLIC%20260807.pdf",
+      "title": "Official timetable PDF",
+      "checkedAt": "2026-09-14T10:34:25Z",
+      "lastModified": "Fri, 11 Sep 2026 17:06:19 GMT"
     }
   ]
 }
