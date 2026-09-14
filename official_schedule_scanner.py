@@ -583,6 +583,19 @@ def _nascar_date(value: str, year: int) -> Optional[str]:
             return date(int(iso.group(1)), int(iso.group(2)), int(iso.group(3))).isoformat()
         except ValueError:
             return None
+    # The live weekend table stores its authoritative date on every session
+    # row as data-date="MM/DD/YYYY". It is not rendered as text inside the row,
+    # so this must be handled before looking for a written month name.
+    us_numeric = re.search(r"\b(\d{1,2})/(\d{1,2})/(20\d{2})\b", raw)
+    if us_numeric:
+        try:
+            return date(
+                int(us_numeric.group(3)),
+                int(us_numeric.group(1)),
+                int(us_numeric.group(2)),
+            ).isoformat()
+        except ValueError:
+            return None
     month_first = re.search(
         r"\b(January|February|March|April|May|June|July|August|September|October|November|December)\s+"
         r"(\d{1,2})(?:,?\s+(20\d{2}))?\b", raw, re.I,
