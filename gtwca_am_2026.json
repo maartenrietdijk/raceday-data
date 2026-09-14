@@ -966,26 +966,26 @@
     "sessions": [
       {
         "id": "gtwca-am-2026-r07-s1",
-        "name": "Practice 1",
-        "kind": "practice",
-        "date": "2026-10-08",
-        "timeLocal": null,
-        "durationMinutes": 60
-      },
-      {
-        "id": "gtwca-am-2026-r07-s2",
-        "name": "Practice 2",
+        "name": "Free Practice",
         "kind": "practice",
         "date": "2026-10-09",
-        "timeLocal": null,
-        "durationMinutes": 60
+        "timeLocal": "01:00",
+        "durationMinutes": 90
       },
       {
         "id": "gtwca-am-2026-r07-s3",
         "name": "Qualifying",
         "kind": "qualifying",
         "date": "2026-10-09",
-        "timeLocal": null,
+        "timeLocal": "21:35",
+        "durationMinutes": 60
+      },
+      {
+        "id": "gtwca-am-2026-r07-s10",
+        "name": "Pole Shootout",
+        "kind": "qualifying",
+        "date": "2026-10-09",
+        "timeLocal": "23:35",
         "durationMinutes": 30
       },
       {
@@ -993,7 +993,7 @@
         "name": "8 Hour Race",
         "kind": "race",
         "date": "2026-10-10",
-        "timeLocal": null,
+        "timeLocal": "18:30",
         "durationMinutes": 480
       }
     ]
