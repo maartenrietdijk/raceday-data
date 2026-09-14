@@ -23,7 +23,7 @@ import sys
 import unicodedata
 import zlib
 from dataclasses import dataclass
-from datetime import date, datetime, time, timezone
+from datetime import date, datetime, time, timedelta, timezone
 from html.parser import HTMLParser
 from pathlib import Path
 from typing import Dict, Iterable, List, Optional, Sequence, Tuple
@@ -1368,7 +1368,13 @@ def merge_proposals(previous: Sequence[dict], current: Sequence[dict], generated
     return sorted(merged, key=chronological_key)
 
 
-def calendar_inventory(root: Path, scope: set, event_ids: Optional[set] = None, include_filled: bool = False) -> List[Tuple[str, dict]]:
+def calendar_inventory(
+    root: Path,
+    scope: set,
+    event_ids: Optional[set] = None,
+    include_filled: bool = False,
+    reference_date: Optional[date] = None,
+) -> List[Tuple[str, dict]]:
     inventory: List[Tuple[str, dict]] = []
     pattern = re.compile(r"^(.+)_([0-9]{4})\.json$")
     for path in sorted(root.glob("*_*.json")):
@@ -1383,7 +1389,28 @@ def calendar_inventory(root: Path, scope: set, event_ids: Optional[set] = None, 
         for event in rounds if isinstance(rounds, list) else []:
             if event_ids and event.get("id") not in event_ids:
                 continue
-            if event_ids or include_filled or any(session.get("timeLocal") is None for session in event.get("sessions", [])):
+            sessions = event.get("sessions", [])
+            has_tbc = any(session.get("timeLocal") is None for session in sessions)
+            series_id = event.get("seriesId") or match.group(1)
+            # NASCAR calendars often arrive with only the race already filled in.
+            # Keep upcoming weekends in the automatic scan so the official feed
+            # can add Practice and Qualifying even though no existing row is TBC.
+            upcoming_incomplete_nascar = False
+            if reference_date and series_id in NASCAR_FEED_SERIES:
+                known_kinds = {session.get("kind") for session in sessions}
+                missing_weekend_session = not {"practice", "qualifying"}.issubset(known_kinds)
+                event_dates = []
+                for session in sessions:
+                    try:
+                        event_dates.append(date.fromisoformat(str(session.get("date") or "")))
+                    except ValueError:
+                        pass
+                upcoming_incomplete_nascar = bool(
+                    missing_weekend_session
+                    and event_dates
+                    and reference_date - timedelta(days=2) <= max(event_dates) <= reference_date + timedelta(days=60)
+                )
+            if event_ids or include_filled or has_tbc or upcoming_incomplete_nascar:
                 inventory.append((path.name, event))
     return inventory
 
@@ -1410,8 +1437,9 @@ def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Opti
     scope = set(series_by_id)
     if only_series:
         scope &= only_series
-    inventory = calendar_inventory(root, scope, only_events, include_filled)
-    LOG.info("Found %d in-scope events with TBC sessions", len(inventory))
+    reference_date = datetime.fromisoformat(checked_at.replace("Z", "+00:00")).date()
+    inventory = calendar_inventory(root, scope, only_events, include_filled, reference_date)
+    LOG.info("Found %d in-scope events requiring an official-session check", len(inventory))
     proposals: List[dict] = []
     source_overview: Dict[str, dict] = {}
     calendar_cache: Dict[str, FetchResult] = {}
