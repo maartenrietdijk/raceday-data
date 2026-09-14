@@ -10,6 +10,25 @@
     return item?.proposed?.date || item?.sourceTime?.date || item?.current?.date || '';
   }
 
+  function proposalTime(item) {
+    return item?.proposed?.timeLocal || item?.sourceTime?.time || item?.current?.timeLocal || '';
+  }
+
+  function compare(left, right) {
+    const leftKey = `${proposalDate(left) || '9999-99-99'}T${proposalTime(left) || '99:99'}`;
+    const rightKey = `${proposalDate(right) || '9999-99-99'}T${proposalTime(right) || '99:99'}`;
+    return leftKey.localeCompare(rightKey) ||
+      String(left?.seriesName || left?.seriesId || '').localeCompare(String(right?.seriesName || right?.seriesId || ''), 'nl') ||
+      String(left?.eventName || '').localeCompare(String(right?.eventName || ''), 'nl') ||
+      String(left?.sessionName || '').localeCompare(String(right?.sessionName || ''), 'nl');
+  }
+
+  function sessionTarget(item) {
+    const session = item?.sessionId || item?.proposed?.sessionId || '';
+    const semantic = `${item?.proposed?.kind || ''}:${item?.proposed?.name || item?.sessionName || ''}`.toLowerCase();
+    return `${item?.calendarFile || ''}:${item?.eventId || ''}:${session || semantic}`;
+  }
+
   function sameTarget(left, right) {
     if (!left || !right) return false;
     const leftSession = left.proposed?.sessionId || left.sessionId || '';
@@ -43,7 +62,7 @@
         if (eventDate < today || eventDate >= end) return false;
       }
       return true;
-    });
+    }).sort(compare);
   }
 
   function grouped(items, filters = {}) {
@@ -68,6 +87,62 @@
     const round = rounds?.find(item => item.id === proposal.eventId);
     if (!round) throw new Error('Event niet gevonden in de conceptkalender.');
     return { rounds, round };
+  }
+
+  function matchingCalendarSession(calendarFiles, proposal) {
+    const rounds = calendarFiles?.[proposal?.calendarFile];
+    const round = rounds?.find(item => item.id === proposal?.eventId);
+    if (!round || !proposal?.proposed) return null;
+    const exactId = (round.sessions || []).find(item => item.id === (proposal.sessionId || proposal.proposed.sessionId));
+    if (exactId) return exactId;
+    return (round.sessions || []).find(item =>
+      String(item.name || '').toLowerCase() === String(proposal.proposed.name || proposal.sessionName || '').toLowerCase() &&
+      item.kind === proposal.proposed.kind &&
+      (item._date || item.date || '') === proposal.proposed.date &&
+      (item._time || item.timeLocal || '') === proposal.proposed.timeLocal
+    ) || null;
+  }
+
+  function isFulfilled(calendarFiles, proposal) {
+    const session = matchingCalendarSession(calendarFiles, proposal);
+    if (!session || !proposal?.proposed) return false;
+    return (session._date || session.date || '') === proposal.proposed.date &&
+      (session._time || session.timeLocal || '') === proposal.proposed.timeLocal;
+  }
+
+  function reconcile(items, calendarFiles) {
+    const proposals = items || [];
+    proposals.forEach(item => {
+      if (REVIEWABLE.has(item.status) && isFulfilled(calendarFiles, item)) {
+        item.status = 'accepted';
+        item.reconciled = true;
+        item.decisionAt ||= new Date().toISOString();
+      }
+    });
+    const newestByTarget = new Map();
+    [...proposals].sort((a, b) => {
+      const checked = String(a?.source?.checkedAt || '').localeCompare(String(b?.source?.checkedAt || ''));
+      return checked || String(a?.fingerprint || '').localeCompare(String(b?.fingerprint || ''));
+    }).forEach(item => {
+      if (ACTIVE.has(item.status)) newestByTarget.set(sessionTarget(item), item);
+    });
+    proposals.forEach(item => {
+      const newest = newestByTarget.get(sessionTarget(item));
+      if (newest && newest !== item && ACTIVE.has(item.status)) {
+        item.status = 'superseded';
+        item.supersededBy = newest.fingerprint;
+        item.supersededAt = newest?.source?.checkedAt || new Date().toISOString();
+      }
+    });
+    return proposals;
+  }
+
+  function sortCalendarSessions(sessions) {
+    return (sessions || []).sort((left, right) => {
+      const leftKey = `${left?._date || left?.date || left?.tbcDate || '9999-99-99'}T${left?._time || left?.timeLocal || '99:99'}`;
+      const rightKey = `${right?._date || right?.date || right?.tbcDate || '9999-99-99'}T${right?._time || right?.timeLocal || '99:99'}`;
+      return leftKey.localeCompare(rightKey) || String(left?.name || '').localeCompare(String(right?.name || ''), 'nl');
+    });
   }
 
   function apply(calendarFiles, proposal) {
@@ -95,6 +170,7 @@
         durationMinutes: proposal.proposed.durationMinutes,
       };
       round.sessions.push(created);
+      sortCalendarSessions(round.sessions);
       return { type: 'new-session', sessionId: created.id };
     }
     const index = round.sessions.findIndex(item => item.id === proposal.sessionId);
@@ -109,6 +185,7 @@
     session._tbcMode = false;
     delete session.dateUTC;
     delete session.tbcDate;
+    sortCalendarSessions(round.sessions);
     return { type: 'time-update', sessionId: session.id, before };
   }
 
@@ -119,12 +196,14 @@
     if (undoRecord.type === 'new-session') {
       const index = round.sessions.findIndex(item => item.id === undoRecord.sessionId);
       if (index >= 0) round.sessions.splice(index, 1);
+      sortCalendarSessions(round.sessions);
       return;
     }
     const index = round.sessions.findIndex(item => item.id === undoRecord.sessionId);
     if (index < 0) throw new Error('Gewijzigde sessie niet gevonden.');
     round.sessions[index] = JSON.parse(JSON.stringify(undoRecord.before));
+    sortCalendarSessions(round.sessions);
   }
 
-  return { REVIEWABLE, ACTIVE, openCount, filtered, grouped, proposalDate, sameTarget, apply, undo };
+  return { REVIEWABLE, ACTIVE, openCount, filtered, grouped, proposalDate, proposalTime, compare, sameTarget, sessionTarget, isFulfilled, reconcile, sortCalendarSessions, apply, undo };
 });

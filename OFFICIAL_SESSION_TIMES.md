@@ -1,6 +1,6 @@
 # Official session-time proposals
 
-`official_schedule_scanner.py` checks official championship pages only and creates reviewable proposals for sessions whose `timeLocal` is `null`. It never edits or publishes a calendar file.
+`official_schedule_scanner.py` checks official championship pages only and creates reviewable proposals. Scheduled scans target sessions whose `timeLocal` is `null`; a manual event scan from the editor can also propose corrections for sessions that already contain a time. The scanner never edits or publishes a calendar file itself.
 
 ## Run manually
 
@@ -17,6 +17,7 @@ python3 official_schedule_scanner.py --dry-run
 python3 official_schedule_scanner.py --series gtwca_aus --verbose
 python3 official_schedule_scanner.py --series f2 --event f2-2026-r01
 python3 official_schedule_scanner.py --series dtm --include-filled --dry-run
+python3 official_schedule_scanner.py --series gtwca_aus --event gtwca-aus-2026-r05 --replace-filled --dry-run
 python3 official_schedule_scanner.py --fixtures-dir tests/fixtures/official --fixtures-only --now 2026-09-09T12:00:00Z
 ```
 
@@ -25,12 +26,14 @@ The result is `.raceday/session-time-proposals.json`. Repeated runs with unchang
 ## Review and publication
 
 1. Synchronize the RaceDay editor with GitHub.
-2. Open **Voorstellen**. The navigation badge counts `open` and `requires_review` items.
+2. Open **Voorstellen**, or expand an event on its series page. The navigation badge counts `open` and `requires_review` items.
 3. Compare official source time, IANA timezone, UTC instant, and the editor value.
 4. Accept, reject, or undo. Conflicts and unresolved items cannot be accepted.
 5. Use **Publiceer** on the proposal page. Only calendar files changed by accepted proposals plus the proposal decision file are uploaded. The normal publication step remains mandatory.
 
-Accepted items disappear from the default **Openstaand** view immediately after acceptance. They remain available under **Alle statussen** or **Geaccepteerd** until the accepted calendar change has been published and the next scan reconciles the proposal store. A debug scan is intentionally separate: it can show `Komt overeen` or `Wijkt af` for sessions that already have a time, without making either result actionable.
+Accepted items disappear from the default **Openstaand** view immediately after acceptance. On load, the editor also reconciles proposals with the actual calendar: a proposal whose date and time are already present is treated as accepted, while an older proposal for the same session becomes superseded. A debug scan is intentionally separate: it can show `Komt overeen` or `Wijkt af` for sessions that already have a time, without making either result actionable.
+
+On a series page, **Zoek officiële tijden** runs a targeted event scan with `--replace-filled`. The event stays open, shows the live GitHub Actions progress, loads the result automatically, and exposes accept/reject controls directly below that event. Returning to the separate proposals page is not required. Proposal rows and calendar sessions are ordered chronologically by date and time.
 
 There is deliberately no global “accept all” action. Event-level acceptance includes only reliable `open` proposals for that event and rolls back atomically if one item fails.
 
@@ -53,7 +56,7 @@ Current series IDs in scope are `f2`, `f3`, `f1academy`, `formulae`, `nascar`, `
 
 ## Automation
 
-`.github/workflows/official_session_times.yml` runs Monday, Wednesday, and Friday at 06:17 UTC and supports manual dispatch for one series or one exact event. It uses the repository's existing serialized write queue and commits only the proposal store. No secret other than GitHub's built-in repository token is required.
+`.github/workflows/official_session_times.yml` runs Monday, Wednesday, and Friday at 06:17 UTC and supports manual dispatch for one series or one exact event. Targeted editor scans set `replace_filled`, so official changes can replace already-filled sessions after review. It uses the repository's existing serialized write queue and commits only the proposal store. No secret other than GitHub's built-in repository token is required.
 
 ## Tests
 

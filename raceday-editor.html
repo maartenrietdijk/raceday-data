@@ -768,6 +768,21 @@
   .proposal-badge.closed { opacity: .65; }
   .proposal-warning { margin-top: 8px; color: var(--amber); font-size: 12px; }
   .proposal-source a { color: var(--text); text-underline-offset: 3px; }
+  .official-scan-panel { margin: 12px 0 16px; overflow: hidden; border: 1px solid var(--border2); border-radius: 6px; background: var(--bg2); }
+  .official-scan-status { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 12px 14px; }
+  .official-scan-status-copy { min-width: 0; }
+  .official-scan-status-title { font-size: 12px; font-weight: 700; }
+  .official-scan-status-note { margin-top: 3px; color: var(--muted); font-size: 11px; overflow-wrap: anywhere; }
+  .official-scan-progress { height: 3px; overflow: hidden; background: var(--bg3); }
+  .official-scan-progress > span { display: block; width: 100%; height: 100%; background: var(--accent); transform: scaleX(var(--scan-progress, 0)); transform-origin: left; transition: transform .35s cubic-bezier(.22,1,.36,1); }
+  .official-scan-panel.is-error .official-scan-progress > span { background: var(--red); }
+  .official-scan-panel.is-complete .official-scan-progress > span { background: var(--green); }
+  .inline-proposals { border-top: 1px solid var(--border2); background: var(--bg); }
+  .inline-proposals-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 14px; border-bottom: 1px solid var(--border2); }
+  .inline-proposals-heading strong { font-size: 12px; }
+  .inline-proposals .proposal-row { grid-template-columns: minmax(130px,.7fr) minmax(240px,1.35fr) minmax(190px,.85fr); padding: 14px; }
+  .inline-proposals-empty { padding: 14px; color: var(--muted); font-size: 12px; }
+  .inline-proposals-footer { display: flex; justify-content: flex-end; padding: 10px 14px; border-top: 1px solid var(--border2); }
 
   .modal-backdrop { padding: 20px; background: rgba(0,0,0,.5); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
   .modal-backdrop.show { animation: fade-in .18s ease; }
@@ -928,6 +943,10 @@
     .proposal-value-grid { grid-template-columns: 1fr; }
     .proposal-arrow { transform: rotate(90deg); justify-self: center; }
     .proposal-actions .btn { flex: 1 1 140px; }
+    .official-scan-status, .inline-proposals-heading { align-items: stretch; flex-direction: column; }
+    .official-scan-status .btn, .inline-proposals-heading .btn, .inline-proposals-footer .btn { width: 100%; }
+    .inline-proposals .proposal-row { grid-template-columns: 1fr; }
+    .inline-proposals-footer { padding: 12px 14px; }
     .modal-backdrop { align-items: flex-end; padding: 0; }
     .modal { width: 100%; max-width: none; max-height: 92dvh; padding: 24px 18px calc(22px + env(safe-area-inset-bottom)); border-radius: 12px 12px 0 0; }
     .modal-actions { position: sticky; bottom: 0; margin: 0 -18px -22px; padding: 14px 18px calc(14px + env(safe-area-inset-bottom)); background: var(--bg); }
@@ -1229,7 +1248,7 @@
   </div>
 </div>
 
-<script src="proposal-logic.js?v=20260909-2"></script>
+<script src="proposal-logic.js?v=20260914-1"></script>
 <script>
 // ── State ──────────────────────────────────────────────────────────────────────
 
@@ -1302,10 +1321,12 @@ let state = {
   proposalGeneratedAt: null,
   proposalUndo: {},
   dirtyProposalFiles: [],
+  proposalDecisionsDirty: false,
   github: { token: '', repo: '', branch: 'main', path: '' }
 };
 let proposalFilters = { seriesId: '', status: 'active', year: '', periodDays: '' };
 let proposalLoadState = { status: 'idle', error: '' };
+const officialScanProgress = {};
 let seriesQuery = '';
 let seriesDragIndex = null;
 
@@ -1470,12 +1491,18 @@ function load() {
       state.proposalGeneratedAt = parsed.proposalGeneratedAt || null;
       state.proposalUndo  = parsed.proposalUndo || {};
       state.dirtyProposalFiles = parsed.dirtyProposalFiles || [];
+      state.proposalDecisionsDirty = Boolean(parsed.proposalDecisionsDirty);
       state.github       = parsed.github       || state.github;
     } else {
       state.series = DEFAULT_SERIES;
     }
   } catch { state.series = DEFAULT_SERIES; }
   rebuildCombinedData();
+  const statusBefore = JSON.stringify((state.proposals || []).map(item => [item.fingerprint, item.status]));
+  RaceDayProposals.reconcile(state.proposals, state.calendarFiles);
+  if (statusBefore !== JSON.stringify((state.proposals || []).map(item => [item.fingerprint, item.status]))) {
+    state.proposalDecisionsDirty = true;
+  }
   // Load GitHub credentials separately
   try {
     const gh = localStorage.getItem('raceday_gh');
@@ -1573,6 +1600,11 @@ async function loadFromGitHub() {
         });
         state.proposalSources = Array.isArray(proposalStore.sourcesUsed) ? proposalStore.sourcesUsed : [];
         state.proposalGeneratedAt = proposalStore.generatedAt || null;
+        const statusBefore = JSON.stringify(state.proposals.map(item => [item.fingerprint, item.status]));
+        RaceDayProposals.reconcile(state.proposals, state.calendarFiles);
+        if (statusBefore !== JSON.stringify(state.proposals.map(item => [item.fingerprint, item.status]))) {
+          state.proposalDecisionsDirty = true;
+        }
         proposalLoadState = { status: 'loaded', error: '' };
       } else if (proposalResp.status !== 404) {
         console.warn(`Could not load proposal store: GitHub ${proposalResp.status}`);
@@ -1645,6 +1677,7 @@ function save() {
     proposalGeneratedAt: state.proposalGeneratedAt,
     proposalUndo: state.proposalUndo,
     dirtyProposalFiles: state.dirtyProposalFiles,
+    proposalDecisionsDirty: state.proposalDecisionsDirty,
   });
   try {
     if (localStorage.getItem('raceday_editor') !== editorPayload) {
@@ -2038,6 +2071,55 @@ function proposalYearOptions() {
   return years.map(year => `<option value="${year}" ${proposalFilters.year === year ? 'selected' : ''}>${year}</option>`).join('');
 }
 
+function activeEventProposals(round) {
+  const filename = activeCalendarFilename();
+  return RaceDayProposals.filtered(state.proposals, { status: 'active' })
+    .filter(item => item.calendarFile === filename && item.eventId === round?.id);
+}
+
+function officialScanStatusView(eventId) {
+  const progress = officialScanProgress[eventId];
+  if (!progress) return '';
+  const stateClass = progress.status === 'error' ? ' is-error' : progress.status === 'completed' ? ' is-complete' : '';
+  return `<div class="official-scan-status" role="status" aria-live="polite">
+    <div class="official-scan-status-copy">
+      <div class="official-scan-status-title">${esc(progress.title)}</div>
+      <div class="official-scan-status-note">${esc(progress.message)}</div>
+    </div>
+    ${progress.runUrl ? `<a class="btn btn-ghost btn-sm" href="${esc(progress.runUrl)}" target="_blank" rel="noopener noreferrer">Bekijk run ↗</a>` : ''}
+  </div>
+  <div class="official-scan-progress" role="progressbar" aria-label="Voortgang officiële tijden" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${progress.percent}">
+    <span style="--scan-progress:${Math.max(0, Math.min(100, Number(progress.percent) || 0)) / 100}"></span>
+  </div>`;
+}
+
+function renderInlineEventProposals(round) {
+  const proposals = activeEventProposals(round);
+  const progress = officialScanProgress[round?.id];
+  const hasLocalDecision = state.proposals.some(item => item.calendarFile === activeCalendarFilename() && item.eventId === round?.id &&
+    ['accepted', 'rejected'].includes(item.status) && item.decisionAt);
+  const dirty = hasLocalDecision && (state.dirtyProposalFiles.includes(activeCalendarFilename()) || state.proposalDecisionsDirty);
+  if (!progress && !proposals.length && !dirty) return '';
+  const acceptable = proposals.filter(item => item.status === 'open' && item.proposed && !proposalIsStale(item));
+  const statusClass = progress?.status === 'error' ? ' is-error' : progress?.status === 'completed' ? ' is-complete' : '';
+  return `<section class="official-scan-panel${statusClass}" id="officialScanPanel_${esc(round.id)}">
+    ${officialScanStatusView(round.id)}
+    <div class="inline-proposals">
+      <div class="inline-proposals-heading">
+        <strong>${proposals.length} te beoordelen voorstel${proposals.length === 1 ? '' : 'len'}</strong>
+        ${acceptable.length ? `<button class="btn btn-primary btn-sm" onclick="acceptEventProposals('${esc(activeCalendarFilename())}','${esc(round.id)}')">Alle wijzigingen accepteren</button>` : ''}
+      </div>
+      ${proposals.length ? proposals.map(renderProposalRow).join('') : `<div class="inline-proposals-empty">${dirty ? 'Alle voorstellen voor dit event zijn verwerkt. Publiceer de besluiten om ze naar GitHub te schrijven.' : progress?.status === 'completed' ? 'Geen nieuwe wijzigingen gevonden. De ingevulde tijden zijn actueel.' : 'Zodra de scan resultaten heeft, verschijnen ze hier automatisch.'}</div>`}
+      ${dirty ? `<div class="inline-proposals-footer"><button class="btn btn-primary btn-sm" onclick="publishProposalChanges()">Publiceer besluiten</button></div>` : ''}
+    </div>
+  </section>`;
+}
+
+function renderProposalSurfaces() {
+  renderSidebar();
+  renderMain();
+}
+
 function renderProposalRow(proposal) {
   const isOpen = proposal.status === 'open' && proposal.proposed && !proposalIsStale(proposal);
   const canReject = ['open', 'requires_review'].includes(proposal.status);
@@ -2147,7 +2229,8 @@ function acceptProposal(fingerprint, deferRender = false) {
     proposal.status = 'accepted';
     proposal.decisionAt = new Date().toISOString();
     state.proposals.forEach(item => {
-      if (item !== proposal && ['open', 'requires_review'].includes(item.status) && RaceDayProposals.sameTarget(item, proposal)) {
+      if (item !== proposal && ['open', 'requires_review', 'unresolved'].includes(item.status) &&
+          RaceDayProposals.sessionTarget(item) === RaceDayProposals.sessionTarget(proposal)) {
         item.status = 'superseded';
         item.supersededAt = proposal.decisionAt;
         item.supersededBy = proposal.fingerprint;
@@ -2155,7 +2238,8 @@ function acceptProposal(fingerprint, deferRender = false) {
     });
     markProposalFileDirty(proposal.calendarFile);
     save();
-    if (!deferRender) { renderSidebar(); renderProposals(); showStatus(`✓ ${proposal.sessionName} verwerkt in concept`, 'success'); }
+    state.proposalDecisionsDirty = true;
+    if (!deferRender) { renderProposalSurfaces(); showStatus(`✓ ${proposal.sessionName} verwerkt in concept`, 'success'); }
     return true;
   } catch (error) {
     if (!deferRender) showStatus(error.message, 'error');
@@ -2176,7 +2260,8 @@ function acceptEventProposals(calendarFile, eventId) {
       return showStatus('Event kon niet volledig worden verwerkt; niets is gewijzigd.', 'error');
     }
   }
-  save(); renderSidebar(); renderProposals();
+  state.proposalDecisionsDirty = true;
+  save(); renderProposalSurfaces();
   showStatus(`✓ ${targets.length} voorstel(len) verwerkt in concept`, 'success');
 }
 
@@ -2185,7 +2270,8 @@ function rejectProposal(fingerprint) {
   if (!proposal || !['open', 'requires_review'].includes(proposal.status)) return;
   proposal.status = 'rejected';
   proposal.decisionAt = new Date().toISOString();
-  save(); renderSidebar(); renderProposals();
+  state.proposalDecisionsDirty = true;
+  save(); renderProposalSurfaces();
   showStatus(`${proposal.sessionName} afgewezen`, 'success');
 }
 
@@ -2199,7 +2285,8 @@ function undoProposalDecision(fingerprint) {
     delete proposal.decisionAt;
     delete state.proposalUndo[fingerprint];
     if (wasAccepted) markProposalFileDirty(proposal.calendarFile);
-    save(); renderSidebar(); renderProposals();
+    state.proposalDecisionsDirty = true;
+    save(); renderProposalSurfaces();
     showStatus(`✓ Beslissing voor ${proposal.sessionName} ongedaan gemaakt`, 'success');
   } catch (error) { showStatus(error.message, 'error'); }
 }
@@ -2443,11 +2530,15 @@ async function publishStandingsToGitHub() {
 // ── Round rendering ────────────────────────────────────────────────────────────
 
 function renderRound(r, i, series, highlighted = false) {
+  RaceDayProposals.sortCalendarSessions(r.sessions || []);
   const sessionRows = (r.sessions || []).map((s, si) => renderSession(s, i, si)).join('');
   const supportsAutoResults = AUTO_RESULTS_SERIES.has(state.activeSeries);
   const supportsOfficialTimes = OFFICIAL_TIME_SERIES.has(state.activeSeries);
+  const scanProgress = officialScanProgress[r.id];
+  const scanBusy = scanProgress && !['completed', 'error'].includes(scanProgress.status);
   return `
     <div class="round-card${highlighted ? ' is-next' : ''}" id="round_${i}" data-round-index="${i}"
+      data-event-id="${esc(r.id || '')}"
       ondragover="dragRoundOver(event,${i})" ondrop="dragRoundDrop(event,${i})">
       <div class="round-header" onclick="toggleRound(${i})">
         <span class="round-drag-handle drag-handle" draggable="true" title="Sleep event om te verplaatsen"
@@ -2512,7 +2603,7 @@ function renderRound(r, i, series, highlighted = false) {
             <span style="display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end">
               <button class="btn btn-surface btn-sm" id="scanOfficialBtn_${i}" onclick="scanOfficialEvent(${i})"
                 title="Zoek officiële sessietijden voor alleen dit event"
-                ${supportsOfficialTimes ? '' : 'disabled'}>Zoek officiële tijden</button>
+                ${supportsOfficialTimes && !scanBusy ? '' : 'disabled'}>${scanBusy ? 'Officiële tijden zoeken…' : 'Zoek officiële tijden'}</button>
               <button class="btn btn-primary btn-sm" id="fetchEventBtn_${i}" onclick="fetchEventResults(${i})"
                 title="${supportsAutoResults ? 'Haal alle vindbare sessieresultaten op via Motorsport.com' : 'Automatisch ophalen is voor deze serie nog niet beschikbaar'}"
                 ${supportsAutoResults ? '' : 'disabled'}>Alles ophalen</button>
@@ -2520,6 +2611,7 @@ function renderRound(r, i, series, highlighted = false) {
               <button class="btn btn-surface btn-sm" onclick="addSession(${i})">+ Sessie</button>
             </span>
           </div>
+          ${renderInlineEventProposals(r)}
           <div class="session-columns">
             <span></span>
             <span>Naam</span>
@@ -3397,6 +3489,69 @@ async function fetchEventResults(ri) {
   }
 }
 
+function updateOfficialScanProgress(eventId, update) {
+  officialScanProgress[eventId] = { ...officialScanProgress[eventId], ...update };
+  const round = editableRounds()?.find(item => item.id === eventId);
+  const panel = document.getElementById(`officialScanPanel_${eventId}`);
+  if (round && panel) panel.outerHTML = renderInlineEventProposals(round);
+}
+
+function renderSeriesKeepingOpenEvents() {
+  const openEventIds = [...document.querySelectorAll('.round-card.open')]
+    .map(card => card.dataset.eventId).filter(Boolean);
+  renderMain();
+  requestAnimationFrame(() => {
+    document.querySelectorAll('.round-card').forEach(card => {
+      if (openEventIds.includes(card.dataset.eventId)) card.classList.add('open');
+    });
+  });
+}
+
+function waitFor(milliseconds) {
+  return new Promise(resolve => setTimeout(resolve, milliseconds));
+}
+
+async function monitorOfficialScan(owner, repo, eventId, startedAt) {
+  const branch = state.github.branch || 'main';
+  const runsUrl = `https://api.github.com/repos/${owner}/${repo}/actions/workflows/official_session_times.yml/runs?event=workflow_dispatch&branch=${encodeURIComponent(branch)}&per_page=20`;
+  let run = null;
+  for (let attempt = 0; attempt < 60; attempt++) {
+    const response = await fetch(runsUrl, {
+      headers: {
+        'Authorization': `Bearer ${state.github.token}`,
+        'Accept': 'application/vnd.github+json',
+        'X-GitHub-Api-Version': '2022-11-28',
+      },
+    });
+    if (!response.ok) throw new Error(`Voortgang ophalen gaf GitHub ${response.status}`);
+    const payload = await response.json();
+    const recent = (payload.workflow_runs || []).filter(item => Date.parse(item.created_at) >= startedAt - 15000);
+    run = recent.find(item => String(item.display_title || '').includes(eventId)) || (recent.length === 1 ? recent[0] : null);
+    if (!run) {
+      updateOfficialScanProgress(eventId, { status: 'queued', percent: 15, title: 'Zoekactie staat in de wachtrij', message: 'GitHub maakt de scan klaar…' });
+    } else if (run.status !== 'completed') {
+      const queued = run.status === 'queued' || run.status === 'waiting' || run.status === 'pending';
+      updateOfficialScanProgress(eventId, {
+        status: queued ? 'queued' : 'in_progress',
+        percent: queued ? 25 : 65,
+        title: queued ? 'Zoekactie staat in de wachtrij' : 'Officiële bronnen worden gecontroleerd',
+        message: queued ? 'De scan start zodra de GitHub-runner beschikbaar is.' : 'Documenten en sessietijden worden nu verwerkt.',
+        runUrl: run.html_url,
+      });
+    } else if (run.conclusion === 'success') {
+      updateOfficialScanProgress(eventId, { status: 'syncing', percent: 88, title: 'Resultaten worden ingeladen', message: 'De nieuwe voorstellen worden met deze editor gesynchroniseerd.', runUrl: run.html_url });
+      await loadFromGitHub();
+      updateOfficialScanProgress(eventId, { status: 'completed', percent: 100, title: 'Zoekactie voltooid', message: 'De resultaten staan hieronder en kunnen hier direct worden beoordeeld.', runUrl: run.html_url });
+      return;
+    } else {
+      updateOfficialScanProgress(eventId, { status: 'error', percent: 100, title: 'Zoekactie mislukt', message: `GitHub stopte de scan met status ${run.conclusion || 'onbekend'}. Open de run voor details.`, runUrl: run.html_url });
+      return;
+    }
+    await waitFor(5000);
+  }
+  updateOfficialScanProgress(eventId, { status: 'error', percent: 100, title: 'Voortgang duurt te lang', message: 'De scan kan nog lopen. Bekijk de GitHub-run of probeer het later opnieuw.', runUrl: run?.html_url });
+}
+
 async function scanOfficialEvent(ri) {
   if (!OFFICIAL_TIME_SERIES.has(state.activeSeries)) {
     return showStatus('De officiële sessietijdscanner ondersteunt deze serie nog niet', 'error');
@@ -3412,6 +3567,7 @@ async function scanOfficialEvent(ri) {
   try {
     const [owner, repo] = state.github.repo.split('/');
     if (!owner || !repo) throw new Error('Gebruik eigenaar/repository bij GitHub-instellingen');
+    const startedAt = Date.now();
     const response = await fetch(`https://api.github.com/repos/${owner}/${repo}/actions/workflows/official_session_times.yml/dispatches`, {
       method: 'POST',
       headers: {
@@ -3422,18 +3578,23 @@ async function scanOfficialEvent(ri) {
       },
       body: JSON.stringify({
         ref: state.github.branch || 'main',
-        inputs: { series: state.activeSeries, event: round.id },
+        inputs: { series: state.activeSeries, event: round.id, replace_filled: 'true' },
       }),
     });
     if (response.status !== 204) {
       const error = await response.json().catch(() => ({}));
       throw new Error(error.message || `GitHub error ${response.status}`);
     }
-    showStatus(`✓ Zoekactie gestart voor ${round.raceName || round.id} — vernieuw de voorstellen over ongeveer 30 seconden`, 'success');
+    officialScanProgress[round.id] = { status: 'queued', percent: 10, title: 'Zoekactie gestart', message: 'Wachten op de GitHub-runner…', runUrl: '' };
+    renderSeriesKeepingOpenEvents();
+    showStatus(`Zoekactie gestart voor ${round.raceName || round.id}`, 'loading');
+    await monitorOfficialScan(owner, repo, round.id, startedAt);
   } catch (error) {
+    updateOfficialScanProgress(round.id, { status: 'error', percent: 100, title: 'Zoekactie mislukt', message: error.message, runUrl: officialScanProgress[round.id]?.runUrl || '' });
     showStatus(`Zoekactie mislukt: ${error.message}`, 'error');
   } finally {
-    if (button) { button.disabled = false; button.textContent = originalText; }
+    const currentButton = document.getElementById(`scanOfficialBtn_${ri}`);
+    if (currentButton) { currentButton.disabled = false; currentButton.textContent = originalText; }
   }
 }
 
@@ -3643,7 +3804,9 @@ async function publishToGitHub() {
 }
 
 function publishCurrentView() {
-  return state.activeView === 'proposals' ? publishProposalChanges() : publishToGitHub();
+  return state.activeView === 'proposals' || state.proposalDecisionsDirty || state.dirtyProposalFiles.length
+    ? publishProposalChanges()
+    : publishToGitHub();
 }
 
 async function uploadGitHubTextFile(relativePath, content, message) {
@@ -3693,7 +3856,9 @@ async function publishProposalChanges() {
     }
     await uploadGitHubTextFile('.raceday/session-time-proposals.json', buildProposalStoreJSON(), 'Update official session-time proposal decisions');
     state.dirtyProposalFiles = [];
+    state.proposalDecisionsDirty = false;
     save();
+    renderMain();
     showStatus('✓ Voorstelbeslissingen en geaccepteerde conceptwijzigingen gepubliceerd', 'success');
     return true;
   } catch (error) {

@@ -876,6 +876,7 @@ def build_event_proposals(
     editor_timezone: str,
     checked_at: str,
     include_filled: bool = False,
+    replace_filled: bool = False,
 ) -> List[dict]:
     proposals: List[dict] = []
     existing = event.get("sessions", [])
@@ -888,7 +889,7 @@ def build_event_proposals(
         if matched and matched.get("id") in matched_ids:
             continue
         filled_session = bool(matched and matched.get("timeLocal") is not None)
-        if filled_session and not include_filled:
+        if filled_session and not (include_filled or replace_filled):
             matched_ids.add(matched.get("id"))
             continue
         try:
@@ -898,8 +899,9 @@ def build_event_proposals(
             proposed_date = proposed_time = utc_instant = None
         is_match = bool(filled_session and matched.get("date") == proposed_date and matched.get("timeLocal") == proposed_time)
         proposal = proposal_base(series_cfg, filename, event, source, checked_at)
+        actionable_correction = bool(filled_session and replace_filled and not is_match and not conflict)
         proposal.update({
-            "proposalType": "verification" if filled_session else ("conflict" if conflict else ("time-update" if matched else "new-session")),
+            "proposalType": "time-update" if actionable_correction else ("verification" if filled_session else ("conflict" if conflict else ("time-update" if matched else "new-session"))),
             "sessionId": matched.get("id") if matched else None,
             "sessionName": matched.get("name") if matched else official.name,
             "current": {
@@ -919,18 +921,22 @@ def build_event_proposals(
                 "sessionId": (matched or {}).get("id") or "{}-s{}".format(event.get("id"), len(existing) + len(proposals) + 1),
             },
             "dateChanged": bool(matched and proposed_date and matched.get("date") != proposed_date),
-            "status": ("verified" if is_match else "mismatch") if filled_session else ("requires_review" if conflict else "open"),
+            "status": ("verified" if is_match else ("open" if actionable_correction else "mismatch")) if filled_session else ("requires_review" if conflict else "open"),
             "reason": (
                 "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron."
-                if is_match else "Debugcontrole: de ingevulde sessie wijkt af van de officiële bron."
+                if is_match else ("De ingevulde sessie wordt vervangen door de nieuwste officiële tijd." if actionable_correction else "Debugcontrole: de ingevulde sessie wijkt af van de officiële bron.")
             ) if filled_session else (conflict or "Official session time is available."),
-            "debug": filled_session,
+            "debug": bool(filled_session and not replace_filled),
         })
         fp_data = {
             "seriesId": proposal["seriesId"], "eventId": proposal["eventId"],
             "sessionId": proposal["sessionId"], "source": source.final_url,
-            "sourceTime": proposal["sourceTime"], "proposed": proposal["proposed"], "debug": filled_session,
+            "sourceTime": proposal["sourceTime"], "proposed": proposal["proposed"],
         }
+        # Keep normal and replace-filled scans on the same stable identity. Debug
+        # comparisons are intentionally separate and must not affect live proposals.
+        if proposal["debug"]:
+            fp_data["mode"] = "debug"
         proposal["fingerprint"] = fingerprint(fp_data)
         proposal["id"] = "schedule-" + proposal["fingerprint"][:16]
         proposals.append(proposal)
@@ -1002,7 +1008,21 @@ def merge_proposals(previous: Sequence[dict], current: Sequence[dict], generated
             superseded["supersededAt"] = generated_at
             superseded["supersededBy"] = replacement.get("fingerprint")
             merged.append(superseded)
-    return sorted(merged, key=lambda item: (item.get("eventName") or "", item.get("seriesName") or "", item.get("sessionName") or "", item.get("status") == "superseded"))
+    def chronological_key(item: dict) -> Tuple[str, str, str, str, bool]:
+        proposed = item.get("proposed") or {}
+        source_time = item.get("sourceTime") or {}
+        current = item.get("current") or {}
+        session_date = proposed.get("date") or source_time.get("date") or current.get("date") or "9999-99-99"
+        session_time = proposed.get("timeLocal") or source_time.get("time") or current.get("timeLocal") or "99:99"
+        return (
+            session_date,
+            session_time,
+            item.get("seriesName") or "",
+            item.get("eventName") or "",
+            item.get("status") == "superseded",
+        )
+
+    return sorted(merged, key=chronological_key)
 
 
 def calendar_inventory(root: Path, scope: set, event_ids: Optional[set] = None, include_filled: bool = False) -> List[Tuple[str, dict]]:
@@ -1042,7 +1062,7 @@ def resolve_event_year(event: dict, fallback: int) -> int:
     return fallback
 
 
-def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Optional[set], checked_at: str, fixtures_only: bool = False, only_events: Optional[set] = None, include_filled: bool = False) -> dict:
+def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Optional[set], checked_at: str, fixtures_only: bool = False, only_events: Optional[set] = None, include_filled: bool = False, replace_filled: bool = False) -> dict:
     series_by_id = {item["seriesId"]: item for item in registry["series"]}
     scope = set(series_by_id)
     if only_series:
@@ -1169,7 +1189,7 @@ def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Opti
             if not sessions:
                 raise SourceError("official page contains no reliably parseable race sessions yet")
             editor_tz = registry.get("editorTimeZones", {}).get(series_id, registry["editorTimeZones"]["default"])
-            proposals.extend(build_event_proposals(cfg, filename, event, source, sessions, editor_tz, checked_at, include_filled))
+            proposals.extend(build_event_proposals(cfg, filename, event, source, sessions, editor_tz, checked_at, include_filled, replace_filled))
             source_overview["{}:{}".format(series_id, event.get("id"))] = {
                 "seriesId": series_id, "eventId": event.get("id"), "eventName": event.get("raceName"),
                 "stableUrl": stable_url, "finalUrl": source.final_url, "title": source.title,
@@ -1201,6 +1221,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--series", action="append", help="Limit to an in-scope RaceDay series id (repeatable)")
     parser.add_argument("--event", action="append", help="Limit to a specific RaceDay event id (repeatable)")
     parser.add_argument("--include-filled", action="store_true", help="Debug: compare already-filled sessions without making them actionable")
+    parser.add_argument("--replace-filled", action="store_true", help="Event scan: propose official corrections for already-filled sessions")
     parser.add_argument("--now", help="Fixed ISO timestamp for deterministic runs")
     parser.add_argument("--dry-run", action="store_true", help="Print the result without writing the proposal store")
     parser.add_argument("--verbose", action="store_true")
@@ -1215,7 +1236,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     output_path = (args.output or root / ".raceday" / "session-time-proposals.json").resolve()
     registry = json.loads(registry_path.read_text(encoding="utf-8"))
     checked_at = args.now or datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
-    result = scan(root, registry, args.fixtures_dir, set(args.series or []), checked_at, args.fixtures_only, set(args.event or []), args.include_filled)
+    result = scan(root, registry, args.fixtures_dir, set(args.series or []), checked_at, args.fixtures_only, set(args.event or []), args.include_filled, args.replace_filled)
     previous = []
     if output_path.exists():
         try:
