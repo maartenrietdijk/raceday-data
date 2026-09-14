@@ -24,6 +24,7 @@ import unicodedata
 import zlib
 from dataclasses import dataclass
 from datetime import date, datetime, time, timezone
+from html.parser import HTMLParser
 from pathlib import Path
 from typing import Dict, Iterable, List, Optional, Sequence, Tuple
 from urllib.error import HTTPError, URLError
@@ -115,7 +116,11 @@ def similarity(left: object, right: object) -> float:
 
 def parse_clock(value: str) -> str:
     raw = html.unescape(value).strip().lower().replace(".", "")
-    match = re.search(r"\b(\d{1,2})[:.]?(\d{2})\s*([ap]m)?\b", raw)
+    match = re.search(r"\b(\d{1,2})[:.](\d{2})\s*([ap]m)?\b", raw)
+    if not match:
+        hour_only = re.search(r"\b(\d{1,2})\s*([ap]m)\b", raw)
+        if hour_only:
+            match = re.match(r"(\d{1,2})(00)([ap]m)", "{}00{}".format(*hour_only.groups()))
     if not match:
         raise ValueError("no clock time in {!r}".format(value))
     hour, minute = int(match.group(1)), int(match.group(2))
@@ -308,6 +313,8 @@ def discover_event_url(calendar: FetchResult, event: dict, year: int) -> Optiona
         target_tokens, nearby_tokens = tokens(target), tokens(nearby)
         context_score = len(target_tokens & nearby_tokens) / len(target_tokens) if target_tokens else 0.0
         score = max(direct_score, context_score * 0.8)
+        if "nascar.com" in (urlparse(url).hostname or "") and "/weekend-schedule/" in url:
+            score += 0.35
         if score > best[0]:
             best = (score, url)
     return best[1] if best[0] >= 0.14 else None
@@ -505,32 +512,153 @@ def parse_supercars_schedule(fetch: FetchResult, year: int, source_timezone: str
     return sorted(unique.values(), key=lambda item: (item.date, item.local_time, normalize(item.name)))
 
 
+class _NascarNode:
+    def __init__(self, tag: str = "document", attrs: Optional[dict] = None, parent: Optional["_NascarNode"] = None):
+        self.tag, self.attrs, self.parent = tag, attrs or {}, parent
+        self.parts: List[str] = []
+        self.children: List["_NascarNode"] = []
+
+    def text(self) -> str:
+        return " ".join(" ".join(self.parts).split())
+
+
+class _NascarHTMLTree(HTMLParser):
+    """Small tolerant tree used only for NASCAR's server-rendered schedule cards."""
+
+    VOID = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "source", "track", "wbr"}
+
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.root = _NascarNode()
+        self.stack = [self.root]
+
+    def handle_starttag(self, tag: str, attrs: List[Tuple[str, Optional[str]]]) -> None:
+        values = {key.lower(): value or "" for key, value in attrs}
+        node = _NascarNode(tag.lower(), values, self.stack[-1])
+        self.stack[-1].children.append(node)
+        if tag.lower() == "img" and values.get("alt"):
+            node.parts.append(values["alt"])
+        if tag.lower() not in self.VOID:
+            self.stack.append(node)
+
+    def handle_startendtag(self, tag: str, attrs: List[Tuple[str, Optional[str]]]) -> None:
+        self.handle_starttag(tag, attrs)
+
+    def handle_endtag(self, tag: str) -> None:
+        tag = tag.lower()
+        for index in range(len(self.stack) - 1, 0, -1):
+            if self.stack[index].tag == tag:
+                del self.stack[index:]
+                return
+
+    def handle_data(self, data: str) -> None:
+        if data.strip() and self.stack[-1].tag not in {"script", "style"}:
+            self.stack[-1].parts.append(data)
+
+    def close(self) -> None:
+        super().close()
+
+        def aggregate(node: _NascarNode) -> List[str]:
+            parts = list(node.parts)
+            for child in node.children:
+                parts.extend(aggregate(child))
+            node.parts = parts
+            return parts
+
+        aggregate(self.root)
+
+
+NASCAR_SERIES_MARKERS = {
+    "nascar": ("nascar cup series", "nascar-cup-series"),
+    "nascar_oreilly": ("nascar oreilly auto parts series", "nascar-oreilly-auto-parts-series", "noaps"),
+    "nascar_trucks": ("nascar craftsman truck series", "nascar-craftsman-truck-series", "ncts"),
+}
+
+
+def _nascar_date(value: str, year: int) -> Optional[str]:
+    raw = html.unescape(value)
+    iso = re.search(r"\b(20\d{2})-(\d{2})-(\d{2})(?:[T\s]|\b)", raw)
+    if iso:
+        try:
+            return date(int(iso.group(1)), int(iso.group(2)), int(iso.group(3))).isoformat()
+        except ValueError:
+            return None
+    month_first = re.search(
+        r"\b(January|February|March|April|May|June|July|August|September|October|November|December)\s+"
+        r"(\d{1,2})(?:,?\s+(20\d{2}))?\b", raw, re.I,
+    )
+    if not month_first:
+        return None
+    try:
+        return date(int(month_first.group(3) or year), MONTHS[month_first.group(1).lower()], int(month_first.group(2))).isoformat()
+    except ValueError:
+        return None
+
+
+def _nascar_node_date(node: _NascarNode, year: int) -> Optional[str]:
+    current: Optional[_NascarNode] = node
+    while current:
+        candidates = set()
+        for value in list(current.attrs.values()) + [current.text()]:
+            parsed = _nascar_date(value, year)
+            if parsed:
+                candidates.add(parsed)
+        if len(candidates) == 1:
+            return next(iter(candidates))
+        current = current.parent
+    return None
+
+
 def parse_nascar_text(fetch: FetchResult, event: dict, year: int, source_timezone: str) -> List[SourceSession]:
+    """Parse NASCAR's combined weekend grid, including all three national series."""
+    parser = _NascarHTMLTree()
+    parser.feed(fetch.body)
+    parser.close()
+    markers = NASCAR_SERIES_MARKERS.get(event.get("seriesId"), ())
+    target_race = normalize(event.get("raceName", ""))
+    target_track = normalize(event.get("circuitName", ""))
+    sessions: List[SourceSession] = []
+
+    def visit(node: _NascarNode) -> None:
+        raw = node.text()
+        normalized = normalize(raw)
+        normalized_markers = {normalize(marker) for marker in markers}
+        marker_count = max((normalized.count(marker) for marker in normalized_markers), default=0)
+        # A schedule card contains one series logo. Day columns and page wrappers
+        # contain several, so excluding them prevents cross-card time matches.
+        if marker_count == 1 and (not target_track or target_track in normalized):
+            time_match = re.search(r"\b\d{1,2}(?::\d{2})?\s*(?:a\.?m\.?|p\.?m\.?)\s*(?:ET|EST|EDT)\b", raw, re.I)
+            session_date = _nascar_node_date(node, year)
+            if time_match and session_date:
+                if re.search(r"\bqualif(?:y|ying|ication)\b", normalized):
+                    name = "Qualifying"
+                elif re.search(r"\b(?:final\s+)?practice\b", normalized):
+                    name = "Final Practice" if "final practice" in normalized else "Practice"
+                elif target_race and target_race in normalized:
+                    name = "Race"
+                else:
+                    name = ""
+                if name:
+                    sessions.append(SourceSession(name, session_date, parse_clock(time_match.group()), source_timezone))
+        for child in node.children:
+            visit(child)
+
+    visit(parser.root)
+    if sessions:
+        unique = {(normalize(item.name), item.date, item.local_time): item for item in sessions}
+        return sorted(unique.values(), key=lambda item: (item.date, item.local_time, normalize(item.name)))
+
+    # Compatibility with the former article-like page, which published one race
+    # date and time together around the event name.
     text = strip_tags(fetch.body)
-    target_terms = [event.get("raceName", ""), event.get("circuitName", "")]
-    positions = [normalize(text).find(normalize(term)) for term in target_terms if term]
-    positions = [position for position in positions if position >= 0]
+    needle = next((term for term in (event.get("raceName", ""), event.get("circuitName", "")) if term and re.search(re.escape(term), text, re.I)), None)
     window = text
-    if positions:
-        # Work on the original text around the first target occurrence when possible.
-        needle = next((term for term in target_terms if term and re.search(re.escape(term), text, re.I)), None)
-        if needle:
-            match = re.search(re.escape(needle), text, re.I)
-            window = text[max(0, match.start() - 400):match.end() + 700]
-    date_match = re.search(
-        r"(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun)[a-z]*[.,]?\s+"
-        r"(January|February|March|April|May|June|July|August|September|October|November|December)\s+"
-        r"(\d{1,2})(?:,\s*|\s+)(\d{4})",
-        window, re.I,
-    ) or re.search(r"(\d{1,2})/(\d{1,2})/(\d{4})", window)
-    time_match = re.search(r"\b(\d{1,2}[:.]\d{2}\s*[AP]M)\s*(?:ET|EST|EDT)\b", window, re.I)
-    if not date_match or not time_match:
-        return []
-    if date_match.group(1).isdigit():
-        session_date = date(int(date_match.group(3)), int(date_match.group(1)), int(date_match.group(2))).isoformat()
-    else:
-        session_date = date(int(date_match.group(3)), MONTHS[date_match.group(1).lower()], int(date_match.group(2))).isoformat()
-    return [SourceSession("Race", session_date, parse_clock(time_match.group(1)), source_timezone)]
+    if needle:
+        match = re.search(re.escape(needle), text, re.I)
+        window = text[max(0, match.start() - 400):match.end() + 700]
+    session_date = _nascar_date(window, year)
+    time_match = re.search(r"\b\d{1,2}(?::\d{2})?\s*(?:a\.?m\.?|p\.?m\.?)\s*(?:ET|EST|EDT)\b", window, re.I)
+    return [SourceSession("Race", session_date, parse_clock(time_match.group()), source_timezone)] if session_date and time_match else []
 
 
 def parse_british_gt_pdf(fetch: FetchResult, year: int, source_timezone: str) -> List[SourceSession]:
@@ -1218,6 +1346,15 @@ def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Opti
                 source_candidates = [source]
             elif fixtures_only:
                 raise SourceError("no fixed official fixture is available for this event")
+            elif cfg.get("sourceKind") == "nascar-et":
+                # NASCAR keeps this URL stable and redirects it to the active
+                # event page when the new weekend schedule is published.
+                # Never substitute a season overview, ticket page or stored
+                # event URL: the redirect target is the official source of truth.
+                if stable_url not in calendar_cache:
+                    calendar_cache[stable_url] = fetch_url(stable_url, cfg["allowedDomains"])
+                source = calendar_cache[stable_url]
+                source_candidates = [source]
             else:
                 known = registry.get("knownEventUrls", {}).get("{}:{}".format(series_id, event.get("id")))
                 if known:
