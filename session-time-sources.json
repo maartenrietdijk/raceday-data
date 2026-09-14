@@ -4,7 +4,8 @@
     "default": "Europe/Amsterdam",
     "nascar": "America/New_York",
     "nascar_oreilly": "America/New_York",
-    "nascar_trucks": "America/New_York"
+    "nascar_trucks": "America/New_York",
+    "supercars": "Australia/Sydney"
   },
   "series": [
     {
@@ -47,6 +48,34 @@
       "eventDiscovery": "Use the official round page or an official Formula E event preview that explicitly publishes local session times and UTC evidence.",
       "sourceTimeZone": "track",
       "notes": "Browser-local schedule values are not accepted without track-time or UTC evidence; rookie practice and fan-programme activities are ignored."
+    },
+    {
+      "seriesId": "supercars",
+      "name": "Repco Supercars Championship",
+      "startUrl": "https://www.supercars.com/{year}/supercars-calendar-tickets",
+      "eventUrlTemplate": "https://www.supercars.com/events/{year}-{slug}/schedule",
+      "eventSlugAliases": {
+        "sydney 500": "sydney",
+        "melbourne supersprint": "melbourne-supersprint",
+        "itm taupo super 440": "taupo",
+        "itm christchurch super 440": "christchurch",
+        "tyrepower tasmania super 440": "tasmania",
+        "betr darwin triple crown": "darwin",
+        "nti townsville 500": "townsville",
+        "perth super 440": "perth",
+        "century batteries ipswich super 440": "ipswich",
+        "airtouch 500 at the bend": "the-bend",
+        "repco bathurst 1000": "bathurst-1000",
+        "boost mobile gold coast 500": "gold-coast",
+        "penrite oil sandown 500": "sandown",
+        "bp adelaide grand final": "adelaide"
+      },
+      "allowedDomains": ["supercars.com", "www.supercars.com"],
+      "sourceKind": "supercars-embedded-schedule",
+      "officialSeriesName": "Repco Supercars Championship",
+      "eventDiscovery": "Open the official event Track Schedule and use its offset-aware embedded session records.",
+      "sourceTimeZone": "track",
+      "notes": "Only records whose exact series name is Repco Supercars Championship are accepted; all support categories and promoter activities are excluded."
     },
     {
       "seriesId": "nascar",
@@ -107,6 +136,10 @@
       "startUrl": "https://www.gt-world-challenge-america.com/calendar",
       "allowedDomains": ["gt-world-challenge-america.com", "www.gt-world-challenge-america.com"],
       "sourceKind": "sro-event-timetable",
+      "documentCategories": ["GT World Challenge America powered by AWS"],
+      "eventDocumentCategories": {
+        "gtwca-am-2026-r07": ["IGTC Indianapolis 8 Hour"]
+      },
       "eventDiscovery": "Follow Event Info and prefer the event timetable or linked official PDF.",
       "sourceTimeZone": "track",
       "notes": "The editor stores this series in Europe/Amsterdam."
@@ -271,6 +304,20 @@
     "barber motorsports park": "America/Chicago",
     "indianapolis motor speedway": "America/New_York",
     "sydney motorsport park": "Australia/Sydney",
+    "albert park circuit": "Australia/Melbourne",
+    "taupo international motorsport park": "Pacific/Auckland",
+    "mike pero motorsport park": "Pacific/Auckland",
+    "ruapuna raceway": "Pacific/Auckland",
+    "symmons plains raceway": "Australia/Hobart",
+    "hidden valley raceway": "Australia/Darwin",
+    "townsville street circuit": "Australia/Brisbane",
+    "wanneroo raceway": "Australia/Perth",
+    "carco com au raceway": "Australia/Perth",
+    "queensland raceway": "Australia/Brisbane",
+    "the bend motorsport park": "Australia/Adelaide",
+    "mount panorama circuit": "Australia/Sydney",
+    "streets of surfers paradise": "Australia/Brisbane",
+    "sandown raceway": "Australia/Melbourne",
     "adelaide grand final": "Australia/Adelaide",
     "beijing street circuit": "Asia/Shanghai",
     "shanghai international circuit": "Asia/Shanghai",

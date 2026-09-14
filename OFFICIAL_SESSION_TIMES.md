@@ -43,6 +43,7 @@ The registry in `session-time-sources.json` mirrors the existing RaceDay app/edi
 
 - NASCAR Cup, O'Reilly, and Trucks: `America/New_York`
 - F2, F3, NASCAR Euro, and every GT World Challenge series: `Europe/Amsterdam`
+- Supercars: `Australia/Sydney` (matching the existing editor/calendar contract)
 
 Official track/local time is first resolved in its IANA zone, converted to one UTC instant, and then converted to the editor zone. Fixed UTC offsets are never used. Non-existent DST times fail; ambiguous DST times become conflicts unless an official UTC/GMT column resolves the fold. Date changes caused by conversion are retained and highlighted in the editor.
 
@@ -50,9 +51,9 @@ Official track/local time is first resolved in its IANA zone, converted to one U
 
 `session-time-sources.json` is the maintained allowlist. Redirect targets must remain on an allowed official domain. Search snippets and secondary calendars are never parsed as evidence. Priority is event timetable or bulletin, event page, championship calendar, then official organizer/circuit page. The proposal store records both stable and final URLs, title, check time, source time/zone, editor time/zone, and source modification metadata when supplied.
 
-For British GT, the scanner follows the official **Event Timetable PDF** from the event page and extracts only rows labelled `British GT Championship`; support-series rows are ignored. The workflow installs the pinned `pypdf` reader for this step.
+For British GT, the scanner follows the official **Event Timetable PDF** from the event page and extracts only rows labelled `British GT Championship`; support-series rows are ignored. SRO event pages also prefer the linked official timetable PDF, including its fuller endurance schedule and date columns. The workflow installs the pinned `pypdf` reader for these steps.
 
-Current series IDs in scope are `f2`, `f3`, `f1academy`, `formulae`, `nascar`, `nascar_oreilly`, `nascar_trucks`, `nascareuro`, `gtwce`, `gtwca_am`, `gtwca_asia`, `gtwca_aus`, `british_gt`, `dtm`, `wec`, `alms`, `lemanscup`, `indycar`, `indynxt`, and `imsa`. Formula E uses official round pages or official event previews and accepts only track-local times backed by explicit UTC evidence; rookie and fan-programme sessions are ignored. WEC, ALMS, Le Mans Cup, INDYCAR, INDY NXT, and IMSA use official schedule documents where available; the scanner prefers a linked official PDF over a timetable page. DTM uses the public official DTM event API because its event pages render the timetable only after JavaScript loads. A series is skipped completely when none of its calendar files contains a TBC session, unless `--include-filled` is used for the proposals-page debug check.
+Current series IDs in scope are `f2`, `f3`, `f1academy`, `formulae`, `nascar`, `nascar_oreilly`, `nascar_trucks`, `nascareuro`, `gtwce`, `gtwca_am`, `gtwca_asia`, `gtwca_aus`, `british_gt`, `dtm`, `wec`, `alms`, `lemanscup`, `indycar`, `indynxt`, `imsa`, and `supercars`. Formula E uses official round pages or official event previews and accepts only track-local times backed by explicit UTC evidence; rookie and fan-programme sessions are ignored. WEC, ALMS, Le Mans Cup, INDYCAR, INDY NXT, and IMSA use official schedule documents where available; the scanner prefers a linked official PDF over a timetable page. Supercars uses the official event track schedule and accepts only records whose series is exactly `Repco Supercars Championship`, excluding every support category and non-session activity. DTM uses the public official DTM event API because its event pages render the timetable only after JavaScript loads. A series is skipped completely when none of its calendar files contains a TBC session, unless `--include-filled` is used for the proposals-page debug check.
 
 ## Automation
 

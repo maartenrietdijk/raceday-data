@@ -361,6 +361,10 @@ def normalize_kind(name: str) -> Optional[str]:
     raw = normalize(name)
     if any(word in raw for word in IGNORED_SESSION_WORDS):
         return None
+    # SRO endurance schedules use pre-qualifying as the second practice-style
+    # running session. It is not one of the driver qualifying sessions.
+    if "pre qualifying" in raw:
+        return "practice"
     if "sprint qualifying" in raw or "sprint shootout" in raw:
         return "sprintQualifying"
     if "sprint" in raw and "race" in raw:
@@ -417,6 +421,88 @@ def parse_official_tables(fetch: FetchResult, year: int, source_timezone: str) -
                     break
             sessions.append(SourceSession(name, session_date, local_clock, source_timezone, duration, utc_hint))
     return sessions
+
+
+def parse_supercars_schedule(fetch: FetchResult, year: int, source_timezone: str, series_name: str) -> List[SourceSession]:
+    """Parse the official Supercars schedule and exclude every support category.
+
+    Supercars event pages embed Contentful race-session records in the Next.js
+    response. Each record carries an exact series name and an offset-aware start
+    instant, which is safer than interpreting the browser's "My Time" display.
+    Official news articles use ordinary tables, so those are supported as a
+    fallback with the same exact category filter.
+    """
+    decoded = html.unescape(fetch.body).replace(r'\"', '"')
+    track_zone = ZoneInfo(source_timezone)
+    expected_series = normalize(series_name)
+    sessions: List[SourceSession] = []
+
+    for segment in decoded.split('{"specificLogoDark"')[1:]:
+        series_match = re.search(r'"series":\{"name":"([^"]+)"', segment)
+        if not series_match or normalize(series_match.group(1)) != expected_series:
+            continue
+        fields = {}
+        for field in ("name", "startDate", "endDate", "type"):
+            match = re.search(r'"{}":"([^"]+)"'.format(field), segment)
+            if match:
+                fields[field] = match.group(1)
+        name = fields.get("name", "")
+        if not fields.get("startDate") or not normalize_kind(name):
+            continue
+        try:
+            start = datetime.fromisoformat(fields["startDate"].replace("Z", "+00:00"))
+            end = datetime.fromisoformat(fields.get("endDate", "").replace("Z", "+00:00")) if fields.get("endDate") else None
+        except ValueError:
+            continue
+        if start.tzinfo is None:
+            continue
+        local_start = start.astimezone(track_zone)
+        if local_start.year != year:
+            continue
+        duration = int((end - start).total_seconds() // 60) if end and end.tzinfo else None
+        sessions.append(SourceSession(
+            name, local_start.date().isoformat(), local_start.strftime("%H:%M"),
+            source_timezone, duration if duration and duration > 0 else None,
+            start.astimezone(timezone.utc).strftime("%H:%M"),
+        ))
+
+    if not sessions:
+        for heading, rows in html_tables(fetch.body):
+            session_date = parse_document_date(heading, year)
+            if not session_date or len(rows) < 2:
+                continue
+            headers = [normalize(cell) for cell in rows[0]]
+            category_col = next((i for i, value in enumerate(headers) if "category" in value or "series" in value), None)
+            session_col = next((i for i, value in enumerate(headers) if "session" in value), None)
+            start_col = next((i for i, value in enumerate(headers) if value == "start" or "start time" in value), None)
+            finish_col = next((i for i, value in enumerate(headers) if value in {"finish", "end"} or "finish time" in value), None)
+            if category_col is None or session_col is None or start_col is None:
+                continue
+            for cells in rows[1:]:
+                if max(category_col, session_col, start_col) >= len(cells):
+                    continue
+                if normalize(cells[category_col]) not in {expected_series, "supercars"}:
+                    continue
+                name = cells[session_col]
+                if not normalize_kind(name):
+                    continue
+                try:
+                    start_clock = parse_clock(cells[start_col])
+                except ValueError:
+                    continue
+                duration = None
+                if finish_col is not None and finish_col < len(cells):
+                    try:
+                        start_value = datetime.strptime(start_clock, "%H:%M")
+                        end_value = datetime.strptime(parse_clock(cells[finish_col]), "%H:%M")
+                        minutes = int((end_value - start_value).total_seconds() // 60)
+                        duration = minutes if minutes > 0 else minutes + 24 * 60
+                    except ValueError:
+                        pass
+                sessions.append(SourceSession(name, session_date, start_clock, source_timezone, duration))
+
+    unique = {(normalize(item.name), item.date, item.local_time): item for item in sessions}
+    return sorted(unique.values(), key=lambda item: (item.date, item.local_time, normalize(item.name)))
 
 
 def parse_nascar_text(fetch: FetchResult, event: dict, year: int, source_timezone: str) -> List[SourceSession]:
@@ -507,17 +593,55 @@ def parse_official_schedule_document(fetch: FetchResult, year: int, source_timez
     current_date: Optional[str] = None
     category_terms = [normalize(value) for value in categories]
     session_pattern = re.compile(
-        r"\b(hyperpole|free\s+practice(?:\s*#?\d+)?|practice(?:\s*#?\d+)?|"
-        r"qualifying(?:\s+(?:session\s+)?#?\d+)?(?:\s*-\s*(?:gt3|gt4))?|"
+        r"\b(hyperpole|pole\s+shootout|pre[-\s]+qualifying|free\s+practice(?:\s*#?\d+)?|practice(?:\s*#?\d+)?|"
+        r"qualif(?:y|ying)(?:\s+(?:session\s+|driver\s+)?#?\d+)?(?:\s*-\s*(?:gt3|gt4))?|"
         r"qualifications?|warm\s*up|race(?:\s*#?\d+)?)\b",
         re.I,
     )
-    excluded = ("press conference", "briefing", "inspection", "track walk", "pit walk", "grid walk", "formation lap", "recon lap", "course clearance", "autograph", "finish:")
-    lines = document_lines(fetch.body)
-    for index, line in enumerate(lines):
-        parsed_date = parse_document_date(line, year)
-        if parsed_date:
-            current_date = parsed_date
+    excluded = ("press conference", "briefing", "inspection", "track walk", "pit walk", "grid walk", "formation lap", "recon lap", "course clearance", "autograph", "forms due", "tire sheets due", "finish:")
+    dated_lines: List[Tuple[str, Optional[str]]] = []
+    for page in fetch.body.split("\f"):
+        page_lines = document_lines(page)
+        dated = [(index, parse_document_date(line, year)) for index, line in enumerate(page_lines)]
+        dated = [(index, value) for index, value in dated if value]
+        column_dates = [
+            (index, value) for index, value in dated
+            if re.match(r"^(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\b", page_lines[index], re.I)
+        ]
+        first_clock = next((index for index, line in enumerate(page_lines) if re.search(r"\b\d{1,2}:\d{2}", line)), None)
+        # SRO's multi-column PDFs are extracted row-first and put the column
+        # date headings at the end of each page. Their repeated Broadcast
+        # header reliably marks the start of each day's column. A page may
+        # begin with the continuation of the previous day.
+        trailing_column_dates = bool(column_dates and first_clock is not None and min(index for index, _ in column_dates) > first_clock)
+        if trailing_column_dates:
+            page_dates = [value for _, value in column_dates]
+            header_indexes = [
+                index for index, line in enumerate(page_lines)
+                if normalize(line).startswith("broadcast start end duration category session")
+            ]
+            first_header = header_indexes[0] if header_indexes else len(page_lines)
+            if first_header > 0:
+                dated_lines.extend((line, current_date) for line in page_lines[:first_header] if not parse_document_date(line, year))
+            for group_index, start_index in enumerate(header_indexes):
+                end_index = header_indexes[group_index + 1] if group_index + 1 < len(header_indexes) else len(page_lines)
+                group_date = page_dates[min(group_index, len(page_dates) - 1)]
+                dated_lines.extend(
+                    (line, group_date)
+                    for line in page_lines[start_index:end_index]
+                    if not parse_document_date(line, year)
+                )
+            current_date = page_dates[-1]
+            continue
+        for line in page_lines:
+            parsed_date = parse_document_date(line, year)
+            if parsed_date:
+                current_date = parsed_date
+            dated_lines.append((line, current_date))
+
+    lines = [line for line, _ in dated_lines]
+    for index, (line, line_date) in enumerate(dated_lines):
+        current_date = line_date
         if not current_date:
             continue
         # Official programme pages commonly render one session as three
@@ -789,6 +913,9 @@ def match_session(source: SourceSession, sessions: Sequence[dict]) -> Tuple[Opti
     if len(exact) == 1:
         return exact[0], None
     source_number = session_number(source.name)
+    same_date = [item for item in sessions if item.get("kind") == source_kind and item.get("date") == source.date]
+    if source_number is None and len(same_date) == 1:
+        return same_date[0], None
     numbered = [
         item for item in sessions
         if item.get("kind") == source_kind and session_number(item.get("name", "")) == source_number
@@ -799,7 +926,10 @@ def match_session(source: SourceSession, sessions: Sequence[dict]) -> Tuple[Opti
     if source_number is not None and not numbered:
         generic = [item for item in same_kind if session_number(item.get("name", "")) is None]
         if len(generic) == 1:
-            return generic[0], "official source has numbered {} sessions but the editor has one unnumbered session".format(source_kind)
+            # The first numbered source session may safely reuse one generic
+            # editor slot. Later numbered sessions become new proposals because
+            # build_event_proposals removes already matched slots.
+            return generic[0], None
         return None, None
     if len(same_kind) == 1 and source_number is None:
         generic_qualifying = normalize(source.name) in {"qualifying", "qualification", "qualifications", "qualifying session"}
@@ -885,9 +1015,8 @@ def build_event_proposals(
         kind = normalize_kind(official.name)
         if not kind:
             continue
-        matched, conflict = match_session(official, existing)
-        if matched and matched.get("id") in matched_ids:
-            continue
+        available = [item for item in existing if item.get("id") not in matched_ids]
+        matched, conflict = match_session(official, available)
         filled_session = bool(matched and matched.get("timeLocal") is not None)
         if filled_session and not (include_filled or replace_filled):
             matched_ids.add(matched.get("id"))
@@ -1155,6 +1284,24 @@ def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Opti
                 sessions = parse_dtm_api(source, event_year, source_tz)
             elif cfg["sourceKind"] == "formula-e-schedule":
                 sessions = parse_formula_e_schedule(source, event, event_year, source_tz)
+            elif cfg["sourceKind"] == "supercars-embedded-schedule":
+                sessions = parse_supercars_schedule(source, event_year, source_tz, cfg["officialSeriesName"])
+            elif cfg["sourceKind"] == "sro-event-timetable":
+                sessions = []
+                pdf_url = discover_timetable_pdf(source)
+                if pdf_url:
+                    try:
+                        document = fetch_pdf_url(pdf_url, cfg["allowedDomains"])
+                        categories = cfg.get("eventDocumentCategories", {}).get(
+                            event.get("id"), cfg.get("documentCategories", [cfg["name"]])
+                        )
+                        sessions = parse_official_schedule_document(document, event_year, source_tz, categories)
+                        if sessions:
+                            source = document
+                    except SourceError as exc:
+                        LOG.info("Official SRO PDF could not be used for %s: %s", event.get("id"), exc)
+                if not sessions:
+                    sessions = parse_official_tables(source, event_year, source_tz)
             elif cfg["sourceKind"] == "official-schedule-document":
                 sessions = []
                 document_candidates = source_candidates or [source]
