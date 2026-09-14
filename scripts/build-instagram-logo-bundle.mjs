@@ -38,6 +38,8 @@ const logoMap = {
   btcc:             { file: 'btcc-wit.svg', scale: 1.08, maxWidth: 158, x: 0, y: 0 },
   tcr:              { file: 'tcr-wit.svg', scale: 1.08, maxWidth: 158, x: 0, y: 0 },
   supercars:        { file: 'supercars-wit.svg', scale: 1.08, maxWidth: 158, x: 0, y: 0 },
+  supergt:          { file: 'supergt-dark.svg', scale: 1.12, maxWidth: 160, x: 0, y: 0 },
+  sf:               { file: 'sf-dark.svg', scale: 1.1, maxWidth: 158, x: 0, y: 0 },
   porsche_supercup: { file: 'porschesupercup-wit.svg', scale: 1.0, maxWidth: 154, x: 0, y: 0 },
   motogp:           { file: 'motogp-dark.svg', scale: 1.16, maxWidth: 160, x: 0, y: 0 },
   moto2:            { file: 'moto2-dark.svg', scale: 1.16, maxWidth: 160, x: 0, y: 0 },
