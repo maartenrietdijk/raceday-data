@@ -1,165 +1,1850 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-14T19:58:00Z",
+  "generatedAt": "2026-09-14T20:01:39Z",
   "proposals": [
     {
-      "seriesId": "gtwca_asia",
-      "seriesName": "GT World Challenge Asia",
-      "calendarFile": "gtwca_asia_2026.json",
-      "eventId": "gtwca-asia-2026-r06",
-      "eventName": "Beijing Street Circuit",
-      "roundNumber": 6,
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2027.json",
+      "eventId": "imsa-2027-r00",
+      "eventName": "Roar Before The Rolex 24",
+      "roundNumber": 0,
       "source": {
-        "stableUrl": "https://www.gt-world-challenge-asia.com/calendar",
-        "finalUrl": "https://www.gt-world-challenge-asia.com/event/83/beijing-street-circuit",
-        "title": "Beijing Street Circuit, China, 2 - 4 October 2026 | GT World Challenge Asia Powered by AWS",
-        "checkedAt": "2026-09-14T19:58:00Z",
-        "lastModified": "Mon, 14 Sep 2026 19:58:02 GMT"
+        "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "title": "Official source",
+        "checkedAt": "2026-09-14T20:01:39Z",
+        "lastModified": null
       },
       "proposalType": "unresolved",
-      "sessionId": "gtwca-asia-2026-r06-s1",
-      "sessionName": "Practice",
+      "sessionId": "imsa-2027-r00-s1",
+      "sessionName": "Practice 1",
       "current": {
-        "date": "2026-10-02",
+        "date": "2027-01-22",
+        "timeLocal": null,
+        "durationMinutes": 75
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden",
+      "fingerprint": "6cf564d720bf58c48a74fa7261f4cc6859c323fc7b64b74869f1055d16492c44",
+      "id": "schedule-6cf564d720bf58c4"
+    },
+    {
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2027.json",
+      "eventId": "imsa-2027-r00",
+      "eventName": "Roar Before The Rolex 24",
+      "roundNumber": 0,
+      "source": {
+        "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "title": "Official source",
+        "checkedAt": "2026-09-14T20:01:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "imsa-2027-r00-s2",
+      "sessionName": "Practice 2",
+      "current": {
+        "date": "2027-01-22",
+        "timeLocal": null,
+        "durationMinutes": 120
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden",
+      "fingerprint": "fe5761826166207768ad98ccb7bb898da852dd500b2f2d9fac80f25a2cd1bad6",
+      "id": "schedule-fe57618261662077"
+    },
+    {
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2027.json",
+      "eventId": "imsa-2027-r00",
+      "eventName": "Roar Before The Rolex 24",
+      "roundNumber": 0,
+      "source": {
+        "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "title": "Official source",
+        "checkedAt": "2026-09-14T20:01:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "imsa-2027-r00-s3",
+      "sessionName": "Practice 3",
+      "current": {
+        "date": "2027-01-23",
+        "timeLocal": null,
+        "durationMinutes": 90
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden",
+      "fingerprint": "c5974a6d996f33885249822196fcd34c04532f0484c5140b024227e8d0618465",
+      "id": "schedule-c5974a6d996f3388"
+    },
+    {
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2027.json",
+      "eventId": "imsa-2027-r00",
+      "eventName": "Roar Before The Rolex 24",
+      "roundNumber": 0,
+      "source": {
+        "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "title": "Official source",
+        "checkedAt": "2026-09-14T20:01:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "imsa-2027-r00-s4",
+      "sessionName": "Practice 4",
+      "current": {
+        "date": "2027-01-23",
         "timeLocal": null,
         "durationMinutes": 60
       },
       "proposed": null,
       "editorTimeZone": null,
       "status": "unresolved",
-      "reason": "official page contains no reliably parseable race sessions yet",
-      "fingerprint": "bb1cbb8c330c5ad8fde342d152d470ace20c06705f9d154f77cc35d7f3ef963e",
-      "id": "schedule-bb1cbb8c330c5ad8"
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden",
+      "fingerprint": "486c8f6890a48c21cde45ceb19a9d437ac6a5c38f523df5e888cfe218aa59642",
+      "id": "schedule-486c8f6890a48c21"
     },
     {
-      "seriesId": "gtwca_asia",
-      "seriesName": "GT World Challenge Asia",
-      "calendarFile": "gtwca_asia_2026.json",
-      "eventId": "gtwca-asia-2026-r06",
-      "eventName": "Beijing Street Circuit",
-      "roundNumber": 6,
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2027.json",
+      "eventId": "imsa-2027-r00",
+      "eventName": "Roar Before The Rolex 24",
+      "roundNumber": 0,
       "source": {
-        "stableUrl": "https://www.gt-world-challenge-asia.com/calendar",
-        "finalUrl": "https://www.gt-world-challenge-asia.com/event/83/beijing-street-circuit",
-        "title": "Beijing Street Circuit, China, 2 - 4 October 2026 | GT World Challenge Asia Powered by AWS",
-        "checkedAt": "2026-09-14T19:58:00Z",
-        "lastModified": "Mon, 14 Sep 2026 19:58:02 GMT"
+        "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "title": "Official source",
+        "checkedAt": "2026-09-14T20:01:39Z",
+        "lastModified": null
       },
       "proposalType": "unresolved",
-      "sessionId": "gtwca-asia-2026-r06-s2",
-      "sessionName": "Qualifying 1",
+      "sessionId": "imsa-2027-r00-s5",
+      "sessionName": "Night Practice",
       "current": {
-        "date": "2026-10-03",
+        "date": "2027-01-23",
+        "timeLocal": null,
+        "durationMinutes": 120
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden",
+      "fingerprint": "246bc15a44decba7198e82a14f8a2b8814ca1c3d4e7408091c9ea08c2bd24ef4",
+      "id": "schedule-246bc15a44decba7"
+    },
+    {
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2027.json",
+      "eventId": "imsa-2027-r00",
+      "eventName": "Roar Before The Rolex 24",
+      "roundNumber": 0,
+      "source": {
+        "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "title": "Official source",
+        "checkedAt": "2026-09-14T20:01:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "imsa-2027-r00-s6",
+      "sessionName": "Practice 6",
+      "current": {
+        "date": "2027-01-24",
+        "timeLocal": null,
+        "durationMinutes": 60
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden",
+      "fingerprint": "6eb032cb9e413ffe1a35a8b84c20b7dfa596c91fbd0cc5c884b21c0a383a2fae",
+      "id": "schedule-6eb032cb9e413ffe"
+    },
+    {
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2027.json",
+      "eventId": "imsa-2027-r00",
+      "eventName": "Roar Before The Rolex 24",
+      "roundNumber": 0,
+      "source": {
+        "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "title": "Official source",
+        "checkedAt": "2026-09-14T20:01:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "imsa-2027-r00-s7",
+      "sessionName": "Bronze Driver Practice",
+      "current": {
+        "date": "2027-01-24",
+        "timeLocal": null,
+        "durationMinutes": 90
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden",
+      "fingerprint": "dddce34bb6b646478c9174686881230a2414f9636b26855f408929406c44df21",
+      "id": "schedule-dddce34bb6b64647"
+    },
+    {
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2027.json",
+      "eventId": "imsa-2027-r01",
+      "eventName": "Rolex 24 at Daytona",
+      "roundNumber": 1,
+      "source": {
+        "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "title": "Official source",
+        "checkedAt": "2026-09-14T20:01:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "imsa-2027-r01-s1",
+      "sessionName": "Practice 1",
+      "current": {
+        "date": "2027-01-28",
+        "timeLocal": null,
+        "durationMinutes": 90
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden",
+      "fingerprint": "0a3be0215745c7ad8bb385efcd558d367a8f37eb9596e03e4773206970b5d24f",
+      "id": "schedule-0a3be0215745c7ad"
+    },
+    {
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2027.json",
+      "eventId": "imsa-2027-r01",
+      "eventName": "Rolex 24 at Daytona",
+      "roundNumber": 1,
+      "source": {
+        "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "title": "Official source",
+        "checkedAt": "2026-09-14T20:01:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "imsa-2027-r01-s2",
+      "sessionName": "Qualifying",
+      "current": {
+        "date": "2027-01-28",
+        "timeLocal": null,
+        "durationMinutes": 75
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden",
+      "fingerprint": "cee671ca4ef186255e92cd05f78ff588d4c8f4b446664863047b9e5d18f673d1",
+      "id": "schedule-cee671ca4ef18625"
+    },
+    {
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2027.json",
+      "eventId": "imsa-2027-r01",
+      "eventName": "Rolex 24 at Daytona",
+      "roundNumber": 1,
+      "source": {
+        "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "title": "Official source",
+        "checkedAt": "2026-09-14T20:01:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "imsa-2027-r01-s3",
+      "sessionName": "Practice 2",
+      "current": {
+        "date": "2027-01-28",
+        "timeLocal": null,
+        "durationMinutes": 90
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden",
+      "fingerprint": "757baa0203cff56317bf7163a3ed42d4a132ea0357e930dd9984706a0a4d46e9",
+      "id": "schedule-757baa0203cff563"
+    },
+    {
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2027.json",
+      "eventId": "imsa-2027-r01",
+      "eventName": "Rolex 24 at Daytona",
+      "roundNumber": 1,
+      "source": {
+        "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "title": "Official source",
+        "checkedAt": "2026-09-14T20:01:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "imsa-2027-r01-s4",
+      "sessionName": "Practice 3",
+      "current": {
+        "date": "2027-01-29",
+        "timeLocal": null,
+        "durationMinutes": 75
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden",
+      "fingerprint": "95e76dc0467208bd06cc80d0520e8ca2413141dddf3c51ff0d4da1fd63cdfb93",
+      "id": "schedule-95e76dc0467208bd"
+    },
+    {
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2027.json",
+      "eventId": "imsa-2027-r01",
+      "eventName": "Rolex 24 at Daytona",
+      "roundNumber": 1,
+      "source": {
+        "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "title": "Official source",
+        "checkedAt": "2026-09-14T20:01:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "imsa-2027-r01-s5",
+      "sessionName": "Rolex 24",
+      "current": {
+        "date": "2027-01-30",
+        "timeLocal": null,
+        "durationMinutes": 1440
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden",
+      "fingerprint": "936ad23098a2c1c873416ac024adc098955e0974671e5ebdec806b9a8699f050",
+      "id": "schedule-936ad23098a2c1c8"
+    },
+    {
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2027.json",
+      "eventId": "imsa-2027-r02",
+      "eventName": "Mobil 1 Twelve Hours of Sebring",
+      "roundNumber": 2,
+      "source": {
+        "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "title": "Official source",
+        "checkedAt": "2026-09-14T20:01:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "imsa-2027-r02-s1",
+      "sessionName": "Practice 1",
+      "current": {
+        "date": "2027-03-18",
+        "timeLocal": null,
+        "durationMinutes": 90
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden",
+      "fingerprint": "e436bbd55433fc68f99e6f233ef2db2d353e8a911a010591f452a6ed19c7891a",
+      "id": "schedule-e436bbd55433fc68"
+    },
+    {
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2027.json",
+      "eventId": "imsa-2027-r02",
+      "eventName": "Mobil 1 Twelve Hours of Sebring",
+      "roundNumber": 2,
+      "source": {
+        "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "title": "Official source",
+        "checkedAt": "2026-09-14T20:01:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "imsa-2027-r02-s2",
+      "sessionName": "Practice 2",
+      "current": {
+        "date": "2027-03-18",
+        "timeLocal": null,
+        "durationMinutes": 105
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden",
+      "fingerprint": "c54ac4a807b1a1a7fd5468de2fcd3430e3a44f1df2f937caccc4d7302b04008f",
+      "id": "schedule-c54ac4a807b1a1a7"
+    },
+    {
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2027.json",
+      "eventId": "imsa-2027-r02",
+      "eventName": "Mobil 1 Twelve Hours of Sebring",
+      "roundNumber": 2,
+      "source": {
+        "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "title": "Official source",
+        "checkedAt": "2026-09-14T20:01:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "imsa-2027-r02-s3",
+      "sessionName": "Practice 3",
+      "current": {
+        "date": "2027-03-18",
+        "timeLocal": null,
+        "durationMinutes": 90
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden",
+      "fingerprint": "52d5de9dabfee484c46161d31dfc28b4a7c527f61311a1ecd497accedf2bd603",
+      "id": "schedule-52d5de9dabfee484"
+    },
+    {
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2027.json",
+      "eventId": "imsa-2027-r02",
+      "eventName": "Mobil 1 Twelve Hours of Sebring",
+      "roundNumber": 2,
+      "source": {
+        "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "title": "Official source",
+        "checkedAt": "2026-09-14T20:01:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "imsa-2027-r02-s4",
+      "sessionName": "Qualifying",
+      "current": {
+        "date": "2027-03-19",
+        "timeLocal": null,
+        "durationMinutes": 75
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden",
+      "fingerprint": "da44b57bb136823623ee6f4f16f2f0567b05d5f44fdb752b808dfd37bc910931",
+      "id": "schedule-da44b57bb1368236"
+    },
+    {
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2027.json",
+      "eventId": "imsa-2027-r02",
+      "eventName": "Mobil 1 Twelve Hours of Sebring",
+      "roundNumber": 2,
+      "source": {
+        "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "title": "Official source",
+        "checkedAt": "2026-09-14T20:01:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "imsa-2027-r02-s5",
+      "sessionName": "12 Hours of Sebring",
+      "current": {
+        "date": "2027-03-20",
+        "timeLocal": null,
+        "durationMinutes": 720
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden",
+      "fingerprint": "d15ef6a055ff1fa7f8f1f14a7be5bc3726369b87f89f19d19db57738cfd4be7b",
+      "id": "schedule-d15ef6a055ff1fa7"
+    },
+    {
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2027.json",
+      "eventId": "imsa-2027-r03",
+      "eventName": "Acura Grand Prix of Long Beach",
+      "roundNumber": 3,
+      "source": {
+        "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "title": "Official source",
+        "checkedAt": "2026-09-14T20:01:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "imsa-2027-r03-s1",
+      "sessionName": "Practice 1",
+      "current": {
+        "date": "2027-04-16",
+        "timeLocal": null,
+        "durationMinutes": 60
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden",
+      "fingerprint": "eb2243749cb6468946e3ada437343cf851ccbf87173ac463091d537b43d1de9c",
+      "id": "schedule-eb2243749cb64689"
+    },
+    {
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2027.json",
+      "eventId": "imsa-2027-r03",
+      "eventName": "Acura Grand Prix of Long Beach",
+      "roundNumber": 3,
+      "source": {
+        "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "title": "Official source",
+        "checkedAt": "2026-09-14T20:01:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "imsa-2027-r03-s2",
+      "sessionName": "Practice 2",
+      "current": {
+        "date": "2027-04-16",
+        "timeLocal": null,
+        "durationMinutes": 60
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden",
+      "fingerprint": "93ccbcbc0c220fc93ff1ff7ce64fee3d023c43986faa2a426378c3bfb859d5d1",
+      "id": "schedule-93ccbcbc0c220fc9"
+    },
+    {
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2027.json",
+      "eventId": "imsa-2027-r03",
+      "eventName": "Acura Grand Prix of Long Beach",
+      "roundNumber": 3,
+      "source": {
+        "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "title": "Official source",
+        "checkedAt": "2026-09-14T20:01:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "imsa-2027-r03-s3",
+      "sessionName": "Qualifying",
+      "current": {
+        "date": "2027-04-16",
+        "timeLocal": null,
+        "durationMinutes": 40
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden",
+      "fingerprint": "5b9fb1f04cef3cf0ebd1b71d22c3d64c8e428d07f310d21fcb98484fa9261b09",
+      "id": "schedule-5b9fb1f04cef3cf0"
+    },
+    {
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2027.json",
+      "eventId": "imsa-2027-r03",
+      "eventName": "Acura Grand Prix of Long Beach",
+      "roundNumber": 3,
+      "source": {
+        "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "title": "Official source",
+        "checkedAt": "2026-09-14T20:01:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "imsa-2027-r03-s4",
+      "sessionName": "Race",
+      "current": {
+        "date": "2027-04-17",
+        "timeLocal": null,
+        "durationMinutes": 100
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden",
+      "fingerprint": "50682b0be279ab86912113f99bc3dec71eadea07cdcb11c052268155cfb32929",
+      "id": "schedule-50682b0be279ab86"
+    },
+    {
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2027.json",
+      "eventId": "imsa-2027-r04",
+      "eventName": "WeatherTech Raceway Laguna Seca",
+      "roundNumber": 4,
+      "source": {
+        "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "title": "Official source",
+        "checkedAt": "2026-09-14T20:01:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "imsa-2027-r04-s1",
+      "sessionName": "Practice 1",
+      "current": {
+        "date": "2027-04-30",
+        "timeLocal": null,
+        "durationMinutes": 90
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden",
+      "fingerprint": "f28bb9b74d0e010269f0ea0da4141b237a1af3c4726eee751b2610da9c9551fd",
+      "id": "schedule-f28bb9b74d0e0102"
+    },
+    {
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2027.json",
+      "eventId": "imsa-2027-r04",
+      "eventName": "WeatherTech Raceway Laguna Seca",
+      "roundNumber": 4,
+      "source": {
+        "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "title": "Official source",
+        "checkedAt": "2026-09-14T20:01:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "imsa-2027-r04-s2",
+      "sessionName": "Practice 2",
+      "current": {
+        "date": "2027-05-01",
+        "timeLocal": null,
+        "durationMinutes": 90
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden",
+      "fingerprint": "11856207e4dc97fd942fe61f0f58f0580604c426095880dbbd2e40ea553e6f07",
+      "id": "schedule-11856207e4dc97fd"
+    },
+    {
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2027.json",
+      "eventId": "imsa-2027-r04",
+      "eventName": "WeatherTech Raceway Laguna Seca",
+      "roundNumber": 4,
+      "source": {
+        "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "title": "Official source",
+        "checkedAt": "2026-09-14T20:01:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "imsa-2027-r04-s3",
+      "sessionName": "Qualifying",
+      "current": {
+        "date": "2027-05-01",
+        "timeLocal": null,
+        "durationMinutes": 55
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden",
+      "fingerprint": "eeaee735fdc9d2097775141f2080ca547ed310ce9f0f4131602822a7ebf964c4",
+      "id": "schedule-eeaee735fdc9d209"
+    },
+    {
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2027.json",
+      "eventId": "imsa-2027-r04",
+      "eventName": "WeatherTech Raceway Laguna Seca",
+      "roundNumber": 4,
+      "source": {
+        "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "title": "Official source",
+        "checkedAt": "2026-09-14T20:01:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "imsa-2027-r04-s4",
+      "sessionName": "Race",
+      "current": {
+        "date": "2027-05-02",
+        "timeLocal": null,
+        "durationMinutes": 160
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden",
+      "fingerprint": "48aa619e8731bbbe576bfb57da7050bea2216084c8e01707572db71bf48c6f6f",
+      "id": "schedule-48aa619e8731bbbe"
+    },
+    {
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2027.json",
+      "eventId": "imsa-2027-r05",
+      "eventName": "Chevrolet Detroit Grand Prix Presented By Lear",
+      "roundNumber": 5,
+      "source": {
+        "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "title": "Official source",
+        "checkedAt": "2026-09-14T20:01:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "imsa-2027-r05-s1",
+      "sessionName": "Practice 1",
+      "current": {
+        "date": "2027-06-04",
+        "timeLocal": null,
+        "durationMinutes": 90
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden",
+      "fingerprint": "02cc9327cafa9509c0d9b3466f2330ca9feb7bfe3a28bb10d6dc83ba03f66ed8",
+      "id": "schedule-02cc9327cafa9509"
+    },
+    {
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2027.json",
+      "eventId": "imsa-2027-r05",
+      "eventName": "Chevrolet Detroit Grand Prix Presented By Lear",
+      "roundNumber": 5,
+      "source": {
+        "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "title": "Official source",
+        "checkedAt": "2026-09-14T20:01:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "imsa-2027-r05-s2",
+      "sessionName": "Practice 2",
+      "current": {
+        "date": "2027-06-04",
+        "timeLocal": null,
+        "durationMinutes": 120
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden",
+      "fingerprint": "bba34ef3765b236c582770bfa97571f6509d183b63ed2aeaa36f7cb98ceca3fd",
+      "id": "schedule-bba34ef3765b236c"
+    },
+    {
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2027.json",
+      "eventId": "imsa-2027-r05",
+      "eventName": "Chevrolet Detroit Grand Prix Presented By Lear",
+      "roundNumber": 5,
+      "source": {
+        "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "title": "Official source",
+        "checkedAt": "2026-09-14T20:01:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "imsa-2027-r05-s3",
+      "sessionName": "Qualifying",
+      "current": {
+        "date": "2027-06-04",
+        "timeLocal": null,
+        "durationMinutes": 35
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden",
+      "fingerprint": "d4021c01d3cba642a972be60c3eb30c19c903add7f9154c54ce5b43dbf5330ab",
+      "id": "schedule-d4021c01d3cba642"
+    },
+    {
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2027.json",
+      "eventId": "imsa-2027-r05",
+      "eventName": "Chevrolet Detroit Grand Prix Presented By Lear",
+      "roundNumber": 5,
+      "source": {
+        "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "title": "Official source",
+        "checkedAt": "2026-09-14T20:01:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "imsa-2027-r05-s4",
+      "sessionName": "Practice 3",
+      "current": {
+        "date": "2027-06-05",
         "timeLocal": null,
         "durationMinutes": 20
       },
       "proposed": null,
       "editorTimeZone": null,
       "status": "unresolved",
-      "reason": "official page contains no reliably parseable race sessions yet",
-      "fingerprint": "57bdb36f512b1b27a4a3b2798e3eee2231399da64f2cb79bc3faf87e07322e0d",
-      "id": "schedule-57bdb36f512b1b27"
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden",
+      "fingerprint": "d5d729aa5bb21dec38fd31bb8f9ca86e558437174c600a4a5b74c6d15e694356",
+      "id": "schedule-d5d729aa5bb21dec"
     },
     {
-      "seriesId": "gtwca_asia",
-      "seriesName": "GT World Challenge Asia",
-      "calendarFile": "gtwca_asia_2026.json",
-      "eventId": "gtwca-asia-2026-r06",
-      "eventName": "Beijing Street Circuit",
-      "roundNumber": 6,
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2027.json",
+      "eventId": "imsa-2027-r05",
+      "eventName": "Chevrolet Detroit Grand Prix Presented By Lear",
+      "roundNumber": 5,
       "source": {
-        "stableUrl": "https://www.gt-world-challenge-asia.com/calendar",
-        "finalUrl": "https://www.gt-world-challenge-asia.com/event/83/beijing-street-circuit",
-        "title": "Beijing Street Circuit, China, 2 - 4 October 2026 | GT World Challenge Asia Powered by AWS",
-        "checkedAt": "2026-09-14T19:58:00Z",
-        "lastModified": "Mon, 14 Sep 2026 19:58:02 GMT"
+        "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "title": "Official source",
+        "checkedAt": "2026-09-14T20:01:39Z",
+        "lastModified": null
       },
       "proposalType": "unresolved",
-      "sessionId": "gtwca-asia-2026-r06-s3",
-      "sessionName": "Race 1",
+      "sessionId": "imsa-2027-r05-s5",
+      "sessionName": "Race",
       "current": {
-        "date": "2026-10-03",
+        "date": "2027-06-05",
+        "timeLocal": null,
+        "durationMinutes": 100
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden",
+      "fingerprint": "31b14c5b26c341ae6c18240af1596b0b3cccd833da6fa0406af0035360f37769",
+      "id": "schedule-31b14c5b26c341ae"
+    },
+    {
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2027.json",
+      "eventId": "imsa-2027-r06",
+      "eventName": "Sahlen's Six Hours of The Glen",
+      "roundNumber": 6,
+      "source": {
+        "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "title": "Official source",
+        "checkedAt": "2026-09-14T20:01:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "imsa-2027-r06-s1",
+      "sessionName": "Practice 1",
+      "current": {
+        "date": "2027-06-25",
+        "timeLocal": null,
+        "durationMinutes": 90
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden",
+      "fingerprint": "81add054938f2b0da718f6fae47ec00d15b9e807575d7b684a80040f715006fa",
+      "id": "schedule-81add054938f2b0d"
+    },
+    {
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2027.json",
+      "eventId": "imsa-2027-r06",
+      "eventName": "Sahlen's Six Hours of The Glen",
+      "roundNumber": 6,
+      "source": {
+        "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "title": "Official source",
+        "checkedAt": "2026-09-14T20:01:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "imsa-2027-r06-s2",
+      "sessionName": "Practice 2",
+      "current": {
+        "date": "2027-06-26",
+        "timeLocal": null,
+        "durationMinutes": 105
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden",
+      "fingerprint": "c014b3e730a675d9553b3f42e76142cb9966691dd77feedd01c829b2c811ec4d",
+      "id": "schedule-c014b3e730a675d9"
+    },
+    {
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2027.json",
+      "eventId": "imsa-2027-r06",
+      "eventName": "Sahlen's Six Hours of The Glen",
+      "roundNumber": 6,
+      "source": {
+        "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "title": "Official source",
+        "checkedAt": "2026-09-14T20:01:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "imsa-2027-r06-s3",
+      "sessionName": "Qualifying",
+      "current": {
+        "date": "2027-06-26",
+        "timeLocal": null,
+        "durationMinutes": 35
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden",
+      "fingerprint": "5e55fe51aeae6dc77c5fa2b6da87fbae488f0b7b8dedbb9c9b321565575f046a",
+      "id": "schedule-5e55fe51aeae6dc7"
+    },
+    {
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2027.json",
+      "eventId": "imsa-2027-r06",
+      "eventName": "Sahlen's Six Hours of The Glen",
+      "roundNumber": 6,
+      "source": {
+        "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "title": "Official source",
+        "checkedAt": "2026-09-14T20:01:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "imsa-2027-r06-s4",
+      "sessionName": "Six Hours of The Glen",
+      "current": {
+        "date": "2027-06-27",
+        "timeLocal": null,
+        "durationMinutes": 360
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden",
+      "fingerprint": "b458c2052bcf029bd4bbfb60c3e5c34c86f7c51e35269d1577cacf11ccc0a59e",
+      "id": "schedule-b458c2052bcf029b"
+    },
+    {
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2027.json",
+      "eventId": "imsa-2027-r07",
+      "eventName": "Chevrolet Grand Prix",
+      "roundNumber": 7,
+      "source": {
+        "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "title": "Official source",
+        "checkedAt": "2026-09-14T20:01:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "imsa-2027-r07-s1",
+      "sessionName": "Practice 1",
+      "current": {
+        "date": "2027-07-09",
         "timeLocal": null,
         "durationMinutes": 60
       },
       "proposed": null,
       "editorTimeZone": null,
       "status": "unresolved",
-      "reason": "official page contains no reliably parseable race sessions yet",
-      "fingerprint": "cad083829b851c76d38211a42c1eb541aba704c573784723c6f545683d791ed5",
-      "id": "schedule-cad083829b851c76"
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden",
+      "fingerprint": "dbe3ad3d746bb1d8b7cdaee51e7d6f935266abd7b93262916021a71d76cfc5c7",
+      "id": "schedule-dbe3ad3d746bb1d8"
     },
     {
-      "seriesId": "gtwca_asia",
-      "seriesName": "GT World Challenge Asia",
-      "calendarFile": "gtwca_asia_2026.json",
-      "eventId": "gtwca-asia-2026-r06",
-      "eventName": "Beijing Street Circuit",
-      "roundNumber": 6,
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2027.json",
+      "eventId": "imsa-2027-r07",
+      "eventName": "Chevrolet Grand Prix",
+      "roundNumber": 7,
       "source": {
-        "stableUrl": "https://www.gt-world-challenge-asia.com/calendar",
-        "finalUrl": "https://www.gt-world-challenge-asia.com/event/83/beijing-street-circuit",
-        "title": "Beijing Street Circuit, China, 2 - 4 October 2026 | GT World Challenge Asia Powered by AWS",
-        "checkedAt": "2026-09-14T19:58:00Z",
-        "lastModified": "Mon, 14 Sep 2026 19:58:02 GMT"
+        "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "title": "Official source",
+        "checkedAt": "2026-09-14T20:01:39Z",
+        "lastModified": null
       },
       "proposalType": "unresolved",
-      "sessionId": "gtwca-asia-2026-r06-s4",
-      "sessionName": "Qualifying 2",
+      "sessionId": "imsa-2027-r07-s2",
+      "sessionName": "Practice 2",
       "current": {
-        "date": "2026-10-03",
+        "date": "2027-07-10",
         "timeLocal": null,
-        "durationMinutes": 20
+        "durationMinutes": 90
       },
       "proposed": null,
       "editorTimeZone": null,
       "status": "unresolved",
-      "reason": "official page contains no reliably parseable race sessions yet",
-      "fingerprint": "6c818369a5f336d6692c441a987da8bb210239704f269a33b8d8fc331e7476e0",
-      "id": "schedule-6c818369a5f336d6"
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden",
+      "fingerprint": "6c21a6a400bc56a7307583f5cae9b21059c171f45e8b5fd1b0830ad25cff574b",
+      "id": "schedule-6c21a6a400bc56a7"
     },
     {
-      "seriesId": "gtwca_asia",
-      "seriesName": "GT World Challenge Asia",
-      "calendarFile": "gtwca_asia_2026.json",
-      "eventId": "gtwca-asia-2026-r06",
-      "eventName": "Beijing Street Circuit",
-      "roundNumber": 6,
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2027.json",
+      "eventId": "imsa-2027-r07",
+      "eventName": "Chevrolet Grand Prix",
+      "roundNumber": 7,
       "source": {
-        "stableUrl": "https://www.gt-world-challenge-asia.com/calendar",
-        "finalUrl": "https://www.gt-world-challenge-asia.com/event/83/beijing-street-circuit",
-        "title": "Beijing Street Circuit, China, 2 - 4 October 2026 | GT World Challenge Asia Powered by AWS",
-        "checkedAt": "2026-09-14T19:58:00Z",
-        "lastModified": "Mon, 14 Sep 2026 19:58:02 GMT"
+        "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "title": "Official source",
+        "checkedAt": "2026-09-14T20:01:39Z",
+        "lastModified": null
       },
       "proposalType": "unresolved",
-      "sessionId": "gtwca-asia-2026-r06-s5",
-      "sessionName": "Race 2",
+      "sessionId": "imsa-2027-r07-s3",
+      "sessionName": "Qualifying",
       "current": {
-        "date": "2026-10-04",
+        "date": "2027-07-10",
+        "timeLocal": null,
+        "durationMinutes": 70
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden",
+      "fingerprint": "65fea4a0aefdf706fb4026225bca64668267004d7c8cb331d17502925d5da739",
+      "id": "schedule-65fea4a0aefdf706"
+    },
+    {
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2027.json",
+      "eventId": "imsa-2027-r07",
+      "eventName": "Chevrolet Grand Prix",
+      "roundNumber": 7,
+      "source": {
+        "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "title": "Official source",
+        "checkedAt": "2026-09-14T20:01:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "imsa-2027-r07-s4",
+      "sessionName": "Race",
+      "current": {
+        "date": "2027-07-11",
+        "timeLocal": null,
+        "durationMinutes": 160
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden",
+      "fingerprint": "864355f622c2b7d9f7832e9892da88e976fd291d48f4bc3d9e2bdd3ac444eb19",
+      "id": "schedule-864355f622c2b7d9"
+    },
+    {
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2027.json",
+      "eventId": "imsa-2027-r08",
+      "eventName": "Motul SportsCar Endurance Grand Prix",
+      "roundNumber": 8,
+      "source": {
+        "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "title": "Official source",
+        "checkedAt": "2026-09-14T20:01:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "imsa-2027-r08-s1",
+      "sessionName": "Practice 1",
+      "current": {
+        "date": "2027-08-06",
+        "timeLocal": null,
+        "durationMinutes": 90
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden",
+      "fingerprint": "e5d17168ee23a23ffc05f732ab38b6e22a10986d8a01085edea67012dd8566ee",
+      "id": "schedule-e5d17168ee23a23f"
+    },
+    {
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2027.json",
+      "eventId": "imsa-2027-r08",
+      "eventName": "Motul SportsCar Endurance Grand Prix",
+      "roundNumber": 8,
+      "source": {
+        "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "title": "Official source",
+        "checkedAt": "2026-09-14T20:01:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "imsa-2027-r08-s2",
+      "sessionName": "Practice 2",
+      "current": {
+        "date": "2027-08-07",
+        "timeLocal": null,
+        "durationMinutes": 90
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden",
+      "fingerprint": "8da2e58288062f1a1171d242948d47d84ce0a466042f6638dee2aa85a84f5b59",
+      "id": "schedule-8da2e58288062f1a"
+    },
+    {
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2027.json",
+      "eventId": "imsa-2027-r08",
+      "eventName": "Motul SportsCar Endurance Grand Prix",
+      "roundNumber": 8,
+      "source": {
+        "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "title": "Official source",
+        "checkedAt": "2026-09-14T20:01:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "imsa-2027-r08-s3",
+      "sessionName": "Qualifying",
+      "current": {
+        "date": "2027-08-07",
+        "timeLocal": null,
+        "durationMinutes": 35
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden",
+      "fingerprint": "5b3e9abdc738603d434c416999d3c18a86a84de8fe94fa5047ef3ba52a6c70f3",
+      "id": "schedule-5b3e9abdc738603d"
+    },
+    {
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2027.json",
+      "eventId": "imsa-2027-r08",
+      "eventName": "Motul SportsCar Endurance Grand Prix",
+      "roundNumber": 8,
+      "source": {
+        "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "title": "Official source",
+        "checkedAt": "2026-09-14T20:01:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "imsa-2027-r08-s4",
+      "sessionName": "6 Hour Race",
+      "current": {
+        "date": "2027-08-08",
+        "timeLocal": null,
+        "durationMinutes": 360
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden",
+      "fingerprint": "918abd2a54b58bf28087ea806caeade0540af9168bfdfca9dde66856d09a9587",
+      "id": "schedule-918abd2a54b58bf2"
+    },
+    {
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2027.json",
+      "eventId": "imsa-2027-r09",
+      "eventName": "Michelin GT Challenge at VIR",
+      "roundNumber": 9,
+      "source": {
+        "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "title": "Official source",
+        "checkedAt": "2026-09-14T20:01:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "imsa-2027-r09-s1",
+      "sessionName": "Practice 1",
+      "current": {
+        "date": "2027-08-20",
         "timeLocal": null,
         "durationMinutes": 60
       },
       "proposed": null,
       "editorTimeZone": null,
       "status": "unresolved",
-      "reason": "official page contains no reliably parseable race sessions yet",
-      "fingerprint": "32bba28008e7493537f2544046c07ad849c019f71eade2b96e39d1e08b412dfa",
-      "id": "schedule-32bba28008e74935"
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden",
+      "fingerprint": "dd0d73c1fdfbcc391554ce7a3b0d0315559a1d44b3194422e179fafee00e132b",
+      "id": "schedule-dd0d73c1fdfbcc39"
+    },
+    {
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2027.json",
+      "eventId": "imsa-2027-r09",
+      "eventName": "Michelin GT Challenge at VIR",
+      "roundNumber": 9,
+      "source": {
+        "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "title": "Official source",
+        "checkedAt": "2026-09-14T20:01:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "imsa-2027-r09-s2",
+      "sessionName": "Practice 2",
+      "current": {
+        "date": "2027-08-21",
+        "timeLocal": null,
+        "durationMinutes": 60
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden",
+      "fingerprint": "9efb37817b893f01374e560fd8b962f0b044f0f8e0fba1293b01a27c9bba8dc3",
+      "id": "schedule-9efb37817b893f01"
+    },
+    {
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2027.json",
+      "eventId": "imsa-2027-r09",
+      "eventName": "Michelin GT Challenge at VIR",
+      "roundNumber": 9,
+      "source": {
+        "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "title": "Official source",
+        "checkedAt": "2026-09-14T20:01:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "imsa-2027-r09-s3",
+      "sessionName": "Qualifying",
+      "current": {
+        "date": "2027-08-21",
+        "timeLocal": null,
+        "durationMinutes": 35
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden",
+      "fingerprint": "dcdaf1156c3e55682fddfbba861bf757d6f0936aadeb5aaf21bf345c0d93ad88",
+      "id": "schedule-dcdaf1156c3e5568"
+    },
+    {
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2027.json",
+      "eventId": "imsa-2027-r09",
+      "eventName": "Michelin GT Challenge at VIR",
+      "roundNumber": 9,
+      "source": {
+        "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "title": "Official source",
+        "checkedAt": "2026-09-14T20:01:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "imsa-2027-r09-s4",
+      "sessionName": "Race",
+      "current": {
+        "date": "2027-08-22",
+        "timeLocal": null,
+        "durationMinutes": 160
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden",
+      "fingerprint": "4f0b60bf0dfd3201d3b945c048f2877e0b3ceb46ce492332540ae4422c79782c",
+      "id": "schedule-4f0b60bf0dfd3201"
+    },
+    {
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2027.json",
+      "eventId": "imsa-2027-r10",
+      "eventName": "TireRack.com Battle On The Bricks",
+      "roundNumber": 10,
+      "source": {
+        "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "title": "Official source",
+        "checkedAt": "2026-09-14T20:01:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "imsa-2027-r10-s1",
+      "sessionName": "Practice 1",
+      "current": {
+        "date": "2027-09-17",
+        "timeLocal": null,
+        "durationMinutes": 60
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden",
+      "fingerprint": "7c8d257c26fd1b5899530e8861fac7a8c06ff3fed884550468db541da54a33a3",
+      "id": "schedule-7c8d257c26fd1b58"
+    },
+    {
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2027.json",
+      "eventId": "imsa-2027-r10",
+      "eventName": "TireRack.com Battle On The Bricks",
+      "roundNumber": 10,
+      "source": {
+        "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "title": "Official source",
+        "checkedAt": "2026-09-14T20:01:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "imsa-2027-r10-s2",
+      "sessionName": "Practice 2",
+      "current": {
+        "date": "2027-09-18",
+        "timeLocal": null,
+        "durationMinutes": 60
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden",
+      "fingerprint": "b51466cee4d0adb06b9819ab0bab78111651b9158db125aa763cfc5256450c6c",
+      "id": "schedule-b51466cee4d0adb0"
+    },
+    {
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2027.json",
+      "eventId": "imsa-2027-r10",
+      "eventName": "TireRack.com Battle On The Bricks",
+      "roundNumber": 10,
+      "source": {
+        "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "title": "Official source",
+        "checkedAt": "2026-09-14T20:01:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "imsa-2027-r10-s3",
+      "sessionName": "Qualifying",
+      "current": {
+        "date": "2027-09-18",
+        "timeLocal": null,
+        "durationMinutes": 35
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden",
+      "fingerprint": "7aee2b47ba627ee92a071aa4889989b6f7b23024b88134b44223616f08d96b11",
+      "id": "schedule-7aee2b47ba627ee9"
+    },
+    {
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2027.json",
+      "eventId": "imsa-2027-r10",
+      "eventName": "TireRack.com Battle On The Bricks",
+      "roundNumber": 10,
+      "source": {
+        "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "title": "Official source",
+        "checkedAt": "2026-09-14T20:01:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "imsa-2027-r10-s4",
+      "sessionName": "Race",
+      "current": {
+        "date": "2027-09-19",
+        "timeLocal": null,
+        "durationMinutes": 160
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden",
+      "fingerprint": "5f846122452d3fab57d5238a6aac67493513ae9eca7070a9eb3cc8d973486dfb",
+      "id": "schedule-5f846122452d3fab"
+    },
+    {
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2027.json",
+      "eventId": "imsa-2027-r11",
+      "eventName": "Motul Petit Le Mans",
+      "roundNumber": 11,
+      "source": {
+        "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "title": "Official source",
+        "checkedAt": "2026-09-14T20:01:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "imsa-2027-r11-s1",
+      "sessionName": "Practice 1",
+      "current": {
+        "date": "2027-10-07",
+        "timeLocal": null,
+        "durationMinutes": 90
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden",
+      "fingerprint": "f27d7b68e044eea9660c69355933e86d183eb4cd7b36f441b82773063a06b9fb",
+      "id": "schedule-f27d7b68e044eea9"
+    },
+    {
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2027.json",
+      "eventId": "imsa-2027-r11",
+      "eventName": "Motul Petit Le Mans",
+      "roundNumber": 11,
+      "source": {
+        "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "title": "Official source",
+        "checkedAt": "2026-09-14T20:01:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "imsa-2027-r11-s2",
+      "sessionName": "Practice 2",
+      "current": {
+        "date": "2027-10-07",
+        "timeLocal": null,
+        "durationMinutes": 90
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden",
+      "fingerprint": "10a7021301481c49437eaebe084d6393500480d30804252d1c8aae689bd134a8",
+      "id": "schedule-10a7021301481c49"
+    },
+    {
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2027.json",
+      "eventId": "imsa-2027-r11",
+      "eventName": "Motul Petit Le Mans",
+      "roundNumber": 11,
+      "source": {
+        "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "title": "Official source",
+        "checkedAt": "2026-09-14T20:01:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "imsa-2027-r11-s3",
+      "sessionName": "Qualifying",
+      "current": {
+        "date": "2027-10-08",
+        "timeLocal": null,
+        "durationMinutes": 35
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden",
+      "fingerprint": "07fe2cb4d2d650a23926ada678ae6e34cd385a7ebd6acaf2e3bcd6de319c1869",
+      "id": "schedule-07fe2cb4d2d650a2"
+    },
+    {
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2027.json",
+      "eventId": "imsa-2027-r11",
+      "eventName": "Motul Petit Le Mans",
+      "roundNumber": 11,
+      "source": {
+        "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+        "title": "Official source",
+        "checkedAt": "2026-09-14T20:01:39Z",
+        "lastModified": null
+      },
+      "proposalType": "unresolved",
+      "sessionId": "imsa-2027-r11-s4",
+      "sessionName": "Petit Le Mans",
+      "current": {
+        "date": "2027-10-09",
+        "timeLocal": null,
+        "durationMinutes": 600
+      },
+      "proposed": null,
+      "editorTimeZone": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden",
+      "fingerprint": "00d11d3364e2873065b5a7b43d07d6fb4290786003bae284057c97f39602cb7c",
+      "id": "schedule-00d11d3364e28730"
     }
   ],
   "sourcesUsed": [
     {
-      "seriesId": "gtwca_asia",
-      "eventId": "gtwca-asia-2026-r06",
-      "eventName": "Beijing Street Circuit",
-      "stableUrl": "https://www.gt-world-challenge-asia.com/calendar",
-      "finalUrl": "https://www.gt-world-challenge-asia.com/event/83/beijing-street-circuit",
-      "title": "Beijing Street Circuit, China, 2 - 4 October 2026 | GT World Challenge Asia Powered by AWS",
-      "checkedAt": "2026-09-14T19:58:00Z",
-      "lastModified": "Mon, 14 Sep 2026 19:58:02 GMT",
+      "seriesId": "imsa",
+      "eventId": "imsa-2026-r03",
+      "eventName": "Acura Grand Prix of Long Beach",
+      "stableUrl": "https://www.imsa.com/competitors/2026-imsa-weathertech-sportscar-championship-event-information/",
+      "finalUrl": "https://www.imsa.com/competitors/2026-imsa-weathertech-sportscar-championship-event-information/",
+      "title": "Official source",
+      "checkedAt": "2026-09-14T20:01:39Z",
+      "lastModified": null,
       "status": "unresolved",
-      "reason": "official page contains no reliably parseable race sessions yet"
+      "reason": "could not read official source https://www.imsa.com/competitors/2026-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden"
+    },
+    {
+      "seriesId": "imsa",
+      "eventId": "imsa-2027-r03",
+      "eventName": "Acura Grand Prix of Long Beach",
+      "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+      "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+      "title": "Official source",
+      "checkedAt": "2026-09-14T20:01:39Z",
+      "lastModified": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden"
+    },
+    {
+      "seriesId": "imsa",
+      "eventId": "imsa-2027-r05",
+      "eventName": "Chevrolet Detroit Grand Prix Presented By Lear",
+      "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+      "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+      "title": "Official source",
+      "checkedAt": "2026-09-14T20:01:39Z",
+      "lastModified": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden"
+    },
+    {
+      "seriesId": "imsa",
+      "eventId": "imsa-2026-r07",
+      "eventName": "Chevrolet Grand Prix",
+      "stableUrl": "https://www.imsa.com/competitors/2026-imsa-weathertech-sportscar-championship-event-information/",
+      "finalUrl": "https://www.imsa.com/competitors/2026-imsa-weathertech-sportscar-championship-event-information/",
+      "title": "Official source",
+      "checkedAt": "2026-09-14T20:01:39Z",
+      "lastModified": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2026-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden"
+    },
+    {
+      "seriesId": "imsa",
+      "eventId": "imsa-2027-r07",
+      "eventName": "Chevrolet Grand Prix",
+      "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+      "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+      "title": "Official source",
+      "checkedAt": "2026-09-14T20:01:39Z",
+      "lastModified": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden"
+    },
+    {
+      "seriesId": "imsa",
+      "eventId": "imsa-2026-r04",
+      "eventName": "Course de Monterey",
+      "stableUrl": "https://www.imsa.com/competitors/2026-imsa-weathertech-sportscar-championship-event-information/",
+      "finalUrl": "https://www.imsa.com/competitors/2026-imsa-weathertech-sportscar-championship-event-information/",
+      "title": "Official source",
+      "checkedAt": "2026-09-14T20:01:39Z",
+      "lastModified": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2026-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden"
+    },
+    {
+      "seriesId": "imsa",
+      "eventId": "imsa-2026-r05",
+      "eventName": "Detroit Grand Prix",
+      "stableUrl": "https://www.imsa.com/competitors/2026-imsa-weathertech-sportscar-championship-event-information/",
+      "finalUrl": "https://www.imsa.com/competitors/2026-imsa-weathertech-sportscar-championship-event-information/",
+      "title": "Official source",
+      "checkedAt": "2026-09-14T20:01:39Z",
+      "lastModified": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2026-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden"
+    },
+    {
+      "seriesId": "imsa",
+      "eventId": "imsa-2026-r09",
+      "eventName": "Michelin GT Challenge at VIR",
+      "stableUrl": "https://www.imsa.com/competitors/2026-imsa-weathertech-sportscar-championship-event-information/",
+      "finalUrl": "https://www.imsa.com/competitors/2026-imsa-weathertech-sportscar-championship-event-information/",
+      "title": "Official source",
+      "checkedAt": "2026-09-14T20:01:39Z",
+      "lastModified": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2026-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden"
+    },
+    {
+      "seriesId": "imsa",
+      "eventId": "imsa-2027-r09",
+      "eventName": "Michelin GT Challenge at VIR",
+      "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+      "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+      "title": "Official source",
+      "checkedAt": "2026-09-14T20:01:39Z",
+      "lastModified": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden"
+    },
+    {
+      "seriesId": "imsa",
+      "eventId": "imsa-2026-r02",
+      "eventName": "Mobil 1 Twelve Hours of Sebring",
+      "stableUrl": "https://www.imsa.com/competitors/2026-imsa-weathertech-sportscar-championship-event-information/",
+      "finalUrl": "https://www.imsa.com/competitors/2026-imsa-weathertech-sportscar-championship-event-information/",
+      "title": "Official source",
+      "checkedAt": "2026-09-14T20:01:39Z",
+      "lastModified": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2026-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden"
+    },
+    {
+      "seriesId": "imsa",
+      "eventId": "imsa-2027-r02",
+      "eventName": "Mobil 1 Twelve Hours of Sebring",
+      "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+      "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+      "title": "Official source",
+      "checkedAt": "2026-09-14T20:01:39Z",
+      "lastModified": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden"
+    },
+    {
+      "seriesId": "imsa",
+      "eventId": "imsa-2026-r11",
+      "eventName": "Motul Petit Le Mans",
+      "stableUrl": "https://www.imsa.com/competitors/2026-imsa-weathertech-sportscar-championship-event-information/",
+      "finalUrl": "https://www.imsa.com/competitors/2026-imsa-weathertech-sportscar-championship-event-information/",
+      "title": "Official source",
+      "checkedAt": "2026-09-14T20:01:39Z",
+      "lastModified": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2026-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden"
+    },
+    {
+      "seriesId": "imsa",
+      "eventId": "imsa-2027-r11",
+      "eventName": "Motul Petit Le Mans",
+      "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+      "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+      "title": "Official source",
+      "checkedAt": "2026-09-14T20:01:39Z",
+      "lastModified": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden"
+    },
+    {
+      "seriesId": "imsa",
+      "eventId": "imsa-2026-r08",
+      "eventName": "Motul SportsCar Endurance Grand Prix",
+      "stableUrl": "https://www.imsa.com/competitors/2026-imsa-weathertech-sportscar-championship-event-information/",
+      "finalUrl": "https://www.imsa.com/competitors/2026-imsa-weathertech-sportscar-championship-event-information/",
+      "title": "Official source",
+      "checkedAt": "2026-09-14T20:01:39Z",
+      "lastModified": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2026-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden"
+    },
+    {
+      "seriesId": "imsa",
+      "eventId": "imsa-2027-r08",
+      "eventName": "Motul SportsCar Endurance Grand Prix",
+      "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+      "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+      "title": "Official source",
+      "checkedAt": "2026-09-14T20:01:39Z",
+      "lastModified": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden"
+    },
+    {
+      "seriesId": "imsa",
+      "eventId": "imsa-2027-r00",
+      "eventName": "Roar Before The Rolex 24",
+      "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+      "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+      "title": "Official source",
+      "checkedAt": "2026-09-14T20:01:39Z",
+      "lastModified": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden"
+    },
+    {
+      "seriesId": "imsa",
+      "eventId": "imsa-2026-r01",
+      "eventName": "Rolex 24 at Daytona",
+      "stableUrl": "https://www.imsa.com/competitors/2026-imsa-weathertech-sportscar-championship-event-information/",
+      "finalUrl": "https://www.imsa.com/competitors/2026-imsa-weathertech-sportscar-championship-event-information/",
+      "title": "Official source",
+      "checkedAt": "2026-09-14T20:01:39Z",
+      "lastModified": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2026-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden"
+    },
+    {
+      "seriesId": "imsa",
+      "eventId": "imsa-2027-r01",
+      "eventName": "Rolex 24 at Daytona",
+      "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+      "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+      "title": "Official source",
+      "checkedAt": "2026-09-14T20:01:39Z",
+      "lastModified": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden"
+    },
+    {
+      "seriesId": "imsa",
+      "eventId": "imsa-2026-r06",
+      "eventName": "Sahlen's Six Hours of The Glen",
+      "stableUrl": "https://www.imsa.com/competitors/2026-imsa-weathertech-sportscar-championship-event-information/",
+      "finalUrl": "https://www.imsa.com/competitors/2026-imsa-weathertech-sportscar-championship-event-information/",
+      "title": "Official source",
+      "checkedAt": "2026-09-14T20:01:39Z",
+      "lastModified": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2026-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden"
+    },
+    {
+      "seriesId": "imsa",
+      "eventId": "imsa-2027-r06",
+      "eventName": "Sahlen's Six Hours of The Glen",
+      "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+      "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+      "title": "Official source",
+      "checkedAt": "2026-09-14T20:01:39Z",
+      "lastModified": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden"
+    },
+    {
+      "seriesId": "imsa",
+      "eventId": "imsa-2027-r10",
+      "eventName": "TireRack.com Battle On The Bricks",
+      "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+      "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+      "title": "Official source",
+      "checkedAt": "2026-09-14T20:01:39Z",
+      "lastModified": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden"
+    },
+    {
+      "seriesId": "imsa",
+      "eventId": "imsa-2026-r10",
+      "eventName": "Tirerack.com Battle on the Bricks",
+      "stableUrl": "https://www.imsa.com/competitors/2026-imsa-weathertech-sportscar-championship-event-information/",
+      "finalUrl": "https://www.imsa.com/competitors/2026-imsa-weathertech-sportscar-championship-event-information/",
+      "title": "Official source",
+      "checkedAt": "2026-09-14T20:01:39Z",
+      "lastModified": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2026-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden"
+    },
+    {
+      "seriesId": "imsa",
+      "eventId": "imsa-2027-r04",
+      "eventName": "WeatherTech Raceway Laguna Seca",
+      "stableUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+      "finalUrl": "https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/",
+      "title": "Official source",
+      "checkedAt": "2026-09-14T20:01:39Z",
+      "lastModified": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.imsa.com/competitors/2027-imsa-weathertech-sportscar-championship-event-information/: HTTP Error 403: Forbidden"
     }
   ]
 }
