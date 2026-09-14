@@ -35,6 +35,7 @@ from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 LOG = logging.getLogger("raceday.session_times")
 USER_AGENT = "RaceDay official schedule scanner/1.0 (+https://raceday.app)"
 PROPOSAL_SCHEMA_VERSION = 1
+_BROWSER_SESSION = None
 
 
 def tls_context() -> ssl.SSLContext:
@@ -221,12 +222,17 @@ def fetch_url(url: str, allowed_domains: Sequence[str]) -> FetchResult:
 
 def fetch_url_with_browser_fingerprint(url: str, allowed_domains: Sequence[str]) -> FetchResult:
     """Retry IMSA's official site with a real browser TLS/HTTP fingerprint."""
+    global _BROWSER_SESSION
     try:
         from curl_cffi import requests as browser_requests
     except ImportError as exc:
         raise SourceError("IMSA requires the curl_cffi browser reader") from exc
     try:
-        response = browser_requests.get(url, impersonate="chrome", timeout=25, allow_redirects=True)
+        if _BROWSER_SESSION is None:
+            _BROWSER_SESSION = browser_requests.Session(impersonate="chrome")
+        response = _BROWSER_SESSION.get(url, timeout=25, allow_redirects=True)
+        if response.status_code == 403:
+            response = browser_requests.get(url, impersonate="safari", timeout=25, allow_redirects=True)
         response.raise_for_status()
     except Exception as exc:
         raise SourceError("could not read official source {} with browser reader: {}".format(url, exc)) from exc
@@ -331,6 +337,8 @@ def discover_event_url(calendar: FetchResult, event: dict, year: int) -> Optiona
     best: Tuple[float, Optional[str]] = (0.0, None)
     for link in re.finditer(r"<a\b[^>]*href=[\"']([^\"']+)[\"'][^>]*>(.*?)</a>", calendar.body, re.I | re.S):
         url = urljoin(calendar.final_url, html.unescape(link.group(1)))
+        if "imsa.com" in (urlparse(url).hostname or "") and "/events/" in urlparse(url).path.lower() and not urlparse(url).path.endswith("/"):
+            url = url + "/"
         label = strip_tags(link.group(2))
         if not re.search(r"event|racing|race|schedule|timetable|programme|document|results", "{} {}".format(url, label), re.I):
             continue
