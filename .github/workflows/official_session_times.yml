@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
     inputs:
       series:
-        description: 'Optional RaceDay series id; empty scans every in-scope TBC series'
+        description: 'Optional RaceDay series id (including supercars); empty scans every in-scope TBC series'
         required: false
         type: string
       event:
