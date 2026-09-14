@@ -1,4 +1,5 @@
 name: Scan Official Session Times
+run-name: Session times · ${{ inputs.series || 'all' }} · ${{ inputs.event || 'automatic' }}
 
 on:
   workflow_dispatch:
@@ -13,6 +14,11 @@ on:
         type: string
       include_filled:
         description: 'Debug: compare already-filled sessions without making them actionable'
+        required: false
+        default: false
+        type: boolean
+      replace_filled:
+        description: 'Event scan: replace filled sessions when official times changed'
         required: false
         default: false
         type: boolean
@@ -61,6 +67,9 @@ jobs:
           fi
           if [ "${{ inputs.include_filled }}" = "true" ]; then
             args+=(--include-filled)
+          fi
+          if [ "${{ inputs.replace_filled }}" = "true" ]; then
+            args+=(--replace-filled)
           fi
           python official_schedule_scanner.py "${args[@]}"
 
