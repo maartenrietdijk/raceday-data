@@ -739,11 +739,24 @@
     });
   }
 
+  function selectedSeriesOrder() {
+    const selectedSeries = new Set(instagramState.displayItems
+      .filter(item => instagramState.selectedIds.has(item.uid))
+      .map(item => item.seriesId));
+    return instagramState.seriesOrder.filter(id => selectedSeries.has(id));
+  }
+
+  function applyVisibleSeriesOrder(ids) {
+    const visible = new Set(ids);
+    let next = 0;
+    instagramState.seriesOrder = instagramState.seriesOrder.map(id => visible.has(id) ? ids[next++] : id);
+  }
+
   function renderSeriesOrder() {
     const list = document.getElementById('instagramSeriesOrder');
     if (!list) return;
     const names = new Map(instagramState.allSessions.map(item => [item.seriesId, item.seriesName]));
-    const ids = instagramState.seriesOrder.filter(id => names.has(id));
+    const ids = selectedSeriesOrder().filter(id => names.has(id));
     list.innerHTML = ids.map((id, index) => `<div class="instagram-series-order-item" data-series-id="${esc(id)}"
         ondragover="event.preventDefault()" ondrop="dropInstagramSeries(event, this.dataset.seriesId)">
       <div class="instagram-series-order-main">
@@ -785,10 +798,12 @@
   }
 
   function moveInstagramSeries(seriesId, direction) {
-    const index = instagramState.seriesOrder.indexOf(seriesId);
+    const ids = selectedSeriesOrder();
+    const index = ids.indexOf(seriesId);
     const next = index + Number(direction);
-    if (index < 0 || next < 0 || next >= instagramState.seriesOrder.length) return;
-    [instagramState.seriesOrder[index], instagramState.seriesOrder[next]] = [instagramState.seriesOrder[next], instagramState.seriesOrder[index]];
+    if (index < 0 || next < 0 || next >= ids.length) return;
+    [ids[index], ids[next]] = [ids[next], ids[index]];
+    applyVisibleSeriesOrder(ids);
     applySeriesOrderChange();
   }
 
@@ -839,11 +854,13 @@
     event.preventDefault();
     const sourceId = instagramState.draggedSeriesId || event.dataTransfer.getData('text/plain');
     if (!sourceId || sourceId === targetId) return;
-    const sourceIndex = instagramState.seriesOrder.indexOf(sourceId);
-    const targetIndex = instagramState.seriesOrder.indexOf(targetId);
+    const ids = selectedSeriesOrder();
+    const sourceIndex = ids.indexOf(sourceId);
+    const targetIndex = ids.indexOf(targetId);
     if (sourceIndex < 0 || targetIndex < 0) return;
-    instagramState.seriesOrder.splice(sourceIndex, 1);
-    instagramState.seriesOrder.splice(targetIndex, 0, sourceId);
+    ids.splice(sourceIndex, 1);
+    ids.splice(targetIndex, 0, sourceId);
+    applyVisibleSeriesOrder(ids);
     instagramState.draggedSeriesId = '';
     applySeriesOrderChange();
   }
@@ -917,7 +934,7 @@
     instagramState.slideIndex = 0;
     const formatControls = document.querySelector('.instagram-format-controls');
     formatControls?.classList.toggle('day-mode', ['day', 'dayNoTimes'].includes(instagramState.mode));
-    renderSessionControls(); rebuildSlides();
+    renderSeriesOrder(); renderSessionControls(); rebuildSlides();
   }
 
   function setInstagramMode(mode) {
@@ -1021,6 +1038,7 @@
 
   function toggleInstagramSession(uid, enabled) {
     if (enabled) instagramState.selectedIds.add(uid); else instagramState.selectedIds.delete(uid);
+    renderSeriesOrder();
     rebuildSlides();
   }
 
@@ -1091,6 +1109,7 @@
   window.downloadInstagramPng = downloadInstagramPng;
   window.RaceDayInstagram = {
     collectWeekendSessions, buildSlides, buildOverviewItems, sessionInstant, sessionEndDateKey, localTimeInfo, sessionLabel,
-    weekendRangeFor, renderSlide, contentTop, maxSessionsPerSlide, state: instagramState, WIDTH, HEIGHT,
+    weekendRangeFor, renderSlide, contentTop, maxSessionsPerSlide, selectedSeriesOrder,
+    state: instagramState, WIDTH, HEIGHT,
   };
 })();
