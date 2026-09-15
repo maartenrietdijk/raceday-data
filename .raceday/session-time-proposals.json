@@ -172,11 +172,13 @@
         "sessionId": "moto2-2026-15-qual"
       },
       "dateChanged": false,
-      "status": "open",
+      "status": "accepted",
       "reason": "De ingevulde sessie wordt vervangen door de nieuwste officiële tijd.",
       "debug": false,
       "fingerprint": "aef02784de3bfdf149f3526ab3395e3548039a1bc013fe40ca0c2bd1ec2a2269",
-      "id": "schedule-aef02784de3bfdf1"
+      "id": "schedule-aef02784de3bfdf1",
+      "reconciled": true,
+      "decisionAt": "2026-09-15T17:45:17.779Z"
     },
     {
       "seriesId": "moto2",
@@ -216,11 +218,12 @@
         "sessionId": "moto2-2026-15-s10"
       },
       "dateChanged": false,
-      "status": "open",
+      "status": "accepted",
       "reason": "Official session time is available.",
       "debug": false,
       "fingerprint": "c159591dd417d12aa3a30838f033358f4adc83ec690bb40d64099a3e8aaed809",
-      "id": "schedule-c159591dd417d12a"
+      "id": "schedule-c159591dd417d12a",
+      "decisionAt": "2026-09-15T17:45:33.199Z"
     },
     {
       "seriesId": "moto2",
