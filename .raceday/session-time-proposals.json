@@ -1,7 +1,52 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-15T17:39:31Z",
+  "generatedAt": "2026-09-15T17:41:20Z",
   "proposals": [
+    {
+      "seriesId": "wsbk",
+      "seriesName": "MOTUL FIM Superbike World Championship",
+      "calendarFile": "wsbk_2026.json",
+      "eventId": "wsbk-2026-r10",
+      "eventName": "Italian Round",
+      "roundNumber": 10,
+      "source": {
+        "stableUrl": "https://www.worldsbk.com/en/calendar",
+        "finalUrl": "https://www.worldsbk.com/en/calendar",
+        "title": "EICMA Italian Round",
+        "checkedAt": "2026-09-15T17:41:20Z",
+        "lastModified": null
+      },
+      "proposalType": "verification",
+      "sessionId": "wsbk-2026-r10-fp1",
+      "sessionName": "Free Practice 1",
+      "current": {
+        "date": "2026-09-25",
+        "timeLocal": "10:20",
+        "durationMinutes": 45
+      },
+      "sourceTime": {
+        "date": "2026-09-25",
+        "time": "10:20",
+        "timeZone": "Europe/Rome"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-09-25",
+        "timeLocal": "10:20",
+        "durationMinutes": 45,
+        "name": "Free Practice 1",
+        "kind": "practice",
+        "utcInstant": "2026-09-25T08:20:00Z",
+        "sessionId": "wsbk-2026-r10-fp1"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "db542a04425de6928231c233769b29ae0ba4004a6243527c83db78a893320b6c",
+      "id": "schedule-db542a04425de692",
+      "replacesFingerprint": "1d505e4ebbfd4f3a514f75b48d93b10f35168375a27d15722d79a44d8f9302bc"
+    },
     {
       "seriesId": "wsbk",
       "seriesName": "MOTUL FIM Superbike World Championship",
@@ -40,11 +85,58 @@
         "sessionId": "wsbk-2026-r10-fp1"
       },
       "dateChanged": false,
-      "status": "verified",
+      "status": "superseded",
       "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
       "debug": false,
       "fingerprint": "1d505e4ebbfd4f3a514f75b48d93b10f35168375a27d15722d79a44d8f9302bc",
-      "id": "schedule-1d505e4ebbfd4f3a"
+      "id": "schedule-1d505e4ebbfd4f3a",
+      "supersededAt": "2026-09-15T17:41:20Z",
+      "supersededBy": "db542a04425de6928231c233769b29ae0ba4004a6243527c83db78a893320b6c"
+    },
+    {
+      "seriesId": "wsbk",
+      "seriesName": "MOTUL FIM Superbike World Championship",
+      "calendarFile": "wsbk_2026.json",
+      "eventId": "wsbk-2026-r10",
+      "eventName": "Italian Round",
+      "roundNumber": 10,
+      "source": {
+        "stableUrl": "https://www.worldsbk.com/en/calendar",
+        "finalUrl": "https://www.worldsbk.com/en/calendar",
+        "title": "EICMA Italian Round",
+        "checkedAt": "2026-09-15T17:41:20Z",
+        "lastModified": null
+      },
+      "proposalType": "verification",
+      "sessionId": "wsbk-2026-r10-fp2",
+      "sessionName": "Free Practice 2",
+      "current": {
+        "date": "2026-09-25",
+        "timeLocal": "15:00",
+        "durationMinutes": 45
+      },
+      "sourceTime": {
+        "date": "2026-09-25",
+        "time": "15:00",
+        "timeZone": "Europe/Rome"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-09-25",
+        "timeLocal": "15:00",
+        "durationMinutes": 45,
+        "name": "Free Practice 2",
+        "kind": "practice",
+        "utcInstant": "2026-09-25T13:00:00Z",
+        "sessionId": "wsbk-2026-r10-fp2"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "c8aec67fbe2ac4d33ca1dd6dba37bba150d6b7e489190a2246c6a1e29bef4913",
+      "id": "schedule-c8aec67fbe2ac4d3",
+      "replacesFingerprint": "c4d68f20114363c551e1597ebea3846fc8764d144ab4674b4b1049454ff3ee5f"
     },
     {
       "seriesId": "wsbk",
@@ -84,11 +176,58 @@
         "sessionId": "wsbk-2026-r10-fp2"
       },
       "dateChanged": false,
-      "status": "verified",
+      "status": "superseded",
       "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
       "debug": false,
       "fingerprint": "c4d68f20114363c551e1597ebea3846fc8764d144ab4674b4b1049454ff3ee5f",
-      "id": "schedule-c4d68f20114363c5"
+      "id": "schedule-c4d68f20114363c5",
+      "supersededAt": "2026-09-15T17:41:20Z",
+      "supersededBy": "c8aec67fbe2ac4d33ca1dd6dba37bba150d6b7e489190a2246c6a1e29bef4913"
+    },
+    {
+      "seriesId": "wsbk",
+      "seriesName": "MOTUL FIM Superbike World Championship",
+      "calendarFile": "wsbk_2026.json",
+      "eventId": "wsbk-2026-r10",
+      "eventName": "Italian Round",
+      "roundNumber": 10,
+      "source": {
+        "stableUrl": "https://www.worldsbk.com/en/calendar",
+        "finalUrl": "https://www.worldsbk.com/en/calendar",
+        "title": "EICMA Italian Round",
+        "checkedAt": "2026-09-15T17:41:20Z",
+        "lastModified": null
+      },
+      "proposalType": "verification",
+      "sessionId": "wsbk-2026-r10-fp3",
+      "sessionName": "Free Practice 3",
+      "current": {
+        "date": "2026-09-26",
+        "timeLocal": "09:40",
+        "durationMinutes": 30
+      },
+      "sourceTime": {
+        "date": "2026-09-26",
+        "time": "09:40",
+        "timeZone": "Europe/Rome"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-09-26",
+        "timeLocal": "09:40",
+        "durationMinutes": 20,
+        "name": "Free Practice 3",
+        "kind": "practice",
+        "utcInstant": "2026-09-26T07:40:00Z",
+        "sessionId": "wsbk-2026-r10-fp3"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "0916abf211a889797ff73737a7f6ee1788153143eeb37198378ecd0e16ed7994",
+      "id": "schedule-0916abf211a88979",
+      "replacesFingerprint": "7062949ba437a2d8143f5655e2e20d5f693f5b2fb1a5a93cbf3153ca522e0565"
     },
     {
       "seriesId": "wsbk",
@@ -128,11 +267,58 @@
         "sessionId": "wsbk-2026-r10-fp3"
       },
       "dateChanged": false,
-      "status": "verified",
+      "status": "superseded",
       "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
       "debug": false,
       "fingerprint": "7062949ba437a2d8143f5655e2e20d5f693f5b2fb1a5a93cbf3153ca522e0565",
-      "id": "schedule-7062949ba437a2d8"
+      "id": "schedule-7062949ba437a2d8",
+      "supersededAt": "2026-09-15T17:41:20Z",
+      "supersededBy": "0916abf211a889797ff73737a7f6ee1788153143eeb37198378ecd0e16ed7994"
+    },
+    {
+      "seriesId": "wsbk",
+      "seriesName": "MOTUL FIM Superbike World Championship",
+      "calendarFile": "wsbk_2026.json",
+      "eventId": "wsbk-2026-r10",
+      "eventName": "Italian Round",
+      "roundNumber": 10,
+      "source": {
+        "stableUrl": "https://www.worldsbk.com/en/calendar",
+        "finalUrl": "https://www.worldsbk.com/en/calendar",
+        "title": "EICMA Italian Round",
+        "checkedAt": "2026-09-15T17:41:20Z",
+        "lastModified": null
+      },
+      "proposalType": "verification",
+      "sessionId": "wsbk-2026-r10-sp",
+      "sessionName": "Superpole",
+      "current": {
+        "date": "2026-09-26",
+        "timeLocal": "11:15",
+        "durationMinutes": 30
+      },
+      "sourceTime": {
+        "date": "2026-09-26",
+        "time": "11:15",
+        "timeZone": "Europe/Rome"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-09-26",
+        "timeLocal": "11:15",
+        "durationMinutes": 15,
+        "name": "Superpole",
+        "kind": "qualifying",
+        "utcInstant": "2026-09-26T09:15:00Z",
+        "sessionId": "wsbk-2026-r10-sp"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "2669ec55536108d41932c9847f32b5adb9f42f9fddba90422aa24e0f02c7619e",
+      "id": "schedule-2669ec55536108d4",
+      "replacesFingerprint": "aa92e54c058c4207bceaf39f8a6658d6f4fa862bbfa5b7d5c627b7117fa5ce2b"
     },
     {
       "seriesId": "wsbk",
@@ -172,11 +358,58 @@
         "sessionId": "wsbk-2026-r10-sp"
       },
       "dateChanged": false,
-      "status": "verified",
+      "status": "superseded",
       "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
       "debug": false,
       "fingerprint": "aa92e54c058c4207bceaf39f8a6658d6f4fa862bbfa5b7d5c627b7117fa5ce2b",
-      "id": "schedule-aa92e54c058c4207"
+      "id": "schedule-aa92e54c058c4207",
+      "supersededAt": "2026-09-15T17:41:20Z",
+      "supersededBy": "2669ec55536108d41932c9847f32b5adb9f42f9fddba90422aa24e0f02c7619e"
+    },
+    {
+      "seriesId": "wsbk",
+      "seriesName": "MOTUL FIM Superbike World Championship",
+      "calendarFile": "wsbk_2026.json",
+      "eventId": "wsbk-2026-r10",
+      "eventName": "Italian Round",
+      "roundNumber": 10,
+      "source": {
+        "stableUrl": "https://www.worldsbk.com/en/calendar",
+        "finalUrl": "https://www.worldsbk.com/en/calendar",
+        "title": "EICMA Italian Round",
+        "checkedAt": "2026-09-15T17:41:20Z",
+        "lastModified": null
+      },
+      "proposalType": "verification",
+      "sessionId": "wsbk-2026-r10-r1",
+      "sessionName": "Race 1",
+      "current": {
+        "date": "2026-09-26",
+        "timeLocal": "15:30",
+        "durationMinutes": 40
+      },
+      "sourceTime": {
+        "date": "2026-09-26",
+        "time": "15:30",
+        "timeZone": "Europe/Rome"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-09-26",
+        "timeLocal": "15:30",
+        "durationMinutes": 40,
+        "name": "Race 1",
+        "kind": "race",
+        "utcInstant": "2026-09-26T13:30:00Z",
+        "sessionId": "wsbk-2026-r10-r1"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "c8fab15e4c87cd7eb3cd58128f1d37f347314d6047ce0b2f81f5fb808537dd4f",
+      "id": "schedule-c8fab15e4c87cd7e",
+      "replacesFingerprint": "bd53ec5fe7bb3df495fe917c8913cc44133fe4aa8471fa24fb821027c56a6973"
     },
     {
       "seriesId": "wsbk",
@@ -216,11 +449,58 @@
         "sessionId": "wsbk-2026-r10-r1"
       },
       "dateChanged": false,
-      "status": "verified",
+      "status": "superseded",
       "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
       "debug": false,
       "fingerprint": "bd53ec5fe7bb3df495fe917c8913cc44133fe4aa8471fa24fb821027c56a6973",
-      "id": "schedule-bd53ec5fe7bb3df4"
+      "id": "schedule-bd53ec5fe7bb3df4",
+      "supersededAt": "2026-09-15T17:41:20Z",
+      "supersededBy": "c8fab15e4c87cd7eb3cd58128f1d37f347314d6047ce0b2f81f5fb808537dd4f"
+    },
+    {
+      "seriesId": "wsbk",
+      "seriesName": "MOTUL FIM Superbike World Championship",
+      "calendarFile": "wsbk_2026.json",
+      "eventId": "wsbk-2026-r10",
+      "eventName": "Italian Round",
+      "roundNumber": 10,
+      "source": {
+        "stableUrl": "https://www.worldsbk.com/en/calendar",
+        "finalUrl": "https://www.worldsbk.com/en/calendar",
+        "title": "EICMA Italian Round",
+        "checkedAt": "2026-09-15T17:41:20Z",
+        "lastModified": null
+      },
+      "proposalType": "verification",
+      "sessionId": "wsbk-2026-r10-spr",
+      "sessionName": "Warmup",
+      "current": {
+        "date": "2026-09-27",
+        "timeLocal": "09:20",
+        "durationMinutes": 10
+      },
+      "sourceTime": {
+        "date": "2026-09-27",
+        "time": "09:20",
+        "timeZone": "Europe/Rome"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-09-27",
+        "timeLocal": "09:20",
+        "durationMinutes": 10,
+        "name": "Warmup",
+        "kind": "practice",
+        "utcInstant": "2026-09-27T07:20:00Z",
+        "sessionId": "wsbk-2026-r10-spr"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "4fd6b2bc9937d5a7d4e1553e7474c0b304fe191bb2475b25a8b854be251f5298",
+      "id": "schedule-4fd6b2bc9937d5a7",
+      "replacesFingerprint": "b2519a87beffc25fce1826c92735f4f9fd45c3bda0f9d2946b66fc9e2fc76210"
     },
     {
       "seriesId": "wsbk",
@@ -260,11 +540,58 @@
         "sessionId": "wsbk-2026-r10-spr"
       },
       "dateChanged": false,
-      "status": "verified",
+      "status": "superseded",
       "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
       "debug": false,
       "fingerprint": "b2519a87beffc25fce1826c92735f4f9fd45c3bda0f9d2946b66fc9e2fc76210",
-      "id": "schedule-b2519a87beffc25f"
+      "id": "schedule-b2519a87beffc25f",
+      "supersededAt": "2026-09-15T17:41:20Z",
+      "supersededBy": "4fd6b2bc9937d5a7d4e1553e7474c0b304fe191bb2475b25a8b854be251f5298"
+    },
+    {
+      "seriesId": "wsbk",
+      "seriesName": "MOTUL FIM Superbike World Championship",
+      "calendarFile": "wsbk_2026.json",
+      "eventId": "wsbk-2026-r10",
+      "eventName": "Italian Round",
+      "roundNumber": 10,
+      "source": {
+        "stableUrl": "https://www.worldsbk.com/en/calendar",
+        "finalUrl": "https://www.worldsbk.com/en/calendar",
+        "title": "EICMA Italian Round",
+        "checkedAt": "2026-09-15T17:41:20Z",
+        "lastModified": null
+      },
+      "proposalType": "verification",
+      "sessionId": "wsbk-2026-r10-r2",
+      "sessionName": "Race 2",
+      "current": {
+        "date": "2026-09-27",
+        "timeLocal": "15:30",
+        "durationMinutes": 40
+      },
+      "sourceTime": {
+        "date": "2026-09-27",
+        "time": "15:30",
+        "timeZone": "Europe/Rome"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-09-27",
+        "timeLocal": "15:30",
+        "durationMinutes": 40,
+        "name": "Race 2",
+        "kind": "race",
+        "utcInstant": "2026-09-27T13:30:00Z",
+        "sessionId": "wsbk-2026-r10-r2"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "ca1b2519ad0124ad11662db3400e1536d91a8c0e9555409bb314bce1c8b17ef7",
+      "id": "schedule-ca1b2519ad0124ad",
+      "replacesFingerprint": "a760e54b489c4f9c56fbe3384037f8675a79195a69e31c1c9c0b285c0316396b"
     },
     {
       "seriesId": "wsbk",
@@ -304,11 +631,13 @@
         "sessionId": "wsbk-2026-r10-r2"
       },
       "dateChanged": false,
-      "status": "verified",
+      "status": "superseded",
       "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
       "debug": false,
       "fingerprint": "a760e54b489c4f9c56fbe3384037f8675a79195a69e31c1c9c0b285c0316396b",
-      "id": "schedule-a760e54b489c4f9c"
+      "id": "schedule-a760e54b489c4f9c",
+      "supersededAt": "2026-09-15T17:41:20Z",
+      "supersededBy": "ca1b2519ad0124ad11662db3400e1536d91a8c0e9555409bb314bce1c8b17ef7"
     }
   ],
   "sourcesUsed": [
@@ -319,7 +648,7 @@
       "stableUrl": "https://www.worldsbk.com/en/calendar",
       "finalUrl": "https://www.worldsbk.com/en/calendar",
       "title": "EICMA Italian Round",
-      "checkedAt": "2026-09-15T17:39:31Z",
+      "checkedAt": "2026-09-15T17:41:20Z",
       "lastModified": null
     }
   ]
