@@ -468,11 +468,14 @@ def discover_rally_itinerary_url(event_page: FetchResult) -> Optional[str]:
 def rally_page_ready(fetch: FetchResult) -> bool:
     """Check for the useful WRC/ERC payload, not merely a large app shell."""
     path = urlparse(fetch.final_url).path.lower()
-    if "itinerary" in path:
-        return any(
-            re.match(r"^\d{1,2}:\d{2}\s*:?\s*(?:shakedown\b|(?:wolf\s+)?power\s+stage\b|sss?\s*\d+\b)", line, re.I)
-            for line in document_lines(fetch.body)
-        )
+    has_timed_stages = any(
+        re.match(r"^\d{1,2}:\d{2}\s*:?\s*(?:shakedown\b|(?:wolf\s+)?power\s+stage\b|sss?\s*\d+\b)", line, re.I)
+        for line in document_lines(fetch.body)
+    )
+    if has_timed_stages:
+        return True
+    if "itinerary" in path or "/v3/api/graphql/" in path:
+        return False
     if path.rstrip("/").endswith("/calendar"):
         return len(re.findall(r"/events/", fetch.body, re.I)) >= 2
     if "/events/" in path:
@@ -480,9 +483,34 @@ def rally_page_ready(fetch: FetchResult) -> bool:
     return len(fetch.body) >= 20_000
 
 
+def rally_content_api_url(itinerary_url: str) -> Optional[str]:
+    """Build WRC Promoter's official JSON endpoint for an itinerary tab."""
+    parsed = urlparse(itinerary_url)
+    slug = parsed.path.rstrip("/").rsplit("/", 1)[-1]
+    if "itinerar" not in slug.lower():
+        return None
+    return (
+        "{}://{}/v3/api/graphql/v1/v3/feed/en-INT?disableUsageRestrictions=true"
+        "&filter%5Btype%5D=event-details&filter%5BuriSlug%5D={}"
+        "&page%5Blimit%5D=1&rb3Locale=en&rb3Schema=v1:inlineContent"
+    ).format(parsed.scheme, parsed.netloc, quote(slug, safe=""))
+
+
 def retry_rally_prerender(fetch: FetchResult, url: str, allowed_domains: Sequence[str]) -> FetchResult:
     """WRC Promoter may return a full-size shell before useful data is ready."""
     result = fetch
+    api_url = rally_content_api_url(url)
+    if not rally_page_ready(result) and api_url:
+        try:
+            api_result = fetch_url(api_url, allowed_domains)
+            if rally_page_ready(api_result):
+                # Keep the public itinerary URL as the reviewable citation.
+                return FetchResult(
+                    fetch.stable_url, fetch.final_url, fetch.title,
+                    api_result.body, api_result.last_modified,
+                )
+        except SourceError as exc:
+            LOG.debug("Official rally itinerary API fallback failed: %s", exc)
     # WRC's edge cache can return several complete-looking app shells before
     # returning the server-rendered itinerary. Allow enough bounded retries
     # for the useful HTML while still failing cleanly for future rallies whose
@@ -941,6 +969,26 @@ def parse_british_gt_pdf(fetch: FetchResult, year: int, source_timezone: str) ->
 
 
 def document_lines(body: str) -> List[str]:
+    if body.lstrip().startswith(("{", "[")):
+        try:
+            payload = json.loads(body)
+        except json.JSONDecodeError:
+            pass
+        else:
+            values: List[str] = []
+
+            def collect_strings(value: object) -> None:
+                if isinstance(value, str):
+                    values.extend(value.splitlines())
+                elif isinstance(value, list):
+                    for item in value:
+                        collect_strings(item)
+                elif isinstance(value, dict):
+                    for item in value.values():
+                        collect_strings(item)
+
+            collect_strings(payload)
+            return [" ".join(line.split()) for line in values if line.strip()]
     if re.search(r"<html|<body|<div|<table|<li|<h[1-6]", body, re.I):
         body = re.sub(r"</(?:div|p|li|tr|h[1-6]|section|article)>|<br\s*/?>", "\n", body, flags=re.I)
         body = re.sub(r"<[^>]+>", " ", body)
