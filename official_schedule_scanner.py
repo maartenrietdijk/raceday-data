@@ -395,7 +395,16 @@ def discover_rally_itinerary_url(event_page: FetchResult) -> Optional[str]:
             continue
         if url.rstrip("/") == event_page.final_url.rstrip("/"):
             continue
-        priority = 4 if is_pdf else (3 if re.search(r"itinerary.?stages|stages.?itinerary", combined, re.I) else 2)
+        # Prefer the HTML itinerary tab when both it and a PDF are linked.
+        # The HTML carries the same official stage table, needs no optional
+        # PDF dependency in GitHub Actions, and remains useful when no PDF has
+        # been published yet.
+        if not is_pdf and re.search(r"itinerar", combined, re.I):
+            priority = 5
+        elif is_pdf:
+            priority = 4
+        else:
+            priority = 2
         candidates.append((priority, url))
     return max(candidates, default=(0, None))[1]
 
@@ -418,7 +427,11 @@ def rally_page_ready(fetch: FetchResult) -> bool:
 def retry_rally_prerender(fetch: FetchResult, url: str, allowed_domains: Sequence[str]) -> FetchResult:
     """WRC Promoter may return a full-size shell before useful data is ready."""
     result = fetch
-    for _ in range(2):
+    # WRC's edge cache can return several complete-looking app shells before
+    # returning the server-rendered itinerary. Allow enough bounded retries
+    # for the useful HTML while still failing cleanly for future rallies whose
+    # itinerary has not been published.
+    for _ in range(5):
         if rally_page_ready(result):
             break
         candidate = fetch_url(url, allowed_domains)
