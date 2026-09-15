@@ -48,6 +48,7 @@
   function filtered(items, filters = {}) {
     return (items || []).filter(item => {
       if (filters.seriesId && item.seriesId !== filters.seriesId) return false;
+      if (filters.eventId && item.eventId !== filters.eventId) return false;
       if (filters.status === 'active' && !ACTIVE.has(item.status)) return false;
       if (filters.status && filters.status !== 'active' && item.status !== filters.status) return false;
       const itemDate = proposalDate(item);

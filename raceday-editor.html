@@ -746,6 +746,7 @@
   .proposal-toolbar-note { margin-top: 2px; color: var(--muted); font-size: 11.5px; }
   .proposal-toolbar .field { min-width: 170px; flex: 1 1 170px; }
   .proposal-toolbar select { min-height: 44px; }
+  .proposal-debug-progress { flex: 1 0 100%; overflow: hidden; border: 1px solid var(--border2); border-radius: 4px; background: var(--bg); }
   .proposal-event { margin-bottom: 14px; overflow: hidden; border-radius: 6px; background: var(--bg); box-shadow: var(--shadow); }
   [data-theme="dark"] .proposal-event { border: 1px solid var(--border); }
   .proposal-event-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 20px; border-bottom: 1px solid var(--border2); }
@@ -1304,7 +1305,7 @@ const AUTO_RESULTS_SERIES = new Set([
 const OFFICIAL_TIME_SERIES = new Set([
   'f2', 'f3', 'f1academy', 'nascar', 'nascar_oreilly', 'nascar_trucks',
   'nascareuro', 'gtwce', 'gtwca_am', 'gtwca_asia', 'gtwca_aus',
-  'british_gt', 'dtm', 'wec', 'alms', 'lemanscup', 'indycar', 'indynxt', 'imsa', 'formulae', 'supercars',
+  'british_gt', 'dtm', 'wec', 'alms', 'lemanscup', 'indycar', 'indynxt', 'imsa', 'formulae', 'supercars', 'wrc', 'erc',
 ]);
 
 let state = {
@@ -1327,7 +1328,7 @@ let state = {
   proposalDecisionsDirty: false,
   github: { token: '', repo: '', branch: 'main', path: '' }
 };
-let proposalFilters = { seriesId: '', status: 'active', year: '', periodDays: '' };
+let proposalFilters = { seriesId: '', eventId: '', status: 'active', year: '', periodDays: '' };
 let proposalLoadState = { status: 'idle', error: '' };
 const officialScanProgress = {};
 let seriesQuery = '';
@@ -2068,6 +2069,21 @@ function proposalSeriesOptions() {
   }).join('');
 }
 
+function proposalEventOptions() {
+  if (!proposalFilters.seriesId) return '';
+  return calendarFilesForSeries(proposalFilters.seriesId)
+    .flatMap(file => (state.calendarFiles[file.filename] || []).map(round => ({
+      id: round.id,
+      name: round.raceName || round.name || round.id,
+      season: calendarSeasonLabel(file.filename),
+      date: sessionDateValue(round.sessions?.[0]) || '',
+    })))
+    .filter(event => event.id)
+    .sort((left, right) => String(left.date || '9999-99-99').localeCompare(String(right.date || '9999-99-99')) || left.name.localeCompare(right.name, 'nl'))
+    .map(event => `<option value="${esc(event.id)}" ${proposalFilters.eventId === event.id ? 'selected' : ''}>${esc(event.name)} · ${esc(event.season)}</option>`)
+    .join('');
+}
+
 function proposalYearOptions() {
   const years = [...new Set(state.proposals.map(RaceDayProposals.proposalDate)
     .map(value => String(value || '').match(/^(\d{4})/)?.[1]).filter(Boolean))].sort();
@@ -2190,10 +2206,11 @@ function renderProposals() {
     </div>
     <div class="proposal-toolbar" aria-label="Voorstelfilters">
       <div class="proposal-toolbar-heading">
-        <div><div class="proposal-toolbar-title">Filters</div><div class="proposal-toolbar-note">Kies een serie om ook volledig ingevulde sessies via een debugscan te controleren.</div></div>
-        <button class="btn btn-ghost btn-sm" id="debugOfficialTimesBtn" onclick="debugOfficialTimes()">Debug: test ingevulde sessies</button>
+        <div><div class="proposal-toolbar-title">Filters en debug</div><div class="proposal-toolbar-note">Kies een serie en event om alleen dat event, inclusief volledig ingevulde sessies, te controleren.</div></div>
+        <button class="btn btn-ghost btn-sm" id="debugOfficialTimesBtn" onclick="debugOfficialTimes()" ${proposalFilters.seriesId && proposalFilters.eventId && OFFICIAL_TIME_SERIES.has(proposalFilters.seriesId) ? '' : 'disabled'}>Debug: test dit event</button>
       </div>
       <div class="field"><label for="proposalSeriesFilter">Serie</label><select id="proposalSeriesFilter" onchange="setProposalFilter('seriesId',this.value)"><option value="">Alle series</option>${proposalSeriesOptions()}</select></div>
+      <div class="field"><label for="proposalEventFilter">Event</label><select id="proposalEventFilter" onchange="setProposalFilter('eventId',this.value)" ${proposalFilters.seriesId ? '' : 'disabled'}><option value="">Kies een event</option>${proposalEventOptions()}</select></div>
       <div class="field"><label for="proposalStatusFilter">Status</label><select id="proposalStatusFilter" onchange="setProposalFilter('status',this.value)">
         <option value="active" ${proposalFilters.status === 'active' ? 'selected' : ''}>Openstaand</option><option value="" ${proposalFilters.status === '' ? 'selected' : ''}>Alle statussen</option>${['open','requires_review','unresolved','accepted','rejected','verified','mismatch','superseded'].map(status => `<option value="${status}" ${proposalFilters.status === status ? 'selected' : ''}>${proposalStatusLabel(status)}</option>`).join('')}
       </select></div>
@@ -2201,6 +2218,7 @@ function renderProposals() {
       <div class="field"><label for="proposalPeriodFilter">Komende periode</label><select id="proposalPeriodFilter" onchange="setProposalFilter('periodDays',this.value)">
         <option value="">Alle datums</option><option value="7" ${proposalFilters.periodDays === '7' ? 'selected' : ''}>Deze week</option><option value="14" ${proposalFilters.periodDays === '14' ? 'selected' : ''}>Komende 2 weken</option><option value="30" ${proposalFilters.periodDays === '30' ? 'selected' : ''}>Komende maand</option><option value="60" ${proposalFilters.periodDays === '60' ? 'selected' : ''}>Komende 2 maanden</option>
       </select></div>
+      ${proposalFilters.eventId && officialScanProgress[proposalFilters.eventId] ? `<div class="proposal-debug-progress">${officialScanStatusView(proposalFilters.eventId)}</div>` : ''}
     </div>
     ${groups.length ? groups.map(group => `<section class="proposal-event">
       <div class="proposal-event-header"><div><div class="proposal-event-title">${esc(group.eventName)}</div><div class="proposal-event-meta">${esc(group.seriesName)} · ${esc(group.calendarFile)} · ${group.proposals.length} voorstel(len)</div></div>
@@ -2211,6 +2229,7 @@ function renderProposals() {
 }
 
 function setProposalFilter(key, value) {
+  if (key === 'seriesId' && proposalFilters.seriesId !== (value || '')) proposalFilters.eventId = '';
   proposalFilters[key] = value || '';
   renderProposals();
 }
@@ -3494,6 +3513,10 @@ async function fetchEventResults(ri) {
 
 function updateOfficialScanProgress(eventId, update) {
   officialScanProgress[eventId] = { ...officialScanProgress[eventId], ...update };
+  if (state.activeView === 'proposals') {
+    renderProposals();
+    return;
+  }
   const round = editableRounds()?.find(item => item.id === eventId);
   const panel = document.getElementById(`officialScanPanel_${eventId}`);
   if (round && panel) panel.outerHTML = renderInlineEventProposals(round);
@@ -3647,16 +3670,19 @@ async function scanOfficialEvent(ri) {
 
 async function debugOfficialTimes() {
   const seriesId = proposalFilters.seriesId;
+  const eventId = proposalFilters.eventId;
   if (!seriesId) return showStatus('Kies bij de filters eerst één serie voor de debugscan', 'error');
+  if (!eventId) return showStatus('Kies bij de filters eerst één event voor de debugscan', 'error');
   if (!OFFICIAL_TIME_SERIES.has(seriesId)) return showStatus('De officiële sessietijdscanner ondersteunt deze serie nog niet', 'error');
   if (!state.github?.token || !state.github?.repo) return showStatus('Stel eerst je GitHub-token en repository in', 'error');
   const button = document.getElementById('debugOfficialTimesBtn');
-  const originalText = button?.textContent || 'Debug: test ingevulde sessies';
+  const originalText = button?.textContent || 'Debug: test dit event';
   if (button) { button.disabled = true; button.textContent = 'Debugscan starten…'; }
   try {
     const [owner, repo] = state.github.repo.split('/');
     if (!owner || !repo) throw new Error('Gebruik eigenaar/repository bij GitHub-instellingen');
     await ensureOfficialTimesWorkflow(owner, repo);
+    const startedAt = Date.now();
     const response = await fetchGitHubWithRetry(`https://api.github.com/repos/${owner}/${repo}/actions/workflows/official_session_times.yml/dispatches`, {
       method: 'POST',
       headers: {
@@ -3667,7 +3693,7 @@ async function debugOfficialTimes() {
       },
       body: JSON.stringify({
         ref: state.github.branch || 'main',
-        inputs: { series: seriesId, event: '', include_filled: 'true' },
+        inputs: { series: seriesId, event: eventId, include_filled: 'true' },
       }),
     }, 'Debugscan starten');
     if (response.status !== 204) {
@@ -3675,9 +3701,12 @@ async function debugOfficialTimes() {
       throw new Error(error.message || `GitHub error ${response.status}`);
     }
     proposalFilters.status = '';
+    officialScanProgress[eventId] = { status: 'queued', percent: 10, title: 'Debugscan gestart', message: 'Wachten op de GitHub-runner…', runUrl: '' };
     renderProposals();
-    showStatus(`✓ Debugscan voor ${state.series.find(item => item.id === seriesId)?.name || seriesId} gestart — vernieuw over ongeveer 30 seconden`, 'success');
+    showStatus('Debugscan gestart voor het gekozen event', 'loading');
+    await monitorOfficialScan(owner, repo, eventId, startedAt);
   } catch (error) {
+    if (eventId) updateOfficialScanProgress(eventId, { status: 'error', percent: 100, title: 'Debugscan mislukt', message: error.message, runUrl: officialScanProgress[eventId]?.runUrl || '' });
     showStatus(`Debugscan mislukt: ${error.message}`, 'error');
   } finally {
     const currentButton = document.getElementById('debugOfficialTimesBtn');

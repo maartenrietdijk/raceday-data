@@ -364,7 +364,7 @@ def discover_timetable_pdf(event_page: FetchResult) -> Optional[str]:
     for url, label in extract_links(event_page.body, event_page.final_url):
         combined = "{} {}".format(label, url)
         is_document = urlparse(url).path.lower().endswith(".pdf") or "/document/download/" in url or "pdf" in label.lower()
-        if is_document and re.search(r"timetable|schedule|programme", combined, re.I):
+        if is_document and re.search(r"timetable|schedule|programme|itinerary", combined, re.I):
             if re.search(r"weekend.?schedule", combined, re.I):
                 priority = 5
             elif re.search(r"\bofficial\b", combined, re.I):
@@ -377,6 +377,29 @@ def discover_timetable_pdf(event_page: FetchResult) -> Optional[str]:
                 priority = 2
             candidates.append((priority, url))
     return max(candidates, default=(0, None))[1]
+
+
+def discover_rally_itinerary_url(event_page: FetchResult) -> Optional[str]:
+    """Find the official stage itinerary linked from a WRC/ERC event page."""
+    candidates = []
+    for url, label in extract_links(event_page.body, event_page.final_url):
+        combined = "{} {}".format(label, url)
+        if re.search(r"itinerar", combined, re.I):
+            priority = 3 if re.search(r"itinerary.?stages|stages.?itinerary", combined, re.I) else 2
+            if urlparse(url).path.lower().endswith(".pdf"):
+                priority = 1
+            candidates.append((priority, url))
+    return max(candidates, default=(0, None))[1]
+
+
+def retry_rally_prerender(fetch: FetchResult, url: str, allowed_domains: Sequence[str]) -> FetchResult:
+    """WRC Promoter may return a short shell while its official prerender warms."""
+    result = fetch
+    for _ in range(2):
+        if len(result.body) >= 20_000:
+            break
+        result = fetch_url(url, allowed_domains)
+    return result
 
 
 def discover_event_calendar(event_page: FetchResult) -> Optional[str]:
@@ -419,6 +442,10 @@ def normalize_kind(name: str) -> Optional[str]:
         return "featureRace"
     if "hyperpole" in raw:
         return "hyperpole"
+    if "shakedown" in raw:
+        return "shakedown"
+    if re.match(r"^(?:sss?|special stage) ?\d+\b", raw):
+        return "stage"
     if "qualif" in raw or "shootout" in raw:
         return "qualifying"
     if "practice" in raw or "warm up" in raw or "warmup" in raw:
@@ -820,7 +847,7 @@ def parse_british_gt_pdf(fetch: FetchResult, year: int, source_timezone: str) ->
 
 
 def document_lines(body: str) -> List[str]:
-    if re.search(r"<html|<body|<div|<table", body, re.I):
+    if re.search(r"<html|<body|<div|<table|<li|<h[1-6]", body, re.I):
         body = re.sub(r"</(?:div|p|li|tr|h[1-6]|section|article)>|<br\s*/?>", "\n", body, flags=re.I)
         body = re.sub(r"<[^>]+>", " ", body)
         body = html.unescape(body)
@@ -832,13 +859,51 @@ def parse_document_date(line: str, year: int) -> Optional[str]:
     month_first = re.search(r"\b(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)?[,]?\s*(%s)\s+(\d{1,2})(?:[,]?\s+(20\d{2}))?\b" % month_names, line, re.I)
     day_first = re.search(r"\b(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)?[,]?\s*(\d{1,2})\s+(%s)(?:\s+(20\d{2}))?\b" % month_names, line, re.I)
     numeric = re.search(r"\b(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun)[a-z]*[,]?\s+(\d{1,2})/(\d{1,2})(?:/(20\d{2}))?\b", line, re.I)
+    dotted = re.search(r"\b(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun)[a-z]*[,]?\s+(\d{1,2})[.-](\d{1,2})[.-](20\d{2})\b", line, re.I)
     if month_first:
         return date(int(month_first.group(3) or year), MONTHS[month_first.group(1).lower()], int(month_first.group(2))).isoformat()
     if day_first:
         return date(int(day_first.group(3) or year), MONTHS[day_first.group(2).lower()], int(day_first.group(1))).isoformat()
     if numeric:
         return date(int(numeric.group(3) or year), int(numeric.group(1)), int(numeric.group(2))).isoformat()
+    if dotted:
+        return date(int(dotted.group(3)), int(dotted.group(2)), int(dotted.group(1))).isoformat()
     return None
+
+
+def parse_rally_itinerary(fetch: FetchResult, year: int, source_timezone: str) -> List[SourceSession]:
+    """Parse only shakedown and timed SS/SSS rows from an official rally itinerary."""
+    sessions: List[SourceSession] = []
+    current_date: Optional[str] = None
+    for line in document_lines(fetch.body):
+        parsed_date = parse_document_date(line, year)
+        if parsed_date:
+            current_date = parsed_date
+        if not current_date:
+            continue
+        clock_match = re.match(r"^(\d{1,2}:\d{2})\s*:?\s*(.+)$", line)
+        if not clock_match:
+            continue
+        clock, activity = clock_match.groups()
+        activity = re.sub(r"\s*\([^)]*\bkm\)\s*$", "", activity, flags=re.I).strip(" :-")
+        if re.match(r"^shakedown\b", activity, re.I):
+            name = re.sub(r"^shakedown\b\s*[-:]?\s*", "", activity, flags=re.I).strip()
+            canonical = "Shakedown" + (" - " + name if name else "")
+            sessions.append(SourceSession(canonical, current_date, parse_clock(clock), source_timezone, 60))
+            continue
+        stage_match = re.match(r"^SSS?\s*(\d+)(?:[A-Z])?\b\s*[-:]?\s*(.+)$", activity, re.I)
+        if not stage_match:
+            continue
+        number, stage_name = stage_match.groups()
+        # Some ERC pages prefix a shared route with the number of its second
+        # running (for example "SS2 SS5 OBEJO"). The current row number is
+        # authoritative; the extra marker is not part of the stage name.
+        stage_name = re.sub(r"^(?:SSS?\s*\d+\s+)+", "", stage_name, flags=re.I).strip(" :-")
+        if not stage_name:
+            continue
+        sessions.append(SourceSession("SS{} - {}".format(number, stage_name), current_date, parse_clock(clock), source_timezone))
+    unique = {(item.name, item.date, item.local_time): item for item in sessions}
+    return sorted(unique.values(), key=lambda item: (item.date, item.local_time, session_number(item.name) or 0))
 
 
 def parse_official_schedule_document(fetch: FetchResult, year: int, source_timezone: str, categories: Sequence[str]) -> List[SourceSession]:
@@ -1213,7 +1278,9 @@ def editor_value(session: SourceSession, editor_timezone: str) -> Tuple[str, str
 
 
 def session_number(name: str) -> Optional[int]:
-    match = re.search(r"\b(\d+)\b", normalize(name))
+    # Stage labels normally attach the number directly (SS1), while circuit
+    # sessions usually separate it (Practice 1). Support both shapes.
+    match = re.search(r"(?:^|\D)(\d+)\b", normalize(name))
     return int(match.group(1)) if match else None
 
 
@@ -1357,8 +1424,8 @@ def build_event_proposals(
             "proposed": None if conflict else {
                 "date": proposed_date,
                 "timeLocal": proposed_time,
-                "durationMinutes": official.duration_minutes or (matched or {}).get("durationMinutes") or 60,
-                "name": official.name,
+                "durationMinutes": official.duration_minutes or (matched or {}).get("durationMinutes") or (15 if kind == "stage" else 60),
+                "name": (matched or {}).get("name") if kind == "stage" and matched else official.name,
                 "kind": kind,
                 "utcInstant": utc_instant,
                 "sessionId": (matched or {}).get("id") or "{}-s{}".format(event.get("id"), len(existing) + len(proposals) + 1),
@@ -1576,6 +1643,8 @@ def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Opti
                 known = registry.get("knownEventUrls", {}).get("{}:{}".format(series_id, event.get("id")))
                 if known:
                     source = fetch_url(known, cfg["allowedDomains"])
+                    if cfg.get("sourceKind") == "rally-itinerary":
+                        source = retry_rally_prerender(source, known, cfg["allowedDomains"])
                     source = FetchResult(stable_url, source.final_url, source.title, source.body, source.last_modified)
                     source_candidates = [source]
                 else:
@@ -1599,7 +1668,10 @@ def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Opti
                         for calendar_url in calendar_urls:
                             try:
                                 if calendar_url not in calendar_cache:
-                                    calendar_cache[calendar_url] = fetch_url(calendar_url, cfg["allowedDomains"])
+                                    fetched_calendar = fetch_url(calendar_url, cfg["allowedDomains"])
+                                    if cfg.get("sourceKind") == "rally-itinerary":
+                                        fetched_calendar = retry_rally_prerender(fetched_calendar, calendar_url, cfg["allowedDomains"])
+                                    calendar_cache[calendar_url] = fetched_calendar
                                 calendar = calendar_cache[calendar_url]
                                 break
                             except SourceError as exc:
@@ -1614,6 +1686,8 @@ def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Opti
                             try:
                                 event_is_pdf = bool(urlparse(event_url).path.lower().endswith(".pdf") or "/document/download/" in event_url)
                                 fetched = fetch_pdf_url(event_url, cfg["allowedDomains"]) if event_is_pdf else fetch_url(event_url, cfg["allowedDomains"])
+                                if cfg.get("sourceKind") == "rally-itinerary" and not event_is_pdf:
+                                    fetched = retry_rally_prerender(fetched, event_url, cfg["allowedDomains"])
                                 candidate = FetchResult(stable_url, fetched.final_url, fetched.title, fetched.body, fetched.last_modified)
                                 source_candidates.append(candidate)
                             except SourceError as exc:
@@ -1652,6 +1726,25 @@ def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Opti
                 sessions = parse_imsa_event_schedule(source, event, event_year, source_tz)
             elif cfg["sourceKind"] == "supercars-embedded-schedule":
                 sessions = parse_supercars_schedule(source, event_year, source_tz, cfg["officialSeriesName"])
+            elif cfg["sourceKind"] == "rally-itinerary":
+                sessions = parse_rally_itinerary(source, event_year, source_tz)
+                itinerary_url = discover_rally_itinerary_url(source)
+                if not sessions and itinerary_url:
+                    if urlparse(itinerary_url).path.lower().endswith(".pdf"):
+                        itinerary = fetch_pdf_url(itinerary_url, cfg["allowedDomains"])
+                    else:
+                        itinerary = fetch_url(itinerary_url, cfg["allowedDomains"])
+                        itinerary = retry_rally_prerender(itinerary, itinerary_url, cfg["allowedDomains"])
+                    parsed = parse_rally_itinerary(itinerary, event_year, source_tz)
+                    if parsed:
+                        source, sessions = itinerary, parsed
+                if not sessions:
+                    pdf_url = discover_timetable_pdf(source)
+                    if pdf_url:
+                        itinerary = fetch_pdf_url(pdf_url, cfg["allowedDomains"])
+                        parsed = parse_rally_itinerary(itinerary, event_year, source_tz)
+                        if parsed:
+                            source, sessions = itinerary, parsed
             elif cfg["sourceKind"] == "sro-event-timetable":
                 sessions = []
                 pdf_url = discover_timetable_pdf(source)
