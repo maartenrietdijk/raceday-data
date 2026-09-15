@@ -10,6 +10,16 @@
   },
   "series": [
     {
+      "seriesId": "btcc",
+      "name": "British Touring Car Championship",
+      "startUrl": "https://btcc.net/calendar/",
+      "allowedDomains": ["btcc.net", "www.btcc.net"],
+      "sourceKind": "btcc-timetable",
+      "sourceTimeZone": "Europe/London",
+      "eventDiscovery": "Volg de officiële circuitpagina vanuit de BTCC-kalender en lees de gepubliceerde timetable-tabellen.",
+      "notes": "Alleen rijen met de exacte kampioenschapsnaam British Touring Car Championship worden verwerkt; supportklassen en pitlane-activiteiten worden uitgesloten."
+    },
+    {
       "seriesId": "f1",
       "name": "Formula 1",
       "startUrl": "https://www.formula1.com/en/racing/{year}",

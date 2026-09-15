@@ -264,7 +264,8 @@ def fetch_url(url: str, allowed_domains: Sequence[str], extra_headers: Optional[
             )
     except HTTPError as exc:
         host = (urlparse(url).hostname or "").lower()
-        if exc.code == 403 and host in {"imsa.com", "www.imsa.com"}:
+        browser_protected = {"imsa.com", "www.imsa.com", "btcc.net", "www.btcc.net"}
+        if exc.code in {403, 429} and host in browser_protected:
             return fetch_url_with_browser_fingerprint(url, allowed_domains)
         raise SourceError("could not read official source {}: {}".format(url, exc)) from exc
     except URLError as exc:
@@ -279,17 +280,17 @@ def fetch_url(url: str, allowed_domains: Sequence[str], extra_headers: Optional[
 
 
 def fetch_url_with_browser_fingerprint(url: str, allowed_domains: Sequence[str]) -> FetchResult:
-    """Retry IMSA's official site with a real browser TLS/HTTP fingerprint."""
+    """Retry a protected official site with a real browser TLS/HTTP fingerprint."""
     global _BROWSER_SESSION
     try:
         from curl_cffi import requests as browser_requests
     except ImportError as exc:
-        raise SourceError("IMSA requires the curl_cffi browser reader") from exc
+        raise SourceError("this official source requires the curl_cffi browser reader") from exc
     try:
         if _BROWSER_SESSION is None:
             _BROWSER_SESSION = browser_requests.Session(impersonate="chrome")
         response = _BROWSER_SESSION.get(url, timeout=25, allow_redirects=True)
-        if response.status_code == 403:
+        if response.status_code in {403, 429}:
             response = browser_requests.get(url, impersonate="safari", timeout=25, allow_redirects=True)
         response.raise_for_status()
     except Exception as exc:
@@ -432,6 +433,20 @@ def discover_formula1_event_url(calendar: FetchResult, event: dict, year: int) -
             candidates.append(url)
     unique = list(dict.fromkeys(candidates))
     return unique[0] if len(unique) == 1 else None
+
+
+def discover_btcc_event_url(calendar: FetchResult, event: dict) -> Optional[str]:
+    """Select the official BTCC circuit page by weekend order."""
+    links = []
+    for url, _label in extract_links(calendar.body, calendar.final_url):
+        if "/circuit/" not in urlparse(url).path.lower():
+            continue
+        if url not in links:
+            links.append(url)
+    round_number = event.get("roundNumber")
+    if isinstance(round_number, int) and 1 <= round_number <= len(links):
+        return links[round_number - 1]
+    return None
 
 
 def discover_timetable_pdf(event_page: FetchResult) -> Optional[str]:
@@ -577,6 +592,8 @@ def normalize_kind(name: str) -> Optional[str]:
         return "practice"
     if "sprint qualifying" in raw or "sprint shootout" in raw:
         return "sprintQualifying"
+    if raw == "qualifying race":
+        return "sprintRace"
     if raw == "sprint" or ("sprint" in raw and "race" in raw):
         return "sprintRace"
     if "feature" in raw and "race" in raw:
@@ -637,6 +654,60 @@ def parse_official_tables(fetch: FetchResult, year: int, source_timezone: str) -
                     break
             sessions.append(SourceSession(name, session_date, local_clock, source_timezone, duration, utc_hint))
     return sessions
+
+
+def parse_btcc_timetable(fetch: FetchResult, year: int, source_timezone: str) -> List[SourceSession]:
+    """Parse only BTCC championship rows from an official weekend timetable."""
+    sessions: List[SourceSession] = []
+    race_number = 0
+    race_starts = set()
+    for heading, rows in html_tables(fetch.body):
+        session_date = parse_document_date(heading, year)
+        if not session_date or len(rows) < 2:
+            continue
+        headers = [normalize(cell) for cell in rows[0]]
+        time_col = next((index for index, value in enumerate(headers) if value == "time"), None)
+        activity_col = next((index for index, value in enumerate(headers) if value == "activity"), None)
+        championship_col = next((index for index, value in enumerate(headers) if value == "championship"), None)
+        if time_col is None or activity_col is None:
+            continue
+        for cells in rows[1:]:
+            if max(time_col, activity_col) >= len(cells):
+                continue
+            championship = cells[championship_col] if championship_col is not None and championship_col < len(cells) else cells[activity_col]
+            if "british touring car championship" not in normalize(championship):
+                continue
+            activity = cells[activity_col] if championship_col is not None else "Race"
+            normalized_activity = normalize(activity)
+            if normalized_activity == "free practice":
+                name = "Free Practice"
+            elif normalized_activity == "qualifying":
+                name = "Qualifying 1"
+            elif normalized_activity == "qualifying race":
+                name = "Qualifying Race"
+            elif normalized_activity == "race":
+                race_key = (session_date, normalize(cells[time_col]))
+                if race_key in race_starts:
+                    continue
+                race_starts.add(race_key)
+                race_number += 1
+                name = "Race {}".format(race_number)
+            else:
+                continue
+            clocks = re.findall(r"\b\d{1,2}:\d{2}\b", cells[time_col])
+            if not clocks:
+                continue
+            local_clock = parse_clock(clocks[0])
+            duration = None
+            if len(clocks) >= 2:
+                start_hour, start_minute = map(int, parse_clock(clocks[0]).split(":"))
+                end_hour, end_minute = map(int, parse_clock(clocks[1]).split(":"))
+                duration = (end_hour * 60 + end_minute) - (start_hour * 60 + start_minute)
+                if duration <= 0:
+                    duration += 24 * 60
+            sessions.append(SourceSession(name, session_date, local_clock, source_timezone, duration))
+    unique = {(item.name, item.date, item.local_time): item for item in sessions}
+    return sorted(unique.values(), key=lambda item: (item.date, item.local_time, item.name))
 
 
 def parse_supercars_schedule(fetch: FetchResult, year: int, source_timezone: str, series_name: str) -> List[SourceSession]:
@@ -2063,6 +2134,8 @@ def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Opti
                             raise SourceError(calendar_errors[-1] if calendar_errors else "could not read official calendar")
                         if cfg.get("sourceKind") == "formula1-jsonld":
                             discovered = discover_formula1_event_url(calendar, event, event_year)
+                        elif cfg.get("sourceKind") == "btcc-timetable":
+                            discovered = discover_btcc_event_url(calendar, event)
                         else:
                             discovered = discover_event_url(calendar, event, year)
                         event_urls = [discovered] if discovered else []
@@ -2122,6 +2195,8 @@ def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Opti
                 sessions = parse_worldsbk_schedule(source, cfg["officialCategoryId"], source_tz)
             elif cfg["sourceKind"] == "formula1-jsonld":
                 sessions = parse_formula1_schedule(source)
+            elif cfg["sourceKind"] == "btcc-timetable":
+                sessions = parse_btcc_timetable(source, event_year, source_tz)
             elif cfg["sourceKind"] == "rally-itinerary":
                 sessions = parse_rally_itinerary(source, event_year, source_tz)
                 itinerary_url = discover_rally_itinerary_url(source)
