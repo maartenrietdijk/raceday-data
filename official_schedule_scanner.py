@@ -417,6 +417,23 @@ def discover_event_url(calendar: FetchResult, event: dict, year: int) -> Optiona
     return best[1] if best[0] >= 0.14 else None
 
 
+def discover_formula1_event_url(calendar: FetchResult, event: dict, year: int) -> Optional[str]:
+    """Select the official F1 race page by round, excluding testing pages."""
+    round_number = event.get("roundNumber")
+    if not isinstance(round_number, int):
+        return None
+    candidates = []
+    expected_path = "/en/racing/{}/".format(year)
+    for url, label in extract_links(calendar.body, calendar.final_url):
+        path = urlparse(url).path.rstrip("/")
+        if expected_path not in path + "/" or "pre-season-testing" in path:
+            continue
+        if re.search(r"\bround\s+{}\b".format(round_number), normalize(label)):
+            candidates.append(url)
+    unique = list(dict.fromkeys(candidates))
+    return unique[0] if len(unique) == 1 else None
+
+
 def discover_timetable_pdf(event_page: FetchResult) -> Optional[str]:
     candidates = []
     for url, label in extract_links(event_page.body, event_page.final_url):
@@ -1133,8 +1150,10 @@ def worldsbk_source_timezone(fetch: FetchResult) -> Optional[str]:
 
 def session_duration(start_value: str, end_value: str) -> Optional[int]:
     try:
-        start = datetime.fromisoformat(re.sub(r"([+-]\d{2})(\d{2})$", r"\1:\2", start_value))
-        end = datetime.fromisoformat(re.sub(r"([+-]\d{2})(\d{2})$", r"\1:\2", end_value))
+        normalized_start = re.sub(r"Z$", "+00:00", re.sub(r"([+-]\d{2})(\d{2})$", r"\1:\2", start_value))
+        normalized_end = re.sub(r"Z$", "+00:00", re.sub(r"([+-]\d{2})(\d{2})$", r"\1:\2", end_value))
+        start = datetime.fromisoformat(normalized_start)
+        end = datetime.fromisoformat(normalized_end)
     except (TypeError, ValueError):
         return None
     minutes = int((end - start).total_seconds() // 60)
@@ -1194,6 +1213,39 @@ def parse_worldsbk_schedule(fetch: FetchResult, category_id: str, source_timezon
         if not re.match(r"^20\d{2}-\d{2}-\d{2}T\d{2}:\d{2}", start):
             continue
         sessions.append(SourceSession(name, start[:10], start[11:16], source_timezone, session_duration(start, end)))
+    unique = {(item.name, item.date, item.local_time): item for item in sessions}
+    return sorted(unique.values(), key=lambda item: (item.date, item.local_time, item.name))
+
+
+def parse_formula1_schedule(fetch: FetchResult) -> List[SourceSession]:
+    """Read F1-only sessions from the official event page's JSON-LD."""
+    canonical_names = {
+        "practice 1": "Practice 1", "practice 2": "Practice 2", "practice 3": "Practice 3",
+        "sprint qualifying": "Sprint Qualifying", "sprint": "Sprint Race",
+        "qualifying": "Qualifying", "race": "Race",
+    }
+    sessions: List[SourceSession] = []
+    scripts = re.findall(
+        r"<script\b[^>]*type=[\"']application/ld\+json[\"'][^>]*>(.*?)</script>",
+        fetch.body, re.I | re.S,
+    )
+    for script in scripts:
+        try:
+            payload = json.loads(html.unescape(script).strip())
+        except (json.JSONDecodeError, TypeError):
+            continue
+        records = payload.get("subEvent", []) if isinstance(payload, dict) else []
+        for item in records if isinstance(records, list) else []:
+            raw_name = str(item.get("name") or "").split(" - ", 1)[0].strip()
+            name = canonical_names.get(normalize(raw_name))
+            start_value = str(item.get("startDate") or "")
+            end_value = str(item.get("endDate") or "")
+            if not name or not re.match(r"^20\d{2}-\d{2}-\d{2}T\d{2}:\d{2}", start_value):
+                continue
+            sessions.append(SourceSession(
+                name, start_value[:10], start_value[11:16], "UTC",
+                session_duration(start_value, end_value),
+            ))
     unique = {(item.name, item.date, item.local_time): item for item in sessions}
     return sorted(unique.values(), key=lambda item: (item.date, item.local_time, item.name))
 
@@ -2009,7 +2061,10 @@ def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Opti
                                 calendar_errors.append(str(exc))
                         if calendar is None:
                             raise SourceError(calendar_errors[-1] if calendar_errors else "could not read official calendar")
-                        discovered = discover_event_url(calendar, event, year)
+                        if cfg.get("sourceKind") == "formula1-jsonld":
+                            discovered = discover_formula1_event_url(calendar, event, event_year)
+                        else:
+                            discovered = discover_event_url(calendar, event, year)
                         event_urls = [discovered] if discovered else []
                     if event_urls:
                         fetch_errors = []
@@ -2065,6 +2120,8 @@ def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Opti
                 sessions = parse_motogp_schedule(source, cfg["officialCategory"], source_tz)
             elif cfg["sourceKind"] == "worldsbk-api":
                 sessions = parse_worldsbk_schedule(source, cfg["officialCategoryId"], source_tz)
+            elif cfg["sourceKind"] == "formula1-jsonld":
+                sessions = parse_formula1_schedule(source)
             elif cfg["sourceKind"] == "rally-itinerary":
                 sessions = parse_rally_itinerary(source, event_year, source_tz)
                 itinerary_url = discover_rally_itinerary_url(source)

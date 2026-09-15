@@ -10,6 +10,16 @@
   },
   "series": [
     {
+      "seriesId": "f1",
+      "name": "Formula 1",
+      "startUrl": "https://www.formula1.com/en/racing/{year}",
+      "allowedDomains": ["formula1.com", "www.formula1.com"],
+      "sourceKind": "formula1-jsonld",
+      "sourceTimeZone": "UTC",
+      "eventDiscovery": "Volg vanaf de officiële F1-kalender de eventpagina met exact hetzelfde rondenummer en lees de gestructureerde officiële sessietijden.",
+      "notes": "Alleen Practice, Sprint Qualifying, Sprint, Qualifying en Race worden verwerkt; tijden komen uit de officiële UTC-data van de F1-eventpagina. Testing en nevenactiviteiten worden uitgesloten."
+    },
+    {
       "seriesId": "wsbk",
       "name": "MOTUL FIM Superbike World Championship",
       "startUrl": "https://www.worldsbk.com/en/calendar",
