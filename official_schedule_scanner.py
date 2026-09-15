@@ -90,6 +90,62 @@ def normalize(value: object) -> str:
     return " ".join(re.findall(r"[a-z0-9]+", text))
 
 
+RALLY_LOWERCASE_WORDS = {
+    "a", "an", "and", "at", "da", "das", "de", "del", "della", "des", "di",
+    "do", "dos", "du", "e", "el", "en", "et", "la", "las", "le", "les",
+    "of", "the", "van", "von", "y",
+}
+
+
+def rally_name_case(value: str) -> str:
+    """Turn an all-caps rally name into readable multilingual title case."""
+    value = " ".join(str(value or "").split())
+    letters = [character for character in value if character.isalpha()]
+    if not letters or not all(character.isupper() for character in letters):
+        return value
+
+    parts = re.split(r"(\s+|[-–—/])", value)
+    at_name_start = True
+    converted: List[str] = []
+    for part in parts:
+        if not part:
+            continue
+        if re.fullmatch(r"\s+", part):
+            converted.append(part)
+            continue
+        if part in {"-", "–", "—", "/"}:
+            converted.append(part)
+            at_name_start = True
+            continue
+
+        word_key = normalize(part)
+        if word_key in RALLY_LOWERCASE_WORDS and not at_name_start:
+            converted.append(part.lower())
+        elif word_key in {"ss", "sss"}:
+            converted.append(part.upper())
+        else:
+            lowered = part.lower()
+            chars = list(lowered)
+            capitalize_next = True
+            for index, character in enumerate(chars):
+                if character.isalpha() and capitalize_next:
+                    chars[index] = character.upper()
+                    capitalize_next = False
+                elif character in {"'", "’"} and index + 1 < len(chars):
+                    capitalize_next = True
+            converted.append("".join(chars))
+        if any(character.isalpha() for character in part):
+            at_name_start = False
+    return "".join(converted)
+
+
+def rally_session_name_case(value: str) -> str:
+    match = re.match(r"^(SS\d+\s*-\s*)(.+)$", str(value or ""), re.I)
+    if not match:
+        return rally_name_case(value)
+    return "{}{}".format(match.group(1).upper(), rally_name_case(match.group(2)))
+
+
 def url_slug(value: object) -> str:
     return normalize(value).replace(" ", "-")
 
@@ -926,6 +982,7 @@ def parse_rally_itinerary(fetch: FetchResult, year: int, source_timezone: str) -
         activity = re.sub(r"\s*\([^)]*\bkm\)\s*$", "", activity, flags=re.I).strip(" :-")
         if re.match(r"^shakedown\b", activity, re.I):
             name = re.sub(r"^shakedown\b\s*[-:]?\s*", "", activity, flags=re.I).strip()
+            name = rally_name_case(name)
             canonical = "Shakedown" + (" - " + name if name else "")
             sessions.append(SourceSession(canonical, current_date, parse_clock(clock), source_timezone, 60))
             continue
@@ -941,6 +998,7 @@ def parse_rally_itinerary(fetch: FetchResult, year: int, source_timezone: str) -
         stage_name = re.sub(r"^(?:SSS?\s*\d+\s+)+", "", stage_name, flags=re.I).strip(" :-")
         if not stage_name:
             continue
+        stage_name = rally_name_case(stage_name)
         sessions.append(SourceSession("SS{} - {}".format(number, stage_name), current_date, parse_clock(clock), source_timezone))
     unique = {(item.name, item.date, item.local_time): item for item in sessions}
     return sorted(unique.values(), key=lambda item: (item.date, item.local_time, session_number(item.name) or 0))
@@ -1448,6 +1506,11 @@ def build_event_proposals(
             conflict = str(exc)
             proposed_date = proposed_time = utc_instant = None
         is_match = bool(filled_session and matched.get("date") == proposed_date and matched.get("timeLocal") == proposed_time)
+        proposed_name = (
+            rally_session_name_case((matched or {}).get("name") or official.name)
+            if kind == "stage" else official.name
+        )
+        is_match = bool(is_match and (not matched or matched.get("name") == proposed_name))
         proposal = proposal_base(series_cfg, filename, event, source, checked_at)
         actionable_correction = bool(filled_session and replace_filled and not is_match and not conflict)
         proposal.update({
@@ -1465,7 +1528,7 @@ def build_event_proposals(
                 "date": proposed_date,
                 "timeLocal": proposed_time,
                 "durationMinutes": official.duration_minutes or (matched or {}).get("durationMinutes") or (15 if kind == "stage" else 60),
-                "name": (matched or {}).get("name") if kind == "stage" and matched else official.name,
+                "name": proposed_name,
                 "kind": kind,
                 "utcInstant": utc_instant,
                 "sessionId": (matched or {}).get("id") or "{}-s{}".format(event.get("id"), len(existing) + len(proposals) + 1),
