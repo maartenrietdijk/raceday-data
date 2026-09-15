@@ -10,6 +10,50 @@
   },
   "series": [
     {
+      "seriesId": "wsbk",
+      "name": "MOTUL FIM Superbike World Championship",
+      "startUrl": "https://www.worldsbk.com/en/calendar",
+      "allowedDomains": ["worldsbk.com", "www.worldsbk.com", "api.pulselive.worldsbk.com"],
+      "sourceKind": "worldsbk-api",
+      "officialCategoryId": "SBK",
+      "sourceTimeZone": "track",
+      "eventDiscovery": "Gebruik de officiële WorldSBK rounds- en sessions-feed voor het gekozen kalender-event.",
+      "notes": "Alleen sessies met de exacte officiële categoriecode SBK worden verwerkt; WorldSSP, WorldWCR en alle overige supportklassen worden uitgesloten."
+    },
+    {
+      "seriesId": "motogp",
+      "name": "MotoGP",
+      "startUrl": "https://www.motogp.com/en/calendar?view=grid",
+      "allowedDomains": ["motogp.com", "www.motogp.com", "api.pulselive.motogp.com"],
+      "sourceKind": "motogp-api",
+      "officialCategory": "MotoGP",
+      "sourceTimeZone": "track",
+      "eventDiscovery": "Gebruik het officiële MotoGP-eventrecord en uitsluitend SESSION-records voor de MotoGP-categorie.",
+      "notes": "Media-activiteiten worden uitgesloten; vrije trainingen, kwalificaties, Sprint, Warm Up en Grand Prix worden verwerkt."
+    },
+    {
+      "seriesId": "moto2",
+      "name": "Moto2",
+      "startUrl": "https://www.motogp.com/en/calendar?view=grid",
+      "allowedDomains": ["motogp.com", "www.motogp.com", "api.pulselive.motogp.com"],
+      "sourceKind": "motogp-api",
+      "officialCategory": "Moto2",
+      "sourceTimeZone": "track",
+      "eventDiscovery": "Gebruik het officiële MotoGP-eventrecord en uitsluitend SESSION-records voor de Moto2-categorie.",
+      "notes": "Qualifying 1 en Qualifying 2 blijven afzonderlijke officiële sessies; één bestaande Qualifying-rij mag veilig voor Qualifying 1 worden hergebruikt."
+    },
+    {
+      "seriesId": "moto3",
+      "name": "Moto3",
+      "startUrl": "https://www.motogp.com/en/calendar?view=grid",
+      "allowedDomains": ["motogp.com", "www.motogp.com", "api.pulselive.motogp.com"],
+      "sourceKind": "motogp-api",
+      "officialCategory": "Moto3",
+      "sourceTimeZone": "track",
+      "eventDiscovery": "Gebruik het officiële MotoGP-eventrecord en uitsluitend SESSION-records voor de Moto3-categorie.",
+      "notes": "Qualifying 1 en Qualifying 2 blijven afzonderlijke officiële sessies; één bestaande Qualifying-rij mag veilig voor Qualifying 1 worden hergebruikt."
+    },
+    {
       "seriesId": "wrc",
       "name": "FIA World Rally Championship",
       "startUrl": "https://www.wrc.com/en/calendar",

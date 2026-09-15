@@ -230,10 +230,12 @@ def allowed_url(url: str, domains: Sequence[str]) -> bool:
     return any(host == domain.lower() for domain in domains)
 
 
-def fetch_url(url: str, allowed_domains: Sequence[str]) -> FetchResult:
+def fetch_url(url: str, allowed_domains: Sequence[str], extra_headers: Optional[Dict[str, str]] = None) -> FetchResult:
     if not allowed_url(url, allowed_domains):
         raise SourceError("source domain is not allowlisted: {}".format(url))
-    request = Request(url, headers={"User-Agent": USER_AGENT, "Accept": "text/html,application/xhtml+xml"})
+    headers = {"User-Agent": USER_AGENT, "Accept": "text/html,application/xhtml+xml,application/json"}
+    headers.update(extra_headers or {})
+    request = Request(url, headers=headers)
     try:
         with urlopen(request, timeout=25, context=tls_context()) as response:
             final_url = response.geturl()
@@ -558,12 +560,14 @@ def normalize_kind(name: str) -> Optional[str]:
         return "practice"
     if "sprint qualifying" in raw or "sprint shootout" in raw:
         return "sprintQualifying"
-    if "sprint" in raw and "race" in raw:
+    if raw == "sprint" or ("sprint" in raw and "race" in raw):
         return "sprintRace"
     if "feature" in raw and "race" in raw:
         return "featureRace"
     if "hyperpole" in raw:
         return "hyperpole"
+    if raw == "superpole":
+        return "qualifying"
     if "shakedown" in raw:
         return "shakedown"
     if re.match(r"^(?:sss?|special stage) ?\d+\b", raw):
@@ -1050,6 +1054,148 @@ def parse_rally_itinerary(fetch: FetchResult, year: int, source_timezone: str) -
         sessions.append(SourceSession("SS{} - {}".format(number, stage_name), current_date, parse_clock(clock), source_timezone))
     unique = {(item.name, item.date, item.local_time): item for item in sessions}
     return sorted(unique.values(), key=lambda item: (item.date, item.local_time, session_number(item.name) or 0))
+
+
+def json_object(body: str, description: str) -> object:
+    try:
+        return json.loads(body)
+    except json.JSONDecodeError as exc:
+        raise SourceError("official {} response is not valid JSON".format(description)) from exc
+
+
+def select_motogp_event(body: str, event: dict) -> dict:
+    payload = json_object(body, "MotoGP events")
+    if not isinstance(payload, list):
+        raise SourceError("official MotoGP events response has an unexpected shape")
+    round_number = event.get("roundNumber")
+    candidates = [item for item in payload if item.get("kind") == "GP" and item.get("sequence") == round_number]
+    if not candidates:
+        target = "{} {}".format(event.get("raceName", ""), event.get("circuitName", ""))
+        scored = [
+            (similarity(target, "{} {} {}".format(item.get("name", ""), item.get("place", ""), (item.get("circuit") or {}).get("name", ""))), item)
+            for item in payload if item.get("kind") == "GP"
+        ]
+        score, selected = max(scored, default=(0.0, None), key=lambda item: item[0])
+        candidates = [selected] if selected and score >= 0.2 else []
+    if len(candidates) != 1:
+        raise SourceError("could not identify one official MotoGP event for this round")
+    return candidates[0]
+
+
+def select_worldsbk_round(body: str, event: dict) -> Tuple[dict, Optional[dict]]:
+    payload = json_object(body, "WorldSBK rounds")
+    rounds = payload.get("data", []) if isinstance(payload, dict) else []
+    round_number = event.get("roundNumber")
+    candidates = [item for item in rounds if (item.get("attributes") or {}).get("sequence_order") == round_number]
+    if len(candidates) != 1:
+        raise SourceError("could not identify one official WorldSBK round")
+    selected = candidates[0]
+    circuit_id = (((selected.get("relationships") or {}).get("circuit") or {}).get("data") or {}).get("id")
+    circuit = next(
+        (item for item in payload.get("included", []) if item.get("type") == "circuits" and item.get("id") == circuit_id),
+        None,
+    )
+    return selected, circuit
+
+
+def api_timezone(value: object) -> Optional[str]:
+    raw = str(value or "").strip()
+    if not raw:
+        return None
+    candidates = ["/".join(part.title() for part in raw.split("/")), raw]
+    for candidate in candidates:
+        try:
+            ZoneInfo(candidate)
+            return candidate
+        except ZoneInfoNotFoundError:
+            continue
+    return None
+
+
+WINDOWS_TO_IANA = {
+    "AUS Eastern Standard Time": "Australia/Sydney",
+    "GMT Standard Time": "Europe/London",
+    "W. Europe Standard Time": "Europe/Rome",
+}
+
+
+def motogp_source_timezone(fetch: FetchResult) -> Optional[str]:
+    payload = json_object(fetch.body, "MotoGP event")
+    return api_timezone(payload.get("time_zone")) if isinstance(payload, dict) else None
+
+
+def worldsbk_source_timezone(fetch: FetchResult) -> Optional[str]:
+    payload = json_object(fetch.body, "WorldSBK sessions")
+    circuit = payload.get("circuit") if isinstance(payload, dict) else None
+    windows_zone = (circuit or {}).get("attributes", {}).get("time_zone")
+    return WINDOWS_TO_IANA.get(windows_zone)
+
+
+def session_duration(start_value: str, end_value: str) -> Optional[int]:
+    try:
+        start = datetime.fromisoformat(re.sub(r"([+-]\d{2})(\d{2})$", r"\1:\2", start_value))
+        end = datetime.fromisoformat(re.sub(r"([+-]\d{2})(\d{2})$", r"\1:\2", end_value))
+    except (TypeError, ValueError):
+        return None
+    minutes = int((end - start).total_seconds() // 60)
+    return minutes if minutes > 0 else None
+
+
+def parse_motogp_schedule(fetch: FetchResult, category_name: str, source_timezone: str) -> List[SourceSession]:
+    payload = json_object(fetch.body, "MotoGP event")
+    broadcasts = payload.get("broadcasts", []) if isinstance(payload, dict) else []
+    names = {
+        "FP1": "Free Practice 1", "FP2": "Free Practice 2", "FP3": "Free Practice 3",
+        "PR": "Practice", "Q1": "Qualifying 1", "Q2": "Qualifying 2",
+        "SPR": "Sprint", "WUP": "Warm Up", "RAC": "Race",
+    }
+    sessions: List[SourceSession] = []
+    for item in broadcasts:
+        if item.get("type") != "SESSION" or normalize((item.get("category") or {}).get("name")) != normalize(category_name):
+            continue
+        name = names.get(str(item.get("shortname") or "").upper())
+        start = str(item.get("date_start") or "")
+        if not name or not re.match(r"^20\d{2}-\d{2}-\d{2}T\d{2}:\d{2}", start):
+            continue
+        sessions.append(SourceSession(
+            name, start[:10], start[11:16], source_timezone,
+            session_duration(start, str(item.get("date_end") or "")),
+        ))
+    unique = {(item.name, item.date, item.local_time): item for item in sessions}
+    return sorted(unique.values(), key=lambda item: (item.date, item.local_time, item.name))
+
+
+def parse_worldsbk_schedule(fetch: FetchResult, category_id: str, source_timezone: str) -> List[SourceSession]:
+    payload = json_object(fetch.body, "WorldSBK sessions")
+    records = payload.get("sessions", []) if isinstance(payload, dict) else []
+    sessions: List[SourceSession] = []
+    for item in records:
+        relationship = (((item.get("relationships") or {}).get("category") or {}).get("data") or {})
+        if relationship.get("id") != category_id:
+            continue
+        attributes = item.get("attributes") or {}
+        raw_name = str(attributes.get("description") or attributes.get("brief_description") or "")
+        normalized_name = normalize(raw_name)
+        practice = re.search(r"free practice\s+(\d+)(?:st|nd|rd|th)?(?:\s+session)?", normalized_name)
+        if practice:
+            name = "Free Practice {}".format(practice.group(1))
+        elif "superpole race" in normalized_name:
+            name = "Superpole Race"
+        elif "superpole" in normalized_name:
+            name = "Superpole"
+        elif normalized_name.startswith("warm up"):
+            name = "Warmup"
+        elif re.fullmatch(r"race\s+[12]", normalized_name):
+            name = raw_name.strip()
+        else:
+            continue
+        start = str(attributes.get("start_date_circuit") or "")
+        end = str(attributes.get("end_date_circuit") or "")
+        if not re.match(r"^20\d{2}-\d{2}-\d{2}T\d{2}:\d{2}", start):
+            continue
+        sessions.append(SourceSession(name, start[:10], start[11:16], source_timezone, session_duration(start, end)))
+    unique = {(item.name, item.date, item.local_time): item for item in sessions}
+    return sorted(unique.values(), key=lambda item: (item.date, item.local_time, item.name))
 
 
 def parse_official_schedule_document(fetch: FetchResult, year: int, source_timezone: str, categories: Sequence[str]) -> List[SourceSession]:
@@ -1790,6 +1936,40 @@ def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Opti
                 feed = calendar_cache[feed_url]
                 source = FetchResult(stable_url, stable_url, "NASCAR official weekend schedule", feed.body, feed.last_modified)
                 source_candidates = [source]
+            elif cfg.get("sourceKind") == "motogp-api":
+                feed_url = "https://api.pulselive.motogp.com/motogp/v1/events?seasonYear={}".format(event_year)
+                if feed_url not in calendar_cache:
+                    calendar_cache[feed_url] = fetch_url(feed_url, cfg["allowedDomains"], {
+                        "x-client": "FE", "x-referer-path": "/en/calendar", "Referer": stable_url,
+                    })
+                selected = select_motogp_event(calendar_cache[feed_url].body, event)
+                public_url = "https://www.motogp.com/en/calendar/{}/event/{}/{}".format(
+                    event_year, url_slug(selected.get("url") or selected.get("place")), selected.get("id")
+                )
+                source = FetchResult(
+                    stable_url, public_url, selected.get("name") or "Official MotoGP schedule",
+                    json.dumps(selected, ensure_ascii=False), calendar_cache[feed_url].last_modified,
+                )
+                source_candidates = [source]
+            elif cfg.get("sourceKind") == "worldsbk-api":
+                rounds_url = "https://api.pulselive.worldsbk.com/wsbk-events/v1/seasons/{}/rounds".format(event_year)
+                api_headers = {"x-client": "FE", "x-referer-path": "/en/calendar", "Referer": stable_url}
+                if rounds_url not in calendar_cache:
+                    calendar_cache[rounds_url] = fetch_url(rounds_url, cfg["allowedDomains"], api_headers)
+                selected_round, circuit = select_worldsbk_round(calendar_cache[rounds_url].body, event)
+                round_code = (selected_round.get("attributes") or {}).get("source_id")
+                sessions_url = "https://api.pulselive.worldsbk.com/wsbk-events/v1/seasons/{}/rounds/{}/sessions".format(event_year, round_code)
+                sessions_feed = fetch_url(sessions_url, cfg["allowedDomains"], api_headers)
+                sessions_payload = json_object(sessions_feed.body, "WorldSBK sessions")
+                source = FetchResult(
+                    stable_url, stable_url,
+                    (selected_round.get("attributes") or {}).get("description") or "Official WorldSBK schedule",
+                    json.dumps({
+                        "round": selected_round, "circuit": circuit,
+                        "sessions": sessions_payload.get("data", []) if isinstance(sessions_payload, dict) else [],
+                    }, ensure_ascii=False), sessions_feed.last_modified,
+                )
+                source_candidates = [source]
             else:
                 known = registry.get("knownEventUrls", {}).get("{}:{}".format(series_id, event.get("id")))
                 if known:
@@ -1859,6 +2039,10 @@ def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Opti
                         ", ".join(sorted(source_title_years)), event_year
                     )
                 )
+            if cfg["sourceKind"] == "motogp-api":
+                source_tz = motogp_source_timezone(source) or source_tz
+            elif cfg["sourceKind"] == "worldsbk-api":
+                source_tz = worldsbk_source_timezone(source) or source_tz
             if not source_tz:
                 raise SourceError("no verified IANA track timezone is registered for this event")
             if cfg["sourceKind"] == "nascar-et":
@@ -1877,6 +2061,10 @@ def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Opti
                 sessions = parse_imsa_event_schedule(source, event, event_year, source_tz)
             elif cfg["sourceKind"] == "supercars-embedded-schedule":
                 sessions = parse_supercars_schedule(source, event_year, source_tz, cfg["officialSeriesName"])
+            elif cfg["sourceKind"] == "motogp-api":
+                sessions = parse_motogp_schedule(source, cfg["officialCategory"], source_tz)
+            elif cfg["sourceKind"] == "worldsbk-api":
+                sessions = parse_worldsbk_schedule(source, cfg["officialCategoryId"], source_tz)
             elif cfg["sourceKind"] == "rally-itinerary":
                 sessions = parse_rally_itinerary(source, event_year, source_tz)
                 itinerary_url = discover_rally_itinerary_url(source)
