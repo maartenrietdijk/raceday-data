@@ -384,21 +384,46 @@ def discover_rally_itinerary_url(event_page: FetchResult) -> Optional[str]:
     candidates = []
     for url, label in extract_links(event_page.body, event_page.final_url):
         combined = "{} {}".format(label, url)
-        if re.search(r"itinerar", combined, re.I):
-            priority = 3 if re.search(r"itinerary.?stages|stages.?itinerary", combined, re.I) else 2
-            if urlparse(url).path.lower().endswith(".pdf"):
-                priority = 1
-            candidates.append((priority, url))
+        is_pdf = urlparse(url).path.lower().endswith(".pdf") or "pdf" in label.lower()
+        # WRC's official Chile filename currently contains the typo
+        # "Itinrerary". The visible Download PDF label and itinerary-page
+        # context are therefore also authoritative signals.
+        is_itinerary = bool(re.search(r"itinerar|itinrerar", combined, re.I))
+        if is_pdf and re.search(r"download\s+pdf", label, re.I) and "itinerary" in event_page.final_url.lower():
+            is_itinerary = True
+        if not is_itinerary:
+            continue
+        if url.rstrip("/") == event_page.final_url.rstrip("/"):
+            continue
+        priority = 4 if is_pdf else (3 if re.search(r"itinerary.?stages|stages.?itinerary", combined, re.I) else 2)
+        candidates.append((priority, url))
     return max(candidates, default=(0, None))[1]
 
 
+def rally_page_ready(fetch: FetchResult) -> bool:
+    """Check for the useful WRC/ERC payload, not merely a large app shell."""
+    path = urlparse(fetch.final_url).path.lower()
+    if "itinerary" in path:
+        return any(
+            re.match(r"^\d{1,2}:\d{2}\s*:?\s*(?:shakedown\b|(?:wolf\s+)?power\s+stage\b|sss?\s*\d+\b)", line, re.I)
+            for line in document_lines(fetch.body)
+        )
+    if path.rstrip("/").endswith("/calendar"):
+        return len(re.findall(r"/events/", fetch.body, re.I)) >= 2
+    if "/events/" in path:
+        return discover_rally_itinerary_url(fetch) is not None
+    return len(fetch.body) >= 20_000
+
+
 def retry_rally_prerender(fetch: FetchResult, url: str, allowed_domains: Sequence[str]) -> FetchResult:
-    """WRC Promoter may return a short shell while its official prerender warms."""
+    """WRC Promoter may return a full-size shell before useful data is ready."""
     result = fetch
     for _ in range(2):
-        if len(result.body) >= 20_000:
+        if rally_page_ready(result):
             break
-        result = fetch_url(url, allowed_domains)
+        candidate = fetch_url(url, allowed_domains)
+        if rally_page_ready(candidate) or len(candidate.body) > len(result.body):
+            result = candidate
     return result
 
 
@@ -892,6 +917,8 @@ def parse_rally_itinerary(fetch: FetchResult, year: int, source_timezone: str) -
             sessions.append(SourceSession(canonical, current_date, parse_clock(clock), source_timezone, 60))
             continue
         stage_match = re.match(r"^SSS?\s*(\d+)(?:[A-Z])?\b\s*[-:]?\s*(.+)$", activity, re.I)
+        if not stage_match:
+            stage_match = re.match(r"^(?:WOLF\s+)?POWER\s+STAGE\s*[-:]\s*SSS?\s*(\d+)(?:[A-Z])?\b\s*[-:]?\s*(.+)$", activity, re.I)
         if not stage_match:
             continue
         number, stage_name = stage_match.groups()
