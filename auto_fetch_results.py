@@ -621,7 +621,7 @@ def preferred_session_codes(series: str, session_data: dict[str, Any]) -> list[s
 
     if series in {"motogp", "moto2", "moto3"}:
         if "sprint" in name:
-            return ["SPRINT"]
+            return ["SPR"]
         if "warm" in name:
             return ["W"]
         if "free practice 1" in name:
@@ -632,7 +632,7 @@ def preferred_session_codes(series: str, session_data: dict[str, Any]) -> list[s
             return ["FP2"]
         if is_qualifying:
             if series in {"moto2", "moto3"}:
-                return ["GRID", "Q3"]
+                return [f"Q{number}"] if number in {1, 2} else []
             return [f"Q{number}"] if number else ["Q2", "Q"]
         if is_race:
             return ["RACE"]
@@ -736,7 +736,7 @@ def direct_motorsport_session_url(
     name = normalize(session_data.get("name"))
     kind = normalize(session_data.get("kind"))
     is_dynamic_qualifying = (
-        series in {"indycar", "moto2", "moto3"}
+        series == "indycar"
         and ("qual" in name or "qual" in kind)
     )
     exact_primary = len(codes) == 1
