@@ -60,9 +60,53 @@
     ]
   },
   {
-    "id": "24h-series-2026-spa",
+    "id": "24h-series-2026-paul-ricard",
     "seriesId": "24hseries",
     "roundNumber": 2,
+    "raceName": "Michelin 12H Paul Ricard",
+    "circuitName": "Circuit Paul Ricard",
+    "city": "Le Castellet",
+    "country": "France",
+    "countryCode": "FR",
+    "sessions": [
+      {
+        "id": "24h-series-2026-paul-ricard-practice",
+        "name": "Free Practice",
+        "kind": "practice",
+        "date": "2026-06-05",
+        "timeLocal": "11:00",
+        "durationMinutes": 90
+      },
+      {
+        "id": "24h-series-2026-paul-ricard-qualifying",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-06-05",
+        "timeLocal": "16:00",
+        "durationMinutes": 60
+      },
+      {
+        "id": "24h-series-2026-paul-ricard-race1",
+        "name": "Race Part 1",
+        "kind": "race",
+        "date": "2026-06-06",
+        "timeLocal": "10:00",
+        "durationMinutes": 360
+      },
+      {
+        "id": "24h-series-2026-paul-ricard-race2",
+        "name": "Race Part 2",
+        "kind": "race",
+        "date": "2026-06-07",
+        "timeLocal": "10:00",
+        "durationMinutes": 360
+      }
+    ]
+  },
+  {
+    "id": "24h-series-2026-spa",
+    "seriesId": "24hseries",
+    "roundNumber": 3,
     "raceName": "Michelin 12H Spa-Francorchamps",
     "circuitName": "Circuit de Spa-Francorchamps",
     "city": "Spa",
@@ -115,50 +159,6 @@
         "kind": "race",
         "date": "2026-04-19",
         "timeLocal": "10:30",
-        "durationMinutes": 360
-      }
-    ]
-  },
-  {
-    "id": "24h-series-2026-paul-ricard",
-    "seriesId": "24hseries",
-    "roundNumber": 3,
-    "raceName": "Michelin 12H Paul Ricard",
-    "circuitName": "Circuit Paul Ricard",
-    "city": "Le Castellet",
-    "country": "France",
-    "countryCode": "FR",
-    "sessions": [
-      {
-        "id": "24h-series-2026-paul-ricard-practice",
-        "name": "Free Practice",
-        "kind": "practice",
-        "date": "2026-06-05",
-        "timeLocal": "11:00",
-        "durationMinutes": 90
-      },
-      {
-        "id": "24h-series-2026-paul-ricard-qualifying",
-        "name": "Qualifying",
-        "kind": "qualifying",
-        "date": "2026-06-05",
-        "timeLocal": "16:00",
-        "durationMinutes": 60
-      },
-      {
-        "id": "24h-series-2026-paul-ricard-race1",
-        "name": "Race Part 1",
-        "kind": "race",
-        "date": "2026-06-06",
-        "timeLocal": "10:00",
-        "durationMinutes": 360
-      },
-      {
-        "id": "24h-series-2026-paul-ricard-race2",
-        "name": "Race Part 2",
-        "kind": "race",
-        "date": "2026-06-07",
-        "timeLocal": "10:00",
         "durationMinutes": 360
       }
     ]
@@ -230,7 +230,7 @@
         "name": "Qualifying",
         "kind": "qualifying",
         "date": "2026-09-18",
-        "timeLocal": "16:15",
+        "timeLocal": "16:05",
         "durationMinutes": 120
       },
       {
