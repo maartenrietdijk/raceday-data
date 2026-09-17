@@ -59,7 +59,7 @@
     "id": "nls-2027-24h-qualifiers-race-1",
     "seriesId": "nls",
     "roundNumber": 3,
-    "raceName": "ADAC 24h Nürburgring Qualifiers – Race 1",
+    "raceName": "ADAC 24h Nürburgring Qualifiers",
     "circuitName": "Nürburgring GP-Strecke + Nordschleife",
     "city": "Nürburg",
     "country": "Germany",
@@ -67,7 +67,7 @@
     "sessions": [
       {
         "id": "nls-2027-24h-qualifiers-race-1-s1",
-        "name": "Qualifying",
+        "name": "Qualifying 1",
         "kind": "qualifying",
         "date": "2027-05-01",
         "timeLocal": null,
@@ -80,42 +80,22 @@
         "date": "2027-05-01",
         "timeLocal": null,
         "durationMinutes": 240
-      }
-    ]
-  },
-  {
-    "id": "nls-2027-24h-qualifiers-race-2",
-    "seriesId": "nls",
-    "roundNumber": 4,
-    "raceName": "ADAC 24h Nürburgring Qualifiers – Race 2",
-    "circuitName": "Nürburgring GP-Strecke + Nordschleife",
-    "city": "Nürburg",
-    "country": "Germany",
-    "countryCode": "DE",
-    "sessions": [
-      {
-        "id": "nls-2027-24h-qualifiers-race-2-s1",
-        "name": "Qualifying",
-        "kind": "qualifying",
-        "date": "2027-05-02",
-        "timeLocal": null,
-        "durationMinutes": 90
       },
       {
-        "id": "nls-2027-24h-qualifiers-race-2-s3",
-        "name": "Race 2 (4h)",
-        "kind": "race",
+        "id": "nls-2027-24h-qualifiers-race-1-s1789645709979",
+        "name": "Qualifying 2",
+        "kind": "qualifying",
         "date": "2027-05-02",
         "timeLocal": null,
         "durationMinutes": 240
       },
       {
-        "id": "nls-2027-24h-qualifiers-race-2-s2",
-        "name": "Top Qualifying",
-        "kind": "qualifying",
+        "id": "nls-2027-24h-qualifiers-race-1-s1789645729720",
+        "name": "Race 2 (4h)",
+        "kind": "race",
         "date": "2027-05-02",
         "timeLocal": null,
-        "durationMinutes": 60
+        "durationMinutes": 240
       }
     ]
   },
