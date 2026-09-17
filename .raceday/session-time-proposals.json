@@ -1,286 +1,194 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-17T08:30:41Z",
+  "generatedAt": "2026-09-17T08:33:43Z",
   "proposals": [
     {
-      "seriesId": "moto3",
-      "seriesName": "Moto3",
-      "calendarFile": "moto3_2026.json",
-      "eventId": "moto3-2026-15",
-      "eventName": "Grand Prix of Austria",
-      "roundNumber": 15,
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2026.json",
+      "eventId": "imsa-2026-r10",
+      "eventName": "Tirerack.com Battle on the Bricks",
+      "roundNumber": 10,
       "source": {
-        "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
-        "finalUrl": "https://www.motogp.com/en/calendar/2026/event/austria/1d659e29-247a-402c-ba1e-33fa14670cbe",
-        "title": "QATAR AIRWAYS GRAND PRIX OF AUSTRIA ",
-        "checkedAt": "2026-09-17T08:30:41Z",
-        "lastModified": null
-      },
-      "proposalType": "verification",
-      "sessionId": "moto3-2026-15-fp1",
-      "sessionName": "Free Practice 1",
-      "current": {
-        "date": "2026-09-18",
-        "timeLocal": "09:00",
-        "durationMinutes": 60
-      },
-      "sourceTime": {
-        "date": "2026-09-18",
-        "time": "09:00",
-        "timeZone": "Europe/Vienna"
-      },
-      "editorTimeZone": "Europe/Amsterdam",
-      "proposed": {
-        "date": "2026-09-18",
-        "timeLocal": "09:00",
-        "durationMinutes": 35,
-        "name": "Free Practice 1",
-        "kind": "practice",
-        "utcInstant": "2026-09-18T07:00:00Z",
-        "sessionId": "moto3-2026-15-fp1"
-      },
-      "dateChanged": false,
-      "status": "verified",
-      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
-      "debug": false,
-      "fingerprint": "a7ed13790fc26e949b331120f7233f3e39e388d5e68cb7fdf0e1bedc3b587aae",
-      "id": "schedule-a7ed13790fc26e94"
-    },
-    {
-      "seriesId": "moto3",
-      "seriesName": "Moto3",
-      "calendarFile": "moto3_2026.json",
-      "eventId": "moto3-2026-15",
-      "eventName": "Grand Prix of Austria",
-      "roundNumber": 15,
-      "source": {
-        "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
-        "finalUrl": "https://www.motogp.com/en/calendar/2026/event/austria/1d659e29-247a-402c-ba1e-33fa14670cbe",
-        "title": "QATAR AIRWAYS GRAND PRIX OF AUSTRIA ",
-        "checkedAt": "2026-09-17T08:30:41Z",
-        "lastModified": null
-      },
-      "proposalType": "verification",
-      "sessionId": "moto3-2026-15-prac",
-      "sessionName": "Practice",
-      "current": {
-        "date": "2026-09-18",
-        "timeLocal": "13:15",
-        "durationMinutes": 60
-      },
-      "sourceTime": {
-        "date": "2026-09-18",
-        "time": "13:15",
-        "timeZone": "Europe/Vienna"
-      },
-      "editorTimeZone": "Europe/Amsterdam",
-      "proposed": {
-        "date": "2026-09-18",
-        "timeLocal": "13:15",
-        "durationMinutes": 35,
-        "name": "Practice",
-        "kind": "practice",
-        "utcInstant": "2026-09-18T11:15:00Z",
-        "sessionId": "moto3-2026-15-prac"
-      },
-      "dateChanged": false,
-      "status": "verified",
-      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
-      "debug": false,
-      "fingerprint": "65b52c3cf2c9466f2dce2d3e25795943dbd4713b0c2051559e20e5ee20aa4bdf",
-      "id": "schedule-65b52c3cf2c9466f"
-    },
-    {
-      "seriesId": "moto3",
-      "seriesName": "Moto3",
-      "calendarFile": "moto3_2026.json",
-      "eventId": "moto3-2026-15",
-      "eventName": "Grand Prix of Austria",
-      "roundNumber": 15,
-      "source": {
-        "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
-        "finalUrl": "https://www.motogp.com/en/calendar/2026/event/austria/1d659e29-247a-402c-ba1e-33fa14670cbe",
-        "title": "QATAR AIRWAYS GRAND PRIX OF AUSTRIA ",
-        "checkedAt": "2026-09-17T08:30:41Z",
-        "lastModified": null
+        "stableUrl": "https://www.imsa.com/weathertech/2026-schedule/",
+        "finalUrl": "https://www.imsa.com/events/2026-indianapolis-motor-speedway/",
+        "title": "2026 Indianapolis Motor Speedway | IMSA",
+        "checkedAt": "2026-09-17T08:33:43Z",
+        "lastModified": "Wed, 16 Sep 2026 23:24:12 GMT"
       },
       "proposalType": "time-update",
-      "sessionId": "moto3-2026-15-fp2",
-      "sessionName": "Free Practice 2",
+      "sessionId": "imsa-2026-r10-s1",
+      "sessionName": "Practice 1",
       "current": {
-        "date": "2026-09-19",
-        "timeLocal": "08:30",
+        "date": "2026-09-18",
+        "timeLocal": "15:15",
         "durationMinutes": 60
       },
       "sourceTime": {
-        "date": "2026-09-19",
-        "time": "08:40",
-        "timeZone": "Europe/Vienna"
+        "date": "2026-09-18",
+        "time": "15:25",
+        "timeZone": "America/New_York"
       },
-      "editorTimeZone": "Europe/Amsterdam",
+      "editorTimeZone": "America/New_York",
       "proposed": {
-        "date": "2026-09-19",
-        "timeLocal": "08:40",
-        "durationMinutes": 30,
-        "name": "Free Practice 2",
+        "date": "2026-09-18",
+        "timeLocal": "15:25",
+        "durationMinutes": 90,
+        "name": "Practice 1",
         "kind": "practice",
-        "utcInstant": "2026-09-19T06:40:00Z",
-        "sessionId": "moto3-2026-15-fp2"
+        "utcInstant": "2026-09-18T19:25:00Z",
+        "sessionId": "imsa-2026-r10-s1"
       },
       "dateChanged": false,
-      "status": "accepted",
+      "status": "open",
       "reason": "De ingevulde sessie wordt vervangen door de nieuwste officiële tijd.",
       "debug": false,
-      "fingerprint": "b2a14ee9a4c9bcddeca92dcdc98f4f760a8f7d447ab743dd394a981b06ddac1c",
-      "id": "schedule-b2a14ee9a4c9bcdd",
-      "decisionAt": "2026-09-17T08:32:26.306Z"
+      "fingerprint": "45d3b2812b7bb590cd2516593c1c839d91aa619d1142a904718bc938ed5a1cff",
+      "id": "schedule-45d3b2812b7bb590"
     },
     {
-      "seriesId": "moto3",
-      "seriesName": "Moto3",
-      "calendarFile": "moto3_2026.json",
-      "eventId": "moto3-2026-15",
-      "eventName": "Grand Prix of Austria",
-      "roundNumber": 15,
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2026.json",
+      "eventId": "imsa-2026-r10",
+      "eventName": "Tirerack.com Battle on the Bricks",
+      "roundNumber": 10,
       "source": {
-        "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
-        "finalUrl": "https://www.motogp.com/en/calendar/2026/event/austria/1d659e29-247a-402c-ba1e-33fa14670cbe",
-        "title": "QATAR AIRWAYS GRAND PRIX OF AUSTRIA ",
-        "checkedAt": "2026-09-17T08:30:41Z",
-        "lastModified": null
+        "stableUrl": "https://www.imsa.com/weathertech/2026-schedule/",
+        "finalUrl": "https://www.imsa.com/events/2026-indianapolis-motor-speedway/",
+        "title": "2026 Indianapolis Motor Speedway | IMSA",
+        "checkedAt": "2026-09-17T08:33:43Z",
+        "lastModified": "Wed, 16 Sep 2026 23:24:12 GMT"
       },
-      "proposalType": "time-update",
-      "sessionId": "moto3-2026-15-qual",
+      "proposalType": "verification",
+      "sessionId": "imsa-2026-r10-s2",
+      "sessionName": "Practice 2",
+      "current": {
+        "date": "2026-09-19",
+        "timeLocal": "10:45",
+        "durationMinutes": 60
+      },
+      "sourceTime": {
+        "date": "2026-09-19",
+        "time": "10:45",
+        "timeZone": "America/New_York"
+      },
+      "editorTimeZone": "America/New_York",
+      "proposed": {
+        "date": "2026-09-19",
+        "timeLocal": "10:45",
+        "durationMinutes": 90,
+        "name": "Practice 2",
+        "kind": "practice",
+        "utcInstant": "2026-09-19T14:45:00Z",
+        "sessionId": "imsa-2026-r10-s2"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": false,
+      "fingerprint": "6d5a3b9b5c2ca8fbcc829e8df13465335173ae832ad64fd36dfde9d528f4d754",
+      "id": "schedule-6d5a3b9b5c2ca8fb"
+    },
+    {
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2026.json",
+      "eventId": "imsa-2026-r10",
+      "eventName": "Tirerack.com Battle on the Bricks",
+      "roundNumber": 10,
+      "source": {
+        "stableUrl": "https://www.imsa.com/weathertech/2026-schedule/",
+        "finalUrl": "https://www.imsa.com/events/2026-indianapolis-motor-speedway/",
+        "title": "2026 Indianapolis Motor Speedway | IMSA",
+        "checkedAt": "2026-09-17T08:33:43Z",
+        "lastModified": "Wed, 16 Sep 2026 23:24:12 GMT"
+      },
+      "proposalType": "verification",
+      "sessionId": "imsa-2026-r10-s3",
       "sessionName": "Qualifying",
       "current": {
         "date": "2026-09-19",
-        "timeLocal": "12:45",
-        "durationMinutes": 60
+        "timeLocal": "17:05",
+        "durationMinutes": 35
       },
       "sourceTime": {
         "date": "2026-09-19",
-        "time": "12:45",
-        "timeZone": "Europe/Vienna"
+        "time": "17:05",
+        "timeZone": "America/New_York"
       },
-      "editorTimeZone": "Europe/Amsterdam",
+      "editorTimeZone": "America/New_York",
       "proposed": {
         "date": "2026-09-19",
-        "timeLocal": "12:45",
-        "durationMinutes": 15,
-        "name": "Qualifying 1",
+        "timeLocal": "17:05",
+        "durationMinutes": 75,
+        "name": "Qualifying",
         "kind": "qualifying",
-        "utcInstant": "2026-09-19T10:45:00Z",
-        "sessionId": "moto3-2026-15-qual"
-      },
-      "dateChanged": false,
-      "status": "accepted",
-      "reason": "De ingevulde sessie wordt vervangen door de nieuwste officiële tijd.",
-      "debug": false,
-      "fingerprint": "30f5d824e50033e47f7e0e449af3826d2b7238457550a300d8c767231762ad5d",
-      "id": "schedule-30f5d824e50033e4",
-      "reconciled": true,
-      "decisionAt": "2026-09-17T08:31:29.852Z"
-    },
-    {
-      "seriesId": "moto3",
-      "seriesName": "Moto3",
-      "calendarFile": "moto3_2026.json",
-      "eventId": "moto3-2026-15",
-      "eventName": "Grand Prix of Austria",
-      "roundNumber": 15,
-      "source": {
-        "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
-        "finalUrl": "https://www.motogp.com/en/calendar/2026/event/austria/1d659e29-247a-402c-ba1e-33fa14670cbe",
-        "title": "QATAR AIRWAYS GRAND PRIX OF AUSTRIA ",
-        "checkedAt": "2026-09-17T08:30:41Z",
-        "lastModified": null
-      },
-      "proposalType": "new-session",
-      "sessionId": null,
-      "sessionName": "Qualifying 2",
-      "current": {
-        "date": null,
-        "timeLocal": null,
-        "durationMinutes": null
-      },
-      "sourceTime": {
-        "date": "2026-09-19",
-        "time": "13:10",
-        "timeZone": "Europe/Vienna"
-      },
-      "editorTimeZone": "Europe/Amsterdam",
-      "proposed": {
-        "date": "2026-09-19",
-        "timeLocal": "13:10",
-        "durationMinutes": 15,
-        "name": "Qualifying 2",
-        "kind": "qualifying",
-        "utcInstant": "2026-09-19T11:10:00Z",
-        "sessionId": "moto3-2026-15-s10"
-      },
-      "dateChanged": false,
-      "status": "accepted",
-      "reason": "Official session time is available.",
-      "debug": false,
-      "fingerprint": "98536719e8841881ff0812ce6cc20f44dc54ac965b9a6dcd4ded942bf8309c96",
-      "id": "schedule-98536719e8841881",
-      "decisionAt": "2026-09-17T08:32:44.855Z"
-    },
-    {
-      "seriesId": "moto3",
-      "seriesName": "Moto3",
-      "calendarFile": "moto3_2026.json",
-      "eventId": "moto3-2026-15",
-      "eventName": "Grand Prix of Austria",
-      "roundNumber": 15,
-      "source": {
-        "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
-        "finalUrl": "https://www.motogp.com/en/calendar/2026/event/austria/1d659e29-247a-402c-ba1e-33fa14670cbe",
-        "title": "QATAR AIRWAYS GRAND PRIX OF AUSTRIA ",
-        "checkedAt": "2026-09-17T08:30:41Z",
-        "lastModified": null
-      },
-      "proposalType": "verification",
-      "sessionId": "moto3-2026-15-race",
-      "sessionName": "Race",
-      "current": {
-        "date": "2026-09-20",
-        "timeLocal": "11:00",
-        "durationMinutes": 60
-      },
-      "sourceTime": {
-        "date": "2026-09-20",
-        "time": "11:00",
-        "timeZone": "Europe/Vienna"
-      },
-      "editorTimeZone": "Europe/Amsterdam",
-      "proposed": {
-        "date": "2026-09-20",
-        "timeLocal": "11:00",
-        "durationMinutes": 60,
-        "name": "Race",
-        "kind": "race",
-        "utcInstant": "2026-09-20T09:00:00Z",
-        "sessionId": "moto3-2026-15-race"
+        "utcInstant": "2026-09-19T21:05:00Z",
+        "sessionId": "imsa-2026-r10-s3"
       },
       "dateChanged": false,
       "status": "verified",
       "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
       "debug": false,
-      "fingerprint": "34adb08d500ccd65af602d92665bd25199ad913773e5c04139ba947c5b3054a2",
-      "id": "schedule-34adb08d500ccd65"
+      "fingerprint": "dda52be858a344a310afac774441bbf5ee7184e267f9f4bbd821b2941cb94f55",
+      "id": "schedule-dda52be858a344a3"
+    },
+    {
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2026.json",
+      "eventId": "imsa-2026-r10",
+      "eventName": "Tirerack.com Battle on the Bricks",
+      "roundNumber": 10,
+      "source": {
+        "stableUrl": "https://www.imsa.com/weathertech/2026-schedule/",
+        "finalUrl": "https://www.imsa.com/events/2026-indianapolis-motor-speedway/",
+        "title": "2026 Indianapolis Motor Speedway | IMSA",
+        "checkedAt": "2026-09-17T08:33:43Z",
+        "lastModified": "Wed, 16 Sep 2026 23:24:12 GMT"
+      },
+      "proposalType": "verification",
+      "sessionId": "imsa-2026-r10-s4",
+      "sessionName": "Race",
+      "current": {
+        "date": "2026-09-20",
+        "timeLocal": "15:10",
+        "durationMinutes": 160
+      },
+      "sourceTime": {
+        "date": "2026-09-20",
+        "time": "15:10",
+        "timeZone": "America/New_York"
+      },
+      "editorTimeZone": "America/New_York",
+      "proposed": {
+        "date": "2026-09-20",
+        "timeLocal": "15:10",
+        "durationMinutes": 160,
+        "name": "Race",
+        "kind": "race",
+        "utcInstant": "2026-09-20T19:10:00Z",
+        "sessionId": "imsa-2026-r10-s4"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": false,
+      "fingerprint": "c5e27d54209fca82dfdbd4070a2af53e7553bdb09530c8d0fab7b05e2ad45427",
+      "id": "schedule-c5e27d54209fca82"
     }
   ],
   "sourcesUsed": [
     {
-      "seriesId": "moto3",
-      "eventId": "moto3-2026-15",
-      "eventName": "Grand Prix of Austria",
-      "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
-      "finalUrl": "https://www.motogp.com/en/calendar/2026/event/austria/1d659e29-247a-402c-ba1e-33fa14670cbe",
-      "title": "QATAR AIRWAYS GRAND PRIX OF AUSTRIA ",
-      "checkedAt": "2026-09-17T08:30:41Z",
-      "lastModified": null
+      "seriesId": "imsa",
+      "eventId": "imsa-2026-r10",
+      "eventName": "Tirerack.com Battle on the Bricks",
+      "stableUrl": "https://www.imsa.com/weathertech/2026-schedule/",
+      "finalUrl": "https://www.imsa.com/events/2026-indianapolis-motor-speedway/",
+      "title": "2026 Indianapolis Motor Speedway | IMSA",
+      "checkedAt": "2026-09-17T08:33:43Z",
+      "lastModified": "Wed, 16 Sep 2026 23:24:12 GMT"
     }
   ]
 }
