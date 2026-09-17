@@ -1,241 +1,458 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-17T08:36:14Z",
+  "generatedAt": "2026-09-17T08:38:18Z",
   "proposals": [
     {
-      "seriesId": "imsa",
-      "seriesName": "IMSA WeatherTech SportsCar Championship",
-      "calendarFile": "imsa_2026.json",
-      "eventId": "imsa-2026-r11",
-      "eventName": "Motul Petit Le Mans",
-      "roundNumber": 11,
+      "seriesId": "alms",
+      "seriesName": "Asian Le Mans Series",
+      "calendarFile": "alms_2027.json",
+      "eventId": "alms-2026-27-r01",
+      "eventName": "4 Hours of Le Castellet",
+      "roundNumber": 1,
       "source": {
-        "stableUrl": "https://www.imsa.com/weathertech/2026-schedule/",
-        "finalUrl": "https://www.imsa.com/events/2026-michelin-raceway-road-atlanta/",
-        "title": "2026 Michelin Raceway Road Atlanta | IMSA",
-        "checkedAt": "2026-09-17T08:36:14Z",
-        "lastModified": "Wed, 16 Sep 2026 17:10:26 GMT"
+        "stableUrl": "https://www.asianlemansseries.com/",
+        "finalUrl": "https://www.asianlemansseries.com/en/race/calendar/5073",
+        "title": "Official event calendar",
+        "checkedAt": "2026-09-17T08:38:18Z",
+        "lastModified": null
       },
-      "proposalType": "verification",
-      "sessionId": "imsa-2026-r11-s1",
+      "proposalType": "time-update",
+      "sessionId": "alms-2026-27-r01-p1",
       "sessionName": "Practice 1",
       "current": {
-        "date": "2026-10-01",
-        "timeLocal": "10:40",
+        "date": "2026-11-13",
+        "timeLocal": "12:00",
         "durationMinutes": 90
       },
       "sourceTime": {
-        "date": "2026-10-01",
-        "time": "10:40",
-        "timeZone": "America/New_York"
+        "date": "2026-11-13",
+        "time": "12:00",
+        "timeZone": "Europe/Paris"
       },
-      "editorTimeZone": "America/New_York",
+      "editorTimeZone": "Europe/Amsterdam",
       "proposed": {
-        "date": "2026-10-01",
-        "timeLocal": "10:40",
+        "date": "2026-11-13",
+        "timeLocal": "12:00",
         "durationMinutes": 90,
-        "name": "Practice 1",
+        "name": "Free Practice 1",
         "kind": "practice",
-        "utcInstant": "2026-10-01T14:40:00Z",
-        "sessionId": "imsa-2026-r11-s1"
+        "utcInstant": "2026-11-13T11:00:00Z",
+        "sessionId": "alms-2026-27-r01-p1"
       },
       "dateChanged": false,
-      "status": "verified",
-      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "status": "open",
+      "reason": "De ingevulde sessie wordt vervangen door de nieuwste officiële tijd.",
       "debug": false,
-      "fingerprint": "2b5067617f0ec69c701d0558bd89521abac062ad4294e9a7848c1d2c5b182d8a",
-      "id": "schedule-2b5067617f0ec69c"
+      "fingerprint": "c34ac563bd1c75737da265983bd71aa6b1a76e84225a14d1d88305a44889837d",
+      "id": "schedule-c34ac563bd1c7573"
     },
     {
-      "seriesId": "imsa",
-      "seriesName": "IMSA WeatherTech SportsCar Championship",
-      "calendarFile": "imsa_2026.json",
-      "eventId": "imsa-2026-r11",
-      "eventName": "Motul Petit Le Mans",
-      "roundNumber": 11,
+      "seriesId": "alms",
+      "seriesName": "Asian Le Mans Series",
+      "calendarFile": "alms_2027.json",
+      "eventId": "alms-2026-27-r01",
+      "eventName": "4 Hours of Le Castellet",
+      "roundNumber": 1,
       "source": {
-        "stableUrl": "https://www.imsa.com/weathertech/2026-schedule/",
-        "finalUrl": "https://www.imsa.com/events/2026-michelin-raceway-road-atlanta/",
-        "title": "2026 Michelin Raceway Road Atlanta | IMSA",
-        "checkedAt": "2026-09-17T08:36:14Z",
-        "lastModified": "Wed, 16 Sep 2026 17:10:26 GMT"
+        "stableUrl": "https://www.asianlemansseries.com/",
+        "finalUrl": "https://www.asianlemansseries.com/en/race/calendar/5073",
+        "title": "Official event calendar",
+        "checkedAt": "2026-09-17T08:38:18Z",
+        "lastModified": null
       },
-      "proposalType": "verification",
-      "sessionId": "imsa-2026-r11-s2",
+      "proposalType": "time-update",
+      "sessionId": "alms-2026-27-r01-p2",
       "sessionName": "Practice 2",
       "current": {
-        "date": "2026-10-01",
-        "timeLocal": "15:20",
+        "date": "2026-11-13",
+        "timeLocal": "15:00",
         "durationMinutes": 90
       },
       "sourceTime": {
-        "date": "2026-10-01",
-        "time": "15:20",
-        "timeZone": "America/New_York"
+        "date": "2026-11-13",
+        "time": "15:00",
+        "timeZone": "Europe/Paris"
       },
-      "editorTimeZone": "America/New_York",
+      "editorTimeZone": "Europe/Amsterdam",
       "proposed": {
-        "date": "2026-10-01",
-        "timeLocal": "15:20",
-        "durationMinutes": 105,
-        "name": "Practice 2",
+        "date": "2026-11-13",
+        "timeLocal": "15:00",
+        "durationMinutes": 90,
+        "name": "Free Practice 2",
         "kind": "practice",
-        "utcInstant": "2026-10-01T19:20:00Z",
-        "sessionId": "imsa-2026-r11-s2"
+        "utcInstant": "2026-11-13T14:00:00Z",
+        "sessionId": "alms-2026-27-r01-p2"
       },
       "dateChanged": false,
-      "status": "verified",
-      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "status": "open",
+      "reason": "De ingevulde sessie wordt vervangen door de nieuwste officiële tijd.",
       "debug": false,
-      "fingerprint": "e286e5b495ebbaab165dc1ed666dc1d9633ae5f1296d5b7377a53f7d22dc0649",
-      "id": "schedule-e286e5b495ebbaab"
+      "fingerprint": "42e1fad3b56923645af72945ad9bf0f5f3070b6254715effe5049af087f6070e",
+      "id": "schedule-42e1fad3b5692364"
     },
     {
-      "seriesId": "imsa",
-      "seriesName": "IMSA WeatherTech SportsCar Championship",
-      "calendarFile": "imsa_2026.json",
-      "eventId": "imsa-2026-r11",
-      "eventName": "Motul Petit Le Mans",
-      "roundNumber": 11,
+      "seriesId": "alms",
+      "seriesName": "Asian Le Mans Series",
+      "calendarFile": "alms_2027.json",
+      "eventId": "alms-2026-27-r01",
+      "eventName": "4 Hours of Le Castellet",
+      "roundNumber": 1,
       "source": {
-        "stableUrl": "https://www.imsa.com/weathertech/2026-schedule/",
-        "finalUrl": "https://www.imsa.com/events/2026-michelin-raceway-road-atlanta/",
-        "title": "2026 Michelin Raceway Road Atlanta | IMSA",
-        "checkedAt": "2026-09-17T08:36:14Z",
-        "lastModified": "Wed, 16 Sep 2026 17:10:26 GMT"
+        "stableUrl": "https://www.asianlemansseries.com/",
+        "finalUrl": "https://www.asianlemansseries.com/en/race/calendar/5073",
+        "title": "Official event calendar",
+        "checkedAt": "2026-09-17T08:38:18Z",
+        "lastModified": null
+      },
+      "proposalType": "time-update",
+      "sessionId": "alms-2026-27-r01-q",
+      "sessionName": "Qualifying 1",
+      "current": {
+        "date": "2026-11-13",
+        "timeLocal": "16:00",
+        "durationMinutes": 15
+      },
+      "sourceTime": {
+        "date": "2026-11-13",
+        "time": "16:00",
+        "timeZone": "Europe/Paris"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-11-13",
+        "timeLocal": "16:00",
+        "durationMinutes": 15,
+        "name": "Qualifications 1 - GT3",
+        "kind": "qualifying",
+        "utcInstant": "2026-11-13T15:00:00Z",
+        "sessionId": "alms-2026-27-r01-q"
+      },
+      "dateChanged": false,
+      "status": "open",
+      "reason": "De ingevulde sessie wordt vervangen door de nieuwste officiële tijd.",
+      "debug": false,
+      "fingerprint": "4209753ecfc92ab646f458ded2415bd6b79b6ead21e8a793516f7a61309ad7f8",
+      "id": "schedule-4209753ecfc92ab6"
+    },
+    {
+      "seriesId": "alms",
+      "seriesName": "Asian Le Mans Series",
+      "calendarFile": "alms_2027.json",
+      "eventId": "alms-2026-27-r01",
+      "eventName": "4 Hours of Le Castellet",
+      "roundNumber": 1,
+      "source": {
+        "stableUrl": "https://www.asianlemansseries.com/",
+        "finalUrl": "https://www.asianlemansseries.com/en/race/calendar/5073",
+        "title": "Official event calendar",
+        "checkedAt": "2026-09-17T08:38:18Z",
+        "lastModified": null
       },
       "proposalType": "new-session",
       "sessionId": null,
-      "sessionName": "Practice 3",
+      "sessionName": "Qualifications 1 - LMP2",
       "current": {
         "date": null,
         "timeLocal": null,
         "durationMinutes": null
       },
       "sourceTime": {
-        "date": "2026-10-01",
-        "time": "19:30",
-        "timeZone": "America/New_York"
+        "date": "2026-11-13",
+        "time": "16:30",
+        "timeZone": "Europe/Paris"
       },
-      "editorTimeZone": "America/New_York",
+      "editorTimeZone": "Europe/Amsterdam",
       "proposed": {
-        "date": "2026-10-01",
-        "timeLocal": "19:30",
-        "durationMinutes": 90,
-        "name": "Practice 3",
-        "kind": "practice",
-        "utcInstant": "2026-10-01T23:30:00Z",
-        "sessionId": "imsa-2026-r11-s7"
+        "date": "2026-11-13",
+        "timeLocal": "16:30",
+        "durationMinutes": 15,
+        "name": "Qualifications 1 - LMP2",
+        "kind": "qualifying",
+        "utcInstant": "2026-11-13T15:30:00Z",
+        "sessionId": "alms-2026-27-r01-s10"
       },
       "dateChanged": false,
-      "status": "accepted",
+      "status": "open",
       "reason": "Official session time is available.",
       "debug": false,
-      "fingerprint": "39c2392ac8105016b057db4cb1eb5d95ec68cb75fb1f8e32a225c86fa319762a",
-      "id": "schedule-39c2392ac8105016",
-      "decisionAt": "2026-09-17T08:37:15.179Z"
+      "fingerprint": "76110c5bef51a15595dbd52c550b92f6a3985f216cd930c2b20c5e9e4b19697b",
+      "id": "schedule-76110c5bef51a155"
     },
     {
-      "seriesId": "imsa",
-      "seriesName": "IMSA WeatherTech SportsCar Championship",
-      "calendarFile": "imsa_2026.json",
-      "eventId": "imsa-2026-r11",
-      "eventName": "Motul Petit Le Mans",
-      "roundNumber": 11,
+      "seriesId": "alms",
+      "seriesName": "Asian Le Mans Series",
+      "calendarFile": "alms_2027.json",
+      "eventId": "alms-2026-27-r01",
+      "eventName": "4 Hours of Le Castellet",
+      "roundNumber": 1,
       "source": {
-        "stableUrl": "https://www.imsa.com/weathertech/2026-schedule/",
-        "finalUrl": "https://www.imsa.com/events/2026-michelin-raceway-road-atlanta/",
-        "title": "2026 Michelin Raceway Road Atlanta | IMSA",
-        "checkedAt": "2026-09-17T08:36:14Z",
-        "lastModified": "Wed, 16 Sep 2026 17:10:26 GMT"
+        "stableUrl": "https://www.asianlemansseries.com/",
+        "finalUrl": "https://www.asianlemansseries.com/en/race/calendar/5073",
+        "title": "Official event calendar",
+        "checkedAt": "2026-09-17T08:38:18Z",
+        "lastModified": null
       },
-      "proposalType": "verification",
-      "sessionId": "imsa-2026-r11-s3",
-      "sessionName": "Qualifying",
+      "proposalType": "new-session",
+      "sessionId": null,
+      "sessionName": "Qualifications 1 - Hypercar",
       "current": {
-        "date": "2026-10-02",
-        "timeLocal": "14:20",
-        "durationMinutes": 35
+        "date": null,
+        "timeLocal": null,
+        "durationMinutes": null
       },
       "sourceTime": {
-        "date": "2026-10-02",
-        "time": "14:20",
-        "timeZone": "America/New_York"
+        "date": "2026-11-13",
+        "time": "17:00",
+        "timeZone": "Europe/Paris"
       },
-      "editorTimeZone": "America/New_York",
+      "editorTimeZone": "Europe/Amsterdam",
       "proposed": {
-        "date": "2026-10-02",
-        "timeLocal": "14:20",
-        "durationMinutes": 75,
-        "name": "Qualifying",
+        "date": "2026-11-13",
+        "timeLocal": "17:00",
+        "durationMinutes": 15,
+        "name": "Qualifications 1 - Hypercar",
         "kind": "qualifying",
-        "utcInstant": "2026-10-02T18:20:00Z",
-        "sessionId": "imsa-2026-r11-s3"
+        "utcInstant": "2026-11-13T16:00:00Z",
+        "sessionId": "alms-2026-27-r01-s11"
+      },
+      "dateChanged": false,
+      "status": "open",
+      "reason": "Official session time is available.",
+      "debug": false,
+      "fingerprint": "507a4b331589fa7a8eb80a22c438d96cff9a8a2929a5710f2545db50a9c56452",
+      "id": "schedule-507a4b331589fa7a"
+    },
+    {
+      "seriesId": "alms",
+      "seriesName": "Asian Le Mans Series",
+      "calendarFile": "alms_2027.json",
+      "eventId": "alms-2026-27-r01",
+      "eventName": "4 Hours of Le Castellet",
+      "roundNumber": 1,
+      "source": {
+        "stableUrl": "https://www.asianlemansseries.com/",
+        "finalUrl": "https://www.asianlemansseries.com/en/race/calendar/5073",
+        "title": "Official event calendar",
+        "checkedAt": "2026-09-17T08:38:18Z",
+        "lastModified": null
+      },
+      "proposalType": "time-update",
+      "sessionId": "alms-2026-27-r01-s1787147487452",
+      "sessionName": "Qualifying 2",
+      "current": {
+        "date": "2026-11-14",
+        "timeLocal": "10:00",
+        "durationMinutes": 15
+      },
+      "sourceTime": {
+        "date": "2026-11-14",
+        "time": "10:00",
+        "timeZone": "Europe/Paris"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-11-14",
+        "timeLocal": "10:00",
+        "durationMinutes": 15,
+        "name": "Qualifications 2 - GT3",
+        "kind": "qualifying",
+        "utcInstant": "2026-11-14T09:00:00Z",
+        "sessionId": "alms-2026-27-r01-s1787147487452"
+      },
+      "dateChanged": false,
+      "status": "open",
+      "reason": "De ingevulde sessie wordt vervangen door de nieuwste officiële tijd.",
+      "debug": false,
+      "fingerprint": "b3e7ee2106fe35bbc8ce4676c90a33235a56d01941b640766a66863e886d444a",
+      "id": "schedule-b3e7ee2106fe35bb"
+    },
+    {
+      "seriesId": "alms",
+      "seriesName": "Asian Le Mans Series",
+      "calendarFile": "alms_2027.json",
+      "eventId": "alms-2026-27-r01",
+      "eventName": "4 Hours of Le Castellet",
+      "roundNumber": 1,
+      "source": {
+        "stableUrl": "https://www.asianlemansseries.com/",
+        "finalUrl": "https://www.asianlemansseries.com/en/race/calendar/5073",
+        "title": "Official event calendar",
+        "checkedAt": "2026-09-17T08:38:18Z",
+        "lastModified": null
+      },
+      "proposalType": "new-session",
+      "sessionId": null,
+      "sessionName": "Qualifications 2 - LMP2",
+      "current": {
+        "date": null,
+        "timeLocal": null,
+        "durationMinutes": null
+      },
+      "sourceTime": {
+        "date": "2026-11-14",
+        "time": "10:30",
+        "timeZone": "Europe/Paris"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-11-14",
+        "timeLocal": "10:30",
+        "durationMinutes": 15,
+        "name": "Qualifications 2 - LMP2",
+        "kind": "qualifying",
+        "utcInstant": "2026-11-14T09:30:00Z",
+        "sessionId": "alms-2026-27-r01-s13"
+      },
+      "dateChanged": false,
+      "status": "open",
+      "reason": "Official session time is available.",
+      "debug": false,
+      "fingerprint": "8c969eb2929c4a7bc92a19288bf61786c7d5effe30a8a0d21a38da23b9f3c829",
+      "id": "schedule-8c969eb2929c4a7b"
+    },
+    {
+      "seriesId": "alms",
+      "seriesName": "Asian Le Mans Series",
+      "calendarFile": "alms_2027.json",
+      "eventId": "alms-2026-27-r01",
+      "eventName": "4 Hours of Le Castellet",
+      "roundNumber": 1,
+      "source": {
+        "stableUrl": "https://www.asianlemansseries.com/",
+        "finalUrl": "https://www.asianlemansseries.com/en/race/calendar/5073",
+        "title": "Official event calendar",
+        "checkedAt": "2026-09-17T08:38:18Z",
+        "lastModified": null
+      },
+      "proposalType": "new-session",
+      "sessionId": null,
+      "sessionName": "Qualifications 2 - Hypercar",
+      "current": {
+        "date": null,
+        "timeLocal": null,
+        "durationMinutes": null
+      },
+      "sourceTime": {
+        "date": "2026-11-14",
+        "time": "11:00",
+        "timeZone": "Europe/Paris"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-11-14",
+        "timeLocal": "11:00",
+        "durationMinutes": 15,
+        "name": "Qualifications 2 - Hypercar",
+        "kind": "qualifying",
+        "utcInstant": "2026-11-14T10:00:00Z",
+        "sessionId": "alms-2026-27-r01-s14"
+      },
+      "dateChanged": false,
+      "status": "open",
+      "reason": "Official session time is available.",
+      "debug": false,
+      "fingerprint": "dec0e380920e6328b42437cda64132ae53b8f00356e1724cd9340fbfadea98d3",
+      "id": "schedule-dec0e380920e6328"
+    },
+    {
+      "seriesId": "alms",
+      "seriesName": "Asian Le Mans Series",
+      "calendarFile": "alms_2027.json",
+      "eventId": "alms-2026-27-r01",
+      "eventName": "4 Hours of Le Castellet",
+      "roundNumber": 1,
+      "source": {
+        "stableUrl": "https://www.asianlemansseries.com/",
+        "finalUrl": "https://www.asianlemansseries.com/en/race/calendar/5073",
+        "title": "Official event calendar",
+        "checkedAt": "2026-09-17T08:38:18Z",
+        "lastModified": null
+      },
+      "proposalType": "verification",
+      "sessionId": "alms-2026-27-r01-r1",
+      "sessionName": "Race 1",
+      "current": {
+        "date": "2026-11-14",
+        "timeLocal": "15:00",
+        "durationMinutes": 240
+      },
+      "sourceTime": {
+        "date": "2026-11-14",
+        "time": "15:00",
+        "timeZone": "Europe/Paris"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-11-14",
+        "timeLocal": "15:00",
+        "durationMinutes": 240,
+        "name": "Race 1",
+        "kind": "race",
+        "utcInstant": "2026-11-14T14:00:00Z",
+        "sessionId": "alms-2026-27-r01-r1"
       },
       "dateChanged": false,
       "status": "verified",
       "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
       "debug": false,
-      "fingerprint": "30b44d1f93d60114fedce303b7ac1f5b98c318eb6bc5a0dc5f7afcc4f2a17a55",
-      "id": "schedule-30b44d1f93d60114"
+      "fingerprint": "0a26ec229fcc37968ecf2162817bc7f1f0dc041b617a2f1fc97547473996cc11",
+      "id": "schedule-0a26ec229fcc3796"
     },
     {
-      "seriesId": "imsa",
-      "seriesName": "IMSA WeatherTech SportsCar Championship",
-      "calendarFile": "imsa_2026.json",
-      "eventId": "imsa-2026-r11",
-      "eventName": "Motul Petit Le Mans",
-      "roundNumber": 11,
+      "seriesId": "alms",
+      "seriesName": "Asian Le Mans Series",
+      "calendarFile": "alms_2027.json",
+      "eventId": "alms-2026-27-r01",
+      "eventName": "4 Hours of Le Castellet",
+      "roundNumber": 1,
       "source": {
-        "stableUrl": "https://www.imsa.com/weathertech/2026-schedule/",
-        "finalUrl": "https://www.imsa.com/events/2026-michelin-raceway-road-atlanta/",
-        "title": "2026 Michelin Raceway Road Atlanta | IMSA",
-        "checkedAt": "2026-09-17T08:36:14Z",
-        "lastModified": "Wed, 16 Sep 2026 17:10:26 GMT"
+        "stableUrl": "https://www.asianlemansseries.com/",
+        "finalUrl": "https://www.asianlemansseries.com/en/race/calendar/5073",
+        "title": "Official event calendar",
+        "checkedAt": "2026-09-17T08:38:18Z",
+        "lastModified": null
       },
-      "proposalType": "time-update",
-      "sessionId": "imsa-2026-r11-s4",
-      "sessionName": "Petit Le Mans",
+      "proposalType": "verification",
+      "sessionId": "alms-2026-27-r01-r2",
+      "sessionName": "Race 2",
       "current": {
-        "date": "2026-10-03",
-        "timeLocal": "12:10",
-        "durationMinutes": 600
+        "date": "2026-11-15",
+        "timeLocal": "14:00",
+        "durationMinutes": 240
       },
       "sourceTime": {
-        "date": "2026-10-03",
-        "time": "12:10",
-        "timeZone": "America/New_York"
+        "date": "2026-11-15",
+        "time": "14:00",
+        "timeZone": "Europe/Paris"
       },
-      "editorTimeZone": "America/New_York",
+      "editorTimeZone": "Europe/Amsterdam",
       "proposed": {
-        "date": "2026-10-03",
-        "timeLocal": "12:10",
-        "durationMinutes": 600,
-        "name": "Race",
+        "date": "2026-11-15",
+        "timeLocal": "14:00",
+        "durationMinutes": 240,
+        "name": "Race 2",
         "kind": "race",
-        "utcInstant": "2026-10-03T16:10:00Z",
-        "sessionId": "imsa-2026-r11-s4"
+        "utcInstant": "2026-11-15T13:00:00Z",
+        "sessionId": "alms-2026-27-r01-r2"
       },
       "dateChanged": false,
-      "status": "accepted",
-      "reason": "De ingevulde sessie wordt vervangen door de nieuwste officiële tijd.",
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
       "debug": false,
-      "fingerprint": "3e2b2b6d8e05c86c8597b567d2d7427a0ac347649174e3f3a1ad979d5d38a4c9",
-      "id": "schedule-3e2b2b6d8e05c86c",
-      "reconciled": true,
-      "decisionAt": "2026-09-17T08:37:05.573Z"
+      "fingerprint": "138fa1aa00be81c15bd3dcf51d8f8715cd6c423cce882176ae9ce460e68c0ea7",
+      "id": "schedule-138fa1aa00be81c1"
     }
   ],
   "sourcesUsed": [
     {
-      "seriesId": "imsa",
-      "eventId": "imsa-2026-r11",
-      "eventName": "Motul Petit Le Mans",
-      "stableUrl": "https://www.imsa.com/weathertech/2026-schedule/",
-      "finalUrl": "https://www.imsa.com/events/2026-michelin-raceway-road-atlanta/",
-      "title": "2026 Michelin Raceway Road Atlanta | IMSA",
-      "checkedAt": "2026-09-17T08:36:14Z",
-      "lastModified": "Wed, 16 Sep 2026 17:10:26 GMT"
+      "seriesId": "alms",
+      "eventId": "alms-2026-27-r01",
+      "eventName": "4 Hours of Le Castellet",
+      "stableUrl": "https://www.asianlemansseries.com/",
+      "finalUrl": "https://www.asianlemansseries.com/en/race/calendar/5073",
+      "title": "Official event calendar",
+      "checkedAt": "2026-09-17T08:38:18Z",
+      "lastModified": null
     }
   ]
 }
