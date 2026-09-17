@@ -1,195 +1,238 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-17T08:33:43Z",
+  "generatedAt": "2026-09-17T08:36:14Z",
   "proposals": [
     {
       "seriesId": "imsa",
       "seriesName": "IMSA WeatherTech SportsCar Championship",
       "calendarFile": "imsa_2026.json",
-      "eventId": "imsa-2026-r10",
-      "eventName": "Tirerack.com Battle on the Bricks",
-      "roundNumber": 10,
+      "eventId": "imsa-2026-r11",
+      "eventName": "Motul Petit Le Mans",
+      "roundNumber": 11,
       "source": {
         "stableUrl": "https://www.imsa.com/weathertech/2026-schedule/",
-        "finalUrl": "https://www.imsa.com/events/2026-indianapolis-motor-speedway/",
-        "title": "2026 Indianapolis Motor Speedway | IMSA",
-        "checkedAt": "2026-09-17T08:33:43Z",
-        "lastModified": "Wed, 16 Sep 2026 23:24:12 GMT"
+        "finalUrl": "https://www.imsa.com/events/2026-michelin-raceway-road-atlanta/",
+        "title": "2026 Michelin Raceway Road Atlanta | IMSA",
+        "checkedAt": "2026-09-17T08:36:14Z",
+        "lastModified": "Wed, 16 Sep 2026 17:10:26 GMT"
       },
-      "proposalType": "time-update",
-      "sessionId": "imsa-2026-r10-s1",
+      "proposalType": "verification",
+      "sessionId": "imsa-2026-r11-s1",
       "sessionName": "Practice 1",
       "current": {
-        "date": "2026-09-18",
-        "timeLocal": "15:15",
-        "durationMinutes": 60
+        "date": "2026-10-01",
+        "timeLocal": "10:40",
+        "durationMinutes": 90
       },
       "sourceTime": {
-        "date": "2026-09-18",
-        "time": "15:25",
+        "date": "2026-10-01",
+        "time": "10:40",
         "timeZone": "America/New_York"
       },
       "editorTimeZone": "America/New_York",
       "proposed": {
-        "date": "2026-09-18",
-        "timeLocal": "15:25",
+        "date": "2026-10-01",
+        "timeLocal": "10:40",
         "durationMinutes": 90,
         "name": "Practice 1",
         "kind": "practice",
-        "utcInstant": "2026-09-18T19:25:00Z",
-        "sessionId": "imsa-2026-r10-s1"
-      },
-      "dateChanged": false,
-      "status": "accepted",
-      "reason": "De ingevulde sessie wordt vervangen door de nieuwste officiële tijd.",
-      "debug": false,
-      "fingerprint": "45d3b2812b7bb590cd2516593c1c839d91aa619d1142a904718bc938ed5a1cff",
-      "id": "schedule-45d3b2812b7bb590",
-      "decisionAt": "2026-09-17T08:35:05.871Z"
-    },
-    {
-      "seriesId": "imsa",
-      "seriesName": "IMSA WeatherTech SportsCar Championship",
-      "calendarFile": "imsa_2026.json",
-      "eventId": "imsa-2026-r10",
-      "eventName": "Tirerack.com Battle on the Bricks",
-      "roundNumber": 10,
-      "source": {
-        "stableUrl": "https://www.imsa.com/weathertech/2026-schedule/",
-        "finalUrl": "https://www.imsa.com/events/2026-indianapolis-motor-speedway/",
-        "title": "2026 Indianapolis Motor Speedway | IMSA",
-        "checkedAt": "2026-09-17T08:33:43Z",
-        "lastModified": "Wed, 16 Sep 2026 23:24:12 GMT"
-      },
-      "proposalType": "verification",
-      "sessionId": "imsa-2026-r10-s2",
-      "sessionName": "Practice 2",
-      "current": {
-        "date": "2026-09-19",
-        "timeLocal": "10:45",
-        "durationMinutes": 60
-      },
-      "sourceTime": {
-        "date": "2026-09-19",
-        "time": "10:45",
-        "timeZone": "America/New_York"
-      },
-      "editorTimeZone": "America/New_York",
-      "proposed": {
-        "date": "2026-09-19",
-        "timeLocal": "10:45",
-        "durationMinutes": 90,
-        "name": "Practice 2",
-        "kind": "practice",
-        "utcInstant": "2026-09-19T14:45:00Z",
-        "sessionId": "imsa-2026-r10-s2"
+        "utcInstant": "2026-10-01T14:40:00Z",
+        "sessionId": "imsa-2026-r11-s1"
       },
       "dateChanged": false,
       "status": "verified",
       "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
       "debug": false,
-      "fingerprint": "6d5a3b9b5c2ca8fbcc829e8df13465335173ae832ad64fd36dfde9d528f4d754",
-      "id": "schedule-6d5a3b9b5c2ca8fb"
+      "fingerprint": "2b5067617f0ec69c701d0558bd89521abac062ad4294e9a7848c1d2c5b182d8a",
+      "id": "schedule-2b5067617f0ec69c"
     },
     {
       "seriesId": "imsa",
       "seriesName": "IMSA WeatherTech SportsCar Championship",
       "calendarFile": "imsa_2026.json",
-      "eventId": "imsa-2026-r10",
-      "eventName": "Tirerack.com Battle on the Bricks",
-      "roundNumber": 10,
+      "eventId": "imsa-2026-r11",
+      "eventName": "Motul Petit Le Mans",
+      "roundNumber": 11,
       "source": {
         "stableUrl": "https://www.imsa.com/weathertech/2026-schedule/",
-        "finalUrl": "https://www.imsa.com/events/2026-indianapolis-motor-speedway/",
-        "title": "2026 Indianapolis Motor Speedway | IMSA",
-        "checkedAt": "2026-09-17T08:33:43Z",
-        "lastModified": "Wed, 16 Sep 2026 23:24:12 GMT"
+        "finalUrl": "https://www.imsa.com/events/2026-michelin-raceway-road-atlanta/",
+        "title": "2026 Michelin Raceway Road Atlanta | IMSA",
+        "checkedAt": "2026-09-17T08:36:14Z",
+        "lastModified": "Wed, 16 Sep 2026 17:10:26 GMT"
       },
       "proposalType": "verification",
-      "sessionId": "imsa-2026-r10-s3",
+      "sessionId": "imsa-2026-r11-s2",
+      "sessionName": "Practice 2",
+      "current": {
+        "date": "2026-10-01",
+        "timeLocal": "15:20",
+        "durationMinutes": 90
+      },
+      "sourceTime": {
+        "date": "2026-10-01",
+        "time": "15:20",
+        "timeZone": "America/New_York"
+      },
+      "editorTimeZone": "America/New_York",
+      "proposed": {
+        "date": "2026-10-01",
+        "timeLocal": "15:20",
+        "durationMinutes": 105,
+        "name": "Practice 2",
+        "kind": "practice",
+        "utcInstant": "2026-10-01T19:20:00Z",
+        "sessionId": "imsa-2026-r11-s2"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": false,
+      "fingerprint": "e286e5b495ebbaab165dc1ed666dc1d9633ae5f1296d5b7377a53f7d22dc0649",
+      "id": "schedule-e286e5b495ebbaab"
+    },
+    {
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2026.json",
+      "eventId": "imsa-2026-r11",
+      "eventName": "Motul Petit Le Mans",
+      "roundNumber": 11,
+      "source": {
+        "stableUrl": "https://www.imsa.com/weathertech/2026-schedule/",
+        "finalUrl": "https://www.imsa.com/events/2026-michelin-raceway-road-atlanta/",
+        "title": "2026 Michelin Raceway Road Atlanta | IMSA",
+        "checkedAt": "2026-09-17T08:36:14Z",
+        "lastModified": "Wed, 16 Sep 2026 17:10:26 GMT"
+      },
+      "proposalType": "new-session",
+      "sessionId": null,
+      "sessionName": "Practice 3",
+      "current": {
+        "date": null,
+        "timeLocal": null,
+        "durationMinutes": null
+      },
+      "sourceTime": {
+        "date": "2026-10-01",
+        "time": "19:30",
+        "timeZone": "America/New_York"
+      },
+      "editorTimeZone": "America/New_York",
+      "proposed": {
+        "date": "2026-10-01",
+        "timeLocal": "19:30",
+        "durationMinutes": 90,
+        "name": "Practice 3",
+        "kind": "practice",
+        "utcInstant": "2026-10-01T23:30:00Z",
+        "sessionId": "imsa-2026-r11-s7"
+      },
+      "dateChanged": false,
+      "status": "open",
+      "reason": "Official session time is available.",
+      "debug": false,
+      "fingerprint": "39c2392ac8105016b057db4cb1eb5d95ec68cb75fb1f8e32a225c86fa319762a",
+      "id": "schedule-39c2392ac8105016"
+    },
+    {
+      "seriesId": "imsa",
+      "seriesName": "IMSA WeatherTech SportsCar Championship",
+      "calendarFile": "imsa_2026.json",
+      "eventId": "imsa-2026-r11",
+      "eventName": "Motul Petit Le Mans",
+      "roundNumber": 11,
+      "source": {
+        "stableUrl": "https://www.imsa.com/weathertech/2026-schedule/",
+        "finalUrl": "https://www.imsa.com/events/2026-michelin-raceway-road-atlanta/",
+        "title": "2026 Michelin Raceway Road Atlanta | IMSA",
+        "checkedAt": "2026-09-17T08:36:14Z",
+        "lastModified": "Wed, 16 Sep 2026 17:10:26 GMT"
+      },
+      "proposalType": "verification",
+      "sessionId": "imsa-2026-r11-s3",
       "sessionName": "Qualifying",
       "current": {
-        "date": "2026-09-19",
-        "timeLocal": "17:05",
+        "date": "2026-10-02",
+        "timeLocal": "14:20",
         "durationMinutes": 35
       },
       "sourceTime": {
-        "date": "2026-09-19",
-        "time": "17:05",
+        "date": "2026-10-02",
+        "time": "14:20",
         "timeZone": "America/New_York"
       },
       "editorTimeZone": "America/New_York",
       "proposed": {
-        "date": "2026-09-19",
-        "timeLocal": "17:05",
+        "date": "2026-10-02",
+        "timeLocal": "14:20",
         "durationMinutes": 75,
         "name": "Qualifying",
         "kind": "qualifying",
-        "utcInstant": "2026-09-19T21:05:00Z",
-        "sessionId": "imsa-2026-r10-s3"
+        "utcInstant": "2026-10-02T18:20:00Z",
+        "sessionId": "imsa-2026-r11-s3"
       },
       "dateChanged": false,
       "status": "verified",
       "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
       "debug": false,
-      "fingerprint": "dda52be858a344a310afac774441bbf5ee7184e267f9f4bbd821b2941cb94f55",
-      "id": "schedule-dda52be858a344a3"
+      "fingerprint": "30b44d1f93d60114fedce303b7ac1f5b98c318eb6bc5a0dc5f7afcc4f2a17a55",
+      "id": "schedule-30b44d1f93d60114"
     },
     {
       "seriesId": "imsa",
       "seriesName": "IMSA WeatherTech SportsCar Championship",
       "calendarFile": "imsa_2026.json",
-      "eventId": "imsa-2026-r10",
-      "eventName": "Tirerack.com Battle on the Bricks",
-      "roundNumber": 10,
+      "eventId": "imsa-2026-r11",
+      "eventName": "Motul Petit Le Mans",
+      "roundNumber": 11,
       "source": {
         "stableUrl": "https://www.imsa.com/weathertech/2026-schedule/",
-        "finalUrl": "https://www.imsa.com/events/2026-indianapolis-motor-speedway/",
-        "title": "2026 Indianapolis Motor Speedway | IMSA",
-        "checkedAt": "2026-09-17T08:33:43Z",
-        "lastModified": "Wed, 16 Sep 2026 23:24:12 GMT"
+        "finalUrl": "https://www.imsa.com/events/2026-michelin-raceway-road-atlanta/",
+        "title": "2026 Michelin Raceway Road Atlanta | IMSA",
+        "checkedAt": "2026-09-17T08:36:14Z",
+        "lastModified": "Wed, 16 Sep 2026 17:10:26 GMT"
       },
-      "proposalType": "verification",
-      "sessionId": "imsa-2026-r10-s4",
-      "sessionName": "Race",
+      "proposalType": "time-update",
+      "sessionId": "imsa-2026-r11-s4",
+      "sessionName": "Petit Le Mans",
       "current": {
-        "date": "2026-09-20",
-        "timeLocal": "15:10",
-        "durationMinutes": 160
+        "date": "2026-10-03",
+        "timeLocal": "12:10",
+        "durationMinutes": 600
       },
       "sourceTime": {
-        "date": "2026-09-20",
-        "time": "15:10",
+        "date": "2026-10-03",
+        "time": "12:10",
         "timeZone": "America/New_York"
       },
       "editorTimeZone": "America/New_York",
       "proposed": {
-        "date": "2026-09-20",
-        "timeLocal": "15:10",
-        "durationMinutes": 160,
+        "date": "2026-10-03",
+        "timeLocal": "12:10",
+        "durationMinutes": 600,
         "name": "Race",
         "kind": "race",
-        "utcInstant": "2026-09-20T19:10:00Z",
-        "sessionId": "imsa-2026-r10-s4"
+        "utcInstant": "2026-10-03T16:10:00Z",
+        "sessionId": "imsa-2026-r11-s4"
       },
       "dateChanged": false,
-      "status": "verified",
-      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "status": "open",
+      "reason": "De ingevulde sessie wordt vervangen door de nieuwste officiële tijd.",
       "debug": false,
-      "fingerprint": "c5e27d54209fca82dfdbd4070a2af53e7553bdb09530c8d0fab7b05e2ad45427",
-      "id": "schedule-c5e27d54209fca82"
+      "fingerprint": "3e2b2b6d8e05c86c8597b567d2d7427a0ac347649174e3f3a1ad979d5d38a4c9",
+      "id": "schedule-3e2b2b6d8e05c86c"
     }
   ],
   "sourcesUsed": [
     {
       "seriesId": "imsa",
-      "eventId": "imsa-2026-r10",
-      "eventName": "Tirerack.com Battle on the Bricks",
+      "eventId": "imsa-2026-r11",
+      "eventName": "Motul Petit Le Mans",
       "stableUrl": "https://www.imsa.com/weathertech/2026-schedule/",
-      "finalUrl": "https://www.imsa.com/events/2026-indianapolis-motor-speedway/",
-      "title": "2026 Indianapolis Motor Speedway | IMSA",
-      "checkedAt": "2026-09-17T08:33:43Z",
-      "lastModified": "Wed, 16 Sep 2026 23:24:12 GMT"
+      "finalUrl": "https://www.imsa.com/events/2026-michelin-raceway-road-atlanta/",
+      "title": "2026 Michelin Raceway Road Atlanta | IMSA",
+      "checkedAt": "2026-09-17T08:36:14Z",
+      "lastModified": "Wed, 16 Sep 2026 17:10:26 GMT"
     }
   ]
 }
