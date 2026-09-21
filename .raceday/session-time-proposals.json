@@ -1,150 +1,19 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-21T07:53:03Z",
-  "proposals": [
-    {
-      "seriesId": "nascar",
-      "seriesName": "NASCAR Cup Series",
-      "calendarFile": "nascar_2026.json",
-      "eventId": "nascar-2026-r30",
-      "eventName": "Hollywood Casino 400",
-      "roundNumber": 30,
-      "source": {
-        "stableUrl": "https://www.nascar.com/weekend-schedule/",
-        "finalUrl": "https://www.nascar.com/weekend-schedule/",
-        "title": "NASCAR official weekend schedule",
-        "checkedAt": "2026-09-21T07:53:03Z",
-        "lastModified": "Mon, 21 Sep 2026 06:16:00 GMT"
-      },
-      "proposalType": "verification",
-      "sessionId": "nascar-2026-r30-s2",
-      "sessionName": "Practice",
-      "current": {
-        "date": "2026-09-26",
-        "timeLocal": "10:00",
-        "durationMinutes": 60
-      },
-      "sourceTime": {
-        "date": "2026-09-26",
-        "time": "10:00",
-        "timeZone": "America/New_York"
-      },
-      "editorTimeZone": "America/New_York",
-      "proposed": {
-        "date": "2026-09-26",
-        "timeLocal": "10:00",
-        "durationMinutes": 60,
-        "name": "Practice",
-        "kind": "practice",
-        "utcInstant": "2026-09-26T14:00:00Z",
-        "sessionId": "nascar-2026-r30-s2"
-      },
-      "dateChanged": false,
-      "status": "verified",
-      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
-      "debug": false,
-      "fingerprint": "9ce5408e9ee8609b39427844d473bbcdfc17c8e82ff9e3c66dc1adeca714985a",
-      "id": "schedule-9ce5408e9ee8609b"
-    },
-    {
-      "seriesId": "nascar",
-      "seriesName": "NASCAR Cup Series",
-      "calendarFile": "nascar_2026.json",
-      "eventId": "nascar-2026-r30",
-      "eventName": "Hollywood Casino 400",
-      "roundNumber": 30,
-      "source": {
-        "stableUrl": "https://www.nascar.com/weekend-schedule/",
-        "finalUrl": "https://www.nascar.com/weekend-schedule/",
-        "title": "NASCAR official weekend schedule",
-        "checkedAt": "2026-09-21T07:53:03Z",
-        "lastModified": "Mon, 21 Sep 2026 06:16:00 GMT"
-      },
-      "proposalType": "verification",
-      "sessionId": "nascar-2026-r30-s3",
-      "sessionName": "Qualifying",
-      "current": {
-        "date": "2026-09-26",
-        "timeLocal": "11:05",
-        "durationMinutes": 60
-      },
-      "sourceTime": {
-        "date": "2026-09-26",
-        "time": "11:05",
-        "timeZone": "America/New_York"
-      },
-      "editorTimeZone": "America/New_York",
-      "proposed": {
-        "date": "2026-09-26",
-        "timeLocal": "11:05",
-        "durationMinutes": 60,
-        "name": "Qualifying",
-        "kind": "qualifying",
-        "utcInstant": "2026-09-26T15:05:00Z",
-        "sessionId": "nascar-2026-r30-s3"
-      },
-      "dateChanged": false,
-      "status": "verified",
-      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
-      "debug": false,
-      "fingerprint": "e307ef342c5556a3f7205461ec88a24dc64e3d0afc750b493eac56a70b6838d5",
-      "id": "schedule-e307ef342c5556a3"
-    },
-    {
-      "seriesId": "nascar",
-      "seriesName": "NASCAR Cup Series",
-      "calendarFile": "nascar_2026.json",
-      "eventId": "nascar-2026-r30",
-      "eventName": "Hollywood Casino 400",
-      "roundNumber": 30,
-      "source": {
-        "stableUrl": "https://www.nascar.com/weekend-schedule/",
-        "finalUrl": "https://www.nascar.com/weekend-schedule/",
-        "title": "NASCAR official weekend schedule",
-        "checkedAt": "2026-09-21T07:53:03Z",
-        "lastModified": "Mon, 21 Sep 2026 06:16:00 GMT"
-      },
-      "proposalType": "verification",
-      "sessionId": "nascar-2026-r30-s1",
-      "sessionName": "Race",
-      "current": {
-        "date": "2026-09-27",
-        "timeLocal": "15:00",
-        "durationMinutes": 240
-      },
-      "sourceTime": {
-        "date": "2026-09-27",
-        "time": "15:00",
-        "timeZone": "America/New_York"
-      },
-      "editorTimeZone": "America/New_York",
-      "proposed": {
-        "date": "2026-09-27",
-        "timeLocal": "15:00",
-        "durationMinutes": 240,
-        "name": "Race",
-        "kind": "race",
-        "utcInstant": "2026-09-27T19:00:00Z",
-        "sessionId": "nascar-2026-r30-s1"
-      },
-      "dateChanged": false,
-      "status": "verified",
-      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
-      "debug": false,
-      "fingerprint": "1a0c37132445cd9b203d63393bdab0ac174e44f203da2155492180ea78d48764",
-      "id": "schedule-1a0c37132445cd9b"
-    }
-  ],
+  "generatedAt": "2026-09-21T07:58:45Z",
+  "proposals": [],
   "sourcesUsed": [
     {
-      "seriesId": "nascar",
-      "eventId": "nascar-2026-r30",
-      "eventName": "Hollywood Casino 400",
-      "stableUrl": "https://www.nascar.com/weekend-schedule/",
-      "finalUrl": "https://www.nascar.com/weekend-schedule/",
-      "title": "NASCAR official weekend schedule",
-      "checkedAt": "2026-09-21T07:53:03Z",
-      "lastModified": "Mon, 21 Sep 2026 06:16:00 GMT"
+      "seriesId": "f2",
+      "eventId": "f2-2026-r10",
+      "eventName": "Azerbaijan Grand Prix",
+      "stableUrl": "https://www.fiaformula2.com/en/racing/2026",
+      "finalUrl": "https://www.fiaformula2.com/en/racing/2026/baku",
+      "title": "2026 Baku FIA Formula 2 Race",
+      "checkedAt": "2026-09-21T07:58:45Z",
+      "lastModified": null,
+      "status": "unresolved",
+      "reason": "official page contains no reliably parseable race sessions yet"
     }
   ]
 }
