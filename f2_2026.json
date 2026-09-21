@@ -1,11 +1,19 @@
 [
   {
+    "id": "f2-2026-r01",
+    "seriesId": "f2",
+    "roundNumber": 1,
+    "raceName": "Australian Grand Prix",
+    "circuitName": "Albert Park Circuit",
+    "city": "Melbourne",
     "country": "Australia",
     "countryCode": "AU",
     "sessions": [
       {
-        "date": "2026-03-06",
         "id": "f2-2026-r01-s1",
+        "name": "Practice",
+        "kind": "practice",
+        "date": "2026-03-06",
         "timeLocal": "00:00",
         "durationMinutes": 45,
         "results": [
@@ -206,17 +214,15 @@
             "driver": "C. Herta",
             "position": 22
           }
-        ],
-        "name": "Practice",
-        "kind": "practice"
+        ]
       },
       {
-        "kind": "qualifying",
-        "timeLocal": "04:55",
-        "date": "2026-03-06",
-        "durationMinutes": 30,
         "id": "f2-2026-r01-s2",
         "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-03-06",
+        "timeLocal": "04:55",
+        "durationMinutes": 30,
         "results": [
           {
             "team": "DAMS Lucas Oil",
@@ -418,9 +424,12 @@
         ]
       },
       {
+        "id": "f2-2026-r01-s3",
         "name": "Sprint Race",
-        "timeLocal": "04:10",
+        "kind": "sprintRace",
         "date": "2026-03-07",
+        "timeLocal": "04:10",
+        "durationMinutes": 45,
         "results": [
           {
             "team": "Invicta Racing",
@@ -617,15 +626,14 @@
             "driver": "M. Boya",
             "position": "DNF"
           }
-        ],
-        "kind": "sprintRace",
-        "id": "f2-2026-r01-s3",
-        "durationMinutes": 45
+        ]
       },
       {
         "id": "f2-2026-r01-s4",
-        "timeLocal": "01:25",
+        "name": "Feature Race",
         "kind": "race",
+        "date": "2026-03-08",
+        "timeLocal": "01:25",
         "durationMinutes": 60,
         "results": [
           {
@@ -819,25 +827,27 @@
             "team": "Rodin Motorsport",
             "laps": "2"
           }
-        ],
-        "name": "Feature Race",
-        "date": "2026-03-08"
+        ]
       }
-    ],
-    "circuitName": "Albert Park Circuit",
-    "city": "Melbourne",
-    "raceName": "Australian Grand Prix",
-    "roundNumber": 1,
-    "seriesId": "f2",
-    "id": "f2-2026-r01"
+    ]
   },
   {
-    "raceName": "Monaco Grand Prix",
-    "country": "Monaco",
-    "circuitName": "Circuit de Monaco",
+    "id": "f2-2026-r02",
+    "seriesId": "f2",
     "roundNumber": 2,
+    "raceName": "Monaco Grand Prix",
+    "circuitName": "Circuit de Monaco",
+    "city": "Monte Carlo",
+    "country": "Monaco",
+    "countryCode": "MC",
     "sessions": [
       {
+        "id": "f2-2026-r02-s1",
+        "name": "Practice",
+        "kind": "practice",
+        "date": "2026-06-04",
+        "timeLocal": "15:00",
+        "durationMinutes": 45,
         "results": [
           {
             "position": 1,
@@ -1036,19 +1046,15 @@
             "speed": "1'44.671",
             "team": "MP Motorsport"
           }
-        ],
-        "name": "Practice",
-        "id": "f2-2026-r02-s1",
-        "durationMinutes": 45,
-        "timeLocal": "15:00",
-        "date": "2026-06-04",
-        "kind": "practice"
+        ]
       },
       {
-        "name": "Qualifying Group A",
-        "timeLocal": "15:10",
         "id": "f2-2026-r02-s2",
+        "name": "Qualifying Group A",
         "kind": "qualifying",
+        "date": "2026-06-05",
+        "timeLocal": "15:10",
+        "durationMinutes": 20,
         "results": [
           {
             "position": 1,
@@ -1148,15 +1154,15 @@
             "position": 11,
             "speed": "1'23.077"
           }
-        ],
-        "durationMinutes": 20,
-        "date": "2026-06-05"
+        ]
       },
       {
-        "name": "Qualifying Group B",
-        "timeLocal": "15:30",
         "id": "f2-2026-r02-s1780674018188",
+        "name": "Qualifying Group B",
         "kind": "qualifying",
+        "date": "2026-06-05",
+        "timeLocal": "15:30",
+        "durationMinutes": 20,
         "results": [
           {
             "position": 1,
@@ -1254,15 +1260,15 @@
             "laps": "2",
             "team": "Trident"
           }
-        ],
-        "durationMinutes": 20,
-        "date": "2026-06-05"
+        ]
       },
       {
+        "id": "f2-2026-r02-s3",
+        "name": "Sprint Race",
         "kind": "sprintRace",
         "date": "2026-06-06",
-        "name": "Sprint Race",
-        "id": "f2-2026-r02-s3",
+        "timeLocal": "14:15",
+        "durationMinutes": 45,
         "results": [
           {
             "position": 1,
@@ -1457,16 +1463,15 @@
             "laps": "20",
             "team": "MP Motorsport"
           }
-        ],
-        "timeLocal": "14:15",
-        "durationMinutes": 45
+        ]
       },
       {
         "id": "f2-2026-r02-s4",
-        "date": "2026-06-07",
         "name": "Feature Race",
-        "durationMinutes": 60,
         "kind": "featureRace",
+        "date": "2026-06-07",
+        "timeLocal": "09:40",
+        "durationMinutes": 60,
         "results": [
           {
             "position": 1,
@@ -1663,25 +1668,27 @@
             "laps": "34",
             "team": "Invicta Racing"
           }
-        ],
-        "timeLocal": "09:40"
+        ]
       }
-    ],
-    "countryCode": "MC",
-    "city": "Monte Carlo",
-    "seriesId": "f2",
-    "id": "f2-2026-r02"
+    ]
   },
   {
+    "id": "f2-2026-r03",
+    "seriesId": "f2",
     "roundNumber": 3,
     "raceName": "Spanish Grand Prix",
-    "countryCode": "ES",
+    "circuitName": "Circuit de Barcelona-Catalunya",
     "city": "Barcelona",
-    "seriesId": "f2",
+    "country": "Spain",
+    "countryCode": "ES",
     "sessions": [
       {
+        "id": "f2-2026-r03-s1",
         "name": "Practice",
         "kind": "practice",
+        "date": "2026-06-12",
+        "timeLocal": "11:05",
+        "durationMinutes": 45,
         "results": [
           {
             "position": 1,
@@ -1880,19 +1887,15 @@
             "team": "MP Motorsport",
             "position": 22
           }
-        ],
-        "durationMinutes": 45,
-        "timeLocal": "11:05",
-        "date": "2026-06-12",
-        "id": "f2-2026-r03-s1"
+        ]
       },
       {
         "id": "f2-2026-r03-s2",
-        "durationMinutes": 30,
-        "timeLocal": "15:55",
         "name": "Qualifying",
         "kind": "qualifying",
         "date": "2026-06-12",
+        "timeLocal": "15:55",
+        "durationMinutes": 30,
         "results": [
           {
             "position": 1,
@@ -2094,9 +2097,12 @@
         ]
       },
       {
+        "id": "f2-2026-r03-s3",
+        "name": "Sprint Race",
         "kind": "sprintRace",
-        "timeLocal": "14:15",
         "date": "2026-06-13",
+        "timeLocal": "14:15",
+        "durationMinutes": 45,
         "results": [
           {
             "position": 1,
@@ -2295,16 +2301,15 @@
             "laps": "26",
             "speed": "40'50.610"
           }
-        ],
-        "id": "f2-2026-r03-s3",
-        "durationMinutes": 45,
-        "name": "Sprint Race"
+        ]
       },
       {
-        "durationMinutes": 60,
         "id": "f2-2026-r03-s4",
-        "timeLocal": "11:25",
+        "name": "Feature Race",
         "kind": "race",
+        "date": "2026-06-14",
+        "timeLocal": "11:25",
+        "durationMinutes": 60,
         "results": [
           {
             "position": 1,
@@ -2501,20 +2506,27 @@
             "laps": "0",
             "team": "MP Motorsport"
           }
-        ],
-        "name": "Feature Race",
-        "date": "2026-06-14"
+        ]
       }
-    ],
-    "country": "Spain",
-    "circuitName": "Circuit de Barcelona-Catalunya",
-    "id": "f2-2026-r03"
+    ]
   },
   {
+    "id": "f2-2026-r04",
+    "seriesId": "f2",
+    "roundNumber": 4,
+    "raceName": "Austrian Grand Prix",
+    "circuitName": "Red Bull Ring",
+    "city": "Spielberg",
+    "country": "Austria",
+    "countryCode": "AT",
     "sessions": [
       {
-        "kind": "practice",
+        "id": "f2-2026-r04-s1",
         "name": "Practice",
+        "kind": "practice",
+        "date": "2026-06-26",
+        "timeLocal": "11:05",
+        "durationMinutes": 45,
         "results": [
           {
             "position": 1,
@@ -2713,18 +2725,15 @@
             "speed": "1'18.244",
             "laps": "10"
           }
-        ],
-        "date": "2026-06-26",
-        "timeLocal": "11:05",
-        "id": "f2-2026-r04-s1",
-        "durationMinutes": 45
+        ]
       },
       {
-        "kind": "qualifying",
-        "durationMinutes": 30,
-        "timeLocal": "15:55",
         "id": "f2-2026-r04-s2",
+        "name": "Qualifying",
+        "kind": "qualifying",
         "date": "2026-06-26",
+        "timeLocal": "15:55",
+        "durationMinutes": 30,
         "results": [
           {
             "position": 1,
@@ -2923,11 +2932,14 @@
             "driver": "N. Varrone",
             "number": "22"
           }
-        ],
-        "name": "Qualifying"
+        ]
       },
       {
+        "id": "f2-2026-r04-s3",
+        "name": "Sprint Race",
         "kind": "sprintRace",
+        "date": "2026-06-27",
+        "timeLocal": "14:15",
         "durationMinutes": 45,
         "results": [
           {
@@ -3117,19 +3129,15 @@
             "laps": "0",
             "team": "AIX Racing"
           }
-        ],
-        "timeLocal": "14:15",
-        "name": "Sprint Race",
-        "id": "f2-2026-r04-s3",
-        "date": "2026-06-27"
+        ]
       },
       {
         "id": "f2-2026-r04-s4",
+        "name": "Feature Race",
         "kind": "race",
         "date": "2026-06-28",
         "timeLocal": "10:00",
         "durationMinutes": 60,
-        "name": "Feature Race",
         "results": [
           {
             "position": 1,
@@ -3324,27 +3332,25 @@
           }
         ]
       }
-    ],
-    "countryCode": "AT",
-    "raceName": "Austrian Grand Prix",
-    "country": "Austria",
-    "seriesId": "f2",
-    "circuitName": "Red Bull Ring",
-    "city": "Spielberg",
-    "id": "f2-2026-r04",
-    "roundNumber": 4
+    ]
   },
   {
-    "roundNumber": 5,
     "id": "f2-2026-r05",
+    "seriesId": "f2",
+    "roundNumber": 5,
+    "raceName": "British Grand Prix",
+    "circuitName": "Silverstone Circuit",
+    "city": "Silverstone",
     "country": "United Kingdom",
+    "countryCode": "GB",
     "sessions": [
       {
+        "id": "f2-2026-r05-s1",
         "name": "Practice",
-        "date": "2026-07-03",
-        "durationMinutes": 45,
         "kind": "practice",
+        "date": "2026-07-03",
         "timeLocal": "11:00",
+        "durationMinutes": 45,
         "results": [
           {
             "position": 1,
@@ -3543,11 +3549,15 @@
             "team": "HitechGP",
             "speed": "2'00.647"
           }
-        ],
-        "id": "f2-2026-r05-s1"
+        ]
       },
       {
+        "id": "f2-2026-r05-s2",
+        "name": "Qualifying",
         "kind": "qualifying",
+        "date": "2026-07-03",
+        "timeLocal": "15:55",
+        "durationMinutes": 30,
         "results": [
           {
             "position": 1,
@@ -3746,14 +3756,15 @@
             "driver": "C. Shields",
             "laps": "13"
           }
-        ],
-        "timeLocal": "15:55",
-        "name": "Qualifying",
-        "date": "2026-07-03",
-        "durationMinutes": 30,
-        "id": "f2-2026-r05-s2"
+        ]
       },
       {
+        "id": "f2-2026-r05-s3",
+        "name": "Sprint Race",
+        "kind": "sprintRace",
+        "date": "2026-07-04",
+        "timeLocal": "14:45",
+        "durationMinutes": 45,
         "results": [
           {
             "position": 1,
@@ -3948,20 +3959,15 @@
             "laps": "1",
             "team": "Trident"
           }
-        ],
-        "id": "f2-2026-r05-s3",
-        "name": "Sprint Race",
-        "durationMinutes": 45,
-        "timeLocal": "14:45",
-        "date": "2026-07-04",
-        "kind": "sprintRace"
+        ]
       },
       {
-        "kind": "race",
-        "durationMinutes": 60,
-        "name": "Feature Race",
         "id": "f2-2026-r05-s4",
+        "name": "Feature Race",
+        "kind": "race",
+        "date": "2026-07-05",
         "timeLocal": "12:15",
+        "durationMinutes": 60,
         "results": [
           {
             "position": 1,
@@ -4156,22 +4162,27 @@
             "number": "14",
             "laps": "0"
           }
-        ],
-        "date": "2026-07-05"
+        ]
       }
-    ],
-    "city": "Silverstone",
-    "seriesId": "f2",
-    "countryCode": "GB",
-    "circuitName": "Silverstone Circuit",
-    "raceName": "British Grand Prix"
+    ]
   },
   {
-    "roundNumber": 6,
     "id": "f2-2026-r06",
+    "seriesId": "f2",
+    "roundNumber": 6,
+    "raceName": "Belgian Grand Prix",
+    "circuitName": "Circuit de Spa-Francorchamps",
+    "city": "Spa-Francorchamps",
     "country": "Belgium",
+    "countryCode": "BE",
     "sessions": [
       {
+        "id": "f2-2026-r06-s1",
+        "name": "Practice",
+        "kind": "practice",
+        "date": "2026-07-17",
+        "timeLocal": "11:05",
+        "durationMinutes": 45,
         "results": [
           {
             "time": "1'58.927",
@@ -4370,20 +4381,15 @@
             "speed": "2'27.645",
             "driver": "M. Boya"
           }
-        ],
-        "date": "2026-07-17",
-        "name": "Practice",
-        "timeLocal": "11:05",
-        "kind": "practice",
-        "id": "f2-2026-r06-s1",
-        "durationMinutes": 45
+        ]
       },
       {
-        "date": "2026-07-17",
         "id": "f2-2026-r06-s2",
-        "kind": "qualifying",
-        "timeLocal": "15:55",
         "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-07-17",
+        "timeLocal": "15:55",
+        "durationMinutes": 30,
         "results": [
           {
             "time": "1'56.306",
@@ -4582,14 +4588,15 @@
             "laps": "9",
             "speed": "1'59.295"
           }
-        ],
-        "durationMinutes": 30
+        ]
       },
       {
-        "date": "2026-07-18",
-        "name": "Sprint Race",
         "id": "f2-2026-r06-s3",
+        "name": "Sprint Race",
         "kind": "sprintRace",
+        "date": "2026-07-18",
+        "timeLocal": "14:15",
+        "durationMinutes": 45,
         "results": [
           {
             "time": "41'53.482",
@@ -4778,41 +4785,35 @@
             "number": "21",
             "laps": "5"
           }
-        ],
-        "durationMinutes": 45,
-        "timeLocal": "14:15"
+        ]
       },
       {
-        "kind": "race",
-        "durationMinutes": 60,
-        "date": "2026-07-19",
         "id": "f2-2026-r06-s4",
+        "name": "Feature Race",
+        "kind": "race",
+        "date": "2026-07-19",
         "timeLocal": "10:00",
-        "name": "Feature Race"
+        "durationMinutes": 60
       }
-    ],
-    "city": "Spa-Francorchamps",
-    "seriesId": "f2",
-    "countryCode": "BE",
-    "circuitName": "Circuit de Spa-Francorchamps",
-    "raceName": "Belgian Grand Prix"
+    ]
   },
   {
-    "circuitName": "Hungaroring",
-    "country": "Hungary",
-    "seriesId": "f2",
-    "city": "Budapest",
-    "roundNumber": 7,
     "id": "f2-2026-r07",
+    "seriesId": "f2",
+    "roundNumber": 7,
+    "raceName": "Hungarian Grand Prix",
+    "circuitName": "Hungaroring",
+    "city": "Budapest",
+    "country": "Hungary",
     "countryCode": "HU",
     "sessions": [
       {
-        "date": "2026-07-24",
-        "durationMinutes": 45,
-        "kind": "practice",
-        "timeLocal": "11:05",
         "id": "f2-2026-r07-s1",
         "name": "Practice",
+        "kind": "practice",
+        "date": "2026-07-24",
+        "timeLocal": "11:05",
+        "durationMinutes": 45,
         "results": [
           {
             "position": 1,
@@ -5014,11 +5015,12 @@
         ]
       },
       {
+        "id": "f2-2026-r07-s2",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-07-24",
         "timeLocal": "15:55",
         "durationMinutes": 30,
-        "date": "2026-07-24",
-        "kind": "qualifying",
-        "id": "f2-2026-r07-s2",
         "results": [
           {
             "position": 1,
@@ -5217,16 +5219,15 @@
             "interval": "+1.513",
             "speed": "1'30.409"
           }
-        ],
-        "name": "Qualifying"
+        ]
       },
       {
-        "kind": "sprintRace",
-        "timeLocal": "14:10",
         "id": "f2-2026-r07-s3",
         "name": "Sprint Race",
-        "durationMinutes": 45,
+        "kind": "sprintRace",
         "date": "2026-07-25",
+        "timeLocal": "14:10",
+        "durationMinutes": 45,
         "results": [
           {
             "position": 1,
@@ -5424,12 +5425,12 @@
         ]
       },
       {
+        "id": "f2-2026-r07-s4",
+        "name": "Feature Race",
+        "kind": "race",
         "date": "2026-07-26",
         "timeLocal": "11:25",
         "durationMinutes": 60,
-        "name": "Feature Race",
-        "kind": "race",
-        "id": "f2-2026-r07-s4",
         "results": [
           {
             "position": 1,
@@ -5628,14 +5629,24 @@
           }
         ]
       }
-    ],
-    "raceName": "Hungarian Grand Prix"
+    ]
   },
   {
-    "circuitName": "Autodromo Nazionale Monza",
+    "id": "f2-2026-r08",
+    "seriesId": "f2",
+    "roundNumber": 8,
     "raceName": "Italian Grand Prix",
+    "circuitName": "Autodromo Nazionale Monza",
+    "city": "Monza",
+    "country": "Italy",
+    "countryCode": "IT",
     "sessions": [
       {
+        "id": "f2-2026-r08-s1",
+        "name": "Practice",
+        "kind": "practice",
+        "date": "2026-09-04",
+        "timeLocal": "10:00",
         "durationMinutes": 45,
         "results": [
           {
@@ -5835,20 +5846,15 @@
             "interval": "+2.490",
             "speed": "1'34.447"
           }
-        ],
-        "id": "f2-2026-r08-s1",
-        "name": "Practice",
-        "date": "2026-09-04",
-        "timeLocal": "10:00",
-        "kind": "practice"
+        ]
       },
       {
-        "timeLocal": "14:55",
-        "kind": "qualifying",
-        "name": "Qualifying",
-        "durationMinutes": 30,
-        "date": "2026-09-04",
         "id": "f2-2026-r08-s2",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-09-04",
+        "timeLocal": "14:55",
+        "durationMinutes": 30,
         "results": [
           {
             "position": 1,
@@ -6050,12 +6056,12 @@
         ]
       },
       {
-        "kind": "sprintRace",
-        "durationMinutes": 45,
-        "date": "2026-09-05",
         "id": "f2-2026-r08-s3",
-        "timeLocal": "14:15",
         "name": "Sprint Race",
+        "kind": "sprintRace",
+        "date": "2026-09-05",
+        "timeLocal": "14:15",
+        "durationMinutes": 45,
         "results": [
           {
             "position": 1,
@@ -6253,12 +6259,12 @@
         ]
       },
       {
-        "kind": "race",
-        "durationMinutes": 60,
-        "date": "2026-09-06",
         "id": "f2-2026-r08-s4",
-        "timeLocal": "09:45",
         "name": "Feature Race",
+        "kind": "race",
+        "date": "2026-09-06",
+        "timeLocal": "09:45",
+        "durationMinutes": 60,
         "results": [
           {
             "position": 1,
@@ -6457,30 +6463,25 @@
           }
         ]
       }
-    ],
-    "city": "Monza",
-    "roundNumber": 8,
-    "id": "f2-2026-r08",
-    "countryCode": "IT",
-    "seriesId": "f2",
-    "country": "Italy"
+    ]
   },
   {
-    "country": "Spain",
-    "roundNumber": 9,
-    "circuitName": "Circuito de Madring",
-    "raceName": "Spanish Grand Prix",
-    "countryCode": "ES",
+    "id": "f2-2026-r09",
     "seriesId": "f2",
+    "roundNumber": 9,
+    "raceName": "Spanish Grand Prix",
+    "circuitName": "Circuito de Madring",
     "city": "Madrid",
+    "country": "Spain",
+    "countryCode": "ES",
     "sessions": [
       {
-        "kind": "practice",
-        "durationMinutes": 45,
-        "date": "2026-09-11",
         "id": "f2-2026-r09-s1",
-        "timeLocal": "11:05",
         "name": "Practice",
+        "kind": "practice",
+        "date": "2026-09-11",
+        "timeLocal": "11:05",
+        "durationMinutes": 45,
         "results": [
           {
             "position": 1,
@@ -6682,12 +6683,12 @@
         ]
       },
       {
-        "kind": "qualifying",
-        "durationMinutes": 30,
-        "date": "2026-09-11",
         "id": "f2-2026-r09-s2",
-        "timeLocal": "15:00",
         "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-09-11",
+        "timeLocal": "15:00",
+        "durationMinutes": 30,
         "results": [
           {
             "position": 1,
@@ -6882,11 +6883,11 @@
       },
       {
         "id": "f2-2026-r09-s3",
+        "name": "Sprint Race",
         "kind": "sprintRace",
         "date": "2026-09-12",
         "timeLocal": "14:15",
         "durationMinutes": 45,
-        "name": "Sprint Race",
         "results": [
           {
             "position": 1,
@@ -7072,11 +7073,11 @@
       },
       {
         "id": "f2-2026-r09-s4",
+        "name": "Feature Race",
         "kind": "race",
         "date": "2026-09-13",
         "timeLocal": "11:25",
         "durationMinutes": 60,
-        "name": "Feature Race",
         "results": [
           {
             "position": 1,
@@ -7262,151 +7263,173 @@
           }
         ]
       }
-    ],
-    "id": "f2-2026-r09"
+    ]
   },
   {
-    "country": "Azerbaijan",
+    "id": "f2-2026-r10",
+    "seriesId": "f2",
     "roundNumber": 10,
-    "circuitName": "Baku City Circuit",
     "raceName": "Azerbaijan Grand Prix",
-    "countryCode": "AZ",
-    "seriesId": "f2",
+    "circuitName": "Baku City Circuit",
     "city": "Baku",
+    "country": "Azerbaijan",
+    "countryCode": "AZ",
     "sessions": [
       {
-        "kind": "practice",
-        "durationMinutes": 45,
-        "date": "2026-09-24",
         "id": "f2-2026-r10-s1",
-        "timeLocal": "09:00",
-        "name": "Practice"
-      },
-      {
-        "kind": "qualifying",
-        "durationMinutes": 30,
+        "name": "Practice",
+        "kind": "practice",
         "date": "2026-09-24",
+        "timeLocal": "08:00",
+        "durationMinutes": 45
+      },
+      {
         "id": "f2-2026-r10-s2",
-        "timeLocal": "13:00",
-        "name": "Qualifying"
+        "name": "Qualifying 1",
+        "kind": "qualifying",
+        "date": "2026-09-24",
+        "timeLocal": "12:00",
+        "durationMinutes": 30
       },
       {
-        "kind": "sprintRace",
-        "durationMinutes": 45,
-        "date": "2026-09-25",
+        "id": "f2-2026-r10-s7",
+        "name": "Qualifying 2",
+        "kind": "qualifying",
+        "date": "2026-09-24",
+        "timeLocal": "12:30",
+        "durationMinutes": 30
+      },
+      {
         "id": "f2-2026-r10-s3",
-        "timeLocal": "12:15",
-        "name": "Sprint Race"
+        "name": "Sprint Race",
+        "kind": "sprintRace",
+        "date": "2026-09-25",
+        "timeLocal": "06:15",
+        "durationMinutes": 50
       },
       {
-        "kind": "race",
-        "durationMinutes": 60,
-        "date": "2026-09-26",
         "id": "f2-2026-r10-s4",
+        "name": "Feature Race 1",
+        "kind": "featureRace",
+        "date": "2026-09-25",
+        "timeLocal": "12:15",
+        "durationMinutes": 65
+      },
+      {
+        "id": "f2-2026-r10-s10",
+        "name": "Feature Race 2",
+        "kind": "featureRace",
+        "date": "2026-09-26",
         "timeLocal": "09:00",
-        "name": "Feature Race"
+        "durationMinutes": 65
       }
-    ],
-    "id": "f2-2026-r10"
+    ]
   },
   {
-    "country": "Qatar",
+    "id": "f2-2026-r11",
+    "seriesId": "f2",
     "roundNumber": 11,
-    "circuitName": "Losail International Circuit",
     "raceName": "Qatar Grand Prix",
-    "countryCode": "QA",
-    "seriesId": "f2",
+    "circuitName": "Losail International Circuit",
     "city": "Lusail",
+    "country": "Qatar",
+    "countryCode": "QA",
     "sessions": [
       {
-        "kind": "practice",
-        "durationMinutes": 45,
-        "date": "2026-11-27",
         "id": "f2-2026-r11-s1",
-        "timeLocal": "12:05",
-        "name": "Practice"
-      },
-      {
-        "kind": "qualifying",
-        "durationMinutes": 30,
-        "date": "2026-11-27",
-        "id": "f2-2026-r11-s2",
-        "timeLocal": "17:10",
-        "name": "Qualifying"
-      },
-      {
-        "kind": "sprintRace",
-        "durationMinutes": 45,
-        "date": "2026-11-28",
-        "id": "f2-2026-r11-s3",
-        "timeLocal": "17:20",
-        "name": "Sprint Race"
-      },
-      {
-        "kind": "race",
-        "durationMinutes": 60,
-        "date": "2026-11-29",
-        "id": "f2-2026-r11-s4",
-        "timeLocal": "13:00",
-        "name": "Feature Race"
-      }
-    ],
-    "id": "f2-2026-r11"
-  },
-  {
-    "country": "United Arab Emirates",
-    "roundNumber": 12,
-    "circuitName": "Yas Marina Circuit",
-    "raceName": "Abu Dhabi Grand Prix",
-    "countryCode": "AE",
-    "seriesId": "f2",
-    "city": "Yas Island",
-    "sessions": [
-      {
+        "name": "Practice",
         "kind": "practice",
-        "durationMinutes": 45,
-        "date": "2026-12-04",
-        "id": "f2-2026-r12-s1",
-        "timeLocal": "08:05",
-        "name": "Practice"
+        "date": "2026-11-27",
+        "timeLocal": "12:05",
+        "durationMinutes": 45
       },
       {
+        "id": "f2-2026-r11-s2",
+        "name": "Qualifying",
         "kind": "qualifying",
-        "durationMinutes": 30,
-        "date": "2026-12-04",
-        "id": "f2-2026-r12-s2",
-        "timeLocal": "13:00",
-        "name": "Qualifying"
+        "date": "2026-11-27",
+        "timeLocal": "17:10",
+        "durationMinutes": 30
       },
       {
+        "id": "f2-2026-r11-s3",
+        "name": "Sprint Race",
         "kind": "sprintRace",
-        "durationMinutes": 45,
-        "date": "2026-12-05",
-        "id": "f2-2026-r12-s3",
-        "timeLocal": "13:15",
-        "name": "Sprint Race"
+        "date": "2026-11-28",
+        "timeLocal": "17:20",
+        "durationMinutes": 45
       },
       {
+        "id": "f2-2026-r11-s4",
+        "name": "Feature Race",
         "kind": "race",
-        "durationMinutes": 60,
-        "date": "2026-12-06",
-        "id": "f2-2026-r12-s4",
-        "timeLocal": "10:15",
-        "name": "Feature Race"
+        "date": "2026-11-29",
+        "timeLocal": "13:00",
+        "durationMinutes": 60
       }
-    ],
-    "id": "f2-2026-r12"
+    ]
   },
   {
-    "country": "United States",
-    "roundNumber": 13,
-    "circuitName": "Miami International Autodrome",
-    "raceName": "Miami Grand Prix",
-    "countryCode": "US",
+    "id": "f2-2026-r12",
     "seriesId": "f2",
-    "city": "Miami",
+    "roundNumber": 12,
+    "raceName": "Abu Dhabi Grand Prix",
+    "circuitName": "Yas Marina Circuit",
+    "city": "Yas Island",
+    "country": "United Arab Emirates",
+    "countryCode": "AE",
     "sessions": [
       {
+        "id": "f2-2026-r12-s1",
+        "name": "Practice",
+        "kind": "practice",
+        "date": "2026-12-04",
+        "timeLocal": "08:05",
+        "durationMinutes": 45
+      },
+      {
+        "id": "f2-2026-r12-s2",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-12-04",
+        "timeLocal": "13:00",
+        "durationMinutes": 30
+      },
+      {
+        "id": "f2-2026-r12-s3",
+        "name": "Sprint Race",
+        "kind": "sprintRace",
+        "date": "2026-12-05",
+        "timeLocal": "13:15",
+        "durationMinutes": 45
+      },
+      {
+        "id": "f2-2026-r12-s4",
+        "name": "Feature Race",
+        "kind": "race",
+        "date": "2026-12-06",
+        "timeLocal": "10:15",
+        "durationMinutes": 60
+      }
+    ]
+  },
+  {
+    "id": "f2-2026-r13",
+    "seriesId": "f2",
+    "roundNumber": 13,
+    "raceName": "Miami Grand Prix",
+    "circuitName": "Miami International Autodrome",
+    "city": "Miami",
+    "country": "United States",
+    "countryCode": "US",
+    "sessions": [
+      {
+        "id": "f2-2026-r13-s1",
+        "name": "Practice",
+        "kind": "race",
+        "date": "2026-05-01",
+        "timeLocal": "15:30",
+        "durationMinutes": 45,
         "results": [
           {
             "laps": "19",
@@ -7605,21 +7628,15 @@
             "team": "Campos Racing",
             "driver": "N. León"
           }
-        ],
-        "id": "f2-2026-r13-s1",
-        "name": "Practice",
-        "date": "2026-05-01",
-        "durationMinutes": 45,
-        "timeLocal": "15:30",
-        "kind": "race"
+        ]
       },
       {
-        "name": "Qualifying",
-        "durationMinutes": 45,
         "id": "f2-2026-r13-s1776845873468",
+        "name": "Qualifying",
         "kind": "race",
-        "timeLocal": "20:30",
         "date": "2026-05-01",
+        "timeLocal": "20:30",
+        "durationMinutes": 45,
         "results": [
           {
             "laps": "11",
@@ -7821,6 +7838,12 @@
         ]
       },
       {
+        "id": "f2-2026-r13-s1776845928882",
+        "name": "Sprint Race",
+        "kind": "race",
+        "date": "2026-05-02",
+        "timeLocal": "16:00",
+        "durationMinutes": 50,
         "results": [
           {
             "laps": "23",
@@ -8011,18 +8034,15 @@
             "number": "23",
             "driver": "R. Villagomez"
           }
-        ],
-        "id": "f2-2026-r13-s1776845928882",
-        "date": "2026-05-02",
-        "timeLocal": "16:00",
-        "name": "Sprint Race",
-        "kind": "race",
-        "durationMinutes": 50
+        ]
       },
       {
+        "id": "f2-2026-r13-s1776845931141",
+        "name": "Feature Race",
+        "kind": "race",
+        "date": "2026-05-03",
         "timeLocal": "15:30",
         "durationMinutes": 60,
-        "date": "2026-05-03",
         "results": [
           {
             "laps": "25",
@@ -8207,29 +8227,27 @@
             "number": "8",
             "driver": "R. Bilinski"
           }
-        ],
-        "kind": "race",
-        "id": "f2-2026-r13-s1776845931141",
-        "name": "Feature Race"
+        ]
       }
-    ],
-    "id": "f2-2026-r13"
+    ]
   },
   {
-    "countryCode": "CA",
-    "seriesId": "f2",
-    "circuitName": "Circuit Gilles Villeneuve",
-    "raceName": "Canadian Grand Prix",
-    "roundNumber": 14,
     "id": "f2-2026-r14",
+    "seriesId": "f2",
+    "roundNumber": 14,
+    "raceName": "Canadian Grand Prix",
+    "circuitName": "Circuit Gilles Villeneuve",
     "city": "Montreal",
     "country": "Canada",
+    "countryCode": "CA",
     "sessions": [
       {
-        "kind": "practice",
-        "timeLocal": "16:05",
-        "date": "2026-05-22",
+        "id": "f2-2026-r14-s1",
         "name": "Practice",
+        "kind": "practice",
+        "date": "2026-05-22",
+        "timeLocal": "16:05",
+        "durationMinutes": 45,
         "results": [
           {
             "laps": "25",
@@ -8428,13 +8446,15 @@
             "interval": "+1.676",
             "position": 22
           }
-        ],
-        "durationMinutes": 45,
-        "id": "f2-2026-r14-s1"
+        ]
       },
       {
         "id": "f2-2026-r14-s1777970553324",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-05-22",
         "timeLocal": "20:00",
+        "durationMinutes": 45,
         "results": [
           {
             "laps": "18",
@@ -8633,16 +8653,15 @@
             "driver": "M. Boya",
             "laps": "15"
           }
-        ],
-        "durationMinutes": 45,
-        "kind": "qualifying",
-        "date": "2026-05-22",
-        "name": "Qualifying"
+        ]
       },
       {
-        "date": "2026-05-23",
-        "name": "Sprint Race",
         "id": "f2-2026-r14-s1777970555938",
+        "name": "Sprint Race",
+        "kind": "sprintRace",
+        "date": "2026-05-23",
+        "timeLocal": "20:10",
+        "durationMinutes": 45,
         "results": [
           {
             "laps": "28",
@@ -8822,14 +8841,15 @@
             "laps": "9",
             "driver": "J. Bennett"
           }
-        ],
-        "kind": "sprintRace",
-        "timeLocal": "20:10",
-        "durationMinutes": 45
+        ]
       },
       {
-        "durationMinutes": 60,
+        "id": "f2-2026-r14-s1777970618327",
+        "name": "Feature Race",
+        "kind": "featureRace",
         "date": "2026-05-24",
+        "timeLocal": "18:05",
+        "durationMinutes": 60,
         "results": [
           {
             "team": "Rodin Motorsport",
@@ -9005,11 +9025,7 @@
             "number": "24",
             "position": "DNF"
           }
-        ],
-        "id": "f2-2026-r14-s1777970618327",
-        "name": "Feature Race",
-        "kind": "featureRace",
-        "timeLocal": "18:05"
+        ]
       }
     ]
   }
