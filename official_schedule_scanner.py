@@ -1562,6 +1562,68 @@ def parse_ical_sessions(fetch: FetchResult, year: int, source_timezone: str) -> 
     return sessions
 
 
+def parse_fia_track_schedule(fetch: FetchResult, source_timezone: str) -> List[SourceSession]:
+    """Read F2/F3 sessions from the official site's embedded Next.js data.
+
+    The current FIA Formula 2 and Formula 3 sites no longer render the schedule
+    as an HTML table. Their server response contains a JSON ``meetingSessions``
+    array inside a React flight string instead. Keep the public event page as
+    the evidence URL and decode only that narrowly scoped official array.
+    """
+    match = re.search(
+        r'\\?"meetingSessions\\?"\s*:\s*(\[.*?\])\s*,\s*\\?"season\\?"',
+        fetch.body,
+        re.S,
+    )
+    if not match:
+        return []
+
+    raw = match.group(1)
+    try:
+        # In a Next.js flight script the JSON is itself stored in a JSON
+        # string, so its quotes are escaped once. Ordinary JSON is accepted
+        # too, which keeps fixture tests and future server changes simple.
+        decoded = json.loads('"{}"'.format(raw)) if r'\"' in raw else raw
+        records = json.loads(decoded)
+    except (json.JSONDecodeError, TypeError, ValueError):
+        return []
+
+    sessions: List[SourceSession] = []
+    for item in records if isinstance(records, list) else []:
+        if not isinstance(item, dict):
+            continue
+        name = str(item.get("shortName") or item.get("session") or "").strip()
+        if normalize_kind(name) not in {"practice", "qualifying", "sprintRace", "featureRace", "race"}:
+            continue
+        start = str(item.get("startTime") or "")
+        end = str(item.get("endTime") or "")
+        if not re.match(r"^20\d{2}-\d{2}-\d{2}T\d{2}:\d{2}", start):
+            continue
+        timezone_name = api_timezone(item.get("timezone")) or source_timezone
+
+        duration = session_duration(start, end)
+        # The source occasionally carries the following day in endTime while
+        # the displayed clock range remains correct. Recover that range
+        # without accepting an impossible day-long circuit session.
+        if duration is not None and duration > 360 and re.match(r"^20\d{2}-\d{2}-\d{2}T\d{2}:\d{2}", end):
+            start_minutes = int(start[11:13]) * 60 + int(start[14:16])
+            end_minutes = int(end[11:13]) * 60 + int(end[14:16])
+            clock_duration = end_minutes - start_minutes
+            duration = clock_duration if 0 < clock_duration <= 360 else None
+
+        utc_hint = None
+        offset = str(item.get("gmtOffset") or "")
+        if re.fullmatch(r"[+-]\d{2}:\d{2}", offset):
+            try:
+                utc_hint = datetime.fromisoformat(start + offset).astimezone(timezone.utc).strftime("%H:%M")
+            except ValueError:
+                pass
+        sessions.append(SourceSession(name, start[:10], start[11:16], timezone_name, duration, utc_hint))
+
+    unique = {(normalize(item.name), item.date, item.local_time): item for item in sessions}
+    return sorted(unique.values(), key=lambda item: (item.date, item.local_time, item.name))
+
+
 def parse_dtm_api(fetch: FetchResult, year: int, source_timezone: str) -> List[SourceSession]:
     """Parse the public official DTM event API.
 
@@ -1707,16 +1769,21 @@ def match_session(source: SourceSession, sessions: Sequence[dict]) -> Tuple[Opti
     if len(exact) == 1:
         return exact[0], None
     source_number = session_number(source.name)
-    same_date = [item for item in sessions if item.get("kind") == source_kind and item.get("date") == source.date]
+    def existing_kind(item: dict) -> Optional[str]:
+        # Names are more specific than legacy stored kinds. In particular,
+        # older calendars store "Feature Race" with kind "race".
+        return normalize_kind(item.get("name", "")) or item.get("kind")
+
+    same_date = [item for item in sessions if existing_kind(item) == source_kind and item.get("date") == source.date]
     if source_number is None and len(same_date) == 1:
         return same_date[0], None
     numbered = [
         item for item in sessions
-        if item.get("kind") == source_kind and session_number(item.get("name", "")) == source_number
+        if existing_kind(item) == source_kind and session_number(item.get("name", "")) == source_number
     ]
     if source_number is not None and len(numbered) == 1:
         return numbered[0], None
-    same_kind = [item for item in sessions if item.get("kind") == source_kind]
+    same_kind = [item for item in sessions if existing_kind(item) == source_kind]
     if source_number is not None and not numbered:
         generic = [item for item in same_kind if session_number(item.get("name", "")) is None]
         if len(generic) == 1:
@@ -2195,6 +2262,11 @@ def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Opti
                 sessions = parse_worldsbk_schedule(source, cfg["officialCategoryId"], source_tz)
             elif cfg["sourceKind"] == "formula1-jsonld":
                 sessions = parse_formula1_schedule(source)
+            elif cfg["sourceKind"] == "fia-track-time":
+                sessions = (
+                    parse_fia_track_schedule(source, source_tz)
+                    or parse_official_tables(source, event_year, source_tz)
+                )
             elif cfg["sourceKind"] == "btcc-timetable":
                 sessions = parse_btcc_timetable(source, event_year, source_tz)
             elif cfg["sourceKind"] == "rally-itinerary":

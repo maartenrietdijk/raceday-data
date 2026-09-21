@@ -110,9 +110,9 @@
       "startUrl": "https://www.fiaformula2.com/en/racing/{year}",
       "allowedDomains": ["fiaformula2.com", "www.fiaformula2.com"],
       "sourceKind": "fia-track-time",
-      "eventDiscovery": "Follow the official event link from the season racing page and prefer Track time.",
+      "eventDiscovery": "Follow the official event link from the season racing page and read its official embedded meetingSessions schedule.",
       "sourceTimeZone": "track",
-      "notes": "My time is browser-local and must not be used. A track IANA timezone is required before proposing a time."
+      "notes": "The scanner reads startTime, endTime, gmtOffset and the IANA timezone from the official event payload. My time is browser-local and is never used; split qualifying and multi-race weekends remain separate sessions."
     },
     {
       "seriesId": "f3",
