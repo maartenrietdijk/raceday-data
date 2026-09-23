@@ -380,9 +380,133 @@
     ]
   },
   {
-    "id": "erc-2026-r04",
+    "id": "erc-2026-r05",
     "seriesId": "erc",
     "roundNumber": 4,
+    "raceName": "Barum Czech Rally Zlín",
+    "circuitName": "Zlín",
+    "city": "Zlín",
+    "country": "Czech Republic",
+    "countryCode": "CZ",
+    "sessions": [
+      {
+        "id": "erc-2026-r05-s01",
+        "name": "Shakedown - Žlutava",
+        "kind": "shakedown",
+        "date": "2026-08-14",
+        "timeLocal": "11:40",
+        "durationMinutes": 60
+      },
+      {
+        "id": "erc-2026-r05-s02",
+        "name": "SS1 - Zlín",
+        "kind": "stage",
+        "date": "2026-08-14",
+        "timeLocal": "20:30",
+        "durationMinutes": 10
+      },
+      {
+        "id": "erc-2026-r05-s03",
+        "name": "SS2 - Pohořelice 1",
+        "kind": "stage",
+        "date": "2026-08-15",
+        "timeLocal": "08:48",
+        "durationMinutes": 15
+      },
+      {
+        "id": "erc-2026-r05-s04",
+        "name": "SS3 - Troják 1",
+        "kind": "stage",
+        "date": "2026-08-15",
+        "timeLocal": "09:51",
+        "durationMinutes": 20
+      },
+      {
+        "id": "erc-2026-r05-s05",
+        "name": "SS4 - Bunč 1",
+        "kind": "stage",
+        "date": "2026-08-15",
+        "timeLocal": "11:54",
+        "durationMinutes": 15
+      },
+      {
+        "id": "erc-2026-r05-s06",
+        "name": "SS5 - Pohořelice 2",
+        "kind": "stage",
+        "date": "2026-08-15",
+        "timeLocal": "14:52",
+        "durationMinutes": 15
+      },
+      {
+        "id": "erc-2026-r05-s07",
+        "name": "SS6 - Troják 2",
+        "kind": "stage",
+        "date": "2026-08-15",
+        "timeLocal": "15:55",
+        "durationMinutes": 20
+      },
+      {
+        "id": "erc-2026-r05-s08",
+        "name": "SS7 - Bunč 2",
+        "kind": "stage",
+        "date": "2026-08-15",
+        "timeLocal": "17:58",
+        "durationMinutes": 15
+      },
+      {
+        "id": "erc-2026-r05-s09",
+        "name": "SS8 - Pindula 1",
+        "kind": "stage",
+        "date": "2026-08-16",
+        "timeLocal": "07:58",
+        "durationMinutes": 15
+      },
+      {
+        "id": "erc-2026-r05-s10",
+        "name": "SS9 - Semetín 1",
+        "kind": "stage",
+        "date": "2026-08-16",
+        "timeLocal": "09:06",
+        "durationMinutes": 15
+      },
+      {
+        "id": "erc-2026-r05-s11",
+        "name": "SS10 - Kateřinice 1",
+        "kind": "stage",
+        "date": "2026-08-16",
+        "timeLocal": "10:05",
+        "durationMinutes": 15
+      },
+      {
+        "id": "erc-2026-r05-s12",
+        "name": "SS11 - Pindula 2",
+        "kind": "stage",
+        "date": "2026-08-16",
+        "timeLocal": "13:24",
+        "durationMinutes": 15
+      },
+      {
+        "id": "erc-2026-r05-s13",
+        "name": "SS12 - Semetín 2",
+        "kind": "stage",
+        "date": "2026-08-16",
+        "timeLocal": "14:32",
+        "durationMinutes": 15
+      },
+      {
+        "id": "erc-2026-r05-s14",
+        "name": "SS13 - Kateřinice 2 - Power Stage",
+        "kind": "stage",
+        "date": "2026-08-16",
+        "timeLocal": "16:05",
+        "durationMinutes": 15
+      }
+    ]
+  },
+  {
+    "id": "erc-2026-r04",
+    "seriesId": "erc",
+    "roundNumber": 5,
     "raceName": "82nd Rally Poland",
     "circuitName": "Silesia",
     "city": "Katowice",
@@ -515,130 +639,6 @@
         "kind": "stage",
         "date": "2026-07-26",
         "timeLocal": "17:05",
-        "durationMinutes": 15
-      }
-    ]
-  },
-  {
-    "id": "erc-2026-r05",
-    "seriesId": "erc",
-    "roundNumber": 5,
-    "raceName": "Barum Czech Rally Zlín",
-    "circuitName": "Zlín",
-    "city": "Zlín",
-    "country": "Czech Republic",
-    "countryCode": "CZ",
-    "sessions": [
-      {
-        "id": "erc-2026-r05-s01",
-        "name": "Shakedown - Žlutava",
-        "kind": "shakedown",
-        "date": "2026-08-14",
-        "timeLocal": "11:40",
-        "durationMinutes": 60
-      },
-      {
-        "id": "erc-2026-r05-s02",
-        "name": "SS1 - Zlín",
-        "kind": "stage",
-        "date": "2026-08-14",
-        "timeLocal": "20:30",
-        "durationMinutes": 10
-      },
-      {
-        "id": "erc-2026-r05-s03",
-        "name": "SS2 - Pohořelice 1",
-        "kind": "stage",
-        "date": "2026-08-15",
-        "timeLocal": "08:48",
-        "durationMinutes": 15
-      },
-      {
-        "id": "erc-2026-r05-s04",
-        "name": "SS3 - Troják 1",
-        "kind": "stage",
-        "date": "2026-08-15",
-        "timeLocal": "09:51",
-        "durationMinutes": 20
-      },
-      {
-        "id": "erc-2026-r05-s05",
-        "name": "SS4 - Bunč 1",
-        "kind": "stage",
-        "date": "2026-08-15",
-        "timeLocal": "11:54",
-        "durationMinutes": 15
-      },
-      {
-        "id": "erc-2026-r05-s06",
-        "name": "SS5 - Pohořelice 2",
-        "kind": "stage",
-        "date": "2026-08-15",
-        "timeLocal": "14:52",
-        "durationMinutes": 15
-      },
-      {
-        "id": "erc-2026-r05-s07",
-        "name": "SS6 - Troják 2",
-        "kind": "stage",
-        "date": "2026-08-15",
-        "timeLocal": "15:55",
-        "durationMinutes": 20
-      },
-      {
-        "id": "erc-2026-r05-s08",
-        "name": "SS7 - Bunč 2",
-        "kind": "stage",
-        "date": "2026-08-15",
-        "timeLocal": "17:58",
-        "durationMinutes": 15
-      },
-      {
-        "id": "erc-2026-r05-s09",
-        "name": "SS8 - Pindula 1",
-        "kind": "stage",
-        "date": "2026-08-16",
-        "timeLocal": "07:58",
-        "durationMinutes": 15
-      },
-      {
-        "id": "erc-2026-r05-s10",
-        "name": "SS9 - Semetín 1",
-        "kind": "stage",
-        "date": "2026-08-16",
-        "timeLocal": "09:06",
-        "durationMinutes": 15
-      },
-      {
-        "id": "erc-2026-r05-s11",
-        "name": "SS10 - Kateřinice 1",
-        "kind": "stage",
-        "date": "2026-08-16",
-        "timeLocal": "10:05",
-        "durationMinutes": 15
-      },
-      {
-        "id": "erc-2026-r05-s12",
-        "name": "SS11 - Pindula 2",
-        "kind": "stage",
-        "date": "2026-08-16",
-        "timeLocal": "13:24",
-        "durationMinutes": 15
-      },
-      {
-        "id": "erc-2026-r05-s13",
-        "name": "SS12 - Semetín 2",
-        "kind": "stage",
-        "date": "2026-08-16",
-        "timeLocal": "14:32",
-        "durationMinutes": 15
-      },
-      {
-        "id": "erc-2026-r05-s14",
-        "name": "SS13 - Kateřinice 2 - Power Stage",
-        "kind": "stage",
-        "date": "2026-08-16",
-        "timeLocal": "16:05",
         "durationMinutes": 15
       }
     ]
@@ -803,11 +803,83 @@
     "sessions": [
       {
         "id": "erc-2026-r07-s01",
-        "name": "Shakedown - TBC",
+        "name": "Shakedown",
         "kind": "shakedown",
         "date": "2026-10-23",
-        "timeLocal": null,
+        "timeLocal": "12:30",
         "durationMinutes": 60
+      },
+      {
+        "id": "erc-2026-r07-s5",
+        "name": "SS1 - Monte Penha/Guimarães",
+        "kind": "stage",
+        "date": "2026-10-23",
+        "timeLocal": "20:05",
+        "durationMinutes": 15
+      },
+      {
+        "id": "erc-2026-r07-s6",
+        "name": "SS2 - Cabeceiras de Basto 1",
+        "kind": "stage",
+        "date": "2026-10-24",
+        "timeLocal": "09:05",
+        "durationMinutes": 15
+      },
+      {
+        "id": "erc-2026-r07-s7",
+        "name": "SS3 - Ribeira de Pena 1",
+        "kind": "stage",
+        "date": "2026-10-24",
+        "timeLocal": "10:35",
+        "durationMinutes": 15
+      },
+      {
+        "id": "erc-2026-r07-s8",
+        "name": "SS4 - Boticas / Vale do Tâmega 1",
+        "kind": "stage",
+        "date": "2026-10-24",
+        "timeLocal": "11:23",
+        "durationMinutes": 15
+      },
+      {
+        "id": "erc-2026-r07-s9",
+        "name": "SS5 - Boticas / Sr do Monte 1",
+        "kind": "stage",
+        "date": "2026-10-24",
+        "timeLocal": "12:10",
+        "durationMinutes": 15
+      },
+      {
+        "id": "erc-2026-r07-s10",
+        "name": "SS6 - Cabeceiras de Basto 2",
+        "kind": "stage",
+        "date": "2026-10-24",
+        "timeLocal": "15:32",
+        "durationMinutes": 15
+      },
+      {
+        "id": "erc-2026-r07-s11",
+        "name": "SS7 - Ribeira de Pena 2",
+        "kind": "stage",
+        "date": "2026-10-24",
+        "timeLocal": "17:02",
+        "durationMinutes": 15
+      },
+      {
+        "id": "erc-2026-r07-s12",
+        "name": "SS8 - Boticas / Vale do Tâmega 2",
+        "kind": "stage",
+        "date": "2026-10-24",
+        "timeLocal": "17:50",
+        "durationMinutes": 15
+      },
+      {
+        "id": "erc-2026-r07-s13",
+        "name": "SS9 - Boticas / Sr do Monte 2",
+        "kind": "stage",
+        "date": "2026-10-24",
+        "timeLocal": "18:37",
+        "durationMinutes": 15
       },
       {
         "id": "erc-2026-r07-s02",
@@ -816,6 +888,70 @@
         "date": "2026-10-24",
         "timeLocal": null,
         "durationMinutes": 480
+      },
+      {
+        "id": "erc-2026-r07-s14",
+        "name": "SS10 - Montim 1",
+        "kind": "stage",
+        "date": "2026-10-25",
+        "timeLocal": "09:05",
+        "durationMinutes": 15
+      },
+      {
+        "id": "erc-2026-r07-s15",
+        "name": "SS11 - Seixoso 1",
+        "kind": "stage",
+        "date": "2026-10-25",
+        "timeLocal": "09:41",
+        "durationMinutes": 15
+      },
+      {
+        "id": "erc-2026-r07-s16",
+        "name": "SS12 - Sta Quitéria 1",
+        "kind": "stage",
+        "date": "2026-10-25",
+        "timeLocal": "10:18",
+        "durationMinutes": 15
+      },
+      {
+        "id": "erc-2026-r07-s17",
+        "name": "SS13 - Lameirinha 1",
+        "kind": "stage",
+        "date": "2026-10-25",
+        "timeLocal": "11:05",
+        "durationMinutes": 15
+      },
+      {
+        "id": "erc-2026-r07-s18",
+        "name": "SS14 - Montim 2",
+        "kind": "stage",
+        "date": "2026-10-25",
+        "timeLocal": "13:13",
+        "durationMinutes": 15
+      },
+      {
+        "id": "erc-2026-r07-s19",
+        "name": "SS15 - Seixoso 2",
+        "kind": "stage",
+        "date": "2026-10-25",
+        "timeLocal": "13:49",
+        "durationMinutes": 15
+      },
+      {
+        "id": "erc-2026-r07-s20",
+        "name": "SS16 - Sta Quitéria 2",
+        "kind": "stage",
+        "date": "2026-10-25",
+        "timeLocal": "14:26",
+        "durationMinutes": 15
+      },
+      {
+        "id": "erc-2026-r07-s21",
+        "name": "SS17 - Lameirinha 2 - Power Stage",
+        "kind": "stage",
+        "date": "2026-10-25",
+        "timeLocal": "16:05",
+        "durationMinutes": 15
       },
       {
         "id": "erc-2026-r07-s03",
