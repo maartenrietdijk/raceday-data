@@ -289,3 +289,11 @@ body > header .btn:active, .dashboard-grid .btn:active { transform: scale(.96); 
 }
 .main .btn:disabled, header .btn:disabled { cursor: not-allowed; transform: none; }
 @media (prefers-reduced-motion: reduce) { .main .tab-btn { transition: none; } }
+
+/* Keep the upcoming marker above the opaque header surface. */
+.round-card.is-next { position: relative; }
+.round-card.is-next::before {
+  content: ''; position: absolute; inset: 0 auto 0 0; width: 6px;
+  background: #171717; border-radius: 6px 0 0 6px; z-index: 1; pointer-events: none;
+}
+[data-theme="dark"] .round-card.is-next::before { background: #fff; }

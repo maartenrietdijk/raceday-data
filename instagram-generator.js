@@ -584,6 +584,22 @@
     ctx.fillStyle = 'rgba(255,255,255,.09)'; ctx.fillRect(68, headerDividerY(), 944, 1);
   }
 
+  // Alpha compositing also works in iOS Safari, where canvas filters may be unavailable.
+  const whiteLogoCache = new Map();
+  function whiteLogo(image) {
+    if (whiteLogoCache.has(image)) return whiteLogoCache.get(image);
+    const canvas = document.createElement('canvas');
+    canvas.width = image.naturalWidth || image.width;
+    canvas.height = image.naturalHeight || image.height;
+    const context = canvas.getContext('2d');
+    context.drawImage(image, 0, 0);
+    context.globalCompositeOperation = 'source-in';
+    context.fillStyle = '#fff';
+    context.fillRect(0, 0, canvas.width, canvas.height);
+    whiteLogoCache.set(image, canvas);
+    return canvas;
+  }
+
   function drawLogo(ctx, item, x, y, width, height) {
     const config = window.RACEDAY_INSTAGRAM_LOGOS?.[item.seriesId];
     const image = config ? instagramState.images.get(config.src) : null;
@@ -591,9 +607,9 @@
     ctx.beginPath(); ctx.rect(x, y, width, height); ctx.clip();
     if (image) {
       const size = Math.min(config.maxWidth || width, width) * (config.scale || 1) * logoScaleFor(item.seriesId);
-      ctx.filter = config.mono ? 'grayscale(1) brightness(0) invert(1)' : 'none';
+      const logo = config.mono ? whiteLogo(image) : image;
       ctx.globalAlpha = .95;
-      ctx.drawImage(image, x + width / 2 - size / 2 + (config.x || 0), y + height / 2 - size / 2 + (config.y || 0), size, size);
+      ctx.drawImage(logo, x + width / 2 - size / 2 + (config.x || 0), y + height / 2 - size / 2 + (config.y || 0), size, size);
     } else {
       ctx.fillStyle = '#f4f4f6'; ctx.font = '700 19px Inter, sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
       ctx.fillText(truncateText(ctx, item.seriesName.toUpperCase(), width - 14), x + width / 2, y + height / 2);

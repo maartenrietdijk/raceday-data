@@ -93,3 +93,19 @@
   .round-header .round-drag-handle { grid-area: drag; }
   .round-header .round-order-actions { grid-area: order; justify-self: end; }
 }
+
+/* Safari's native date/time content must not set the grid's intrinsic width. */
+.session-field, .session-when, .session-when-grid { min-width: 0; max-width: 100%; }
+.session-row input:is([type="date"], [type="time"]) {
+  -webkit-appearance: none; appearance: none; display: block;
+  width: 100%; min-width: 0; max-width: 100%; height: 44px;
+  padding: 0 12px; text-align: left;
+}
+.session-row input::-webkit-date-and-time-value { text-align: left; min-width: 0; margin: 0; }
+.session-row input::-webkit-datetime-edit { padding: 0; min-width: 0; }
+@media (max-width: 760px) {
+  .session-when-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; }
+  .session-when-grid .session-date-input { grid-column: auto; }
+  .session-when-grid .tbc-wrap { grid-column: 1 / -1; justify-content: flex-start; }
+  .session-row .tbc-check { margin: 0; max-width: 18px; padding: 0; }
+}

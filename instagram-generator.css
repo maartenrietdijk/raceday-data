@@ -18,8 +18,9 @@ body, button, input, select, textarea { font-family: 'Inter', sans-serif; }
   align-items: stretch;
   justify-content: stretch;
   padding: 24px;
-  background: rgba(0, 0, 0, .62);
-  backdrop-filter: blur(28px) saturate(130%);
+  background: rgba(0, 0, 0, .5);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 
 .instagram-modal {
