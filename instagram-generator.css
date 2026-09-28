@@ -346,26 +346,57 @@ body, button, input, select, textarea { font-family: 'Inter', sans-serif; }
 .instagram-preview-nav button:hover { border-color: #676772; }
 .instagram-preview-nav button:disabled { opacity: .28; cursor: default; }
 
+/* Both desktop panels scroll as a whole; short windows never squeeze out sessions. */
+.instagram-controls { overflow-y: auto; overscroll-behavior: contain; }
+.instagram-controls > * { flex-shrink: 0; }
+.instagram-control-panel { flex: none; overflow: visible; }
+.instagram-session-list, .instagram-logo-scale-list { overflow: visible; flex: none; }
+.instagram-control-tabs { position: sticky; bottom: 0; }
+.instagram-visibility-controls { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.instagram-modal :is(button, input, select, a):focus-visible { outline: 2px solid #ff6474; outline-offset: 3px; }
+.instagram-format-controls label, .instagram-session-copy span, .instagram-series-order-heading span { color: #aaaab4; }
+.instagram-export-results { grid-column: 1 / -1; padding: 20px; background: #202024; overflow: auto; max-height: 70vh; }
+.instagram-workspace:has(.instagram-export-results) { grid-template-rows: auto minmax(0, 1fr); }
+.instagram-export-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; color: #fff; }
+.instagram-export-heading button { width: 44px; height: 44px; border: 1px solid #575760; border-radius: 10px; background: #29292f; color: #fff; font-size: 24px; }
+.instagram-export-results p { color: #c4c4ce; max-width: 55ch; }
+.instagram-export-file { display: inline-flex; vertical-align: top; flex-direction: column; gap: 12px; margin: 16px 16px 0 0; color: #fff; font-size: 14px; padding-bottom: 12px; text-underline-offset: 4px; }
+.instagram-export-file img { width: 180px; max-width: 100%; height: auto; }
+
 @media (max-width: 900px) {
   .instagram-modal-backdrop { padding: 0; }
-  .instagram-modal { width: 100%; height: 100%; border: 0; border-radius: 0; }
-  .instagram-workspace { grid-template-columns: 1fr; grid-template-rows: minmax(330px, 56vh) minmax(280px, 44vh); }
-  .instagram-preview-pane { grid-row: 1; }
-  .instagram-controls { grid-row: 2; border: 0; border-top: 1px solid #29292f; }
-  .instagram-controls-summary { padding: 12px 16px; }
-  .instagram-warning { margin-top: 10px; }
-  .instagram-session-list { padding-bottom: 24px; }
-  .instagram-canvas-stage { padding: 12px; }
+  .instagram-modal { width: 100%; max-width: 100%; height: 100dvh; border: 0; border-radius: 0; }
+  .instagram-modal-header { padding: max(10px, env(safe-area-inset-top)) 16px 10px; flex-wrap: wrap; gap: 8px; }
+  .instagram-modal-title h2 { font-size: 16px; }
   .instagram-modal-title p { display: none; }
-  .instagram-modal-actions .btn-ghost { display: none; }
-}
-
-@media (max-width: 560px) {
-  .instagram-modal-header { min-height: 60px; padding: 10px 12px 10px 16px; }
-  .instagram-modal-actions { gap: 4px; }
-  .instagram-modal-actions .btn { padding: 8px 10px; font-size: 11px; }
-  .instagram-workspace { grid-template-rows: minmax(280px, 51vh) minmax(300px, 49vh); }
-  .instagram-preview-nav { min-height: 48px; padding: 6px 10px; }
+  .instagram-modal-actions { flex-wrap: wrap; }
+  .instagram-modal-actions .btn { min-height: 44px; padding: 10px 12px; font-size: 12px; }
+  .instagram-modal-actions .btn-icon { min-width: 44px; min-height: 44px; }
+  .instagram-workspace { display: flex; flex-direction: column; overflow-y: auto; overscroll-behavior: contain; }
+  .instagram-preview-pane { order: -1; flex: none; display: flex; flex-direction: column; }
+  .instagram-canvas-stage { flex: none; height: clamp(240px, 48dvh, 520px); padding: 12px; }
+  #instagramCanvas { max-height: 100%; max-width: 100%; object-fit: contain; }
+  .instagram-preview-nav { min-height: 56px; padding: 6px 10px; }
+  .instagram-preview-nav button { width: 44px; height: 44px; }
+  .instagram-controls { flex: none; overflow: visible; border: 0; border-top: 1px solid #29292f; padding-bottom: env(safe-area-inset-bottom); }
+  .instagram-controls-summary { padding: 12px 16px; }
+  .instagram-format-controls { padding: 16px; }
+  .instagram-format-controls select, .instagram-format-controls input { min-height: 44px; font-size: 16px; }
+  .instagram-format-controls label { font-size: 12px; }
+  .instagram-visibility-controls button, .instagram-control-tabs button { min-height: 44px; font-size: 12px; }
+  .instagram-visibility-controls button:not(.active) { color: #aaaab4; }
+  .instagram-control-tabs { position: static; order: -1; border-top: 0; border-bottom: 1px solid #29292f; }
+  .instagram-series-order { max-height: none; overflow: visible; }
+  .instagram-series-order-main { grid-template-columns: 18px minmax(0,1fr) 44px 44px; }
+  .instagram-series-order-main button, .instagram-logo-scale-control button { width: 44px; height: 44px; }
+  .instagram-logo-scale-control { grid-template-columns: minmax(0,1fr) 44px; }
+  .instagram-logo-scale-control input { height: 44px; }
+  .instagram-session-list { padding-bottom: 24px; }
+  .instagram-session-copy strong { white-space: normal; font-size: 13px; }
+  .instagram-session-copy span { white-space: normal; line-height: 1.45; }
+  .instagram-export-results { order: -2; flex: none; max-height: none; overflow: visible; padding: 16px; }
+  .instagram-export-file { display: flex; margin-right: 0; }
+  .instagram-export-file img { width: min(100%, 320px); }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -375,4 +406,14 @@ body, button, input, select, textarea { font-family: 'Inter', sans-serif; }
 @media (prefers-reduced-transparency: reduce) {
   .instagram-modal-backdrop { background: rgba(0, 0, 0, .88); backdrop-filter: none; }
   .instagram-modal { background: #131315; }
+}
+
+/* Keep the generator independent of the editor's light theme and sheet limits. */
+.instagram-modal { max-height: calc(100dvh - 48px); }
+.instagram-modal-actions .btn-ghost { color: #e8e8ee; border-color: #60606b; }
+.instagram-modal-actions .btn-icon { color: #d4d4dd; }
+@media (max-width: 900px) {
+  .instagram-modal { max-height: 100dvh; margin: 0; }
+  .instagram-modal-actions { gap: 4px; flex-wrap: nowrap; }
+  .instagram-modal-actions .btn { padding-inline: 10px; }
 }

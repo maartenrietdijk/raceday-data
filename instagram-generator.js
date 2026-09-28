@@ -12,7 +12,8 @@
   const COMPACT_CONTENT_TOP = 246;
   const MINIMAL_CONTENT_TOP = 150;
   const HIDDEN_LOGO_OFFSET = 96;
-  const CONTENT_BOTTOM = 1194;
+  const CONTENT_BOTTOM = 1174;
+  const OVERVIEW_ROW_HEIGHT = 112;
   const ROW_HEIGHT = 96;
   const GROUP_HEADER_HEIGHT = 64;
   const GROUP_BOTTOM_PADDING = 14;
@@ -45,15 +46,12 @@
   const instagramState = {
     allSessions: [], selectedIds: new Set(), slides: [], slideIndex: 0,
     images: new Map(), warnings: [], weekend: null, sourceWarningCount: 0,
-    assetLoadComplete: false, mode: 'sessions', selectedDay: '', displayItems: [],
-    title: 'Upcoming races', showLogo: true, showTitle: true, showDate: true, showTopMeta: true,
+    assetLoadComplete: false, mode: 'overview', selectedDay: '', displayItems: [],
+    title: 'Upcoming races', showLogo: false, showTitle: false, showDate: false, showTopMeta: false,
     seriesOrder: [], draggedSeriesId: '', logoScales: {}, controlTab: 'sessions',
   };
 
   function loadLogoScales() {
-    if (window.matchMedia('(max-width: 760px)').matches) {
-      return {};
-    }
     try {
       const stored = JSON.parse(localStorage.getItem(LOGO_SCALE_STORAGE_KEY) || '{}');
       return Object.fromEntries(Object.entries(stored).flatMap(([seriesId, value]) => {
@@ -66,9 +64,6 @@
   }
 
   function saveLogoScales() {
-    if (window.matchMedia('(max-width: 760px)').matches) {
-      return;
-    }
     try {
       localStorage.setItem(LOGO_SCALE_STORAGE_KEY, JSON.stringify(instagramState.logoScales));
     } catch (error) {
@@ -256,7 +251,8 @@
     const base = hasMinimalHeader()
       ? MINIMAL_CONTENT_TOP
       : instagramState.showTopMeta ? DEFAULT_CONTENT_TOP : COMPACT_CONTENT_TOP;
-    return instagramState.showLogo ? base : base - HIDDEN_LOGO_OFFSET;
+    const top = instagramState.showLogo ? base : base - HIDDEN_LOGO_OFFSET;
+    return !['overview', 'dayNoTimes'].includes(instagramState.mode) ? Math.max(132, top) : top;
   }
 
   function maxSessionsPerSlide() {
@@ -328,7 +324,7 @@
 
   function buildOverviewSlides(items) {
     const slides = [];
-    const capacity = maxSessionsPerSlide();
+    const capacity = Math.min(maxSessionsPerSlide(), Math.floor((CONTENT_BOTTOM - contentTop() - GROUP_HEADER_HEIGHT - GROUP_BOTTOM_PADDING) / OVERVIEW_ROW_HEIGHT));
     for (let index = 0; index < items.length; index += capacity) {
       slides.push({ groups: [{
         dayKey: instagramState.weekend.start,
@@ -610,13 +606,15 @@
     drawLogo(ctx, item, logoX, logoY, logoW, logoH);
     const copyX = rowX + 162;
     ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic';
-    ctx.fillStyle = '#f7f7f8'; ctx.font = '650 24px Inter, sans-serif';
-    const eventTitle = truncateText(ctx, item.eventName, item.overview ? 555 : 338);
-    ctx.fillText(eventTitle, copyX, y + 46);
-    drawFlag(ctx, item.countryCode, copyX + ctx.measureText(eventTitle).width + 12, y + 25, 32, 24);
-    ctx.fillStyle = '#8e8e96'; ctx.font = '500 16px Inter, sans-serif';
+    const textOffset = (rowHeight - ROW_HEIGHT) / 2;
+    ctx.fillStyle = '#f7f7f8'; ctx.font = `650 ${item.overview ? 28 : 24}px Inter, sans-serif`;
+    // Reserve the flag and gap before the fixed date/session column.
+    const eventTitle = truncateText(ctx, item.eventName, item.overview ? 542 : 338);
+    ctx.fillText(eventTitle, copyX, y + 44 + textOffset);
+    drawFlag(ctx, item.countryCode, copyX + ctx.measureText(eventTitle).width + 12, y + 23 + textOffset, 32, 24);
+    ctx.fillStyle = '#b5b5bd'; ctx.font = `500 ${item.overview ? 20 : 18}px Inter, sans-serif`;
     const subline = item.circuitName && item.circuitName !== item.eventName ? `${item.seriesName} · ${item.circuitName}` : item.seriesName;
-    ctx.fillText(truncateText(ctx, subline, 390), copyX, y + 70);
+    ctx.fillText(truncateText(ctx, subline, item.overview ? 580 : 390), copyX, y + 72 + textOffset);
     const label = item.overview ? '' : sessionLabel(item), labelX = x + 592, labelW = 178, labelH = 48;
     const labelY = y + (rowHeight - labelH) / 2;
     const dayWithoutTimes = instagramState.mode === 'dayNoTimes';
@@ -636,7 +634,7 @@
     fillRoundRect(ctx, timeX, labelY, timeW, labelH, PANEL_RADIUS, '#000000');
     ctx.fillStyle = '#fff'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
     const rightLabel = item.overview ? item.dateRange : dayWithoutTimes ? label : item.time;
-    let rightFontSize = item.overview ? 19 : dayWithoutTimes ? 15 : item.isTbc ? 17 : 28;
+    let rightFontSize = item.overview ? 22 : dayWithoutTimes ? 15 : item.isTbc ? 17 : 28;
     ctx.font = `${dayWithoutTimes ? 650 : 700} ${rightFontSize}px Inter, sans-serif`;
     while (rightFontSize > 11 && ctx.measureText(rightLabel).width > timeW - 18) {
       rightFontSize -= 1;
@@ -681,12 +679,19 @@
   }
 
   function drawFooter(ctx, slideNumber, totalSlides) {
-    ctx.fillStyle = 'rgba(255,255,255,.09)'; ctx.fillRect(68, 1236, 944, 1);
-    drawBrandIcon(ctx, 68, 1266, 48, 13);
-    ctx.fillStyle = '#f5f5f7'; ctx.font = '650 26px Inter, sans-serif'; ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic'; ctx.fillText('RaceDay', 132, 1300);
-    drawStoreBadge(ctx, 646, 1264, 174, 50, 'apple');
-    drawStoreBadge(ctx, 832, 1264, 173, 50, 'google');
-    if (totalSlides > 1) { ctx.fillStyle='#77777f';ctx.font='550 14px Inter, sans-serif';ctx.textAlign='center';ctx.fillText(`${slideNumber} of ${totalSlides}`, 530, 1297); }
+    ctx.fillStyle = 'rgba(255,255,255,.16)'; ctx.fillRect(68, 1200, 944, 1);
+    drawBrandIcon(ctx, 68, 1228, 64, 16);
+    ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic';
+    ctx.fillStyle = '#ffffff'; ctx.font = '700 32px Inter, sans-serif';
+    ctx.fillText('Download the RaceDay app', 150, 1254);
+    ctx.fillStyle = '#c4c4cb'; ctx.font = '500 23px Inter, sans-serif';
+    ctx.fillText('Your Personal Racing Calendar.', 150, 1290);
+    drawStoreBadge(ctx, 652, 1240, 174, 50, 'apple');
+    drawStoreBadge(ctx, 838, 1240, 173, 50, 'google');
+    if (totalSlides > 1) {
+      ctx.fillStyle = '#b5b5bd'; ctx.font = '550 18px Inter, sans-serif'; ctx.textAlign = 'right';
+      ctx.fillText(`${slideNumber} / ${totalSlides}`, 1012, 1324);
+    }
   }
 
   function drawStoreBadge(ctx, x, y, width, height, store) {
@@ -706,8 +711,20 @@
       ctx.fillStyle = '#fff';ctx.font='650 38px Inter, sans-serif';ctx.textAlign='center';ctx.fillText('No sessions selected', WIDTH/2, 650);
       ctx.fillStyle='#92929d';ctx.font='500 22px Inter, sans-serif';ctx.fillText('Select at least one session to create a post.', WIDTH/2, 692);
     } else {
-      let y = contentTop();
-      slide.groups.forEach((group, groupIndex) => { if (groupIndex) y += GROUP_GAP; y = drawDayGroup(ctx, group, y, ROW_HEIGHT); });
+      const top = contentTop();
+      const availableHeight = CONTENT_BOTTOM - top;
+      const rowHeights = slide.groups.map(group => group.overview
+        ? Math.min(132, Math.floor((availableHeight - GROUP_HEADER_HEIGHT - GROUP_BOTTOM_PADDING) / group.items.length))
+        : ROW_HEIGHT);
+      const totalHeight = slide.groups.reduce((height, group, index) => height
+        + GROUP_HEADER_HEIGHT + group.items.length * rowHeights[index] + GROUP_BOTTOM_PADDING
+        + (index ? GROUP_GAP : 0), 0);
+      // Center the complete stack, retaining the spacing between day groups.
+      let y = top + Math.max(0, (availableHeight - totalHeight) / 2);
+      slide.groups.forEach((group, index) => {
+        if (index) y += GROUP_GAP;
+        y = drawDayGroup(ctx, group, y, rowHeights[index]);
+      });
     }
     drawFooter(ctx, index + 1, totalSlides);
     updateNavigation();
@@ -991,12 +1008,12 @@
     instagramState.allSessions = result.sessions;
     instagramState.sourceWarningCount = result.warnings.length;
     instagramState.assetLoadComplete = false;
-    instagramState.mode = 'sessions';
+    instagramState.mode = 'overview';
     instagramState.title = 'Upcoming races';
-    instagramState.showLogo = true;
-    instagramState.showTitle = true;
-    instagramState.showDate = true;
-    instagramState.showTopMeta = true;
+    instagramState.showLogo = false;
+    instagramState.showTitle = false;
+    instagramState.showDate = false;
+    instagramState.showTopMeta = false;
     const presentSeries = new Set(result.sessions.map(item => item.seriesId));
     instagramState.seriesOrder = (state.series || []).map(series => series.id).filter(id => presentSeries.has(id));
     instagramState.draggedSeriesId = '';
@@ -1021,7 +1038,7 @@
       daySelect.value = instagramState.selectedDay;
     }
     document.querySelector('.instagram-format-controls')?.classList.remove('day-mode');
-    renderSeriesOrder(); renderLogoScaleControls(); setInstagramControlTab('sessions'); renderSessionControls(); rebuildWarnings();
+    refreshDisplayItems(); renderLogoScaleControls(); setInstagramControlTab('sessions');
     await Promise.all([
       preloadAssets(result.sessions),
       document.fonts.load('700 70px Inter'),
@@ -1032,6 +1049,7 @@
   }
 
   function closeInstagramGenerator() {
+    clearExportFiles();
     document.getElementById('instagramModal')?.classList.remove('show');
     document.body.style.overflow = '';
   }
@@ -1067,27 +1085,73 @@
     await preloadAssets(selected);
   }
 
+  let exportBusy = false;
+  let exportUrls = [];
+  function clearExportFiles() {
+    document.getElementById('instagramExportResults')?.remove();
+    exportUrls.forEach(url => URL.revokeObjectURL(url));
+    exportUrls = [];
+  }
+
+  function showExportFiles(files) {
+    clearExportFiles();
+    const panel = document.createElement('section');
+    panel.id = 'instagramExportResults';
+    panel.className = 'instagram-export-results';
+    panel.setAttribute('aria-label', 'PNG’s opslaan en delen');
+    panel.innerHTML = `<div class="instagram-export-heading"><strong>${files.length} PNG${files.length === 1 ? '' : '’s'} gereed</strong><button type="button" aria-label="Sluit exportresultaat">×</button></div><p>Deel naar een app of bewaar de afbeeldingen. Je kunt een afbeelding ook ingedrukt houden om deze op te slaan.</p>`;
+    panel.querySelector('button').onclick = clearExportFiles;
+    if (navigator.canShare?.({ files })) {
+      const share = document.createElement('button');
+      share.className = 'btn btn-primary'; share.textContent = 'Deel of bewaar PNG’s';
+      share.onclick = async () => {
+        try { await navigator.share({ files }); }
+        catch (error) { if (error.name !== 'AbortError') showStatus('Delen lukt niet. Gebruik de downloadlinks hieronder.', 'error'); }
+      };
+      panel.appendChild(share);
+    }
+    files.forEach((file, index) => {
+      const url = URL.createObjectURL(file); exportUrls.push(url);
+      const link = document.createElement('a');
+      link.href = url; link.download = file.name; link.className = 'instagram-export-file';
+      const image = document.createElement('img'); image.src = url; image.alt = `Instagram-post ${index + 1}`;
+      link.append(image, document.createTextNode(`Download PNG ${index + 1}`)); panel.appendChild(link);
+    });
+    document.querySelector('.instagram-workspace').prepend(panel);
+    panel.scrollIntoView({ block: 'start' });
+    panel.querySelector('button').focus({ preventScroll: true });
+  }
+
   async function downloadInstagramPng(allSlides = false) {
-    const button = document.getElementById(allSlides ? 'instagramDownloadAll' : 'instagramDownload');
-    if (button) button.disabled = true;
+    if (exportBusy) return;
+    exportBusy = true;
+    const buttons = ['instagramDownloadAll', 'instagramDownload'].map(id => document.getElementById(id));
+    buttons.forEach(button => { if (button) button.disabled = true; });
     const originalIndex = instagramState.slideIndex;
     try {
       await prepareExport();
       const indexes = allSlides ? instagramState.slides.map((_, index) => index) : [instagramState.slideIndex];
+      const files = [];
       for (const index of indexes) {
         instagramState.slideIndex = index; renderSlide(index);
         await new Promise(requestAnimationFrame);
         const canvas = document.getElementById('instagramCanvas');
         if (canvas.width !== WIDTH || canvas.height !== HEIGHT) throw new Error('Exportformaat is niet 1080 × 1350');
         const blob = await canvasBlob(canvas);
-        downloadBlob(blob, `raceday-week-${isoWeek(instagramState.weekend.start)}-${String(index + 1).padStart(2, '0')}.png`);
+        files.push(new File([blob], `raceday-week-${isoWeek(instagramState.weekend.start)}-${String(index + 1).padStart(2, '0')}.png`, { type: 'image/png' }));
       }
-      showStatus(`✓ ${indexes.length} PNG${indexes.length === 1 ? '' : '’s'} van 1080 × 1350 gedownload`, 'success');
+      if (window.matchMedia('(max-width: 900px), (pointer: coarse)').matches) {
+        showExportFiles(files);
+      } else {
+        files.forEach(file => downloadBlob(file, file.name));
+      }
+      showStatus(`✓ ${indexes.length} PNG${indexes.length === 1 ? '' : '’s'} van 1080 × 1350 gereed`, 'success');
     } catch (error) {
       showStatus(`Export mislukt: ${error.message}`, 'error');
     } finally {
       instagramState.slideIndex = originalIndex; renderSlide(originalIndex);
-      if (button) button.disabled = false;
+      exportBusy = false;
+      buttons.forEach(button => { if (button) button.disabled = false; });
     }
   }
 
