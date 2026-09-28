@@ -13,8 +13,12 @@
     try { preference = localStorage.getItem('raceday_theme') || 'system'; } catch (_) {}
     if (!['system', 'light', 'dark'].includes(preference)) preference = 'system';
     const applyTheme = () => {
+      let freeze = document.getElementById('themeTransitionFreeze');
+      if (!freeze) { freeze = document.createElement('style'); freeze.id = 'themeTransitionFreeze'; freeze.textContent = '*,*::before,*::after{transition:none!important}'; document.head.appendChild(freeze); }
       document.documentElement.setAttribute('data-theme', preference === 'system' ? (media.matches ? 'dark' : 'light') : preference);
       document.querySelectorAll('[data-theme-choice]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.themeChoice === preference)));
+      void document.documentElement.offsetHeight;
+      requestAnimationFrame(() => requestAnimationFrame(() => freeze.remove()));
     };
     window.setEditorTheme = value => {
       preference = ['system', 'light', 'dark'].includes(value) ? value : 'system';
@@ -982,6 +986,7 @@
 </style>
 <link rel="stylesheet" href="instagram-generator.css?v=20260928-1">
 <link rel="stylesheet" href="editor-ux.css?v=20260928-1">
+<link rel="stylesheet" href="dashboard-design.css?v=20260928-1">
 </head>
 <body>
 
@@ -989,16 +994,16 @@
 <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
 <header>
   <div style="display:flex;align-items:center;gap:8px">
-    <button class="hamburger" id="hamburgerBtn" onclick="toggleSidebar()" aria-label="Open seriesmenu">☰</button>
+    <button class="hamburger" id="hamburgerBtn" onclick="toggleSidebar()" aria-label="Open seriesmenu" aria-controls="seriesSidebar" aria-expanded="false"><svg class="rd-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
     <div class="logo">
-      <div class="logo-dot"></div>
-      <span>RaceDay</span>
-      <span class="header-kicker">Calendar editor</span>
+      <span id="workspaceIcon"><svg class="rd-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span>
+      <span id="workspaceTitle">Overzicht</span>
+      <span class="header-kicker">RaceDay Studio</span>
     </div>
   </div>
   <div class="header-actions">
-    <button class="btn btn-ghost btn-sm editor-settings-button" onclick="showGitHubSettings()">Instellingen</button>
-    <button class="btn btn-ghost btn-sm desktop-secondary" onclick="exportJSON()">Exporteer</button>
+    <button class="btn btn-ghost btn-sm editor-settings-button" onclick="showGitHubSettings()" aria-label="Instellingen"><svg class="rd-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m10 3-.5 2a7 7 0 0 0-2 1L5.5 5.5l-2 3L5 10a7 7 0 0 0 0 4l-1.5 1.5 2 3 2-.5a7 7 0 0 0 2 1L10 21h4l.5-2a7 7 0 0 0 2-1l2 .5 2-3L19 14a7 7 0 0 0 0-4l1.5-1.5-2-3-2 .5a7 7 0 0 0-2-1L14 3Z"/><circle cx="12" cy="12" r="3"/></svg><span>Instellingen</span></button>
+    <button class="btn btn-ghost btn-sm desktop-secondary" onclick="exportJSON()"><svg class="rd-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 16v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4"/></svg>Exporteer</button>
     <button class="btn btn-primary btn-sm" onclick="publishCurrentView()">
       <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
       Publiceer
@@ -1010,38 +1015,36 @@
 <div class="layout">
 
   <!-- Sidebar -->
-  <aside class="sidebar" aria-label="Race series">
+  <aside class="sidebar" id="seriesSidebar" aria-label="Race series">
     <div class="sidebar-brand">
-      <div>
-        <strong>RaceDay</strong>
-      <span>Calendar editor · multi-season</span>
-      </div>
-      <button class="btn-icon sidebar-close" onclick="toggleSidebar()" aria-label="Sluit seriesmenu">×</button>
+      <div class="sidebar-identity"><img src="instagram-assets/branding/app-icon.png" alt="" width="36" height="36"><div><strong>RaceDay</strong><span>Calendar studio</span></div></div>
+      <button class="btn-icon sidebar-close" onclick="toggleSidebar()" aria-label="Sluit seriesmenu"><svg class="rd-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
     </div>
     <div class="sidebar-dashboard" id="dashboardNav">
       <button type="button" class="series-item active" onclick="selectDashboard()">
-        <span style="font-size:15px">⌂</span>
+        <svg class="rd-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
         <span class="series-name">Overzicht</span>
       </button>
       <button type="button" class="series-item" id="proposalsNav" onclick="selectProposals()">
-        <span style="font-size:15px" aria-hidden="true">◫</span>
+        <svg class="rd-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h13a2 2 0 0 0 2-2v-4M9 15l1-4L18 3a2.1 2.1 0 0 1 3 3l-8 8-4 1Zm7-10 3 3"/></svg>
         <span class="series-name">Voorstellen</span>
         <span class="proposal-count" id="proposalCount" aria-label="0 openstaande voorstellen">0</span>
       </button>
     </div>
+    <div class="sidebar-quick-action"><button type="button" class="series-item" onclick="openInstagramGenerator()"><svg class="rd-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg><span class="series-name">Instagram-post</span></button></div>
     <div class="series-search">
-      <div class="series-search-wrap">
+      <div class="series-search-wrap"><svg class="rd-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/></svg>
         <input type="search" id="seriesSearch" placeholder="Zoek serie" autocomplete="off" oninput="filterSeries(this.value)" aria-label="Zoek serie">
       </div>
     </div>
     <div class="sidebar-header">
       <span class="sidebar-title">Series</span>
-      <button class="btn-icon" onclick="showAddSeries()" title="Serie toevoegen" aria-label="Serie toevoegen">+</button>
+      <button class="btn-icon" onclick="showAddSeries()" title="Serie toevoegen" aria-label="Serie toevoegen"><svg class="rd-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
     </div>
     <div class="series-list" id="seriesList"></div>
     <div class="sidebar-footer">
       <span id="seriesTotal">0 series</span>
-      <button class="btn-icon" onclick="showGitHubSettings()" title="Instellingen" aria-label="Instellingen">⚙</button>
+      <button class="btn-icon" onclick="showGitHubSettings()" title="Instellingen" aria-label="Instellingen"><svg class="rd-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m10 3-.5 2a7 7 0 0 0-2 1L5.5 5.5l-2 3L5 10a7 7 0 0 0 0 4l-1.5 1.5 2 3 2-.5a7 7 0 0 0 2 1L10 21h4l.5-2a7 7 0 0 0 2-1l2 .5 2-3L19 14a7 7 0 0 0 0-4l1.5-1.5-2-3-2 .5a7 7 0 0 0-2-1L14 3Z"/><circle cx="12" cy="12" r="3"/></svg></button>
     </div>
   </aside>
 
@@ -1276,6 +1279,11 @@
 
 <script src="proposal-logic.js?v=20260914-1"></script>
 <script>
+function editorIcon(name) {
+  const paths = {"overview": "<rect x=\"3\" y=\"3\" width=\"7\" height=\"7\" rx=\"1.5\"/><rect x=\"14\" y=\"3\" width=\"7\" height=\"7\" rx=\"1.5\"/><rect x=\"3\" y=\"14\" width=\"7\" height=\"7\" rx=\"1.5\"/><rect x=\"14\" y=\"14\" width=\"7\" height=\"7\" rx=\"1.5\"/>", "calendar": "<rect x=\"3\" y=\"5\" width=\"18\" height=\"16\" rx=\"3\"/><path d=\"M7 3v4m10-4v4M3 11h18m-13 4h2m4 0h2m-8 3h2\"/>", "proposals": "<path d=\"M9 4H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h13a2 2 0 0 0 2-2v-4M9 15l1-4L18 3a2.1 2.1 0 0 1 3 3l-8 8-4 1Zm7-10 3 3\"/>", "camera": "<rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"5\"/><circle cx=\"12\" cy=\"12\" r=\"4\"/><path d=\"M17.5 6.5h.01\"/>", "settings": "<path d=\"m10 3-.5 2a7 7 0 0 0-2 1L5.5 5.5l-2 3L5 10a7 7 0 0 0 0 4l-1.5 1.5 2 3 2-.5a7 7 0 0 0 2 1L10 21h4l.5-2a7 7 0 0 0 2-1l2 .5 2-3L19 14a7 7 0 0 0 0-4l1.5-1.5-2-3-2 .5a7 7 0 0 0-2-1L14 3Z\"/><circle cx=\"12\" cy=\"12\" r=\"3\"/>", "search": "<circle cx=\"10.5\" cy=\"10.5\" r=\"6.5\"/><path d=\"m16 16 4 4\"/>", "plus": "<path d=\"M12 5v14M5 12h14\"/>", "close": "<path d=\"m6 6 12 12M18 6 6 18\"/>", "menu": "<path d=\"M4 6h16M4 12h16M4 18h16\"/>", "arrow": "<path d=\"M5 12h14m-5-5 5 5-5 5\"/>", "sync": "<path d=\"M20 7v5h-5M4 17v-5h5M6 6a8 8 0 0 1 13 2M5 16a8 8 0 0 0 13 2\"/>", "download": "<path d=\"M12 3v12m-5-5 5 5 5-5M4 16v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4\"/>", "flag": "<path d=\"M4 22V3m0 1c5-4 11 4 16 0v10c-5 4-11-4-16 0\"/>", "clock": "<circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 7v5l3 2\"/>", "layers": "<path d=\"m12 3 10 5-10 5L2 8 12 3Zm-10 9 10 5 10-5M2 16l10 5 10-5\"/>", "check": "<path d=\"m5 12 4 4L19 6\"/>"};
+  return '<svg class="rd-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (paths[name] || paths.calendar) + '</svg>';
+}
+
 // ── State ──────────────────────────────────────────────────────────────────────
 
 const KIND_OPTIONS = [
@@ -1806,6 +1814,7 @@ function toggleSidebar() {
   const overlay = document.getElementById('sidebarOverlay');
   sidebar.classList.toggle('open');
   overlay.classList.toggle('open');
+  document.getElementById('hamburgerBtn')?.setAttribute('aria-expanded', String(sidebar.classList.contains('open')));
 }
 
 function selectDashboard() {
@@ -1843,6 +1852,10 @@ function switchTab(tab) {
 }
 
 function renderMain() {
+  const title = document.getElementById('workspaceTitle');
+  if (title) title.textContent = state.activeView === 'proposals' ? 'Voorstellen' : state.activeSeries ? (state.series.find(series => series.id === state.activeSeries)?.name || 'Kalender') : 'Overzicht';
+  const icon = document.getElementById('workspaceIcon');
+  if (icon) icon.innerHTML = editorIcon(state.activeView === 'proposals' ? 'proposals' : state.activeSeries ? 'calendar' : 'overview');
   if (state.activeView === 'proposals') {
     renderProposals();
     return;
@@ -1965,20 +1978,25 @@ function eventRangeLabel(event) {
   return `${format.format(dateAtMidnight(event.start)).replace('.', '')} – ${format.format(dateAtMidnight(event.end)).replace('.', '')}`;
 }
 
+function openDashboardEvent(seriesId, roundId) {
+  const file = calendarFilesForSeries(seriesId).find(file => (state.calendarFiles[file.filename] || []).some(round => round.id === roundId));
+  if (file) state.activeCalendarFiles[seriesId] = file.filename;
+  state.activeTab = 'calendar';
+  selectSeries(seriesId);
+  const index = editableRounds(seriesId).findIndex(round => round.id === roundId);
+  const card = document.getElementById(`round_${index}`);
+  if (card) { card.classList.add('open'); card.scrollIntoView({ block: 'start' }); }
+}
+
 function renderEventRow(event, highlighted = false) {
   return `
-    <div class="event-row${highlighted ? ' is-next' : ''}" onclick="selectSeries('${event.series.id}')">
-      <div class="event-date">
-        <div class="event-day">${formatEventDate(event.start, 'day')}</div>
-        <div class="event-month">${formatEventDate(event.start, 'month')}</div>
-      </div>
+    <button type="button" class="event-row${highlighted ? ' is-next' : ''}" data-series-id="${esc(event.series.id)}" data-round-id="${esc(event.round.id || '')}" onclick="openDashboardEvent(this.dataset.seriesId, this.dataset.roundId)">
+      <span class="event-date"><span class="event-day">${formatEventDate(event.start, 'day')}</span><span class="event-month">${formatEventDate(event.start, 'month')}</span></span>
       <span class="event-dot" style="background:${event.series.color}"></span>
-      <div style="min-width:0">
-        <div class="event-name">${esc(event.round.raceName || `Ronde ${event.round.roundNumber || event.roundIndex + 1}`)}</div>
-        <div class="event-series">${esc(event.series.name)}${event.round.city ? ` · ${esc(event.round.city)}` : ''}</div>
-      </div>
-      <div class="event-range">${eventRangeLabel(event)}</div>
-    </div>`;
+      <span class="event-copy"><span class="event-name">${esc(event.round.raceName || `Ronde ${event.round.roundNumber || event.roundIndex + 1}`)}</span><span class="event-series">${esc(event.series.name)}${event.round.city ? ` · ${esc(event.round.city)}` : ''}</span></span>
+      <span class="event-range">${eventRangeLabel(event)}</span>
+      ${editorIcon('arrow')}
+    </button>`;
 }
 
 function renderDashboard() {
@@ -1998,49 +2016,27 @@ function renderDashboard() {
 
   content.innerHTML = `
     <div class="dashboard-heading">
-      <div class="dashboard-eyebrow">Race calendars</div>
-      <h1 class="dashboard-title">Alles klaar voor het raceweekend.</h1>
-      <p class="dashboard-sub">Bekijk wat er dit weekend rijdt, ga direct naar de volgende events of open een serie om de kalender en klassementen bij te werken.</p>
+      <div><h1 class="dashboard-title">Jouw raceweekend.</h1><p class="dashboard-sub">Alle series, sessies en starttijden. Op één plek.</p></div>
+      <span class="dashboard-date">${editorIcon('calendar')}${new Intl.DateTimeFormat('nl-NL', { weekday: 'long', day: 'numeric', month: 'long' }).format(today)}</span>
     </div>
-    <div class="dashboard-grid">
-      <div style="display:flex;flex-direction:column;gap:18px">
-        <section class="dashboard-card">
-          <div class="dashboard-card-header">
-            <div>
-              <div class="dashboard-card-kicker">Nu relevant</div>
-              <div class="dashboard-card-title">Dit weekend</div>
-            </div>
-            <div style="display:flex;align-items:center;justify-content:flex-end;gap:10px;flex-wrap:wrap">
-              <span class="event-range">${new Intl.DateTimeFormat('nl-NL', { day: 'numeric', month: 'long' }).format(weekend.start)} – ${new Intl.DateTimeFormat('nl-NL', { day: 'numeric', month: 'long' }).format(new Date(weekend.end.getTime() - 86400000))}</span>
-              <button class="btn btn-primary btn-sm" onclick="event.stopPropagation();openInstagramGenerator()">Create Instagram post</button>
-            </div>
-          </div>
-          ${weekendEvents.length ? weekendEvents.map(event => renderEventRow(event)).join('') : '<div class="empty compact"><h3>Geen event dit weekend</h3><p>De eerstvolgende races staan hieronder.</p></div>'}
+    <div class="studio-stats" aria-label="Seizoen in cijfers">
+      <div>${editorIcon('layers')}<span><strong>${state.series.length}</strong> series</span></div>
+      <div>${editorIcon('flag')}<span><strong>${totalRounds}</strong> rondes</span></div>
+      <div>${editorIcon('clock')}<span><strong>${totalSessions}</strong> sessies</span></div>
+      <button type="button" onclick="showGitHubSettings()">${editorIcon(configured ? 'check' : 'settings')}<span>${configured ? 'GitHub gekoppeld' : 'GitHub instellen'}</span>${editorIcon('arrow')}</button>
+    </div>
+    <div class="dashboard-grid studio-dashboard">
+      <section class="dashboard-card weekend-card">
+        <div class="dashboard-card-header"><div><h2 class="dashboard-card-title">Dit weekend <span class="studio-count">${weekendEvents.length}</span></h2><p class="dashboard-card-caption">${new Intl.DateTimeFormat('nl-NL', { day: 'numeric', month: 'long' }).format(weekend.start)} – ${new Intl.DateTimeFormat('nl-NL', { day: 'numeric', month: 'long' }).format(new Date(weekend.end.getTime() - 86400000))}</p></div><button class="btn btn-primary btn-sm" onclick="openInstagramGenerator()">${editorIcon('camera')}<span>Maak Instagram-post</span></button></div>
+        <div class="dashboard-event-list">${weekendEvents.length ? weekendEvents.map(event => renderEventRow(event)).join('') : '<div class="empty compact"><h3>Geen event dit weekend</h3><p>Bekijk de aankomende events of werk een kalender bij.</p></div>'}</div>
+      </section>
+      <aside class="dashboard-upcoming">
+        <section class="dashboard-card upcoming-card">
+          <div class="dashboard-card-header"><div><h2 class="dashboard-card-title">Op de kalender</h2><p class="dashboard-card-caption">De eerstvolgende events</p></div>${editorIcon('calendar')}</div>
+          <div class="dashboard-event-list">${upcoming.length ? upcoming.map((event, index) => renderEventRow(event, index === 0)).join('') : '<div class="empty compact"><h3>Nog geen aankomende events</h3><p>Synchroniseer met GitHub of voeg datums aan een serie toe.</p></div>'}</div>
         </section>
-        <section class="dashboard-card">
-          <div class="dashboard-card-header">
-            <div>
-              <div class="dashboard-card-kicker">Vooruitblik</div>
-              <div class="dashboard-card-title">Aankomende events</div>
-            </div>
-          </div>
-          ${upcoming.length ? upcoming.map((event, index) => renderEventRow(event, index === 0)).join('') : '<div class="empty compact"><h3>Nog geen aankomende events</h3><p>Synchroniseer met GitHub of voeg datums aan een serie toe.</p></div>'}
-        </section>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:18px">
-        <section class="dashboard-card">
-          <div class="dashboard-card-header">
-            <div class="dashboard-card-title">Seizoen in cijfers</div>
-          </div>
-          <div class="summary-grid">
-            <div class="summary-stat"><div class="summary-label">Series</div><div class="summary-value">${state.series.length}</div><div class="summary-note">actief in editor</div></div>
-            <div class="summary-stat"><div class="summary-label">Rondes</div><div class="summary-value">${totalRounds}</div><div class="summary-note">in alle kalenders</div></div>
-            <div class="summary-stat"><div class="summary-label">Sessies</div><div class="summary-value">${totalSessions}</div><div class="summary-note">ingepland</div></div>
-            <div class="summary-stat"><div class="summary-label">GitHub</div><div class="summary-value" style="font-size:20px">${configured ? 'Gekoppeld' : 'Instellen'}</div><div class="summary-note">${configured ? esc(state.github.repo) : 'nog niet verbonden'}</div></div>
-          </div>
-        </section>
-        <button class="btn btn-primary" onclick="${configured ? 'loadFromGitHub()' : 'showGitHubSettings()'}">${configured ? 'Synchroniseer met GitHub' : 'Koppel GitHub'}</button>
-      </div>
+        <section class="studio-sync"><div class="studio-sync-title">${editorIcon('sync')}<strong>Kalenders bijwerken</strong></div><p>${configured ? esc(state.github.repo) : 'Koppel je repository om kalenders op te halen en wijzigingen te publiceren.'}</p><button class="btn btn-surface" onclick="${configured ? 'loadFromGitHub()' : 'showGitHubSettings()'}">${editorIcon(configured ? 'sync' : 'plus')}${configured ? 'Synchroniseer met GitHub' : 'Koppel GitHub'}</button></section>
+      </aside>
     </div>`;
 }
 
@@ -3805,6 +3801,7 @@ function showGitHubSettings() {
   refreshEditorTheme();
   document.querySelector('.sidebar')?.classList.remove('open');
   document.querySelector('.sidebar-overlay')?.classList.remove('open');
+  document.getElementById('hamburgerBtn')?.setAttribute('aria-expanded', 'false');
   document.getElementById('ghToken').value = state.github.token || '';
   document.getElementById('ghRepo').value = state.github.repo || '';
   document.getElementById('ghBranch').value = state.github.branch || 'main';
