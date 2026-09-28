@@ -1,0 +1,95 @@
+/* Session entry: keep the main fields together at every available width. */
+.session-columns { display: none; }
+.session-block { margin-top: 16px; border: 1px solid var(--border2); border-radius: 8px; }
+.session-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-areas: 'name name kind duration' 'when when when flags' 'drag actions actions actions';
+  align-items: end; gap: 14px 12px; padding: 16px; margin: 0; border: 0; background: var(--card);
+}
+.session-name { grid-area: name; }
+.session-kind { grid-area: kind; }
+.session-duration { grid-area: duration; }
+.session-when { grid-area: when; }
+.session-flags { grid-area: flags; }
+.session-drag { grid-area: drag; }
+.session-actions { grid-area: actions; justify-self: end; }
+.session-field > label, .session-when-grid label { display: block; font-size: 12px; color: var(--text2); letter-spacing: 0; text-transform: none; margin-bottom: 6px; }
+.session-row input, .session-row select { width: 100%; min-width: 0; min-height: 44px; box-sizing: border-box; }
+.session-row input:disabled { opacity: .5; cursor: not-allowed; }
+.session-when-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 1.2fr); gap: 12px; align-items: end; }
+.session-when-grid input[type="time"] { width: 100% !important; }
+.session-when-grid > div { min-width: 0; }
+.session-when-grid .tbc-wrap, .session-flags .tbc-wrap { display: flex; align-items: center; min-height: 44px; gap: 8px; }
+.session-row .tbc-check { width: 18px; min-height: 18px; height: 18px; flex: 0 0 18px; }
+.session-when-grid .tbc-label, .session-flags .tbc-label { display: flex; align-items: center; min-height: 44px; margin: 0; font-size: 12px; line-height: 1.4; cursor: pointer; }
+.session-flags:empty { display: none; }
+.session-actions { display: flex; gap: 6px; min-height: 36px; }
+.session-actions .btn-icon { display: inline-flex; width: 36px; height: 36px; align-items: center; justify-content: center; }
+.session-drag { display: flex; align-items: center; min-height: 36px; }
+.session-drag .drag-handle { display: inline-flex; width: 36px; height: 36px; align-items: center; justify-content: center; }
+.session-results { border-top: 1px solid var(--border2); padding: 0 16px; }
+.session-results summary, .event-details summary { padding: 12px 0; min-height: 44px; color: var(--text2); font-size: 13px; font-weight: 600; cursor: pointer; }
+.session-results summary span, .event-details summary span { margin-left: 8px; font-weight: 400; color: var(--muted); font-size: 12px; }
+.session-results .results-url-row { border: 0; padding: 4px 0 16px; flex-wrap: wrap; }
+.session-results .results-label { display: block; flex-basis: 100%; margin-bottom: 6px; }
+.session-results .results-url-row input { min-width: 0; min-height: 44px; flex: 1 1 220px; }
+.event-details { border-bottom: 1px solid var(--border2); }
+.event-details > summary { padding: 16px 20px; }
+.event-details .round-fields { border: 0; }
+.session-help { color: var(--muted); font-size: 12px; line-height: 1.6; margin: 18px 0 12px; max-width: 70ch; }
+.session-help strong { color: var(--text2); font-weight: 500; }
+.sessions-label { align-items: start; gap: 12px; }
+.add-session-bottom { width: 100%; min-height: 44px; margin-top: 16px; }
+.settings-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.settings-heading .btn-icon { min-width: 44px; min-height: 44px; }
+.appearance-settings { padding: 16px 0 4px; margin-bottom: 20px; border-bottom: 1px solid var(--border2); }
+.appearance-settings h3, .settings-section-title { margin: 0 0 12px; font-size: 14px; }
+.theme-choices { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; padding: 4px; background: var(--bg2); border-radius: 8px; margin-bottom: 12px; }
+.theme-choices button { min-height: 44px; color: var(--text2); background: transparent; border: 1px solid transparent; border-radius: 5px; font: 600 14px var(--sans); cursor: pointer; }
+.theme-choices button[aria-pressed="true"] { color: var(--accent-fg); background: var(--accent); }
+:where(.session-block, .event-details, #githubModal) :is(input, select, button, summary):focus-visible { outline: 2px solid var(--text); outline-offset: 3px; }
+.session-block { scroll-margin-top: 100px; }
+@media (max-width: 1050px) {
+  .session-row { grid-template-areas: 'name name kind duration' 'when when when when' 'drag flags actions actions'; }
+}
+@media (max-width: 760px) {
+  .header-actions .editor-settings-button { display: inline-flex; padding: 0 8px; min-height: 44px; }
+  header { padding-inline: 10px; }
+  .header-actions { gap: 4px; }
+  .header-actions .btn { padding-inline: 10px; }
+  .session-row { grid-template-columns: minmax(0, 1fr) 100px; grid-template-areas: 'name name' 'kind duration' 'when when' 'flags flags' 'drag actions'; padding: 12px; gap: 12px; border-radius: 8px 8px 0 0; }
+  .session-row input, .session-row select, .session-results input, #githubModal input { font-size: 16px; }
+  .session-when-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .session-when-grid .session-date-input { grid-column: 1 / -1; }
+  .session-when-grid .tbc-wrap { grid-column: auto; }
+  .session-actions .btn-icon, .session-drag .drag-handle { width: 44px; height: 44px; flex-basis: 44px; }
+  .session-actions { gap: 0; }
+  .session-results { padding-inline: 12px; }
+  .sessions-label { flex-direction: column; align-items: stretch; }
+  .sessions-label > span { display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sessions-label .btn { padding-inline: 8px; white-space: normal; min-height: 44px; }
+  .event-details > summary { padding-inline: 14px; }
+  .event-details summary span { display: block; margin: 6px 0 0; }
+  #githubModal .modal-actions { gap: 8px; flex-wrap: wrap; }
+  #githubModal .modal-actions .btn { flex: 1 1 auto; min-height: 44px; }
+}
+@media (max-width: 360px) {
+  header .logo > span:not(.header-kicker) { font-size: 14px; }
+  .header-actions .btn { padding-inline: 7px; font-size: 11px; }
+  .session-row { grid-template-areas: 'name name' 'kind duration' 'when when' 'flags flags' 'drag drag' 'actions actions'; }
+  .session-drag { display: none; }
+  .session-actions { justify-self: stretch; justify-content: space-between; }
+}
+
+.session-row input:not([type="checkbox"]), .session-row select { background: var(--bg2); border: 1px solid var(--border2); border-radius: 6px; }
+.session-flags:not(:has(input)) { display: none; }
+.session-when-grid .tbc-label { white-space: normal; }
+@media (max-width: 760px) {
+  .round-header { display: grid; grid-template-columns: 44px minmax(0, 1fr) 20px; grid-template-areas: 'number name chevron' 'drag order order'; }
+  .round-header .round-num { grid-area: number; }
+  .round-header .round-name { grid-area: name; min-width: 0; white-space: normal; overflow-wrap: anywhere; }
+  .round-header .round-chevron { grid-area: chevron; }
+  .round-header .round-drag-handle { grid-area: drag; }
+  .round-header .round-order-actions { grid-area: order; justify-self: end; }
+}

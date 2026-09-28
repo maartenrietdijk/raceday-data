@@ -9,9 +9,22 @@
 <script>
   (() => {
     const media = window.matchMedia('(prefers-color-scheme: dark)');
-    const applySystemTheme = () => document.documentElement.setAttribute('data-theme', media.matches ? 'dark' : 'light');
-    applySystemTheme();
-    media.addEventListener?.('change', applySystemTheme);
+    let preference = 'system';
+    try { preference = localStorage.getItem('raceday_theme') || 'system'; } catch (_) {}
+    if (!['system', 'light', 'dark'].includes(preference)) preference = 'system';
+    const applyTheme = () => {
+      document.documentElement.setAttribute('data-theme', preference === 'system' ? (media.matches ? 'dark' : 'light') : preference);
+      document.querySelectorAll('[data-theme-choice]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.themeChoice === preference)));
+    };
+    window.setEditorTheme = value => {
+      preference = ['system', 'light', 'dark'].includes(value) ? value : 'system';
+      applyTheme();
+      try { localStorage.setItem('raceday_theme', preference); }
+      catch (_) { window.showStatus?.('Thema gewijzigd, maar kon niet op dit apparaat worden onthouden.', 'error'); }
+    };
+    window.refreshEditorTheme = applyTheme;
+    applyTheme();
+    media.addEventListener?.('change', applyTheme);
   })();
 </script>
 <style>
@@ -968,6 +981,7 @@
   }
 </style>
 <link rel="stylesheet" href="instagram-generator.css?v=20260928-1">
+<link rel="stylesheet" href="editor-ux.css?v=20260928-1">
 </head>
 <body>
 
@@ -983,7 +997,7 @@
     </div>
   </div>
   <div class="header-actions">
-    <button class="btn btn-ghost btn-sm desktop-secondary" onclick="showGitHubSettings()">Instellingen</button>
+    <button class="btn btn-ghost btn-sm editor-settings-button" onclick="showGitHubSettings()">Instellingen</button>
     <button class="btn btn-ghost btn-sm desktop-secondary" onclick="exportJSON()">Exporteer</button>
     <button class="btn btn-primary btn-sm" onclick="publishCurrentView()">
       <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
@@ -1027,7 +1041,7 @@
     <div class="series-list" id="seriesList"></div>
     <div class="sidebar-footer">
       <span id="seriesTotal">0 series</span>
-      <button class="btn-icon" onclick="showGitHubSettings()" title="GitHub-instellingen" aria-label="GitHub-instellingen">⚙</button>
+      <button class="btn-icon" onclick="showGitHubSettings()" title="Instellingen" aria-label="Instellingen">⚙</button>
     </div>
   </aside>
 
@@ -1221,9 +1235,19 @@
 </div>
 
 <!-- GitHub Settings Modal -->
-<div class="modal-backdrop" id="githubModal">
+<div class="modal-backdrop" id="githubModal" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
   <div class="modal">
-    <h2>GitHub-instellingen</h2>
+    <div class="settings-heading"><h2 id="settingsTitle">Instellingen</h2><button class="btn-icon" onclick="closeModal('githubModal')" aria-label="Sluit instellingen">×</button></div>
+    <section class="appearance-settings" aria-labelledby="appearanceTitle">
+      <h3 id="appearanceTitle">Weergave</h3>
+      <div class="theme-choices" role="group" aria-label="Kleurenthema">
+        <button type="button" data-theme-choice="system" onclick="setEditorTheme('system')">Systeem</button>
+        <button type="button" data-theme-choice="light" onclick="setEditorTheme('light')">Licht</button>
+        <button type="button" data-theme-choice="dark" onclick="setEditorTheme('dark')">Donker</button>
+      </div>
+      <p>Je keuze wordt direct bewaard op dit apparaat. Licht en donker blijven actief, ongeacht je systeeminstelling.</p>
+    </section>
+    <h3 class="settings-section-title">GitHub</h3>
     <p>Je token blijft uitsluitend lokaal in deze browser bewaard. Gebruik een personal access token met lees- en schrijfrechten voor de repository.</p>
     <div class="modal-fields">
       <div class="field">
@@ -2553,7 +2577,6 @@ async function publishStandingsToGitHub() {
 // ── Round rendering ────────────────────────────────────────────────────────────
 
 function renderRound(r, i, series, highlighted = false) {
-  RaceDayProposals.sortCalendarSessions(r.sessions || []);
   const sessionRows = (r.sessions || []).map((s, si) => renderSession(s, i, si)).join('');
   const supportsAutoResults = AUTO_RESULTS_SERIES.has(state.activeSeries);
   const supportsOfficialTimes = OFFICIAL_TIME_SERIES.has(state.activeSeries);
@@ -2578,6 +2601,8 @@ function renderRound(r, i, series, highlighted = false) {
         <span class="round-chevron">▶</span>
       </div>
       <div class="round-body">
+        <details class="event-details" ${(r.sessions || []).length ? '' : 'open'}>
+          <summary>Eventgegevens <span>Naam, circuit, locatie en seizoen</span></summary>
         <div class="round-fields">
           <div class="field">
             <label>Ronde #</label>
@@ -2620,7 +2645,9 @@ function renderRound(r, i, series, highlighted = false) {
               oninput="updateRound(${i},'id',this.value)"/>
           </div>
         </div>
+        </details>
         <div class="sessions-wrap">
+          <p class="session-help">Tijden in <strong>${esc(seriesTimeZone())}</strong>. Wijzigingen worden lokaal bewaard; gebruik Publiceer om ze online te zetten.</p>
           <div class="sessions-label">
             Sessies
             <span style="display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end">
@@ -2629,7 +2656,7 @@ function renderRound(r, i, series, highlighted = false) {
                 ${supportsOfficialTimes && !scanBusy ? '' : 'disabled'}>${scanBusy ? 'Officiële tijden zoeken…' : 'Zoek officiële tijden'}</button>
               <button class="btn btn-primary btn-sm" id="fetchEventBtn_${i}" onclick="fetchEventResults(${i})"
                 title="${supportsAutoResults ? 'Haal alle vindbare sessieresultaten op via Motorsport.com' : 'Automatisch ophalen is voor deze serie nog niet beschikbaar'}"
-                ${supportsAutoResults ? '' : 'disabled'}>Alles ophalen</button>
+                ${supportsAutoResults ? '' : 'disabled'}>Resultaten ophalen</button>
               <button class="btn btn-surface btn-sm" onclick="openScreenshotImport(${i})">▣ Screenshots</button>
               <button class="btn btn-surface btn-sm" onclick="addSession(${i})">+ Sessie</button>
             </span>
@@ -2644,16 +2671,17 @@ function renderRound(r, i, series, highlighted = false) {
             <span>Optie</span>
             <span></span>
           </div>
-          <div id="sessions_${i}">${sessionRows}</div>
+          <div id="sessions_${i}">${sessionRows || '<p class="session-help">Nog geen sessies. Voeg de eerste training, kwalificatie of race toe.</p>'}</div>
+          <button class="btn btn-surface add-session-bottom" onclick="addSession(${i})">+ Sessie toevoegen</button>
         </div>
       </div>
     </div>`;
 }
 
 function renderSession(s, ri, si) {
-  const isTBC = Boolean(s._tbcMode || s.dateUTC === null ||
+  const isTBC = Boolean(s._tbcMode ?? (s.dateUTC === null ||
     (typeof s.dateUTC === 'string' && s.dateUTC.endsWith('TBC')) ||
-    (s.date && !s.timeLocal && !s.timeUTC && !s._time));
+    (s.date && !s.timeLocal && !s.timeUTC && !s._time)));
   // Parse existing date/time parts
   let dateVal = '', timeVal = '';
   // Prefer explicit _date/_time fields (set by updateDateTime)
@@ -2670,7 +2698,7 @@ function renderSession(s, ri, si) {
     if (raw.includes('T')) {
       dateVal = raw.split('T')[0];
       const t = raw.split('T')[1];
-      timeVal = (isTBC || t === '00:00:00') ? '' : t.substring(0,5);
+      timeVal = isTBC ? '' : t.substring(0,5);
     } else {
       dateVal = raw;
     }
@@ -2703,21 +2731,22 @@ function renderSession(s, ri, si) {
           </select>
         </div>
         <div class="session-field session-when">
-          <label>Datum en lokale tijd · ${esc(seriesTimeZone())}</label>
           <div class="session-when-grid">
+            <div class="session-date-input"><label for="date_${ri}_${si}">Datum</label>
             <input type="date" value="${esc(dateVal)}" id="date_${ri}_${si}" aria-label="Datum"
-              onchange="updateDateTime(${ri},${si})"/>
+              onchange="updateDateTime(${ri},${si})"/></div>
+            <div class="session-time-input"><label for="time_${ri}_${si}">Starttijd</label>
             <input type="time" value="${esc(timeVal)}" id="time_${ri}_${si}" aria-label="Lokale tijd"
-              ${isTBC ? 'disabled' : ''} onchange="updateDateTime(${ri},${si})"/>
+              ${isTBC ? 'disabled' : ''} onchange="updateDateTime(${ri},${si})"/></div>
             <div class="tbc-wrap">
               <input type="checkbox" class="tbc-check" id="tbc_${ri}_${si}" ${isTBC ? 'checked' : ''}
                 onchange="toggleTBC(${ri},${si},this.checked)"/>
-              <label class="tbc-label" for="tbc_${ri}_${si}">Tijd TBC</label>
+              <label class="tbc-label" for="tbc_${ri}_${si}">Tijd nog onbekend</label>
             </div>
           </div>
         </div>
         <div class="session-field session-duration">
-          <label for="duration_${ri}_${si}">Minuten</label>
+          <label for="duration_${ri}_${si}">Duur (min)</label>
           <input id="duration_${ri}_${si}" type="number" inputmode="numeric" value="${s.durationMinutes||60}" min="1"
             oninput="updateSession(${ri},${si},'durationMinutes',+this.value)"/>
         </div>
@@ -2729,12 +2758,14 @@ function renderSession(s, ri, si) {
           </div>` : ''}
         </div>
         <div class="session-actions">
-          <button class="btn-icon touch-order" onclick="moveSession(${ri},${si},${si-1})" title="Sessie omhoog" ${si === 0 ? 'disabled' : ''}>↑</button>
-          <button class="btn-icon touch-order" onclick="moveSession(${ri},${si},${si+1})" title="Sessie omlaag" ${si === total-1 ? 'disabled' : ''}>↓</button>
-          <button class="btn-icon" onclick="duplicateSession(${ri},${si})" title="Sessie dupliceren">⎘</button>
-          <button class="btn-icon danger" onclick="deleteSession(${ri},${si})" title="Sessie verwijderen">×</button>
+          <button class="btn-icon touch-order" onclick="moveSession(${ri},${si},${si-1})" title="Sessie omhoog" aria-label="Sessie omhoog" ${si === 0 ? 'disabled' : ''}>↑</button>
+          <button class="btn-icon touch-order" onclick="moveSession(${ri},${si},${si+1})" title="Sessie omlaag" aria-label="Sessie omlaag" ${si === total-1 ? 'disabled' : ''}>↓</button>
+          <button class="btn-icon" onclick="duplicateSession(${ri},${si})" title="Sessie dupliceren" aria-label="Sessie dupliceren">⎘</button>
+          <button class="btn-icon danger" onclick="deleteSession(${ri},${si})" title="Sessie verwijderen" aria-label="Sessie verwijderen">×</button>
         </div>
       </div>
+      <details class="session-results">
+        <summary>Resultaten <span>${s.results?.length ? `${s.results.length} beschikbaar` : s.resultsUrl ? 'URL ingevuld' : 'URL en import'}</span></summary>
       <div class="results-url-row">
         <label class="results-label" for="resultsUrl_${ri}_${si}">Resultaten-URL</label>
         <input type="url" value="${esc(s.resultsUrl||'')}" placeholder="https://www.motorsport.com/…"
@@ -2743,6 +2774,7 @@ function renderSession(s, ri, si) {
         ${s.results && s.results.length > 0 ? `<span class="results-badge">✓ ${s.results.length} resultaten</span>` : ''}
         <button class="btn-fetch" id="fetchBtn_${ri}_${si}" onclick="fetchResults(${ri},${si})">Ophalen</button>
       </div>
+      </details>
     </div>`;
 }
 
@@ -2771,10 +2803,12 @@ function updateSession(ri, si, key, val) {
 
 function toggleTBC(ri, si, tbc) {
   const timeInput = document.getElementById(`time_${ri}_${si}`);
+  const session = editableRounds()[ri].sessions[si];
   if (tbc) {
-    if (timeInput) { timeInput.disabled = true; timeInput.value = ''; timeInput.style.opacity = '.4'; }
+    if (timeInput?.value) session._lastConfirmedTime = timeInput.value;
+    if (timeInput) { timeInput.disabled = true; timeInput.value = ''; }
   } else {
-    if (timeInput) { timeInput.disabled = false; timeInput.style.opacity = '1'; }
+    if (timeInput) { timeInput.disabled = false; timeInput.value = session._lastConfirmedTime || ''; }
   }
   updateDateTime(ri, si);
 }
@@ -2789,7 +2823,12 @@ function updateDateTime(ri, si) {
   // Store date and time directly — these map 1:1 to JSON output fields
   session._date = dateVal || null;
   session._time = (timeVal && !isTBC) ? timeVal : null;
-  session._tbcMode = isTBC || !timeVal;
+  session._tbcMode = Boolean(isTBC);
+  // Keep canonical fields in sync so clearing an input cannot resurrect old values.
+  session.date = dateVal || null;
+  session.timeLocal = (timeVal && !isTBC) ? timeVal : null;
+  if (session.timeLocal) session._lastConfirmedTime = session.timeLocal;
+  delete session.timeUTC;
   // Clear legacy field
   delete session.dateUTC;
   delete session.tbcDate;
@@ -2873,7 +2912,12 @@ function deleteRound(i) {
 function addSession(ri) {
   const rounds = editableRounds();
   const si = rounds[ri].sessions.length;
-  rounds[ri].sessions.push({ id: `${rounds[ri].id}-s${si+1}`, name: '', kind: 'practice', timeLocal: null, durationMinutes: 60 });
+  const previous = rounds[ri].sessions[si - 1];
+  const date = previous ? sessionDateParts(previous).date : '';
+  const baseId = `${rounds[ri].id}-s${si + 1}`;
+  let id = baseId, suffix = 1;
+  while (rounds[ri].sessions.some(session => session.id === id)) id = `${baseId}-${suffix++}`;
+  rounds[ri].sessions.push({ id, name: '', kind: 'practice', date: date || null, timeLocal: null, _tbcMode: false, durationMinutes: 60 });
   save();
   renderMain();
   requestAnimationFrame(() => {
@@ -3758,6 +3802,9 @@ function importJSON() {
 // ── GitHub Push ────────────────────────────────────────────────────────────────
 
 function showGitHubSettings() {
+  refreshEditorTheme();
+  document.querySelector('.sidebar')?.classList.remove('open');
+  document.querySelector('.sidebar-overlay')?.classList.remove('open');
   document.getElementById('ghToken').value = state.github.token || '';
   document.getElementById('ghRepo').value = state.github.repo || '';
   document.getElementById('ghBranch').value = state.github.branch || 'main';
@@ -3781,7 +3828,7 @@ function saveGitHubSettings() {
   save();
   closeModal('githubModal');
   renderMain();
-  showStatus('GitHub-instellingen bewaard ✓', 'success');
+  showStatus('Instellingen bewaard ✓', 'success');
 }
 
 // Backwards-compatible entry point used by earlier editor versions.
