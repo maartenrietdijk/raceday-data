@@ -2,6 +2,12 @@
 (() => {
   if (!window.RACEDAY_INSTAGRAM_LOGOS) return;
   Object.assign(window.RACEDAY_INSTAGRAM_LOGOS, {
+    wrc: {
+      ...window.RACEDAY_INSTAGRAM_LOGOS.wrc,
+      file: 'wrc.svg',
+      src: 'instagram-assets/logos/source/wrc.svg',
+      mono: false,
+    },
     f1: {
       file: 'f1.svg',
       src: 'instagram-assets/logos/source/f1.svg',
