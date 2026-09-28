@@ -13,7 +13,7 @@
   const MINIMAL_CONTENT_TOP = 150;
   const HIDDEN_LOGO_OFFSET = 96;
   const CONTENT_BOTTOM = 1174;
-  const OVERVIEW_ROW_HEIGHT = 112;
+  const OVERVIEW_ROW_HEIGHT = 115;
   const ROW_HEIGHT = 96;
   const GROUP_HEADER_HEIGHT = 64;
   const GROUP_BOTTOM_PADDING = 14;
@@ -189,7 +189,10 @@
         const roundDayKeys = (round.sessions || []).flatMap(roundSession => {
           const roundInstant = sessionInstant(roundSession, series.id);
           const startDay = roundInstant ? localDateKey(roundInstant) : rawSessionDate(roundSession);
-          const endDay = sessionEndDateKey(roundSession, series.id);
+          // Only long races extend the overview to their finishing day.
+          const isLongRace = ['race', 'featureRace', 'sprintRace'].includes(roundSession.kind)
+            && Number(roundSession.durationMinutes) > 300;
+          const endDay = isLongRace ? sessionEndDateKey(roundSession, series.id) : null;
           return endDay && endDay !== startDay ? [startDay, endDay] : [startDay];
         }).filter(Boolean).sort();
         const eventStart = roundDayKeys[0] || weekend.start;
@@ -683,7 +686,7 @@
     drawBrandIcon(ctx, 68, 1228, 64, 16);
     ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic';
     ctx.fillStyle = '#ffffff'; ctx.font = '700 32px Inter, sans-serif';
-    ctx.fillText('Download the RaceDay app', 150, 1254);
+    ctx.fillText('Download the RaceDay App!', 150, 1254);
     ctx.fillStyle = '#c4c4cb'; ctx.font = '500 23px Inter, sans-serif';
     ctx.fillText('Your Personal Racing Calendar.', 150, 1290);
     drawStoreBadge(ctx, 652, 1240, 174, 50, 'apple');
@@ -713,9 +716,7 @@
     } else {
       const top = contentTop();
       const availableHeight = CONTENT_BOTTOM - top;
-      const rowHeights = slide.groups.map(group => group.overview
-        ? Math.min(132, Math.floor((availableHeight - GROUP_HEADER_HEIGHT - GROUP_BOTTOM_PADDING) / group.items.length))
-        : ROW_HEIGHT);
+      const rowHeights = slide.groups.map(group => group.overview ? OVERVIEW_ROW_HEIGHT : ROW_HEIGHT);
       const totalHeight = slide.groups.reduce((height, group, index) => height
         + GROUP_HEADER_HEIGHT + group.items.length * rowHeights[index] + GROUP_BOTTOM_PADDING
         + (index ? GROUP_GAP : 0), 0);
