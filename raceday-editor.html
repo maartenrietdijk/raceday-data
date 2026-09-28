@@ -986,7 +986,7 @@
 </style>
 <link rel="stylesheet" href="instagram-generator.css?v=20260928-1">
 <link rel="stylesheet" href="editor-ux.css?v=20260928-1">
-<link rel="stylesheet" href="dashboard-design.css?v=20260928-3">
+<link rel="stylesheet" href="dashboard-design.css?v=20260928-4">
 </head>
 <body>
 
@@ -1888,9 +1888,9 @@ function renderMain() {
       </div>
       <div class="section-actions">
         <button class="btn btn-ghost btn-sm" onclick="showRenameSeries('${series.id}')">Naam wijzigen</button>
-        <div class="tab-switcher">
-          <button class="tab-btn ${tab==='calendar'?'active':''}" onclick="switchTab('calendar')">Agenda</button>
-          <button class="tab-btn ${tab==='standings'?'active':''}" onclick="switchTab('standings')">Klassement</button>
+        <div class="tab-switcher" role="group" aria-label="Serieweergave">
+          <button class="tab-btn ${tab==='calendar'?'active':''}" aria-pressed="${tab==='calendar'}" onclick="switchTab('calendar')">Agenda</button>
+          <button class="tab-btn ${tab==='standings'?'active':''}" aria-pressed="${tab==='standings'}" onclick="switchTab('standings')">Klassement</button>
         </div>
         ${tab === 'calendar' ? `
           <button class="btn btn-ghost btn-sm" onclick="importJSON()">Importeer</button>

@@ -248,3 +248,44 @@ body > header .btn:active, .dashboard-grid .btn:active { transform: scale(.96); 
 .series-search input { border-color: transparent; background: #28282b; }
 .theme-choices button { border-color: transparent; }
 .round-header { transition: background-color 120ms ease; }
+
+/* One control box model; selection, hover and press have separate states. */
+:root { --control-height: 44px; --button-pressed: #cec6b9; --primary-pressed: #191816; }
+[data-theme="dark"] { --button-pressed: #575757; --primary-pressed: #d1d1d1; }
+.main .btn, header .btn, .modal:not(.instagram-modal) .btn,
+.main .btn-fetch, .main .series-season-controls select {
+  box-sizing: border-box; height: var(--control-height); min-height: var(--control-height);
+  padding-block: 0; border: 1px solid transparent; line-height: 1.25;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.main .btn, .main .btn-fetch, .main .series-season-controls select { font-size: 13px; font-weight: 600; }
+.main .btn:active, body > header .btn:active, .dashboard-grid .btn:active,
+.modal:not(.instagram-modal) .btn:active { transform: none; }
+.main .tab-switcher {
+  box-sizing: border-box; height: var(--control-height); min-height: var(--control-height);
+  display: inline-flex; align-items: stretch; gap: 2px; padding: 3px;
+  border: 0; border-radius: 5px; background: var(--button-bg); overflow: visible;
+}
+.main .tab-btn {
+  box-sizing: border-box; height: 38px; min-height: 38px; padding: 0 14px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border: 0; border-radius: 3px; background: transparent; color: var(--text2);
+  font: 600 13px/1.25 var(--sans); box-shadow: none;
+  transition: background-color 120ms ease, color 120ms ease;
+}
+.main .tab-btn.active { background: var(--accent); color: var(--accent-fg); box-shadow: none; }
+@media (hover: hover) and (pointer: fine) {
+  .main .tab-btn:not(.active):hover { background: var(--button-hover); color: var(--text); }
+  .main .tab-btn.active:hover { background: var(--primary-hover); color: var(--accent-fg); }
+}
+.main :is(.btn-ghost, .btn-surface):active:not(:disabled), header .btn-ghost:active:not(:disabled),
+.modal:not(.instagram-modal) :is(.btn-ghost, .btn-surface):active:not(:disabled),
+.main .tab-btn:not(.active):active { background: var(--button-pressed); color: var(--text); opacity: 1; box-shadow: none; }
+.main .btn-primary:active:not(:disabled), header .btn-primary:active:not(:disabled),
+.modal:not(.instagram-modal) .btn-primary:active:not(:disabled),
+.main .tab-btn.active:active { background: var(--primary-pressed); color: var(--accent-fg); opacity: 1; box-shadow: none; }
+.main :is(.btn, .tab-btn, .btn-fetch):focus-visible, header .btn:focus-visible {
+  outline: 2px solid var(--text); outline-offset: 3px;
+}
+.main .btn:disabled, header .btn:disabled { cursor: not-allowed; transform: none; }
+@media (prefers-reduced-motion: reduce) { .main .tab-btn { transition: none; } }
