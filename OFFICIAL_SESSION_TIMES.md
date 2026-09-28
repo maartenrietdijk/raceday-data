@@ -55,9 +55,13 @@ For British GT, the scanner follows the official **Event Timetable PDF** from th
 
 Current series IDs in scope are `f2`, `f3`, `f1academy`, `formulae`, `nascar`, `nascar_oreilly`, `nascar_trucks`, `nascareuro`, `gtwce`, `gtwca_am`, `gtwca_asia`, `gtwca_aus`, `british_gt`, `dtm`, `wec`, `alms`, `lemanscup`, `indycar`, `indynxt`, `imsa`, and `supercars`. Formula E uses official round pages or official event previews and accepts only track-local times backed by explicit UTC evidence; rookie and fan-programme sessions are ignored. WEC, ALMS, Le Mans Cup, INDYCAR, INDY NXT, and IMSA use official schedule documents where available; the scanner prefers a linked official PDF over a timetable page. Supercars uses the official event track schedule and accepts only records whose series is exactly `Repco Supercars Championship`, excluding every support category and non-session activity. DTM uses the public official DTM event API because its event pages render the timetable only after JavaScript loads. A series is skipped completely when none of its calendar files contains a TBC session, unless `--include-filled` is used for the proposals-page debug check.
 
+## NASCAR scan window
+
+Cup, O'Reilly, and Trucks are checked only for the current Monday–Sunday race week, starting Monday at 12:00 `Europe/Amsterdam` (including daylight-saving changes). Before noon on Monday, no NASCAR event is fetched. Events in later weeks, past weeks, or without a valid date are skipped before fetching; targeted and debug scans obey the same limit. A series with no race that week does not fall forward to its next event. Source sessions outside that week cannot generate time proposals. Skipped events remain unchanged/TBC, and the next proposal-store rebuild drops their old proposals using the existing merge behavior.
+
 ## Automation
 
-`.github/workflows/official_session_times.yml` runs Monday, Wednesday, and Friday at 06:17 UTC and supports manual dispatch for one series or one exact event. Targeted editor scans set `replace_filled`, so official changes can replace already-filled sessions after review. It uses the repository's existing serialized write queue and commits only the proposal store. No secret other than GitHub's built-in repository token is required.
+`.github/workflows/official_session_times.yml` runs Monday at 11:17 UTC and Wednesday and Friday at 06:17 UTC and supports manual dispatch for one series or one exact event. Targeted editor scans set `replace_filled`, so official changes can replace already-filled sessions after review. It uses the repository's existing serialized write queue and commits only the proposal store. No secret other than GitHub's built-in repository token is required.
 
 ## Tests
 

@@ -2023,14 +2023,42 @@ def merge_proposals(previous: Sequence[dict], current: Sequence[dict], generated
     return sorted(merged, key=chronological_key)
 
 
+def nascar_scan_week(checked_at: datetime) -> Optional[Tuple[date, date]]:
+    """Unlock only this Monday–Sunday race week at Monday noon in the Netherlands."""
+    if checked_at.tzinfo is None:
+        checked_at = checked_at.replace(tzinfo=timezone.utc)
+    local = checked_at.astimezone(ZoneInfo("Europe/Amsterdam"))
+    monday = local.date() - timedelta(days=local.weekday())
+    opens_at = datetime.combine(monday, time(12), tzinfo=ZoneInfo("Europe/Amsterdam"))
+    if local < opens_at:
+        return None
+    return monday, monday + timedelta(days=6)
+
+
+def nascar_event_in_week(event: dict, week: Optional[Tuple[date, date]]) -> bool:
+    if week is None:
+        return False
+    sessions = event.get("sessions", [])
+    # Prefer the race date: a stray practice date must not unlock a later race.
+    races = [session for session in sessions if session.get("kind") == "race"]
+    dates = []
+    for session in races or sessions:
+        try:
+            dates.append(date.fromisoformat(str(session.get("date") or "")))
+        except ValueError:
+            return False
+    return bool(dates) and all(week[0] <= day <= week[1] for day in dates)
+
+
 def calendar_inventory(
     root: Path,
     scope: set,
     event_ids: Optional[set] = None,
     include_filled: bool = False,
-    reference_date: Optional[date] = None,
+    checked_at: Optional[datetime] = None,
 ) -> List[Tuple[str, dict]]:
     inventory: List[Tuple[str, dict]] = []
+    nascar_week = nascar_scan_week(checked_at or datetime.now(timezone.utc))
     pattern = re.compile(r"^(.+)_([0-9]{4})\.json$")
     for path in sorted(root.glob("*_*.json")):
         match = pattern.match(path.name)
@@ -2047,24 +2075,13 @@ def calendar_inventory(
             sessions = event.get("sessions", [])
             has_tbc = any(session.get("timeLocal") is None for session in sessions)
             series_id = event.get("seriesId") or match.group(1)
-            # NASCAR calendars often arrive with only the race already filled in.
-            # Keep upcoming weekends in the automatic scan so the official feed
-            # can add Practice and Qualifying even though no existing row is TBC.
             upcoming_incomplete_nascar = False
-            if reference_date and series_id in NASCAR_FEED_SERIES:
+            if series_id in NASCAR_FEED_SERIES:
+                # Apply before any fetch, including targeted and debug scans.
+                if not nascar_event_in_week(event, nascar_week):
+                    continue
                 known_kinds = {session.get("kind") for session in sessions}
-                missing_weekend_session = not {"practice", "qualifying"}.issubset(known_kinds)
-                event_dates = []
-                for session in sessions:
-                    try:
-                        event_dates.append(date.fromisoformat(str(session.get("date") or "")))
-                    except ValueError:
-                        pass
-                upcoming_incomplete_nascar = bool(
-                    missing_weekend_session
-                    and event_dates
-                    and reference_date - timedelta(days=2) <= max(event_dates) <= reference_date + timedelta(days=60)
-                )
+                upcoming_incomplete_nascar = not {"practice", "qualifying"}.issubset(known_kinds)
             if event_ids or include_filled or has_tbc or upcoming_incomplete_nascar:
                 inventory.append((path.name, event))
     return inventory
@@ -2092,8 +2109,9 @@ def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Opti
     scope = set(series_by_id)
     if only_series:
         scope &= only_series
-    reference_date = datetime.fromisoformat(checked_at.replace("Z", "+00:00")).date()
-    inventory = calendar_inventory(root, scope, only_events, include_filled, reference_date)
+    scan_instant = datetime.fromisoformat(checked_at.replace("Z", "+00:00"))
+    nascar_week = nascar_scan_week(scan_instant)
+    inventory = calendar_inventory(root, scope, only_events, include_filled, scan_instant)
     LOG.info("Found %d in-scope events requiring an official-session check", len(inventory))
     proposals: List[dict] = []
     source_overview: Dict[str, dict] = {}
@@ -2335,6 +2353,11 @@ def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Opti
                         break
             else:
                 sessions = parse_official_tables(source, event_year, source_tz)
+            if series_id in NASCAR_FEED_SERIES:
+                # A rolling source can still show the previous weekend. Never
+                # turn those dates (or future dates) into this week's proposals.
+                sessions = [item for item in sessions if nascar_week and
+                            nascar_week[0].isoformat() <= item.date <= nascar_week[1].isoformat()]
             if not sessions:
                 raise SourceError("official page contains no reliably parseable race sessions yet")
             editor_tz = registry.get("editorTimeZones", {}).get(series_id, registry["editorTimeZones"]["default"])
