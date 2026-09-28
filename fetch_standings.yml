@@ -1,51 +1,73 @@
 name: Fetch Standings
 
 on:
+  # Check the local calendar every three hours; fetch only inside race windows.
+  schedule:
+    - cron: '23 */3 * * *'
   workflow_dispatch:
     inputs:
       url:
-        description: 'Motorsport.com standings URL (e.g. https://www.motorsport.com/f1/standings/2026/)'
-        required: true
+        description: 'Standings URL; empty checks only races within their 18-hour window'
+        required: false
       series:
-        description: 'Series ID (e.g. f1, motogp, wec)'
-        required: true
+        description: 'Series ID (e.g. f1, motogp, wec); required with URL'
+        required: false
       updated_after_round_id:
-        description: 'RaceDay round id the standings were updated after'
+        description: 'RaceDay round ID'
         required: false
-        default: ''
       updated_after_round_name:
-        description: 'Round name the standings were updated after'
+        description: 'Round name'
         required: false
-        default: ''
+
+concurrency:
+  group: raceday-data-writes-main
+  cancel-in-progress: false
+
+permissions:
+  contents: write
 
 jobs:
   fetch:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-
+    timeout-minutes: 30
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-
       - name: Install dependencies
         run: pip install requests beautifulsoup4
-
-      - name: Fetch standings
+      - name: Fetch driver and team standings
+        env:
+          STANDINGS_URL: ${{ inputs.url }}
+          SERIES_ID: ${{ inputs.series }}
+          ROUND_ID: ${{ inputs.updated_after_round_id }}
+          ROUND_NAME: ${{ inputs.updated_after_round_name }}
         run: |
-          python fetch_standings.py \
-            --url "${{ github.event.inputs.url }}" \
-            --series "${{ github.event.inputs.series }}" \
-            --updated-after-round-id "${{ github.event.inputs.updated_after_round_id }}" \
-            --updated-after-round-name "${{ github.event.inputs.updated_after_round_name }}"
-
-      - name: Commit standings file
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: "standings: update ${{ github.event.inputs.series }} from motorsport.com"
-          file_pattern: "*_standings_2026.json"
+          if [ -n "$STANDINGS_URL" ] || [ -n "$SERIES_ID" ]; then
+            python fetch_standings.py --url "$STANDINGS_URL" --series "$SERIES_ID" \
+              --updated-after-round-id "$ROUND_ID" --updated-after-round-name "$ROUND_NAME"
+          else
+            python auto_fetch_standings.py
+          fi
+      - name: Commit successful standings updates
+        if: ${{ !cancelled() }}
+        run: |
+          git config user.name "RaceDay Bot"
+          git config user.email "bot@raceday.app"
+          git add '*_standings_*.json'
+          if [ -f .raceday/auto-standings-state.json ]; then
+            git add .raceday/auto-standings-state.json
+          fi
+          if git diff --staged --quiet; then
+            echo "No standings changes"
+            exit 0
+          fi
+          git commit -m "standings: refresh drivers and teams"
+          git pull --rebase origin main
+          git push origin main

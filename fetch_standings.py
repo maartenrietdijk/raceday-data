@@ -17,34 +17,10 @@ import sys
 import time
 from datetime import datetime, timezone
 from pathlib import Path
+from urllib.parse import urlsplit, urlunsplit, parse_qsl, urlencode, urljoin
 
 import requests
 from bs4 import BeautifulSoup
-
-SERIES_JSON = {
-    "f1":              "f1_standings_2026.json",
-    "f2":              "f2_standings_2026.json",
-    "f3":              "f3_standings_2026.json",
-    "f1academy":       "f1academy_standings_2026.json",
-    "formulae":        "formulae_standings_2026.json",
-    "motogp":          "motogp_standings_2026.json",
-    "moto2":           "moto2_standings_2026.json",
-    "moto3":           "moto3_standings_2026.json",
-    "wsbk":            "wsbk_standings_2026.json",
-    "indycar":         "indycar_standings_2026.json",
-    "nascar":          "nascar_standings_2026.json",
-    "nascar_oreilly":  "nascar_oreilly_standings_2026.json",
-    "nascar_trucks":   "nascar_trucks_standings_2026.json",
-    "wec":             "wec_standings_2026.json",
-    "imsa":            "imsa_standings_2026.json",
-    "elms":            "elms_standings_2026.json",
-    "alms":            "alms_standings_2026.json",
-    "gtwce":           "gtwce_standings_2026.json",
-    "dtm":             "dtm_standings_2026.json",
-    "wrc":             "wrc_standings_2026.json",
-    "supercars":       "supercars_standings_2026.json",
-    "british_gt":      "british_gt_standings_2026.json",
-}
 
 USER_AGENTS = [
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4.1 Safari/605.1.15",
@@ -86,7 +62,7 @@ def clean_name(s: str) -> str:
     return s
 
 
-def parse_standings(html: str) -> list[dict]:
+def parse_standings(html: str, kind: str = "drivers") -> list[dict]:
     """Parse a motorsport.com standings page HTML into a list of dicts."""
     soup = BeautifulSoup(html, "html.parser")
 
@@ -109,12 +85,18 @@ def parse_standings(html: str) -> list[dict]:
         team_col   = next((i for i, h in enumerate(header_texts) if "TEAM" in h or "CONSTRUCTOR" in h), None)
         pts_col    = next((i for i, h in enumerate(header_texts) if "PTS" in h or "POINTS" in h), None)
 
+        if kind == "teams":
+            # Never interpret a driver table as a team championship.
+            if driver_col is not None:
+                continue
+            driver_col = team_col
+
         if driver_col is None or pts_col is None:
             continue  # not a standings table
 
         for row in rows[1:]:
             cols = row.find_all(["td", "th"])
-            if len(cols) <= max(filter(None, [pos_col, driver_col, team_col, pts_col])):
+            if len(cols) <= max(i for i in [pos_col, driver_col, team_col, pts_col] if i is not None):
                 continue
 
             # Position
@@ -148,7 +130,7 @@ def parse_standings(html: str) -> list[dict]:
                 name = next(
                     (s.strip() for s in driver_cell.strings if s.strip()), ""
                 )
-            name = clean_name(name)
+            name = clean_name(name) if kind == "drivers" else name
             if not name:
                 continue
 
@@ -178,9 +160,10 @@ def parse_standings(html: str) -> list[dict]:
 
             # Points
             pts_text = cols[pts_col].get_text(strip=True)
-            pts_text = re.sub(r"[^\d.]", "", pts_text)
+            pts_text = re.sub(r"[^\d.\-]", "", pts_text)
             try:
-                pts = int(float(pts_text)) if pts_text else 0
+                pts = float(pts_text) if pts_text else 0
+                pts = int(pts) if float(pts).is_integer() else pts
             except ValueError:
                 pts = 0
 
@@ -190,68 +173,113 @@ def parse_standings(html: str) -> list[dict]:
         entries.sort(key=lambda x: x["position"])
         return entries
 
-    # Fallback: look for structured list items (motorsport.com sometimes renders standings
-    # as div-based grids rather than <table>)
-    for container in soup.find_all(["ul", "ol", "div"], limit=20):
-        items = container.find_all(["li", "div"], recursive=False)
-        if len(items) < 3:
-            continue
-        candidate = []
-        for item in items:
-            text = item.get_text(" ", strip=True)
-            # Heuristic: line should contain a number, a name-like string, and points
-            nums = re.findall(r"\d+", text)
-            if len(nums) >= 2:
-                pos_match = re.match(r"^(\d+)", text.strip())
-                pts_match = re.search(r"(\d+)\s*(?:pts?|points?)?$", text.strip(), re.IGNORECASE)
-                if pos_match and pts_match:
-                    candidate.append({
-                        "position": int(pos_match.group(1)),
-                        "name": "",
-                        "team": "",
-                        "points": int(pts_match.group(1)),
-                    })
-        if len(candidate) >= 5:
-            entries = candidate
-            break
+    return []
 
-    return entries
+
+MOTORSPORT_SERIES = {
+    "f1": "f1", "f2": "fia-f2", "f3": "fia-f3", "f1academy": "f1-academy",
+    "formulae": "formula-e", "motogp": "motogp", "moto2": "moto2", "moto3": "moto3",
+    "wsbk": "wsbk", "indycar": "indycar", "indynxt": "indylights", "sf": "super-formula",
+    "nascar": "nascar-cup", "nascar_oreilly": "nascar-os", "nascar_trucks": "nascar-truck",
+    "wec": "wec", "imsa": "imsa", "elms": "elms", "dtm": "dtm", "wrc": "wrc",
+    "supercars": "v8supercars", "btcc": "btcc", "british_gt": "british-gt",
+}
+
+
+def standings_url(url, kind):
+    parts = urlsplit(url)
+    if parts.scheme != "https" or parts.hostname not in ("www.motorsport.com", "motorsport.com"):
+        raise ValueError("Use an HTTPS Motorsport.com standings URL")
+    if not re.fullmatch(r"/[^/]+/standings/\d{4}/?", parts.path):
+        raise ValueError("URL must identify a series and standings year")
+    query = [(k, v) for k, v in parse_qsl(parts.query, keep_blank_values=True) if k != "type"]
+    query.append(("type", "Team" if kind == "teams" else "Driver"))
+    return urlunsplit((parts.scheme, parts.netloc, parts.path, urlencode(query), ""))
+
+
+def has_team_standings(html):
+    soup = BeautifulSoup(html, "html.parser")
+    return any(dict(parse_qsl(urlsplit(tag.get("href", "")).query)).get("type") == "Team"
+               for tag in soup.find_all("a", href=True)) or any(
+        option.get("value") == "Team" for option in soup.find_all("option"))
+
+
+def fetch_series(url, series, round_id="", round_name=""):
+    if not re.fullmatch(r"[a-z0-9_]+", series):
+        raise ValueError("Invalid series ID")
+    driver_url = standings_url(url, "drivers")
+    year = re.search(r"/standings/(\d{4})", driver_url).group(1)
+    out = Path(f"{series}_standings_{year}.json")
+    old = json.loads(out.read_text()) if out.exists() else {}
+    if isinstance(old, list):
+        old = {"drivers": old}
+    html = get_html(driver_url)
+    drivers = parse_standings(html)
+    if not drivers:
+        raise ValueError(f"{series}: no driver standings; existing file preserved")
+    payload = dict(old)
+    payload.update(drivers=drivers)
+    team_error = None
+    explicit_team = dict(parse_qsl(urlsplit(url).query)).get("type") == "Team"
+    if has_team_standings(html) or explicit_team:
+        try:
+            teams = parse_standings(get_html(standings_url(url, "teams")), "teams")
+            if not teams:
+                raise ValueError("No team standings found; existing teams preserved")
+            payload["teams"] = teams
+            payload["teamsUpdatedAt"] = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+        except Exception as exc:
+            team_error = exc
+    else:
+        print(f"{series}: no Teams championship advertised; existing teams preserved")
+    payload.update(
+        updatedAt=datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+        updatedAfterRoundId=round_id or old.get("updatedAfterRoundId"),
+        updatedAfterRoundName=round_name or old.get("updatedAfterRoundName"),
+    )
+    # Avoid a new commit every time unchanged standings are checked.
+    comparable = lambda value: {k: v for k, v in value.items() if k not in ("updatedAt", "teamsUpdatedAt")}
+    if comparable(payload) != comparable(old):
+        temporary = out.with_suffix(".json.tmp")
+        temporary.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n")
+        temporary.replace(out)
+    print(f"{series}: {len(drivers)} drivers, {len(payload.get('teams', []))} teams")
+    if team_error:
+        raise ValueError(f"{series}: {team_error}")
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Fetch motorsport.com standings")
-    parser.add_argument("--url",    required=True, help="Standings URL")
-    parser.add_argument("--series", required=True, help="Series ID (e.g. f1)")
-    parser.add_argument("--updated-after-round-id", default="", help="RaceDay round id the standings were updated after")
-    parser.add_argument("--updated-after-round-name", default="", help="Round name the standings were updated after")
+    parser = argparse.ArgumentParser(description="Fetch driver and team standings from Motorsport.com")
+    parser.add_argument("--url")
+    parser.add_argument("--series")
+    parser.add_argument("--all", action="store_true", help="Fetch series advertised on the all-standings page")
+    parser.add_argument("--year", type=int, default=datetime.now(timezone.utc).year)
+    parser.add_argument("--updated-after-round-id", default="")
+    parser.add_argument("--updated-after-round-name", default="")
     args = parser.parse_args()
-
-    output_file = SERIES_JSON.get(args.series)
-    if not output_file:
-        output_file = f"{args.series}_standings_2026.json"
-
-    print(f"Fetching {args.url}…")
-    html = get_html(args.url)
-
-    entries = parse_standings(html)
-    if not entries:
-        print("⚠️  No standings found in page. The page may be JavaScript-rendered.", file=sys.stderr)
-        print("   Saving empty standings file so the app shows no data (not a crash).", file=sys.stderr)
-        entries = []
-
-    payload = {
-        "updatedAt": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
-        "updatedAfterRoundId": args.updated_after_round_id or None,
-        "updatedAfterRoundName": args.updated_after_round_name or None,
-        "drivers": entries,
-    }
-
-    out = Path(output_file)
-    out.write_text(json.dumps(payload, indent=2, ensure_ascii=False))
-    print(f"✓ Saved {len(entries)} entries to {output_file}")
-
-    if not entries:
-        sys.exit(1)  # Signal to CI that scraping failed
+    if args.all:
+        index_url = f"https://www.motorsport.com/all/standings/{args.year}/"
+        soup = BeautifulSoup(get_html(index_url), "html.parser")
+        available = {urlsplit(urljoin(index_url, a["href"])).path.rstrip("/")
+                     for a in soup.find_all("a", href=True)}
+        jobs = [(series, f"https://www.motorsport.com/{slug}/standings/{args.year}/")
+                for series, slug in MOTORSPORT_SERIES.items()
+                if f"/{slug}/standings/{args.year}" in available or f"/{slug}/standings" in available]
+        if not jobs:
+            parser.error("No supported standings links found on the index; files preserved")
+    elif args.url and args.series:
+        jobs = [(args.series, args.url)]
+    else:
+        parser.error("Supply --all or both --url and --series")
+    failures = []
+    for series, url in jobs:
+        try:
+            fetch_series(url, series, args.updated_after_round_id, args.updated_after_round_name)
+        except Exception as exc:
+            failures.append(str(exc))
+            print(f"WARNING: {series}: {exc}", file=sys.stderr)
+    if failures:
+        sys.exit(1)
 
 
 if __name__ == "__main__":

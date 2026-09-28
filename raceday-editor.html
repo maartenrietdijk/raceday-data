@@ -1347,6 +1347,8 @@ let state = {
   calendarFiles: {},    // {filename: [RaceRound]}
   activeCalendarFiles: {}, // {seriesId: filename}
   calendarSeasonIds: {}, // {filename: "2026-2027"}
+  teamStandings: {},
+  standingsKind: 'drivers',
   standings: {},        // {seriesId: [{position, name, team, points}]}
   standingsMeta: {},    // {seriesId: {updatedAt, updatedAfterRoundId, updatedAfterRoundName}}
   standingsUrls: {},    // {seriesId: url}
@@ -1521,6 +1523,7 @@ function load() {
         });
       }
       state.standings    = parsed.standings    || {};
+      state.teamStandings = parsed.teamStandings || {};
       state.standingsMeta = parsed.standingsMeta || {};
       state.standingsUrls = parsed.standingsUrls || {};
       state.proposals     = parsed.proposals || [];
@@ -1673,10 +1676,13 @@ async function loadFromGitHub() {
               const json = await resp.json();
               if (Array.isArray(json)) {
                 state.standings[id] = json;
+                state.teamStandings[id] = [];
                 state.standingsMeta[id] = {};
               } else {
                 state.standings[id] = json.drivers || [];
+                state.teamStandings[id] = json.teams || [];
                 state.standingsMeta[id] = {
+                  teamsUpdatedAt: json.teamsUpdatedAt || null,
                   updatedAt: json.updatedAt || null,
                   updatedAfterRoundId: json.updatedAfterRoundId || null,
                   updatedAfterRoundName: json.updatedAfterRoundName || null,
@@ -1707,6 +1713,7 @@ function save() {
     activeCalendarFiles: state.activeCalendarFiles,
     calendarSeasonIds: state.calendarSeasonIds,
     standings: state.standings,
+    teamStandings: state.teamStandings,
     standingsMeta: state.standingsMeta,
     standingsUrls: state.standingsUrls,
     proposals: state.proposals,
@@ -1898,7 +1905,7 @@ function renderMain() {
           <button class="btn btn-primary btn-sm" onclick="addRound()">+ Nieuwe ronde</button>
         ` : `
           <button class="btn btn-ghost btn-sm" onclick="publishStandingsToGitHub()">Publiceer klassement</button>
-          <button class="btn btn-primary btn-sm" onclick="addStandingRow()">+ Rijder</button>
+          <button class="btn btn-primary btn-sm" onclick="addStandingRow()">+ ${state.standingsKind === 'teams' ? 'Team' : 'Rijder'}</button>
         `}
       </div>
     </div>
@@ -2336,10 +2343,21 @@ function undoProposalDecision(fingerprint) {
 
 // ── Standings Tab ──────────────────────────────────────────────────────────────
 
+function standingStore() {
+  return state.standingsKind === 'teams' ? state.teamStandings : state.standings;
+}
+
+function switchStandingsKind(kind) {
+  state.standingsKind = kind === 'teams' ? 'teams' : 'drivers';
+  renderMain();
+}
+
 function renderStandingsTab(series) {
   const id = series.id;
-  const drivers = state.standings[id] || [];
-  const url = state.standingsUrls[id] || '';
+  const drivers = standingStore()[id] || [];
+  const slugs = {f2:'fia-f2',f3:'fia-f3',f1academy:'f1-academy',formulae:'formula-e',nascar:'nascar-cup',nascar_oreilly:'nascar-os',nascar_trucks:'nascar-truck',supercars:'v8supercars',sf:'super-formula',indynxt:'indylights'};
+  const url = state.standingsUrls[id] || `https://www.motorsport.com/${slugs[id] || id}/standings/2026/`;
+  const teams = state.standingsKind === 'teams';
 
   return `
     <div class="standings-fetch-card">
@@ -2352,27 +2370,32 @@ function renderStandingsTab(series) {
             oninput="state.standingsUrls['${id}']=this.value;save()"/>
         </div>
         <button class="btn btn-primary btn-sm" onclick="fetchStandingsViaAction('${id}')" style="white-space:nowrap;margin-top:18px">
-          Klassement ophalen
+          Rijders en teams ophalen
         </button>
       </div>
       <p style="margin-top:8px;font-size:11px;color:var(--muted)">
-        Start de bestaande GitHub Action en schrijft het resultaat naar <code>${id}_standings_2026.json</code>.
+        Haalt het rijdersklassement en, waar beschikbaar, het teamklassement op.
         Synchroniseer na ongeveer 30 seconden opnieuw, of bewerk het klassement hieronder handmatig.
       </p>
     </div>
 
+    <div class="tab-switcher" role="group" style="margin-bottom:16px" aria-label="Soort klassement">
+      <button class="tab-btn ${!teams ? 'active' : ''}" aria-pressed="${!teams}" onclick="switchStandingsKind('drivers')">Rijders</button>
+      <button class="tab-btn ${teams ? 'active' : ''}" aria-pressed="${teams}" onclick="switchStandingsKind('teams')">Teams / constructors</button>
+    </div>
+    ${teams && state.standingsMeta[id]?.teamsUpdatedAt ? `<p style="margin-bottom:12px">Teams bijgewerkt: ${esc(new Date(state.standingsMeta[id].teamsUpdatedAt).toLocaleString('nl-NL'))}</p>` : ''}
     <div class="standings-table-wrap">
       <div class="standings-table-header">
         <span style="width:44px;text-align:center">#</span>
-        <span style="flex:1.4">Rijder</span>
-        <span style="flex:1">Team</span>
+        <span style="flex:1.4">${teams ? 'Team / constructor' : 'Rijder'}</span>
+        ${teams ? '' : '<span style="flex:1">Team</span>'}
         <span style="width:64px;text-align:right">Punten</span>
         <span style="width:28px"></span>
       </div>
       <div id="standings_rows_${id}">
         ${drivers.length === 0
           ? `<div class="empty" style="padding:30px 0;text-align:center">
-               <p>Nog geen klassement — haal het op of voeg rijders handmatig toe.</p>
+               <p>${teams ? 'Nog geen teamklassement. Haal het op of voeg teams toe. Niet elke serie heeft een Teams-klassement op Motorsport.com.' : 'Nog geen klassement — haal het op of voeg rijders handmatig toe.'}</p>
              </div>`
           : drivers.map((d, i) => renderStandingRow(d, i, id)).join('')}
       </div>
@@ -2381,31 +2404,32 @@ function renderStandingsTab(series) {
 }
 
 function renderStandingRow(d, i, seriesId) {
+  const teams = state.standingsKind === 'teams';
   return `
     <div class="standing-row" id="standing_row_${i}">
-      <input type="number" class="standing-pos" value="${d.position}" min="1"
+      <input type="number" class="standing-pos" value="${d.position}" min="1" aria-label="Positie"
         oninput="updateStandingField('${seriesId}',${i},'position',+this.value)"/>
-      <input type="text" class="standing-name" value="${esc(d.name)}" placeholder="L. Norris"
+      <input type="text" class="standing-name" value="${esc(d.name)}" placeholder="${teams ? 'Red Bull Racing' : 'L. Norris'}" aria-label="${teams ? 'Teamnaam' : 'Naam rijder'}"
         oninput="updateStandingField('${seriesId}',${i},'name',this.value)"/>
-      <input type="text" class="standing-team" value="${esc(d.team||'')}" placeholder="McLaren"
-        oninput="updateStandingField('${seriesId}',${i},'team',this.value)"/>
-      <input type="number" class="standing-pts" value="${d.points}" min="0"
+      ${teams ? '' : `<input type="text" class="standing-team" value="${esc(d.team||'')}" placeholder="McLaren"
+        oninput="updateStandingField('${seriesId}',${i},'team',this.value)"/>`}
+      <input type="number" class="standing-pts" value="${d.points}" step="any" aria-label="Punten"
         oninput="updateStandingField('${seriesId}',${i},'points',+this.value)"/>
-      <button class="btn-icon danger" onclick="deleteStandingRow('${seriesId}',${i})" title="Rijder verwijderen">×</button>
+      <button class="btn-icon danger" onclick="deleteStandingRow('${seriesId}',${i})" title="${teams ? 'Team' : 'Rijder'} verwijderen">×</button>
     </div>`;
 }
 
 function updateStandingField(seriesId, i, key, val) {
-  if (!state.standings[seriesId]) state.standings[seriesId] = [];
-  state.standings[seriesId][i][key] = val;
+  if (!standingStore()[seriesId]) standingStore()[seriesId] = [];
+  standingStore()[seriesId][i][key] = val;
   save();
 }
 
 function addStandingRow() {
   const id = state.activeSeries;
-  if (!state.standings[id]) state.standings[id] = [];
-  const pos = state.standings[id].length + 1;
-  state.standings[id].push({ position: pos, name: '', team: '', points: 0 });
+  if (!standingStore()[id]) standingStore()[id] = [];
+  const pos = standingStore()[id].length + 1;
+  standingStore()[id].push({ position: pos, name: '', team: '', points: 0 });
   save();
   renderMain();
   // scroll to new row
@@ -2416,9 +2440,9 @@ function addStandingRow() {
 }
 
 function deleteStandingRow(seriesId, i) {
-  state.standings[seriesId].splice(i, 1);
+  standingStore()[seriesId].splice(i, 1);
   // Renumber positions
-  state.standings[seriesId].forEach((d, idx) => d.position = idx + 1);
+  standingStore()[seriesId].forEach((d, idx) => d.position = idx + 1);
   save();
   renderMain();
 }
@@ -2457,11 +2481,12 @@ function standingsMetadataFor(seriesId) {
 
 function buildStandingsJSON(seriesId) {
   const drivers = state.standings[seriesId] || [];
-  const metadata = standingsMetadataFor(seriesId);
+  const metadata = { ...state.standingsMeta[seriesId], ...standingsMetadataFor(seriesId) };
   state.standingsMeta[seriesId] = metadata;
   return JSON.stringify(
     {
       ...metadata,
+      teams: (state.teamStandings[seriesId] || []).map(d => ({ position: d.position, name: d.name, team: d.name, points: d.points })),
       drivers: drivers.map(d => ({ position: d.position, name: d.name, team: d.team || '', points: d.points })),
     },
     null, 2
@@ -2474,7 +2499,7 @@ async function fetchStandingsViaAction(seriesId) {
   if (!url) return showStatus('Vul eerst een motorsport.com standings URL in', 'error');
 
   state.standingsUrls[seriesId] = url;
-  const metadata = standingsMetadataFor(seriesId);
+  const metadata = { ...state.standingsMeta[seriesId], ...standingsMetadataFor(seriesId) };
   state.standingsMeta[seriesId] = metadata;
   save();
 
