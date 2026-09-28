@@ -1739,11 +1739,35 @@
     "countryCode": "CN",
     "sessions": [
       {
+        "id": "gtwca-asia-2026-r06-s6",
+        "name": "Test Session 1",
+        "kind": "testing",
+        "date": "2026-10-02",
+        "timeLocal": "04:25",
+        "durationMinutes": 60
+      },
+      {
+        "id": "gtwca-asia-2026-r06-s7",
+        "name": "Test Session 2",
+        "kind": "testing",
+        "date": "2026-10-02",
+        "timeLocal": "07:05",
+        "durationMinutes": 60
+      },
+      {
         "id": "gtwca-asia-2026-r06-s1",
         "name": "Practice",
         "kind": "practice",
         "date": "2026-10-02",
-        "timeLocal": null,
+        "timeLocal": "09:55",
+        "durationMinutes": 60
+      },
+      {
+        "id": "gtwca-asia-2026-r06-s9",
+        "name": "Pre-Qualifying",
+        "kind": "practice",
+        "date": "2026-10-03",
+        "timeLocal": "02:30",
         "durationMinutes": 60
       },
       {
@@ -1751,7 +1775,7 @@
         "name": "Qualifying 1",
         "kind": "qualifying",
         "date": "2026-10-03",
-        "timeLocal": null,
+        "timeLocal": "05:50",
         "durationMinutes": 20
       },
       {
@@ -1759,7 +1783,7 @@
         "name": "Qualifying 2",
         "kind": "qualifying",
         "date": "2026-10-03",
-        "timeLocal": null,
+        "timeLocal": "06:12",
         "durationMinutes": 20
       },
       {
@@ -1767,7 +1791,7 @@
         "name": "Race 1",
         "kind": "race",
         "date": "2026-10-03",
-        "timeLocal": null,
+        "timeLocal": "09:45",
         "durationMinutes": 60
       },
       {
@@ -1775,7 +1799,7 @@
         "name": "Race 2",
         "kind": "race",
         "date": "2026-10-04",
-        "timeLocal": null,
+        "timeLocal": "07:00",
         "durationMinutes": 60
       }
     ]
