@@ -99,10 +99,19 @@
 .session-row input:is([type="date"], [type="time"]) {
   -webkit-appearance: none; appearance: none; display: block;
   width: 100%; min-width: 0; max-width: 100%; height: 44px;
-  padding: 0 12px; text-align: left;
+  padding: 0 12px; line-height: 42px; text-align: left;
 }
-.session-row input::-webkit-date-and-time-value { text-align: left; min-width: 0; margin: 0; }
-.session-row input::-webkit-datetime-edit { padding: 0; min-width: 0; }
+/* iOS renders the whole value in this pseudo-element; its line box must
+   fill the 42px content area instead of sticking to the top of the control. */
+.session-row input::-webkit-date-and-time-value {
+  display: flex; align-items: center; height: 42px; min-height: 42px;
+  line-height: 42px; text-align: left; min-width: 0; margin: 0;
+}
+.session-row input::-webkit-datetime-edit {
+  display: inline-flex; align-items: center; height: 42px;
+  line-height: normal; padding: 0; min-width: 0;
+}
+.session-row input::-webkit-datetime-edit-fields-wrapper { padding: 0; }
 @media (max-width: 760px) {
   .session-when-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; }
   .session-when-grid .session-date-input { grid-column: auto; }

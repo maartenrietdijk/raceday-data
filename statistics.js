@@ -93,7 +93,7 @@
     if (!chartLoader) {
       chartLoader = root.RaceDayEvilCharts ? Promise.resolve(root.RaceDayEvilCharts) : new Promise((resolve, reject) => {
         const script = document.createElement('script');
-        script.src = 'statistics-chart.js?v=20261001-1';
+        script.src = 'statistics-chart.js?v=20261001-2';
         script.onload = () => root.RaceDayEvilCharts ? resolve(root.RaceDayEvilCharts) : reject(new Error('Grafiekmodule ontbreekt.'));
         script.onerror = () => { script.remove(); reject(new Error('Grafiekmodule kon niet worden geladen.')); };
         document.head.appendChild(script);
