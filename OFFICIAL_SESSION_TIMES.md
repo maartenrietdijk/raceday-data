@@ -1,6 +1,6 @@
 # Official session-time proposals
 
-`official_schedule_scanner.py` checks official championship pages only and creates reviewable proposals. Scheduled scans target sessions whose `timeLocal` is `null`; for DTM they also recheck filled sessions during the 30 days before a race weekend and propose corrections when official times change. A manual event scan from the editor can propose corrections for sessions that already contain a time. The scanner never edits or publishes a calendar file itself.
+`official_schedule_scanner.py` checks official championship pages only and creates reviewable proposals. Scheduled scans target sessions whose `timeLocal` is `null`; for DTM and events with a manually configured source link they also recheck filled sessions during the 30 days before a race weekend and propose corrections when official times change. A manual event scan from the editor can propose corrections for sessions that already contain a time. The scanner never edits or publishes a calendar file itself.
 
 ## Run manually
 
@@ -71,3 +71,13 @@ node tests/proposal-logic.test.js
 ```
 
 The HTML fixtures are small frozen extracts shaped like the official timetable tables, so tests never depend on live sites.
+
+## Event links in the editor
+
+The series view has an **Agenda / Klassement / Links** tab switcher. Each calendar event can store an `officialScheduleUrl`; the event ID and calendar file keep seasons separate. **Bewaar** saves a local draft; **Publiceer links** merges only these URLs into the current GitHub calendar and preserves all other remote fields. **Controleer** saves and publishes the link before starting a targeted scan. Clearing a published link restores automatic discovery. Unpublished drafts survive synchronizing the editor.
+
+A manual link takes precedence over every automatic source, including feed-based discovery. Only HTTPS URLs on the series' registered official domains are accepted. DTM public event pages resolve to the API for that exact slug; MotoGP pages resolve using the exact event ID in the link. Unsupported JavaScript layouts, inaccessible pages, wrong dates, uncertain session matches and partially parsed schedules produce a visible warning in both Links and the event's Agenda view. The scanner does not silently fall back to a different source. Some formats still require a dedicated reader; an event link alone cannot make an unsupported page readable.
+
+Events with manual links and filled times are rechecked during the 30 days before the weekend ends. NASCAR retains its existing current-race-week limit. The scheduled scanner continues to propose changes for review; it does not overwrite calendars. Manual scans read the dispatched GitHub branch so newly published links are used on that branch.
+
+The series page displays the existing editor input timezone, its current clock, the Dutch clock and their current difference. IANA timezone rules account for daylight saving. The difference is explicitly current, since it may differ on the race date. The scanner registry now matches the existing America/New_York input contract for IndyCar and Indy NXT.

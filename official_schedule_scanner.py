@@ -2050,8 +2050,8 @@ def nascar_event_in_week(event: dict, week: Optional[Tuple[date, date]]) -> bool
     return bool(dates) and all(week[0] <= day <= week[1] for day in dates)
 
 
-def dtm_refresh_due(event: dict, checked_at: datetime) -> bool:
-    """Recheck filled DTM times during the month before their race weekend."""
+def event_refresh_due(event: dict, checked_at: datetime) -> bool:
+    """Recheck filled times during the month before their race weekend."""
     dates = []
     for session in event.get("sessions", []):
         try:
@@ -2097,7 +2097,7 @@ def calendar_inventory(
                 known_kinds = {session.get("kind") for session in sessions}
                 upcoming_incomplete_nascar = not {"practice", "qualifying"}.issubset(known_kinds)
             if event_ids or include_filled or has_tbc or upcoming_incomplete_nascar or (
-                series_id == "dtm" and dtm_refresh_due(event, checked_at or datetime.now(timezone.utc))
+                (series_id == "dtm" or event.get("officialScheduleUrl")) and event_refresh_due(event, checked_at or datetime.now(timezone.utc))
             ):
                 inventory.append((path.name, event))
     return inventory
@@ -2120,6 +2120,38 @@ def resolve_event_year(event: dict, fallback: int) -> int:
     return fallback
 
 
+def fetch_manual_schedule(url: str, cfg: dict, year: int) -> FetchResult:
+    """Use the exact configured event, never fall back to a different event."""
+    parsed = urlparse(url)
+    if parsed.scheme != "https" or parsed.username or parsed.password:
+        raise SourceError("Gebruik een HTTPS-eventlink zonder inloggegevens.")
+    if not allowed_url(url, cfg["allowedDomains"]):
+        raise SourceError("Het domein van deze eventlink is niet toegestaan als officiële bron voor deze serie. Controleer de link of laat het officiële domein toevoegen aan session-time-sources.json.")
+    if cfg.get("sourceKind") == "motogp-api" and parsed.hostname in {"motogp.com", "www.motogp.com"}:
+        match = re.fullmatch(r"/[^/]+/calendar/" + str(year) + r"/event/[^/]+/([^/]+)/?", parsed.path)
+        if not match:
+            raise SourceError("Deze MotoGP-link bevat geen herkenbare event-ID voor dit seizoen. Gebruik de volledige officiële eventpagina.")
+        feed_url = "https://api.pulselive.motogp.com/motogp/v1/events?seasonYear={}".format(year)
+        feed = fetch_url(feed_url, cfg["allowedDomains"], {"x-client": "FE", "x-referer-path": "/en/calendar", "Referer": url})
+        payload = json_object(feed.body, "MotoGP events")
+        matches = [item for item in payload if isinstance(item, dict) and str(item.get("id")) == match.group(1)] if isinstance(payload, list) else []
+        if len(matches) != 1:
+            raise SourceError("De event-ID uit de ingevulde MotoGP-link is niet eenduidig teruggevonden. Controleer de link en het seizoen.")
+        selected = matches[0]
+        return FetchResult(url, url, selected.get("name") or "Official MotoGP event", json.dumps(selected), feed.last_modified)
+    target = url
+    if cfg.get("sourceKind") == "dtm-api" and parsed.hostname != "api.dtm.com":
+        match = re.fullmatch(r"/(?:[^/]+/)?events/([^/]+)/?", parsed.path)
+        if not match or not match.group(1).endswith("-" + str(year)):
+            raise SourceError("Gebruik de DTM-eventpagina van het juiste seizoen, bijvoorbeeld /mp/events/hockenheim-finale-2026.")
+        target = "https://api.dtm.com/data?query=eventDetails&slug={}&lang=en".format(quote(match.group(1), safe="-"))
+    is_pdf = urlparse(target).path.lower().endswith(".pdf") or "/document/download/" in target
+    fetched = fetch_pdf_url(target, cfg["allowedDomains"]) if is_pdf else fetch_url(target, cfg["allowedDomains"])
+    if cfg.get("sourceKind") == "rally-itinerary" and not is_pdf:
+        fetched = retry_rally_prerender(fetched, target, cfg["allowedDomains"])
+    return FetchResult(url, fetched.final_url, fetched.title, fetched.body, fetched.last_modified)
+
+
 def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Optional[set], checked_at: str, fixtures_only: bool = False, only_events: Optional[set] = None, include_filled: bool = False, replace_filled: bool = False) -> dict:
     series_by_id = {item["seriesId"]: item for item in registry["series"]}
     scope = set(series_by_id)
@@ -2138,13 +2170,17 @@ def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Opti
         year_match = re.search(r"_(\d{4})\.json$", filename)
         year = int(year_match.group(1))
         event_year = resolve_event_year(event, year)
-        stable_url = cfg["startUrl"].replace("{year}", str(year))
+        manual_url = str(event.get("officialScheduleUrl") or "").strip()
+        stable_url = manual_url or cfg["startUrl"].replace("{year}", str(year))
         source_tz = resolve_event_timezone(registry, cfg, event)
         fixture = fixtures / "{}__{}.html".format(series_id, event.get("id")) if fixtures else None
         source = FetchResult(stable_url, stable_url, "Official source", "", None)
         source_candidates: List[FetchResult] = []
         try:
-            if fixture and fixture.exists():
+            if manual_url and not (fixture and fixture.exists()) and not fixtures_only:
+                source = fetch_manual_schedule(manual_url, cfg, event_year)
+                source_candidates = [source]
+            elif fixture and fixture.exists():
                 source = fixture_result(fixture, stable_url)
                 source_candidates = [source]
             elif fixtures_only:
@@ -2268,13 +2304,20 @@ def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Opti
                         ", ".join(sorted(source_title_years)), event_year
                     )
                 )
+            if manual_url and cfg["sourceKind"] in {"motogp-api", "worldsbk-api"} and not source.body.lstrip().startswith("{"):
+                raise SourceError("Deze eventpagina levert geen rechtstreeks leesbaar tijdschema. De website gebruikt mogelijk JavaScript of is gewijzigd. Controleer de bronlink; er is niet uitgeweken naar een ander event.")
             if cfg["sourceKind"] == "motogp-api":
                 source_tz = motogp_source_timezone(source) or source_tz
             elif cfg["sourceKind"] == "worldsbk-api":
                 source_tz = worldsbk_source_timezone(source) or source_tz
             if not source_tz:
                 raise SourceError("no verified IANA track timezone is registered for this event")
-            if cfg["sourceKind"] == "nascar-et":
+            if manual_url and source.title == "Official timetable PDF":
+                if cfg["sourceKind"] == "british-gt-pdf":
+                    sessions = parse_british_gt_pdf(source, event_year, source_tz)
+                else:
+                    sessions = parse_official_schedule_document(source, event_year, source_tz, cfg.get("documentCategories", [cfg["name"]]))
+            elif cfg["sourceKind"] == "nascar-et":
                 sessions = parse_nascar_feed(source, event, event_year, source_tz) if source.body.lstrip().startswith("{") else parse_nascar_text(source, event, event_year, source_tz)
             elif cfg["sourceKind"] == "british-gt-pdf":
                 pdf_url = discover_timetable_pdf(source)
@@ -2378,23 +2421,44 @@ def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Opti
                 sessions = [item for item in sessions if nascar_week and
                             nascar_week[0].isoformat() <= item.date <= nascar_week[1].isoformat()]
             if not sessions:
-                raise SourceError("official page contains no reliably parseable race sessions yet")
+                raise SourceError("De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema.")
+            if manual_url:
+                calendar_dates = sorted({str(item.get("date")) for item in event.get("sessions", []) if item.get("date")})
+                if not calendar_dates or not any(item.date in calendar_dates for item in sessions):
+                    raise SourceError("De gevonden datums passen niet bij dit event, of de eventdatums ontbreken. Controleer de eventlink en de datums in Agenda.")
+                if any(item.date < calendar_dates[0] or item.date > calendar_dates[-1] for item in sessions):
+                    raise SourceError("De bron bevat sessies buiten de datums van dit event. De koppeling is onzeker; controleer de link en eventdatums.")
             editor_tz = registry.get("editorTimeZones", {}).get(series_id, registry["editorTimeZones"]["default"])
-            refresh_filled_dtm = series_id == "dtm" and dtm_refresh_due(event, scan_instant)
-            proposals.extend(build_event_proposals(
+            refresh_filled_source = (series_id == "dtm" or bool(manual_url)) and event_refresh_due(event, scan_instant)
+            event_proposals = build_event_proposals(
                 cfg, filename, event, source, sessions, editor_tz, checked_at,
-                include_filled, replace_filled or (refresh_filled_dtm and not include_filled),
-            ))
+                include_filled, replace_filled or (refresh_filled_source and not include_filled),
+            )
+            proposals.extend(event_proposals)
+            uncertain = any(item.get("status") == "requires_review" for item in event_proposals)
+            unmatched = False
+            if manual_url:
+                covered = set()
+                for official in sessions:
+                    matched, conflict = match_session(official, event.get("sessions", []))
+                    if matched and not conflict:
+                        covered.add(matched.get("id"))
+                unmatched = any(normalize_kind(item.get("name", "")) and item.get("id") not in covered for item in event.get("sessions", []))
+            uncertain = uncertain or unmatched
             source_overview["{}:{}".format(series_id, event.get("id"))] = {
                 "seriesId": series_id, "eventId": event.get("id"), "eventName": event.get("raceName"),
+                "calendarFile": filename, "manualUrl": manual_url,
                 "stableUrl": stable_url, "finalUrl": source.final_url, "title": source.title,
                 "checkedAt": checked_at, "lastModified": source.last_modified,
+                "status": "requires_review" if uncertain else "ok",
+                "reason": ("Niet alle bestaande sessies zijn op deze bron herkend. Controleer het tijdschema; alleen herkenbare sessies leveren voorstellen op." if unmatched else "De koppeling van een of meer sessies is onzeker. Beoordeel de conflicten bij Voorstellen.") if uncertain else "",
             }
         except SourceError as exc:
             LOG.warning("%s / %s: %s", series_id, event.get("id"), exc)
             proposals.extend(unresolved_proposals(cfg, filename, event, source, checked_at, str(exc)))
             source_overview["{}:{}".format(series_id, event.get("id"))] = {
                 "seriesId": series_id, "eventId": event.get("id"), "eventName": event.get("raceName"),
+                "calendarFile": filename, "manualUrl": manual_url,
                 "stableUrl": stable_url, "finalUrl": source.final_url, "title": source.title,
                 "checkedAt": checked_at, "lastModified": source.last_modified, "status": "unresolved", "reason": str(exc),
             }

@@ -987,6 +987,7 @@
 <link rel="stylesheet" href="instagram-generator.css?v=20260928-2">
 <link rel="stylesheet" href="editor-ux.css?v=20260928-2">
 <link rel="stylesheet" href="dashboard-design.css?v=20260928-5">
+<link rel="stylesheet" href="editor-links.css?v=20260930-1">
 </head>
 <body>
 
@@ -1278,6 +1279,7 @@
 </div>
 
 <script src="proposal-logic.js?v=20260914-1"></script>
+<script src="editor-links.js?v=20260930-1"></script>
 <script>
 function editorIcon(name) {
   const paths = {"overview": "<rect x=\"3\" y=\"3\" width=\"7\" height=\"7\" rx=\"1.5\"/><rect x=\"14\" y=\"3\" width=\"7\" height=\"7\" rx=\"1.5\"/><rect x=\"3\" y=\"14\" width=\"7\" height=\"7\" rx=\"1.5\"/><rect x=\"14\" y=\"14\" width=\"7\" height=\"7\" rx=\"1.5\"/>", "calendar": "<rect x=\"3\" y=\"5\" width=\"18\" height=\"16\" rx=\"3\"/><path d=\"M7 3v4m10-4v4M3 11h18m-13 4h2m4 0h2m-8 3h2\"/>", "proposals": "<path d=\"M9 4H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h13a2 2 0 0 0 2-2v-4M9 15l1-4L18 3a2.1 2.1 0 0 1 3 3l-8 8-4 1Zm7-10 3 3\"/>", "camera": "<rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"5\"/><circle cx=\"12\" cy=\"12\" r=\"4\"/><path d=\"M17.5 6.5h.01\"/>", "settings": "<path d=\"m10 3-.5 2a7 7 0 0 0-2 1L5.5 5.5l-2 3L5 10a7 7 0 0 0 0 4l-1.5 1.5 2 3 2-.5a7 7 0 0 0 2 1L10 21h4l.5-2a7 7 0 0 0 2-1l2 .5 2-3L19 14a7 7 0 0 0 0-4l1.5-1.5-2-3-2 .5a7 7 0 0 0-2-1L14 3Z\"/><circle cx=\"12\" cy=\"12\" r=\"3\"/>", "search": "<circle cx=\"10.5\" cy=\"10.5\" r=\"6.5\"/><path d=\"m16 16 4 4\"/>", "plus": "<path d=\"M12 5v14M5 12h14\"/>", "close": "<path d=\"m6 6 12 12M18 6 6 18\"/>", "menu": "<path d=\"M4 6h16M4 12h16M4 18h16\"/>", "arrow": "<path d=\"M5 12h14m-5-5 5 5-5 5\"/>", "sync": "<path d=\"M20 7v5h-5M4 17v-5h5M6 6a8 8 0 0 1 13 2M5 16a8 8 0 0 0 13 2\"/>", "download": "<path d=\"M12 3v12m-5-5 5 5 5-5M4 16v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4\"/>", "flag": "<path d=\"M4 22V3m0 1c5-4 11 4 16 0v10c-5 4-11-4-16 0\"/>", "clock": "<circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 7v5l3 2\"/>", "layers": "<path d=\"m12 3 10 5-10 5L2 8 12 3Zm-10 9 10 5 10-5M2 16l10 5 10-5\"/>", "check": "<path d=\"m5 12 4 4L19 6\"/>"};
@@ -1352,7 +1354,8 @@ let state = {
   standings: {},        // {seriesId: [{position, name, team, points}]}
   standingsMeta: {},    // {seriesId: {updatedAt, updatedAfterRoundId, updatedAfterRoundName}}
   standingsUrls: {},    // {seriesId: url}
-  activeTab: 'calendar', // 'calendar' | 'standings'
+  eventLinkDrafts: {},
+  activeTab: 'calendar', // 'calendar' | 'standings' | 'links'
   activeView: 'dashboard', // 'dashboard' | 'series' | 'proposals'
   activeSeries: null,
   proposals: [],
@@ -1526,6 +1529,7 @@ function load() {
       state.teamStandings = parsed.teamStandings || {};
       state.standingsMeta = parsed.standingsMeta || {};
       state.standingsUrls = parsed.standingsUrls || {};
+      state.eventLinkDrafts = parsed.eventLinkDrafts || {};
       state.proposals     = parsed.proposals || [];
       state.proposalSources = parsed.proposalSources || [];
       state.proposalGeneratedAt = parsed.proposalGeneratedAt || null;
@@ -1605,6 +1609,9 @@ async function loadFromGitHub() {
       }
     }
     state.calendarFiles = { ...loadedCalendarFiles, ...pendingCalendarDrafts };
+    Object.entries(state.eventLinkDrafts).forEach(([filename, links]) => {
+      if (state.calendarFiles[filename]) state.calendarFiles[filename] = RaceDayLinks.mergeLinks(state.calendarFiles[filename], links, false);
+    });
     Object.entries(loadedCalendarFiles).forEach(([filename, rounds]) => {
       const explicitSeasonId = rounds.find(round => round.seasonId)?.seasonId;
       if (explicitSeasonId) state.calendarSeasonIds[filename] = explicitSeasonId;
@@ -1716,6 +1723,7 @@ function save() {
     teamStandings: state.teamStandings,
     standingsMeta: state.standingsMeta,
     standingsUrls: state.standingsUrls,
+    eventLinkDrafts: state.eventLinkDrafts,
     proposals: state.proposals,
     proposalSources: state.proposalSources,
     proposalGeneratedAt: state.proposalGeneratedAt,
@@ -1898,18 +1906,20 @@ function renderMain() {
         <div class="tab-switcher" role="group" aria-label="Serieweergave">
           <button class="tab-btn ${tab==='calendar'?'active':''}" aria-pressed="${tab==='calendar'}" onclick="switchTab('calendar')">Agenda</button>
           <button class="tab-btn ${tab==='standings'?'active':''}" aria-pressed="${tab==='standings'}" onclick="switchTab('standings')">Klassement</button>
+          <button class="tab-btn ${tab==='links'?'active':''}" aria-pressed="${tab==='links'}" onclick="switchTab('links')">Links</button>
         </div>
         ${tab === 'calendar' ? `
           <button class="btn btn-ghost btn-sm" onclick="importJSON()">Importeer</button>
           <button class="btn btn-ghost btn-sm" onclick="exportJSON()">Exporteer</button>
           <button class="btn btn-primary btn-sm" onclick="addRound()">+ Nieuwe ronde</button>
-        ` : `
+        ` : tab === 'links' ? `<button class="btn btn-primary btn-sm" onclick="publishEventLinks()">Publiceer links</button>` : `
           <button class="btn btn-ghost btn-sm" onclick="publishStandingsToGitHub()">Publiceer klassement</button>
           <button class="btn btn-primary btn-sm" onclick="addStandingRow()">+ ${state.standingsKind === 'teams' ? 'Team' : 'Rijder'}</button>
         `}
       </div>
     </div>
 
+    <div class="series-timezone" id="seriesTimeZoneInfo">${renderSeriesTimeZone(series.id)}</div>
     <!-- Tab content -->
     <div id="tabContent">
       ${tab === 'calendar' ? `
@@ -1921,9 +1931,97 @@ function renderMain() {
                </div>`
             : rounds.map((r, i) => renderRound(r, i, series, i === nextRoundIndex)).join('')}
         </div>
-      ` : renderStandingsTab(series)}
+      ` : tab === 'links' ? renderEventLinks(series) : renderStandingsTab(series)}
     </div>
   `;
+}
+
+function renderSeriesTimeZone(seriesId) {
+  const info = RaceDayLinks.timezoneInfo(seriesTimeZone(seriesId));
+  return `<strong>Invoertijdzone: ${esc(info.zone)}</strong><span>Nu ${esc(info.localTime)} · Nederland ${esc(info.nlTime)} · ${esc(info.difference)}</span><small>Het verschil geldt nu. Rond de wissel van zomer- en wintertijd kan het op de racedatum anders zijn.</small>`;
+}
+setInterval(() => {
+  const el = document.getElementById('seriesTimeZoneInfo');
+  if (el && state.activeSeries) el.innerHTML = renderSeriesTimeZone(state.activeSeries);
+}, 60000);
+
+function eventSourceWarning(round) {
+  const source = state.proposalSources.find(item => item.eventId === round.id && item.seriesId === state.activeSeries);
+  if (!['unresolved', 'requires_review'].includes(source?.status)) return '';
+  return `<div class="event-source-warning" role="status"><strong>Bron controleren</strong><p>${esc(source.reason || 'Het tijdschema kon niet betrouwbaar worden uitgelezen. Controleer de eventlink of een nieuw gepubliceerd tijdschema.')}</p><small>Laatste controle: ${esc(source.checkedAt ? new Date(source.checkedAt).toLocaleString('nl-NL') : 'onbekend')}</small></div>`;
+}
+
+function renderEventLinks(series) {
+  const rounds = editableRounds(series.id);
+  return `<section class="event-links"><div class="event-links-intro"><h2>Officiële eventpagina’s</h2><p>Vul per event de officiële pagina met het tijdschema in. Een ingevulde link heeft voorrang op automatisch zoeken. Laat leeg om automatisch te zoeken.</p><p>Bewaren slaat je wijziging lokaal op. Met <strong>Publiceer links</strong> gaan de links naar GitHub en gebruikt de autofetch ze. ‘Controleer’ bewaart en publiceert de link en start daarna de broncontrole.</p></div>
+    ${!OFFICIAL_TIME_SERIES.has(series.id) ? '<p class="event-source-warning">Voor deze serie is nog geen officiële tijdscanner beschikbaar. Je kunt de eventlinks alvast bewaren.</p>' : ''}
+    ${rounds.length ? rounds.map((round, i) => {
+      const url = round.officialScheduleUrl || '';
+      const dirty = Object.hasOwn(state.eventLinkDrafts[activeCalendarFilename()] || {}, round.id);
+      const source = state.proposalSources.find(item => item.eventId === round.id && item.seriesId === series.id);
+      const changedSource = source && (source.manualUrl || '') !== url;
+      return `<div class="event-link-row"><div class="event-link-heading"><h3>R${esc(round.roundNumber || i + 1)} · ${esc(round.raceName || 'Naamloos event')}</h3><span>${dirty ? 'Nog publiceren' : url ? 'Eigen bronlink' : 'Automatisch zoeken'}</span></div>
+        <form onsubmit="event.preventDefault();saveEventLink(${i})"><label for="eventLink_${i}">Officiële eventlink</label><div class="event-link-controls"><input id="eventLink_${i}" type="url" inputmode="url" autocomplete="off" placeholder="https://…" value="${esc(url)}"><button type="submit" class="btn btn-surface">Bewaar</button><button type="button" class="btn btn-ghost" onclick="checkEventLink(${i})" ${!OFFICIAL_TIME_SERIES.has(series.id) ? 'disabled' : ''}>Controleer</button></div></form>
+        <p class="event-link-status">${dirty ? 'Publiceer de bewaarde link voordat je de bron controleert.' : changedSource ? 'De bronlink is gewijzigd sinds de laatste controle. Controleer opnieuw.' : source?.status === 'unresolved' ? 'De laatste controle is niet gelukt.' : source ? `Laatst uitgelezen: ${esc(new Date(source.checkedAt).toLocaleString('nl-NL'))}. Bekijk eventuele conflicten bij Voorstellen.` : 'Deze bron is nog niet gecontroleerd.'}</p>
+        ${eventSourceWarning(round)}${officialScanStatusView(round.id)}
+      </div>`;
+    }).join('') : '<p>Voeg in Agenda eerst een event toe.</p>'}
+    </section>`;
+}
+
+function saveEventLink(index) {
+  const round = editableRounds()[index];
+  if (!round?.id) return showStatus('Geef dit event eerst een ronde-ID in Agenda.', 'error');
+  let url;
+  try { url = RaceDayLinks.normalizeSourceUrl(document.getElementById(`eventLink_${index}`).value); }
+  catch (error) { return showStatus(error.message, 'error'); }
+  if (url === (round.officialScheduleUrl || '')) return true;
+  if (url) round.officialScheduleUrl = url;
+  else delete round.officialScheduleUrl;
+  const filename = activeCalendarFilename();
+  (state.eventLinkDrafts[filename] ||= {})[round.id] = url;
+  if (!save()) return;
+  renderMain();
+  showStatus('Link lokaal bewaard. Publiceer links om de autofetch bij te werken.');
+  return true;
+}
+
+async function checkEventLink(index) {
+  if (!saveEventLink(index)) return;
+  await scanOfficialEvent(index);
+}
+
+async function publishEventLinks(notify = true) {
+  const filename = activeCalendarFilename();
+  const drafts = { ...(state.eventLinkDrafts[filename] || {}) };
+  if (!Object.keys(drafts).length) {
+    if (notify) showStatus('Er zijn geen bewaarde linkwijzigingen om te publiceren.');
+    return true;
+  }
+  const { token, repo, branch = 'main', path = '' } = state.github;
+  if (!token || !repo) { showStatus('Stel eerst GitHub in om links te publiceren.', 'error'); return false; }
+  try {
+    const filePath = (path ? `${path.replace(/\/$/, '')}/` : '') + filename;
+    const url = `https://api.github.com/repos/${repo}/contents/${filePath}`;
+    const headers = { Authorization: `Bearer ${token}`, Accept: 'application/vnd.github+json', 'Content-Type': 'application/json' };
+    const response = await fetch(`${url}?ref=${encodeURIComponent(branch)}`, { headers });
+    if (!response.ok) throw new Error(response.status === 404 ? 'Publiceer deze kalender eerst via Agenda; hij staat nog niet op GitHub.' : `GitHub gaf ${response.status}. Probeer opnieuw.`);
+    const file = await response.json();
+    const rounds = JSON.parse(decodeURIComponent(escape(atob(file.content.replace(/\s/g, '')))));
+    const updated = RaceDayLinks.mergeLinks(rounds, drafts);
+    const put = await fetch(url, { method: 'PUT', headers, body: JSON.stringify({
+      message: `Update event links in ${filename}`, branch, sha: file.sha,
+      content: btoa(unescape(encodeURIComponent(JSON.stringify(updated, null, 2) + '\n'))),
+    }) });
+    if (!put.ok) throw new Error(`Links niet gepubliceerd (GitHub ${put.status}). Je lokale wijzigingen zijn bewaard.`);
+    Object.entries(drafts).forEach(([id, value]) => {
+      if (state.eventLinkDrafts[filename]?.[id] === value) delete state.eventLinkDrafts[filename][id];
+    });
+    save();
+    renderMain();
+    if (notify) showStatus('Links gepubliceerd. De autofetch gebruikt ze bij de volgende scan.');
+    return true;
+  } catch (error) { showStatus(error.message, 'error'); return false; }
 }
 
 // ── Overview ───────────────────────────────────────────────────────────────────
@@ -2667,6 +2765,7 @@ function renderRound(r, i, series, highlighted = false) {
           </div>
         </div>
         </details>
+        ${eventSourceWarning(r)}
         <div class="sessions-wrap">
           <p class="session-help">Tijden in <strong>${esc(seriesTimeZone())}</strong>. Wijzigingen worden lokaal bewaard; gebruik Publiceer om ze online te zetten.</p>
           <div class="sessions-label">
@@ -3437,6 +3536,7 @@ function buildCalendarFileJSON(sourceRounds, seriesId) {
     city: r.city,
     country: r.country,
     countryCode: r.countryCode,
+    ...(r.officialScheduleUrl ? { officialScheduleUrl: r.officialScheduleUrl } : {}),
     sessions: (r.sessions || []).map(s => ({
       id: s.id || `${r.id}-s`,
       name: s.name,
@@ -3676,7 +3776,10 @@ async function monitorOfficialScan(owner, repo, eventId, startedAt) {
     } else if (run.conclusion === 'success') {
       updateOfficialScanProgress(eventId, { status: 'syncing', percent: 88, title: 'Resultaten worden ingeladen', message: 'De nieuwe voorstellen worden met deze editor gesynchroniseerd.', runUrl: run.html_url });
       await loadFromGitHub();
-      updateOfficialScanProgress(eventId, { status: 'completed', percent: 100, title: 'Zoekactie voltooid', message: 'De resultaten staan hieronder en kunnen hier direct worden beoordeeld.', runUrl: run.html_url });
+      const source = state.proposalSources.find(item => item.eventId === eventId);
+      const fresh = source && Date.parse(source.checkedAt) >= startedAt - 15000;
+      const failed = !fresh || ['unresolved', 'requires_review'].includes(source?.status);
+      updateOfficialScanProgress(eventId, { status: failed ? 'error' : 'completed', percent: 100, title: failed ? 'Bron niet betrouwbaar uitgelezen' : 'Zoekactie voltooid', message: failed ? (fresh ? source.reason : 'Geen nieuwe broncontrole voor dit event ontvangen. Controleer de eventdatums en de GitHub-run; bestaande tijden zijn niet bevestigd.') : 'De resultaten staan bij dit event in Agenda en Voorstellen.', runUrl: run.html_url });
       return;
     } else {
       updateOfficialScanProgress(eventId, { status: 'error', percent: 100, title: 'Zoekactie mislukt', message: `GitHub stopte de scan met status ${run.conclusion || 'onbekend'}. Open de run voor details.`, runUrl: run.html_url });
@@ -3688,6 +3791,7 @@ async function monitorOfficialScan(owner, repo, eventId, startedAt) {
 }
 
 async function scanOfficialEvent(ri) {
+  const seriesId = state.activeSeries;
   if (!OFFICIAL_TIME_SERIES.has(state.activeSeries)) {
     return showStatus('De officiële sessietijdscanner ondersteunt deze serie nog niet', 'error');
   }
@@ -3703,6 +3807,7 @@ async function scanOfficialEvent(ri) {
     const [owner, repo] = state.github.repo.split('/');
     if (!owner || !repo) throw new Error('Gebruik eigenaar/repository bij GitHub-instellingen');
     await ensureOfficialTimesWorkflow(owner, repo);
+    if (!(await publishEventLinks(false))) throw new Error('De links konden niet worden gepubliceerd; de scan is niet gestart.');
     const startedAt = Date.now();
     const response = await fetchGitHubWithRetry(`https://api.github.com/repos/${owner}/${repo}/actions/workflows/official_session_times.yml/dispatches`, {
       method: 'POST',
@@ -3714,7 +3819,7 @@ async function scanOfficialEvent(ri) {
       },
       body: JSON.stringify({
         ref: state.github.branch || 'main',
-        inputs: { series: state.activeSeries, event: round.id, replace_filled: 'true' },
+        inputs: { series: seriesId, event: round.id, replace_filled: 'true' },
       }),
     }, 'Zoekactie starten');
     if (response.status !== 204) {
@@ -3951,6 +4056,7 @@ async function publishToGitHub() {
 }
 
 function publishCurrentView() {
+  if (state.activeView === 'series' && state.activeTab === 'links') return publishEventLinks();
   return state.activeView === 'proposals' || state.proposalDecisionsDirty || state.dirtyProposalFiles.length
     ? publishProposalChanges()
     : publishToGitHub();
@@ -4087,9 +4193,12 @@ let statusTimer;
 function showStatus(msg, type = 'success') {
   const bar = document.getElementById('statusBar');
   bar.className = 'status-bar show ' + type;
-  bar.innerHTML = type === 'loading'
-    ? `<span class="spin"></span> ${msg}`
-    : msg;
+  bar.textContent = msg;
+  if (type === 'loading') {
+    const spinner = document.createElement('span');
+    spinner.className = 'spin';
+    bar.prepend(spinner);
+  }
   clearTimeout(statusTimer);
   if (type !== 'loading') statusTimer = setTimeout(() => bar.classList.remove('show'), 3500);
 }
