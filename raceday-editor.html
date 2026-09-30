@@ -1278,7 +1278,7 @@
   </div>
 </div>
 
-<script src="proposal-logic.js?v=20260930-3"></script>
+<script src="proposal-logic.js?v=20260930-4"></script>
 <script src="editor-links.js?v=20260930-1"></script>
 <script>
 function editorIcon(name) {
@@ -1634,17 +1634,7 @@ async function loadFromGitHub() {
         const proposalText = decodeURIComponent(escape(atob(proposalFile.content.replace(/\s/g, ''))));
         const proposalStore = JSON.parse(proposalText);
         const remoteProposals = Array.isArray(proposalStore.proposals) ? proposalStore.proposals : [];
-        state.proposals = remoteProposals.map(item => {
-          const local = localProposalDecisions.get(item.fingerprint);
-          if (!local) return item;
-          return {
-            ...item,
-            status: local.status,
-            ...(local.decisionAt ? { decisionAt: local.decisionAt } : {}),
-            ...(local.supersededAt ? { supersededAt: local.supersededAt } : {}),
-            ...(local.supersededBy ? { supersededBy: local.supersededBy } : {}),
-          };
-        });
+        state.proposals = RaceDayProposals.mergeLocalDecisions(remoteProposals, [...localProposalDecisions.values()], state.calendarFiles);
         state.proposalSources = Array.isArray(proposalStore.sourcesUsed) ? proposalStore.sourcesUsed : [];
         state.proposalGeneratedAt = proposalStore.generatedAt || null;
         const statusBefore = JSON.stringify(state.proposals.map(item => [item.fingerprint, item.status]));
@@ -2218,8 +2208,12 @@ function proposalYearOptions() {
 
 function activeEventProposals(round) {
   const filename = activeCalendarFilename();
-  return RaceDayProposals.filtered(state.proposals, { status: 'active' })
-    .filter(item => item.calendarFile === filename && item.eventId === round?.id);
+  const eventItems = state.proposals.filter(item => item.calendarFile === filename && item.eventId === round?.id);
+  const active = RaceDayProposals.filtered(eventItems, { status: 'active' });
+  if (active.length) return active;
+  // Show the latest checked results even when they are already accepted or
+  // verified; an empty active list does not mean the source returned nothing.
+  return RaceDayProposals.filtered(eventItems.filter(item => !['superseded'].includes(item.status)));
 }
 
 function officialScanStatusView(eventId) {
@@ -2251,7 +2245,7 @@ function renderInlineEventProposals(round) {
     ${officialScanStatusView(round.id)}
     <div class="inline-proposals">
       <div class="inline-proposals-heading">
-        <strong>${proposals.length} te beoordelen voorstel${proposals.length === 1 ? '' : 'len'}</strong>
+        <strong>${proposals.length} resultaat${proposals.length === 1 ? '' : 'en'} · ${proposals.filter(item => ['open', 'requires_review'].includes(item.status)).length} te beoordelen</strong>
         ${acceptable.length ? `<button class="btn btn-primary btn-sm" onclick="acceptEventProposals('${esc(activeCalendarFilename())}','${esc(round.id)}')">Alle wijzigingen accepteren</button>` : ''}
       </div>
       ${proposals.length ? proposals.map(renderProposalRow).join('') : `<div class="inline-proposals-empty">${dirty ? 'Alle voorstellen voor dit event zijn verwerkt. Publiceer de besluiten om ze naar GitHub te schrijven.' : progress?.status === 'completed' ? 'Geen nieuwe wijzigingen gevonden. De ingevulde tijden zijn actueel.' : 'Zodra de scan resultaten heeft, verschijnen ze hier automatisch.'}</div>`}

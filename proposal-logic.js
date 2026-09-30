@@ -112,6 +112,18 @@
       session.name === proposal.proposed.name && session.kind === proposal.proposed.kind;
   }
 
+  function mergeLocalDecisions(remote, localItems, calendarFiles) {
+    const localByFingerprint = new Map((localItems || []).map(item => [item.fingerprint, item]));
+    return (remote || []).map(item => {
+      const local = localByFingerprint.get(item.fingerprint);
+      if (!local || !['accepted', 'rejected'].includes(local.status)) return item;
+      // A failed old batch may have saved its decision without its calendar
+      // edit. Keep acceptance only when the local calendar actually contains it.
+      if (local.status === 'accepted' && !isFulfilled(calendarFiles, item)) return item;
+      return { ...item, status: local.status, ...(local.decisionAt ? { decisionAt: local.decisionAt } : {}) };
+    });
+  }
+
   function reconcile(items, calendarFiles) {
     const proposals = items || [];
     proposals.forEach(item => {
@@ -227,5 +239,5 @@
     sortCalendarSessions(round.sessions);
   }
 
-  return { REVIEWABLE, ACTIVE, openCount, filtered, grouped, proposalDate, proposalTime, compare, sameTarget, sessionTarget, isFulfilled, reconcile, sortCalendarSessions, apply, undo };
+  return { mergeLocalDecisions, REVIEWABLE, ACTIVE, openCount, filtered, grouped, proposalDate, proposalTime, compare, sameTarget, sessionTarget, isFulfilled, reconcile, sortCalendarSessions, apply, undo };
 });
