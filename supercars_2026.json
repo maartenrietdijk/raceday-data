@@ -7410,6 +7410,7 @@
     "city": "Bathurst",
     "country": "Australia",
     "countryCode": "AU",
+    "officialScheduleUrl": "https://www.supercars.com/events/2026-bathurst-1000/schedule",
     "sessions": [
       {
         "id": "supercars-2026-11-s01",
@@ -7483,8 +7484,7 @@
         "timeLocal": "11:30",
         "durationMinutes": 420
       }
-    ],
-    "officialScheduleUrl": "https://www.supercars.com/events/2026-bathurst-1000/schedule"
+    ]
   },
   {
     "id": "supercars-2026-10",
@@ -9830,40 +9830,7 @@
     "city": "Gold Coast",
     "country": "Australia",
     "countryCode": "AU",
-    "sessions": [
-      {
-        "id": "supercars-2026-12-s01",
-        "name": "Practice",
-        "kind": "practice",
-        "date": "2026-10-24",
-        "timeLocal": "10:00",
-        "durationMinutes": 60
-      },
-      {
-        "id": "supercars-2026-12-s02",
-        "name": "Qualifying",
-        "kind": "qualifying",
-        "date": "2026-10-24",
-        "timeLocal": "13:30",
-        "durationMinutes": 60
-      },
-      {
-        "id": "supercars-2026-12-s03",
-        "name": "Race 1",
-        "kind": "race",
-        "date": "2026-10-24",
-        "timeLocal": "17:15",
-        "durationMinutes": 60
-      },
-      {
-        "id": "supercars-2026-12-s04",
-        "name": "Race 2",
-        "kind": "race",
-        "date": "2026-10-25",
-        "timeLocal": "15:30",
-        "durationMinutes": 60
-      }
-    ]
+    "sessions": []
   },
   {
     "id": "supercars-2026-13",
@@ -9874,6 +9841,7 @@
     "city": "Melbourne",
     "country": "Australia",
     "countryCode": "AU",
+    "officialScheduleUrl": "https://www.supercars.com/events/2026-sandown/schedule",
     "sessions": [
       {
         "id": "supercars-2026-13-s01",
@@ -9899,8 +9867,7 @@
         "timeLocal": "12:30",
         "durationMinutes": 60
       }
-    ],
-    "officialScheduleUrl": "https://www.supercars.com/events/2026-sandown/schedule"
+    ]
   },
   {
     "id": "supercars-2026-14",
@@ -9911,6 +9878,7 @@
     "city": "Adelaide",
     "country": "Australia",
     "countryCode": "AU",
+    "officialScheduleUrl": "https://www.supercars.com/events/2026-adelaide/schedule",
     "sessions": [
       {
         "id": "supercars-2026-14-s01",
@@ -9944,7 +9912,6 @@
         "timeLocal": "14:30",
         "durationMinutes": 60
       }
-    ],
-    "officialScheduleUrl": "https://www.supercars.com/events/2026-adelaide/schedule"
+    ]
   }
 ]
