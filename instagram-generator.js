@@ -765,12 +765,13 @@
     roundedPath(ctx, x + 2.25, y + 2.25, width - 4.5, totalHeight - 4.5, PANEL_RADIUS - 2.25); ctx.stroke();
     const heading = dayHeading(group.dayKey);
     ctx.fillStyle = '#f7f7f8'; ctx.font = '650 24px Inter, sans-serif'; ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
-    const dayLabel = `${group.overview ? formatCompactDateRange((group.weekend || instagramState.weekend).start, (group.weekend || instagramState.weekend).end).toUpperCase() : heading.day.toUpperCase()}${group.continuation ? ' · CONTINUED' : ''}`;
+    const monthLabel = new Intl.DateTimeFormat('en-GB', { month: 'long', timeZone: 'UTC' }).format(new Date(`${group.dayKey}T12:00:00Z`)).toUpperCase();
+    const dayLabel = `${group.overview ? monthLabel : heading.day.toUpperCase()}${group.continuation ? ' · CONTINUED' : ''}`;
     const headingX = contentX;
     const headingY = y + 35;
     ctx.fillText(dayLabel, headingX, headingY);
-    const dateX = headingX + ctx.measureText(dayLabel).width + 20;
-    ctx.fillStyle = '#929299'; ctx.font = '550 20px Inter, sans-serif'; ctx.textAlign = 'left';
+    const dateX = group.overview ? contentX + contentWidth : headingX + ctx.measureText(dayLabel).width + 20;
+    ctx.fillStyle = '#929299'; ctx.font = '550 20px Inter, sans-serif'; ctx.textAlign = group.overview ? 'right' : 'left';
     ctx.fillText(group.overview ? `Week ${isoWeek(group.dayKey)}` : heading.date.toUpperCase(), dateX, headingY);
     let rowY = y + headerHeight;
     group.items.forEach(item => { drawSessionRow(ctx, item, rowY, rowHeight); rowY += rowHeight; });
