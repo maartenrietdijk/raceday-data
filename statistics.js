@@ -6,7 +6,7 @@
   function read(storage, key) { try { return storage.getItem(key); } catch { return null; } }
   let settings = {};
   try { settings = JSON.parse(read(root.localStorage, settingsKey) || '{}'); } catch { /* Use defaults. */ }
-  const stats = { endpoint: settings.endpoint || 'https://raceday-statistics.gentle-meadow-2bdd.workers.dev', days: [7, 30, 90].includes(settings.days) ? settings.days : 30,
+  const stats = { endpoint: settings.endpoint || 'https://raceday-statistics.gentle-meadow-2bdd.workers.dev', days: [1, 7, 30, 90].includes(settings.days) ? settings.days : 30,
     currency: ['EUR', 'USD', 'GBP'].includes(settings.currency) ? settings.currency : 'EUR',
     token: read(root.sessionStorage, tokenKey) || '', loading: false, error: '', data: null, nextRefresh: 0, settingsOpen: false };
 
@@ -104,12 +104,12 @@
     document.getElementById('mainContent').innerHTML = `<div class="statistics-page">
       <div class="dashboard-heading"><div><h1 class="dashboard-title">Statistieken</h1><p class="dashboard-sub">Abonnementen, klanten en omzet via RevenueCat.</p></div>
         <button class="btn btn-primary" type="button" onclick="RaceDayStatistics.refresh()" ${stats.loading || !configured ? 'disabled' : ''}>${editorIcon('sync')}<span>${stats.loading ? 'Ophalen…' : 'Verversen'}</span></button></div>
-      <div class="statistics-toolbar"><div class="field"><label for="statisticsPeriod">Omzetperiode</label><select id="statisticsPeriod" onchange="RaceDayStatistics.change('days', this.value)" ${stats.loading ? 'disabled' : ''}>${[7, 30, 90].map(days => `<option value="${days}" ${stats.days === days ? 'selected' : ''}>Afgelopen ${days} dagen</option>`).join('')}</select></div>
+      <div class="statistics-toolbar"><div class="field"><label for="statisticsPeriod">Omzetperiode</label><select id="statisticsPeriod" onchange="RaceDayStatistics.change('days', this.value)" ${stats.loading ? 'disabled' : ''}>${[1, 7, 30, 90].map(days => `<option value="${days}" ${stats.days === days ? 'selected' : ''}>${days === 1 ? 'Vandaag' : `Afgelopen ${days} dagen`}</option>`).join('')}</select></div>
         <div class="field"><label for="statisticsCurrency">Valuta</label><select id="statisticsCurrency" onchange="RaceDayStatistics.change('currency', this.value)" ${stats.loading ? 'disabled' : ''}>${['EUR', 'USD', 'GBP'].map(currency => `<option ${currency === stats.currency ? 'selected' : ''}>${currency}</option>`).join('')}</select></div>
         <p class="statistics-status" role="status" aria-live="polite">${stats.loading ? 'Gegevens ophalen…' : updated ? 'Opgehaald: ' + escape(updated) : 'Nog niet opgehaald'}</p></div>
       ${stats.error ? `<div class="statistics-message" role="alert">${escape(stats.error)}${stats.data ? ' Je ziet de laatst opgehaalde gegevens.' : ''}</div>` : ''}
       ${stats.data?.warnings?.length ? `<div class="statistics-message" role="status">${stats.data.warnings.map(escape).join('<br>')}</div>` : ''}
-      ${!configured ? '<section class="statistics-empty"><h2>Koppel RevenueCat</h2><p>Stel hieronder je koppeling in om je cijfers te zien. Daarna worden ze bij het laden van het dashboard automatisch opgehaald.</p></section>' : stats.loading && !stats.data ? '<p class="statistics-muted" aria-busy="true">RevenueCat-statistieken laden…</p>' : stats.data ? `<div class="statistics-layout"><section class="statistics-panel"><h2>Kerncijfers</h2><p class="statistics-muted">De periode staat per cijfer vermeld.</p>${metricRows()}</section><section class="statistics-panel statistics-revenue"><h2>Dagelijkse omzet</h2><p class="statistics-muted">${escape(stats.data.range.start_date)} t/m ${escape(stats.data.range.end_date)} · De huidige dag kan nog onvolledig zijn.</p>${revenueChart()}</section></div>` : '<p class="statistics-muted">Klik op Verversen om je cijfers op te halen.</p>'}
+      ${!configured ? '<section class="statistics-empty"><h2>Koppel RevenueCat</h2><p>Stel hieronder je koppeling in om je cijfers te zien. Daarna worden ze bij het laden van het dashboard automatisch opgehaald.</p></section>' : stats.loading && !stats.data ? '<p class="statistics-muted" aria-busy="true">RevenueCat-statistieken laden…</p>' : stats.data ? `<div class="statistics-layout"><section class="statistics-panel"><h2>Kerncijfers</h2><p class="statistics-muted">De periode staat per cijfer vermeld.</p>${metricRows()}</section><section class="statistics-panel statistics-revenue"><h2>Dagelijkse omzet</h2><p class="statistics-muted">${escape(stats.data.range.start_date)} t/m ${escape(stats.data.range.end_date)} (UTC) · De huidige dag kan nog onvolledig zijn.</p>${revenueChart()}</section></div>` : '<p class="statistics-muted">Klik op Verversen om je cijfers op te halen.</p>'}
       ${connectionForm()}</div>`;
     mountRevenueChart();
   }
@@ -153,7 +153,7 @@
   }
   function change(key, value) {
     if (stats.loading) return;
-    if (key === 'days' && [7, 30, 90].includes(Number(value))) stats.days = Number(value);
+    if (key === 'days' && [1, 7, 30, 90].includes(Number(value))) stats.days = Number(value);
     else if (key === 'currency' && ['EUR', 'USD', 'GBP'].includes(value)) stats.currency = value;
     else return;
     stats.data = null; stats.error = ''; saveSettings(); renderIfVisible(); refresh();
