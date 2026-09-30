@@ -442,6 +442,9 @@
   @keyframes spin { to { transform: rotate(360deg); } }
 
   select option { background: var(--card); }
+  #instagramWeekendControls { display: grid; gap: 8px; }
+  #instagramWeekendControls[hidden], #instagramWeekList[hidden] { display: none; }
+  #instagramWeekList .instagram-session-toggle input { width: 16px; min-height: 16px; height: 16px; padding: 0; }
 </style>
 <style>
   /* Wedding Studio design system */
@@ -1193,7 +1196,15 @@
             <option value="day">Schema voor één dag</option>
             <option value="dayNoTimes">Eén dag zonder tijden</option>
             <option value="overview">Weekendoverzicht zonder tijden</option>
+            <option value="monthOverview">Maandoverzicht zonder tijden</option>
           </select>
+          <label for="instagramMonth">Kies een maand</label>
+          <input id="instagramMonth" type="month" onchange="setInstagramMonth(this.value)">
+          <div id="instagramWeekendControls">
+            <label for="instagramWeekend">Kies een weekend</label>
+            <select id="instagramWeekend" onchange="setInstagramWeekend(this.value)"></select>
+          </div>
+          <div id="instagramWeekList" role="group" aria-label="Weken in de export" hidden></div>
           <label class="instagram-day-picker" id="instagramDayPicker" for="instagramDay">Kies een dag</label>
           <select class="instagram-day-picker" id="instagramDay" onchange="setInstagramDay(this.value)"></select>
         </div>
