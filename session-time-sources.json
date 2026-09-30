@@ -272,7 +272,13 @@
       "name": "DTM",
       "startUrl": "https://www.dtm.com/en/events",
       "eventUrlTemplate": "https://api.dtm.com/data?query=eventDetails&slug={slug}-{year}&lang=en",
-      "eventSlugAliases": {"nurburgring": "nuerburgring"},
+      "eventSlugAliases": {
+        "nurburgring": "nuerburgring",
+        "hockenheimring": "hockenheim-finale",
+        "motorsport arena oschersleben": "oschersleben",
+        "dekra lausitzring": "lausitzring",
+        "circuit zandvoort": "zandvoort"
+      },
       "allowedDomains": ["dtm.com", "www.dtm.com", "api.dtm.com"],
       "sourceKind": "dtm-api",
       "eventDiscovery": "Follow more info for the matching official DTM event and prefer its published schedule.",

@@ -2050,6 +2050,20 @@ def nascar_event_in_week(event: dict, week: Optional[Tuple[date, date]]) -> bool
     return bool(dates) and all(week[0] <= day <= week[1] for day in dates)
 
 
+def dtm_refresh_due(event: dict, checked_at: datetime) -> bool:
+    """Recheck filled DTM times during the month before their race weekend."""
+    dates = []
+    for session in event.get("sessions", []):
+        try:
+            dates.append(date.fromisoformat(str(session.get("date") or "")))
+        except ValueError:
+            continue
+    if not dates:
+        return False
+    today = checked_at.astimezone(ZoneInfo("Europe/Berlin")).date()
+    return 0 <= (max(dates) - today).days <= 30
+
+
 def calendar_inventory(
     root: Path,
     scope: set,
@@ -2082,7 +2096,9 @@ def calendar_inventory(
                     continue
                 known_kinds = {session.get("kind") for session in sessions}
                 upcoming_incomplete_nascar = not {"practice", "qualifying"}.issubset(known_kinds)
-            if event_ids or include_filled or has_tbc or upcoming_incomplete_nascar:
+            if event_ids or include_filled or has_tbc or upcoming_incomplete_nascar or (
+                series_id == "dtm" and dtm_refresh_due(event, checked_at or datetime.now(timezone.utc))
+            ):
                 inventory.append((path.name, event))
     return inventory
 
@@ -2268,6 +2284,9 @@ def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Opti
                 sessions = parse_british_gt_pdf(source, event_year, source_tz)
             elif cfg["sourceKind"] == "dtm-api":
                 sessions = parse_dtm_api(source, event_year, source_tz)
+                calendar_dates = {item.get("date") for item in event.get("sessions", []) if item.get("date")}
+                if sessions and calendar_dates and not any(item.date in calendar_dates for item in sessions):
+                    raise SourceError("DTM timetable dates do not match the selected calendar event")
             elif cfg["sourceKind"] == "formula-e-schedule":
                 sessions = parse_formula_e_schedule(source, event, event_year, source_tz)
             elif cfg["sourceKind"] == "imsa-event-schedule":
@@ -2361,7 +2380,11 @@ def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Opti
             if not sessions:
                 raise SourceError("official page contains no reliably parseable race sessions yet")
             editor_tz = registry.get("editorTimeZones", {}).get(series_id, registry["editorTimeZones"]["default"])
-            proposals.extend(build_event_proposals(cfg, filename, event, source, sessions, editor_tz, checked_at, include_filled, replace_filled))
+            refresh_filled_dtm = series_id == "dtm" and dtm_refresh_due(event, scan_instant)
+            proposals.extend(build_event_proposals(
+                cfg, filename, event, source, sessions, editor_tz, checked_at,
+                include_filled, replace_filled or (refresh_filled_dtm and not include_filled),
+            ))
             source_overview["{}:{}".format(series_id, event.get("id"))] = {
                 "seriesId": series_id, "eventId": event.get("id"), "eventName": event.get("raceName"),
                 "stableUrl": stable_url, "finalUrl": source.final_url, "title": source.title,
