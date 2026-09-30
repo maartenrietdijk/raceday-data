@@ -68,24 +68,37 @@
     const chart = stats.data?.chart;
     const series = points(chart);
     if (!series.length) return '<div class="empty compact"><h3>Geen omzetgegevens</h3><p>Voor deze periode is nog geen omzetgrafiek beschikbaar.</p></div>';
-    const low = Math.min(0, ...series.map(point => point.value));
-    const high = Math.max(0, ...series.map(point => point.value));
-    const span = high - low || 1;
-    const x = point => 78 + (point.date - series[0].date) / (series.at(-1).date - series[0].date || 1) * 654;
-    const y = value => 22 + (high - value) / span * 178;
     const currency = chart.yaxis_currency || stats.data.currency;
     const dateLabel = date => date.toLocaleDateString('nl-NL', { day: 'numeric', month: 'short', timeZone: 'UTC' });
-    const grid = [0, 0.5, 1].map(ratio => {
-      const value = high - ratio * span;
-      return `<line x1="78" y1="${y(value)}" x2="732" y2="${y(value)}" class="statistics-grid-line"/><text x="68" y="${y(value) + 4}" text-anchor="end">${escape(format(value, '$', currency))}</text>`;
-    }).join('');
-    return `<svg class="statistics-chart" viewBox="0 0 750 240" role="img" aria-label="Dagelijkse omzet in ${escape(currency)} van ${escape(dateLabel(series[0].date))} tot ${escape(dateLabel(series.at(-1).date))}">
-      ${grid}<polyline points="${series.map(point => `${x(point)},${y(point.value)}`).join(' ')}" class="statistics-chart-line"/>
-      ${series.map(point => `<circle cx="${x(point)}" cy="${y(point.value)}" r="${series.length === 1 ? 4 : 2.5}" class="statistics-chart-point"><title>${escape(dateLabel(point.date))}: ${escape(format(point.value, '$', currency))}${point.incomplete ? ' (onvolledig)' : ''}</title></circle>`).join('')}
-      <text x="78" y="229">${escape(dateLabel(series[0].date))}</text><text x="732" y="229" text-anchor="end">${escape(dateLabel(series.at(-1).date))}</text>
-    </svg><details class="statistics-table"><summary>Bekijk dagbedragen</summary><div><table><thead><tr><th scope="col">Datum</th><th scope="col">Omzet</th><th scope="col">Status</th></tr></thead><tbody>${series.map(point => `<tr><td>${escape(dateLabel(point.date))}</td><td>${escape(format(point.value, '$', currency))}</td><td>${point.incomplete ? 'Onvolledig' : 'Beschikbaar'}</td></tr>`).join('')}</tbody></table></div></details>`;
+    return `<div id="statisticsRevenueChart" class="statistics-evil-chart" role="region" aria-label="Dagelijkse omzet in ${escape(currency)}. Gebruik de pijltjestoetsen om dagbedragen te bekijken."><p class="statistics-muted" role="status">Grafiek laden…</p></div><details class="statistics-table"><summary>Bekijk dagbedragen</summary><div><table><thead><tr><th scope="col">Datum</th><th scope="col">Omzet</th><th scope="col">Status</th></tr></thead><tbody>${series.map(point => `<tr><td>${escape(dateLabel(point.date))}</td><td>${escape(format(point.value, '$', currency))}</td><td>${point.incomplete ? 'Onvolledig' : 'Beschikbaar'}</td></tr>`).join('')}</tbody></table></div></details>`;
+  }
+  let chartLoader;
+  function mountRevenueChart() {
+    const container = document.getElementById('statisticsRevenueChart');
+    if (!container) return;
+    const chart = stats.data?.chart;
+    const series = points(chart);
+    const currency = chart?.yaxis_currency || stats.data?.currency || stats.currency;
+    if (!chartLoader) {
+      chartLoader = root.RaceDayEvilCharts ? Promise.resolve(root.RaceDayEvilCharts) : new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = 'statistics-chart.js?v=20260930-1';
+        script.onload = () => root.RaceDayEvilCharts ? resolve(root.RaceDayEvilCharts) : reject(new Error('Grafiekmodule ontbreekt.'));
+        script.onerror = () => { script.remove(); reject(new Error('Grafiekmodule kon niet worden geladen.')); };
+        document.head.appendChild(script);
+      });
+    }
+    chartLoader.then(renderer => {
+      if (document.getElementById('statisticsRevenueChart') === container) renderer.mount(container, series, currency);
+    }).catch(() => {
+      chartLoader = null;
+      if (document.getElementById('statisticsRevenueChart') === container) {
+        container.textContent = 'De grafiek kon niet worden geladen. Controleer of statistics-chart.js is geüpload. De dagbedragen staan in de tabel hieronder.';
+      }
+    });
   }
   function render() {
+    root.RaceDayEvilCharts?.unmount();
     const configured = Boolean(stats.endpoint && stats.token);
     const updated = stats.data?.fetched_at ? new Date(stats.data.fetched_at).toLocaleString('nl-NL') : '';
     document.getElementById('mainContent').innerHTML = `<div class="statistics-page">
@@ -98,6 +111,7 @@
       ${stats.data?.warnings?.length ? `<div class="statistics-message" role="status">${stats.data.warnings.map(escape).join('<br>')}</div>` : ''}
       ${!configured ? '<section class="statistics-empty"><h2>Koppel RevenueCat</h2><p>Stel hieronder je koppeling in om je cijfers te zien. Daarna worden ze bij het laden van het dashboard automatisch opgehaald.</p></section>' : stats.loading && !stats.data ? '<p class="statistics-muted" aria-busy="true">RevenueCat-statistieken laden…</p>' : stats.data ? `<div class="statistics-layout"><section class="statistics-panel"><h2>Kerncijfers</h2><p class="statistics-muted">De periode staat per cijfer vermeld.</p>${metricRows()}</section><section class="statistics-panel statistics-revenue"><h2>Dagelijkse omzet</h2><p class="statistics-muted">${escape(stats.data.range.start_date)} t/m ${escape(stats.data.range.end_date)} · De huidige dag kan nog onvolledig zijn.</p>${revenueChart()}</section></div>` : '<p class="statistics-muted">Klik op Verversen om je cijfers op te halen.</p>'}
       ${connectionForm()}</div>`;
+    mountRevenueChart();
   }
   async function refresh() {
     if (stats.loading || !stats.endpoint || !stats.token) return;
