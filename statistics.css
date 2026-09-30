@@ -5,15 +5,19 @@
 .statistics-toolbar select { min-height: 42px; width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: 4px; background: var(--card); color: var(--text); font: inherit; }
 .statistics-status { margin: 0 0 10px auto; font-size: 12px; color: var(--muted); }
 .statistics-layout { display: grid; grid-template-columns: minmax(270px, 1fr) minmax(0, 2fr); gap: 28px; }
-.statistics-panel { min-width: 0; padding: 22px; background: var(--card); border-radius: 6px; }
+.statistics-panel { min-width: 0; padding: 24px; background: var(--card); border-radius: 6px; }
+[data-theme="dark"] .statistics-panel { background: #111; }
 .statistics-muted, .statistics-hint { font-size: 12px; line-height: 1.6; color: var(--muted); }
 .statistics-muted { margin: 0 0 18px; }
 .statistics-metrics { margin: 0; font-variant-numeric: tabular-nums; }
-.statistics-metrics > div { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 17px 0; border-bottom: 1px solid var(--border2); }
+.statistics-metrics > div { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 20px 0; border-bottom: 1px solid var(--border); }
 .statistics-metrics > div:last-child { border-bottom: 0; padding-bottom: 0; }
 .statistics-metrics dt { font-size: 13px; line-height: 1.5; }
-.statistics-metrics dt span { display: block; font-size: 11px; color: var(--muted); }
-.statistics-metrics dd { margin: 0; font-size: 20px; font-weight: 550; white-space: nowrap; }
+.statistics-metrics dd { display: flex; flex-direction: column; align-items: flex-end; gap: 9px; margin: 0; }
+.statistics-metric-value { font-size: 25px; line-height: 1.2; font-weight: 650; white-space: nowrap; letter-spacing: -.02em; }
+.statistics-period { padding: 5px 9px; border-radius: 4px; background: var(--surface); color: var(--muted); font-size: 11px; line-height: 1.5; white-space: nowrap; }
+.statistics-period.is-current { background: #e2f5e9; color: #166534; }
+[data-theme="dark"] .statistics-period.is-current { background: #002f19; color: #86efac; }
 .statistics-evil-chart { width: 100%; height: 310px; min-width: 0; margin: 12px 0 18px; color: var(--text); font: 12px var(--sans); }
 .statistics-evil-container { width: 100%; height: 100%; min-height: 0; position: relative; display: flex; flex-direction: column; }
 .statistics-evil-container > .recharts-responsive-container { flex: 1; min-height: 0; }

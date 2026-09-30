@@ -8,7 +8,17 @@
   try { settings = JSON.parse(read(root.localStorage, settingsKey) || '{}'); } catch { /* Use defaults. */ }
   const stats = { endpoint: settings.endpoint || 'https://raceday-statistics.gentle-meadow-2bdd.workers.dev', days: [1, 7, 30, 90].includes(settings.days) ? settings.days : 30,
     currency: ['EUR', 'USD', 'GBP'].includes(settings.currency) ? settings.currency : 'EUR',
-    token: read(root.sessionStorage, tokenKey) || '', loading: false, error: '', data: null, nextRefresh: 0, settingsOpen: false };
+    token: read(root.localStorage, tokenKey) || read(root.sessionStorage, tokenKey) || '', loading: false, error: '', data: null, nextRefresh: 0, settingsOpen: false };
+
+  function rememberToken() {
+    try {
+      if (stats.token) root.localStorage.setItem(tokenKey, stats.token);
+      else root.localStorage.removeItem(tokenKey);
+      root.sessionStorage.removeItem(tokenKey);
+    } catch { /* The connection still works when browser storage is unavailable. */ }
+  }
+  // Preserve access codes from the previous session-only storage.
+  if (stats.token) rememberToken();
 
   function points(chart) {
     if (!chart || !Array.isArray(chart.values)) return [];
@@ -32,7 +42,7 @@
   function saveSettings() {
     try {
       root.localStorage.setItem(settingsKey, JSON.stringify({ endpoint: stats.endpoint, days: stats.days, currency: stats.currency }));
-      root.sessionStorage.setItem(tokenKey, stats.token);
+      rememberToken();
     } catch { /* The connection still works without browser storage. */ }
   }
   function renderIfVisible() { if (typeof state !== 'undefined' && state.activeView === 'statistics') render(); }
@@ -42,7 +52,7 @@
       <p>Vul de URL van je statistieken-backend en de bijbehorende toegangscode in. Je RevenueCat-sleutel blijft op de server.</p>
       <form onsubmit="event.preventDefault(); RaceDayStatistics.connect(this)">
         <div class="field"><label for="statisticsEndpoint">Backend-URL</label><input id="statisticsEndpoint" name="endpoint" type="url" required placeholder="https://raceday-statistics.…workers.dev" value="${escape(stats.endpoint)}" autocomplete="url"></div>
-        <div class="field"><label for="statisticsToken">Toegangscode</label><input id="statisticsToken" name="token" type="password" required value="${escape(stats.token)}" autocomplete="off"><span class="statistics-hint">Bewaard zolang dit browsertabblad open is.</span></div>
+        <div class="field"><label for="statisticsToken">Toegangscode</label><input id="statisticsToken" name="token" type="password" required value="${escape(stats.token)}" autocomplete="off"><span class="statistics-hint">Lokaal bewaard in deze browser. Ontkoppelen wist de code.</span></div>
         <button class="btn btn-primary" type="submit" ${stats.loading ? 'disabled' : ''}>Koppelen en ophalen</button>
         ${stats.endpoint ? `<button class="btn btn-ghost" type="button" onclick="RaceDayStatistics.disconnect()" ${stats.loading ? 'disabled' : ''}>Ontkoppelen</button>` : ''}
       </form>
@@ -50,18 +60,19 @@
     </details>`;
   }
   function metricRows() {
-    const metrics = stats.data?.overview?.metrics;
-    if (!Array.isArray(metrics) || !metrics.length) return '<p class="statistics-muted">Geen kerncijfers beschikbaar.</p>';
+    const metrics = Array.isArray(stats.data?.overview?.metrics) ? stats.data.overview.metrics : [];
     const coreMetrics = [
       ['active_trials', 'Active Trials'], ['active_subscriptions', 'Active Subscriptions'],
       ['mrr', 'MRR'], ['revenue', 'Revenue'], ['new_customers', 'New Customers'],
+      ['new_customers_today', 'New Customers vandaag'],
     ];
     return `<dl class="statistics-metrics">${coreMetrics.map(([id, label]) => {
-      const metric = metrics.find(item => item.id === id) || { id, value: null, name: label, description: 'Niet beschikbaar' };
+      const metric = (id === 'new_customers_today' ? stats.data?.new_customers_today : metrics.find(item => item.id === id)) || { id, value: null, name: label, description: 'Niet beschikbaar' };
       const period = String(metric.period || '').match(/^P(\d+)D$/);
-      const caption = period && Number(period[1]) > 0 ? `Afgelopen ${Number(period[1])} dagen` : period ? 'Huidige stand' : metric.description || '';
+      const caption = id === 'new_customers_today' ? 'Vandaag (UTC)' : period && Number(period[1]) > 0 ? `Afgelopen ${Number(period[1])} dagen` : period ? 'Huidige stand' : metric.description || '';
       const updated = metric.last_updated_at ? new Date(metric.last_updated_at).toLocaleString('nl-NL') : '';
-      return `<div><dt>${escape(label)}<span title="${escape(updated ? 'Bron bijgewerkt: ' + updated : '')}">${escape(caption)}</span></dt><dd>${escape(format(metric.value, metric.unit, stats.data.overview.currency || stats.data.currency))}</dd></div>`;
+      const current = metric.value !== null && metric.value !== undefined && (id === 'new_customers_today' || metric.period === 'P0D');
+      return `<div><dt>${escape(label)}</dt><dd><span class="statistics-metric-value">${escape(format(metric.value, metric.unit, stats.data.overview?.currency || stats.data.currency))}</span><span class="statistics-period ${current ? 'is-current' : ''}" title="${escape(updated ? 'Bron bijgewerkt: ' + updated : id === 'new_customers_today' ? 'De huidige UTC-dag loopt nog; dit aantal kan nog veranderen.' : '')}">${escape(caption)}</span></dd></div>`;
     }).join('')}</dl>`;
   }
   function revenueChart() {
@@ -82,7 +93,7 @@
     if (!chartLoader) {
       chartLoader = root.RaceDayEvilCharts ? Promise.resolve(root.RaceDayEvilCharts) : new Promise((resolve, reject) => {
         const script = document.createElement('script');
-        script.src = 'statistics-chart.js?v=20260930-1';
+        script.src = 'statistics-chart.js?v=20261001-1';
         script.onload = () => root.RaceDayEvilCharts ? resolve(root.RaceDayEvilCharts) : reject(new Error('Grafiekmodule ontbreekt.'));
         script.onerror = () => { script.remove(); reject(new Error('Grafiekmodule kon niet worden geladen.')); };
         document.head.appendChild(script);
@@ -132,7 +143,7 @@
         if (response.status === 429) stats.nextRefresh = Date.now() + Math.max(60, Number(response.headers.get('Retry-After')) || 60) * 1000;
         throw new Error(data.error || 'Ophalen mislukt. Probeer opnieuw.');
       }
-      if (!data.range || (!data.overview && !data.chart)) throw new Error('De backend gaf geen statistieken terug.');
+      if (!data.range || (!data.overview && !data.chart && !data.new_customers_today)) throw new Error('De backend gaf geen statistieken terug.');
       stats.data = data;
       stats.nextRefresh = Date.now() + 15000;
     } catch (error) {
