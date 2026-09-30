@@ -719,21 +719,32 @@ def parse_supercars_schedule(fetch: FetchResult, year: int, source_timezone: str
     Official news articles use ordinary tables, so those are supported as a
     fallback with the same exact category filter.
     """
-    decoded = html.unescape(fetch.body).replace(r'\"', '"')
     track_zone = ZoneInfo(source_timezone)
     expected_series = normalize(series_name)
     sessions: List[SourceSession] = []
-
-    for segment in decoded.split('{"specificLogoDark"')[1:]:
-        series_match = re.search(r'"series":\{"name":"([^"]+)"', segment)
-        if not series_match or normalize(series_match.group(1)) != expected_series:
+    # Decode the Next.js strings before reading complete JSON objects. Field
+    # order and logo presence are not record boundaries.
+    chunks = []
+    decoder = json.JSONDecoder()
+    for match in re.finditer(r"self\.__next_f\.push\(", fetch.body):
+        try:
+            value, _ = decoder.raw_decode(fetch.body[match.end():])
+            if isinstance(value, list) and len(value) == 2 and value[0] == 1 and isinstance(value[1], str):
+                chunks.append(value[1])
+        except ValueError:
             continue
-        fields = {}
-        for field in ("name", "startDate", "endDate", "type"):
-            match = re.search(r'"{}":"([^"]+)"'.format(field), segment)
-            if match:
-                fields[field] = match.group(1)
-        name = fields.get("name", "")
+    decoded = "".join(chunks) if chunks else html.unescape(fetch.body)
+    records = []
+    for match in re.finditer(r'"raceSessionsCollection"\s*:\s*', decoded):
+        try:
+            collection, _ = decoder.raw_decode(decoded[match.end():])
+            records.extend(collection.get("items", []))
+        except (ValueError, AttributeError):
+            continue
+    for fields in records:
+        if not isinstance(fields, dict) or normalize((fields.get("series") or {}).get("name", "")) != expected_series:
+            continue
+        name = re.sub(r"\bTTSO\b", "Top Ten Shootout", fields.get("name", ""))
         if not fields.get("startDate") or not normalize_kind(name):
             continue
         try:
@@ -1874,12 +1885,37 @@ def build_event_proposals(
     proposals: List[dict] = []
     existing = event.get("sessions", [])
     matched_ids = set()
+    supercars = series_cfg.get("sourceKind") == "supercars-embedded-schedule"
+    race_numbers = sorted({session_number(item.name) for item in official_sessions if normalize_kind(item.name) == "race" and session_number(item.name) is not None}) if supercars else []
+    runs = []
+    for number in race_numbers:
+        if runs and number == runs[-1][-1] + 1:
+            runs[-1].append(number)
+        else:
+            runs.append([number])
+    longest = max(runs, key=len) if runs else []
+    # A discontinuous race number in the publisher's data needs review; do not
+    # silently count it as an extra championship race.
+    suspect_numbers = set(race_numbers) - set(longest) if len(longest) >= 2 and len(runs) > 1 else set()
+    weekend_races = sorted([item for item in official_sessions if normalize_kind(item.name) == "race" and session_number(item.name) not in suspect_numbers], key=lambda item: (item.date, item.local_time)) if supercars else []
+
     for official in sorted(official_sessions, key=lambda item: (item.date, item.local_time, normalize(item.name))):
         kind = normalize_kind(official.name)
         if not kind:
             continue
         available = [item for item in existing if item.get("id") not in matched_ids]
         matched, conflict = match_session(official, available)
+        if supercars and kind == "race":
+            # Match on race day, never on the season/weekend number alone.
+            same_day = [item for item in available if normalize_kind(item.get("name", "")) == "race" and item.get("date") == official.date]
+            if session_number(official.name) in suspect_numbers:
+                matched, conflict = None, "Het officiële racenummer valt buiten de reeks van dit weekend. Controleer deze extra race op de bronpagina."
+            elif len(same_day) == 1:
+                matched, conflict = same_day[0], None
+            elif len(same_day) > 1:
+                matched, conflict = None, "Meerdere races op dezelfde dag: controleer de koppeling handmatig."
+            else:
+                matched, conflict = None, None
         filled_session = bool(matched and matched.get("timeLocal") is not None)
         if filled_session and not (include_filled or replace_filled):
             matched_ids.add(matched.get("id"))
@@ -1894,6 +1930,8 @@ def build_event_proposals(
             rally_session_name_case((matched or {}).get("name") or official.name)
             if kind == "stage" else official.name
         )
+        if supercars and kind == "race" and official in weekend_races:
+            proposed_name = "Race {}".format(weekend_races.index(official) + 1)
         is_match = bool(is_match and (not matched or matched.get("name") == proposed_name))
         proposal = proposal_base(series_cfg, filename, event, source, checked_at)
         actionable_correction = bool(filled_session and replace_filled and not is_match and not conflict)
@@ -1906,6 +1944,7 @@ def build_event_proposals(
                 "timeLocal": matched.get("timeLocal") if matched else None,
                 "durationMinutes": matched.get("durationMinutes") if matched else None,
             },
+            "sourceSessionName": official.name,
             "sourceTime": {"date": official.date, "time": official.local_time, "timeZone": official.timezone},
             "editorTimeZone": editor_timezone,
             "proposed": None if conflict else {
@@ -2426,7 +2465,13 @@ def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Opti
                 calendar_dates = sorted({str(item.get("date")) for item in event.get("sessions", []) if item.get("date")})
                 if not calendar_dates or not any(item.date in calendar_dates for item in sessions):
                     raise SourceError("De gevonden datums passen niet bij dit event, of de eventdatums ontbreken. Controleer de eventlink en de datums in Agenda.")
-                if any(item.date < calendar_dates[0] or item.date > calendar_dates[-1] for item in sessions):
+                first_date, last_date = calendar_dates[0], calendar_dates[-1]
+                if cfg["sourceKind"] == "supercars-embedded-schedule":
+                    alias = cfg.get("eventSlugAliases", {}).get(normalize(event.get("raceName", "")))
+                    expected_path = "/events/{}-{}/schedule".format(event_year, alias) if alias else None
+                    if expected_path and urlparse(source.final_url).path.rstrip("/") == expected_path:
+                        first_date = (date.fromisoformat(first_date) - timedelta(days=1)).isoformat()
+                if any(item.date < first_date or item.date > last_date for item in sessions):
                     raise SourceError("De bron bevat sessies buiten de datums van dit event. De koppeling is onzeker; controleer de link en eventdatums.")
             editor_tz = registry.get("editorTimeZones", {}).get(series_id, registry["editorTimeZones"]["default"])
             refresh_filled_source = (series_id == "dtm" or bool(manual_url)) and event_refresh_due(event, scan_instant)

@@ -81,3 +81,11 @@ A manual link takes precedence over every automatic source, including feed-based
 Events with manual links and filled times are rechecked during the 30 days before the weekend ends. NASCAR retains its existing current-race-week limit. The scheduled scanner continues to propose changes for review; it does not overwrite calendars. Manual scans read the dispatched GitHub branch so newly published links are used on that branch.
 
 The series page displays the existing editor input timezone, its current clock, the Dutch clock and their current difference. IANA timezone rules account for daylight saving. The difference is explicitly current, since it may differ on the race date. The scanner registry now matches the existing America/New_York input contract for IndyCar and Indy NXT.
+
+## Supercars event schedules
+
+The reader decodes complete `raceSessionsCollection` records from the official Next.js stream, independent of field order. Only the Repco Supercars Championship category is accepted, including qualifying and TTSO (Top Ten Shootout). Offset-aware starts are converted through the track timezone to `Australia/Sydney`, which is the app calendar contract; the browser's My Time setting is irrelevant. Adelaide 26 November 2026 15:15 becomes 15:45 in the app calendar (04:45 UTC).
+
+Races are numbered per weekend in proposals. Existing race slots are matched by date, not the official season race number. Discontinuous official race numbers require review and do not produce an actionable replacement. The original official name is retained as `sourceSessionName`. An exact registered Supercars event URL can include practice one day before an older calendar's first session; other date mismatches still fail validation.
+
+Regression fixture: the official Adelaide schedule fetched on 30 September 2026. Run `python3 -m unittest discover -s tests -p 'test_supercars_schedule.py'`.
