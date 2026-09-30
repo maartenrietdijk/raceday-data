@@ -108,7 +108,8 @@
     const session = matchingCalendarSession(calendarFiles, proposal);
     if (!session || !proposal?.proposed) return false;
     return (session._date || session.date || '') === proposal.proposed.date &&
-      (session._time || session.timeLocal || '') === proposal.proposed.timeLocal;
+      (session._time || session.timeLocal || '') === proposal.proposed.timeLocal &&
+      session.name === proposal.proposed.name && session.kind === proposal.proposed.kind;
   }
 
   function reconcile(items, calendarFiles) {
@@ -153,17 +154,21 @@
     const { round } = findTarget(calendarFiles, proposal);
     if (!Array.isArray(round.sessions)) round.sessions = [];
     if (proposal.proposalType === 'new-session') {
-      const existing = round.sessions.find(item => item.id === proposal.proposed.sessionId);
-      if (existing) {
-        const sameValues = existing.name === proposal.proposed.name &&
-          existing.kind === proposal.proposed.kind &&
-          existing.date === proposal.proposed.date &&
-          existing.timeLocal === proposal.proposed.timeLocal;
-        if (sameValues) return { type: 'noop', sessionId: existing.id };
-        throw new Error('Er bestaat al een andere conceptsessie met deze ID. Controleer het event handmatig.');
-      }
+      const sameValues = item => item.name === proposal.proposed.name &&
+        item.kind === proposal.proposed.kind &&
+        (item._date || item.date) === proposal.proposed.date &&
+        (item._time || item.timeLocal) === proposal.proposed.timeLocal;
+      const fulfilled = round.sessions.find(sameValues);
+      if (fulfilled) return { type: 'noop', sessionId: fulfilled.id };
+      const sameSession = round.sessions.find(item => item.name === proposal.proposed.name &&
+        item.kind === proposal.proposed.kind && (item._date || item.date) === proposal.proposed.date);
+      if (sameSession) throw new Error(`De nieuwe sessie ${proposal.proposed.name} bestaat al met een andere tijd. Controleer je concept of vernieuw de broncontrole.`);
+      let createdId = proposal.proposed.sessionId;
+      if (!createdId) throw new Error('Het voorstel bevat geen sessie-ID. Vernieuw de broncontrole.');
+      let suffix = 2;
+      while (round.sessions.some(item => item.id === createdId)) createdId = `${proposal.proposed.sessionId}-${suffix++}`;
       const created = {
-        id: proposal.proposed.sessionId,
+        id: createdId,
         name: proposal.proposed.name,
         kind: proposal.proposed.kind,
         date: proposal.proposed.date,
@@ -178,6 +183,8 @@
     if (index < 0) throw new Error('Sessie niet gevonden in de conceptkalender.');
     const session = round.sessions[index];
     const before = JSON.parse(JSON.stringify(session));
+    session.name = proposal.proposed.name || session.name;
+    session.kind = proposal.proposed.kind || session.kind;
     session.date = proposal.proposed.date;
     session.timeLocal = proposal.proposed.timeLocal;
     session.durationMinutes = proposal.proposed.durationMinutes || session.durationMinutes;

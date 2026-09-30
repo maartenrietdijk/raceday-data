@@ -1899,12 +1899,24 @@ def build_event_proposals(
     suspect_numbers = set(race_numbers) - set(longest) if len(longest) >= 2 and len(runs) > 1 else set()
     weekend_races = sorted([item for item in official_sessions if normalize_kind(item.name) == "race" and session_number(item.name) not in suspect_numbers], key=lambda item: (item.date, item.local_time)) if supercars else []
 
+    supercars_names = {}
+    if supercars:
+        for label, group in [
+            ("Race", weekend_races),
+            ("Practice", [item for item in official_sessions if normalize_kind(item.name) == "practice"]),
+            ("Qualifying", [item for item in official_sessions if normalize_kind(item.name) == "qualifying" and not re.search(r"shootout|\bttso\b", item.name, re.I)]),
+            ("Top Ten Shootout", [item for item in official_sessions if normalize_kind(item.name) == "qualifying" and re.search(r"shootout|\bttso\b", item.name, re.I)]),
+        ]:
+            for number, item in enumerate(sorted(group, key=lambda item: (item.date, item.local_time)), 1):
+                supercars_names[id(item)] = "{} {}".format(label, number)
+
     for official in sorted(official_sessions, key=lambda item: (item.date, item.local_time, normalize(item.name))):
         kind = normalize_kind(official.name)
         if not kind:
             continue
         available = [item for item in existing if item.get("id") not in matched_ids]
-        matched, conflict = match_session(official, available)
+        matching_official = SourceSession(supercars_names.get(id(official), official.name), official.date, official.local_time, official.timezone, official.duration_minutes) if supercars else official
+        matched, conflict = match_session(matching_official, available)
         if supercars and kind == "race":
             # Match on race day, never on the season/weekend number alone.
             same_day = [item for item in available if normalize_kind(item.get("name", "")) == "race" and item.get("date") == official.date]
@@ -1930,15 +1942,15 @@ def build_event_proposals(
             rally_session_name_case((matched or {}).get("name") or official.name)
             if kind == "stage" else official.name
         )
-        if supercars and kind == "race" and official in weekend_races:
-            proposed_name = "Race {}".format(weekend_races.index(official) + 1)
+        if supercars:
+            proposed_name = supercars_names.get(id(official), official.name)
         is_match = bool(is_match and (not matched or matched.get("name") == proposed_name))
         proposal = proposal_base(series_cfg, filename, event, source, checked_at)
         actionable_correction = bool(filled_session and replace_filled and not is_match and not conflict)
         proposal.update({
             "proposalType": "time-update" if actionable_correction else ("verification" if filled_session else ("conflict" if conflict else ("time-update" if matched else "new-session"))),
             "sessionId": matched.get("id") if matched else None,
-            "sessionName": matched.get("name") if matched else official.name,
+            "sessionName": proposed_name if supercars and not conflict else (matched.get("name") if matched else official.name),
             "current": {
                 "date": matched.get("date") if matched else None,
                 "timeLocal": matched.get("timeLocal") if matched else None,
@@ -1954,7 +1966,7 @@ def build_event_proposals(
                 "name": proposed_name,
                 "kind": kind,
                 "utcInstant": utc_instant,
-                "sessionId": (matched or {}).get("id") or "{}-s{}".format(event.get("id"), len(existing) + len(proposals) + 1),
+                "sessionId": (matched or {}).get("id") or "{}-official-{}".format(event.get("id"), fingerprint({"name": official.name, "date": official.date, "time": official.local_time})[:12]),
             },
             "dateChanged": bool(matched and proposed_date and matched.get("date") != proposed_date),
             "status": ("verified" if is_match else ("open" if actionable_correction else "mismatch")) if filled_session else ("requires_review" if conflict else "open"),

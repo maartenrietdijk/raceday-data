@@ -1278,7 +1278,7 @@
   </div>
 </div>
 
-<script src="proposal-logic.js?v=20260914-1"></script>
+<script src="proposal-logic.js?v=20260930-2"></script>
 <script src="editor-links.js?v=20260930-1"></script>
 <script>
 function editorIcon(name) {
@@ -2277,7 +2277,7 @@ function renderProposalRow(proposal) {
     : 'onbekend';
   return `<article class="proposal-row" data-status="${esc(proposal.status)}">
     <div>
-      <div class="proposal-name">${esc(proposal.sessionName || 'Onbekende sessie')}</div>
+      <div class="proposal-name">${esc(proposal.proposed?.name || proposal.sessionName || 'Onbekende sessie')}</div>
       <div class="proposal-badges">
         <span class="proposal-badge ${proposal.proposalType === 'new-session' ? 'new' : ''}">${esc(proposalTypeLabel(proposal.proposalType))}</span>
         <span class="proposal-badge ${proposal.status === 'verified' ? 'verified' : ['requires_review','unresolved','mismatch','conflict'].includes(proposal.status) ? 'warning' : proposal.status !== 'open' ? 'closed' : ''}">${esc(proposalStatusLabel(proposal.status))}</span>
@@ -2292,7 +2292,7 @@ function renderProposalRow(proposal) {
         <span class="proposal-arrow" aria-hidden="true">→</span>
         <div class="proposal-value">Voorstel<strong>${esc(proposalDateTime(proposal.proposed))}</strong></div>
       </div>
-      ${proposal.dateChanged ? '<div class="proposal-warning">Let op: de kalenderdatum verandert door de tijdzoneconversie.</div>' : ''}
+      ${proposal.dateChanged ? '<div class="proposal-warning">Let op: het voorstel wijzigt de datum in je agenda.</div>' : ''}
       ${proposal.proposed ? `<div style="margin-top:8px">Editorzone: <strong>${esc(proposal.editorTimeZone)}</strong> · UTC: <span style="font-family:var(--mono)">${esc(proposal.proposed.utcInstant)}</span></div>` : ''}
       <div class="proposal-actions">
         ${isOpen ? `<button class="btn btn-primary btn-sm" onclick="acceptProposal('${proposal.fingerprint}')">Accepteren</button>` : ''}
@@ -2301,7 +2301,7 @@ function renderProposalRow(proposal) {
       </div>
     </div>
     <div class="proposal-source">
-      <strong>Officiële brontijd</strong><br>${sourceTime}<br><br>
+      <strong>Officiële brontijd</strong><br>${sourceTime}${proposal.sourceSessionName ? `<br>Brontitel: ${esc(proposal.sourceSessionName)}` : ''}<br><br>
       Gecontroleerd: ${esc(checked)}
       ${proposal.source?.lastModified ? `<br>Bronversie: ${esc(proposal.source.lastModified)}` : ''}<br>
       ${proposal.source?.finalUrl ? `<a href="${esc(proposal.source.finalUrl)}" target="_blank" rel="noopener noreferrer">Officiële bron bekijken ↗</a>` : 'Geen bronlink beschikbaar'}
@@ -2385,12 +2385,12 @@ function acceptProposal(fingerprint, deferRender = false) {
       }
     });
     markProposalFileDirty(proposal.calendarFile);
-    save();
     state.proposalDecisionsDirty = true;
-    if (!deferRender) { renderProposalSurfaces(); showStatus(`✓ ${proposal.sessionName} verwerkt in concept`, 'success'); }
+    if (!deferRender) { save(); renderProposalSurfaces(); showStatus(`✓ ${proposal.proposed?.name || proposal.sessionName} verwerkt in concept`, 'success'); }
     return true;
   } catch (error) {
-    if (!deferRender) showStatus(error.message, 'error');
+    if (deferRender) throw error;
+    showStatus(error.message, 'error');
     return false;
   }
 }
@@ -2400,16 +2400,26 @@ function acceptEventProposals(calendarFile, eventId) {
   const calendarSnapshot = JSON.parse(JSON.stringify(state.calendarFiles[calendarFile]));
   const proposalSnapshot = JSON.parse(JSON.stringify(state.proposals));
   const undoSnapshot = JSON.parse(JSON.stringify(state.proposalUndo));
-  for (const proposal of targets) {
-    if (!acceptProposal(proposal.fingerprint, true)) {
-      state.calendarFiles[calendarFile] = calendarSnapshot;
-      state.proposals = proposalSnapshot;
-      state.proposalUndo = undoSnapshot;
-      return showStatus('Event kon niet volledig worden verwerkt; niets is gewijzigd.', 'error');
+  const dirtySnapshot = [...state.dirtyProposalFiles];
+  const decisionsSnapshot = state.proposalDecisionsDirty;
+  let currentProposal = null;
+  try {
+    for (const proposal of targets) {
+      currentProposal = proposal;
+      if (!acceptProposal(proposal.fingerprint, true)) throw new Error('Dit voorstel kon niet worden verwerkt. Vernieuw de broncontrole.');
     }
+    state.proposalDecisionsDirty = true;
+    save();
+  } catch (error) {
+    state.calendarFiles[calendarFile] = calendarSnapshot;
+    state.proposals = proposalSnapshot;
+    state.proposalUndo = undoSnapshot;
+    state.dirtyProposalFiles = dirtySnapshot;
+    state.proposalDecisionsDirty = decisionsSnapshot;
+    renderProposalSurfaces();
+    return showStatus(`Event niet verwerkt; niets gewijzigd. ${currentProposal?.proposed?.name || currentProposal?.sessionName || ''}: ${error.message}`, 'error');
   }
-  state.proposalDecisionsDirty = true;
-  save(); renderProposalSurfaces();
+  renderProposalSurfaces();
   showStatus(`✓ ${targets.length} voorstel(len) verwerkt in concept`, 'success');
 }
 
