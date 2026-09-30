@@ -1952,6 +1952,8 @@ def build_event_proposals(
             "sessionId": matched.get("id") if matched else None,
             "sessionName": proposed_name if supercars and not conflict else (matched.get("name") if matched else official.name),
             "current": {
+                "name": matched.get("name") if matched else None,
+                "kind": matched.get("kind") if matched else None,
                 "date": matched.get("date") if matched else None,
                 "timeLocal": matched.get("timeLocal") if matched else None,
                 "durationMinutes": matched.get("durationMinutes") if matched else None,

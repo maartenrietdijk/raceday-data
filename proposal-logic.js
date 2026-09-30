@@ -179,8 +179,22 @@
       sortCalendarSessions(round.sessions);
       return { type: 'new-session', sessionId: created.id };
     }
-    const index = round.sessions.findIndex(item => item.id === proposal.sessionId);
-    if (index < 0) throw new Error('Sessie niet gevonden in de conceptkalender.');
+    let index = round.sessions.findIndex(item => item.id === proposal.sessionId);
+    if (index < 0) {
+      const current = proposal.current;
+      const expectedKind = current?.kind || proposal.proposed.kind;
+      const candidates = current && Object.hasOwn(current, 'date') && Object.hasOwn(current, 'timeLocal')
+        ? round.sessions.map((item, index) => ({ item, index })).filter(({ item }) =>
+          item.kind === expectedKind &&
+          (item._date || item.date || item.tbcDate || null) === (current.date || null) &&
+          (item._time || item.timeLocal || null) === (current.timeLocal || null) &&
+          (!current.name || item.name === current.name))
+        : [];
+      if (candidates.length !== 1) throw new Error(candidates.length > 1
+        ? 'Meerdere conceptsessies passen bij dit voorstel. Controleer de sessies en vernieuw de broncontrole.'
+        : 'Sessie niet gevonden: de conceptkalender wijkt af van de gescande kalender. Synchroniseer de kalender of publiceer je concept en vernieuw de broncontrole.');
+      index = candidates[0].index;
+    }
     const session = round.sessions[index];
     const before = JSON.parse(JSON.stringify(session));
     session.name = proposal.proposed.name || session.name;
