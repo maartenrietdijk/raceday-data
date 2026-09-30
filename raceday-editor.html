@@ -991,6 +991,7 @@
 <link rel="stylesheet" href="editor-ux.css?v=20260928-2">
 <link rel="stylesheet" href="dashboard-design.css?v=20260928-5">
 <link rel="stylesheet" href="editor-links.css?v=20260930-1">
+<link rel="stylesheet" href="statistics.css?v=20260930-1">
 </head>
 <body>
 
@@ -1028,6 +1029,10 @@
       <button type="button" class="series-item active" onclick="selectDashboard()">
         <svg class="rd-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
         <span class="series-name">Overzicht</span>
+      </button>
+      <button type="button" class="series-item" id="statisticsNav" onclick="RaceDayStatistics.select()">
+        <svg class="rd-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4v16h16M8 16v-4m5 4V8m5 8V5"/></svg>
+        <span class="series-name">Statistieken</span>
       </button>
       <button type="button" class="series-item" id="proposalsNav" onclick="selectProposals()">
         <svg class="rd-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h13a2 2 0 0 0 2-2v-4M9 15l1-4L18 3a2.1 2.1 0 0 1 3 3l-8 8-4 1Zm7-10 3 3"/></svg>
@@ -1775,6 +1780,7 @@ function renderSidebar() {
   document.getElementById('seriesTotal').textContent = `${state.series.length} series`;
   document.querySelector('#dashboardNav .series-item')?.classList.toggle('active', state.activeView === 'dashboard');
   document.getElementById('proposalsNav')?.classList.toggle('active', state.activeView === 'proposals');
+  document.getElementById('statisticsNav')?.classList.toggle('active', state.activeView === 'statistics');
   const proposalCount = RaceDayProposals.openCount(state.proposals);
   const proposalBadge = document.getElementById('proposalCount');
   if (proposalBadge) {
@@ -1868,6 +1874,12 @@ function switchTab(tab) {
 }
 
 function renderMain() {
+  if (state.activeView === 'statistics') {
+    document.getElementById('workspaceTitle').textContent = 'Statistieken';
+    document.getElementById('workspaceIcon').innerHTML = document.querySelector('#statisticsNav svg').outerHTML;
+    RaceDayStatistics.render();
+    return;
+  }
   const title = document.getElementById('workspaceTitle');
   if (title) title.textContent = state.activeView === 'proposals' ? 'Voorstellen' : state.activeSeries ? (state.series.find(series => series.id === state.activeSeries)?.name || 'Kalender') : 'Overzicht';
   const icon = document.getElementById('workspaceIcon');
@@ -4248,5 +4260,6 @@ if (state.github.token && state.github.repo) {
 <script src="instagram-assets/logo-overrides.js?v=20260928-1"></script>
 <script src="instagram-assets/flag-bundle.js?v=20260826-2"></script>
 <script src="instagram-generator.js?v=20260928-4"></script>
+<script src="statistics.js?v=20260930-1"></script>
 </body>
 </html>

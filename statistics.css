@@ -1,0 +1,47 @@
+.statistics-page { min-width: 0; }
+.statistics-page h2 { margin: 0 0 10px; color: var(--text); font-size: 17px; font-weight: 600; letter-spacing: -.02em; }
+.statistics-toolbar { display: flex; align-items: end; flex-wrap: wrap; gap: 16px; margin-bottom: 26px; }
+.statistics-toolbar .field { min-width: 140px; }
+.statistics-toolbar select { min-height: 42px; width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: 4px; background: var(--card); color: var(--text); font: inherit; }
+.statistics-status { margin: 0 0 10px auto; font-size: 12px; color: var(--muted); }
+.statistics-layout { display: grid; grid-template-columns: minmax(270px, 1fr) minmax(0, 2fr); gap: 28px; }
+.statistics-panel { min-width: 0; padding: 22px; background: var(--card); border-radius: 6px; }
+.statistics-muted, .statistics-hint { font-size: 12px; line-height: 1.6; color: var(--muted); }
+.statistics-muted { margin: 0 0 18px; }
+.statistics-metrics { margin: 0; font-variant-numeric: tabular-nums; }
+.statistics-metrics > div { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 17px 0; border-bottom: 1px solid var(--border2); }
+.statistics-metrics > div:last-child { border-bottom: 0; padding-bottom: 0; }
+.statistics-metrics dt { font-size: 13px; line-height: 1.5; }
+.statistics-metrics dt span { display: block; font-size: 11px; color: var(--muted); }
+.statistics-metrics dd { margin: 0; font-size: 20px; font-weight: 550; white-space: nowrap; }
+.statistics-chart { width: 100%; height: auto; overflow: visible; margin-block: 12px 18px; }
+.statistics-chart text { font: 11px var(--sans); fill: var(--muted); }
+.statistics-grid-line { stroke: var(--border2); stroke-width: 1; }
+.statistics-chart-line { stroke: var(--text); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.statistics-chart-point { fill: var(--text); }
+.statistics-table summary, .statistics-connection summary { cursor: pointer; width: fit-content; font-size: 13px; font-weight: 600; padding-block: 8px; }
+.statistics-table > div { overflow: auto; margin-top: 12px; }
+.statistics-table table { width: 100%; border-collapse: collapse; font-size: 12px; font-variant-numeric: tabular-nums; }
+.statistics-table th, .statistics-table td { padding: 10px 8px; border-bottom: 1px solid var(--border2); text-align: left; }
+.statistics-table th:nth-child(2), .statistics-table td:nth-child(2) { text-align: right; }
+.statistics-connection { margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--border); }
+.statistics-connection p { max-width: 65ch; font-size: 13px; color: var(--muted); line-height: 1.6; }
+.statistics-connection form { display: flex; gap: 14px; align-items: start; flex-wrap: wrap; margin-block: 18px; }
+.statistics-connection .field { flex: 1 1 250px; max-width: 480px; }
+.statistics-connection .field input { width: 100%; min-height: 42px; }
+.statistics-connection form > button { margin-top: 24px; min-height: 42px; }
+.statistics-connection a { color: var(--text); text-underline-offset: 3px; }
+.statistics-message { margin-bottom: 20px; padding: 14px 16px; background: var(--bg2); border: 1px solid var(--border); border-radius: 4px; font-size: 13px; line-height: 1.6; }
+.statistics-empty { padding: 26px 0; max-width: 65ch; }
+.statistics-empty p { color: var(--muted); font-size: 14px; line-height: 1.6; }
+.statistics-page :focus-visible { outline: 2px solid var(--text); outline-offset: 3px; }
+@media (max-width: 1100px) { .statistics-layout { grid-template-columns: 1fr; gap: 20px; } }
+@media (max-width: 760px) {
+  .statistics-page .dashboard-heading { gap: 16px; align-items: start; }
+  .statistics-toolbar { gap: 12px; }
+  .statistics-toolbar .field { flex: 1; min-width: 110px; }
+  .statistics-status { flex-basis: 100%; margin: 0; }
+  .statistics-panel { padding: 18px 14px; }
+  .statistics-connection form > button { margin-top: 0; }
+  .statistics-connection .field { max-width: none; }
+}
