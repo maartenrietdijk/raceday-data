@@ -445,8 +445,17 @@
     return `${FLAG_ROOT}/${value}.svg`;
   }
 
+  function logoConfigFor(item) {
+    const logos = window.RACEDAY_INSTAGRAM_LOGOS || {};
+    if (logos[item.seriesId]) return logos[item.seriesId];
+    // Custom series IDs are chosen when adding a series in the editor.
+    const isFormulaDrift = [item.seriesId, item.seriesName].some(value =>
+      /^(fd|formuladrift)$/.test(String(value || '').toLowerCase().replace(/[^a-z0-9]/g, '')));
+    return isFormulaDrift ? logos.formula_drift : undefined;
+  }
+
   async function preloadAssets(items) {
-    const configs = items.map(item => window.RACEDAY_INSTAGRAM_LOGOS?.[item.seriesId]).filter(Boolean);
+    const configs = items.map(logoConfigFor).filter(Boolean);
     const flags = [...new Set(items.map(item => flagSrc(item.countryCode)).filter(Boolean))];
     const brandIcon = window.RACEDAY_INSTAGRAM_BRAND?.icon;
     await Promise.all([
@@ -681,7 +690,7 @@
   }
 
   function drawLogo(ctx, item, x, y, width, height) {
-    const config = window.RACEDAY_INSTAGRAM_LOGOS?.[item.seriesId];
+    const config = logoConfigFor(item);
     const image = config ? instagramState.images.get(config.src) : null;
     ctx.save();
     ctx.beginPath(); ctx.rect(x, y, width, height); ctx.clip();
@@ -879,7 +888,7 @@
     list.innerHTML = ids.map((id, index) => `<div class="instagram-series-order-item" data-series-id="${esc(id)}"
         ondragover="event.preventDefault()" ondrop="dropInstagramSeries(event, this.dataset.seriesId)">
       <div class="instagram-series-order-main">
-        <span class="instagram-series-order-handle" draggable="true" aria-label="Sleep ${esc(names.get(id))}"
+        <span class="instagram-series-order-handle" draggable="${editorDragEnabled()}" aria-label="Sleep ${esc(names.get(id))}"
           ondragstart="startInstagramSeriesDrag(event, this.closest('[data-series-id]').dataset.seriesId)"
           ondragend="endInstagramSeriesDrag(event)">••</span>
         <span class="instagram-series-order-name">${esc(names.get(id))}</span>
@@ -958,6 +967,7 @@
   }
 
   function startInstagramSeriesDrag(event, seriesId) {
+    if (!editorDragEnabled()) { event.preventDefault(); return; }
     instagramState.draggedSeriesId = seriesId;
     event.currentTarget?.closest('.instagram-series-order-item')?.classList.add('dragging');
     event.dataTransfer.effectAllowed = 'move';
@@ -987,7 +997,7 @@
   function rebuildWarnings() {
     const selected = instagramState.displayItems.filter(item => instagramState.selectedIds.has(item.uid) && (instagramState.mode !== 'monthOverview' || instagramState.selectedWeeks.has(item.weekStart)));
     const missingLogos = [...new Set(selected.filter(item => {
-      const config = window.RACEDAY_INSTAGRAM_LOGOS?.[item.seriesId];
+      const config = logoConfigFor(item);
       return !config || (instagramState.assetLoadComplete && !instagramState.images.has(config.src));
     }).map(item => item.seriesName))];
     const selectedFlagSources = [...new Set(selected.map(item => flagSrc(item.countryCode)).filter(Boolean))];

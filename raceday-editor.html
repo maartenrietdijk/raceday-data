@@ -711,8 +711,8 @@
   .btn-fetch:hover { background: var(--accent); opacity: .82; }
   .results-badge { border: 0; border-radius: 3px; background: var(--green-bg); color: var(--green); font-size: 11px; }
   .drag-handle { position: static; opacity: .5; color: var(--muted); touch-action: none; user-select: none; }
-  .drag-handle[draggable="true"] { cursor: grab; }
-  .drag-handle[draggable="true"]:active { cursor: grabbing; }
+  .drag-handle[draggable="${editorDragEnabled()}"] { cursor: grab; }
+  .drag-handle[draggable="${editorDragEnabled()}"]:active { cursor: grabbing; }
 
   .standings-fetch-card { padding: 20px; }
   .standings-table-header { padding: 12px 16px; background: var(--bg2); font-family: var(--sans); }
@@ -986,7 +986,7 @@
 </style>
 <link rel="stylesheet" href="instagram-generator.css?v=20260928-2">
 <link rel="stylesheet" href="editor-ux.css?v=20261001-1">
-<link rel="stylesheet" href="dashboard-design.css?v=20261001-2">
+<link rel="stylesheet" href="dashboard-design.css?v=20261001-3">
 <link rel="stylesheet" href="editor-links.css?v=20260930-1">
 <link rel="stylesheet" href="statistics.css?v=20261001-1">
 </head>
@@ -1766,7 +1766,7 @@ function renderSidebar() {
       <button type="button" class="series-item${active}" onclick="selectSeries('${s.id}')"
         aria-label="Open ${esc(s.name)}"
         ondragover="dragSeriesOver(event)" ondrop="dragSeriesDrop(event,${i})">
-        <span class="series-grip" draggable="true" title="Sleep om te sorteren"
+        <span class="series-grip" draggable="${editorDragEnabled()}" title="Sleep om te sorteren"
           onclick="event.stopPropagation()" ondragstart="dragSeriesStart(event,${i})" ondragend="dragSeriesEnd()">⠿</span>
         <div class="series-dot" style="background:${s.color}"></div>
         <span class="series-name">${esc(s.name)}</span>
@@ -1800,6 +1800,7 @@ function moveSeries(from, to) {
 }
 
 function dragSeriesStart(event, index) {
+  if (!editorDragEnabled()) { event.preventDefault(); return; }
   seriesDragIndex = index;
   event.dataTransfer.effectAllowed = 'move';
   event.dataTransfer.setData('text/plain', `series:${index}`);
@@ -2731,7 +2732,7 @@ function renderRound(r, i, series, highlighted = false) {
       data-event-id="${esc(r.id || '')}"
       ondragover="dragRoundOver(event,${i})" ondrop="dragRoundDrop(event,${i})">
       <div class="round-header" onclick="toggleRound(${i})">
-        <span class="round-drag-handle drag-handle" draggable="true" title="Sleep event om te verplaatsen"
+        <span class="round-drag-handle drag-handle" draggable="${editorDragEnabled()}" title="Sleep event om te verplaatsen"
           onclick="event.stopPropagation()" ondragstart="dragRoundStart(event,${i})" ondragend="dragRoundEnd()"
           onpointerdown="startPointerReorder(event,'round',0,${i})">⠿</span>
         <span class="round-num">R${r.roundNumber || i+1}</span>
@@ -2860,7 +2861,7 @@ function renderSession(s, ri, si) {
     <div class="session-block">
       <div class="session-row" id="session_${ri}_${si}" data-round-index="${ri}" data-session-index="${si}"
         ondragover="dragSessionOver(event,${ri},${si})" ondrop="dragSessionDrop(event,${ri},${si})">
-        <div class="session-drag"><span class="drag-handle" draggable="true" title="Sleep sessie om te verplaatsen"
+        <div class="session-drag"><span class="drag-handle" draggable="${editorDragEnabled()}" title="Sleep sessie om te verplaatsen"
           ondragstart="dragSessionStart(event,${ri},${si})" ondragend="dragSessionEnd()"
           onpointerdown="startPointerReorder(event,'session',${ri},${si})">⠿</span></div>
         <div class="session-field session-name">
@@ -3009,6 +3010,7 @@ function addRound() {
 let roundDragSrc = null;
 
 function dragRoundStart(event, index) {
+  if (!editorDragEnabled()) { event.preventDefault(); return; }
   roundDragSrc = index;
   event.dataTransfer.effectAllowed = 'move';
   event.dataTransfer.setData('text/plain', `round:${index}`);
@@ -3458,10 +3460,15 @@ function moveSession(ri, from, to) {
 }
 
 // Drag and drop
+function editorDragEnabled() {
+  return !window.matchMedia('(max-width: 760px), (pointer: coarse)').matches;
+}
+
 let dragSrc = null;
 let pointerDrag = null;
 
 function dragSessionStart(e, ri, si) {
+  if (!editorDragEnabled()) { e.preventDefault(); return; }
   dragSrc = { ri, si };
   e.dataTransfer.effectAllowed = 'move';
   e.dataTransfer.setData('text/plain', `session:${ri}:${si}`);
@@ -3493,7 +3500,7 @@ function dragSessionEnd() {
 }
 
 function startPointerReorder(event, type, group, index) {
-  if (event.pointerType === 'mouse') return;
+  if (!editorDragEnabled() || event.pointerType === 'mouse' || event.pointerType === 'touch') return;
   event.preventDefault();
   event.stopPropagation();
   pointerDrag = { type, group, from: index, to: index };
@@ -4257,7 +4264,7 @@ if (state.github.token && state.github.repo) {
 <script src="instagram-assets/logo-bundle.js?v=20260914-6"></script>
 <script src="instagram-assets/logo-overrides.js?v=20261001-1"></script>
 <script src="instagram-assets/flag-bundle.js?v=20260826-2"></script>
-<script src="instagram-generator.js?v=20261001-1"></script>
+<script src="instagram-generator.js?v=20261001-2"></script>
 <script src="statistics.js?v=20261001-2"></script>
 </body>
 </html>

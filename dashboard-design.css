@@ -301,3 +301,20 @@ body > header .btn:active, .dashboard-grid .btn:active { transform: scale(.96); 
   content: ''; position: absolute; inset: 0 auto 0 0; width: 6px;
   background: var(--next-marker); border-radius: 6px 0 0 0; pointer-events: none;
 }
+
+/* Touch scrolling must never turn into a reorder gesture. */
+@media (max-width: 760px), (pointer: coarse) {
+  .round-drag-handle, .session-drag, .series-grip,
+  .instagram-series-order-handle { display: none !important; }
+}
+@media (max-width: 760px) {
+  /* Let Safari extend the document beneath its toolbar. Hidden fixed navigation
+     must not contribute a full-height background while the menu is closed. */
+  html { overflow-x: visible; }
+  body { overflow-x: clip; }
+  .main { background: transparent; }
+  .sidebar:not(.open) { display: none; }
+  .sidebar.open { display: flex; }
+  .round-header { grid-template-areas: 'number name chevron' 'order order order'; }
+  .session-row { grid-template-areas: 'name name' 'kind duration' 'when when' 'flags flags' 'actions actions'; }
+}
