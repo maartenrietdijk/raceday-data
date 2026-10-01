@@ -24,7 +24,9 @@
   --button-bg: #3c3c3c; --button-hover: #4a4a4a;
   --primary-hover: #ffffff; --row-hover: #343434;
 }
-html, body { background: var(--studio-shell); }
+/* Keep Safari’s under-page surface in the same theme as the workspace.
+   clip prevents horizontal overflow without creating a nested scroll container. */
+html, body { background: var(--studio-shell); overflow-x: clip; }
 body { padding: 0; }
 .rd-icon { display: inline-block; flex: 0 0 auto; vertical-align: middle; pointer-events: none; }
 header {
@@ -159,7 +161,7 @@ body > header .btn:active, .dashboard-grid .btn:active { transform: scale(.96); 
   .series-list .series-item { min-height: 48px; }
   .sidebar-footer { padding-bottom: max(14px,env(safe-area-inset-bottom)); }
   .main { margin-left: 0; border-radius: 0; min-height: 100dvh; }
-  .main-inner { padding: 94px 16px 36px; }
+  .main-inner { padding: 94px 16px calc(36px + env(safe-area-inset-bottom)); }
   .dashboard-title { font-size: 34px; }
   .dashboard-heading { gap: 14px; margin-bottom: 22px; }
   .dashboard-sub { font-size: 13px; }

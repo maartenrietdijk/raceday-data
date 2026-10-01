@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>RaceDay Calendar Editor</title>
 <meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f2f0eb" id="editorThemeColor">
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js" defer></script>
 <script>
   (() => {
@@ -15,7 +16,9 @@
     const applyTheme = () => {
       let freeze = document.getElementById('themeTransitionFreeze');
       if (!freeze) { freeze = document.createElement('style'); freeze.id = 'themeTransitionFreeze'; freeze.textContent = '*,*::before,*::after{transition:none!important}'; document.head.appendChild(freeze); }
-      document.documentElement.setAttribute('data-theme', preference === 'system' ? (media.matches ? 'dark' : 'light') : preference);
+      const theme = preference === 'system' ? (media.matches ? 'dark' : 'light') : preference;
+      document.documentElement.setAttribute('data-theme', theme);
+      document.getElementById('editorThemeColor').setAttribute('content', theme === 'dark' ? '#202020' : '#f2f0eb');
       document.querySelectorAll('[data-theme-choice]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.themeChoice === preference)));
       void document.documentElement.offsetHeight;
       requestAnimationFrame(() => requestAnimationFrame(() => freeze.remove()));
@@ -511,7 +514,7 @@
     color-scheme: dark;
   }
 
-  html { background: var(--bg2); overflow-x: hidden; }
+  html { background: var(--bg2); overflow-x: clip; }
   body {
     background: var(--bg2);
     color: var(--text);
@@ -519,7 +522,7 @@
     font-size: 14px;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
+    overflow-x: clip;
   }
   button, input, select { -webkit-tap-highlight-color: transparent; }
   button:focus-visible, input:focus-visible, select:focus-visible {
@@ -983,7 +986,7 @@
 </style>
 <link rel="stylesheet" href="instagram-generator.css?v=20260928-2">
 <link rel="stylesheet" href="editor-ux.css?v=20261001-1">
-<link rel="stylesheet" href="dashboard-design.css?v=20261001-1">
+<link rel="stylesheet" href="dashboard-design.css?v=20261001-2">
 <link rel="stylesheet" href="editor-links.css?v=20260930-1">
 <link rel="stylesheet" href="statistics.css?v=20261001-1">
 </head>
@@ -4252,9 +4255,9 @@ if (state.github.token && state.github.repo) {
 }
 </script>
 <script src="instagram-assets/logo-bundle.js?v=20260914-6"></script>
-<script src="instagram-assets/logo-overrides.js?v=20260928-1"></script>
+<script src="instagram-assets/logo-overrides.js?v=20261001-1"></script>
 <script src="instagram-assets/flag-bundle.js?v=20260826-2"></script>
-<script src="instagram-generator.js?v=20260928-4"></script>
+<script src="instagram-generator.js?v=20261001-1"></script>
 <script src="statistics.js?v=20261001-2"></script>
 </body>
 </html>
