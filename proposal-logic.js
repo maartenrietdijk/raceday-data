@@ -6,6 +6,10 @@
   const REVIEWABLE = new Set(['open', 'requires_review']);
   const ACTIVE = new Set(['open', 'requires_review', 'unresolved']);
 
+  function sourceConfirmed(item) {
+    return item?.seriesId !== 'f1' || item?.source?.confirmationPolicy === 'f1-published-schedule-v1';
+  }
+
   function proposalDate(item) {
     return item?.proposed?.date || item?.sourceTime?.date || item?.current?.date || '';
   }
@@ -42,13 +46,14 @@
   }
 
   function openCount(items) {
-    return (items || []).filter(item => REVIEWABLE.has(item.status)).length;
+    return (items || []).filter(item => REVIEWABLE.has(item.status) && sourceConfirmed(item)).length;
   }
 
   function filtered(items, filters = {}) {
     return (items || []).filter(item => {
       if (filters.seriesId && item.seriesId !== filters.seriesId) return false;
       if (filters.eventId && item.eventId !== filters.eventId) return false;
+      if (ACTIVE.has(item.status) && !sourceConfirmed(item)) return false;
       if (filters.status === 'active' && !ACTIVE.has(item.status)) return false;
       if (filters.status && filters.status !== 'active' && item.status !== filters.status) return false;
       const itemDate = proposalDate(item);
@@ -127,6 +132,11 @@
   function reconcile(items, calendarFiles) {
     const proposals = items || [];
     proposals.forEach(item => {
+      if (ACTIVE.has(item.status) && !sourceConfirmed(item)) {
+        item.status = 'superseded';
+        item.reason = 'F1-bron opnieuw controleren: eerdere interne tijdwaarden waren niet bevestigd in het gepubliceerde tijdschema.';
+        return;
+      }
       if (REVIEWABLE.has(item.status) && isFulfilled(calendarFiles, item)) {
         item.status = 'accepted';
         item.reconciled = true;
@@ -160,7 +170,7 @@
   }
 
   function apply(calendarFiles, proposal) {
-    if (proposal.status !== 'open' || !proposal.proposed) {
+    if (proposal.status !== 'open' || !proposal.proposed || !sourceConfirmed(proposal)) {
       throw new Error('Alleen een betrouwbaar open voorstel kan worden geaccepteerd.');
     }
     const { round } = findTarget(calendarFiles, proposal);
@@ -239,5 +249,5 @@
     sortCalendarSessions(round.sessions);
   }
 
-  return { mergeLocalDecisions, REVIEWABLE, ACTIVE, openCount, filtered, grouped, proposalDate, proposalTime, compare, sameTarget, sessionTarget, isFulfilled, reconcile, sortCalendarSessions, apply, undo };
+  return { sourceConfirmed, mergeLocalDecisions, REVIEWABLE, ACTIVE, openCount, filtered, grouped, proposalDate, proposalTime, compare, sameTarget, sessionTarget, isFulfilled, reconcile, sortCalendarSessions, apply, undo };
 });

@@ -690,10 +690,10 @@
   .round-fields .field:nth-child(2), .round-fields .field:nth-child(3) { grid-column: span 2; }
   .sessions-wrap { padding: 0 20px 20px; }
   .sessions-label { margin: 18px 0 10px; color: var(--muted); font-size: 11px; }
-  .session-columns { display: grid; grid-template-columns: 24px minmax(150px, 1.2fr) 130px minmax(300px, 2fr) 86px 70px 92px; gap: 10px; padding: 4px 0 8px; border-bottom: 1px solid var(--border2); }
+  .session-columns { display: grid; grid-template-columns: 24px minmax(150px, 1.2fr) 130px minmax(300px, 2fr) 86px 96px 92px; gap: 10px; padding: 4px 0 8px; border-bottom: 1px solid var(--border2); }
   .session-columns span { color: var(--muted); font-size: 10px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; }
   .session-row {
-    display: grid; grid-template-columns: 24px minmax(150px, 1.2fr) 130px minmax(300px, 2fr) 86px 70px 92px;
+    display: grid; grid-template-columns: 24px minmax(150px, 1.2fr) 130px minmax(300px, 2fr) 86px 96px 92px;
     gap: 10px; align-items: end; padding: 10px 0; border-bottom: 1px solid var(--border2);
   }
   .session-field { min-width: 0; }
@@ -702,7 +702,7 @@
   .session-when-grid { display: grid; grid-template-columns: minmax(145px, 1fr) 92px auto; gap: 6px; align-items: center; }
   .session-when-grid input[type="time"] { width: 92px !important; }
   .session-duration input { text-align: center; }
-  .session-flags { min-height: 44px; display: flex; align-items: center; }
+  .session-flags { min-height: 44px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
   .session-actions { min-height: 44px; display: flex; align-items: center; justify-content: flex-end; gap: 2px; }
   .touch-order { display: none; }
   .results-url-row { padding: 8px 0 10px 34px; border-bottom: 1px solid var(--border2); }
@@ -1291,7 +1291,7 @@
   </div>
 </div>
 
-<script src="proposal-logic.js?v=20260930-4"></script>
+<script src="proposal-logic.js?v=20261003-1"></script>
 <script src="editor-links.js?v=20260930-1"></script>
 <script>
 function editorIcon(name) {
@@ -1353,7 +1353,7 @@ const OFFICIAL_TIME_SERIES = new Set([
   'f1', 'f2', 'f3', 'f1academy', 'btcc', 'nascar', 'nascar_oreilly', 'nascar_trucks',
   'nascareuro', 'gtwce', 'gtwca_am', 'gtwca_asia', 'gtwca_aus',
   'british_gt', 'dtm', 'wec', 'alms', 'lemanscup', 'indycar', 'indynxt', 'imsa', 'formulae', 'supercars', 'wrc', 'erc',
-  'wsbk', 'motogp', 'moto2', 'moto3',
+  'wsbk', 'motogp', 'moto2', 'moto3', 'sf', 'supergt',
 ]);
 
 let state = {
@@ -2191,7 +2191,7 @@ function proposalReasonLabel(reason) {
 }
 
 function proposalIsStale(proposal) {
-  if (proposal.stale) return true;
+  if (proposal.stale || !RaceDayProposals.sourceConfirmed(proposal)) return true;
   const checked = Date.parse(proposal.source?.checkedAt || '');
   return Number.isFinite(checked) && Date.now() - checked > 14 * 86400000 && ['open', 'requires_review'].includes(proposal.status);
 }
@@ -2231,11 +2231,7 @@ function proposalYearOptions() {
 function activeEventProposals(round) {
   const filename = activeCalendarFilename();
   const eventItems = state.proposals.filter(item => item.calendarFile === filename && item.eventId === round?.id);
-  const active = RaceDayProposals.filtered(eventItems, { status: 'active' });
-  if (active.length) return active;
-  // Show the latest checked results even when they are already accepted or
-  // verified; an empty active list does not mean the source returned nothing.
-  return RaceDayProposals.filtered(eventItems.filter(item => !['superseded'].includes(item.status)));
+  return RaceDayProposals.filtered(eventItems, { status: 'active' });
 }
 
 function officialScanStatusView(eventId) {
@@ -2270,7 +2266,7 @@ function renderInlineEventProposals(round) {
         <strong>${proposals.length} resultaat${proposals.length === 1 ? '' : 'en'} · ${proposals.filter(item => ['open', 'requires_review'].includes(item.status)).length} te beoordelen</strong>
         ${acceptable.length ? `<button class="btn btn-primary btn-sm" onclick="acceptEventProposals('${esc(activeCalendarFilename())}','${esc(round.id)}')">Alle wijzigingen accepteren</button>` : ''}
       </div>
-      ${proposals.length ? proposals.map(renderProposalRow).join('') : `<div class="inline-proposals-empty">${dirty ? 'Alle voorstellen voor dit event zijn verwerkt. Publiceer de besluiten om ze naar GitHub te schrijven.' : progress?.status === 'completed' ? 'Geen nieuwe wijzigingen gevonden. De ingevulde tijden zijn actueel.' : 'Zodra de scan resultaten heeft, verschijnen ze hier automatisch.'}</div>`}
+      ${proposals.length ? proposals.map(renderProposalRow).join('') : `<div class="inline-proposals-empty">${dirty ? 'Alle voorstellen voor dit event zijn verwerkt. Publiceer de besluiten om ze naar GitHub te schrijven.' : progress?.status === 'completed' ? 'Geen openstaande voorstellen voor dit event.' : 'Zodra de scan resultaten heeft, verschijnen ze hier automatisch.'}</div>`}
       ${dirty ? `<div class="inline-proposals-footer"><button class="btn btn-primary btn-sm" onclick="publishProposalChanges()">Publiceer besluiten</button></div>` : ''}
     </div>
   </section>`;
@@ -2824,6 +2820,28 @@ function renderRound(r, i, series, highlighted = false) {
     </div>`;
 }
 
+// Keep the existing calendar convention so cancellation is visible in the app.
+function sessionIsCancelled(session) {
+  return /\((?:cancelled|canceled)\)\s*$/i.test(session?.name || '');
+}
+
+function toggleCancelled(ri, si, cancelled) {
+  const session = editableRounds()?.[ri]?.sessions?.[si];
+  const checkbox = document.getElementById(`cancelled_${ri}_${si}`);
+  if (!session) return;
+  const wasCancelled = sessionIsCancelled(session);
+  if (cancelled && !wasCancelled && !confirm(`Weet je zeker dat je "${session.name || 'deze sessie'}" als cancelled wilt markeren?`)) {
+    if (checkbox) checkbox.checked = wasCancelled;
+    return;
+  }
+  const name = String(session.name || '').replace(/(?:\s*\((?:cancelled|canceled)\))+\s*$/i, '');
+  session.name = cancelled ? `${name.trimEnd()}${name.trimEnd() ? ' ' : ''}(cancelled)` : name;
+  if (checkbox) checkbox.checked = cancelled;
+  const nameInput = document.getElementById(`sessionName_${ri}_${si}`);
+  if (nameInput) nameInput.value = session.name;
+  save();
+}
+
 function renderSession(s, ri, si) {
   const isTBC = Boolean(s._tbcMode ?? (s.dateUTC === null ||
     (typeof s.dateUTC === 'string' && s.dateUTC.endsWith('TBC')) ||
@@ -2897,6 +2915,11 @@ function renderSession(s, ri, si) {
             oninput="updateSession(${ri},${si},'durationMinutes',+this.value)"/>
         </div>
         <div class="session-flags">
+          <div class="tbc-wrap">
+            <input type="checkbox" class="tbc-check" id="cancelled_${ri}_${si}" ${sessionIsCancelled(s) ? 'checked' : ''}
+              onchange="toggleCancelled(${ri},${si},this.checked)"/>
+            <label class="tbc-label" for="cancelled_${ri}_${si}">Cancelled</label>
+          </div>
           ${supportsOval ? `<div class="tbc-wrap">
             <input type="checkbox" class="tbc-check" id="oval_${ri}_${si}" ${s.isOval ? 'checked' : ''}
               onchange="updateSession(${ri},${si},'isOval',this.checked)"/>
@@ -2944,6 +2967,10 @@ function updateRound(i, key, val) {
 function updateSession(ri, si, key, val) {
   const rounds = editableRounds();
   rounds[ri].sessions[si][key] = val;
+  if (key === 'name') {
+    const checkbox = document.getElementById(`cancelled_${ri}_${si}`);
+    if (checkbox) checkbox.checked = sessionIsCancelled(rounds[ri].sessions[si]);
+  }
   save();
 }
 
