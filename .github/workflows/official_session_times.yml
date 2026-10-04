@@ -63,10 +63,21 @@ jobs:
       - name: Install official-source readers
         run: python -m pip install --disable-pip-version-check pypdf==6.10.0 curl_cffi==0.16.3
 
-      - name: Test Japanese and F1 Academy schedule readers
+      - name: Verify schedule test files are present
+        run: |
+          python - <<'PY_CHECK'
+          from pathlib import Path
+          required = ['tests/test_japanese_schedules.py', 'tests/test_f1academy_schedule.py', 'tests/test_formula1_schedule.py', 'tests/fixtures/japanese/sources.json', 'tests/fixtures/f1academy/sources.json', 'tests/fixtures/formula1/bahrain.html', 'tests/fixtures/calendars/sf_2026.json', 'tests/fixtures/calendars/supergt_2026.json', 'tests/fixtures/calendars/f1academy_2026.json']
+          missing = [name for name in required if not Path(name).is_file()]
+          if missing:
+              raise SystemExit('Upload the complete tests folder at repository root. Missing: ' + ', '.join(missing))
+          PY_CHECK
+
+      - name: Test Japanese, F1 Academy and F1 schedule readers
         run: |
           python -m unittest discover -s tests -p 'test_japanese_schedules.py' -v
           python -m unittest discover -s tests -p 'test_f1academy_schedule.py' -v
+          python -m unittest discover -s tests -p 'test_formula1_schedule.py' -v
 
       - name: Scan official schedules
         shell: bash
