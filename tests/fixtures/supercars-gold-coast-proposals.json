@@ -1,0 +1,408 @@
+{
+  "event": {
+    "id": "supercars-2026-12",
+    "seriesId": "supercars",
+    "roundNumber": 12,
+    "raceName": "Boost Mobile Gold Coast 500",
+    "circuitName": "Streets of Surfers Paradise",
+    "city": "Gold Coast",
+    "country": "Australia",
+    "countryCode": "AU",
+    "sessions": [
+      {
+        "id": "supercars-2026-12-s01",
+        "name": "Practice",
+        "kind": "practice",
+        "date": "2026-10-24",
+        "timeLocal": "10:00",
+        "durationMinutes": 60
+      },
+      {
+        "id": "supercars-2026-12-s02",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-10-24",
+        "timeLocal": "13:30",
+        "durationMinutes": 60
+      },
+      {
+        "id": "supercars-2026-12-s03",
+        "name": "Race 1",
+        "kind": "race",
+        "date": "2026-10-24",
+        "timeLocal": "17:15",
+        "durationMinutes": 60
+      },
+      {
+        "id": "supercars-2026-12-s04",
+        "name": "Race 2",
+        "kind": "race",
+        "date": "2026-10-25",
+        "timeLocal": "15:30",
+        "durationMinutes": 60
+      }
+    ]
+  },
+  "proposals": [
+    {
+      "seriesId": "supercars",
+      "seriesName": "Repco Supercars Championship",
+      "calendarFile": "supercars_2026.json",
+      "eventId": "supercars-2026-12",
+      "eventName": "Boost Mobile Gold Coast 500",
+      "roundNumber": 12,
+      "source": {
+        "stableUrl": "https://www.supercars.com/2026/supercars-calendar-tickets",
+        "finalUrl": "https://www.supercars.com/events/2026-gold-coast/schedule",
+        "title": "2026 Boost Mobile Gold Coast 500 | Schedule | Supercars",
+        "checkedAt": "2026-09-30T12:42:35Z",
+        "lastModified": "Wed, 30 Sep 2026 12:42:36 GMT"
+      },
+      "proposalType": "time-update",
+      "sessionId": "supercars-2026-12-s01",
+      "sessionName": "Practice",
+      "current": {
+        "date": "2026-10-24",
+        "timeLocal": "10:00",
+        "durationMinutes": 60
+      },
+      "sourceSessionName": "Practice 1",
+      "sourceTime": {
+        "date": "2026-10-23",
+        "time": "11:45",
+        "timeZone": "Australia/Brisbane"
+      },
+      "editorTimeZone": "Australia/Sydney",
+      "proposed": {
+        "date": "2026-10-23",
+        "timeLocal": "12:45",
+        "durationMinutes": 30,
+        "name": "Practice 1",
+        "kind": "practice",
+        "utcInstant": "2026-10-23T01:45:00Z",
+        "sessionId": "supercars-2026-12-s01"
+      },
+      "dateChanged": true,
+      "status": "open",
+      "reason": "De ingevulde sessie wordt vervangen door de nieuwste offici\u00eble tijd.",
+      "debug": false,
+      "fingerprint": "c0988f6560eb00f24397f238a5c41d52a88ab449aba41f86e550c31764f79948",
+      "id": "schedule-c0988f6560eb00f2"
+    },
+    {
+      "seriesId": "supercars",
+      "seriesName": "Repco Supercars Championship",
+      "calendarFile": "supercars_2026.json",
+      "eventId": "supercars-2026-12",
+      "eventName": "Boost Mobile Gold Coast 500",
+      "roundNumber": 12,
+      "source": {
+        "stableUrl": "https://www.supercars.com/2026/supercars-calendar-tickets",
+        "finalUrl": "https://www.supercars.com/events/2026-gold-coast/schedule",
+        "title": "2026 Boost Mobile Gold Coast 500 | Schedule | Supercars",
+        "checkedAt": "2026-09-30T12:42:35Z",
+        "lastModified": "Wed, 30 Sep 2026 12:42:36 GMT"
+      },
+      "proposalType": "new-session",
+      "sessionId": null,
+      "sessionName": "Practice 2",
+      "current": {
+        "date": null,
+        "timeLocal": null,
+        "durationMinutes": null
+      },
+      "sourceSessionName": "Practice 2",
+      "sourceTime": {
+        "date": "2026-10-23",
+        "time": "13:50",
+        "timeZone": "Australia/Brisbane"
+      },
+      "editorTimeZone": "Australia/Sydney",
+      "proposed": {
+        "date": "2026-10-23",
+        "timeLocal": "14:50",
+        "durationMinutes": 30,
+        "name": "Practice 2",
+        "kind": "practice",
+        "utcInstant": "2026-10-23T03:50:00Z",
+        "sessionId": "supercars-2026-12-s6"
+      },
+      "dateChanged": false,
+      "status": "open",
+      "reason": "Official session time is available.",
+      "debug": false,
+      "fingerprint": "3c002abdac9854f11de1ea762a1791a3d88b991307bdde06b049ecbc9166f1ec",
+      "id": "schedule-3c002abdac9854f1"
+    },
+    {
+      "seriesId": "supercars",
+      "seriesName": "Repco Supercars Championship",
+      "calendarFile": "supercars_2026.json",
+      "eventId": "supercars-2026-12",
+      "eventName": "Boost Mobile Gold Coast 500",
+      "roundNumber": 12,
+      "source": {
+        "stableUrl": "https://www.supercars.com/2026/supercars-calendar-tickets",
+        "finalUrl": "https://www.supercars.com/events/2026-gold-coast/schedule",
+        "title": "2026 Boost Mobile Gold Coast 500 | Schedule | Supercars",
+        "checkedAt": "2026-09-30T12:42:35Z",
+        "lastModified": "Wed, 30 Sep 2026 12:42:36 GMT"
+      },
+      "proposalType": "time-update",
+      "sessionId": "supercars-2026-12-s02",
+      "sessionName": "Qualifying",
+      "current": {
+        "date": "2026-10-24",
+        "timeLocal": "13:30",
+        "durationMinutes": 60
+      },
+      "sourceSessionName": "Boost Mobile Qualifying (Race 31)",
+      "sourceTime": {
+        "date": "2026-10-23",
+        "time": "16:05",
+        "timeZone": "Australia/Brisbane"
+      },
+      "editorTimeZone": "Australia/Sydney",
+      "proposed": {
+        "date": "2026-10-23",
+        "timeLocal": "17:05",
+        "durationMinutes": 35,
+        "name": "Boost Mobile Qualifying (Race 31)",
+        "kind": "qualifying",
+        "utcInstant": "2026-10-23T06:05:00Z",
+        "sessionId": "supercars-2026-12-s02"
+      },
+      "dateChanged": true,
+      "status": "open",
+      "reason": "De ingevulde sessie wordt vervangen door de nieuwste offici\u00eble tijd.",
+      "debug": false,
+      "fingerprint": "d789012b20ff45992872e13a0c3642937fc696398f4c2389dc92c95017c08b38",
+      "id": "schedule-d789012b20ff4599"
+    },
+    {
+      "seriesId": "supercars",
+      "seriesName": "Repco Supercars Championship",
+      "calendarFile": "supercars_2026.json",
+      "eventId": "supercars-2026-12",
+      "eventName": "Boost Mobile Gold Coast 500",
+      "roundNumber": 12,
+      "source": {
+        "stableUrl": "https://www.supercars.com/2026/supercars-calendar-tickets",
+        "finalUrl": "https://www.supercars.com/events/2026-gold-coast/schedule",
+        "title": "2026 Boost Mobile Gold Coast 500 | Schedule | Supercars",
+        "checkedAt": "2026-09-30T12:42:35Z",
+        "lastModified": "Wed, 30 Sep 2026 12:42:36 GMT"
+      },
+      "proposalType": "new-session",
+      "sessionId": null,
+      "sessionName": "Boost Mobile Top Ten Shootout (Race 31)",
+      "current": {
+        "date": null,
+        "timeLocal": null,
+        "durationMinutes": null
+      },
+      "sourceSessionName": "Boost Mobile Top Ten Shootout (Race 31)",
+      "sourceTime": {
+        "date": "2026-10-24",
+        "time": "12:35",
+        "timeZone": "Australia/Brisbane"
+      },
+      "editorTimeZone": "Australia/Sydney",
+      "proposed": {
+        "date": "2026-10-24",
+        "timeLocal": "13:35",
+        "durationMinutes": 35,
+        "name": "Boost Mobile Top Ten Shootout (Race 31)",
+        "kind": "qualifying",
+        "utcInstant": "2026-10-24T02:35:00Z",
+        "sessionId": "supercars-2026-12-s8"
+      },
+      "dateChanged": false,
+      "status": "open",
+      "reason": "Official session time is available.",
+      "debug": false,
+      "fingerprint": "50bcd286b86d968a9392687f4fd2087e32c76766132f93feb07336444526df7d",
+      "id": "schedule-50bcd286b86d968a"
+    },
+    {
+      "seriesId": "supercars",
+      "seriesName": "Repco Supercars Championship",
+      "calendarFile": "supercars_2026.json",
+      "eventId": "supercars-2026-12",
+      "eventName": "Boost Mobile Gold Coast 500",
+      "roundNumber": 12,
+      "source": {
+        "stableUrl": "https://www.supercars.com/2026/supercars-calendar-tickets",
+        "finalUrl": "https://www.supercars.com/events/2026-gold-coast/schedule",
+        "title": "2026 Boost Mobile Gold Coast 500 | Schedule | Supercars",
+        "checkedAt": "2026-09-30T12:42:35Z",
+        "lastModified": "Wed, 30 Sep 2026 12:42:36 GMT"
+      },
+      "proposalType": "time-update",
+      "sessionId": "supercars-2026-12-s03",
+      "sessionName": "Race 1",
+      "current": {
+        "date": "2026-10-24",
+        "timeLocal": "17:15",
+        "durationMinutes": 60
+      },
+      "sourceSessionName": "Race 31",
+      "sourceTime": {
+        "date": "2026-10-24",
+        "time": "15:15",
+        "timeZone": "Australia/Brisbane"
+      },
+      "editorTimeZone": "Australia/Sydney",
+      "proposed": {
+        "date": "2026-10-24",
+        "timeLocal": "16:15",
+        "durationMinutes": 130,
+        "name": "Race 1",
+        "kind": "race",
+        "utcInstant": "2026-10-24T05:15:00Z",
+        "sessionId": "supercars-2026-12-s03"
+      },
+      "dateChanged": false,
+      "status": "open",
+      "reason": "De ingevulde sessie wordt vervangen door de nieuwste offici\u00eble tijd.",
+      "debug": false,
+      "fingerprint": "63e9eaac83519d05eb419db4101103fcfced727e2519b117e4551e1a85ac102f",
+      "id": "schedule-63e9eaac83519d05"
+    },
+    {
+      "seriesId": "supercars",
+      "seriesName": "Repco Supercars Championship",
+      "calendarFile": "supercars_2026.json",
+      "eventId": "supercars-2026-12",
+      "eventName": "Boost Mobile Gold Coast 500",
+      "roundNumber": 12,
+      "source": {
+        "stableUrl": "https://www.supercars.com/2026/supercars-calendar-tickets",
+        "finalUrl": "https://www.supercars.com/events/2026-gold-coast/schedule",
+        "title": "2026 Boost Mobile Gold Coast 500 | Schedule | Supercars",
+        "checkedAt": "2026-09-30T12:42:35Z",
+        "lastModified": "Wed, 30 Sep 2026 12:42:36 GMT"
+      },
+      "proposalType": "new-session",
+      "sessionId": null,
+      "sessionName": "Boost Mobile Qualifying (Race 32)",
+      "current": {
+        "date": null,
+        "timeLocal": null,
+        "durationMinutes": null
+      },
+      "sourceSessionName": "Boost Mobile Qualifying (Race 32)",
+      "sourceTime": {
+        "date": "2026-10-25",
+        "time": "11:20",
+        "timeZone": "Australia/Brisbane"
+      },
+      "editorTimeZone": "Australia/Sydney",
+      "proposed": {
+        "date": "2026-10-25",
+        "timeLocal": "12:20",
+        "durationMinutes": 38,
+        "name": "Boost Mobile Qualifying (Race 32)",
+        "kind": "qualifying",
+        "utcInstant": "2026-10-25T01:20:00Z",
+        "sessionId": "supercars-2026-12-s10"
+      },
+      "dateChanged": false,
+      "status": "open",
+      "reason": "Official session time is available.",
+      "debug": false,
+      "fingerprint": "18551bd08b4310d35d1e4efd579f98b14eb42248c32c331287c3269c3c704b9d",
+      "id": "schedule-18551bd08b4310d3"
+    },
+    {
+      "seriesId": "supercars",
+      "seriesName": "Repco Supercars Championship",
+      "calendarFile": "supercars_2026.json",
+      "eventId": "supercars-2026-12",
+      "eventName": "Boost Mobile Gold Coast 500",
+      "roundNumber": 12,
+      "source": {
+        "stableUrl": "https://www.supercars.com/2026/supercars-calendar-tickets",
+        "finalUrl": "https://www.supercars.com/events/2026-gold-coast/schedule",
+        "title": "2026 Boost Mobile Gold Coast 500 | Schedule | Supercars",
+        "checkedAt": "2026-09-30T12:42:35Z",
+        "lastModified": "Wed, 30 Sep 2026 12:42:36 GMT"
+      },
+      "proposalType": "new-session",
+      "sessionId": null,
+      "sessionName": "Boost Mobile Top Ten Shootout (Race 32)",
+      "current": {
+        "date": null,
+        "timeLocal": null,
+        "durationMinutes": null
+      },
+      "sourceSessionName": "Boost Mobile Top Ten Shootout (Race 32)",
+      "sourceTime": {
+        "date": "2026-10-25",
+        "time": "12:05",
+        "timeZone": "Australia/Brisbane"
+      },
+      "editorTimeZone": "Australia/Sydney",
+      "proposed": {
+        "date": "2026-10-25",
+        "timeLocal": "13:05",
+        "durationMinutes": 35,
+        "name": "Boost Mobile Top Ten Shootout (Race 32)",
+        "kind": "qualifying",
+        "utcInstant": "2026-10-25T02:05:00Z",
+        "sessionId": "supercars-2026-12-s11"
+      },
+      "dateChanged": false,
+      "status": "open",
+      "reason": "Official session time is available.",
+      "debug": false,
+      "fingerprint": "b0aaf0df33ee8d9b2a0522ac73456347d2774bf2edf81cfdf47b40d1af968bab",
+      "id": "schedule-b0aaf0df33ee8d9b"
+    },
+    {
+      "seriesId": "supercars",
+      "seriesName": "Repco Supercars Championship",
+      "calendarFile": "supercars_2026.json",
+      "eventId": "supercars-2026-12",
+      "eventName": "Boost Mobile Gold Coast 500",
+      "roundNumber": 12,
+      "source": {
+        "stableUrl": "https://www.supercars.com/2026/supercars-calendar-tickets",
+        "finalUrl": "https://www.supercars.com/events/2026-gold-coast/schedule",
+        "title": "2026 Boost Mobile Gold Coast 500 | Schedule | Supercars",
+        "checkedAt": "2026-09-30T12:42:35Z",
+        "lastModified": "Wed, 30 Sep 2026 12:42:36 GMT"
+      },
+      "proposalType": "time-update",
+      "sessionId": "supercars-2026-12-s04",
+      "sessionName": "Race 2",
+      "current": {
+        "date": "2026-10-25",
+        "timeLocal": "15:30",
+        "durationMinutes": 60
+      },
+      "sourceSessionName": "Race 32",
+      "sourceTime": {
+        "date": "2026-10-25",
+        "time": "14:45",
+        "timeZone": "Australia/Brisbane"
+      },
+      "editorTimeZone": "Australia/Sydney",
+      "proposed": {
+        "date": "2026-10-25",
+        "timeLocal": "15:45",
+        "durationMinutes": 140,
+        "name": "Race 2",
+        "kind": "race",
+        "utcInstant": "2026-10-25T04:45:00Z",
+        "sessionId": "supercars-2026-12-s04"
+      },
+      "dateChanged": false,
+      "status": "open",
+      "reason": "De ingevulde sessie wordt vervangen door de nieuwste offici\u00eble tijd.",
+      "debug": false,
+      "fingerprint": "55923d23e316905b3d098b29c3470124fe843a5d56c84eee667b8f33932ae10f",
+      "id": "schedule-55923d23e316905b"
+    }
+  ]
+}
