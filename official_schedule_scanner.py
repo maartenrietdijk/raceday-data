@@ -389,6 +389,329 @@ def fixture_result(path: Path, stable_url: str) -> FetchResult:
     )
 
 
+def discover_japanese_event_url(calendar: FetchResult, event: dict, year: int, series_id: str) -> str:
+    """Use season/round identity, never fuzzy circuit matching across weekends."""
+    candidates = set()
+    round_number = int(event.get("roundNumber") or 0)
+    dates = [str(x.get("date")) for x in event.get("sessions", []) if x.get("date")]
+    if series_id == "sf":
+        if not any(re.fullmatch(r"{}\s+SUPER FORMULA".format(year), strip_tags(h), re.I) for h in re.findall(r"<h2\b[^>]*>(.*?)</h2>", calendar.body, re.I | re.S)):
+            raise SourceError("Official Super Formula calendar has the wrong season")
+        for url, label in extract_links(calendar.body, calendar.final_url):
+            rounds = re.search(r"Rd\.\s*(\d+(?:\s*-\s*\d+)*)", label, re.I)
+            month = re.search(r"(\d{1,2})月", label)
+            if (re.search(r"/sf3/race/\d+/?$", urlparse(url).path) and rounds and month
+                    and round_number in [int(n) for n in re.findall(r"\d+", rounds.group(1))]
+                    and any(int(d[5:7]) == int(month.group(1)) for d in dates)):
+                candidates.add(url)
+    else:
+        for row in re.findall(r"<tr\b[^>]*>(.*?)</tr>", calendar.body, re.I | re.S):
+            if not re.search(r"\b{}\s+AUTOBACS\s+SUPER\s+GT\b".format(year), strip_tags(row), re.I):
+                continue
+            for url, label in extract_links(row, calendar.final_url):
+                if re.match(r"Round\s*{}\b".format(round_number), label, re.I) and "/races/" in urlparse(url).path:
+                    candidates.add(url)
+    if len(candidates) != 1:
+        raise SourceError("No unique official {} event for season {}, round {} and calendar dates".format(series_id, year, round_number))
+    return candidates.pop()
+
+
+def japanese_clock_range(value: str) -> Tuple[str, Optional[int]]:
+    clocks = re.findall(r"(?<!\d)(\d{1,2}:\d{2})(?!\d)", value)
+    if not clocks:
+        raise SourceError("Official Japanese session has no published start time")
+    try:
+        start = parse_clock(clocks[0])
+        end = parse_clock(clocks[1]) if len(clocks) > 1 else None
+    except ValueError as exc:
+        raise SourceError("Invalid Japanese session clock") from exc
+    duration = None
+    if end is not None:
+        minutes = lambda clock: int(clock[:2]) * 60 + int(clock[3:])
+        duration = minutes(end) - minutes(start)
+        if duration <= 0:
+            raise SourceError("Invalid official session time range")
+    return start, duration
+
+
+def validate_japanese_sessions(sessions: Sequence[SourceSession], event: dict) -> List[SourceSession]:
+    dates = sorted({x.get("date") for x in event.get("sessions", []) if x.get("date")})
+    if not dates or any(x.date < dates[0] or x.date > dates[-1] for x in sessions):
+        raise SourceError("Official event dates differ from the calendar; review the event before accepting times")
+    # A partially published/changed page must not look like a fully verified weekend.
+    expected = {normalize_kind(x.get("name", "")) for x in event.get("sessions", [])} - {None}
+    actual = {normalize_kind(x.name) for x in sessions}
+    if sessions and not expected.issubset(actual):
+        raise SourceError("Official timetable is incomplete for this event; keep unpublished sessions TBC")
+    for kind in expected:
+        if sessions and sum(normalize_kind(x.name) == kind for x in sessions) < sum(normalize_kind(x.get("name", "")) == kind for x in event.get("sessions", [])):
+            raise SourceError("Official timetable is missing one or more expected sessions")
+    return sorted(sessions, key=lambda x: (x.date, x.local_time, x.name))
+
+
+def parse_superformula_schedule(fetch: FetchResult, event: dict, year: int, source_timezone: str) -> List[SourceSession]:
+    title = re.search(r"(?:(20\d{2})\s+)?Rd\.\s*(\d+(?:-\d+)*)", fetch.title, re.I)
+    season_matches = title and (int(title.group(1)) == year if title.group(1) else bool(re.search(r'href=["\'][^"\']*/race_taxonomy/{}["\']'.format(year), fetch.body)))
+    if not season_matches or int(event.get("roundNumber") or 0) not in map(int, title.group(2).split("-")):
+        raise SourceError("Super Formula page does not identify the requested season and round")
+    # Only the race schedule block: results and fan schedules can contain clocks too.
+    section = re.search(r'<span\b[^>]*id=[\"\']schedule[\"\'][^>]*>.*?(?=<span\b[^>]*class=[\"\']ank[\"\']|<footer|\Z)', fetch.body, re.I | re.S)
+    if not section:
+        return []
+    body = re.split(r'<h3\b', section.group(0), flags=re.I)
+    schedule = '<h3' + body[1] if len(body) > 1 else section.group(0)
+    sessions, qualifying, races = [], {}, []
+    for heading, rows in html_tables(schedule):
+        day = re.match(r"\s*(\d{1,2})\.(\d{1,2})\b", heading)
+        if not day:
+            raise SourceError("Super Formula schedule table has no unambiguous date")
+        try:
+            session_date = date(year, int(day.group(1)), int(day.group(2))).isoformat()
+        except ValueError as exc:
+            raise SourceError("Invalid Super Formula schedule date") from exc
+        for cells in rows:
+            if len(cells) != 2:
+                continue
+            clock, label = cells
+            practice = re.fullmatch(r"(?:FP\s*\d*\s*\(フリー走行\)|フリー走行\(FP\d+\))", label, re.I)
+            qualification = re.fullmatch(r"Rd\.\s*(\d+)\s*予選\s*Q([123])(?:\s*Gr\.?\s*([AB]))?", label, re.I)
+            race = re.fullmatch(r"Rd\.\s*(\d+)\s*決勝レース", label)
+            if not (practice or qualification or race):
+                continue
+            if re.search(r"中止|延期|cancel|postpon", clock, re.I):
+                continue
+            start, duration = japanese_clock_range(clock)
+            if practice:
+                sessions.append(SourceSession("Free Practice " + str(1 + sum(x.name.startswith("Free Practice") for x in sessions)), session_date, start, source_timezone, duration))
+            elif qualification:
+                key = (session_date, int(qualification.group(1)))
+                qualifying.setdefault(key, []).append((qualification.group(2) + (qualification.group(3) or '').upper(), start, duration))
+            else:
+                # A maximum race limit is not its scheduled duration.
+                races.append(SourceSession("Race", session_date, start, source_timezone, duration))
+    for number, ((session_date, official_round), parts) in enumerate(sorted(qualifying.items()), 1):
+        part_names = {p[0] for p in parts}
+        if part_names not in ({"1A", "1B", "2"}, {"1A", "1B", "2", "3"}) or len(parts) != len(part_names) or any(p[2] is None for p in parts):
+            raise SourceError("Incomplete Super Formula qualifying segments")
+        parts.sort(key=lambda x: x[1])
+        start = parts[0][1]
+        end = int(parts[-1][1][:2]) * 60 + int(parts[-1][1][3:]) + parts[-1][2]
+        duration = end - (int(start[:2]) * 60 + int(start[3:]))
+        name = "Qualifying" + (" " + str(number) if len(qualifying) > 1 else "")
+        sessions.append(SourceSession(name, session_date, start, source_timezone, duration))
+    if races and not any(normalize_kind(x.get("name", "")) == "race" for x in event.get("sessions", [])):
+        raise SourceError("Official timetable lists a race missing from this calendar event; it may have been cancelled or relocated. Review before adding it.")
+    for number, race in enumerate(sorted(races, key=lambda x: (x.date, x.local_time)), 1):
+        name = "Race" + (" " + str(number) if len(races) > 1 else "")
+        sessions.append(SourceSession(name, race.date, race.local_time, race.timezone, race.duration_minutes))
+    return validate_japanese_sessions(sessions, event)
+
+
+def parse_supergt_schedule(fetch: FetchResult, event: dict, year: int, source_timezone: str) -> List[SourceSession]:
+    event_rows = [strip_tags(row) for row in re.findall(r"<tr\b[^>]*>(.*?)</tr>", fetch.body, re.I | re.S) if "大会名称" in strip_tags(row)]
+    if not any(re.search(r"\b{}\s+AUTOBACS\s+SUPER\s+GT\s+Round\s*{}\b".format(year, int(event.get("roundNumber") or 0)), row, re.I) for row in event_rows):
+        raise SourceError("SUPER GT page does not identify the requested season and round")
+    sections = re.split(r'<div\b[^>]*class=[\"\']table_box(?:\s+hidden)?[\"\'][^>]*>', fetch.body, flags=re.I)
+    dates = re.findall(r'<a\b[^>]*data-target=[\"\'](20\d{2}-\d{2}-\d{2})[\"\']', sections[0], re.I)
+    if not dates and len(sections) == 1:
+        return []
+    if len(dates) != len(sections) - 1 or len(set(dates)) != len(dates):
+        raise SourceError("SUPER GT schedule dates cannot be matched to their timetable panels")
+    sessions = []
+    for session_date, section in zip(dates, sections[1:]):
+        try:
+            if date.fromisoformat(session_date).year != year:
+                raise ValueError()
+        except ValueError as exc:
+            raise SourceError("Invalid SUPER GT schedule date") from exc
+        seen, qualifying = {}, {}
+        for match in re.finditer(r'<div\b([^>]*\bclass=[\"\']race_box\s+schedule_box\s+[^\"\']*[\"\'][^>]*)>\s*<h6\b[^>]*>(.*?)</h6>', section, re.I | re.S):
+            attrs, heading = match.groups()
+            label = unicodedata.normalize("NFKC", strip_tags(heading))
+            label_match = re.search(r"SUPER GT\s*:\s*(.+)$", label, re.I)
+            if not label_match:
+                continue
+            name = label_match.group(1)
+            if name == "公式練習":
+                name = "Official Practice"
+            elif name == "ウォームアップ走行":
+                name = "Warmup"
+            elif re.fullmatch(r"公式予選\s*\(Q[12]\)", name):
+                name = "Q" + re.search(r"Q([12])", name).group(1)
+            elif re.fullmatch(r"決勝レース(?:\s*\([^)]*\))?", name):
+                name = "Race"
+            else:
+                continue
+            start_attr = re.search(r'\bdata-from=[\"\']([^\"\']*)[\"\']', attrs)
+            end_attr = re.search(r'\bdata-to=[\"\']([^\"\']*)[\"\']', attrs)
+            if not start_attr:
+                raise SourceError("Missing SUPER GT session start")
+            clock = start_attr.group(1) + "-" + (end_attr.group(1) if end_attr else "")
+            start, duration = japanese_clock_range(clock)
+            visible_start, visible_duration = japanese_clock_range(label.split("SUPER GT")[0])
+            if start != visible_start or (visible_duration is not None and duration != visible_duration):
+                raise SourceError("SUPER GT displayed and embedded session times disagree")
+            # Race bars may have a layout-only end absent from the visible timetable.
+            duration = visible_duration
+            value = (start, duration)
+            if name in seen and seen[name] != value:
+                raise SourceError("Conflicting desktop/mobile SUPER GT times")
+            if name in seen:
+                continue
+            seen[name] = value
+            if name in {"Q1", "Q2"}:
+                qualifying[name] = value
+            else:
+                sessions.append(SourceSession(name, session_date, start, source_timezone, duration))
+        if qualifying:
+            if set(qualifying) != {"Q1", "Q2"} or any(v[1] is None for v in qualifying.values()):
+                raise SourceError("Incomplete SUPER GT qualifying segments")
+            start, _ = qualifying['Q1']
+            last, duration = qualifying['Q2']
+            minutes = lambda clock: int(clock[:2]) * 60 + int(clock[3:])
+            if minutes(last) <= minutes(start):
+                raise SourceError("Invalid SUPER GT qualifying order")
+            sessions.append(SourceSession("Qualifying", session_date, start, source_timezone, minutes(last) + duration - minutes(start)))
+    races = [x for x in sessions if x.name == "Race"]
+    expected_race_dates = {x.get("date") for x in event.get("sessions", []) if normalize_kind(x.get("name", "")) == "race"}
+    if len(races) > 1 or any(x.date not in expected_race_dates for x in races):
+        raise SourceError("Shared or moved SUPER GT race timetable: review which race belongs to this round")
+    return validate_japanese_sessions(sessions, event)
+
+
+def academy_page_data(fetch: FetchResult) -> dict:
+    match = re.search(r'<script\b[^>]*id=["\']__NEXT_DATA__["\'][^>]*>(.*?)</script>', fetch.body, re.I | re.S)
+    try:
+        data = json.loads(match.group(1))["props"]["pageProps"]["pageData"] if match else None
+    except (json.JSONDecodeError, KeyError, TypeError) as exc:
+        raise SourceError("Could not decode the official F1 Academy schedule") from exc
+    if not isinstance(data, dict):
+        raise SourceError("Official F1 Academy schedule data is unavailable")
+    return data
+
+
+def academy_event_record(data: dict, event: dict, year: int) -> dict:
+    if not re.fullmatch(r"{} F1 Academy".format(year), str(data.get("SeasonName", "")), re.I):
+        raise SourceError("F1 Academy source season does not match this calendar")
+    records = data.get("Races") if "Races" in data else [data]
+    if not isinstance(records, list):
+        raise SourceError("Invalid F1 Academy race list")
+    matches = [r for r in records if isinstance(r, dict) and r.get("RoundNumber") == event.get("roundNumber")]
+    if len(matches) != 1:
+        raise SourceError("No unique official F1 Academy round matches this event")
+    race = matches[0]
+    circuit = race.get("CircuitName") or (race.get("CircuitInformation") or {}).get("CircuitName")
+    aliases = {"las vegas street circuit": "las vegas strip circuit"}
+    wanted = normalize(event.get("circuitName"))
+    if not wanted or aliases.get(wanted, wanted) != normalize(circuit):
+        raise SourceError("Official F1 Academy circuit does not match this event")
+    try:
+        first, last = date.fromisoformat(race["RaceStartDate"]), date.fromisoformat(race["RaceEndDate"])
+        dates = [date.fromisoformat(x["date"]) for x in event.get("sessions", []) if x.get("date")]
+    except (ValueError, KeyError, TypeError) as exc:
+        raise SourceError("Invalid F1 Academy weekend dates") from exc
+    if first.year != year or last < first or (last - first).days > 7 or not dates or max(dates) < first or min(dates) > last + timedelta(days=1):
+        raise SourceError("F1 Academy weekend dates do not match this event")
+    return race
+
+
+def discover_academy_event_url(calendar: FetchResult, event: dict, year: int) -> str:
+    race = academy_event_record(academy_page_data(calendar), event, year)
+    race_id = race.get("RaceId")
+    if not isinstance(race_id, int) or race_id <= 0:
+        raise SourceError("Official F1 Academy round has no valid race ID")
+    # Follow only the URL whose ID belongs to the exact official season/round.
+    candidates = {url for url, _ in extract_links(calendar.body, calendar.final_url)
+                  if urlparse(url).path == "/Racing-Series/Results" and
+                  urlparse(url).query == "raceid={}".format(race_id)}
+    if len(candidates) != 1:
+        raise SourceError("Official F1 Academy event link is missing or ambiguous")
+    return candidates.pop()
+
+
+def parse_academy_schedule(fetch: FetchResult, event: dict, year: int, source_timezone: str) -> List[SourceSession]:
+    race = academy_event_record(academy_page_data(fetch), event, year)
+    records = race.get("SessionResults", race.get("Sessions"))
+    if not isinstance(records, list):
+        raise SourceError("Official F1 Academy sessions are unavailable")
+    labels = {
+        "Free Practice": "PRACTICE", "Practice": "PRACTICE",
+        "Qualifying": "QUALIFYING", "Qualifying 1": "QUALIFYING", "Qualifying 2": "QUALIFYING",
+        "Opening Race": "RESULT", "Reverse Grid Race": "RESULT", "Feature Race": "RESULT",
+    }
+    sessions, seen = [], {}
+    for item in records:
+        if not isinstance(item, dict):
+            raise SourceError("Invalid official F1 Academy session record")
+        name = item.get("SessionName")
+        if name not in labels or item.get("SessionType", item.get("SessionCode")) != labels[name]:
+            continue
+        # TBC entries still contain placeholder timestamps, sometimes even a
+        # stale summer offset. They are never evidence of a published time.
+        if item.get("Unconfirmed") is not False:
+            continue
+        try:
+            start = datetime.fromisoformat(item["SessionStartTime"])
+            end = datetime.fromisoformat(item["SessionEndTime"]) if item.get("SessionEndTime") else None
+            zone = ZoneInfo(source_timezone)
+        except (ValueError, KeyError, TypeError, ZoneInfoNotFoundError) as exc:
+            raise SourceError("Invalid confirmed F1 Academy session timestamp") from exc
+        if start.tzinfo is None or (end is not None and end.tzinfo is None):
+            raise SourceError("Confirmed F1 Academy session is missing its official UTC offset")
+        local = start.astimezone(zone)
+        if local.replace(tzinfo=None) != start.replace(tzinfo=None):
+            raise SourceError("Official F1 Academy UTC offset disagrees with the circuit's IANA timezone")
+        if start.second or start.microsecond or (end is not None and (end.second or end.microsecond)):
+            raise SourceError("Official F1 Academy session has unsupported sub-minute precision")
+        if not race["RaceStartDate"] <= local.date().isoformat() <= race["RaceEndDate"]:
+            raise SourceError("F1 Academy session falls outside its official weekend")
+        duration = None
+        if end is not None:
+            if end.astimezone(zone).replace(tzinfo=None) != end.replace(tzinfo=None):
+                raise SourceError("F1 Academy session end offset disagrees with the circuit timezone")
+            duration = int((end - start).total_seconds() / 60)
+            if not 0 < duration <= 360:
+                raise SourceError("Invalid confirmed F1 Academy session duration")
+        session = SourceSession(name, local.date().isoformat(), local.strftime("%H:%M"), source_timezone,
+                                duration, start.astimezone(timezone.utc).strftime("%H:%M"))
+        if name in seen and seen[name] != session:
+            raise SourceError("Conflicting F1 Academy session records")
+        if name not in seen:
+            seen[name] = session
+            sessions.append(session)
+    if not sessions and any(isinstance(x, dict) and x.get("SessionName") in labels and x.get("Unconfirmed") is not False for x in records):
+        raise SourceError("F1 Academy has not confirmed the session times for this round; internal placeholder timestamps must remain TBC")
+    # Montreal publishes two grid classifications for the same physical
+    # qualifying session. Preserve one calendar session if both intervals agree;
+    # distinct qualifying intervals still remain separate.
+    q1, q2 = seen.get("Qualifying 1"), seen.get("Qualifying 2")
+    if q1 and q2 and (q1.date, q1.local_time, q1.duration_minutes, q1.utc_hint) == (q2.date, q2.local_time, q2.duration_minutes, q2.utc_hint):
+        sessions = [x for x in sessions if x.name not in {"Qualifying 1", "Qualifying 2"}]
+        sessions.append(SourceSession("Qualifying", q1.date, q1.local_time, q1.timezone, q1.duration_minutes, q1.utc_hint))
+    return sorted(sessions, key=lambda x: (x.date, x.local_time, x.name))
+
+
+def match_academy_session(source: SourceSession, official_sessions: Sequence[SourceSession], available: Sequence[dict], all_existing: Optional[Sequence[dict]] = None) -> Tuple[Optional[dict], Optional[str]]:
+    exact = [x for x in available if normalize(x.get("name")) == normalize(source.name)]
+    if len(exact) == 1:
+        return exact[0], None
+    race_names = {"Opening Race", "Reverse Grid Race", "Feature Race"}
+    if source.name in race_names:
+        races = sorted([x for x in official_sessions if x.name in race_names], key=lambda x: (x.date, x.local_time))
+        existing_races = [x for x in (all_existing if all_existing is not None else available) if normalize_kind(x.get("name", "")) in {"race", "featureRace"}]
+        if len(races) != len(existing_races):
+            return None, "The confirmed F1 Academy race count differs from the calendar; review legacy race numbering before matching."
+        number = races.index(source) + 1
+        legacy = [x for x in available if re.fullmatch(r"race {}".format(number), normalize(x.get("name")))]
+        if len(legacy) == 1:
+            return legacy[0], None
+        if exact or legacy:
+            return None, "F1 Academy race slot is ambiguous"
+        # Never map an Opening Race to an already named Reverse Grid/Feature Race.
+        return None, None
+    return match_session(source, available)
+
+
 def discover_event_url(calendar: FetchResult, event: dict, year: int) -> Optional[str]:
     target = "{} {} {} {}".format(
         event.get("raceName", ""), event.get("circuitName", ""), event.get("city", ""), year
@@ -1300,36 +1623,72 @@ def parse_worldsbk_schedule(fetch: FetchResult, category_id: str, source_timezon
 
 
 def parse_formula1_schedule(fetch: FetchResult) -> List[SourceSession]:
-    """Read F1-only sessions from the official event page's JSON-LD."""
-    canonical_names = {
-        "practice 1": "Practice 1", "practice 2": "Practice 2", "practice 3": "Practice 3",
-        "sprint qualifying": "Sprint Qualifying", "sprint": "Sprint Race",
-        "qualifying": "Qualifying", "race": "Race",
-    }
-    sessions: List[SourceSession] = []
-    scripts = re.findall(
-        r"<script\b[^>]*type=[\"']application/ld\+json[\"'][^>]*>(.*?)</script>",
-        fetch.body, re.I | re.S,
-    )
-    for script in scripts:
+    """Require the public timetable, session status and UTC data to agree.
+
+    F1 emits numeric JSON-LD placeholders even when its timetable says TBC.
+    Never interpret those internal timestamps as published session times.
+    """
+    names = {"practice 1": "Practice 1", "practice 2": "Practice 2",
+             "practice 3": "Practice 3", "sprint qualifying": "Sprint Qualifying",
+             "sprint": "Sprint Race", "qualifying": "Qualifying", "race": "Race"}
+    match = re.search(r'\\?"meetingSessions\\?"\s*:\s*(\[.*?\])\s*,', fetch.body, re.S)
+    if not match:
+        return []
+    try:
+        raw = match.group(1)
+        records = json.loads(json.loads('"' + raw + '"')) if r'\"' in raw else json.loads(raw)
+    except (ValueError, TypeError):
+        return []
+    published = {}
+    for row in re.findall(r"<li\b[^>]*>(.*?)</li>", fetch.body, re.I | re.S):
+        clocks = re.findall(r"<time\b[^>]*>(.*?)</time>", row, re.I | re.S)
+        if len(clocks) not in (1, 2) or re.search(r"\b(?:TBC|TBD)\b", strip_tags(row), re.I):
+            continue
+        for span in re.findall(r"<span\b[^>]*>(.*?)</span>", row, re.I | re.S):
+            key = normalize(strip_tags(span))
+            if key in names:
+                published[key] = ([strip_tags(clock).strip() for clock in clocks], strip_tags(row))
+    structured = {}
+    for script in re.findall(r"<script\b[^>]*type=[\"']application/ld\+json[\"'][^>]*>(.*?)</script>", fetch.body, re.I | re.S):
         try:
             payload = json.loads(html.unescape(script).strip())
-        except (json.JSONDecodeError, TypeError):
+        except (ValueError, TypeError):
             continue
-        records = payload.get("subEvent", []) if isinstance(payload, dict) else []
-        for item in records if isinstance(records, list) else []:
-            raw_name = str(item.get("name") or "").split(" - ", 1)[0].strip()
-            name = canonical_names.get(normalize(raw_name))
-            start_value = str(item.get("startDate") or "")
-            end_value = str(item.get("endDate") or "")
-            if not name or not re.match(r"^20\d{2}-\d{2}-\d{2}T\d{2}:\d{2}", start_value):
-                continue
-            sessions.append(SourceSession(
-                name, start_value[:10], start_value[11:16], "UTC",
-                session_duration(start_value, end_value),
-            ))
-    unique = {(item.name, item.date, item.local_time): item for item in sessions}
-    return sorted(unique.values(), key=lambda item: (item.date, item.local_time, item.name))
+        for item in payload.get("subEvent", []) if isinstance(payload, dict) else []:
+            structured[normalize(str(item.get("name", "")).split(" - ", 1)[0])] = item
+    sessions = []
+    for item in records:
+        key = normalize(str(item.get("description", "")))
+        if key not in published or key not in structured:
+            continue
+        if re.search(r"\b(?:TBC|TBD|provisional|unconfirmed)\b", str(item.get("sessionStatus", "")), re.I):
+            continue
+        try:
+            zone = ZoneInfo(item["timezone"])
+            start = datetime.fromisoformat(item["startTime"]).replace(tzinfo=zone)
+            end = datetime.fromisoformat(item["endTime"]).replace(tzinfo=zone)
+            offset_start = datetime.fromisoformat(item["startTime"] + item["gmtOffset"])
+            utc_start = datetime.fromisoformat(structured[key]["startDate"].replace("Z", "+00:00"))
+            utc_end = datetime.fromisoformat(structured[key]["endDate"].replace("Z", "+00:00"))
+        except (KeyError, ValueError, TypeError, ZoneInfoNotFoundError):
+            continue
+        if utc_start.tzinfo is None or utc_end.tzinfo is None:
+            continue
+        if start != offset_start or start != utc_start or end != utc_end or end <= start:
+            continue
+        utc_start, utc_end = utc_start.astimezone(timezone.utc), utc_end.astimezone(timezone.utc)
+        clocks, row_text = published[key]
+        expected = [utc_start.strftime("%H:%M"), utc_end.strftime("%H:%M")][:len(clocks)]
+        if clocks != expected or (len(clocks) == 1 and key != "race"):
+            continue
+        # The visible day and month must identify this session, too.
+        day_month = re.search(r"\b(\d{1,2})\s+([A-Za-z]{3})\b", row_text)
+        if not day_month or int(day_month.group(1)) != utc_start.day or day_month.group(2).lower() != utc_start.strftime("%b").lower():
+            continue
+        sessions.append(SourceSession(names[key], utc_start.date().isoformat(),
+                                      utc_start.strftime("%H:%M"), "UTC",
+                                      int((utc_end - utc_start).total_seconds() // 60)))
+    return sorted(sessions, key=lambda item: (item.date, item.local_time, item.name))
 
 
 def parse_official_schedule_document(fetch: FetchResult, year: int, source_timezone: str, categories: Sequence[str]) -> List[SourceSession]:
@@ -1839,6 +2198,8 @@ def proposal_base(series_cfg: dict, filename: str, event: dict, source: FetchRes
             "title": source.title,
             "checkedAt": checked_at,
             "lastModified": source.last_modified,
+            **({"confirmationPolicy": "f1-published-schedule-v1"}
+               if series_cfg.get("sourceKind") == "formula1-jsonld" else {}),
         },
     }
 
@@ -1916,7 +2277,9 @@ def build_event_proposals(
             continue
         available = [item for item in existing if item.get("id") not in matched_ids]
         matching_official = SourceSession(supercars_names.get(id(official), official.name), official.date, official.local_time, official.timezone, official.duration_minutes) if supercars else official
-        matched, conflict = match_session(matching_official, available)
+        matched, conflict = (match_academy_session(official, official_sessions, available, existing)
+                             if series_cfg.get("sourceKind") == "f1academy-schedule"
+                             else match_session(matching_official, available))
         if supercars and kind == "race":
             # Match on race day, never on the season/weekend number alone.
             same_day = [item for item in available if normalize_kind(item.get("name", "")) == "race" and item.get("date") == official.date]
@@ -1945,6 +2308,8 @@ def build_event_proposals(
         if supercars:
             proposed_name = supercars_names.get(id(official), official.name)
         is_match = bool(is_match and (not matched or matched.get("name") == proposed_name))
+        if series_cfg.get("sourceKind") in {"superformula-timetable", "supergt-timetable", "f1academy-schedule"} and official.duration_minutes is not None:
+            is_match = bool(is_match and matched and matched.get("durationMinutes") == official.duration_minutes)
         proposal = proposal_base(series_cfg, filename, event, source, checked_at)
         actionable_correction = bool(filled_session and replace_filled and not is_match and not conflict)
         proposal.update({
@@ -1985,6 +2350,8 @@ def build_event_proposals(
         }
         # Keep normal and replace-filled scans on the same stable identity. Debug
         # comparisons are intentionally separate and must not affect live proposals.
+        if proposal["source"].get("confirmationPolicy"):
+            fp_data["confirmationPolicy"] = proposal["source"]["confirmationPolicy"]
         if proposal["debug"]:
             fp_data["mode"] = "debug"
         proposal["fingerprint"] = fingerprint(fp_data)
@@ -2028,7 +2395,8 @@ def merge_proposals(previous: Sequence[dict], current: Sequence[dict], generated
         if item.get("status") == "unresolved":
             last_reliable = next(
                 (old_item for old_item in reversed(previous_identity)
-                 if old_item.get("proposed") and old_item.get("status") in {"open", "accepted", "rejected"}),
+                 if old_item.get("proposed") and old_item.get("status") in {"open", "accepted", "rejected"}
+                 and (old_item.get("seriesId") != "f1" or old_item.get("source", {}).get("confirmationPolicy") == "f1-published-schedule-v1")),
                 None,
             )
             if last_reliable:
@@ -2150,7 +2518,7 @@ def calendar_inventory(
                 known_kinds = {session.get("kind") for session in sessions}
                 upcoming_incomplete_nascar = not {"practice", "qualifying"}.issubset(known_kinds)
             if event_ids or include_filled or has_tbc or upcoming_incomplete_nascar or (
-                (series_id == "dtm" or event.get("officialScheduleUrl")) and event_refresh_due(event, checked_at or datetime.now(timezone.utc))
+                (series_id in {"dtm", "sf", "supergt", "f1academy"} or event.get("officialScheduleUrl")) and event_refresh_due(event, checked_at or datetime.now(timezone.utc))
             ):
                 inventory.append((path.name, event))
     return inventory
@@ -2322,7 +2690,11 @@ def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Opti
                                 calendar_errors.append(str(exc))
                         if calendar is None:
                             raise SourceError(calendar_errors[-1] if calendar_errors else "could not read official calendar")
-                        if cfg.get("sourceKind") == "formula1-jsonld":
+                        if cfg.get("sourceKind") == "f1academy-schedule":
+                            discovered = discover_academy_event_url(calendar, event, event_year)
+                        elif cfg.get("sourceKind") in {"superformula-timetable", "supergt-timetable"}:
+                            discovered = discover_japanese_event_url(calendar, event, event_year, series_id)
+                        elif cfg.get("sourceKind") == "formula1-jsonld":
                             discovered = discover_formula1_event_url(calendar, event, event_year)
                         elif cfg.get("sourceKind") == "btcc-timetable":
                             discovered = discover_btcc_event_url(calendar, event)
@@ -2387,6 +2759,10 @@ def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Opti
                 sessions = parse_formula_e_schedule(source, event, event_year, source_tz)
             elif cfg["sourceKind"] == "imsa-event-schedule":
                 sessions = parse_imsa_event_schedule(source, event, event_year, source_tz)
+            elif cfg["sourceKind"] == "superformula-timetable":
+                sessions = parse_superformula_schedule(source, event, event_year, source_tz)
+            elif cfg["sourceKind"] == "supergt-timetable":
+                sessions = parse_supergt_schedule(source, event, event_year, source_tz)
             elif cfg["sourceKind"] == "supercars-embedded-schedule":
                 sessions = parse_supercars_schedule(source, event_year, source_tz, cfg["officialSeriesName"])
             elif cfg["sourceKind"] == "motogp-api":
@@ -2395,6 +2771,8 @@ def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Opti
                 sessions = parse_worldsbk_schedule(source, cfg["officialCategoryId"], source_tz)
             elif cfg["sourceKind"] == "formula1-jsonld":
                 sessions = parse_formula1_schedule(source)
+            elif cfg["sourceKind"] == "f1academy-schedule":
+                sessions = parse_academy_schedule(source, event, event_year, source_tz)
             elif cfg["sourceKind"] == "fia-track-time":
                 sessions = (
                     parse_fia_track_schedule(source, source_tz)
@@ -2475,7 +2853,7 @@ def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Opti
                             nascar_week[0].isoformat() <= item.date <= nascar_week[1].isoformat()]
             if not sessions:
                 raise SourceError("De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema.")
-            if manual_url:
+            if manual_url and cfg["sourceKind"] != "f1academy-schedule":
                 calendar_dates = sorted({str(item.get("date")) for item in event.get("sessions", []) if item.get("date")})
                 if not calendar_dates or not any(item.date in calendar_dates for item in sessions):
                     raise SourceError("De gevonden datums passen niet bij dit event, of de eventdatums ontbreken. Controleer de eventlink en de datums in Agenda.")
@@ -2488,7 +2866,7 @@ def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Opti
                 if any(item.date < first_date or item.date > last_date for item in sessions):
                     raise SourceError("De bron bevat sessies buiten de datums van dit event. De koppeling is onzeker; controleer de link en eventdatums.")
             editor_tz = registry.get("editorTimeZones", {}).get(series_id, registry["editorTimeZones"]["default"])
-            refresh_filled_source = (series_id == "dtm" or bool(manual_url)) and event_refresh_due(event, scan_instant)
+            refresh_filled_source = (series_id in {"dtm", "sf", "supergt", "f1academy"} or bool(manual_url)) and event_refresh_due(event, scan_instant)
             event_proposals = build_event_proposals(
                 cfg, filename, event, source, sessions, editor_tz, checked_at,
                 include_filled, replace_filled or (refresh_filled_source and not include_filled),
@@ -2496,10 +2874,12 @@ def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Opti
             proposals.extend(event_proposals)
             uncertain = any(item.get("status") == "requires_review" for item in event_proposals)
             unmatched = False
-            if manual_url:
+            if manual_url or cfg["sourceKind"] == "f1academy-schedule":
                 covered = set()
                 for official in sessions:
-                    matched, conflict = match_session(official, event.get("sessions", []))
+                    matched, conflict = (match_academy_session(official, sessions, event.get("sessions", []))
+                                         if cfg["sourceKind"] == "f1academy-schedule"
+                                         else match_session(official, event.get("sessions", [])))
                     if matched and not conflict:
                         covered.add(matched.get("id"))
                 unmatched = any(normalize_kind(item.get("name", "")) and item.get("id") not in covered for item in event.get("sessions", []))

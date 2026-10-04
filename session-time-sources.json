@@ -8,9 +8,38 @@
     "imsa": "America/New_York",
     "indycar": "America/New_York",
     "indynxt": "America/New_York",
+    "f1academy": "Europe/Amsterdam",
+    "sf": "Europe/Amsterdam",
+    "supergt": "Europe/Amsterdam",
     "supercars": "Australia/Sydney"
   },
   "series": [
+    {
+      "seriesId": "sf",
+      "name": "Super Formula",
+      "startUrl": "https://superformula.net/sf3/race_taxonomy/{year}/",
+      "allowedDomains": [
+        "superformula.net",
+        "www.superformula.net"
+      ],
+      "sourceKind": "superformula-timetable",
+      "sourceTimeZone": "track",
+      "eventDiscovery": "Match the official season and exact round, then read the Japanese event timetable.",
+      "notes": "Convert venue time to Europe/Amsterdam. Qualifying parts form one session per qualifying; exclude support and fan activities. Unpublished or uncertain schedules remain unresolved."
+    },
+    {
+      "seriesId": "supergt",
+      "name": "SUPER GT",
+      "startUrl": "https://supergt.net/calendar",
+      "allowedDomains": [
+        "supergt.net",
+        "www.supergt.net"
+      ],
+      "sourceKind": "supergt-timetable",
+      "sourceTimeZone": "track",
+      "eventDiscovery": "Match the official season and exact round, then read the Japanese event timetable.",
+      "notes": "Convert venue time to Europe/Amsterdam. Qualifying parts form one session per qualifying; exclude support and fan activities. Unpublished or uncertain schedules remain unresolved."
+    },
     {
       "seriesId": "btcc",
       "name": "British Touring Car Championship",
@@ -131,10 +160,10 @@
       "name": "F1 Academy",
       "startUrl": "https://www.f1academy.com/Racing-Series/Calendar",
       "allowedDomains": ["f1academy.com", "www.f1academy.com"],
-      "sourceKind": "fia-track-time",
+      "sourceKind": "f1academy-schedule",
       "eventDiscovery": "Follow the official Schedule link for the matching round and use only track-local times.",
       "sourceTimeZone": "track",
-      "notes": "Browser-local time labels must not be used. A track IANA timezone is required before proposing a time."
+      "notes": "Read confirmed SessionStartTime/SessionEndTime records from the exact season and round. Unconfirmed timestamps are placeholders and remain TBC. Validate official offsets against the circuit IANA zone, then convert through UTC to Europe/Amsterdam."
     },
     {
       "seriesId": "formulae",
@@ -403,6 +432,11 @@
     }
   ],
   "eventTimeZones": {
+    "motegi": "Asia/Tokyo",
+    "suzuka": "Asia/Tokyo",
+    "sugo": "Asia/Tokyo",
+    "autopolis": "Asia/Tokyo",
+    "okayama": "Asia/Tokyo",
     "monte carlo": "Europe/Monaco",
     "umea": "Europe/Stockholm",
     "umeå": "Europe/Stockholm",
