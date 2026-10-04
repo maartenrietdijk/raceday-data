@@ -2825,6 +2825,13 @@ function sessionIsCancelled(session) {
   return /\((?:cancelled|canceled)\)\s*$/i.test(session?.name || '');
 }
 
+function markSessionCalendarDirty() {
+  const filename = activeCalendarFilename();
+  if (!filename) return;
+  state.dirtyProposalFiles ||= [];
+  if (!state.dirtyProposalFiles.includes(filename)) state.dirtyProposalFiles.push(filename);
+}
+
 function toggleCancelled(ri, si, cancelled) {
   const session = editableRounds()?.[ri]?.sessions?.[si];
   const checkbox = document.getElementById(`cancelled_${ri}_${si}`);
@@ -2839,6 +2846,7 @@ function toggleCancelled(ri, si, cancelled) {
   if (checkbox) checkbox.checked = cancelled;
   const nameInput = document.getElementById(`sessionName_${ri}_${si}`);
   if (nameInput) nameInput.value = session.name;
+  markSessionCalendarDirty();
   save();
 }
 
@@ -2967,6 +2975,7 @@ function updateRound(i, key, val) {
 function updateSession(ri, si, key, val) {
   const rounds = editableRounds();
   rounds[ri].sessions[si][key] = val;
+  markSessionCalendarDirty();
   if (key === 'name') {
     const checkbox = document.getElementById(`cancelled_${ri}_${si}`);
     if (checkbox) checkbox.checked = sessionIsCancelled(rounds[ri].sessions[si]);
