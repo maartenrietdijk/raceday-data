@@ -1963,7 +1963,7 @@ function eventSourceWarning(round) {
 
 function renderEventLinks(series) {
   const rounds = editableRounds(series.id).sort(compareRoundDates);
-  return `<section class="event-links"><div class="event-links-intro"><h2>Officiële eventpagina’s</h2><p>Vul per event de officiële pagina met het tijdschema in. Een ingevulde link heeft voorrang op automatisch zoeken. Laat leeg om automatisch te zoeken.</p><p>Bewaren slaat je wijziging lokaal op. Met <strong>Publiceer links</strong> gaan de links naar GitHub en gebruikt de autofetch ze. ‘Controleer’ bewaart en publiceert de link en start daarna de broncontrole.</p></div>
+  return `<section class="event-links"><div class="event-links-intro"><h2>Officiële eventpagina’s</h2><p>Vul per event de officiële pagina met het tijdschema in. Een ingevulde link heeft voorrang op automatisch zoeken. Laat leeg om automatisch te zoeken.</p><p>Vul alle links in en klik op <strong>Publiceer links</strong>. Alle ingevulde wijzigingen worden samen bewaard en naar GitHub gepubliceerd. De autofetch gebruikt ze daarna. ‘Controleer’ bewaart en publiceert de ingevulde links en controleert vervolgens dit event.</p></div>
     ${!OFFICIAL_TIME_SERIES.has(series.id) ? '<p class="event-source-warning">Voor deze serie is nog geen officiële tijdscanner beschikbaar. Je kunt de eventlinks alvast bewaren.</p>' : ''}
     ${rounds.length ? rounds.map((round, i) => {
       const url = round.officialScheduleUrl || '';
@@ -1971,41 +1971,53 @@ function renderEventLinks(series) {
       const source = state.proposalSources.find(item => item.eventId === round.id && item.seriesId === series.id);
       const changedSource = source && (source.manualUrl || '') !== url;
       return `<div class="event-link-row"><div class="event-link-heading"><h3>R${esc(round.roundNumber || i + 1)} · ${esc(round.raceName || 'Naamloos event')}</h3><span>${dirty ? 'Nog publiceren' : url ? 'Eigen bronlink' : 'Automatisch zoeken'}</span></div>
-        <form onsubmit="event.preventDefault();saveEventLink(${i})"><label for="eventLink_${i}">Officiële eventlink</label><div class="event-link-controls"><input id="eventLink_${i}" type="url" inputmode="url" autocomplete="off" placeholder="https://…" value="${esc(url)}"><button type="submit" class="btn btn-surface">Bewaar</button><button type="button" class="btn btn-ghost" onclick="checkEventLink(${i})" ${!OFFICIAL_TIME_SERIES.has(series.id) ? 'disabled' : ''}>Controleer</button></div></form>
-        <p class="event-link-status">${dirty ? 'Publiceer de bewaarde link voordat je de bron controleert.' : changedSource ? 'De bronlink is gewijzigd sinds de laatste controle. Controleer opnieuw.' : source?.status === 'unresolved' ? 'De laatste controle is niet gelukt.' : source ? `Laatst uitgelezen: ${esc(new Date(source.checkedAt).toLocaleString('nl-NL'))}. Bekijk eventuele conflicten bij Voorstellen.` : 'Deze bron is nog niet gecontroleerd.'}</p>
+        <form onsubmit="event.preventDefault();publishEventLinks()"><label for="eventLink_${i}">Officiële eventlink</label><div class="event-link-controls"><input id="eventLink_${i}" type="url" inputmode="url" autocomplete="off" placeholder="https://…" value="${esc(url)}"><button type="button" class="btn btn-ghost" onclick="checkEventLink(${i})" ${!OFFICIAL_TIME_SERIES.has(series.id) ? 'disabled' : ''}>Controleer</button></div></form>
+        <p class="event-link-status">${dirty ? 'Klik op Publiceer links om je wijzigingen naar GitHub te sturen.' : changedSource ? 'De bronlink is gewijzigd sinds de laatste controle. Controleer opnieuw.' : source?.status === 'unresolved' ? 'De laatste controle is niet gelukt.' : source ? `Laatst uitgelezen: ${esc(new Date(source.checkedAt).toLocaleString('nl-NL'))}. Bekijk eventuele conflicten bij Voorstellen.` : 'Deze bron is nog niet gecontroleerd.'}</p>
         ${eventSourceWarning(round)}${officialScanStatusView(round.id)}
       </div>`;
     }).join('') : '<p>Voeg in Agenda eerst een event toe.</p>'}
     </section>`;
 }
 
-function saveEventLink(index) {
-  const round = editableRounds()[index];
-  if (!round?.id) return showStatus('Geef dit event eerst een ronde-ID in Agenda.', 'error');
-  let url;
-  try { url = RaceDayLinks.normalizeSourceUrl(document.getElementById(`eventLink_${index}`).value); }
-  catch (error) { return showStatus(error.message, 'error'); }
-  if (url === (round.officialScheduleUrl || '')) return true;
-  if (url) round.officialScheduleUrl = url;
-  else delete round.officialScheduleUrl;
+function saveVisibleEventLinks() {
   const filename = activeCalendarFilename();
-  (state.eventLinkDrafts[filename] ||= {})[round.id] = url;
-  if (!save()) return;
-  renderMain();
-  showStatus('Link lokaal bewaard. Publiceer links om de autofetch bij te werken.');
-  return true;
+  const changes = [];
+  // Validate all visible fields before changing any stored link.
+  for (const [index, round] of editableRounds().entries()) {
+    const input = document.getElementById(`eventLink_${index}`);
+    if (!input) continue;
+    if (!round?.id) {
+      showStatus('Geef dit event eerst een ronde-ID in Agenda.', 'error');
+      return false;
+    }
+    let url;
+    try { url = RaceDayLinks.normalizeSourceUrl(input.value); }
+    catch (error) {
+      input.focus();
+      showStatus(`${round.raceName || 'Event'}: ${error.message}`, 'error');
+      return false;
+    }
+    if (url !== (round.officialScheduleUrl || '')) changes.push({ round, url });
+  }
+  for (const { round, url } of changes) {
+    if (url) round.officialScheduleUrl = url;
+    else delete round.officialScheduleUrl;
+    (state.eventLinkDrafts[filename] ||= {})[round.id] = url;
+  }
+  return changes.length ? Boolean(save()) : true;
 }
 
 async function checkEventLink(index) {
-  if (!saveEventLink(index)) return;
+  if (!saveVisibleEventLinks()) return;
   await scanOfficialEvent(index);
 }
 
 async function publishEventLinks(notify = true) {
+  if (!saveVisibleEventLinks()) return false;
   const filename = activeCalendarFilename();
   const drafts = { ...(state.eventLinkDrafts[filename] || {}) };
   if (!Object.keys(drafts).length) {
-    if (notify) showStatus('Er zijn geen bewaarde linkwijzigingen om te publiceren.');
+    if (notify) showStatus('Er zijn geen linkwijzigingen om te publiceren.');
     return true;
   }
   const { token, repo, branch = 'main', path = '' } = state.github;
