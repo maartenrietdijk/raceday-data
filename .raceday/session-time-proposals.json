@@ -1,7 +1,54 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-05T17:34:19Z",
+  "generatedAt": "2026-10-05T17:58:43Z",
   "proposals": [
+    {
+      "seriesId": "elms",
+      "seriesName": "European Le Mans Series",
+      "calendarFile": "elms_2026.json",
+      "eventId": "elms-2026-r06",
+      "eventName": "4 Hours of Portimão",
+      "roundNumber": 6,
+      "source": {
+        "stableUrl": "https://www.europeanlemansseries.com/en/race/document/download/2491",
+        "finalUrl": "https://www.europeanlemansseries.com/en/race/document/download/2491",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-10-05T17:58:43Z",
+        "lastModified": null
+      },
+      "proposalType": "time-update",
+      "sessionId": "elms-2026-r06-s1",
+      "sessionName": "Free Practice 1",
+      "current": {
+        "name": "Free Practice 1",
+        "kind": "practice",
+        "date": "2026-10-08",
+        "timeLocal": "10:00",
+        "durationMinutes": 60
+      },
+      "sourceSessionName": "Free Practice 1",
+      "sourceTime": {
+        "date": "2026-10-08",
+        "time": "11:00",
+        "timeZone": "Europe/Lisbon"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-10-08",
+        "timeLocal": "12:00",
+        "durationMinutes": 90,
+        "name": "Free Practice 1",
+        "kind": "practice",
+        "utcInstant": "2026-10-08T10:00:00Z",
+        "sessionId": "elms-2026-r06-s1"
+      },
+      "dateChanged": false,
+      "status": "open",
+      "reason": "De ingevulde sessie wordt vervangen door de nieuwste officiële tijd.",
+      "debug": false,
+      "fingerprint": "c45e5f50194326893cb6d9c5fc177d4fc5c31c89f54f3f932577c23b94e62629",
+      "id": "schedule-c45e5f5019432689"
+    },
     {
       "seriesId": "supercars",
       "seriesName": "Repco Supercars Championship",
@@ -13,8 +60,8 @@
         "stableUrl": "https://www.supercars.com/events/2026-bathurst-1000/schedule",
         "finalUrl": "https://www.supercars.com/events/2026-bathurst-1000/schedule",
         "title": "2026 Bathurst 1000 | Schedule | Supercars",
-        "checkedAt": "2026-10-05T17:34:19Z",
-        "lastModified": "Mon, 05 Oct 2026 17:35:27 GMT"
+        "checkedAt": "2026-10-05T17:58:43Z",
+        "lastModified": "Mon, 05 Oct 2026 17:59:55 GMT"
       },
       "proposalType": "verification",
       "sessionId": "supercars-2026-11-official-130ae7f411f5",
@@ -60,8 +107,8 @@
         "stableUrl": "https://www.supercars.com/events/2026-bathurst-1000/schedule",
         "finalUrl": "https://www.supercars.com/events/2026-bathurst-1000/schedule",
         "title": "2026 Bathurst 1000 | Schedule | Supercars",
-        "checkedAt": "2026-10-05T17:34:19Z",
-        "lastModified": "Mon, 05 Oct 2026 17:35:27 GMT"
+        "checkedAt": "2026-10-05T17:58:43Z",
+        "lastModified": "Mon, 05 Oct 2026 17:59:55 GMT"
       },
       "proposalType": "verification",
       "sessionId": "supercars-2026-11-s5",
@@ -107,7 +154,7 @@
         "stableUrl": "https://superformula.net/sf3/race_taxonomy/2026/",
         "finalUrl": "https://superformula.net/sf3/race/24431/",
         "title": "2026 Rd.9-10 FUJI｜SUPER FORMULA 公式WEBサイト",
-        "checkedAt": "2026-10-05T17:34:19Z",
+        "checkedAt": "2026-10-05T17:58:43Z",
         "lastModified": "Mon, 05 Oct 2026 11:06:49 GMT"
       },
       "proposalType": "verification",
@@ -155,7 +202,7 @@
         "stableUrl": "https://superformula.net/sf3/race_taxonomy/2026/",
         "finalUrl": "https://superformula.net/sf3/race/24431/",
         "title": "2026 Rd.9-10 FUJI｜SUPER FORMULA 公式WEBサイト",
-        "checkedAt": "2026-10-05T17:34:19Z",
+        "checkedAt": "2026-10-05T17:58:43Z",
         "lastModified": "Mon, 05 Oct 2026 11:06:49 GMT"
       },
       "proposalType": "time-update",
@@ -203,8 +250,8 @@
         "stableUrl": "https://www.supercars.com/events/2026-bathurst-1000/schedule",
         "finalUrl": "https://www.supercars.com/events/2026-bathurst-1000/schedule",
         "title": "2026 Bathurst 1000 | Schedule | Supercars",
-        "checkedAt": "2026-10-05T17:34:19Z",
-        "lastModified": "Mon, 05 Oct 2026 17:35:27 GMT"
+        "checkedAt": "2026-10-05T17:58:43Z",
+        "lastModified": "Mon, 05 Oct 2026 17:59:55 GMT"
       },
       "proposalType": "verification",
       "sessionId": "supercars-2026-11-s6",
@@ -240,6 +287,53 @@
       "id": "schedule-3f6179e04e2b285a"
     },
     {
+      "seriesId": "elms",
+      "seriesName": "European Le Mans Series",
+      "calendarFile": "elms_2026.json",
+      "eventId": "elms-2026-r06",
+      "eventName": "4 Hours of Portimão",
+      "roundNumber": 6,
+      "source": {
+        "stableUrl": "https://www.europeanlemansseries.com/en/race/document/download/2491",
+        "finalUrl": "https://www.europeanlemansseries.com/en/race/document/download/2491",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-10-05T17:58:43Z",
+        "lastModified": null
+      },
+      "proposalType": "time-update",
+      "sessionId": "elms-2026-r06-s2",
+      "sessionName": "Free Practice 2",
+      "current": {
+        "name": "Free Practice 2",
+        "kind": "practice",
+        "date": "2026-10-09",
+        "timeLocal": "09:30",
+        "durationMinutes": 60
+      },
+      "sourceSessionName": "Free Practice 2",
+      "sourceTime": {
+        "date": "2026-10-09",
+        "time": "10:15",
+        "timeZone": "Europe/Lisbon"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-10-09",
+        "timeLocal": "11:15",
+        "durationMinutes": 90,
+        "name": "Free Practice 2",
+        "kind": "practice",
+        "utcInstant": "2026-10-09T09:15:00Z",
+        "sessionId": "elms-2026-r06-s2"
+      },
+      "dateChanged": false,
+      "status": "open",
+      "reason": "De ingevulde sessie wordt vervangen door de nieuwste officiële tijd.",
+      "debug": false,
+      "fingerprint": "c63ca2c52cfaa3f23775789d72126f4f22519395d697673ea3ad87140d9efa63",
+      "id": "schedule-c63ca2c52cfaa3f2"
+    },
+    {
       "seriesId": "dtm",
       "seriesName": "DTM",
       "calendarFile": "dtm_2026.json",
@@ -250,7 +344,7 @@
         "stableUrl": "https://dtm.com/mp/events/hockenheim-finale-2026",
         "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=hockenheim-finale-2026&lang=en",
         "title": "Official timetable",
-        "checkedAt": "2026-10-05T17:34:19Z",
+        "checkedAt": "2026-10-05T17:58:43Z",
         "lastModified": null
       },
       "proposalType": "verification",
@@ -334,7 +428,7 @@
       "fingerprint": "a0f95d7cb4085c09e509a4b36e6a4d6d322e345abcc9e7e3cea68a99256bc79f",
       "id": "schedule-a0f95d7cb4085c09",
       "decisionAt": "2026-10-05T10:24:11.133Z",
-      "supersededAt": "2026-10-05T17:34:19Z",
+      "supersededAt": "2026-10-05T17:58:43Z",
       "supersededBy": "c12da307e8a1e085cd37949afb33db425e2e8760cda761f7bb7b6cedb41e2c92"
     },
     {
@@ -348,8 +442,8 @@
         "stableUrl": "https://www.supercars.com/events/2026-bathurst-1000/schedule",
         "finalUrl": "https://www.supercars.com/events/2026-bathurst-1000/schedule",
         "title": "2026 Bathurst 1000 | Schedule | Supercars",
-        "checkedAt": "2026-10-05T17:34:19Z",
-        "lastModified": "Mon, 05 Oct 2026 17:35:27 GMT"
+        "checkedAt": "2026-10-05T17:58:43Z",
+        "lastModified": "Mon, 05 Oct 2026 17:59:55 GMT"
       },
       "proposalType": "verification",
       "sessionId": "supercars-2026-11-s7",
@@ -395,7 +489,7 @@
         "stableUrl": "https://dtm.com/mp/events/hockenheim-finale-2026",
         "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=hockenheim-finale-2026&lang=en",
         "title": "Official timetable",
-        "checkedAt": "2026-10-05T17:34:19Z",
+        "checkedAt": "2026-10-05T17:58:43Z",
         "lastModified": null
       },
       "proposalType": "verification",
@@ -479,7 +573,7 @@
       "fingerprint": "e86381348ae4d95a49d72bdf03622d243d14908e4afb5c09471993928d93bf65",
       "id": "schedule-e86381348ae4d95a",
       "decisionAt": "2026-10-05T10:24:13.432Z",
-      "supersededAt": "2026-10-05T17:34:19Z",
+      "supersededAt": "2026-10-05T17:58:43Z",
       "supersededBy": "3229df08006e5ebb4d0632e905d2ffca000e9907f5794d98a70365fd7f4c012b"
     },
     {
@@ -493,8 +587,8 @@
         "stableUrl": "https://www.supercars.com/events/2026-bathurst-1000/schedule",
         "finalUrl": "https://www.supercars.com/events/2026-bathurst-1000/schedule",
         "title": "2026 Bathurst 1000 | Schedule | Supercars",
-        "checkedAt": "2026-10-05T17:34:19Z",
-        "lastModified": "Mon, 05 Oct 2026 17:35:27 GMT"
+        "checkedAt": "2026-10-05T17:58:43Z",
+        "lastModified": "Mon, 05 Oct 2026 17:59:55 GMT"
       },
       "proposalType": "verification",
       "sessionId": "supercars-2026-11-s02",
@@ -530,6 +624,53 @@
       "id": "schedule-901518f46265c3d0"
     },
     {
+      "seriesId": "elms",
+      "seriesName": "European Le Mans Series",
+      "calendarFile": "elms_2026.json",
+      "eventId": "elms-2026-r06",
+      "eventName": "4 Hours of Portimão",
+      "roundNumber": 6,
+      "source": {
+        "stableUrl": "https://www.europeanlemansseries.com/en/race/document/download/2491",
+        "finalUrl": "https://www.europeanlemansseries.com/en/race/document/download/2491",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-10-05T17:58:43Z",
+        "lastModified": null
+      },
+      "proposalType": "time-update",
+      "sessionId": "elms-2026-r06-s3",
+      "sessionName": "Qualifying",
+      "current": {
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-10-09",
+        "timeLocal": "15:00",
+        "durationMinutes": 30
+      },
+      "sourceSessionName": "Qualifying",
+      "sourceTime": {
+        "date": "2026-10-09",
+        "time": "15:15",
+        "timeZone": "Europe/Lisbon"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-10-09",
+        "timeLocal": "16:15",
+        "durationMinutes": 90,
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "utcInstant": "2026-10-09T14:15:00Z",
+        "sessionId": "elms-2026-r06-s3"
+      },
+      "dateChanged": false,
+      "status": "open",
+      "reason": "De ingevulde sessie wordt vervangen door de nieuwste officiële tijd.",
+      "debug": false,
+      "fingerprint": "a311d0b94cf0ce13c331e1edb9f7cb4f2a4a64ceee2afe56fe603138522f3d72",
+      "id": "schedule-a311d0b94cf0ce13"
+    },
+    {
       "seriesId": "sf",
       "seriesName": "Super Formula",
       "calendarFile": "sf_2026.json",
@@ -540,7 +681,7 @@
         "stableUrl": "https://superformula.net/sf3/race_taxonomy/2026/",
         "finalUrl": "https://superformula.net/sf3/race/24431/",
         "title": "2026 Rd.9-10 FUJI｜SUPER FORMULA 公式WEBサイト",
-        "checkedAt": "2026-10-05T17:34:19Z",
+        "checkedAt": "2026-10-05T17:58:43Z",
         "lastModified": "Mon, 05 Oct 2026 11:06:49 GMT"
       },
       "proposalType": "time-update",
@@ -588,7 +729,7 @@
         "stableUrl": "https://superformula.net/sf3/race_taxonomy/2026/",
         "finalUrl": "https://superformula.net/sf3/race/24431/",
         "title": "2026 Rd.9-10 FUJI｜SUPER FORMULA 公式WEBサイト",
-        "checkedAt": "2026-10-05T17:34:19Z",
+        "checkedAt": "2026-10-05T17:58:43Z",
         "lastModified": "Mon, 05 Oct 2026 11:06:49 GMT"
       },
       "proposalType": "verification",
@@ -636,7 +777,7 @@
         "stableUrl": "https://dtm.com/mp/events/hockenheim-finale-2026",
         "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=hockenheim-finale-2026&lang=en",
         "title": "Official timetable",
-        "checkedAt": "2026-10-05T17:34:19Z",
+        "checkedAt": "2026-10-05T17:58:43Z",
         "lastModified": null
       },
       "proposalType": "verification",
@@ -683,8 +824,8 @@
         "stableUrl": "https://www.supercars.com/events/2026-bathurst-1000/schedule",
         "finalUrl": "https://www.supercars.com/events/2026-bathurst-1000/schedule",
         "title": "2026 Bathurst 1000 | Schedule | Supercars",
-        "checkedAt": "2026-10-05T17:34:19Z",
-        "lastModified": "Mon, 05 Oct 2026 17:35:27 GMT"
+        "checkedAt": "2026-10-05T17:58:43Z",
+        "lastModified": "Mon, 05 Oct 2026 17:59:55 GMT"
       },
       "proposalType": "verification",
       "sessionId": "supercars-2026-11-s8",
@@ -730,8 +871,8 @@
         "stableUrl": "https://www.supercars.com/events/2026-bathurst-1000/schedule",
         "finalUrl": "https://www.supercars.com/events/2026-bathurst-1000/schedule",
         "title": "2026 Bathurst 1000 | Schedule | Supercars",
-        "checkedAt": "2026-10-05T17:34:19Z",
-        "lastModified": "Mon, 05 Oct 2026 17:35:27 GMT"
+        "checkedAt": "2026-10-05T17:58:43Z",
+        "lastModified": "Mon, 05 Oct 2026 17:59:55 GMT"
       },
       "proposalType": "verification",
       "sessionId": "supercars-2026-11-s9",
@@ -777,7 +918,7 @@
         "stableUrl": "https://dtm.com/mp/events/hockenheim-finale-2026",
         "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=hockenheim-finale-2026&lang=en",
         "title": "Official timetable",
-        "checkedAt": "2026-10-05T17:34:19Z",
+        "checkedAt": "2026-10-05T17:58:43Z",
         "lastModified": null
       },
       "proposalType": "verification",
@@ -814,6 +955,53 @@
       "id": "schedule-e39a45187a110393"
     },
     {
+      "seriesId": "elms",
+      "seriesName": "European Le Mans Series",
+      "calendarFile": "elms_2026.json",
+      "eventId": "elms-2026-r06",
+      "eventName": "4 Hours of Portimão",
+      "roundNumber": 6,
+      "source": {
+        "stableUrl": "https://www.europeanlemansseries.com/en/race/document/download/2491",
+        "finalUrl": "https://www.europeanlemansseries.com/en/race/document/download/2491",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-10-05T17:58:43Z",
+        "lastModified": null
+      },
+      "proposalType": "time-update",
+      "sessionId": "elms-2026-r06-s4",
+      "sessionName": "4 Hour Race",
+      "current": {
+        "name": "4 Hour Race",
+        "kind": "race",
+        "date": "2026-10-10",
+        "timeLocal": "12:00",
+        "durationMinutes": 240
+      },
+      "sourceSessionName": "Race",
+      "sourceTime": {
+        "date": "2026-10-10",
+        "time": "14:30",
+        "timeZone": "Europe/Lisbon"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-10-10",
+        "timeLocal": "15:30",
+        "durationMinutes": 240,
+        "name": "Race",
+        "kind": "race",
+        "utcInstant": "2026-10-10T13:30:00Z",
+        "sessionId": "elms-2026-r06-s4"
+      },
+      "dateChanged": false,
+      "status": "open",
+      "reason": "De ingevulde sessie wordt vervangen door de nieuwste officiële tijd.",
+      "debug": false,
+      "fingerprint": "61a1d39ac15cbde62cfe5695115870c7ba7fda309b5b5bab912c8d4ad0b9c557",
+      "id": "schedule-61a1d39ac15cbde6"
+    },
+    {
       "seriesId": "supercars",
       "seriesName": "Repco Supercars Championship",
       "calendarFile": "supercars_2026.json",
@@ -824,8 +1012,8 @@
         "stableUrl": "https://www.supercars.com/events/2026-bathurst-1000/schedule",
         "finalUrl": "https://www.supercars.com/events/2026-bathurst-1000/schedule",
         "title": "2026 Bathurst 1000 | Schedule | Supercars",
-        "checkedAt": "2026-10-05T17:34:19Z",
-        "lastModified": "Mon, 05 Oct 2026 17:35:27 GMT"
+        "checkedAt": "2026-10-05T17:58:43Z",
+        "lastModified": "Mon, 05 Oct 2026 17:59:55 GMT"
       },
       "proposalType": "verification",
       "sessionId": "supercars-2026-11-official-cf3d873c0999",
@@ -908,7 +1096,7 @@
       "fingerprint": "f98b52fcab992446966d1adb7615e26ff420798133d5a79483c5d7d289bd6bc9",
       "id": "schedule-f98b52fcab992446",
       "decisionAt": "2026-10-05T10:27:14.453Z",
-      "supersededAt": "2026-10-05T17:34:19Z",
+      "supersededAt": "2026-10-05T17:58:43Z",
       "supersededBy": "6fe7f2d0cf4ac1d466037a13e3fff60f3ad212365c2cc1c96035ef7d3e8b0c2a"
     },
     {
@@ -922,7 +1110,7 @@
         "stableUrl": "https://superformula.net/sf3/race_taxonomy/2026/",
         "finalUrl": "https://superformula.net/sf3/race/24431/",
         "title": "2026 Rd.9-10 FUJI｜SUPER FORMULA 公式WEBサイト",
-        "checkedAt": "2026-10-05T17:34:19Z",
+        "checkedAt": "2026-10-05T17:58:43Z",
         "lastModified": "Mon, 05 Oct 2026 11:06:49 GMT"
       },
       "proposalType": "time-update",
@@ -970,7 +1158,7 @@
         "stableUrl": "https://superformula.net/sf3/race_taxonomy/2026/",
         "finalUrl": "https://superformula.net/sf3/race/24431/",
         "title": "2026 Rd.9-10 FUJI｜SUPER FORMULA 公式WEBサイト",
-        "checkedAt": "2026-10-05T17:34:19Z",
+        "checkedAt": "2026-10-05T17:58:43Z",
         "lastModified": "Mon, 05 Oct 2026 11:06:49 GMT"
       },
       "proposalType": "verification",
@@ -1018,8 +1206,8 @@
         "stableUrl": "https://www.supercars.com/events/2026-bathurst-1000/schedule",
         "finalUrl": "https://www.supercars.com/events/2026-bathurst-1000/schedule",
         "title": "2026 Bathurst 1000 | Schedule | Supercars",
-        "checkedAt": "2026-10-05T17:34:19Z",
-        "lastModified": "Mon, 05 Oct 2026 17:35:27 GMT"
+        "checkedAt": "2026-10-05T17:58:43Z",
+        "lastModified": "Mon, 05 Oct 2026 17:59:55 GMT"
       },
       "proposalType": "verification",
       "sessionId": "supercars-2026-11-s10",
@@ -1065,7 +1253,7 @@
         "stableUrl": "https://dtm.com/mp/events/hockenheim-finale-2026",
         "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=hockenheim-finale-2026&lang=en",
         "title": "Official timetable",
-        "checkedAt": "2026-10-05T17:34:19Z",
+        "checkedAt": "2026-10-05T17:58:43Z",
         "lastModified": null
       },
       "proposalType": "verification",
@@ -1113,8 +1301,8 @@
         "stableUrl": "https://www.supercars.com/events/2026-bathurst-1000/schedule",
         "finalUrl": "https://www.supercars.com/events/2026-bathurst-1000/schedule",
         "title": "2026 Bathurst 1000 | Schedule | Supercars",
-        "checkedAt": "2026-10-05T17:34:19Z",
-        "lastModified": "Mon, 05 Oct 2026 17:35:27 GMT"
+        "checkedAt": "2026-10-05T17:58:43Z",
+        "lastModified": "Mon, 05 Oct 2026 17:59:55 GMT"
       },
       "proposalType": "verification",
       "sessionId": "supercars-2026-11-s03",
@@ -1197,7 +1385,7 @@
       "fingerprint": "0284e552bac228189290a280e288b7fb789e11200ca8c14c6d2365e21e5b6a1a",
       "id": "schedule-0284e552bac22818",
       "decisionAt": "2026-10-05T10:27:13.819Z",
-      "supersededAt": "2026-10-05T17:34:19Z",
+      "supersededAt": "2026-10-05T17:58:43Z",
       "supersededBy": "2722259e2ccfe54a281b78ba6327fc3a2be0e81f66e06cfd5f6629539f1d67d7"
     },
     {
@@ -1211,7 +1399,7 @@
         "stableUrl": "https://dtm.com/mp/events/hockenheim-finale-2026",
         "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=hockenheim-finale-2026&lang=en",
         "title": "Official timetable",
-        "checkedAt": "2026-10-05T17:34:19Z",
+        "checkedAt": "2026-10-05T17:58:43Z",
         "lastModified": null
       },
       "proposalType": "verification",
@@ -1255,10 +1443,10 @@
       "eventName": "Brands Hatch",
       "roundNumber": 11,
       "source": {
-        "stableUrl": "https://www.britishsuperbike.com/calendar",
+        "stableUrl": "https://www.britishsuperbike.com/calendar/2026/r11-brands-hatch",
         "finalUrl": "https://www.britishsuperbike.com/calendar/2026/r11-brands-hatch",
         "title": "R11 Brands Hatch",
-        "checkedAt": "2026-10-05T17:34:19Z",
+        "checkedAt": "2026-10-05T17:58:43Z",
         "lastModified": "Wed, 30 Sep 2026 16:49:14 GMT"
       },
       "proposalType": "verification",
@@ -1302,10 +1490,10 @@
       "eventName": "Brands Hatch",
       "roundNumber": 11,
       "source": {
-        "stableUrl": "https://www.britishsuperbike.com/calendar",
+        "stableUrl": "https://www.britishsuperbike.com/calendar/2026/r11-brands-hatch",
         "finalUrl": "https://www.britishsuperbike.com/calendar/2026/r11-brands-hatch",
         "title": "R11 Brands Hatch",
-        "checkedAt": "2026-10-05T17:34:19Z",
+        "checkedAt": "2026-10-05T17:58:43Z",
         "lastModified": "Wed, 30 Sep 2026 16:49:14 GMT"
       },
       "proposalType": "time-update",
@@ -1349,10 +1537,10 @@
       "eventName": "Brands Hatch",
       "roundNumber": 11,
       "source": {
-        "stableUrl": "https://www.britishsuperbike.com/calendar",
+        "stableUrl": "https://www.britishsuperbike.com/calendar/2026/r11-brands-hatch",
         "finalUrl": "https://www.britishsuperbike.com/calendar/2026/r11-brands-hatch",
         "title": "R11 Brands Hatch",
-        "checkedAt": "2026-10-05T17:34:19Z",
+        "checkedAt": "2026-10-05T17:58:43Z",
         "lastModified": "Wed, 30 Sep 2026 16:49:14 GMT"
       },
       "proposalType": "time-update",
@@ -1399,7 +1587,7 @@
         "stableUrl": "https://supergt.net/calendar",
         "finalUrl": "https://supergt.net/races/round7-autopolis-2",
         "title": "Round7 AUTOPOLIS | SUPER GT オフィシャルサイト",
-        "checkedAt": "2026-10-05T17:34:19Z",
+        "checkedAt": "2026-10-05T17:58:43Z",
         "lastModified": null
       },
       "proposalType": "time-update",
@@ -1446,7 +1634,7 @@
         "stableUrl": "https://supergt.net/calendar",
         "finalUrl": "https://supergt.net/races/round7-autopolis-2",
         "title": "Round7 AUTOPOLIS | SUPER GT オフィシャルサイト",
-        "checkedAt": "2026-10-05T17:34:19Z",
+        "checkedAt": "2026-10-05T17:58:43Z",
         "lastModified": null
       },
       "proposalType": "time-update",
@@ -1490,10 +1678,10 @@
       "eventName": "Brands Hatch",
       "roundNumber": 11,
       "source": {
-        "stableUrl": "https://www.britishsuperbike.com/calendar",
+        "stableUrl": "https://www.britishsuperbike.com/calendar/2026/r11-brands-hatch",
         "finalUrl": "https://www.britishsuperbike.com/calendar/2026/r11-brands-hatch",
         "title": "R11 Brands Hatch",
-        "checkedAt": "2026-10-05T17:34:19Z",
+        "checkedAt": "2026-10-05T17:58:43Z",
         "lastModified": "Wed, 30 Sep 2026 16:49:14 GMT"
       },
       "proposalType": "time-update",
@@ -1537,10 +1725,10 @@
       "eventName": "Brands Hatch",
       "roundNumber": 11,
       "source": {
-        "stableUrl": "https://www.britishsuperbike.com/calendar",
+        "stableUrl": "https://www.britishsuperbike.com/calendar/2026/r11-brands-hatch",
         "finalUrl": "https://www.britishsuperbike.com/calendar/2026/r11-brands-hatch",
         "title": "R11 Brands Hatch",
-        "checkedAt": "2026-10-05T17:34:19Z",
+        "checkedAt": "2026-10-05T17:58:43Z",
         "lastModified": "Wed, 30 Sep 2026 16:49:14 GMT"
       },
       "proposalType": "time-update",
@@ -1584,10 +1772,10 @@
       "eventName": "Brands Hatch",
       "roundNumber": 11,
       "source": {
-        "stableUrl": "https://www.britishsuperbike.com/calendar",
+        "stableUrl": "https://www.britishsuperbike.com/calendar/2026/r11-brands-hatch",
         "finalUrl": "https://www.britishsuperbike.com/calendar/2026/r11-brands-hatch",
         "title": "R11 Brands Hatch",
-        "checkedAt": "2026-10-05T17:34:19Z",
+        "checkedAt": "2026-10-05T17:58:43Z",
         "lastModified": "Wed, 30 Sep 2026 16:49:14 GMT"
       },
       "proposalType": "time-update",
@@ -1631,10 +1819,10 @@
       "eventName": "Brands Hatch",
       "roundNumber": 11,
       "source": {
-        "stableUrl": "https://www.britishsuperbike.com/calendar",
+        "stableUrl": "https://www.britishsuperbike.com/calendar/2026/r11-brands-hatch",
         "finalUrl": "https://www.britishsuperbike.com/calendar/2026/r11-brands-hatch",
         "title": "R11 Brands Hatch",
-        "checkedAt": "2026-10-05T17:34:19Z",
+        "checkedAt": "2026-10-05T17:58:43Z",
         "lastModified": "Wed, 30 Sep 2026 16:49:14 GMT"
       },
       "proposalType": "time-update",
@@ -1681,7 +1869,7 @@
         "stableUrl": "https://supergt.net/calendar",
         "finalUrl": "https://supergt.net/races/round7-autopolis-2",
         "title": "Round7 AUTOPOLIS | SUPER GT オフィシャルサイト",
-        "checkedAt": "2026-10-05T17:34:19Z",
+        "checkedAt": "2026-10-05T17:58:43Z",
         "lastModified": null
       },
       "proposalType": "time-update",
@@ -1728,7 +1916,7 @@
         "stableUrl": "https://supergt.net/calendar",
         "finalUrl": "https://supergt.net/races/round7-autopolis-2",
         "title": "Round7 AUTOPOLIS | SUPER GT オフィシャルサイト",
-        "checkedAt": "2026-10-05T17:34:19Z",
+        "checkedAt": "2026-10-05T17:58:43Z",
         "lastModified": null
       },
       "proposalType": "time-update",
@@ -1772,10 +1960,10 @@
       "eventName": "Brands Hatch",
       "roundNumber": 11,
       "source": {
-        "stableUrl": "https://www.britishsuperbike.com/calendar",
+        "stableUrl": "https://www.britishsuperbike.com/calendar/2026/r11-brands-hatch",
         "finalUrl": "https://www.britishsuperbike.com/calendar/2026/r11-brands-hatch",
         "title": "R11 Brands Hatch",
-        "checkedAt": "2026-10-05T17:34:19Z",
+        "checkedAt": "2026-10-05T17:58:43Z",
         "lastModified": "Wed, 30 Sep 2026 16:49:14 GMT"
       },
       "proposalType": "time-update",
@@ -1819,10 +2007,10 @@
       "eventName": "Brands Hatch",
       "roundNumber": 11,
       "source": {
-        "stableUrl": "https://www.britishsuperbike.com/calendar",
+        "stableUrl": "https://www.britishsuperbike.com/calendar/2026/r11-brands-hatch",
         "finalUrl": "https://www.britishsuperbike.com/calendar/2026/r11-brands-hatch",
         "title": "R11 Brands Hatch",
-        "checkedAt": "2026-10-05T17:34:19Z",
+        "checkedAt": "2026-10-05T17:58:43Z",
         "lastModified": "Wed, 30 Sep 2026 16:49:14 GMT"
       },
       "proposalType": "verification",
@@ -1866,10 +2054,10 @@
       "eventName": "Brands Hatch",
       "roundNumber": 11,
       "source": {
-        "stableUrl": "https://www.britishsuperbike.com/calendar",
+        "stableUrl": "https://www.britishsuperbike.com/calendar/2026/r11-brands-hatch",
         "finalUrl": "https://www.britishsuperbike.com/calendar/2026/r11-brands-hatch",
         "title": "R11 Brands Hatch",
-        "checkedAt": "2026-10-05T17:34:19Z",
+        "checkedAt": "2026-10-05T17:58:43Z",
         "lastModified": "Wed, 30 Sep 2026 16:49:14 GMT"
       },
       "proposalType": "time-update",
@@ -1916,7 +2104,7 @@
         "stableUrl": "https://www.f1academy.com/Racing-Series/Calendar",
         "finalUrl": "https://www.f1academy.com/Racing-Series/Results?raceid=27",
         "title": "Round 5: Austin 22-25 October 2026 - F1 ACADEMY™ Racing Series",
-        "checkedAt": "2026-10-05T17:34:19Z",
+        "checkedAt": "2026-10-05T17:58:43Z",
         "lastModified": null
       },
       "proposalType": "verification",
@@ -1964,7 +2152,7 @@
         "stableUrl": "https://www.f1academy.com/Racing-Series/Calendar",
         "finalUrl": "https://www.f1academy.com/Racing-Series/Results?raceid=27",
         "title": "Round 5: Austin 22-25 October 2026 - F1 ACADEMY™ Racing Series",
-        "checkedAt": "2026-10-05T17:34:19Z",
+        "checkedAt": "2026-10-05T17:58:43Z",
         "lastModified": null
       },
       "proposalType": "verification",
@@ -2009,10 +2197,10 @@
       "eventName": "Shoreline Showdown",
       "roundNumber": 8,
       "source": {
-        "stableUrl": "https://www.formulad.com/schedule",
+        "stableUrl": "https://www.formulad.com/schedule/2026/long-beach2",
         "finalUrl": "https://www.formulad.com/schedule/2026/long-beach2",
         "title": "SHORELINE SHOWDOWN | Formula DRIFT",
-        "checkedAt": "2026-10-05T17:34:19Z",
+        "checkedAt": "2026-10-05T17:58:43Z",
         "lastModified": null
       },
       "proposalType": "verification",
@@ -2056,10 +2244,10 @@
       "eventName": "Shoreline Showdown",
       "roundNumber": 8,
       "source": {
-        "stableUrl": "https://www.formulad.com/schedule",
+        "stableUrl": "https://www.formulad.com/schedule/2026/long-beach2",
         "finalUrl": "https://www.formulad.com/schedule/2026/long-beach2",
         "title": "SHORELINE SHOWDOWN | Formula DRIFT",
-        "checkedAt": "2026-10-05T17:34:19Z",
+        "checkedAt": "2026-10-05T17:58:43Z",
         "lastModified": null
       },
       "proposalType": "verification",
@@ -2103,10 +2291,10 @@
       "eventName": "Shoreline Showdown",
       "roundNumber": 8,
       "source": {
-        "stableUrl": "https://www.formulad.com/schedule",
+        "stableUrl": "https://www.formulad.com/schedule/2026/long-beach2",
         "finalUrl": "https://www.formulad.com/schedule/2026/long-beach2",
         "title": "SHORELINE SHOWDOWN | Formula DRIFT",
-        "checkedAt": "2026-10-05T17:34:19Z",
+        "checkedAt": "2026-10-05T17:58:43Z",
         "lastModified": null
       },
       "proposalType": "verification",
@@ -2153,7 +2341,7 @@
         "stableUrl": "https://www.f1academy.com/Racing-Series/Calendar",
         "finalUrl": "https://www.f1academy.com/Racing-Series/Results?raceid=27",
         "title": "Round 5: Austin 22-25 October 2026 - F1 ACADEMY™ Racing Series",
-        "checkedAt": "2026-10-05T17:34:19Z",
+        "checkedAt": "2026-10-05T17:58:43Z",
         "lastModified": null
       },
       "proposalType": "verification",
@@ -2198,10 +2386,10 @@
       "eventName": "Shoreline Showdown",
       "roundNumber": 8,
       "source": {
-        "stableUrl": "https://www.formulad.com/schedule",
+        "stableUrl": "https://www.formulad.com/schedule/2026/long-beach2",
         "finalUrl": "https://www.formulad.com/schedule/2026/long-beach2",
         "title": "SHORELINE SHOWDOWN | Formula DRIFT",
-        "checkedAt": "2026-10-05T17:34:19Z",
+        "checkedAt": "2026-10-05T17:58:43Z",
         "lastModified": null
       },
       "proposalType": "verification",
@@ -2245,10 +2433,10 @@
       "eventName": "Shoreline Showdown",
       "roundNumber": 8,
       "source": {
-        "stableUrl": "https://www.formulad.com/schedule",
+        "stableUrl": "https://www.formulad.com/schedule/2026/long-beach2",
         "finalUrl": "https://www.formulad.com/schedule/2026/long-beach2",
         "title": "SHORELINE SHOWDOWN | Formula DRIFT",
-        "checkedAt": "2026-10-05T17:34:19Z",
+        "checkedAt": "2026-10-05T17:58:43Z",
         "lastModified": null
       },
       "proposalType": "verification",
@@ -2292,10 +2480,10 @@
       "eventName": "Shoreline Showdown",
       "roundNumber": 8,
       "source": {
-        "stableUrl": "https://www.formulad.com/schedule",
+        "stableUrl": "https://www.formulad.com/schedule/2026/long-beach2",
         "finalUrl": "https://www.formulad.com/schedule/2026/long-beach2",
         "title": "SHORELINE SHOWDOWN | Formula DRIFT",
-        "checkedAt": "2026-10-05T17:34:19Z",
+        "checkedAt": "2026-10-05T17:58:43Z",
         "lastModified": null
       },
       "proposalType": "verification",
@@ -2342,7 +2530,7 @@
         "stableUrl": "https://www.f1academy.com/Racing-Series/Calendar",
         "finalUrl": "https://www.f1academy.com/Racing-Series/Results?raceid=27",
         "title": "Round 5: Austin 22-25 October 2026 - F1 ACADEMY™ Racing Series",
-        "checkedAt": "2026-10-05T17:34:19Z",
+        "checkedAt": "2026-10-05T17:58:43Z",
         "lastModified": null
       },
       "proposalType": "verification",
@@ -2387,10 +2575,10 @@
       "eventName": "Shoreline Showdown",
       "roundNumber": 8,
       "source": {
-        "stableUrl": "https://www.formulad.com/schedule",
+        "stableUrl": "https://www.formulad.com/schedule/2026/long-beach2",
         "finalUrl": "https://www.formulad.com/schedule/2026/long-beach2",
         "title": "SHORELINE SHOWDOWN | Formula DRIFT",
-        "checkedAt": "2026-10-05T17:34:19Z",
+        "checkedAt": "2026-10-05T17:58:43Z",
         "lastModified": null
       },
       "proposalType": "verification",
@@ -2437,7 +2625,7 @@
         "stableUrl": "https://www.f1academy.com/Racing-Series/Calendar",
         "finalUrl": "https://www.f1academy.com/Racing-Series/Results?raceid=27",
         "title": "Round 5: Austin 22-25 October 2026 - F1 ACADEMY™ Racing Series",
-        "checkedAt": "2026-10-05T17:34:19Z",
+        "checkedAt": "2026-10-05T17:58:43Z",
         "lastModified": null
       },
       "proposalType": "verification",
@@ -2485,8 +2673,8 @@
       "stableUrl": "https://www.24hseries.com/races/michelin-12h-mugello-2027",
       "finalUrl": "https://www.24hseries.com/races/michelin-12h-mugello-2027",
       "title": "Michelin 12H MUGELLO 2027",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:34:21 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:58:45 GMT",
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
     },
@@ -2499,8 +2687,8 @@
       "stableUrl": "https://www.24hseries.com/races/michelin-12h-paul-ricard-2027",
       "finalUrl": "https://www.24hseries.com/races/michelin-12h-paul-ricard-2027",
       "title": "Michelin 12H PAUL RICARD 2027",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:34:23 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:58:47 GMT",
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
     },
@@ -2513,8 +2701,8 @@
       "stableUrl": "https://www.24hseries.com/races/michelin-12h-red-bull-ring-2027",
       "finalUrl": "https://www.24hseries.com/races/michelin-12h-red-bull-ring-2027",
       "title": "Michelin 12H RED BULL RING 2027",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:34:22 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:58:46 GMT",
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
     },
@@ -2527,8 +2715,8 @@
       "stableUrl": "https://www.24hseries.com/races/michelin-12h-spa-francorchamps-2027",
       "finalUrl": "https://www.24hseries.com/races/michelin-12h-spa-francorchamps-2027",
       "title": "Michelin 12H SPA-FRANCORCHAMPS 2027",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:34:22 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:58:45 GMT",
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
     },
@@ -2541,8 +2729,8 @@
       "stableUrl": "https://www.24hseries.com/races/michelin-24h-barcelona-2027",
       "finalUrl": "https://www.24hseries.com/races/michelin-24h-barcelona-2027",
       "title": "Michelin 24H BARCELONA 2027",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:34:25 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:58:48 GMT",
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
     },
@@ -2555,8 +2743,8 @@
       "stableUrl": "https://www.24hseries.com/races/michelin-24h-kyalami-2027",
       "finalUrl": "https://www.24hseries.com/races/michelin-24h-kyalami-2027",
       "title": "Michelin 24H KYALAMI 2027",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:34:20 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:58:44 GMT",
       "status": "requires_review",
       "reason": "Niet alle bestaande sessies zijn op deze bron herkend. Controleer het tijdschema; alleen herkenbare sessies leveren voorstellen op."
     },
@@ -2569,7 +2757,7 @@
       "stableUrl": "https://www.asianlemansseries.com/",
       "finalUrl": "https://www.asianlemansseries.com/en/race/4-hours-of-jerez-by-alms-2027",
       "title": "4 Hours of Jerez by ALMS 2026 - 2027: Schedule, News & Start List | FIA WEC",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -2583,7 +2771,7 @@
       "stableUrl": "https://www.asianlemansseries.com/",
       "finalUrl": "https://www.asianlemansseries.com/en/race/4-hours-of-portimao-by-alms-2027",
       "title": "4 Hours of Portimão by ALMS 2026 - 2027: Schedule, News & Start List | FIA WEC",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -2593,11 +2781,11 @@
       "eventId": "bsb-2026-r11",
       "eventName": "Brands Hatch",
       "calendarFile": "bsb_2026.json",
-      "manualUrl": "",
-      "stableUrl": "https://www.britishsuperbike.com/calendar",
+      "manualUrl": "https://www.britishsuperbike.com/calendar/2026/r11-brands-hatch",
+      "stableUrl": "https://www.britishsuperbike.com/calendar/2026/r11-brands-hatch",
       "finalUrl": "https://www.britishsuperbike.com/calendar/2026/r11-brands-hatch",
       "title": "R11 Brands Hatch",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": "Wed, 30 Sep 2026 16:49:14 GMT",
       "status": "ok",
       "reason": ""
@@ -2611,7 +2799,7 @@
       "stableUrl": "https://www.dtm.com/en/events",
       "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=zandvoort-2027&lang=en",
       "title": "Official timetable",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -2625,7 +2813,7 @@
       "stableUrl": "https://www.dtm.com/en/events",
       "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=lausitzring-2027&lang=en",
       "title": "Official timetable",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -2639,7 +2827,7 @@
       "stableUrl": "https://dtm.com/mp/events/hockenheim-finale-2026",
       "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=hockenheim-finale-2026&lang=en",
       "title": "Official timetable",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "ok",
       "reason": ""
@@ -2653,7 +2841,7 @@
       "stableUrl": "https://www.dtm.com/en/events",
       "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=hockenheim-finale-2027&lang=en",
       "title": "Official timetable",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -2667,7 +2855,7 @@
       "stableUrl": "https://www.dtm.com/en/events",
       "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=oschersleben-2027&lang=en",
       "title": "Official timetable",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -2681,7 +2869,7 @@
       "stableUrl": "https://www.dtm.com/en/events",
       "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=norisring-2027&lang=en",
       "title": "Official timetable",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -2695,7 +2883,7 @@
       "stableUrl": "https://www.dtm.com/en/events",
       "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=nuerburgring-2027&lang=en",
       "title": "Official timetable",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -2709,7 +2897,7 @@
       "stableUrl": "https://www.dtm.com/en/events",
       "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=red-bull-ring-2027&lang=en",
       "title": "Official timetable",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -2723,7 +2911,7 @@
       "stableUrl": "https://www.dtm.com/en/events",
       "finalUrl": "https://api.dtm.com/data?query=eventDetails&slug=sachsenring-2027&lang=en",
       "title": "Official timetable",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -2737,7 +2925,7 @@
       "stableUrl": "https://www.europeanlemansseries.com/en/season/2027",
       "finalUrl": "https://www.europeanlemansseries.com/en/season/2027",
       "title": "Official source",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "could not read official source https://www.europeanlemansseries.com/en/race/4-hours-of-barcelona-2027: HTTP Error 404: Not Found"
@@ -2751,7 +2939,7 @@
       "stableUrl": "https://www.europeanlemansseries.com/en/season/2027",
       "finalUrl": "https://www.europeanlemansseries.com/en/season/2027",
       "title": "Official source",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "could not read official source https://www.europeanlemansseries.com/en/race/4-hours-of-imola-2027: HTTP Error 404: Not Found"
@@ -2765,10 +2953,24 @@
       "stableUrl": "https://www.europeanlemansseries.com/en/season/2027",
       "finalUrl": "https://www.europeanlemansseries.com/en/season/2027",
       "title": "Official source",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "could not read official source https://www.europeanlemansseries.com/en/race/4-hours-of-le-castellet-2027: HTTP Error 404: Not Found"
+    },
+    {
+      "seriesId": "elms",
+      "eventId": "elms-2026-r06",
+      "eventName": "4 Hours of Portimão",
+      "calendarFile": "elms_2026.json",
+      "manualUrl": "https://www.europeanlemansseries.com/en/race/4-hours-of-portimao-2026",
+      "stableUrl": "https://www.europeanlemansseries.com/en/race/4-hours-of-portimao-2026",
+      "finalUrl": "https://www.europeanlemansseries.com/en/race/document/download/2491",
+      "title": "Official timetable PDF",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": null,
+      "status": "ok",
+      "reason": ""
     },
     {
       "seriesId": "elms",
@@ -2779,7 +2981,7 @@
       "stableUrl": "https://www.europeanlemansseries.com/en/season/2027",
       "finalUrl": "https://www.europeanlemansseries.com/en/season/2027",
       "title": "Official source",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "could not read official source https://www.europeanlemansseries.com/en/race/4-hours-of-portimao-2027: HTTP Error 404: Not Found"
@@ -2793,7 +2995,7 @@
       "stableUrl": "https://www.europeanlemansseries.com/en/season/2027",
       "finalUrl": "https://www.europeanlemansseries.com/en/season/2027",
       "title": "Official source",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "could not read official source https://www.europeanlemansseries.com/en/race/4-hours-of-spa-francorchamps-2027: HTTP Error 404: Not Found"
@@ -2807,7 +3009,7 @@
       "stableUrl": "https://www.europeanlemansseries.com/en/season/2027",
       "finalUrl": "https://www.europeanlemansseries.com/en/season/2027",
       "title": "Official source",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "could not read official source https://www.europeanlemansseries.com/en/race/goodyear-4-hours-of-silverstone-2027: HTTP Error 404: Not Found"
@@ -2821,7 +3023,7 @@
       "stableUrl": "https://www.formula1.com/en/racing/2027",
       "finalUrl": "https://www.formula1.com/en/racing/2027/united-arab-emirates",
       "title": "Abu Dhabi Grand Prix 2027 - F1 Race",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -2835,7 +3037,7 @@
       "stableUrl": "https://www.formula1.com/en/racing/2027",
       "finalUrl": "https://www.formula1.com/en/racing/2027/australia",
       "title": "Australian Grand Prix 2027 - F1 Race",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -2849,7 +3051,7 @@
       "stableUrl": "https://www.formula1.com/en/racing/2027",
       "finalUrl": "https://www.formula1.com/en/racing/2027/austria",
       "title": "Austrian Grand Prix 2027 - F1 Race",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -2863,7 +3065,7 @@
       "stableUrl": "https://www.formula1.com/en/racing/2027",
       "finalUrl": "https://www.formula1.com/en/racing/2027/azerbaijan",
       "title": "Azerbaijan Grand Prix 2027 - F1 Race",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -2877,7 +3079,7 @@
       "stableUrl": "https://www.formula1.com/en/racing/2027",
       "finalUrl": "https://www.formula1.com/en/racing/2027/bahrain",
       "title": "Bahrain Grand Prix 2027 - F1 Race",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -2891,7 +3093,7 @@
       "stableUrl": "https://www.formula1.com/en/racing/2027",
       "finalUrl": "https://www.formula1.com/en/racing/2027/belgium",
       "title": "Belgian Grand Prix 2027 - F1 Race",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -2905,7 +3107,7 @@
       "stableUrl": "https://www.formula1.com/en/racing/2027",
       "finalUrl": "https://www.formula1.com/en/racing/2027/great-britain",
       "title": "British Grand Prix 2027 - F1 Race",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -2919,7 +3121,7 @@
       "stableUrl": "https://www.formula1.com/en/racing/2027",
       "finalUrl": "https://www.formula1.com/en/racing/2027/canada",
       "title": "Canadian Grand Prix 2027 - F1 Race",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -2933,7 +3135,7 @@
       "stableUrl": "https://www.formula1.com/en/racing/2027",
       "finalUrl": "https://www.formula1.com/en/racing/2027/china",
       "title": "Chinese Grand Prix 2027 - F1 Race",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -2947,7 +3149,7 @@
       "stableUrl": "https://www.formula1.com/en/racing/2027",
       "finalUrl": "https://www.formula1.com/en/racing/2027/hungary",
       "title": "Hungarian Grand Prix 2027 - F1 Race",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -2961,7 +3163,7 @@
       "stableUrl": "https://www.formula1.com/en/racing/2027",
       "finalUrl": "https://www.formula1.com/en/racing/2027/italy",
       "title": "Italian Grand Prix 2027 - F1 Race",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -2975,7 +3177,7 @@
       "stableUrl": "https://www.formula1.com/en/racing/2027",
       "finalUrl": "https://www.formula1.com/en/racing/2027/japan",
       "title": "Japanese Grand Prix 2027 - F1 Race",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -2989,7 +3191,7 @@
       "stableUrl": "https://www.formula1.com/en/racing/2027",
       "finalUrl": "https://www.formula1.com/en/racing/2027/las-vegas",
       "title": "Las Vegas Grand Prix 2027 - F1 Race",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -3003,7 +3205,7 @@
       "stableUrl": "https://www.formula1.com/en/racing/2027",
       "finalUrl": "https://www.formula1.com/en/racing/2027/mexico",
       "title": "Mexico City Grand Prix 2027 - F1 Race",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -3017,7 +3219,7 @@
       "stableUrl": "https://www.formula1.com/en/racing/2027",
       "finalUrl": "https://www.formula1.com/en/racing/2027/miami",
       "title": "Miami Grand Prix 2027 - F1 Race",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -3031,7 +3233,7 @@
       "stableUrl": "https://www.formula1.com/en/racing/2027",
       "finalUrl": "https://www.formula1.com/en/racing/2027/monaco",
       "title": "Monaco Grand Prix 2027 - F1 Race",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -3045,7 +3247,7 @@
       "stableUrl": "https://www.formula1.com/en/racing/2027",
       "finalUrl": "https://www.formula1.com/en/racing/2027/portugal",
       "title": "Portuguese Grand Prix 2027 - F1 Race",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -3059,7 +3261,7 @@
       "stableUrl": "https://www.formula1.com/en/racing/2027",
       "finalUrl": "https://www.formula1.com/en/racing/2027/qatar",
       "title": "Qatar Grand Prix 2027 - F1 Race",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -3073,7 +3275,7 @@
       "stableUrl": "https://www.formula1.com/en/racing/2027",
       "finalUrl": "https://www.formula1.com/en/racing/2027/saudi-arabia",
       "title": "Saudi Arabian Grand Prix 2027 - F1 Race",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -3087,7 +3289,7 @@
       "stableUrl": "https://www.formula1.com/en/racing/2027",
       "finalUrl": "https://www.formula1.com/en/racing/2027/singapore",
       "title": "Singapore Grand Prix 2027 - F1 Race",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -3101,7 +3303,7 @@
       "stableUrl": "https://www.formula1.com/en/racing/2027",
       "finalUrl": "https://www.formula1.com/en/racing/2027/spain",
       "title": "Spanish Grand Prix 2027 - F1 Race",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -3115,7 +3317,7 @@
       "stableUrl": "https://www.formula1.com/en/racing/2027",
       "finalUrl": "https://www.formula1.com/en/racing/2027/brazil",
       "title": "Sao Paulo Grand Prix 2027, Brazil - F1 Race",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -3129,7 +3331,7 @@
       "stableUrl": "https://www.formula1.com/en/racing/2027",
       "finalUrl": "https://www.formula1.com/en/racing/2027/turkey",
       "title": "Turkish Grand Prix 2027 - F1 Race",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -3143,7 +3345,7 @@
       "stableUrl": "https://www.formula1.com/en/racing/2027",
       "finalUrl": "https://www.formula1.com/en/racing/2027/united-states",
       "title": "United States Grand Prix 2027 - F1 Race",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -3157,10 +3359,206 @@
       "stableUrl": "https://www.f1academy.com/Racing-Series/Calendar",
       "finalUrl": "https://www.f1academy.com/Racing-Series/Results?raceid=27",
       "title": "Round 5: Austin 22-25 October 2026 - F1 ACADEMY™ Racing Series",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "ok",
       "reason": ""
+    },
+    {
+      "seriesId": "f2",
+      "eventId": "f2-2027-r14",
+      "eventName": "Abu Dhabi Grand Prix",
+      "calendarFile": "f2_2027.json",
+      "manualUrl": "",
+      "stableUrl": "https://www.fiaformula2.com/en/racing/2027",
+      "finalUrl": "https://www.fiaformula2.com/en/racing/2027",
+      "title": "Official source",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.fiaformula2.com/en/racing/2027: HTTP Error 500: Internal Server Error"
+    },
+    {
+      "seriesId": "f2",
+      "eventId": "f2-2027-r03",
+      "eventName": "Australian Grand Prix",
+      "calendarFile": "f2_2027.json",
+      "manualUrl": "",
+      "stableUrl": "https://www.fiaformula2.com/en/racing/2027",
+      "finalUrl": "https://www.fiaformula2.com/en/racing/2027",
+      "title": "Official source",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.fiaformula2.com/en/racing/2027: HTTP Error 500: Internal Server Error"
+    },
+    {
+      "seriesId": "f2",
+      "eventId": "f2-2027-r07",
+      "eventName": "Austrian Grand Prix",
+      "calendarFile": "f2_2027.json",
+      "manualUrl": "",
+      "stableUrl": "https://www.fiaformula2.com/en/racing/2027",
+      "finalUrl": "https://www.fiaformula2.com/en/racing/2027",
+      "title": "Official source",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.fiaformula2.com/en/racing/2027: HTTP Error 500: Internal Server Error"
+    },
+    {
+      "seriesId": "f2",
+      "eventId": "f2-2027-r10",
+      "eventName": "Azerbaijan Grand Prix",
+      "calendarFile": "f2_2027.json",
+      "manualUrl": "",
+      "stableUrl": "https://www.fiaformula2.com/en/racing/2027",
+      "finalUrl": "https://www.fiaformula2.com/en/racing/2027",
+      "title": "Official source",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.fiaformula2.com/en/racing/2027: HTTP Error 500: Internal Server Error"
+    },
+    {
+      "seriesId": "f2",
+      "eventId": "f2-2027-r01",
+      "eventName": "Bahrain Grand Prix",
+      "calendarFile": "f2_2027.json",
+      "manualUrl": "",
+      "stableUrl": "https://www.fiaformula2.com/en/racing/2027",
+      "finalUrl": "https://www.fiaformula2.com/en/racing/2027",
+      "title": "Official source",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.fiaformula2.com/en/racing/2027: HTTP Error 500: Internal Server Error"
+    },
+    {
+      "seriesId": "f2",
+      "eventId": "f2-2027-r06",
+      "eventName": "British Grand Prix",
+      "calendarFile": "f2_2027.json",
+      "manualUrl": "",
+      "stableUrl": "https://www.fiaformula2.com/en/racing/2027",
+      "finalUrl": "https://www.fiaformula2.com/en/racing/2027",
+      "title": "Official source",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.fiaformula2.com/en/racing/2027: HTTP Error 500: Internal Server Error"
+    },
+    {
+      "seriesId": "f2",
+      "eventId": "f2-2027-r04",
+      "eventName": "Canadian Grand Prix",
+      "calendarFile": "f2_2027.json",
+      "manualUrl": "",
+      "stableUrl": "https://www.fiaformula2.com/en/racing/2027",
+      "finalUrl": "https://www.fiaformula2.com/en/racing/2027",
+      "title": "Official source",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.fiaformula2.com/en/racing/2027: HTTP Error 500: Internal Server Error"
+    },
+    {
+      "seriesId": "f2",
+      "eventId": "f2-2027-r08",
+      "eventName": "Italian Grand Prix",
+      "calendarFile": "f2_2027.json",
+      "manualUrl": "",
+      "stableUrl": "https://www.fiaformula2.com/en/racing/2027",
+      "finalUrl": "https://www.fiaformula2.com/en/racing/2027",
+      "title": "Official source",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.fiaformula2.com/en/racing/2027: HTTP Error 500: Internal Server Error"
+    },
+    {
+      "seriesId": "f2",
+      "eventId": "f2-2027-r12",
+      "eventName": "Mexico City Grand Prix",
+      "calendarFile": "f2_2027.json",
+      "manualUrl": "",
+      "stableUrl": "https://www.fiaformula2.com/en/racing/2027",
+      "finalUrl": "https://www.fiaformula2.com/en/racing/2027",
+      "title": "Official source",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.fiaformula2.com/en/racing/2027: HTTP Error 500: Internal Server Error"
+    },
+    {
+      "seriesId": "f2",
+      "eventId": "f2-2027-r05",
+      "eventName": "Monaco Grand Prix",
+      "calendarFile": "f2_2027.json",
+      "manualUrl": "",
+      "stableUrl": "https://www.fiaformula2.com/en/racing/2027",
+      "finalUrl": "https://www.fiaformula2.com/en/racing/2027",
+      "title": "Official source",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.fiaformula2.com/en/racing/2027: HTTP Error 500: Internal Server Error"
+    },
+    {
+      "seriesId": "f2",
+      "eventId": "f2-2027-r13",
+      "eventName": "Qatar Grand Prix",
+      "calendarFile": "f2_2027.json",
+      "manualUrl": "",
+      "stableUrl": "https://www.fiaformula2.com/en/racing/2027",
+      "finalUrl": "https://www.fiaformula2.com/en/racing/2027",
+      "title": "Official source",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.fiaformula2.com/en/racing/2027: HTTP Error 500: Internal Server Error"
+    },
+    {
+      "seriesId": "f2",
+      "eventId": "f2-2027-r02",
+      "eventName": "Saudi Arabian Grand Prix",
+      "calendarFile": "f2_2027.json",
+      "manualUrl": "",
+      "stableUrl": "https://www.fiaformula2.com/en/racing/2027",
+      "finalUrl": "https://www.fiaformula2.com/en/racing/2027",
+      "title": "Official source",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.fiaformula2.com/en/racing/2027: HTTP Error 500: Internal Server Error"
+    },
+    {
+      "seriesId": "f2",
+      "eventId": "f2-2027-r09",
+      "eventName": "Spanish Grand Prix",
+      "calendarFile": "f2_2027.json",
+      "manualUrl": "",
+      "stableUrl": "https://www.fiaformula2.com/en/racing/2027",
+      "finalUrl": "https://www.fiaformula2.com/en/racing/2027",
+      "title": "Official source",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.fiaformula2.com/en/racing/2027: HTTP Error 500: Internal Server Error"
+    },
+    {
+      "seriesId": "f2",
+      "eventId": "f2-2027-r11",
+      "eventName": "Turkish Grand Prix",
+      "calendarFile": "f2_2027.json",
+      "manualUrl": "",
+      "stableUrl": "https://www.fiaformula2.com/en/racing/2027",
+      "finalUrl": "https://www.fiaformula2.com/en/racing/2027",
+      "title": "Official source",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": null,
+      "status": "unresolved",
+      "reason": "could not read official source https://www.fiaformula2.com/en/racing/2027: HTTP Error 500: Internal Server Error"
     },
     {
       "seriesId": "f3",
@@ -3171,7 +3569,7 @@
       "stableUrl": "https://www.fiaformula3.com/en/racing/2027",
       "finalUrl": "https://www.fiaformula3.com/en/racing/2027",
       "title": "Official source",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "could not read official source https://www.fiaformula3.com/en/racing/2027: HTTP Error 500: Internal Server Error"
@@ -3185,7 +3583,7 @@
       "stableUrl": "https://www.fiaformula3.com/en/racing/2027",
       "finalUrl": "https://www.fiaformula3.com/en/racing/2027",
       "title": "Official source",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "could not read official source https://www.fiaformula3.com/en/racing/2027: HTTP Error 500: Internal Server Error"
@@ -3199,7 +3597,7 @@
       "stableUrl": "https://www.fiaformula3.com/en/racing/2027",
       "finalUrl": "https://www.fiaformula3.com/en/racing/2027",
       "title": "Official source",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "could not read official source https://www.fiaformula3.com/en/racing/2027: HTTP Error 500: Internal Server Error"
@@ -3213,7 +3611,7 @@
       "stableUrl": "https://www.fiaformula3.com/en/racing/2027",
       "finalUrl": "https://www.fiaformula3.com/en/racing/2027",
       "title": "Official source",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "could not read official source https://www.fiaformula3.com/en/racing/2027: HTTP Error 500: Internal Server Error"
@@ -3227,7 +3625,7 @@
       "stableUrl": "https://www.fiaformula3.com/en/racing/2027",
       "finalUrl": "https://www.fiaformula3.com/en/racing/2027",
       "title": "Official source",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "could not read official source https://www.fiaformula3.com/en/racing/2027: HTTP Error 500: Internal Server Error"
@@ -3241,7 +3639,7 @@
       "stableUrl": "https://www.fiaformula3.com/en/racing/2027",
       "finalUrl": "https://www.fiaformula3.com/en/racing/2027",
       "title": "Official source",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "could not read official source https://www.fiaformula3.com/en/racing/2027: HTTP Error 500: Internal Server Error"
@@ -3255,7 +3653,7 @@
       "stableUrl": "https://www.fiaformula3.com/en/racing/2027",
       "finalUrl": "https://www.fiaformula3.com/en/racing/2027",
       "title": "Official source",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "could not read official source https://www.fiaformula3.com/en/racing/2027: HTTP Error 500: Internal Server Error"
@@ -3269,7 +3667,7 @@
       "stableUrl": "https://www.fiaformula3.com/en/racing/2027",
       "finalUrl": "https://www.fiaformula3.com/en/racing/2027",
       "title": "Official source",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "could not read official source https://www.fiaformula3.com/en/racing/2027: HTTP Error 500: Internal Server Error"
@@ -3283,7 +3681,7 @@
       "stableUrl": "https://www.fiaformula3.com/en/racing/2027",
       "finalUrl": "https://www.fiaformula3.com/en/racing/2027",
       "title": "Official source",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "could not read official source https://www.fiaformula3.com/en/racing/2027: HTTP Error 500: Internal Server Error"
@@ -3297,7 +3695,7 @@
       "stableUrl": "https://www.fiaformula3.com/en/racing/2027",
       "finalUrl": "https://www.fiaformula3.com/en/racing/2027",
       "title": "Official source",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "could not read official source https://www.fiaformula3.com/en/racing/2027: HTTP Error 500: Internal Server Error"
@@ -3307,11 +3705,11 @@
       "eventId": "fd-2026-r02",
       "eventName": "Road to the Championship",
       "calendarFile": "fd_2026.json",
-      "manualUrl": "",
-      "stableUrl": "https://www.formulad.com/schedule",
+      "manualUrl": "https://www.formulad.com/schedule/2026/atlanta",
+      "stableUrl": "https://www.formulad.com/schedule/2026/atlanta",
       "finalUrl": "https://www.formulad.com/schedule/2026/atlanta",
       "title": "ROAD TO THE CHAMPIONSHIP | Formula DRIFT",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "FD: missing or conflicting PRO qualifying / elimination schedule"
@@ -3321,11 +3719,11 @@
       "eventId": "fd-2026-r08",
       "eventName": "Shoreline Showdown",
       "calendarFile": "fd_2026.json",
-      "manualUrl": "",
-      "stableUrl": "https://www.formulad.com/schedule",
+      "manualUrl": "https://www.formulad.com/schedule/2026/long-beach2",
+      "stableUrl": "https://www.formulad.com/schedule/2026/long-beach2",
       "finalUrl": "https://www.formulad.com/schedule/2026/long-beach2",
       "title": "SHORELINE SHOWDOWN | Formula DRIFT",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "ok",
       "reason": ""
@@ -3339,8 +3737,8 @@
       "stableUrl": "https://www.fiaformulae.com/en/calendar",
       "finalUrl": "https://www.fiaformulae.com/en/calendar",
       "title": "Calendar - ABB FIA Formula E World Championship",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:34:47 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:33:12 GMT",
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
     },
@@ -3353,8 +3751,8 @@
       "stableUrl": "https://www.fiaformulae.com/en/calendar",
       "finalUrl": "https://www.fiaformulae.com/en/calendar",
       "title": "Calendar - ABB FIA Formula E World Championship",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:34:47 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:33:12 GMT",
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
     },
@@ -3367,8 +3765,8 @@
       "stableUrl": "https://www.fiaformulae.com/en/calendar",
       "finalUrl": "https://www.fiaformulae.com/en/calendar",
       "title": "Calendar - ABB FIA Formula E World Championship",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:34:47 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:33:12 GMT",
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
     },
@@ -3381,8 +3779,8 @@
       "stableUrl": "https://www.fiaformulae.com/en/calendar",
       "finalUrl": "https://www.fiaformulae.com/en/calendar",
       "title": "Calendar - ABB FIA Formula E World Championship",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:34:47 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:33:12 GMT",
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
     },
@@ -3395,8 +3793,8 @@
       "stableUrl": "https://www.fiaformulae.com/en/calendar",
       "finalUrl": "https://www.fiaformulae.com/en/calendar",
       "title": "Calendar - ABB FIA Formula E World Championship",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:34:47 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:33:12 GMT",
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
     },
@@ -3409,8 +3807,8 @@
       "stableUrl": "https://www.fiaformulae.com/en/calendar",
       "finalUrl": "https://www.fiaformulae.com/en/calendar",
       "title": "Calendar - ABB FIA Formula E World Championship",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:34:47 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:33:12 GMT",
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
     },
@@ -3423,8 +3821,8 @@
       "stableUrl": "https://www.fiaformulae.com/en/calendar",
       "finalUrl": "https://www.fiaformulae.com/en/calendar",
       "title": "Calendar - ABB FIA Formula E World Championship",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:34:47 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:33:12 GMT",
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
     },
@@ -3437,8 +3835,8 @@
       "stableUrl": "https://www.fiaformulae.com/en/calendar",
       "finalUrl": "https://www.fiaformulae.com/en/calendar",
       "title": "Calendar - ABB FIA Formula E World Championship",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:34:47 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:33:12 GMT",
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
     },
@@ -3451,8 +3849,8 @@
       "stableUrl": "https://www.fiaformulae.com/en/calendar",
       "finalUrl": "https://www.fiaformulae.com/en/calendar",
       "title": "Calendar - ABB FIA Formula E World Championship",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:34:47 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:33:12 GMT",
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
     },
@@ -3465,8 +3863,8 @@
       "stableUrl": "https://www.fiaformulae.com/en/calendar",
       "finalUrl": "https://www.fiaformulae.com/en/calendar",
       "title": "Calendar - ABB FIA Formula E World Championship",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:34:47 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:33:12 GMT",
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
     },
@@ -3479,8 +3877,8 @@
       "stableUrl": "https://www.fiaformulae.com/en/calendar",
       "finalUrl": "https://www.fiaformulae.com/en/calendar",
       "title": "Calendar - ABB FIA Formula E World Championship",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:34:47 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:33:12 GMT",
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
     },
@@ -3493,8 +3891,8 @@
       "stableUrl": "https://www.fiaformulae.com/en/calendar",
       "finalUrl": "https://www.fiaformulae.com/en/calendar",
       "title": "Calendar - ABB FIA Formula E World Championship",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:34:47 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:33:12 GMT",
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
     },
@@ -3507,8 +3905,8 @@
       "stableUrl": "https://www.fiaformulae.com/en/calendar",
       "finalUrl": "https://www.fiaformulae.com/en/calendar",
       "title": "Calendar - ABB FIA Formula E World Championship",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:34:47 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:33:12 GMT",
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
     },
@@ -3521,8 +3919,8 @@
       "stableUrl": "https://www.fiaformulae.com/en/calendar",
       "finalUrl": "https://www.fiaformulae.com/en/calendar",
       "title": "Calendar - ABB FIA Formula E World Championship",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:34:47 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:33:12 GMT",
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
     },
@@ -3535,8 +3933,8 @@
       "stableUrl": "https://www.fiaformulae.com/en/calendar",
       "finalUrl": "https://www.fiaformulae.com/en/calendar",
       "title": "Calendar - ABB FIA Formula E World Championship",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:34:47 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:33:12 GMT",
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
     },
@@ -3549,8 +3947,8 @@
       "stableUrl": "https://www.fiaformulae.com/en/calendar",
       "finalUrl": "https://www.fiaformulae.com/en/calendar",
       "title": "Calendar - ABB FIA Formula E World Championship",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:34:47 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:33:12 GMT",
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
     },
@@ -3563,8 +3961,8 @@
       "stableUrl": "https://www.fiaformulae.com/en/calendar",
       "finalUrl": "https://www.fiaformulae.com/en/calendar",
       "title": "Calendar - ABB FIA Formula E World Championship",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:34:47 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:33:12 GMT",
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
     },
@@ -3577,8 +3975,8 @@
       "stableUrl": "https://www.fiaformulae.com/en/calendar",
       "finalUrl": "https://www.fiaformulae.com/en/calendar",
       "title": "Calendar - ABB FIA Formula E World Championship",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:34:47 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:33:12 GMT",
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
     },
@@ -3591,8 +3989,8 @@
       "stableUrl": "https://www.fiaformulae.com/en/calendar",
       "finalUrl": "https://www.fiaformulae.com/en/calendar",
       "title": "Calendar - ABB FIA Formula E World Championship",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:34:47 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:33:12 GMT",
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
     },
@@ -3605,8 +4003,8 @@
       "stableUrl": "https://www.fiaformulae.com/en/calendar",
       "finalUrl": "https://www.fiaformulae.com/en/calendar",
       "title": "Calendar - ABB FIA Formula E World Championship",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:34:47 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:33:12 GMT",
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
     },
@@ -3619,8 +4017,8 @@
       "stableUrl": "https://www.fiaformulae.com/en/calendar",
       "finalUrl": "https://www.fiaformulae.com/en/calendar",
       "title": "Calendar - ABB FIA Formula E World Championship",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:34:47 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:33:12 GMT",
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
     },
@@ -3633,8 +4031,8 @@
       "stableUrl": "https://www.gt-world-challenge-america.com/calendar",
       "finalUrl": "https://www.gt-world-challenge-america.com/event/116/barber-motorsports-park",
       "title": "Barber Motorsports Park, United States of America, 25 - 27 September 2026 | GT World Challenge America Powered by AWS",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:35:00 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:59:30 GMT",
       "status": "unresolved",
       "reason": "official event page is for 2026 rather than calendar year 2027"
     },
@@ -3647,8 +4045,8 @@
       "stableUrl": "https://www.gt-world-challenge-america.com/calendar",
       "finalUrl": "https://www.gt-world-challenge-america.com/event/117/indianpolis-8-hour",
       "title": "Indianapolis Motor Speedway, United States of America, 9 - 11 October 2026 | GT World Challenge America Powered by AWS",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:35:01 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:59:31 GMT",
       "status": "unresolved",
       "reason": "official event page is for 2026 rather than calendar year 2027"
     },
@@ -3661,8 +4059,8 @@
       "stableUrl": "https://www.gt-world-challenge-america.com/calendar",
       "finalUrl": "https://www.gt-world-challenge-america.com/event/114/road-atlanta",
       "title": "Michelin Raceway Road Atlanta, United States of America, 12 - 14 June 2026 | GT World Challenge America Powered by AWS",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:34:56 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:59:27 GMT",
       "status": "unresolved",
       "reason": "official event page is for 2026 rather than calendar year 2027"
     },
@@ -3675,8 +4073,8 @@
       "stableUrl": "https://www.gt-world-challenge-america.com/calendar",
       "finalUrl": "https://www.gt-world-challenge-america.com/event/114/road-atlanta",
       "title": "Michelin Raceway Road Atlanta, United States of America, 12 - 14 June 2026 | GT World Challenge America Powered by AWS",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:34:58 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:59:28 GMT",
       "status": "unresolved",
       "reason": "official event page is for 2026 rather than calendar year 2027"
     },
@@ -3689,8 +4087,8 @@
       "stableUrl": "https://www.gt-world-challenge-america.com/calendar",
       "finalUrl": "https://www.gt-world-challenge-america.com/event/111/sonoma-raceway",
       "title": "Sonoma Raceway, United States of America, 27 - 29 March 2026 | GT World Challenge America Powered by AWS",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:34:52 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:59:23 GMT",
       "status": "unresolved",
       "reason": "official event page is for 2026 rather than calendar year 2027"
     },
@@ -3703,8 +4101,8 @@
       "stableUrl": "https://www.gt-world-challenge-america.com/calendar",
       "finalUrl": "https://www.gt-world-challenge-america.com/event/112/circuit-of-the-americas",
       "title": "Circuit of the Americas, United States of America, 24 - 26 April 2026 | GT World Challenge America Powered by AWS",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:34:54 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:59:24 GMT",
       "status": "unresolved",
       "reason": "official event page is for 2026 rather than calendar year 2027"
     },
@@ -3717,8 +4115,8 @@
       "stableUrl": "https://www.gt-world-challenge-america.com/calendar",
       "finalUrl": "https://www.gt-world-challenge-america.com/event/113/sebring-international-raceway",
       "title": "Sebring International Raceway, United States of America, 8 - 10 May 2026 | GT World Challenge America Powered by AWS",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:34:55 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:59:25 GMT",
       "status": "unresolved",
       "reason": "official event page is for 2026 rather than calendar year 2027"
     },
@@ -3731,8 +4129,8 @@
       "stableUrl": "https://www.gt-world-challenge-asia.com/calendar",
       "finalUrl": "https://www.gt-world-challenge-asia.com/event/83/beijing-street-circuit",
       "title": "Beijing Street Circuit, China, 2 - 4 October 2026 | GT World Challenge Asia Powered by AWS",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:35:08 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:59:36 GMT",
       "status": "unresolved",
       "reason": "official event page is for 2026 rather than calendar year 2027"
     },
@@ -3745,8 +4143,8 @@
       "stableUrl": "https://www.gt-world-challenge-asia.com/calendar",
       "finalUrl": "https://www.gt-world-challenge-asia.com/event/80/sepang",
       "title": "Sepang International Circuit, Malaysia, 3 - 5 April 2026 | GT World Challenge Asia Powered by AWS",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:35:04 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:59:34 GMT",
       "status": "unresolved",
       "reason": "official event page is for 2026 rather than calendar year 2027"
     },
@@ -3759,8 +4157,8 @@
       "stableUrl": "https://www.gt-world-challenge-asia.com/calendar",
       "finalUrl": "https://www.gt-world-challenge-asia.com/event/82/fuji-international-speedway",
       "title": "Fuji International Speedway (SRO GT PowerTour), Japan, 9 - 12 July 2026 | GT World Challenge Asia Powered by AWS",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:35:07 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:59:35 GMT",
       "status": "unresolved",
       "reason": "official event page is for 2026 rather than calendar year 2027"
     },
@@ -3773,8 +4171,8 @@
       "stableUrl": "https://www.gt-world-challenge-asia.com/calendar",
       "finalUrl": "https://www.gt-world-challenge-asia.com/event/80/sepang",
       "title": "Sepang International Circuit, Malaysia, 3 - 5 April 2026 | GT World Challenge Asia Powered by AWS",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:35:03 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:59:33 GMT",
       "status": "unresolved",
       "reason": "official event page is for 2026 rather than calendar year 2027"
     },
@@ -3787,8 +4185,8 @@
       "stableUrl": "https://www.gt-world-challenge-asia.com/calendar",
       "finalUrl": "https://www.gt-world-challenge-asia.com/event/90/shanghai-international-circuit",
       "title": "Shanghai International Circuit, China, 30 October 2026 - 1 November 2026 | GT World Challenge Asia Powered by AWS",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:35:09 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:59:38 GMT",
       "status": "unresolved",
       "reason": "official event page is for 2026 rather than calendar year 2027"
     },
@@ -3801,8 +4199,8 @@
       "stableUrl": "https://www.gt-world-challenge-asia.com/calendar",
       "finalUrl": "https://www.gt-world-challenge-asia.com/event/80/sepang",
       "title": "Sepang International Circuit, Malaysia, 3 - 5 April 2026 | GT World Challenge Asia Powered by AWS",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:35:05 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:59:35 GMT",
       "status": "unresolved",
       "reason": "official event page is for 2026 rather than calendar year 2027"
     },
@@ -3815,8 +4213,8 @@
       "stableUrl": "https://www.gt-world-challenge-australia.com/calendar",
       "finalUrl": "https://www.gt-world-challenge-australia.com/event/28/adelaide-grand-final",
       "title": "Adelaide Grand Final, Australia, 26 - 29 November 2026 | GT World Challenge Australia Powered by AWS",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:35:09 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:59:39 GMT",
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
     },
@@ -3829,8 +4227,8 @@
       "stableUrl": "https://www.gt-world-challenge-australia.com/calendar",
       "finalUrl": "https://www.gt-world-challenge-australia.com/calendar",
       "title": "Calendar 2026 | GT World Challenge Australia Powered by AWS",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:35:10 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:59:40 GMT",
       "status": "unresolved",
       "reason": "official event page is for 2026 rather than calendar year 2027"
     },
@@ -3843,8 +4241,8 @@
       "stableUrl": "https://www.gt-world-challenge-australia.com/calendar",
       "finalUrl": "https://www.gt-world-challenge-australia.com/event/22/gt-festival-phillip-island",
       "title": "GT Festival Phillip Island, Australia, 27 - 29 March 2026 | GT World Challenge Australia Powered by AWS",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:35:11 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:59:41 GMT",
       "status": "unresolved",
       "reason": "official event page is for 2026 rather than calendar year 2027"
     },
@@ -3857,8 +4255,8 @@
       "stableUrl": "https://www.gt-world-challenge-australia.com/calendar",
       "finalUrl": "https://www.gt-world-challenge-australia.com/event/26/gt-festival-queensland",
       "title": "GT Festival Queensland, Australia, 12 - 14 June 2026 | GT World Challenge Australia Powered by AWS",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:35:13 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:59:42 GMT",
       "status": "unresolved",
       "reason": "official event page is for 2026 rather than calendar year 2027"
     },
@@ -3871,8 +4269,8 @@
       "stableUrl": "https://www.gt-world-challenge-australia.com/calendar",
       "finalUrl": "https://www.gt-world-challenge-australia.com/calendar",
       "title": "Calendar 2026 | GT World Challenge Australia Powered by AWS",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:35:10 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:59:40 GMT",
       "status": "unresolved",
       "reason": "official event page is for 2026 rather than calendar year 2027"
     },
@@ -3885,7 +4283,7 @@
       "stableUrl": "https://www.gt-world-challenge-australia.com/calendar",
       "finalUrl": "https://www.gt-world-challenge-australia.com/calendar",
       "title": "Official source",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "source domain is not allowlisted: https://www.srorc.com/"
@@ -3899,8 +4297,8 @@
       "stableUrl": "https://www.gt-world-challenge-europe.com/calendar",
       "finalUrl": "https://www.gt-world-challenge-europe.com/event/246/circuit-paul-ricard",
       "title": "Circuit Paul Ricard, France, 10 - 12 April 2026 | GT World Challenge Europe Powered by AWS",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:35:20 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:59:48 GMT",
       "status": "unresolved",
       "reason": "official event page is for 2026 rather than calendar year 2027"
     },
@@ -3913,8 +4311,8 @@
       "stableUrl": "https://www.gt-world-challenge-europe.com/calendar",
       "finalUrl": "https://www.gt-world-challenge-europe.com/event/247/brands-hatch",
       "title": "Brands Hatch, Great Britain, 2 - 3 May 2026 | GT World Challenge Europe Powered by AWS",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:35:15 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:59:44 GMT",
       "status": "unresolved",
       "reason": "official event page is for 2026 rather than calendar year 2027"
     },
@@ -3927,8 +4325,8 @@
       "stableUrl": "https://www.gt-world-challenge-europe.com/calendar",
       "finalUrl": "https://www.gt-world-challenge-europe.com/event/246/circuit-paul-ricard",
       "title": "Circuit Paul Ricard, France, 10 - 12 April 2026 | GT World Challenge Europe Powered by AWS",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:35:14 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:59:43 GMT",
       "status": "unresolved",
       "reason": "official event page is for 2026 rather than calendar year 2027"
     },
@@ -3941,8 +4339,8 @@
       "stableUrl": "https://www.gt-world-challenge-europe.com/calendar",
       "finalUrl": "https://www.gt-world-challenge-europe.com/event/245/crowdstrike-24-hours-of-spa--test-days",
       "title": "CrowdStrike 24 Hours of Spa - Prologue, Belgium, 19 - 20 May 2026 | GT World Challenge Europe Powered by AWS",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:35:16 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:59:45 GMT",
       "status": "unresolved",
       "reason": "official event page is for 2026 rather than calendar year 2027"
     },
@@ -3955,8 +4353,8 @@
       "stableUrl": "https://www.gt-world-challenge-europe.com/calendar",
       "finalUrl": "https://www.gt-world-challenge-europe.com/calendar",
       "title": "Calendar 2026 | GT World Challenge Europe Powered by AWS",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:35:13 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:59:43 GMT",
       "status": "unresolved",
       "reason": "official event page is for 2026 rather than calendar year 2027"
     },
@@ -3969,8 +4367,8 @@
       "stableUrl": "https://www.gt-world-challenge-europe.com/calendar",
       "finalUrl": "https://www.gt-world-challenge-europe.com/calendar",
       "title": "Calendar 2026 | GT World Challenge Europe Powered by AWS",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:35:13 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:59:43 GMT",
       "status": "unresolved",
       "reason": "official event page is for 2026 rather than calendar year 2027"
     },
@@ -3983,8 +4381,8 @@
       "stableUrl": "https://www.gt-world-challenge-europe.com/calendar",
       "finalUrl": "https://www.gt-world-challenge-europe.com/event/251/magny-cours",
       "title": "Magny-Cours, France, 30 July 2026 - 2 August 2026 | GT World Challenge Europe Powered by AWS",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:35:18 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:59:46 GMT",
       "status": "unresolved",
       "reason": "official event page is for 2026 rather than calendar year 2027"
     },
@@ -3997,8 +4395,8 @@
       "stableUrl": "https://www.gt-world-challenge-europe.com/calendar",
       "finalUrl": "https://www.gt-world-challenge-europe.com/calendar",
       "title": "Calendar 2026 | GT World Challenge Europe Powered by AWS",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:35:13 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:59:43 GMT",
       "status": "unresolved",
       "reason": "official event page is for 2026 rather than calendar year 2027"
     },
@@ -4011,8 +4409,8 @@
       "stableUrl": "https://www.gt-world-challenge-europe.com/calendar",
       "finalUrl": "https://www.gt-world-challenge-europe.com/calendar",
       "title": "Calendar 2026 | GT World Challenge Europe Powered by AWS",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:35:13 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:59:43 GMT",
       "status": "unresolved",
       "reason": "official event page is for 2026 rather than calendar year 2027"
     },
@@ -4025,8 +4423,8 @@
       "stableUrl": "https://www.gt-world-challenge-europe.com/calendar",
       "finalUrl": "https://www.gt-world-challenge-europe.com/event/246/circuit-paul-ricard",
       "title": "Circuit Paul Ricard, France, 10 - 12 April 2026 | GT World Challenge Europe Powered by AWS",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:35:19 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:59:47 GMT",
       "status": "unresolved",
       "reason": "official event page is for 2026 rather than calendar year 2027"
     },
@@ -4039,7 +4437,7 @@
       "stableUrl": "https://www.imsa.com/weathertech/2027-schedule/",
       "finalUrl": "https://www.imsa.com/events/2027-long-beach-street-circuit/",
       "title": "2027 Long Beach Street Circuit | IMSA",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": "Mon, 05 Oct 2026 16:26:44 GMT",
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4053,7 +4451,7 @@
       "stableUrl": "https://www.imsa.com/weathertech/2027-schedule/",
       "finalUrl": "https://www.imsa.com/events/2027-detroit-street-circuit/",
       "title": "2027 Detroit Street Circuit | IMSA",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": "Mon, 05 Oct 2026 16:38:00 GMT",
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4067,8 +4465,8 @@
       "stableUrl": "https://www.imsa.com/weathertech/2027-schedule/",
       "finalUrl": "https://www.imsa.com/events/2027-canadian-tire-motorsport-park/",
       "title": "2027 Canadian Tire Motorsport Park | IMSA",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:35:22 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 16:28:09 GMT",
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
     },
@@ -4081,8 +4479,8 @@
       "stableUrl": "https://www.imsa.com/weathertech/2027-schedule/",
       "finalUrl": "https://www.imsa.com/events/2027-virginia-international-raceway/",
       "title": "2027 VIRginia International Raceway | IMSA",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:35:22 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 16:38:58 GMT",
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
     },
@@ -4095,8 +4493,8 @@
       "stableUrl": "https://www.imsa.com/weathertech/2027-schedule/",
       "finalUrl": "https://www.imsa.com/events/2027-sebring-international-raceway/",
       "title": "2027 Sebring International Raceway | IMSA",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 16:26:49 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 16:25:51 GMT",
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
     },
@@ -4109,7 +4507,7 @@
       "stableUrl": "https://www.imsa.com/weathertech/2027-schedule/",
       "finalUrl": "https://www.imsa.com/events/2027-michelin-raceway-road-atlanta/",
       "title": "2027 Michelin Raceway Road Atlanta | IMSA",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": "Mon, 05 Oct 2026 16:25:50 GMT",
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4123,8 +4521,8 @@
       "stableUrl": "https://www.imsa.com/weathertech/2027-schedule/",
       "finalUrl": "https://www.imsa.com/events/2027-road-america/",
       "title": "2027 Road America | IMSA",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 16:43:28 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 16:25:25 GMT",
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
     },
@@ -4135,12 +4533,12 @@
       "calendarFile": "imsa_2027.json",
       "manualUrl": "",
       "stableUrl": "https://www.imsa.com/weathertech/2027-schedule/",
-      "finalUrl": "https://www.imsa.com/events/2027-roar-before-the-rolex-24/",
-      "title": "2027 Roar Before The Rolex 24 | IMSA",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 16:33:30 GMT",
+      "finalUrl": "https://www.imsa.com/weathertech/2027-schedule/",
+      "title": "Official source",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": null,
       "status": "unresolved",
-      "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
+      "reason": "could not read official source https://www.imsa.com/weathertech/weathertech-2027-schedule/ with browser reader: HTTP Error 404: "
     },
     {
       "seriesId": "imsa",
@@ -4151,8 +4549,8 @@
       "stableUrl": "https://www.imsa.com/weathertech/2027-schedule/",
       "finalUrl": "https://www.imsa.com/events/2027-roar-before-the-rolex-24/",
       "title": "2027 Roar Before The Rolex 24 | IMSA",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 16:33:30 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 16:32:55 GMT",
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
     },
@@ -4165,7 +4563,7 @@
       "stableUrl": "https://www.imsa.com/weathertech/2027-schedule/",
       "finalUrl": "https://www.imsa.com/events/2027-watkins-glen-international/",
       "title": "2027 Watkins Glen International | IMSA",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": "Mon, 05 Oct 2026 16:28:13 GMT",
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4179,8 +4577,8 @@
       "stableUrl": "https://www.imsa.com/weathertech/2027-schedule/",
       "finalUrl": "https://www.imsa.com/events/2027-indianapolis-motor-speedway/",
       "title": "2027 Indianapolis Motor Speedway | IMSA",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 16:37:58 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 16:35:01 GMT",
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
     },
@@ -4193,7 +4591,7 @@
       "stableUrl": "https://www.imsa.com/weathertech/2027-schedule/",
       "finalUrl": "https://www.imsa.com/events/2027-weathertech-raceway-laguna-seca/",
       "title": "2027 WeatherTech Raceway Laguna Seca | IMSA",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": "Mon, 05 Oct 2026 16:28:00 GMT",
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4207,7 +4605,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/spain/f119aae5-3e39-4cf3-9801-9fdec5b5c651",
       "title": "GRAND PRIX OF ARAGON ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4221,7 +4619,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/argentina/c10a7ebf-311d-4ad4-9e70-5cdedb820d0e",
       "title": "GRAND PRIX OF ARGENTINA",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4235,7 +4633,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/australia/de1c5927-dde4-4b23-ae70-7e2ab9320bf7",
       "title": "GRAND PRIX OF AUSTRALIA ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4249,7 +4647,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/austria/4cbd9219-9732-4f03-9a45-e3dac1d669f4",
       "title": "GRAND PRIX OF AUSTRIA ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4263,7 +4661,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/brasil/bf5f3555-1a6a-4f3c-9855-eaaeaae5dec0",
       "title": "GRAND PRIX OF BRAZIL ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4277,7 +4675,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/catalonia/87010858-4f81-4546-9cfb-2bc0684cc849",
       "title": "GRAND PRIX OF CATALONIA ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4291,7 +4689,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/czeck-republiky/519574ff-f733-4630-bbc8-5c8ae7040d16",
       "title": "GRAND PRIX OF CZECHIA ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4305,7 +4703,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/france/4a935298-8a46-4435-9bdb-2a6e0dfac50b",
       "title": "GRAND PRIX OF FRANCE ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4319,7 +4717,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/germany/5c4fc7f1-eeca-4f47-b6ef-9187d17da865",
       "title": "GRAND PRIX OF GERMANY ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4333,7 +4731,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/great-britain/adb67418-cf62-4369-b074-e998c2e0d951",
       "title": "GRAND PRIX OF GREAT BRITAIN ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4347,7 +4745,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/indonesia/5eabdb09-9562-48c5-b570-95f45340662c",
       "title": "GRAND PRIX OF INDONESIA ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4361,7 +4759,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/italy/2dc1370c-ddde-46ad-aae0-556f6660b015",
       "title": "GRAND PRIX OF ITALY ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4375,7 +4773,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/japan/8a664b84-83d8-4eee-9425-e2e9f8af4da5",
       "title": "GRAND PRIX OF JAPAN ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4389,7 +4787,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/malaysia/440d38d4-f8db-41fc-810d-a0eb6edcbe7f",
       "title": "GRAND PRIX OF MALAYSIA ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4403,7 +4801,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/portugal/211e69f0-b521-4df4-95c8-7f890b878a2b",
       "title": "GRAND PRIX OF PORTUGAL ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4417,7 +4815,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/qatar/e1d60873-b02b-4f4b-bb8c-a7a6c5636d46",
       "title": "GRAND PRIX OF QATAR ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4431,7 +4829,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/san-marino/4e69f9e9-fb52-4549-ac1e-1177500d33f8",
       "title": "GRAND PRIX OF SAN MARINO AND THE RIMINI RIVIERA ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4445,7 +4843,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/espana/a86a970e-bcb1-4f61-a401-6a1d440537a3",
       "title": "GRAND PRIX OF SPAIN ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4459,7 +4857,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/thailand/8ab8c4e8-5069-499c-a330-42176595b117",
       "title": "GRAND PRIX OF THAILAND ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4473,7 +4871,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/valencia/196eecc2-c3c7-41d5-a472-fbe01d8515bb",
       "title": "GRAND PRIX OF VALENCIA",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4487,7 +4885,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/americas/40e6cf1f-72ea-4d93-8e47-3bfbdbcb7482",
       "title": "GRAND PRIX OF THE UNITED STATES ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4501,7 +4899,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/netherlands/42712efa-4a99-4af3-8869-66197fc5248c",
       "title": "GRAND PRIX OF THE NETHERLANDS ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4515,7 +4913,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/spain/f119aae5-3e39-4cf3-9801-9fdec5b5c651",
       "title": "GRAND PRIX OF ARAGON ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4529,7 +4927,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/argentina/c10a7ebf-311d-4ad4-9e70-5cdedb820d0e",
       "title": "GRAND PRIX OF ARGENTINA",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4543,7 +4941,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/australia/de1c5927-dde4-4b23-ae70-7e2ab9320bf7",
       "title": "GRAND PRIX OF AUSTRALIA ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4557,7 +4955,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/austria/4cbd9219-9732-4f03-9a45-e3dac1d669f4",
       "title": "GRAND PRIX OF AUSTRIA ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4571,7 +4969,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/brasil/bf5f3555-1a6a-4f3c-9855-eaaeaae5dec0",
       "title": "GRAND PRIX OF BRAZIL ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4585,7 +4983,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/catalonia/87010858-4f81-4546-9cfb-2bc0684cc849",
       "title": "GRAND PRIX OF CATALONIA ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4599,7 +4997,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/czeck-republiky/519574ff-f733-4630-bbc8-5c8ae7040d16",
       "title": "GRAND PRIX OF CZECHIA ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4613,7 +5011,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/france/4a935298-8a46-4435-9bdb-2a6e0dfac50b",
       "title": "GRAND PRIX OF FRANCE ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4627,7 +5025,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/germany/5c4fc7f1-eeca-4f47-b6ef-9187d17da865",
       "title": "GRAND PRIX OF GERMANY ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4641,7 +5039,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/great-britain/adb67418-cf62-4369-b074-e998c2e0d951",
       "title": "GRAND PRIX OF GREAT BRITAIN ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4655,7 +5053,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/indonesia/5eabdb09-9562-48c5-b570-95f45340662c",
       "title": "GRAND PRIX OF INDONESIA ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4669,7 +5067,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/italy/2dc1370c-ddde-46ad-aae0-556f6660b015",
       "title": "GRAND PRIX OF ITALY ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4683,7 +5081,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/japan/8a664b84-83d8-4eee-9425-e2e9f8af4da5",
       "title": "GRAND PRIX OF JAPAN ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4697,7 +5095,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/malaysia/440d38d4-f8db-41fc-810d-a0eb6edcbe7f",
       "title": "GRAND PRIX OF MALAYSIA ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4711,7 +5109,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/portugal/211e69f0-b521-4df4-95c8-7f890b878a2b",
       "title": "GRAND PRIX OF PORTUGAL ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4725,7 +5123,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/qatar/e1d60873-b02b-4f4b-bb8c-a7a6c5636d46",
       "title": "GRAND PRIX OF QATAR ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4739,7 +5137,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/san-marino/4e69f9e9-fb52-4549-ac1e-1177500d33f8",
       "title": "GRAND PRIX OF SAN MARINO AND THE RIMINI RIVIERA ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4753,7 +5151,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/espana/a86a970e-bcb1-4f61-a401-6a1d440537a3",
       "title": "GRAND PRIX OF SPAIN ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4767,7 +5165,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/thailand/8ab8c4e8-5069-499c-a330-42176595b117",
       "title": "GRAND PRIX OF THAILAND ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4781,7 +5179,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/valencia/196eecc2-c3c7-41d5-a472-fbe01d8515bb",
       "title": "GRAND PRIX OF VALENCIA",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4795,7 +5193,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/americas/40e6cf1f-72ea-4d93-8e47-3bfbdbcb7482",
       "title": "GRAND PRIX OF THE UNITED STATES ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4809,7 +5207,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/netherlands/42712efa-4a99-4af3-8869-66197fc5248c",
       "title": "GRAND PRIX OF THE NETHERLANDS ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4823,7 +5221,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/spain/f119aae5-3e39-4cf3-9801-9fdec5b5c651",
       "title": "GRAND PRIX OF ARAGON ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4837,7 +5235,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/argentina/c10a7ebf-311d-4ad4-9e70-5cdedb820d0e",
       "title": "GRAND PRIX OF ARGENTINA",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4851,7 +5249,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/australia/de1c5927-dde4-4b23-ae70-7e2ab9320bf7",
       "title": "GRAND PRIX OF AUSTRALIA ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4865,7 +5263,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/austria/4cbd9219-9732-4f03-9a45-e3dac1d669f4",
       "title": "GRAND PRIX OF AUSTRIA ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4879,7 +5277,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/brasil/bf5f3555-1a6a-4f3c-9855-eaaeaae5dec0",
       "title": "GRAND PRIX OF BRAZIL ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4893,7 +5291,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/catalonia/87010858-4f81-4546-9cfb-2bc0684cc849",
       "title": "GRAND PRIX OF CATALONIA ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4907,7 +5305,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/czeck-republiky/519574ff-f733-4630-bbc8-5c8ae7040d16",
       "title": "GRAND PRIX OF CZECHIA ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4921,7 +5319,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/france/4a935298-8a46-4435-9bdb-2a6e0dfac50b",
       "title": "GRAND PRIX OF FRANCE ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4935,7 +5333,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/germany/5c4fc7f1-eeca-4f47-b6ef-9187d17da865",
       "title": "GRAND PRIX OF GERMANY ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4949,7 +5347,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/great-britain/adb67418-cf62-4369-b074-e998c2e0d951",
       "title": "GRAND PRIX OF GREAT BRITAIN ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4963,7 +5361,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/indonesia/5eabdb09-9562-48c5-b570-95f45340662c",
       "title": "GRAND PRIX OF INDONESIA ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4977,7 +5375,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/italy/2dc1370c-ddde-46ad-aae0-556f6660b015",
       "title": "GRAND PRIX OF ITALY ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -4991,7 +5389,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/japan/8a664b84-83d8-4eee-9425-e2e9f8af4da5",
       "title": "GRAND PRIX OF JAPAN ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -5005,7 +5403,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/malaysia/440d38d4-f8db-41fc-810d-a0eb6edcbe7f",
       "title": "GRAND PRIX OF MALAYSIA ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -5019,7 +5417,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/portugal/211e69f0-b521-4df4-95c8-7f890b878a2b",
       "title": "GRAND PRIX OF PORTUGAL ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -5033,7 +5431,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/qatar/e1d60873-b02b-4f4b-bb8c-a7a6c5636d46",
       "title": "GRAND PRIX OF QATAR ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -5047,7 +5445,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/san-marino/4e69f9e9-fb52-4549-ac1e-1177500d33f8",
       "title": "GRAND PRIX OF SAN MARINO AND THE RIMINI RIVIERA ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -5061,7 +5459,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/espana/a86a970e-bcb1-4f61-a401-6a1d440537a3",
       "title": "GRAND PRIX OF SPAIN ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -5075,7 +5473,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/thailand/8ab8c4e8-5069-499c-a330-42176595b117",
       "title": "GRAND PRIX OF THAILAND ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -5089,7 +5487,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/valencia/196eecc2-c3c7-41d5-a472-fbe01d8515bb",
       "title": "GRAND PRIX OF VALENCIA",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -5103,7 +5501,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/americas/40e6cf1f-72ea-4d93-8e47-3bfbdbcb7482",
       "title": "GRAND PRIX OF THE UNITED STATES ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -5117,7 +5515,7 @@
       "stableUrl": "https://www.motogp.com/en/calendar?view=grid",
       "finalUrl": "https://www.motogp.com/en/calendar/2027/event/netherlands/42712efa-4a99-4af3-8869-66197fc5248c",
       "title": "GRAND PRIX OF THE NETHERLANDS ",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -5131,7 +5529,7 @@
       "stableUrl": "https://superformula.net/sf3/race_taxonomy/2026/",
       "finalUrl": "https://superformula.net/sf3/race/24431/",
       "title": "2026 Rd.9-10 FUJI｜SUPER FORMULA 公式WEBサイト",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": "Mon, 05 Oct 2026 11:06:49 GMT",
       "status": "ok",
       "reason": ""
@@ -5145,7 +5543,7 @@
       "stableUrl": "https://superformula.net/sf3/race_taxonomy/2026/",
       "finalUrl": "https://superformula.net/sf3/race/24434/",
       "title": "Rd.11-12 SUZUKA｜SUPER FORMULA 公式WEBサイト",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": "Mon, 05 Oct 2026 11:14:29 GMT",
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -5159,8 +5557,8 @@
       "stableUrl": "https://www.supercars.com/events/2026-bathurst-1000/schedule",
       "finalUrl": "https://www.supercars.com/events/2026-bathurst-1000/schedule",
       "title": "2026 Bathurst 1000 | Schedule | Supercars",
-      "checkedAt": "2026-10-05T17:34:19Z",
-      "lastModified": "Mon, 05 Oct 2026 17:35:27 GMT",
+      "checkedAt": "2026-10-05T17:58:43Z",
+      "lastModified": "Mon, 05 Oct 2026 17:59:55 GMT",
       "status": "requires_review",
       "reason": "Niet alle bestaande sessies zijn op deze bron herkend. Controleer het tijdschema; alleen herkenbare sessies leveren voorstellen op."
     },
@@ -5173,7 +5571,7 @@
       "stableUrl": "https://supergt.net/calendar",
       "finalUrl": "https://supergt.net/races/round7-autopolis-2",
       "title": "Round7 AUTOPOLIS | SUPER GT オフィシャルサイト",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "ok",
       "reason": ""
@@ -5187,7 +5585,7 @@
       "stableUrl": "https://supergt.net/calendar",
       "finalUrl": "https://supergt.net/races/round8-motegi-2",
       "title": "Round8 MOTEGI | SUPER GT オフィシャルサイト",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -5201,7 +5599,7 @@
       "stableUrl": "https://www.fiawec.com/en/page/saisons-wec",
       "finalUrl": "https://www.fiawec.com/en/race/24-hours-of-le-mans-2027",
       "title": "24 Hours of Le Mans 2027: Schedule, News & Start List | FIA WEC",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -5215,7 +5613,7 @@
       "stableUrl": "https://www.fiawec.com/en/page/saisons-wec",
       "finalUrl": "https://www.fiawec.com/en/race/6-hours-of-fuji-2027",
       "title": "6 Hours of Fuji 2027: Schedule, News & Start List | FIA WEC",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -5229,7 +5627,7 @@
       "stableUrl": "https://www.fiawec.com/en/page/saisons-wec",
       "finalUrl": "https://www.fiawec.com/en/race/6-hours-of-imola-2027",
       "title": "6 Hours of Imola 2027: Schedule, News & Start List | FIA WEC",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -5243,7 +5641,7 @@
       "stableUrl": "https://www.fiawec.com/en/page/saisons-wec",
       "finalUrl": "https://www.fiawec.com/en/race/6-hours-of-silverstone-2027",
       "title": "6 Hours of Silverstone 2027: Schedule, News & Start List | FIA WEC",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -5257,7 +5655,7 @@
       "stableUrl": "https://www.fiawec.com/en/page/saisons-wec",
       "finalUrl": "https://www.fiawec.com/en/race/bapco-energies-8-hours-of-bahrain-2027",
       "title": "Bapco Energies 8 Hours of Bahrain 2027: Schedule, News & Start List | FIA WEC",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -5271,7 +5669,7 @@
       "stableUrl": "https://www.fiawec.com/en/page/saisons-wec",
       "finalUrl": "https://www.fiawec.com/en/race/lone-star-le-mans-2027",
       "title": "Lone Star Le Mans 2027: Schedule, News & Start List | FIA WEC",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -5285,7 +5683,7 @@
       "stableUrl": "https://www.fiawec.com/en/page/saisons-wec",
       "finalUrl": "https://www.fiawec.com/en/race/qatar-1812km-2027",
       "title": "Qatar 1812km 2027: Schedule, News & Start List | FIA WEC",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -5299,7 +5697,7 @@
       "stableUrl": "https://www.fiawec.com/en/page/saisons-wec",
       "finalUrl": "https://www.fiawec.com/en/race/rolex-6-hours-of-sao-paulo-2027",
       "title": "ROLEX 6 Hours of São Paulo 2027: Schedule, News & Start List | FIA WEC",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -5313,7 +5711,7 @@
       "stableUrl": "https://www.fiawec.com/en/page/saisons-wec",
       "finalUrl": "https://www.fiawec.com/en/race/totalenergies-6-hours-of-spa-francorchamps-2027",
       "title": "TotalEnergies 6 Hours of Spa-Francorchamps 2027: Schedule, News & Start List | FIA WEC",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "De bron bevat geen betrouwbaar leesbare sessietijden. Het tijdschema is mogelijk nog niet gepubliceerd of de website is gewijzigd. Controleer de eventlink en het officiële tijdschema."
@@ -5327,7 +5725,7 @@
       "stableUrl": "https://www.worldsbk.com/en/calendar",
       "finalUrl": "https://www.worldsbk.com/en/calendar",
       "title": "Official source",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "could not identify one official WorldSBK round"
@@ -5341,7 +5739,7 @@
       "stableUrl": "https://www.worldsbk.com/en/calendar",
       "finalUrl": "https://www.worldsbk.com/en/calendar",
       "title": "Official source",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "could not identify one official WorldSBK round"
@@ -5355,7 +5753,7 @@
       "stableUrl": "https://www.worldsbk.com/en/calendar",
       "finalUrl": "https://www.worldsbk.com/en/calendar",
       "title": "Official source",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "could not identify one official WorldSBK round"
@@ -5369,7 +5767,7 @@
       "stableUrl": "https://www.worldsbk.com/en/calendar",
       "finalUrl": "https://www.worldsbk.com/en/calendar",
       "title": "Official source",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "could not identify one official WorldSBK round"
@@ -5383,7 +5781,7 @@
       "stableUrl": "https://www.worldsbk.com/en/calendar",
       "finalUrl": "https://www.worldsbk.com/en/calendar",
       "title": "Official source",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "could not identify one official WorldSBK round"
@@ -5397,7 +5795,7 @@
       "stableUrl": "https://www.worldsbk.com/en/calendar",
       "finalUrl": "https://www.worldsbk.com/en/calendar",
       "title": "Official source",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "could not identify one official WorldSBK round"
@@ -5411,7 +5809,7 @@
       "stableUrl": "https://www.worldsbk.com/en/calendar",
       "finalUrl": "https://www.worldsbk.com/en/calendar",
       "title": "Official source",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "could not identify one official WorldSBK round"
@@ -5425,7 +5823,7 @@
       "stableUrl": "https://www.worldsbk.com/en/calendar",
       "finalUrl": "https://www.worldsbk.com/en/calendar",
       "title": "Official source",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "could not identify one official WorldSBK round"
@@ -5439,7 +5837,7 @@
       "stableUrl": "https://www.worldsbk.com/en/calendar",
       "finalUrl": "https://www.worldsbk.com/en/calendar",
       "title": "Official source",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "could not identify one official WorldSBK round"
@@ -5453,7 +5851,7 @@
       "stableUrl": "https://www.worldsbk.com/en/calendar",
       "finalUrl": "https://www.worldsbk.com/en/calendar",
       "title": "Official source",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "could not identify one official WorldSBK round"
@@ -5467,7 +5865,7 @@
       "stableUrl": "https://www.worldsbk.com/en/calendar",
       "finalUrl": "https://www.worldsbk.com/en/calendar",
       "title": "Official source",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "could not identify one official WorldSBK round"
@@ -5481,7 +5879,7 @@
       "stableUrl": "https://www.worldsbk.com/en/calendar",
       "finalUrl": "https://www.worldsbk.com/en/calendar",
       "title": "Official source",
-      "checkedAt": "2026-10-05T17:34:19Z",
+      "checkedAt": "2026-10-05T17:58:43Z",
       "lastModified": null,
       "status": "unresolved",
       "reason": "could not identify one official WorldSBK round"
