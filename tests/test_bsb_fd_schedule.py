@@ -107,6 +107,23 @@ class BsbFdTests(unittest.TestCase):
             result=json.loads(output.read_text())
             self.assertEqual(result['sourcesUsed'][0]['status'],'unresolved')
 
+    def bsb_pdf(self):
+        url='https://docs.msv.com/BSB%2026-11%20TS%20V1%20STD.pdf'
+        return s.FetchResult(url,url,'Official timetable PDF',(FIX/'brands-hatch-2026-timetable.txt').read_text(),None)
+
+    def test_bsb_pdf_confirms_current_brands_hatch_times(self):
+        e=self.events('bsb')[-1]
+        rows=s.parse_bsb_pdf(self.bsb_pdf(),self.calendar(),e,2026,e['officialScheduleUrl'])
+        clocks={r.name:r.local_time for r in rows}
+        self.assertEqual(clocks['Free Practice 3'],'10:10')
+        self.assertEqual(clocks['Qualifying 1'],'12:00')
+        self.assertEqual(clocks['Qualifying 2'],'12:22')
+        self.assertEqual(clocks['Race 1'],'16:05')
+        self.assertEqual(clocks['Warm Up'],'10:00')
+        ps=s.build_event_proposals(self.cfg('bsb'),'bsb_2026.json',e,self.bsb_pdf(),rows,'Europe/London','2026-10-05T10:00:00Z',replace_filled=True)
+        self.assertEqual(len(ps),10)
+        self.assertTrue(all(p['status']=='verified' for p in ps))
+
     def test_pipeline_idempotent_and_no_calendar_mutation(self):
         events=[self.events('bsb')[-1]]+[self.events('fd')[i] for i in [0,3,4,5,6,7]]
         def fetch(url,domains):
@@ -116,7 +133,7 @@ class BsbFdTests(unittest.TestCase):
             for series in ['bsb','fd']:
                 (root/f'{series}_2026.json').write_text(json.dumps(self.events(series)))
             before=[(root/f'{series}_2026.json').read_bytes() for series in ['bsb','fd']]
-            with patch.object(s,'fetch_url',side_effect=fetch):
+            with patch.object(s,'fetch_url',side_effect=fetch), patch.object(s,'fetch_pdf_url',return_value=self.bsb_pdf()):
                 a=s.scan(root,REG,None,{'bsb','fd'},'2026-10-05T10:00:00Z',only_events={e['id'] for e in events},include_filled=True)
                 b=s.scan(root,REG,None,{'bsb','fd'},'2026-10-05T10:00:00Z',only_events={e['id'] for e in events},include_filled=True)
             self.assertEqual(a,b)
