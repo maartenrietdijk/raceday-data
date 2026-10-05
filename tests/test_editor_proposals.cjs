@@ -64,3 +64,16 @@ console.log('Legacy F1 placeholders blocked; confirmed timetable proposals allow
  }
  console.log('Published proposals hidden; failed publication retains pending changes');
 })().catch(error=>{console.error(error);process.exitCode=1;});
+
+// Old scanner rows with harmless title variants reconcile without adding sessions.
+for (const [existing, proposed, kind] of [['Practice 1','Free Practice 1','practice'], ['Race','Race 1','race'], ['Qualifying','Qualifying 1','qualifying'], ['Top Ten Shootout','Top Ten Shootout 1','qualifying']]) {
+ const session={id:'existing',name:existing,kind,date:'2026-10-09',timeLocal:'12:05'};
+ const calendars={'test.json':[{id:'event',sessions:[session]}]};
+ const row={calendarFile:'test.json',eventId:'event',status:'open',proposalType:'new-session',proposed:{sessionId:'new',name:proposed,kind,date:session.date,timeLocal:session.timeLocal}};
+ assert.equal(logic.isFulfilled(calendars,row),true);
+ assert.equal(logic.apply(calendars,row).type,'noop');
+ assert.equal(calendars['test.json'][0].sessions.length,1);
+ logic.reconcile([row],calendars);assert.equal(row.status,'accepted');
+ row.status='open';row.proposed.timeLocal='12:10';assert.equal(logic.isFulfilled(calendars,row),false);
+}
+console.log('Equivalent session names reconcile; genuine time corrections remain open');

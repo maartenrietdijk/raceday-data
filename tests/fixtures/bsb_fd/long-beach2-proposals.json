@@ -1,0 +1,403 @@
+{
+  "event": {
+    "id": "fd-2026-r08",
+    "seriesId": "fd",
+    "seasonId": "2026",
+    "roundNumber": 8,
+    "raceName": "Shoreline Showdown",
+    "circuitName": "Long Beach Convention & Entertainment Center",
+    "city": "Long Beach",
+    "country": "United States",
+    "countryCode": "US",
+    "sessions": [
+      {
+        "id": "fd-2026-r08-s1",
+        "name": "Practice 1",
+        "kind": "practice",
+        "date": "2026-10-23",
+        "durationMinutes": 90,
+        "timeUTC": "18:00"
+      },
+      {
+        "id": "fd-2026-r08-s2",
+        "name": "Practice 2",
+        "kind": "practice",
+        "date": "2026-10-23",
+        "durationMinutes": 90,
+        "timeUTC": "20:00"
+      },
+      {
+        "id": "fd-2026-r08-s3",
+        "name": "Warmup",
+        "kind": "testing",
+        "date": "2026-10-23",
+        "durationMinutes": 90,
+        "timeUTC": "23:30"
+      },
+      {
+        "id": "fd-2026-r08-s4",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-10-24",
+        "durationMinutes": 180,
+        "timeUTC": "01:15"
+      },
+      {
+        "id": "fd-2026-r08-s5",
+        "name": "Warmup",
+        "kind": "testing",
+        "date": "2026-10-24",
+        "durationMinutes": 90,
+        "timeUTC": "18:30"
+      },
+      {
+        "id": "fd-2026-r08-s6",
+        "name": "Top 32",
+        "kind": "race",
+        "date": "2026-10-24",
+        "durationMinutes": 180,
+        "timeUTC": "20:30"
+      },
+      {
+        "id": "fd-2026-r08-s7",
+        "name": "Top 16",
+        "kind": "race",
+        "date": "2026-10-25",
+        "durationMinutes": 180,
+        "timeUTC": "01:00"
+      }
+    ],
+    "officialScheduleUrl": "https://www.formulad.com/schedule/2026/long-beach2"
+  },
+  "proposals": [
+    {
+      "seriesId": "fd",
+      "seriesName": "Formula DRIFT",
+      "calendarFile": "fd_2026.json",
+      "eventId": "fd-2026-r08",
+      "eventName": "Shoreline Showdown",
+      "roundNumber": 8,
+      "source": {
+        "stableUrl": "https://www.formulad.com/schedule/2026/long-beach2",
+        "finalUrl": "https://www.formulad.com/schedule/2026/long-beach2",
+        "title": "",
+        "checkedAt": "2026-10-05T10:00:00Z",
+        "lastModified": null
+      },
+      "proposalType": "verification",
+      "sessionId": "fd-2026-r08-s1",
+      "sessionName": "Practice 1",
+      "current": {
+        "name": "Practice 1",
+        "kind": "practice",
+        "date": "2026-10-23",
+        "timeLocal": "18:00",
+        "durationMinutes": 90
+      },
+      "sourceSessionName": "Practice 1",
+      "sourceTime": {
+        "date": "2026-10-23",
+        "time": "11:00",
+        "timeZone": "America/Los_Angeles"
+      },
+      "editorTimeZone": "UTC",
+      "proposed": {
+        "date": "2026-10-23",
+        "timeLocal": "18:00",
+        "durationMinutes": 90,
+        "name": "Practice 1",
+        "kind": "practice",
+        "utcInstant": "2026-10-23T18:00:00Z",
+        "sessionId": "fd-2026-r08-s1"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de offici\u00eble bron.",
+      "debug": false,
+      "fingerprint": "d994d6bbcc85ecf0130fe7cf0e6e4d405f6aeaa71fbcef18ca766f30ae782e36",
+      "id": "schedule-d994d6bbcc85ecf0"
+    },
+    {
+      "seriesId": "fd",
+      "seriesName": "Formula DRIFT",
+      "calendarFile": "fd_2026.json",
+      "eventId": "fd-2026-r08",
+      "eventName": "Shoreline Showdown",
+      "roundNumber": 8,
+      "source": {
+        "stableUrl": "https://www.formulad.com/schedule/2026/long-beach2",
+        "finalUrl": "https://www.formulad.com/schedule/2026/long-beach2",
+        "title": "",
+        "checkedAt": "2026-10-05T10:00:00Z",
+        "lastModified": null
+      },
+      "proposalType": "verification",
+      "sessionId": "fd-2026-r08-s2",
+      "sessionName": "Practice 2",
+      "current": {
+        "name": "Practice 2",
+        "kind": "practice",
+        "date": "2026-10-23",
+        "timeLocal": "20:00",
+        "durationMinutes": 90
+      },
+      "sourceSessionName": "Practice 2",
+      "sourceTime": {
+        "date": "2026-10-23",
+        "time": "13:00",
+        "timeZone": "America/Los_Angeles"
+      },
+      "editorTimeZone": "UTC",
+      "proposed": {
+        "date": "2026-10-23",
+        "timeLocal": "20:00",
+        "durationMinutes": 90,
+        "name": "Practice 2",
+        "kind": "practice",
+        "utcInstant": "2026-10-23T20:00:00Z",
+        "sessionId": "fd-2026-r08-s2"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de offici\u00eble bron.",
+      "debug": false,
+      "fingerprint": "a7faa9256aa57f1da7aab42a84b55a7ac6db648efe4f7fe6885eaaeff0ff12e0",
+      "id": "schedule-a7faa9256aa57f1d"
+    },
+    {
+      "seriesId": "fd",
+      "seriesName": "Formula DRIFT",
+      "calendarFile": "fd_2026.json",
+      "eventId": "fd-2026-r08",
+      "eventName": "Shoreline Showdown",
+      "roundNumber": 8,
+      "source": {
+        "stableUrl": "https://www.formulad.com/schedule/2026/long-beach2",
+        "finalUrl": "https://www.formulad.com/schedule/2026/long-beach2",
+        "title": "",
+        "checkedAt": "2026-10-05T10:00:00Z",
+        "lastModified": null
+      },
+      "proposalType": "verification",
+      "sessionId": "fd-2026-r08-s3",
+      "sessionName": "Warmup",
+      "current": {
+        "name": "Warmup",
+        "kind": "testing",
+        "date": "2026-10-23",
+        "timeLocal": "23:30",
+        "durationMinutes": 90
+      },
+      "sourceSessionName": "Warmup",
+      "sourceTime": {
+        "date": "2026-10-23",
+        "time": "16:30",
+        "timeZone": "America/Los_Angeles"
+      },
+      "editorTimeZone": "UTC",
+      "proposed": {
+        "date": "2026-10-23",
+        "timeLocal": "23:30",
+        "durationMinutes": 90,
+        "name": "Warmup",
+        "kind": "testing",
+        "utcInstant": "2026-10-23T23:30:00Z",
+        "sessionId": "fd-2026-r08-s3"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de offici\u00eble bron.",
+      "debug": false,
+      "fingerprint": "e5c1cb2ec2da585d94bd300e3a0c5805dca02b2849b895ff1fbf560089e6300c",
+      "id": "schedule-e5c1cb2ec2da585d"
+    },
+    {
+      "seriesId": "fd",
+      "seriesName": "Formula DRIFT",
+      "calendarFile": "fd_2026.json",
+      "eventId": "fd-2026-r08",
+      "eventName": "Shoreline Showdown",
+      "roundNumber": 8,
+      "source": {
+        "stableUrl": "https://www.formulad.com/schedule/2026/long-beach2",
+        "finalUrl": "https://www.formulad.com/schedule/2026/long-beach2",
+        "title": "",
+        "checkedAt": "2026-10-05T10:00:00Z",
+        "lastModified": null
+      },
+      "proposalType": "verification",
+      "sessionId": "fd-2026-r08-s4",
+      "sessionName": "Qualifying",
+      "current": {
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-10-24",
+        "timeLocal": "01:15",
+        "durationMinutes": 180
+      },
+      "sourceSessionName": "Qualifying",
+      "sourceTime": {
+        "date": "2026-10-23",
+        "time": "18:15",
+        "timeZone": "America/Los_Angeles"
+      },
+      "editorTimeZone": "UTC",
+      "proposed": {
+        "date": "2026-10-24",
+        "timeLocal": "01:15",
+        "durationMinutes": 180,
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "utcInstant": "2026-10-24T01:15:00Z",
+        "sessionId": "fd-2026-r08-s4"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de offici\u00eble bron.",
+      "debug": false,
+      "fingerprint": "893629f9832dad3d6eb3210dc9b3bde11eeb6385667dc2511c8a58c94ae198a3",
+      "id": "schedule-893629f9832dad3d"
+    },
+    {
+      "seriesId": "fd",
+      "seriesName": "Formula DRIFT",
+      "calendarFile": "fd_2026.json",
+      "eventId": "fd-2026-r08",
+      "eventName": "Shoreline Showdown",
+      "roundNumber": 8,
+      "source": {
+        "stableUrl": "https://www.formulad.com/schedule/2026/long-beach2",
+        "finalUrl": "https://www.formulad.com/schedule/2026/long-beach2",
+        "title": "",
+        "checkedAt": "2026-10-05T10:00:00Z",
+        "lastModified": null
+      },
+      "proposalType": "verification",
+      "sessionId": "fd-2026-r08-s5",
+      "sessionName": "Warmup",
+      "current": {
+        "name": "Warmup",
+        "kind": "testing",
+        "date": "2026-10-24",
+        "timeLocal": "18:30",
+        "durationMinutes": 90
+      },
+      "sourceSessionName": "Warmup",
+      "sourceTime": {
+        "date": "2026-10-24",
+        "time": "11:30",
+        "timeZone": "America/Los_Angeles"
+      },
+      "editorTimeZone": "UTC",
+      "proposed": {
+        "date": "2026-10-24",
+        "timeLocal": "18:30",
+        "durationMinutes": 90,
+        "name": "Warmup",
+        "kind": "testing",
+        "utcInstant": "2026-10-24T18:30:00Z",
+        "sessionId": "fd-2026-r08-s5"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de offici\u00eble bron.",
+      "debug": false,
+      "fingerprint": "06df27decf1668e612439278178106ee72fa3070b046b20ea55ddf74f2cb7fee",
+      "id": "schedule-06df27decf1668e6"
+    },
+    {
+      "seriesId": "fd",
+      "seriesName": "Formula DRIFT",
+      "calendarFile": "fd_2026.json",
+      "eventId": "fd-2026-r08",
+      "eventName": "Shoreline Showdown",
+      "roundNumber": 8,
+      "source": {
+        "stableUrl": "https://www.formulad.com/schedule/2026/long-beach2",
+        "finalUrl": "https://www.formulad.com/schedule/2026/long-beach2",
+        "title": "",
+        "checkedAt": "2026-10-05T10:00:00Z",
+        "lastModified": null
+      },
+      "proposalType": "verification",
+      "sessionId": "fd-2026-r08-s6",
+      "sessionName": "Top 32",
+      "current": {
+        "name": "Top 32",
+        "kind": "race",
+        "date": "2026-10-24",
+        "timeLocal": "20:30",
+        "durationMinutes": 180
+      },
+      "sourceSessionName": "Top 32",
+      "sourceTime": {
+        "date": "2026-10-24",
+        "time": "13:30",
+        "timeZone": "America/Los_Angeles"
+      },
+      "editorTimeZone": "UTC",
+      "proposed": {
+        "date": "2026-10-24",
+        "timeLocal": "20:30",
+        "durationMinutes": 180,
+        "name": "Top 32",
+        "kind": "race",
+        "utcInstant": "2026-10-24T20:30:00Z",
+        "sessionId": "fd-2026-r08-s6"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de offici\u00eble bron.",
+      "debug": false,
+      "fingerprint": "007ff06a564f82458748828948c7ea4eaf9678740375e133c11a401202e27c09",
+      "id": "schedule-007ff06a564f8245"
+    },
+    {
+      "seriesId": "fd",
+      "seriesName": "Formula DRIFT",
+      "calendarFile": "fd_2026.json",
+      "eventId": "fd-2026-r08",
+      "eventName": "Shoreline Showdown",
+      "roundNumber": 8,
+      "source": {
+        "stableUrl": "https://www.formulad.com/schedule/2026/long-beach2",
+        "finalUrl": "https://www.formulad.com/schedule/2026/long-beach2",
+        "title": "",
+        "checkedAt": "2026-10-05T10:00:00Z",
+        "lastModified": null
+      },
+      "proposalType": "verification",
+      "sessionId": "fd-2026-r08-s7",
+      "sessionName": "Top 16",
+      "current": {
+        "name": "Top 16",
+        "kind": "race",
+        "date": "2026-10-25",
+        "timeLocal": "01:00",
+        "durationMinutes": 180
+      },
+      "sourceSessionName": "Top 16",
+      "sourceTime": {
+        "date": "2026-10-24",
+        "time": "18:00",
+        "timeZone": "America/Los_Angeles"
+      },
+      "editorTimeZone": "UTC",
+      "proposed": {
+        "date": "2026-10-25",
+        "timeLocal": "01:00",
+        "durationMinutes": 180,
+        "name": "Top 16",
+        "kind": "race",
+        "utcInstant": "2026-10-25T01:00:00Z",
+        "sessionId": "fd-2026-r08-s7"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de offici\u00eble bron.",
+      "debug": false,
+      "fingerprint": "a5437987827c1e8200ae76522d325d1cb72a94e5ceee57ac475185554ec38822",
+      "id": "schedule-a5437987827c1e82"
+    }
+  ]
+}

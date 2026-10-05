@@ -7,7 +7,7 @@ const session = {id:'s1', name:'Practice 1', kind:'practice', date:'2026-10-25',
 const rounds = [{id:'event', sessions:[session]}];
 const checkbox = {checked:true}, nameInput = {value:session.name};
 let saves=0, confirmations=0, answer=false;
-const ctx=vm.createContext({state:{activeSeries:'f1'},editableRounds:()=>rounds,
+const ctx=vm.createContext({state:{activeSeries:'f1'},editableRounds:()=>rounds,activeCalendarFilename:()=> 'f1_2026.json',
  document:{getElementById:id=>id==='cancelled_0_0'?checkbox:id==='sessionName_0_0'?nameInput:null},
  confirm:message=>{confirmations++;assert.match(message,/Practice 1/);return answer;},
  save:()=>saves++, KIND_OPTIONS:[], esc:s=>s, editorDragEnabled:()=>true});
@@ -20,6 +20,7 @@ assert.equal(JSON.stringify(session),before);assert.equal(checkbox.checked,false
 answer=true;checkbox.checked=true;
 vm.runInContext('toggleCancelled(0,0,true)',ctx);
 assert.equal(session.name,'Practice 1 (cancelled)');assert.equal(nameInput.value,session.name);assert.equal(saves,1);assert.equal(confirmations,2);
+assert.deepEqual(Array.from(ctx.state.dirtyProposalFiles),['f1_2026.json']);
 assert.equal(session.date,'2026-10-25');assert.equal(session.timeLocal,'12:30');
 vm.runInContext('toggleCancelled(0,0,true)',ctx);assert.equal(session.name,'Practice 1 (cancelled)');assert.equal(confirmations,2);
 let exported=JSON.parse(vm.runInContext("buildCalendarFileJSON(editableRounds(),'f1')",ctx));

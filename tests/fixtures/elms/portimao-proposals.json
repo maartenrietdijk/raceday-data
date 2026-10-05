@@ -1,0 +1,237 @@
+{
+  "event": {
+    "id": "elms-2026-r06",
+    "seriesId": "elms",
+    "roundNumber": 6,
+    "raceName": "4 Hours of Portimão",
+    "circuitName": "Autodromo do Algarve",
+    "city": "Portimão",
+    "country": "Portugal",
+    "countryCode": "PT",
+    "sessions": [
+      {
+        "id": "elms-2026-r06-s1",
+        "name": "Free Practice 1",
+        "kind": "practice",
+        "date": "2026-10-08",
+        "timeLocal": "10:00",
+        "durationMinutes": 60
+      },
+      {
+        "id": "elms-2026-r06-s2",
+        "name": "Free Practice 2",
+        "kind": "practice",
+        "date": "2026-10-09",
+        "timeLocal": "09:30",
+        "durationMinutes": 60
+      },
+      {
+        "id": "elms-2026-r06-s3",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-10-09",
+        "timeLocal": "15:00",
+        "durationMinutes": 30
+      },
+      {
+        "id": "elms-2026-r06-s4",
+        "name": "4 Hour Race",
+        "kind": "race",
+        "date": "2026-10-10",
+        "timeLocal": "12:00",
+        "durationMinutes": 240
+      }
+    ],
+    "officialScheduleUrl": "https://www.europeanlemansseries.com/en/race/4-hours-of-portimao-2026"
+  },
+  "proposals": [
+    {
+      "seriesId": "elms",
+      "seriesName": "European Le Mans Series",
+      "calendarFile": "elms_2026.json",
+      "eventId": "elms-2026-r06",
+      "eventName": "4 Hours of Portimão",
+      "roundNumber": 6,
+      "source": {
+        "stableUrl": "https://www.europeanlemansseries.com/en/race/4-hours-of-portimao-2026",
+        "finalUrl": "https://www.europeanlemansseries.com/en/race/document/download/2491",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-10-05T12:00:00Z",
+        "lastModified": null
+      },
+      "proposalType": "time-update",
+      "sessionId": "elms-2026-r06-s1",
+      "sessionName": "Free Practice 1",
+      "current": {
+        "name": "Free Practice 1",
+        "kind": "practice",
+        "date": "2026-10-08",
+        "timeLocal": "10:00",
+        "durationMinutes": 60
+      },
+      "sourceSessionName": "Free Practice 1",
+      "sourceTime": {
+        "date": "2026-10-08",
+        "time": "11:00",
+        "timeZone": "Europe/Lisbon"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-10-08",
+        "timeLocal": "12:00",
+        "durationMinutes": 90,
+        "name": "Free Practice 1",
+        "kind": "practice",
+        "utcInstant": "2026-10-08T10:00:00Z",
+        "sessionId": "elms-2026-r06-s1"
+      },
+      "dateChanged": false,
+      "status": "open",
+      "reason": "De ingevulde sessie wordt vervangen door de nieuwste officiële tijd.",
+      "debug": false,
+      "fingerprint": "c45e5f50194326893cb6d9c5fc177d4fc5c31c89f54f3f932577c23b94e62629",
+      "id": "schedule-c45e5f5019432689"
+    },
+    {
+      "seriesId": "elms",
+      "seriesName": "European Le Mans Series",
+      "calendarFile": "elms_2026.json",
+      "eventId": "elms-2026-r06",
+      "eventName": "4 Hours of Portimão",
+      "roundNumber": 6,
+      "source": {
+        "stableUrl": "https://www.europeanlemansseries.com/en/race/4-hours-of-portimao-2026",
+        "finalUrl": "https://www.europeanlemansseries.com/en/race/document/download/2491",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-10-05T12:00:00Z",
+        "lastModified": null
+      },
+      "proposalType": "time-update",
+      "sessionId": "elms-2026-r06-s2",
+      "sessionName": "Free Practice 2",
+      "current": {
+        "name": "Free Practice 2",
+        "kind": "practice",
+        "date": "2026-10-09",
+        "timeLocal": "09:30",
+        "durationMinutes": 60
+      },
+      "sourceSessionName": "Free Practice 2",
+      "sourceTime": {
+        "date": "2026-10-09",
+        "time": "10:15",
+        "timeZone": "Europe/Lisbon"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-10-09",
+        "timeLocal": "11:15",
+        "durationMinutes": 90,
+        "name": "Free Practice 2",
+        "kind": "practice",
+        "utcInstant": "2026-10-09T09:15:00Z",
+        "sessionId": "elms-2026-r06-s2"
+      },
+      "dateChanged": false,
+      "status": "open",
+      "reason": "De ingevulde sessie wordt vervangen door de nieuwste officiële tijd.",
+      "debug": false,
+      "fingerprint": "c63ca2c52cfaa3f23775789d72126f4f22519395d697673ea3ad87140d9efa63",
+      "id": "schedule-c63ca2c52cfaa3f2"
+    },
+    {
+      "seriesId": "elms",
+      "seriesName": "European Le Mans Series",
+      "calendarFile": "elms_2026.json",
+      "eventId": "elms-2026-r06",
+      "eventName": "4 Hours of Portimão",
+      "roundNumber": 6,
+      "source": {
+        "stableUrl": "https://www.europeanlemansseries.com/en/race/4-hours-of-portimao-2026",
+        "finalUrl": "https://www.europeanlemansseries.com/en/race/document/download/2491",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-10-05T12:00:00Z",
+        "lastModified": null
+      },
+      "proposalType": "time-update",
+      "sessionId": "elms-2026-r06-s3",
+      "sessionName": "Qualifying",
+      "current": {
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-10-09",
+        "timeLocal": "15:00",
+        "durationMinutes": 30
+      },
+      "sourceSessionName": "Qualifying",
+      "sourceTime": {
+        "date": "2026-10-09",
+        "time": "15:15",
+        "timeZone": "Europe/Lisbon"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-10-09",
+        "timeLocal": "16:15",
+        "durationMinutes": 90,
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "utcInstant": "2026-10-09T14:15:00Z",
+        "sessionId": "elms-2026-r06-s3"
+      },
+      "dateChanged": false,
+      "status": "open",
+      "reason": "De ingevulde sessie wordt vervangen door de nieuwste officiële tijd.",
+      "debug": false,
+      "fingerprint": "a311d0b94cf0ce13c331e1edb9f7cb4f2a4a64ceee2afe56fe603138522f3d72",
+      "id": "schedule-a311d0b94cf0ce13"
+    },
+    {
+      "seriesId": "elms",
+      "seriesName": "European Le Mans Series",
+      "calendarFile": "elms_2026.json",
+      "eventId": "elms-2026-r06",
+      "eventName": "4 Hours of Portimão",
+      "roundNumber": 6,
+      "source": {
+        "stableUrl": "https://www.europeanlemansseries.com/en/race/4-hours-of-portimao-2026",
+        "finalUrl": "https://www.europeanlemansseries.com/en/race/document/download/2491",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-10-05T12:00:00Z",
+        "lastModified": null
+      },
+      "proposalType": "time-update",
+      "sessionId": "elms-2026-r06-s4",
+      "sessionName": "4 Hour Race",
+      "current": {
+        "name": "4 Hour Race",
+        "kind": "race",
+        "date": "2026-10-10",
+        "timeLocal": "12:00",
+        "durationMinutes": 240
+      },
+      "sourceSessionName": "Race",
+      "sourceTime": {
+        "date": "2026-10-10",
+        "time": "14:30",
+        "timeZone": "Europe/Lisbon"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-10-10",
+        "timeLocal": "15:30",
+        "durationMinutes": 240,
+        "name": "Race",
+        "kind": "race",
+        "utcInstant": "2026-10-10T13:30:00Z",
+        "sessionId": "elms-2026-r06-s4"
+      },
+      "dateChanged": false,
+      "status": "open",
+      "reason": "De ingevulde sessie wordt vervangen door de nieuwste officiële tijd.",
+      "debug": false,
+      "fingerprint": "61a1d39ac15cbde62cfe5695115870c7ba7fda309b5b5bab912c8d4ad0b9c557",
+      "id": "schedule-61a1d39ac15cbde6"
+    }
+  ]
+}
