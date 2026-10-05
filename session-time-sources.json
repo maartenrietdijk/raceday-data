@@ -11,7 +11,11 @@
     "f1academy": "Europe/Amsterdam",
     "sf": "Europe/Amsterdam",
     "supergt": "Europe/Amsterdam",
-    "supercars": "Australia/Sydney"
+    "supercars": "Australia/Sydney",
+    "24hseries": "Europe/Amsterdam",
+    "elms": "Europe/Amsterdam",
+    "bsb": "Europe/London",
+    "fd": "America/Los_Angeles"
   },
   "series": [
     {
@@ -44,7 +48,10 @@
       "seriesId": "btcc",
       "name": "British Touring Car Championship",
       "startUrl": "https://btcc.net/calendar/",
-      "allowedDomains": ["btcc.net", "www.btcc.net"],
+      "allowedDomains": [
+        "btcc.net",
+        "www.btcc.net"
+      ],
       "sourceKind": "btcc-timetable",
       "sourceTimeZone": "Europe/London",
       "eventDiscovery": "Volg de officiële circuitpagina vanuit de BTCC-kalender en lees de gepubliceerde timetable-tabellen.",
@@ -54,7 +61,10 @@
       "seriesId": "f1",
       "name": "Formula 1",
       "startUrl": "https://www.formula1.com/en/racing/{year}",
-      "allowedDomains": ["formula1.com", "www.formula1.com"],
+      "allowedDomains": [
+        "formula1.com",
+        "www.formula1.com"
+      ],
       "sourceKind": "formula1-jsonld",
       "sourceTimeZone": "UTC",
       "eventDiscovery": "Volg vanaf de officiële F1-kalender de eventpagina met exact hetzelfde rondenummer en lees de gestructureerde officiële sessietijden.",
@@ -64,7 +74,11 @@
       "seriesId": "wsbk",
       "name": "MOTUL FIM Superbike World Championship",
       "startUrl": "https://www.worldsbk.com/en/calendar",
-      "allowedDomains": ["worldsbk.com", "www.worldsbk.com", "api.pulselive.worldsbk.com"],
+      "allowedDomains": [
+        "worldsbk.com",
+        "www.worldsbk.com",
+        "api.pulselive.worldsbk.com"
+      ],
       "sourceKind": "worldsbk-api",
       "officialCategoryId": "SBK",
       "sourceTimeZone": "track",
@@ -75,7 +89,11 @@
       "seriesId": "motogp",
       "name": "MotoGP",
       "startUrl": "https://www.motogp.com/en/calendar?view=grid",
-      "allowedDomains": ["motogp.com", "www.motogp.com", "api.pulselive.motogp.com"],
+      "allowedDomains": [
+        "motogp.com",
+        "www.motogp.com",
+        "api.pulselive.motogp.com"
+      ],
       "sourceKind": "motogp-api",
       "officialCategory": "MotoGP",
       "sourceTimeZone": "track",
@@ -86,7 +104,11 @@
       "seriesId": "moto2",
       "name": "Moto2",
       "startUrl": "https://www.motogp.com/en/calendar?view=grid",
-      "allowedDomains": ["motogp.com", "www.motogp.com", "api.pulselive.motogp.com"],
+      "allowedDomains": [
+        "motogp.com",
+        "www.motogp.com",
+        "api.pulselive.motogp.com"
+      ],
       "sourceKind": "motogp-api",
       "officialCategory": "Moto2",
       "sourceTimeZone": "track",
@@ -97,7 +119,11 @@
       "seriesId": "moto3",
       "name": "Moto3",
       "startUrl": "https://www.motogp.com/en/calendar?view=grid",
-      "allowedDomains": ["motogp.com", "www.motogp.com", "api.pulselive.motogp.com"],
+      "allowedDomains": [
+        "motogp.com",
+        "www.motogp.com",
+        "api.pulselive.motogp.com"
+      ],
       "sourceKind": "motogp-api",
       "officialCategory": "Moto3",
       "sourceTimeZone": "track",
@@ -108,7 +134,11 @@
       "seriesId": "wrc",
       "name": "FIA World Rally Championship",
       "startUrl": "https://www.wrc.com/en/calendar",
-      "allowedDomains": ["wrc.com", "www.wrc.com", "webassets.redbull.com"],
+      "allowedDomains": [
+        "wrc.com",
+        "www.wrc.com",
+        "webassets.redbull.com"
+      ],
       "sourceKind": "rally-itinerary",
       "eventDiscovery": "Open het officiële WRC-event en gebruik de nieuwste gepubliceerde Itinerary met lokale tijden.",
       "sourceTimeZone": "track",
@@ -129,7 +159,11 @@
         "rally five cities north of portugal": "erc-rally-portugal",
         "rally six cities north of portugal": "erc-rally-portugal"
       },
-      "allowedDomains": ["fiaerc.com", "www.fiaerc.com", "webassets.redbull.com"],
+      "allowedDomains": [
+        "fiaerc.com",
+        "www.fiaerc.com",
+        "webassets.redbull.com"
+      ],
       "sourceKind": "rally-itinerary",
       "eventDiscovery": "Open het officiële ERC-event en gebruik de nieuwste gepubliceerde Itinerary met lokale tijden.",
       "sourceTimeZone": "track",
@@ -139,7 +173,10 @@
       "seriesId": "f2",
       "name": "FIA Formula 2",
       "startUrl": "https://www.fiaformula2.com/en/racing/{year}",
-      "allowedDomains": ["fiaformula2.com", "www.fiaformula2.com"],
+      "allowedDomains": [
+        "fiaformula2.com",
+        "www.fiaformula2.com"
+      ],
       "sourceKind": "fia-track-time",
       "eventDiscovery": "Follow the official event link from the season racing page and read its official embedded meetingSessions schedule.",
       "sourceTimeZone": "track",
@@ -149,7 +186,10 @@
       "seriesId": "f3",
       "name": "FIA Formula 3",
       "startUrl": "https://www.fiaformula3.com/en/racing/{year}",
-      "allowedDomains": ["fiaformula3.com", "www.fiaformula3.com"],
+      "allowedDomains": [
+        "fiaformula3.com",
+        "www.fiaformula3.com"
+      ],
       "sourceKind": "fia-track-time",
       "eventDiscovery": "Follow the official event link from the season racing page and prefer Track time.",
       "sourceTimeZone": "track",
@@ -159,7 +199,10 @@
       "seriesId": "f1academy",
       "name": "F1 Academy",
       "startUrl": "https://www.f1academy.com/Racing-Series/Calendar",
-      "allowedDomains": ["f1academy.com", "www.f1academy.com"],
+      "allowedDomains": [
+        "f1academy.com",
+        "www.f1academy.com"
+      ],
       "sourceKind": "f1academy-schedule",
       "eventDiscovery": "Follow the official Schedule link for the matching round and use only track-local times.",
       "sourceTimeZone": "track",
@@ -170,7 +213,10 @@
       "name": "ABB FIA Formula E World Championship",
       "startUrl": "https://www.fiaformulae.com/en/calendar",
       "eventUrlTemplate": "https://www.fiaformulae.com/en/calendar/{season}/r{round}-{slug}?area=schedule&tab=schedule",
-      "allowedDomains": ["fiaformulae.com", "www.fiaformulae.com"],
+      "allowedDomains": [
+        "fiaformulae.com",
+        "www.fiaformulae.com"
+      ],
       "sourceKind": "formula-e-schedule",
       "eventDiscovery": "Use the official round page or an official Formula E event preview that explicitly publishes local session times and UTC evidence.",
       "sourceTimeZone": "track",
@@ -197,7 +243,10 @@
         "penrite oil sandown 500": "sandown",
         "bp adelaide grand final": "adelaide"
       },
-      "allowedDomains": ["supercars.com", "www.supercars.com"],
+      "allowedDomains": [
+        "supercars.com",
+        "www.supercars.com"
+      ],
       "sourceKind": "supercars-embedded-schedule",
       "officialSeriesName": "Repco Supercars Championship",
       "eventDiscovery": "Open the official event Track Schedule and use its offset-aware embedded session records.",
@@ -208,7 +257,11 @@
       "seriesId": "nascar",
       "name": "NASCAR Cup Series",
       "startUrl": "https://www.nascar.com/weekend-schedule/",
-      "allowedDomains": ["nascar.com", "www.nascar.com", "cf.nascar.com"],
+      "allowedDomains": [
+        "nascar.com",
+        "www.nascar.com",
+        "cf.nascar.com"
+      ],
       "sourceKind": "nascar-et",
       "eventDiscovery": "Always open the stable weekend schedule, follow its redirect to the event page published on Monday, and select only Cup sessions.",
       "sourceTimeZone": "America/New_York",
@@ -218,7 +271,11 @@
       "seriesId": "nascar_oreilly",
       "name": "NASCAR O'Reilly Auto Parts Series",
       "startUrl": "https://www.nascar.com/weekend-schedule/",
-      "allowedDomains": ["nascar.com", "www.nascar.com", "cf.nascar.com"],
+      "allowedDomains": [
+        "nascar.com",
+        "www.nascar.com",
+        "cf.nascar.com"
+      ],
       "sourceKind": "nascar-et",
       "eventDiscovery": "Always open the stable weekend schedule, follow its redirect to the event page published on Monday, and select only O'Reilly sessions.",
       "sourceTimeZone": "America/New_York",
@@ -228,7 +285,11 @@
       "seriesId": "nascar_trucks",
       "name": "NASCAR Craftsman Truck Series",
       "startUrl": "https://www.nascar.com/weekend-schedule/",
-      "allowedDomains": ["nascar.com", "www.nascar.com", "cf.nascar.com"],
+      "allowedDomains": [
+        "nascar.com",
+        "www.nascar.com",
+        "cf.nascar.com"
+      ],
       "sourceKind": "nascar-et",
       "eventDiscovery": "Always open the stable weekend schedule, follow its redirect to the event page published on Monday, and select only Truck sessions.",
       "sourceTimeZone": "America/New_York",
@@ -238,7 +299,10 @@
       "seriesId": "nascareuro",
       "name": "NASCAR Euro Series",
       "startUrl": "https://www.nascar.eu/",
-      "allowedDomains": ["nascar.eu", "www.nascar.eu"],
+      "allowedDomains": [
+        "nascar.eu",
+        "www.nascar.eu"
+      ],
       "sourceKind": "official-track-time",
       "eventDiscovery": "Follow Schedule/Tickets to the official event page or official linked timetable.",
       "sourceTimeZone": "track",
@@ -248,7 +312,10 @@
       "seriesId": "gtwce",
       "name": "GT World Challenge Europe",
       "startUrl": "https://www.gt-world-challenge-europe.com/calendar",
-      "allowedDomains": ["gt-world-challenge-europe.com", "www.gt-world-challenge-europe.com"],
+      "allowedDomains": [
+        "gt-world-challenge-europe.com",
+        "www.gt-world-challenge-europe.com"
+      ],
       "sourceKind": "sro-event-timetable",
       "eventDiscovery": "Follow Event Info and prefer the event timetable or linked official PDF.",
       "sourceTimeZone": "track",
@@ -258,11 +325,18 @@
       "seriesId": "gtwca_am",
       "name": "GT World Challenge America",
       "startUrl": "https://www.gt-world-challenge-america.com/calendar",
-      "allowedDomains": ["gt-world-challenge-america.com", "www.gt-world-challenge-america.com"],
+      "allowedDomains": [
+        "gt-world-challenge-america.com",
+        "www.gt-world-challenge-america.com"
+      ],
       "sourceKind": "sro-event-timetable",
-      "documentCategories": ["GT World Challenge America powered by AWS"],
+      "documentCategories": [
+        "GT World Challenge America powered by AWS"
+      ],
       "eventDocumentCategories": {
-        "gtwca-am-2026-r07": ["IGTC Indianapolis 8 Hour"]
+        "gtwca-am-2026-r07": [
+          "IGTC Indianapolis 8 Hour"
+        ]
       },
       "eventDiscovery": "Follow Event Info and prefer the event timetable or linked official PDF.",
       "sourceTimeZone": "track",
@@ -272,7 +346,10 @@
       "seriesId": "gtwca_asia",
       "name": "GT World Challenge Asia",
       "startUrl": "https://www.gt-world-challenge-asia.com/calendar",
-      "allowedDomains": ["gt-world-challenge-asia.com", "www.gt-world-challenge-asia.com"],
+      "allowedDomains": [
+        "gt-world-challenge-asia.com",
+        "www.gt-world-challenge-asia.com"
+      ],
       "sourceKind": "sro-event-timetable",
       "eventDiscovery": "Follow Event Info and prefer the event timetable or linked official PDF.",
       "sourceTimeZone": "track",
@@ -282,7 +359,10 @@
       "seriesId": "gtwca_aus",
       "name": "GT World Challenge Australia",
       "startUrl": "https://www.gt-world-challenge-australia.com/calendar",
-      "allowedDomains": ["gt-world-challenge-australia.com", "www.gt-world-challenge-australia.com"],
+      "allowedDomains": [
+        "gt-world-challenge-australia.com",
+        "www.gt-world-challenge-australia.com"
+      ],
       "sourceKind": "sro-event-timetable",
       "eventDiscovery": "Follow Event Info and prefer the event timetable or linked official PDF.",
       "sourceTimeZone": "track",
@@ -292,7 +372,10 @@
       "seriesId": "british_gt",
       "name": "British GT Championship",
       "startUrl": "https://www.britishgt.com/calendar",
-      "allowedDomains": ["britishgt.com", "www.britishgt.com"],
+      "allowedDomains": [
+        "britishgt.com",
+        "www.britishgt.com"
+      ],
       "sourceKind": "british-gt-pdf",
       "eventDiscovery": "Follow Event Info or Event Timetable for the matching official British GT round.",
       "sourceTimeZone": "track",
@@ -310,7 +393,11 @@
         "dekra lausitzring": "lausitzring",
         "circuit zandvoort": "zandvoort"
       },
-      "allowedDomains": ["dtm.com", "www.dtm.com", "api.dtm.com"],
+      "allowedDomains": [
+        "dtm.com",
+        "www.dtm.com",
+        "api.dtm.com"
+      ],
       "sourceKind": "dtm-api",
       "eventDiscovery": "Follow more info for the matching official DTM event and prefer its published schedule.",
       "sourceTimeZone": "track",
@@ -321,10 +408,18 @@
       "name": "FIA World Endurance Championship",
       "startUrl": "https://www.fiawec.com/en/page/saisons-wec",
       "eventUrlTemplate": "https://www.fiawec.com/en/race/{slug}-{year}",
-      "eventSlugAliases": {"6 hours of sao paulo": "rolex-6-hours-of-sao-paulo"},
-      "allowedDomains": ["fiawec.com", "www.fiawec.com", "press.fiawec.com"],
+      "eventSlugAliases": {
+        "6 hours of sao paulo": "rolex-6-hours-of-sao-paulo"
+      },
+      "allowedDomains": [
+        "fiawec.com",
+        "www.fiawec.com",
+        "press.fiawec.com"
+      ],
       "sourceKind": "official-schedule-document",
-      "documentCategories": ["FIA WEC"],
+      "documentCategories": [
+        "FIA WEC"
+      ],
       "eventDiscovery": "Prefer the newest official timetable document linked from the FIA WEC event page.",
       "sourceTimeZone": "track",
       "notes": "Official timetable documents take precedence over programme pages."
@@ -334,9 +429,16 @@
       "name": "Asian Le Mans Series",
       "startUrl": "https://www.asianlemansseries.com/",
       "eventUrlTemplate": "https://www.asianlemansseries.com/en/race/{slug}-by-alms-{year}",
-      "allowedDomains": ["asianlemansseries.com", "www.asianlemansseries.com", "press.asianlemansseries.com"],
+      "allowedDomains": [
+        "asianlemansseries.com",
+        "www.asianlemansseries.com",
+        "press.asianlemansseries.com"
+      ],
       "sourceKind": "official-schedule-document",
-      "documentCategories": ["Asian Le Mans Series", "ALMS"],
+      "documentCategories": [
+        "Asian Le Mans Series",
+        "ALMS"
+      ],
       "eventDiscovery": "Prefer the official event timetable document from Race info.",
       "sourceTimeZone": "track",
       "notes": "Only official ACO/Asian Le Mans Series event documents are accepted."
@@ -354,9 +456,16 @@
         "silverstone": "silverstone-round",
         "portimao": "portimao-round"
       },
-      "allowedDomains": ["lemanscup.com", "www.lemanscup.com", "press.lemanscup.com"],
+      "allowedDomains": [
+        "lemanscup.com",
+        "www.lemanscup.com",
+        "press.lemanscup.com"
+      ],
       "sourceKind": "official-schedule-document",
-      "documentCategories": ["Michelin Le Mans Cup", "Le Mans Cup"],
+      "documentCategories": [
+        "Michelin Le Mans Cup",
+        "Le Mans Cup"
+      ],
       "eventDiscovery": "Prefer the official timetable document linked from Race detail.",
       "sourceTimeZone": "track",
       "notes": "Shared ELMS documents are filtered to Michelin Le Mans Cup rows only."
@@ -385,9 +494,15 @@
         "snap on milwaukee mile 250": "Milwaukee-Race1",
         "grand prix of monterey": "Laguna-Seca"
       },
-      "allowedDomains": ["indycar.com", "www.indycar.com"],
+      "allowedDomains": [
+        "indycar.com",
+        "www.indycar.com"
+      ],
       "sourceKind": "official-schedule-document",
-      "documentCategories": ["NTT INDYCAR SERIES", "INDYCAR SERIES"],
+      "documentCategories": [
+        "NTT INDYCAR SERIES",
+        "INDYCAR SERIES"
+      ],
       "eventDiscovery": "Prefer the official weekend or track-activity schedule PDF; fall back to the official event schedule.",
       "sourceTimeZone": "track",
       "notes": "Session times must be explicitly labelled local or resolved through the registered event timezone."
@@ -411,9 +526,18 @@
         "indy nxt by firestone at milwaukee mile": "Milwaukee",
         "grand prix of monterey": "Laguna-Seca-Race1"
       },
-      "allowedDomains": ["indynxt.com", "www.indynxt.com", "indynxt-cdn.azureedge.net", "indycar.com", "www.indycar.com"],
+      "allowedDomains": [
+        "indynxt.com",
+        "www.indynxt.com",
+        "indynxt-cdn.azureedge.net",
+        "indycar.com",
+        "www.indycar.com"
+      ],
       "sourceKind": "official-schedule-document",
-      "documentCategories": ["INDY NXT BY FIRESTONE", "INDY NXT"],
+      "documentCategories": [
+        "INDY NXT BY FIRESTONE",
+        "INDY NXT"
+      ],
       "eventDiscovery": "Prefer the official INDYCAR weekend schedule document, which also contains INDY NXT sessions.",
       "sourceTimeZone": "track",
       "notes": "INDYCAR rows are excluded by the category filter."
@@ -422,13 +546,89 @@
       "seriesId": "imsa",
       "name": "IMSA WeatherTech SportsCar Championship",
       "startUrl": "https://www.imsa.com/weathertech/{year}-schedule/",
-      "startUrlFallbacks": ["https://www.imsa.com/weathertech/weathertech-{year}-schedule/"],
-      "allowedDomains": ["imsa.com", "www.imsa.com"],
+      "startUrlFallbacks": [
+        "https://www.imsa.com/weathertech/weathertech-{year}-schedule/"
+      ],
+      "allowedDomains": [
+        "imsa.com",
+        "www.imsa.com"
+      ],
       "sourceKind": "imsa-event-schedule",
-      "documentCategories": ["WeatherTech Championship", "IMSA WeatherTech SportsCar Championship"],
+      "documentCategories": [
+        "WeatherTech Championship",
+        "IMSA WeatherTech SportsCar Championship"
+      ],
       "eventDiscovery": "Open the matching Event Details page from the official WeatherTech season schedule and read its Event Schedule.",
       "sourceTimeZone": "America/New_York",
       "notes": "The IMSA event schedule is published in ET; support-series rows are excluded."
+    },
+    {
+      "seriesId": "24hseries",
+      "name": "Michelin 24H Series",
+      "startUrl": "https://www.24hseries.com/races",
+      "eventUrlTemplate": "https://www.24hseries.com/races/{slug}-{year}",
+      "allowedDomains": [
+        "24hseries.com",
+        "www.24hseries.com"
+      ],
+      "sourceKind": "24hseries-timetable",
+      "sourceTimeZone": "track",
+      "notes": "Read only the visible Time Schedule and its track-zone attributes. Ignore track days, support activities, countdowns and Time TBC rows. Generic Qualifying is the complete published class block."
+    },
+    {
+      "seriesId": "elms",
+      "name": "European Le Mans Series",
+      "startUrl": "https://www.europeanlemansseries.com/en/season/{year}",
+      "eventUrlTemplate": "https://www.europeanlemansseries.com/en/race/{slug}-{year}",
+      "allowedDomains": [
+        "europeanlemansseries.com",
+        "www.europeanlemansseries.com",
+        "press.europeanlemansseries.com"
+      ],
+      "sourceKind": "elms-timetable",
+      "sourceTimeZone": "track",
+      "documentCategories": [
+        "ELMS",
+        "European Le Mans Series"
+      ],
+      "notes": "Use the latest published ELMS event timetable PDF with preserved table layout. Only exact ELMS activity rows are accepted; all four class qualifying runs form one existing Qualifying block. Unpublished or incomplete schedules require review."
+    },
+    {
+      "seriesId": "bsb",
+      "name": "British Superbike Championship",
+      "startUrl": "https://www.britishsuperbike.com/calendar",
+      "calendarUrl": "https://www.britishsuperbike.com/calendar",
+      "allowedDomains": [
+        "britishsuperbike.com",
+        "www.britishsuperbike.com"
+      ],
+      "sourceKind": "bsb-timetable",
+      "sourceTimeZone": "track",
+      "eventUrlTemplate": "https://www.britishsuperbike.com/calendar/{year}/r{round}-{slug}",
+      "notes": "Exact official season, round, circuit and weekend. UK editor clocks; Assen venue clocks converted to UK."
+    },
+    {
+      "seriesId": "fd",
+      "name": "Formula DRIFT",
+      "startUrl": "https://www.formulad.com/schedule",
+      "allowedDomains": [
+        "formulad.com",
+        "www.formulad.com"
+      ],
+      "sourceKind": "fd-timetable",
+      "sourceTimeZone": "track",
+      "eventUrlTemplate": "https://www.formulad.com/schedule/{year}/{slug}",
+      "eventSlugAliases": {
+        "streets of long beach": "long-beach",
+        "road to the championship": "atlanta",
+        "scorched": "orlando",
+        "battle at the springs": "stafford",
+        "midwest mayhem": "indianapolis",
+        "throwdown": "seattle",
+        "high stakes": "las-vegas",
+        "shoreline showdown": "long-beach2"
+      },
+      "notes": "PRO only. Preserve separate practices and warmups. 2026 uses UTC calendar clocks; later seasons use Los Angeles editor clocks. Missing/ambiguous schedules remain unresolved."
     }
   ],
   "eventTimeZones": {
@@ -530,7 +730,6 @@
     "oulton park": "Europe/London",
     "snetterton": "Europe/London",
     "donington": "Europe/London",
-    "brands hatch": "Europe/London",
     "lausitzring": "Europe/Berlin",
     "norisring": "Europe/Berlin",
     "oschersleben": "Europe/Berlin",
@@ -564,7 +763,20 @@
     "watkins glen": "America/New_York",
     "canadian tire motorsport park": "America/Toronto",
     "virginia international raceway": "America/New_York",
-    "road atlanta": "America/New_York"
+    "road atlanta": "America/New_York",
+    "mugello": "Europe/Rome",
+    "kyalami": "Africa/Johannesburg",
+    "nurburg": "Europe/Berlin",
+    "le castellet": "Europe/Paris",
+    "braselton": "America/New_York",
+    "orlando": "America/New_York",
+    "stafford springs": "America/New_York",
+    "monroe": "America/Los_Angeles",
+    "donington park": "Europe/London",
+    "knockhill": "Europe/London",
+    "thruxton": "Europe/London",
+    "cadwell park": "Europe/London",
+    "assen": "Europe/Amsterdam"
   },
   "knownEventUrls": {
     "wrc:wrc-2026-r12": "https://www.wrc.com/en/events/wrc-rally-chile-bio-bio-2026/itinerary-stages-wrc-rally-chile-bio-bio",

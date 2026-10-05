@@ -32,6 +32,12 @@ from urllib.parse import quote, urljoin, urlparse
 from urllib.request import Request, urlopen
 from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
+# Keep adapter exceptions identical when this file runs as a CLI script.
+if __name__ == "__main__":
+    sys.modules.setdefault("official_schedule_scanner", sys.modules[__name__])
+
+from bsb_fd_schedule import parse_bsb_schedule, parse_fd_schedule, specific_kind, match_fd
+
 LOG = logging.getLogger("raceday.session_times")
 USER_AGENT = "RaceDay official schedule scanner/1.0 (+https://raceday.app)"
 PROPOSAL_SCHEMA_VERSION = 1
@@ -264,6 +270,8 @@ def fetch_url(url: str, allowed_domains: Sequence[str], extra_headers: Optional[
             )
     except HTTPError as exc:
         host = (urlparse(url).hostname or "").lower()
+        if exc.code == 403 and host in {'24hseries.com', 'www.24hseries.com'}:
+            return fetch_url_with_curl(url, allowed_domains)
         browser_protected = {"imsa.com", "www.imsa.com", "btcc.net", "www.btcc.net"}
         if exc.code in {403, 429} and host in browser_protected:
             return fetch_url_with_browser_fingerprint(url, allowed_domains)
@@ -326,13 +334,13 @@ def fetch_url_with_curl(url: str, allowed_domains: Sequence[str]) -> FetchResult
     return FetchResult(url, final_url, page_title(body), body, None)
 
 
-def extract_pdf_text(data: bytes) -> str:
+def extract_pdf_text(data: bytes, preserve_layout: bool = False) -> str:
     try:
         from pypdf import PdfReader
     except ImportError as exc:
         raise SourceError("PDF-uitlezer ontbreekt; installeer pypdf") from exc
     try:
-        pages = [(page.extract_text() or "") for page in PdfReader(io.BytesIO(data)).pages]
+        pages = [(page.extract_text(extraction_mode="layout") if preserve_layout else page.extract_text()) or "" for page in PdfReader(io.BytesIO(data)).pages]
     except Exception as exc:
         raise SourceError("officiële timetable-PDF kon niet worden uitgelezen: {}".format(exc)) from exc
     text = "\f".join(pages)
@@ -341,7 +349,7 @@ def extract_pdf_text(data: bytes) -> str:
     return text
 
 
-def fetch_pdf_url(url: str, allowed_domains: Sequence[str]) -> FetchResult:
+def fetch_pdf_url(url: str, allowed_domains: Sequence[str], preserve_layout: bool = False) -> FetchResult:
     if not allowed_url(url, allowed_domains):
         raise SourceError("PDF-domain is not allowlisted: {}".format(url))
     url = quote(url, safe=":/?&=#%")
@@ -352,7 +360,7 @@ def fetch_pdf_url(url: str, allowed_domains: Sequence[str]) -> FetchResult:
             if not allowed_url(final_url, allowed_domains):
                 raise SourceError("PDF redirect left official allowlist: {}".format(final_url))
             data = response.read(8_000_000)
-            return FetchResult(url, final_url, "Official timetable PDF", extract_pdf_text(data), response.headers.get("Last-Modified"))
+            return FetchResult(url, final_url, "Official timetable PDF", extract_pdf_text(data, preserve_layout), response.headers.get("Last-Modified"))
     except URLError as exc:
         if "CERTIFICATE_VERIFY_FAILED" not in str(exc):
             raise SourceError("could not read official timetable PDF {}: {}".format(url, exc)) from exc
@@ -373,7 +381,7 @@ def fetch_pdf_url(url: str, allowed_domains: Sequence[str]) -> FetchResult:
     final_url = final_bytes.decode("utf-8", "replace").strip()
     if not allowed_url(final_url, allowed_domains):
         raise SourceError("PDF redirect left official allowlist: {}".format(final_url))
-    return FetchResult(url, final_url, "Official timetable PDF", extract_pdf_text(data), None)
+    return FetchResult(url, final_url, "Official timetable PDF", extract_pdf_text(data, preserve_layout), None)
 
 
 def fixture_result(path: Path, stable_url: str) -> FetchResult:
@@ -950,7 +958,10 @@ def parse_official_tables(fetch: FetchResult, year: int, source_timezone: str) -
         session_col = next((i for i, value in enumerate(headers) if "session" in value), 0)
         gmt_col = next((i for i, value in enumerate(headers) if value in {"gmt", "utc"} or "gmt" in value), None)
         time_candidates = [i for i, value in enumerate(headers) if "time" in value or "eastern" in value or value in {"et", "ct", "local"}]
-        local_col = time_candidates[0] if time_candidates else (1 if len(headers) > 1 else None)
+        explicit_local = [i for i in time_candidates if "local" in headers[i] or "track" in headers[i] or "eastern" in headers[i] or headers[i] in {"et", "ct"}]
+        generic_time = [i for i in time_candidates if headers[i] in {"time", "start time", "start"}]
+        local_col = next(iter(explicit_local or generic_time), None)
+        # Browser-local/My Time and UTC columns cannot be interpreted as track time.
         for cells in rows[1:]:
             if session_col >= len(cells) or local_col is None or local_col >= len(cells):
                 continue
@@ -1691,6 +1702,82 @@ def parse_formula1_schedule(fetch: FetchResult) -> List[SourceSession]:
     return sorted(sessions, key=lambda item: (item.date, item.local_time, item.name))
 
 
+def discover_elms_timetable_pdf(event_page: FetchResult) -> Optional[str]:
+    candidates = []
+    for url, label in extract_links(event_page.body, event_page.final_url):
+        if ('/document/download/' in urlparse(url).path or urlparse(url).path.lower().endswith('.pdf')) and re.search(r'\btimetable\b', label, re.I):
+            version = re.search(r'\bv(?:ersion)?\s*(\d+)\b', label, re.I)
+            candidates.append((int(version.group(1)) if version else 0, url))
+    return max(candidates, default=(0, None))[1]
+
+
+def parse_elms_timetable(fetch: FetchResult, event: dict, year: int, source_timezone: str) -> List[SourceSession]:
+    """Read ELMS's PDF layout rows, excluding shared support categories."""
+    title = re.sub(r'^Goodyear\s+', '', event.get('raceName', ''), flags=re.I)
+    headers = [normalize(line) for line in fetch.body.splitlines() if 'TIMETABLE' in line.upper()]
+    if not headers or any(str(year) not in header or normalize(title) not in header for header in headers):
+        raise SourceError('ELMS timetable does not identify the selected event and season')
+    current_date = None
+    sessions = []
+    qualifying = []
+    for line in fetch.body.splitlines():
+        if re.match(r'^\s*(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\b', line, re.I):
+            current_date = parse_document_date(line, year)
+            continue
+        # Some PDF cells are emitted at the end of the line without whitespace
+        # ("240\u0027ELMSRACE"). The exact ELMS category followed by an allowed
+        # activity still identifies those rows; no neighbouring row is read.
+        category = re.search(r'ELMS\s*(FREE PRACTICE [12]|QUALIFYING SESSION\s*-\s*(?:LMGT3|LMP3|LMP2(?:\s+PRO/?AM)?)|RACE)(?=\s{2,}|$)', line, re.I)
+        if not category:
+            continue
+        if re.search(r'\b(?:TBC|TBA|CANCELLED|CANCELED)\b', line, re.I):
+            raise SourceError('ELMS timetable contains an unconfirmed or cancelled session')
+        clocks = re.match(r'^\s*(\d{1,2}:\d{2})\s+(\d{1,2}:\d{2})(?=\s)', line)
+        if not clocks or not current_date:
+            raise SourceError('ELMS timetable row has no unambiguous date and start/end time')
+        try:
+            start, end = (parse_clock(value) for value in clocks.groups())
+        except ValueError as exc:
+            raise SourceError('ELMS timetable row has an invalid time') from exc
+        minutes = lambda clock: int(clock[:2])*60 + int(clock[3:])
+        duration = minutes(end) - minutes(start)
+        if duration <= 0:
+            raise SourceError('ELMS timetable row has an invalid duration')
+        label = normalize(category.group(1))
+        name = 'Free Practice ' + label[-1] if label.startswith('free practice') else 'Race'
+        item = SourceSession(name, current_date, start, source_timezone, duration)
+        strict_source_instant(item)
+        if label.startswith('qualifying'):
+            class_name = label.split('session', 1)[1].strip().replace('pro am', 'proam')
+            qualifying.append((class_name, item))
+        else:
+            sessions.append(item)
+    # One existing Qualifying slot represents all four class sessions, gaps
+    # included. A missing/duplicated class must not become a partial proposal.
+    expected_classes = {'lmgt3', 'lmp3', 'lmp2 proam', 'lmp2'}
+    if len(qualifying) != 4 or {name for name, _ in qualifying} != expected_classes:
+        raise SourceError('ELMS qualifying timetable is incomplete or ambiguous')
+    existing_qualifying = [item for item in event.get('sessions', []) if item.get('kind') == 'qualifying']
+    if len(existing_qualifying) != 1 or normalize(existing_qualifying[0].get('name')) != 'qualifying':
+        raise SourceError('ELMS calendar qualifying slots require manual review')
+    rows = [item for _, item in qualifying]
+    if len({item.date for item in rows}) != 1:
+        raise SourceError('ELMS qualifying sessions span multiple days')
+    rows.sort(key=lambda item: item.local_time)
+    for left, right in zip(rows, rows[1:]):
+        if strict_source_instant(left) + timedelta(minutes=left.duration_minutes) > strict_source_instant(right):
+            raise SourceError('ELMS qualifying sessions overlap')
+    first = rows[0]
+    end = strict_source_instant(rows[-1]) + timedelta(minutes=rows[-1].duration_minutes)
+    sessions.append(SourceSession('Qualifying', first.date, first.local_time, first.timezone, int((end-strict_source_instant(first)).total_seconds()//60)))
+    if sorted(item.name for item in sessions) != ['Free Practice 1', 'Free Practice 2', 'Qualifying', 'Race']:
+        raise SourceError('ELMS timetable is incomplete or contains duplicate sessions')
+    calendar_dates = sorted(item.get('date') for item in event.get('sessions', []) if item.get('date'))
+    if not calendar_dates or any(item.date < calendar_dates[0] or item.date > calendar_dates[-1] for item in sessions):
+        raise SourceError('ELMS timetable dates differ from the selected calendar event')
+    return sorted(sessions, key=lambda item: (item.date, item.local_time))
+
+
 def parse_official_schedule_document(fetch: FetchResult, year: int, source_timezone: str, categories: Sequence[str]) -> List[SourceSession]:
     sessions: List[SourceSession] = []
     current_date: Optional[str] = None
@@ -1994,6 +2081,119 @@ def parse_fia_track_schedule(fetch: FetchResult, source_timezone: str) -> List[S
     return sorted(unique.values(), key=lambda item: (item.date, item.local_time, item.name))
 
 
+class Series24HScheduleParser(HTMLParser):
+    """Read only the published race timetable, never countdown/result data."""
+    def __init__(self):
+        super().__init__()
+        self.in_schedule = False
+        self.row = None
+        self.depth = 0
+        self.capture_name = False
+        self.rows = []
+
+    def handle_starttag(self, tag, attrs):
+        attrs = dict(attrs)
+        classes = set(attrs.get('class', '').split())
+        if tag == 'section' and 'headerRaceBlockTime' in classes:
+            self.in_schedule = True
+        if not self.in_schedule:
+            return
+        if tag == 'div' and 'entry' in classes:
+            self.row = {'date': attrs.get('data-date', ''), 'name': ''}
+            self.depth = 1
+        elif self.row is not None and tag == 'div':
+            self.depth += 1
+        if self.row is not None and tag == 'span':
+            if 'name' in classes:
+                self.capture_name = True
+            if 'startTime' in classes:
+                self.row.update(start=attrs.get('data-time', ''), zone=attrs.get('data-tz', ''))
+            if 'endTime' in classes:
+                self.row['end'] = attrs.get('data-time', '')
+
+    def handle_data(self, data):
+        if self.row is not None and self.capture_name:
+            self.row['name'] += data
+
+    def handle_endtag(self, tag):
+        if tag == 'span':
+            self.capture_name = False
+        if self.row is not None and tag == 'div':
+            self.depth -= 1
+            if self.depth == 0:
+                self.rows.append(self.row)
+                self.row = None
+        if tag == 'section':
+            self.in_schedule = False
+
+
+def parse_24hseries_schedule(fetch: FetchResult, event: dict, year: int, source_timezone: str) -> List[SourceSession]:
+    expected_title = normalize('{} {}'.format(event.get('raceName', ''), year))
+    if normalize(fetch.title) != expected_title:
+        raise SourceError('24H Series page does not identify the selected event and season')
+    parser = Series24HScheduleParser()
+    parser.feed(fetch.body)
+    sessions = []
+    qualifying = []
+    qualifying_unconfirmed = False
+    for row in parser.rows:
+        name = ' '.join(row['name'].split())
+        label = normalize(name)
+        is_qualifying = bool(re.match(r'^qualifying(?:\s+\d+)?(?:\s|$)', label))
+        if re.search(r'\b(tbc|tba|cancelled|canceled|provisional)\b', label):
+            qualifying_unconfirmed |= is_qualifying
+            continue
+        if re.fullmatch(r'free practice(?: \d+)?', label):
+            canonical = name
+        elif label.startswith('night practice'):
+            canonical = 'Night Practice'
+        elif is_qualifying:
+            canonical = name
+        elif re.match(r'^(?:start|restart) (?:of )?(?:the )?(?:race|michelin (?:12h|24h))\b', label):
+            part = re.search(r'\bpart (\d+)\b', label)
+            canonical = 'Race Part ' + part.group(1) if part else 'Race'
+        else:
+            continue
+        if row.get('zone') != source_timezone:
+            raise SourceError('24H Series timetable timezone differs from the registered circuit timezone')
+        try:
+            start = datetime.strptime(row['date'], '%B %d, %Y %H:%M')
+            clock = parse_clock(row.get('start', ''))
+        except ValueError as exc:
+            raise SourceError('24H Series session has no confirmed valid start time') from exc
+        if start.year != year or start.strftime('%H:%M') != clock:
+            raise SourceError('24H Series timetable date/time attributes disagree')
+        duration = None
+        if re.fullmatch(r'\d{1,2}:\d{2}', row.get('end', '')):
+            finish = parse_clock(row['end'])
+            minutes = lambda t: int(t[:2]) * 60 + int(t[3:])
+            duration = (minutes(finish) - minutes(clock)) % 1440
+            if duration == 0:
+                raise SourceError('24H Series session has an ambiguous end time')
+        if canonical == 'Race' and duration is None:
+            duration = 1440 if '24h' in normalize(event.get('raceName')) else 720
+        item = SourceSession(canonical, start.date().isoformat(), clock, source_timezone, duration)
+        strict_source_instant(item)
+        (qualifying if is_qualifying else sessions).append(item)
+    # Existing 2026 calendars generally represent all class/driver qualifying
+    # runs as one block. Keep that format instead of creating nine duplicates.
+    if qualifying and not qualifying_unconfirmed:
+        existing = [x for x in event.get('sessions', []) if x.get('kind') == 'qualifying']
+        if len(existing) == 1 and normalize(existing[0].get('name')) == 'qualifying':
+            days = {x.date for x in qualifying}
+            if len(days) != 1 or any(x.duration_minutes is None for x in qualifying):
+                raise SourceError('24H Series qualifying block is incomplete or spans multiple days')
+            first = min(qualifying, key=lambda x: x.local_time)
+            end = max(strict_source_instant(x) + timedelta(minutes=x.duration_minutes) for x in qualifying)
+            duration = int((end - strict_source_instant(first)).total_seconds() // 60)
+            sessions.append(SourceSession('Qualifying', first.date, first.local_time, first.timezone, duration))
+        elif any(not session_family(x.get('name', '')) for x in existing):
+            raise SourceError('24H Series qualifying classes cannot be mapped unambiguously to these numbered calendar slots')
+        else:
+            sessions.extend(qualifying)
+    return sorted(set(sessions), key=lambda x: (x.date, x.local_time, x.name))
+
+
 def parse_dtm_api(fetch: FetchResult, year: int, source_timezone: str) -> List[SourceSession]:
     """Parse the public official DTM event API.
 
@@ -2100,7 +2300,10 @@ def strict_source_instant(session: SourceSession) -> datetime:
         zone = ZoneInfo(session.timezone)
     except ZoneInfoNotFoundError as exc:
         raise SourceError("unknown IANA timezone {}".format(session.timezone)) from exc
-    naive = datetime.fromisoformat("{}T{}:00".format(session.date, session.local_time))
+    try:
+        naive = datetime.fromisoformat("{}T{}:00".format(session.date, session.local_time))
+    except (ValueError, TypeError) as exc:
+        raise SourceError("invalid official session date or time") from exc
     candidates = []
     for fold in (0, 1):
         aware = naive.replace(tzinfo=zone, fold=fold)
@@ -2115,60 +2318,92 @@ def strict_source_instant(session: SourceSession) -> datetime:
                 if candidate.strftime("%H:%M") == session.utc_hint:
                     return candidate
         raise SourceError("ambiguous local time {} {} {}".format(session.date, session.local_time, session.timezone))
-    return next(iter(unique.values()))
+    result = next(iter(unique.values()))
+    if session.utc_hint and result.strftime("%H:%M") != session.utc_hint:
+        raise SourceError("official UTC time disagrees with the source timezone")
+    return result
 
 
 def editor_value(session: SourceSession, editor_timezone: str) -> Tuple[str, str, str]:
     instant = strict_source_instant(session)
-    editor = instant.astimezone(ZoneInfo(editor_timezone))
+    try:
+        editor = instant.astimezone(ZoneInfo(editor_timezone))
+    except (ZoneInfoNotFoundError, ValueError) as exc:
+        raise SourceError("unknown editor timezone {}".format(editor_timezone)) from exc
     return editor.strftime("%Y-%m-%d"), editor.strftime("%H:%M"), instant.isoformat().replace("+00:00", "Z")
 
 
 def session_number(name: str) -> Optional[int]:
-    # Stage labels normally attach the number directly (SS1), while circuit
-    # sessions usually separate it (Practice 1). Support both shapes.
-    match = re.search(r"(?:^|\D)(\d+)\b", normalize(name))
+    # A class (GT3), race duration (6 Hour Race), or stage-name suffix is
+    # not a session number. Only read a number attached to a session label.
+    match = re.search(r"(?:^|\b)(?:sss?|special stage|practice|qualifying|qualification|race(?: part)?|shootout|ttso|hyperpole|session|duel)\s*(\d+)\b", normalize(name))
     return int(match.group(1)) if match else None
+
+
+def session_alias(name: str) -> str:
+    value = normalize(name)
+    value = re.sub(r"^free practice\b", "practice", value)
+    value = re.sub(r"\bwarm up\b", "warmup", value)
+    value = re.sub(r"\b(?:top 10 shootout|ttso)\b", "top ten shootout", value)
+    return re.sub(r"^(race|qualifying|top ten shootout) 1$", r"\1", value)
+
+
+def session_family(name: str) -> Tuple[str, ...]:
+    """Discriminators that must never be discarded by kind/number fallback."""
+    value = session_alias(name)
+    markers = [word for word in ('warmup', 'shootout', 'superpole', 'hyperpole',
+               'night', 'bronze', 'pre qualifying', 'final', 'high line',
+               'cancelled', 'canceled', 'resumption', 'rescheduled')
+               if re.search(r"\b" + word + r"\b", value)]
+    markers += re.findall(r"\b(?:gt[234]|lmgt3|lmp[23]|hypercar|pro am|group [a-z]|top \d+|fast \d+)\b", value)
+    return tuple(sorted(markers))
 
 
 def match_session(source: SourceSession, sessions: Sequence[dict]) -> Tuple[Optional[dict], Optional[str]]:
     source_kind = normalize_kind(source.name)
     if source_kind not in SUPPORTED_KINDS:
         return None, "unknown official session type"
-    exact = [item for item in sessions if normalize(item.get("name")) == normalize(source.name)]
-    if len(exact) == 1:
-        return exact[0], None
-    source_number = session_number(source.name)
-    def existing_kind(item: dict) -> Optional[str]:
-        # Names are more specific than legacy stored kinds. In particular,
-        # older calendars store "Feature Race" with kind "race".
-        return normalize_kind(item.get("name", "")) or item.get("kind")
 
-    same_date = [item for item in sessions if existing_kind(item) == source_kind and item.get("date") == source.date]
-    if source_number is None and len(same_date) == 1:
-        return same_date[0], None
-    numbered = [
-        item for item in sessions
-        if existing_kind(item) == source_kind and session_number(item.get("name", "")) == source_number
-    ]
-    if source_number is not None and len(numbered) == 1:
-        return numbered[0], None
-    same_kind = [item for item in sessions if existing_kind(item) == source_kind]
-    if source_number is not None and not numbered:
-        generic = [item for item in same_kind if session_number(item.get("name", "")) is None]
-        if len(generic) == 1:
-            # The first numbered source session may safely reuse one generic
-            # editor slot. Later numbered sessions become new proposals because
-            # build_event_proposals removes already matched slots.
-            return generic[0], None
-        return None, None
-    if len(same_kind) == 1 and source_number is None:
-        generic_qualifying = normalize(source.name) in {"qualifying", "qualification", "qualifications", "qualifying session"}
-        if source_kind == "race" or generic_qualifying or tokens(source.name) & tokens(same_kind[0].get("name", "")):
+    def select(candidates):
+        if len(candidates) > 1:
+            dated = [item for item in candidates if item.get("date") == source.date]
+            if len(dated) == 1:
+                return dated[0], None
+            return None, "multiple equivalent sessions make automatic matching ambiguous"
+        return (candidates[0], None) if candidates else (None, None)
+
+    exact = [item for item in sessions if normalize(item.get("name")) == normalize(source.name)]
+    if exact:
+        return select(exact)
+    aliases = [item for item in sessions if session_alias(item.get("name", "")) == session_alias(source.name)]
+    if aliases:
+        return select(aliases)
+    cancelled = [item for item in sessions if re.search(r"\b(cancelled|canceled)\b", normalize(item.get("name")))
+                 and session_alias(re.sub(r"\s*\((?:cancelled|canceled)\)\s*$", "", item.get("name", ""), flags=re.I)) == session_alias(source.name)]
+    if cancelled:
+        return None, "The matching calendar session is cancelled; review its status manually."
+    source_number = session_number(source.name)
+    same_kind = [item for item in sessions
+                 if (normalize_kind(item.get("name", "")) or item.get("kind")) == source_kind
+                 and session_family(item.get("name", "")) == session_family(source.name)]
+    numbered = [item for item in same_kind if session_number(item.get("name", "")) == source_number]
+    if source_number is not None and numbered:
+        return select(numbered)
+    if source_number is None:
+        same_date = [item for item in same_kind if item.get("date") == source.date]
+        if len(same_date) == 1:
+            return same_date[0], None
+        if len(same_kind) == 1:
             return same_kind[0], None
-        return None, None
+    elif source_number == 1:
+        generic = [item for item in same_kind if session_number(item.get("name", "")) is None]
+        if generic:
+            return select(generic)
     if same_kind:
-        return None, "multiple {} sessions make automatic matching ambiguous".format(source_kind)
+        # Explicit distinct numbered slots are new sessions, not conflicts.
+        if source_number is not None and all(session_number(item.get("name", "")) is not None for item in same_kind):
+            return None, None
+        return None, "multiple or incompatible {} sessions make automatic matching ambiguous".format(source_kind)
     return None, None
 
 
@@ -2245,6 +2480,9 @@ def build_event_proposals(
 ) -> List[dict]:
     proposals: List[dict] = []
     existing = event.get("sessions", [])
+    if series_cfg.get("seriesId") == "fd" and filename == "fd_2026.json":
+        existing = [dict(item, timeLocal=item.get("timeLocal") or item.get("timeUTC")) for item in existing]
+    official_sessions = list(dict.fromkeys(official_sessions))
     matched_ids = set()
     supercars = series_cfg.get("sourceKind") == "supercars-embedded-schedule"
     race_numbers = sorted({session_number(item.name) for item in official_sessions if normalize_kind(item.name) == "race" and session_number(item.name) is not None}) if supercars else []
@@ -2264,25 +2502,35 @@ def build_event_proposals(
     if supercars:
         for label, group in [
             ("Race", weekend_races),
-            ("Practice", [item for item in official_sessions if normalize_kind(item.name) == "practice"]),
+            ("Practice", [item for item in official_sessions if normalize_kind(item.name) == "practice" and "warmup" not in session_family(item.name)]),
             ("Qualifying", [item for item in official_sessions if normalize_kind(item.name) == "qualifying" and not re.search(r"shootout|\bttso\b", item.name, re.I)]),
             ("Top Ten Shootout", [item for item in official_sessions if normalize_kind(item.name) == "qualifying" and re.search(r"shootout|\bttso\b", item.name, re.I)]),
         ]:
             for number, item in enumerate(sorted(group, key=lambda item: (item.date, item.local_time)), 1):
                 supercars_names[id(item)] = "{} {}".format(label, number)
 
+    # Repeated source rows must never create a second session. Contradictory
+    # copies stay reviewable instead of choosing an arbitrary published time.
     for official in sorted(official_sessions, key=lambda item: (item.date, item.local_time, normalize(item.name))):
-        kind = normalize_kind(official.name)
+        kind = specific_kind(series_cfg.get("sourceKind"), official.name, normalize_kind(official.name))
         if not kind:
             continue
         available = [item for item in existing if item.get("id") not in matched_ids]
-        matching_official = SourceSession(supercars_names.get(id(official), official.name), official.date, official.local_time, official.timezone, official.duration_minutes) if supercars else official
+        try:
+            proposed_date, proposed_time, utc_instant = editor_value(official, editor_timezone)
+            conversion_conflict = None
+        except SourceError as exc:
+            conversion_conflict = str(exc)
+            proposed_date = proposed_time = utc_instant = None
+        matching_official = SourceSession(supercars_names.get(id(official), official.name), proposed_date or official.date, proposed_time or official.local_time, editor_timezone, official.duration_minutes)
         matched, conflict = (match_academy_session(official, official_sessions, available, existing)
                              if series_cfg.get("sourceKind") == "f1academy-schedule"
                              else match_session(matching_official, available))
+        if series_cfg.get("sourceKind") == "fd-timetable":
+            matched, conflict = match_fd(official, official_sessions, existing, available)
         if supercars and kind == "race":
             # Match on race day, never on the season/weekend number alone.
-            same_day = [item for item in available if normalize_kind(item.get("name", "")) == "race" and item.get("date") == official.date]
+            same_day = [item for item in available if normalize_kind(item.get("name", "")) == "race" and item.get("date") == (proposed_date or official.date)]
             if session_number(official.name) in suspect_numbers:
                 matched, conflict = None, "Het officiële racenummer valt buiten de reeks van dit weekend. Controleer deze extra race op de bronpagina."
             elif len(same_day) == 1:
@@ -2295,11 +2543,10 @@ def build_event_proposals(
         if filled_session and not (include_filled or replace_filled):
             matched_ids.add(matched.get("id"))
             continue
-        try:
-            proposed_date, proposed_time, utc_instant = editor_value(official, editor_timezone)
-        except SourceError as exc:
-            conflict = str(exc)
-            proposed_date = proposed_time = utc_instant = None
+        contradictory = [item for item in official_sessions if normalize(item.name) == normalize(official.name) and item.date == official.date]
+        if len(contradictory) > 1:
+            conflict = "Conflicting official rows for the same session; review the source timetable."
+        conflict = conversion_conflict or conflict
         is_match = bool(filled_session and matched.get("date") == proposed_date and matched.get("timeLocal") == proposed_time)
         proposed_name = (
             rally_session_name_case((matched or {}).get("name") or official.name)
@@ -2307,13 +2554,23 @@ def build_event_proposals(
         )
         if supercars:
             proposed_name = supercars_names.get(id(official), official.name)
-        is_match = bool(is_match and (not matched or matched.get("name") == proposed_name))
-        if series_cfg.get("sourceKind") in {"superformula-timetable", "supergt-timetable", "f1academy-schedule"} and official.duration_minutes is not None:
+        if matched and series_cfg.get("sourceKind") in {"fd-timetable", "bsb-timetable"}:
+            proposed_name = matched["name"]
+            kind = matched.get("kind") or kind
+        if matched and session_alias(matched.get("name", "")) == session_alias(proposed_name):
+            proposed_name = matched["name"]
+        # This is a time scanner. A safely matched session with unchanged
+        # timing must not become a time correction solely to rename its label.
+        if is_match:
+            proposed_name = matched.get("name") or proposed_name
+        if series_cfg.get("sourceKind") in {"superformula-timetable", "supergt-timetable", "f1academy-schedule", "elms-timetable", "fd-timetable"} and official.duration_minutes is not None:
             is_match = bool(is_match and matched and matched.get("durationMinutes") == official.duration_minutes)
+        if matched and re.search(r"\b(cancelled|canceled)\b", normalize(matched.get("name"))):
+            conflict = "The calendar session is cancelled; review its status before changing it."
         proposal = proposal_base(series_cfg, filename, event, source, checked_at)
         actionable_correction = bool(filled_session and replace_filled and not is_match and not conflict)
         proposal.update({
-            "proposalType": "time-update" if actionable_correction else ("verification" if filled_session else ("conflict" if conflict else ("time-update" if matched else "new-session"))),
+            "proposalType": "conflict" if conflict else "time-update" if actionable_correction else ("verification" if filled_session else ("conflict" if conflict else ("time-update" if matched else "new-session"))),
             "sessionId": matched.get("id") if matched else None,
             "sessionName": proposed_name if supercars and not conflict else (matched.get("name") if matched else official.name),
             "current": {
@@ -2336,8 +2593,8 @@ def build_event_proposals(
                 "sessionId": (matched or {}).get("id") or "{}-official-{}".format(event.get("id"), fingerprint({"name": official.name, "date": official.date, "time": official.local_time})[:12]),
             },
             "dateChanged": bool(matched and proposed_date and matched.get("date") != proposed_date),
-            "status": ("verified" if is_match else ("open" if actionable_correction else "mismatch")) if filled_session else ("requires_review" if conflict else "open"),
-            "reason": (
+            "status": "requires_review" if conflict else ("verified" if is_match else ("open" if actionable_correction else "mismatch")) if filled_session else ("requires_review" if conflict else "open"),
+            "reason": conflict or (
                 "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron."
                 if is_match else ("De ingevulde sessie wordt vervangen door de nieuwste officiële tijd." if actionable_correction else "Debugcontrole: de ingevulde sessie wijkt af van de officiële bron.")
             ) if filled_session else (conflict or "Official session time is available."),
@@ -2508,7 +2765,7 @@ def calendar_inventory(
             if event_ids and event.get("id") not in event_ids:
                 continue
             sessions = event.get("sessions", [])
-            has_tbc = any(session.get("timeLocal") is None for session in sessions)
+            has_tbc = any(session.get("timeLocal") is None and not (event.get("seriesId") == "fd" and session.get("timeUTC")) for session in sessions)
             series_id = event.get("seriesId") or match.group(1)
             upcoming_incomplete_nascar = False
             if series_id in NASCAR_FEED_SERIES:
@@ -2518,7 +2775,7 @@ def calendar_inventory(
                 known_kinds = {session.get("kind") for session in sessions}
                 upcoming_incomplete_nascar = not {"practice", "qualifying"}.issubset(known_kinds)
             if event_ids or include_filled or has_tbc or upcoming_incomplete_nascar or (
-                (series_id in {"dtm", "sf", "supergt", "f1academy"} or event.get("officialScheduleUrl")) and event_refresh_due(event, checked_at or datetime.now(timezone.utc))
+                (series_id in {"dtm", "sf", "supergt", "f1academy", "bsb", "fd"} or event.get("officialScheduleUrl")) and event_refresh_due(event, checked_at or datetime.now(timezone.utc))
             ):
                 inventory.append((path.name, event))
     return inventory
@@ -2567,7 +2824,7 @@ def fetch_manual_schedule(url: str, cfg: dict, year: int) -> FetchResult:
             raise SourceError("Gebruik de DTM-eventpagina van het juiste seizoen, bijvoorbeeld /mp/events/hockenheim-finale-2026.")
         target = "https://api.dtm.com/data?query=eventDetails&slug={}&lang=en".format(quote(match.group(1), safe="-"))
     is_pdf = urlparse(target).path.lower().endswith(".pdf") or "/document/download/" in target
-    fetched = fetch_pdf_url(target, cfg["allowedDomains"]) if is_pdf else fetch_url(target, cfg["allowedDomains"])
+    fetched = fetch_pdf_url(target, cfg["allowedDomains"], preserve_layout=cfg.get("sourceKind") == "elms-timetable") if is_pdf else fetch_url(target, cfg["allowedDomains"])
     if cfg.get("sourceKind") == "rally-itinerary" and not is_pdf:
         fetched = retry_rally_prerender(fetched, target, cfg["allowedDomains"])
     return FetchResult(url, fetched.final_url, fetched.title, fetched.body, fetched.last_modified)
@@ -2738,18 +2995,28 @@ def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Opti
             if not source_tz:
                 raise SourceError("no verified IANA track timezone is registered for this event")
             if manual_url and source.title == "Official timetable PDF":
-                if cfg["sourceKind"] == "british-gt-pdf":
+                if cfg["sourceKind"] == "elms-timetable":
+                    sessions = parse_elms_timetable(source, event, event_year, source_tz)
+                elif cfg["sourceKind"] == "british-gt-pdf":
                     sessions = parse_british_gt_pdf(source, event_year, source_tz)
                 else:
                     sessions = parse_official_schedule_document(source, event_year, source_tz, cfg.get("documentCategories", [cfg["name"]]))
             elif cfg["sourceKind"] == "nascar-et":
                 sessions = parse_nascar_feed(source, event, event_year, source_tz) if source.body.lstrip().startswith("{") else parse_nascar_text(source, event, event_year, source_tz)
+            elif cfg["sourceKind"] == "elms-timetable":
+                pdf_url = discover_elms_timetable_pdf(source)
+                if not pdf_url:
+                    raise SourceError("The official ELMS event page has no published timetable yet")
+                source = fetch_pdf_url(pdf_url, cfg["allowedDomains"], preserve_layout=True)
+                sessions = parse_elms_timetable(source, event, event_year, source_tz)
             elif cfg["sourceKind"] == "british-gt-pdf":
                 pdf_url = discover_timetable_pdf(source)
                 if not pdf_url:
                     raise SourceError("op de officiële eventpagina is nog geen timetable-PDF gepubliceerd")
                 source = fetch_pdf_url(pdf_url, cfg["allowedDomains"])
                 sessions = parse_british_gt_pdf(source, event_year, source_tz)
+            elif cfg["sourceKind"] == "24hseries-timetable":
+                sessions = parse_24hseries_schedule(source, event, event_year, source_tz)
             elif cfg["sourceKind"] == "dtm-api":
                 sessions = parse_dtm_api(source, event_year, source_tz)
                 calendar_dates = {item.get("date") for item in event.get("sessions", []) if item.get("date")}
@@ -2763,6 +3030,13 @@ def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Opti
                 sessions = parse_superformula_schedule(source, event, event_year, source_tz)
             elif cfg["sourceKind"] == "supergt-timetable":
                 sessions = parse_supergt_schedule(source, event, event_year, source_tz)
+            elif cfg["sourceKind"] == "bsb-timetable":
+                calendar_url = cfg["calendarUrl"]
+                if calendar_url not in calendar_cache:
+                    calendar_cache[calendar_url] = fetch_url(calendar_url, cfg["allowedDomains"])
+                sessions = parse_bsb_schedule(source, calendar_cache[calendar_url], event, event_year)
+            elif cfg["sourceKind"] == "fd-timetable":
+                sessions = parse_fd_schedule(source, event, event_year, source_tz)
             elif cfg["sourceKind"] == "supercars-embedded-schedule":
                 sessions = parse_supercars_schedule(source, event_year, source_tz, cfg["officialSeriesName"])
             elif cfg["sourceKind"] == "motogp-api":
@@ -2866,7 +3140,9 @@ def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Opti
                 if any(item.date < first_date or item.date > last_date for item in sessions):
                     raise SourceError("De bron bevat sessies buiten de datums van dit event. De koppeling is onzeker; controleer de link en eventdatums.")
             editor_tz = registry.get("editorTimeZones", {}).get(series_id, registry["editorTimeZones"]["default"])
-            refresh_filled_source = (series_id in {"dtm", "sf", "supergt", "f1academy"} or bool(manual_url)) and event_refresh_due(event, scan_instant)
+            if series_id == "fd" and year == 2026:
+                editor_tz = "UTC"  # Published 2026 calendar stores UTC clocks.
+            refresh_filled_source = (series_id in {"dtm", "sf", "supergt", "f1academy", "bsb", "fd"} or bool(manual_url)) and event_refresh_due(event, scan_instant)
             event_proposals = build_event_proposals(
                 cfg, filename, event, source, sessions, editor_tz, checked_at,
                 include_filled, replace_filled or (refresh_filled_source and not include_filled),
@@ -2880,6 +3156,8 @@ def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Opti
                     matched, conflict = (match_academy_session(official, sessions, event.get("sessions", []))
                                          if cfg["sourceKind"] == "f1academy-schedule"
                                          else match_session(official, event.get("sessions", [])))
+                    if cfg["sourceKind"] == "fd-timetable":
+                        matched, conflict = match_fd(official, sessions, event.get("sessions", []), event.get("sessions", []))
                     if matched and not conflict:
                         covered.add(matched.get("id"))
                 unmatched = any(normalize_kind(item.get("name", "")) and item.get("id") not in covered for item in event.get("sessions", []))
@@ -2936,12 +3214,20 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     checked_at = args.now or datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
     result = scan(root, registry, args.fixtures_dir, set(args.series or []), checked_at, args.fixtures_only, set(args.event or []), args.include_filled, args.replace_filled)
     previous = []
+    previous_sources = []
     if output_path.exists():
         try:
-            previous = json.loads(output_path.read_text(encoding="utf-8")).get("proposals", [])
+            previous_store = json.loads(output_path.read_text(encoding="utf-8"))
+            previous = previous_store.get("proposals", [])
+            previous_sources = previous_store.get("sourcesUsed", [])
         except (OSError, json.JSONDecodeError):
             LOG.warning("Existing proposal store is invalid; rebuilding it")
-    result["proposals"] = merge_proposals(previous, result["proposals"], checked_at)
+    # A targeted scan owns only its selected series/events. Preserve all
+    # other decisions and proposals instead of deleting them from the store.
+    in_scope = lambda item: (not args.series or item.get("seriesId") in args.series) and (not args.event or item.get("eventId") in args.event)
+    untouched = [item for item in previous if not in_scope(item)]
+    result["proposals"] = untouched + merge_proposals([item for item in previous if in_scope(item)], result["proposals"], checked_at)
+    result["sourcesUsed"] = [item for item in previous_sources if not in_scope(item)] + result.get("sourcesUsed", [])
     rendered = json.dumps(result, ensure_ascii=False, indent=2) + "\n"
     if args.dry_run:
         print(rendered, end="")

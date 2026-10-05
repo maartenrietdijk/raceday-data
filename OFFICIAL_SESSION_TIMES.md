@@ -91,3 +91,122 @@ Races are numbered per weekend in proposals. Existing race slots are matched by 
 Regression fixture: the official Adelaide schedule fetched on 30 September 2026. Run `python3 -m unittest discover -s tests -p 'test_supercars_schedule.py'`.
 
 Supercars proposal titles use weekend session numbering: Practice, Qualifying, Top Ten Shootout and Race each have their own sequence. Sponsor prefixes and season race references remain only in `sourceSessionName`. The editor updates names when accepting time corrections. Event acceptance saves once after every proposal succeeds, and restores calendar, decisions, undo data and dirty state if any proposal fails. New session IDs are stable source-derived IDs; older proposals with IDs occupied by unrelated draft sessions receive a free ID without replacing the draft.
+
+
+## 24H Series (added 5 October 2026)
+
+`24hseries` now participates in scheduled and editor-triggered session-time scans.
+The dedicated reader uses the event page's **Time Schedule** section and its explicit
+`data-date`, `data-time` and `data-tz` attributes. Countdown metadata, results, track
+days, grid activities and finish rows are excluded. An explicit `Time TBC` label
+always overrides a numeric placeholder. Event title/year and track timezone must
+match; conflicting or missing evidence does not create a time proposal.
+
+The new `24hseries_2027.json` contains Kyalami plus the five European events:
+Mugello, Spa-Francorchamps, Red Bull Ring, Paul Ricard and Barcelona. Round numbers
+1–6 are chronological within this combined app calendar. European session days and
+durations are provisional templates from 2026; every start time remains `null`.
+Red Bull Ring uses the 2026 Nürburgring 12-hour split-race template. The common
+single-block Qualifying format is used, including Mugello, pending its timetable.
+Kyalami's published practice, qualifying and night practice are converted from
+Africa/Johannesburg to Europe/Amsterdam. Its race remains TBC because the publisher
+explicitly marks the start time unconfirmed.
+
+For a generic Qualifying row, all published class/driver runs form one block from
+the first start to the last finish (including gaps). An incomplete/TBC block is
+never partially filled. Legacy numbered slots without class labels are ambiguous
+and require review rather than attaching the wrong class. No support-session
+results are used as timetable evidence.
+
+All five 2026 events and all six 2027 events have explicit officialScheduleUrl
+values. The fetched 2026 pages currently show archived results without the Time
+Schedule section; these correctly yield no time proposals. Published 2027
+European event pages likewise currently have no timetable.
+
+Verification: compact actual page extracts for all eleven events; tests for title,
+year, timezone, unpublished schedules, TBC race placeholders, support exclusion,
+qualifying aggregation, existing-session updates and split-race numbering. Live
+scanner checks passed for Kyalami and Mugello on 5 October 2026. Run:
+
+```sh
+python3 -m unittest discover -s tests -p 'test_24hseries_schedule.py' -v
+```
+
+Official calendar: https://www.24hseries.com/races
+Reference timetable: https://www.24hseries.com/races/michelin-24h-kyalami-2027
+
+
+## ELMS (added 5 October 2026)
+
+`elms` now supports both scheduled scans and the editor's official-time controls.
+The registered European Le Mans Series event URL points to the same ACO/LMEM
+website family as WEC, ALMS and Le Mans Cup. A dedicated timetable reader is used
+because ordinary PDF text extraction separates the ELMS columns. The existing
+PDF downloader now has an optional layout-preserving mode; other series retain
+their existing extraction behavior.
+
+The scanner selects the highest numbered **Timetable Vn** linked by the event
+page, validates the document's event/year and dates, and reads only ELMS rows.
+Bronze tests, promoter tests, support championships, inspection laps, grid/green
+flag times and administrative activities are excluded. Free Practice 1 and 2,
+all four class qualifying runs as one block, and the actual race are matched to
+the existing four calendar slots. Qualifying includes gaps from the first start
+to the last finish. Missing or repeated classes, overlapping qualifying runs,
+unconfirmed rows and incomplete schedules require review.
+
+Session durations are authoritative for ELMS, so a changed duration can produce
+a proposal even if its start time is unchanged. Track time is converted through
+UTC to Europe/Amsterdam. This matters at Silverstone and Portimão: the latest
+Portimão 2026 timetable's Saturday 14:30 track-time race start becomes 15:30 in
+the editor (13:30 UTC).
+
+All six verified 2026 event links have been added to `elms_2026.json`. Three
+legacy Le Castellet session kinds have been corrected from race to practice /
+qualifying. Existing calendar times and results are preserved. Future event
+URLs are constructed from the event name and calendar year; unpublished 2027
+event pages/time schedules yield an unresolved source status and remain TBC.
+
+Verification: six original 2026 PDF fixtures plus layout text and event-page
+extracts. Tests cover PDF extraction, numeric timetable version selection,
+support filtering, wrong event/year, incomplete/TBC schedules, timezone
+conversion, matching existing IDs, scan behavior and editor acceptance/undo.
+Live Portimão scan passed on 5 October 2026. The full suite has 73 Python tests
+and three JavaScript suites, all passing.
+
+```sh
+python3 -m unittest discover -s tests -p 'test_elms_schedule.py' -v
+```
+
+Sources:
+- https://www.europeanlemansseries.com/en/race/4-hours-of-barcelona-2026
+- https://www.europeanlemansseries.com/en/race/4-hours-of-portimao-2026
+- https://www.europeanlemansseries.com/en/race/document/download/2491
+
+
+### BSB and Formula DRIFT
+
+`bsb-timetable` reads the BSB event page and verifies its season, exact round,
+circuit and weekday dates against the official season calendar. Only BSB's
+own practice, pre-qualifying, qualifying, Superpole, warmup and three races
+are accepted. Gates, tests and combined practice standings are excluded.
+Calendar times remain Europe/London, including Assen converted from
+Europe/Amsterdam (the site calls summer venue clocks CET).
+
+`fd-timetable` reads the dated PRO timetable on each Formula DRIFT event page.
+PROSPEC, public opening hours, ceremonies and other fan activities are excluded;
+a combined opening ceremony + Top 16 row retains its published block start.
+Practice 1/2 and repeated Warmup slots stay separate, with Warmup as `testing`
+and Top 32/16 as `race`. Real published start/end ranges supply duration.
+2026 retains the existing UTC calendar convention; new seasons use the app's
+America/Los_Angeles convention, with venue IANA zones for the original times.
+The editor handles legacy `timeUTC` baselines and removes that old field when
+an accepted time correction is stored under `timeLocal`.
+
+All 19 existing 2026 events now have their verified official event links.
+Filled upcoming BSB/FD events are refreshed alongside TBC slots. Calendars are
+never edited by the scanner; corrections remain proposals for review.
+Snapshots of all 19 official event pages support regression tests. As checked
+on 5 October 2026, Atlanta has no readable schedule and Orlando's practice
+range is 3:00PM–4:30AM. These events remain unresolved instead of guessing an
+end time or silently treating PROSPEC sessions as PRO. The reader deliberately
+rejects incomplete, contradictory, wrong-event and wrong-season timetables.

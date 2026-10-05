@@ -95,26 +95,43 @@
     return { rounds, round };
   }
 
+  function sessionAlias(name) {
+    return String(name || '').normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim()
+      .replace(/^free practice\b/, 'practice')
+      .replace(/\bwarm up\b/g, 'warmup')
+      .replace(/\b(?:top 10 shootout|ttso)\b/g, 'top ten shootout')
+      .replace(/^(race|qualifying|top ten shootout) 1$/, '$1');
+  }
+
+  function sessionFamily(name) {
+    const value = sessionAlias(name);
+    return (value.match(/\b(?:warmup|shootout|superpole|hyperpole|night|bronze|pre qualifying|final|high line|cancelled|canceled|resumption|rescheduled|gt[234]|lmgt3|lmp[23]|hypercar|pro am|group [a-z]|top \d+|fast \d+)\b/g) || []).sort().join('|');
+  }
+
   function matchingCalendarSession(calendarFiles, proposal) {
     const rounds = calendarFiles?.[proposal?.calendarFile];
     const round = rounds?.find(item => item.id === proposal?.eventId);
     if (!round || !proposal?.proposed) return null;
-    const exactId = (round.sessions || []).find(item => item.id === (proposal.sessionId || proposal.proposed.sessionId));
-    if (exactId) return exactId;
-    return (round.sessions || []).find(item =>
-      String(item.name || '').toLowerCase() === String(proposal.proposed.name || proposal.sessionName || '').toLowerCase() &&
+    const exactIds = (round.sessions || []).filter(item => item.id === (proposal.sessionId || proposal.proposed.sessionId));
+    if (exactIds.length > 1) return null;
+    if (exactIds.length === 1) return exactIds[0];
+    const matches = (round.sessions || []).filter(item =>
+      sessionAlias(item.name) === sessionAlias(proposal.proposed.name || proposal.sessionName) &&
       item.kind === proposal.proposed.kind &&
       (item._date || item.date || '') === proposal.proposed.date &&
-      (item._time || item.timeLocal || '') === proposal.proposed.timeLocal
-    ) || null;
+      (item._time || item.timeLocal || item.timeUTC || '') === proposal.proposed.timeLocal
+    );
+    return matches.length === 1 ? matches[0] : null;
   }
 
   function isFulfilled(calendarFiles, proposal) {
     const session = matchingCalendarSession(calendarFiles, proposal);
-    if (!session || !proposal?.proposed) return false;
+    if (!session || session._tbcMode || !proposal?.proposed) return false;
     return (session._date || session.date || '') === proposal.proposed.date &&
-      (session._time || session.timeLocal || '') === proposal.proposed.timeLocal &&
-      session.name === proposal.proposed.name && session.kind === proposal.proposed.kind;
+      (session._time || session.timeLocal || session.timeUTC || '') === proposal.proposed.timeLocal &&
+      sessionAlias(session.name) === sessionAlias(proposal.proposed.name) && session.kind === proposal.proposed.kind &&
+      (!['sf', 'supergt', 'f1academy', 'elms', 'fd'].includes(proposal.seriesId) ||
+        proposal.proposed.durationMinutes == null || session.durationMinutes === proposal.proposed.durationMinutes);
   }
 
   function mergeLocalDecisions(remote, localItems, calendarFiles) {
@@ -163,26 +180,27 @@
 
   function sortCalendarSessions(sessions) {
     return (sessions || []).sort((left, right) => {
-      const leftKey = `${left?._date || left?.date || left?.tbcDate || '9999-99-99'}T${left?._time || left?.timeLocal || '99:99'}`;
-      const rightKey = `${right?._date || right?.date || right?.tbcDate || '9999-99-99'}T${right?._time || right?.timeLocal || '99:99'}`;
+      const leftKey = `${left?._date || left?.date || left?.tbcDate || '9999-99-99'}T${left?._time || left?.timeLocal || left?.timeUTC || '99:99'}`;
+      const rightKey = `${right?._date || right?.date || right?.tbcDate || '9999-99-99'}T${right?._time || right?.timeLocal || right?.timeUTC || '99:99'}`;
       return leftKey.localeCompare(rightKey) || String(left?.name || '').localeCompare(String(right?.name || ''), 'nl');
     });
   }
 
   function apply(calendarFiles, proposal) {
-    if (proposal.status !== 'open' || !proposal.proposed || !sourceConfirmed(proposal)) {
+    if (proposal.status !== 'open' || !proposal.proposed || proposal.stale || !sourceConfirmed(proposal)) {
       throw new Error('Alleen een betrouwbaar open voorstel kan worden geaccepteerd.');
     }
     const { round } = findTarget(calendarFiles, proposal);
+    if (isFulfilled(calendarFiles, proposal)) return { type: 'noop', sessionId: matchingCalendarSession(calendarFiles, proposal).id };
     if (!Array.isArray(round.sessions)) round.sessions = [];
     if (proposal.proposalType === 'new-session') {
-      const sameValues = item => item.name === proposal.proposed.name &&
+      const sameValues = item => !item._tbcMode && sessionAlias(item.name) === sessionAlias(proposal.proposed.name) &&
         item.kind === proposal.proposed.kind &&
         (item._date || item.date) === proposal.proposed.date &&
         (item._time || item.timeLocal) === proposal.proposed.timeLocal;
       const fulfilled = round.sessions.find(sameValues);
       if (fulfilled) return { type: 'noop', sessionId: fulfilled.id };
-      const sameSession = round.sessions.find(item => item.name === proposal.proposed.name &&
+      const sameSession = round.sessions.find(item => sessionAlias(item.name) === sessionAlias(proposal.proposed.name) &&
         item.kind === proposal.proposed.kind && (item._date || item.date) === proposal.proposed.date);
       if (sameSession) throw new Error(`De nieuwe sessie ${proposal.proposed.name} bestaat al met een andere tijd. Controleer je concept of vernieuw de broncontrole.`);
       let createdId = proposal.proposed.sessionId;
@@ -201,6 +219,7 @@
       sortCalendarSessions(round.sessions);
       return { type: 'new-session', sessionId: created.id };
     }
+    if (round.sessions.filter(item => item.id === proposal.sessionId).length > 1) throw new Error('Meerdere conceptsessies hebben hetzelfde ID. Controleer de kalender.');
     let index = round.sessions.findIndex(item => item.id === proposal.sessionId);
     if (index < 0) {
       const current = proposal.current;
@@ -209,7 +228,7 @@
         ? round.sessions.map((item, index) => ({ item, index })).filter(({ item }) =>
           item.kind === expectedKind &&
           (item._date || item.date || item.tbcDate || null) === (current.date || null) &&
-          (item._time || item.timeLocal || null) === (current.timeLocal || null) &&
+          (item._time || item.timeLocal || item.timeUTC || null) === (current.timeLocal || null) &&
           (!current.name || item.name === current.name))
         : [];
       if (candidates.length !== 1) throw new Error(candidates.length > 1
@@ -218,6 +237,19 @@
       index = candidates[0].index;
     }
     const session = round.sessions[index];
+    if (sessionFamily(session.name) !== sessionFamily(proposal.proposed.name)) {
+      throw new Error('Het voorstel past bij een ander sessietype of een andere klasse. Vernieuw de broncontrole en controleer de koppeling.');
+    }
+    const current = proposal.current;
+    const currentTime = session._tbcMode ? null : (session._time || session.timeLocal || session.timeUTC || null);
+    if (!current || !Object.hasOwn(current, 'date') || !Object.hasOwn(current, 'timeLocal') ||
+        (session._date || session.date || null) !== (current.date || null) ||
+        currentTime !== (current.timeLocal || null) ||
+        (current.name && session.name !== current.name) ||
+        (current.kind && session.kind !== current.kind) ||
+        (Object.hasOwn(current, 'durationMinutes') && session.durationMinutes !== current.durationMinutes)) {
+      throw new Error('De conceptsessie is gewijzigd sinds de broncontrole. Vernieuw de broncontrole voordat je dit voorstel accepteert.');
+    }
     const before = JSON.parse(JSON.stringify(session));
     session.name = proposal.proposed.name || session.name;
     session.kind = proposal.proposed.kind || session.kind;
@@ -227,6 +259,7 @@
     session._date = proposal.proposed.date;
     session._time = proposal.proposed.timeLocal;
     session._tbcMode = false;
+    delete session.timeUTC;
     delete session.dateUTC;
     delete session.tbcDate;
     sortCalendarSessions(round.sessions);
