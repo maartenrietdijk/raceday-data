@@ -1424,9 +1424,7 @@ function rebuildCombinedData() {
     if (!file || !Array.isArray(rounds)) return;
     (combined[file.seriesId] ||= []).push(...rounds);
   });
-  Object.values(combined).forEach(rounds => rounds.sort((a, b) =>
-    String(sessionDateValue(a.sessions?.[0]) || '').localeCompare(String(sessionDateValue(b.sessions?.[0]) || ''))
-  ));
+  Object.values(combined).forEach(rounds => rounds.sort(compareRoundDates));
   state.data = combined;
 }
 
@@ -1892,7 +1890,7 @@ function renderMain() {
     renderDashboard();
     return;
   }
-  const rounds = editableRounds(series.id);
+  const rounds = editableRounds(series.id).sort(compareRoundDates);
   const nextRoundIndex = nextUpcomingRoundIndex(rounds);
   const selectedFilename = activeCalendarFilename(series.id);
   const calendarFiles = calendarFilesForSeries(series.id);
@@ -1964,7 +1962,7 @@ function eventSourceWarning(round) {
 }
 
 function renderEventLinks(series) {
-  const rounds = editableRounds(series.id);
+  const rounds = editableRounds(series.id).sort(compareRoundDates);
   return `<section class="event-links"><div class="event-links-intro"><h2>Officiële eventpagina’s</h2><p>Vul per event de officiële pagina met het tijdschema in. Een ingevulde link heeft voorrang op automatisch zoeken. Laat leeg om automatisch te zoeken.</p><p>Bewaren slaat je wijziging lokaal op. Met <strong>Publiceer links</strong> gaan de links naar GitHub en gebruikt de autofetch ze. ‘Controleer’ bewaart en publiceert de link en start daarna de broncontrole.</p></div>
     ${!OFFICIAL_TIME_SERIES.has(series.id) ? '<p class="event-source-warning">Voor deze serie is nog geen officiële tijdscanner beschikbaar. Je kunt de eventlinks alvast bewaren.</p>' : ''}
     ${rounds.length ? rounds.map((round, i) => {
@@ -2048,6 +2046,13 @@ function roundDateRange(round) {
   const dates = (round.sessions || []).map(sessionDateValue).filter(Boolean).sort();
   if (!dates.length) return null;
   return { start: dates[0], end: dates[dates.length - 1] };
+}
+
+function compareRoundDates(a, b) {
+  // Use the first day of the weekend, including sessions whose time is still TBC.
+  const first = roundDateRange(a)?.start || '9999-12-31';
+  const second = roundDateRange(b)?.start || '9999-12-31';
+  return first.localeCompare(second);
 }
 
 function nextUpcomingRoundIndex(rounds) {
@@ -3029,7 +3034,11 @@ function updateDateTime(ri, si) {
   // Clear legacy field
   delete session.dateUTC;
   delete session.tbcDate;
+  const orderChanged = rounds.some((round, index) =>
+    index > 0 && compareRoundDates(rounds[index - 1], round) > 0);
+  if (orderChanged) rounds.sort(compareRoundDates);
   save();
+  if (orderChanged) renderProposalSurfaces();
 }
 
 function toggleRound(i) {
