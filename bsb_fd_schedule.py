@@ -189,3 +189,48 @@ def match_fd(official, all_official, existing, available):
     if len(group)>1 or slots:
         return None, 'FD: repeated session count differs; review the calendar structure'
     return None, None
+
+
+def parse_bsb_pdf(document, calendar, event, year, event_url):
+    """Read only championship rows from the linked MSV timetable, never pitlane times."""
+    from official_schedule_scanner import SourceError, SourceSession
+    days = bsb_dates(calendar, event, year, event_url)
+    zone = 'Europe/Amsterdam' if event_url.endswith('-assen') else 'Europe/London'
+    lines = [re.sub(r"\s+", "", line).upper() for line in document.body.splitlines() if line.strip()]
+    if str(year) not in ''.join(lines[:3]) or re.sub(r'[^A-Z0-9]', '', event['raceName'].upper()) not in ''.join(lines[:3]):
+        raise SourceError('BSB: timetable does not confirm the season')
+    result, day, previous_qualifying = [], None, False
+    names = {'FREEPRACTICE1':'Free Practice 1','FREEPRACTICE2':'Free Practice 2',
+             'FREEPRACTICE3':'Free Practice 3','PREQUALIFYING':'Pre Qualifying',
+             'QUALIFYING1':'Qualifying 1','QUALIFYING2':'Qualifying 2',
+             'WARMUP':'Warm Up','RACEONE':'Race 1','RACETWO':'Race 2',
+             'RACETHREE':'Race 3','THEFINAL':'Race 3','SUPERPOLE':'Superpole'}
+    for index, line in enumerate(lines):
+        dated = re.match(r'(MONDAY|TUESDAY|WEDNESDAY|THURSDAY|FRIDAY|SATURDAY|SUNDAY)(\d{1,2})(?:ST|ND|RD|TH)?([A-Z]+)',line)
+        if dated:
+            matches = [d for d in days if d.day == int(dated[2]) and d.strftime('%B').upper() == dated[3] and d.strftime('%A').upper() == dated[1]]
+            if len(matches) != 1: raise SourceError('BSB: PDF day differs from official weekend')
+            day = matches[0];previous_qualifying = False
+            continue
+        clock = re.match(r'(\d{1,2})[.:](\d{2})(?:[–—-](\d{1,2})[.:](\d{2}))?',line)
+        if not clock or not day: continue
+        block = line
+        for following in lines[index+1:index+5]:
+            if re.match(r'\d{1,2}[.:]\d{2}',following): break
+            block += following
+        championship = 'BRITISHSUPERBIKES' in block
+        # Q2 shares the championship cell with the immediately preceding Q1 row.
+        if not championship and not (previous_qualifying and 'QUALIFYING2' in line and 'ABOVEFROMPQ' in line):
+            previous_qualifying = False
+            continue
+        if 'PITLANEOPENS' in block: previous_qualifying = False;continue
+        name = next((value for token,value in names.items() if token in block),None)
+        if not name: previous_qualifying = False;continue
+        hour, minute = int(clock[1]), int(clock[2])
+        if hour > 23 or minute > 59: raise SourceError('BSB: invalid PDF clock')
+        result.append(SourceSession(name,day.isoformat(),f'{hour:02d}:{minute:02d}',zone))
+        previous_qualifying = name == 'Qualifying 1'
+    required = {'Free Practice 1','Free Practice 2','Free Practice 3','Pre Qualifying','Qualifying 1','Qualifying 2','Race 1','Race 2','Race 3','Warm Up'}
+    if set(r.name for r in result) != required or len(result) != len(required):
+        raise SourceError('BSB: PDF timetable incomplete or ambiguous; HTML corrections are not safe')
+    return result

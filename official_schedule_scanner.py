@@ -25,6 +25,7 @@ import zlib
 from dataclasses import dataclass
 from datetime import date, datetime, time, timedelta, timezone
 from html.parser import HTMLParser
+from http.client import HTTPException
 from pathlib import Path
 from typing import Dict, Iterable, List, Optional, Sequence, Tuple
 from urllib.error import HTTPError, URLError
@@ -36,7 +37,7 @@ from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 if __name__ == "__main__":
     sys.modules.setdefault("official_schedule_scanner", sys.modules[__name__])
 
-from bsb_fd_schedule import parse_bsb_schedule, parse_fd_schedule, specific_kind, match_fd
+from bsb_fd_schedule import parse_bsb_schedule, parse_bsb_pdf, parse_fd_schedule, specific_kind, match_fd
 
 LOG = logging.getLogger("raceday.session_times")
 USER_AGENT = "RaceDay official schedule scanner/1.0 (+https://raceday.app)"
@@ -239,6 +240,9 @@ def allowed_url(url: str, domains: Sequence[str]) -> bool:
 def fetch_url(url: str, allowed_domains: Sequence[str], extra_headers: Optional[Dict[str, str]] = None) -> FetchResult:
     if not allowed_url(url, allowed_domains):
         raise SourceError("source domain is not allowlisted: {}".format(url))
+    # Official event slugs can contain spaces or Unicode (e.g. Indianapolis 8 Hour).
+    # Preserve URL delimiters and existing escapes while encoding unsafe characters.
+    url = quote(url, safe=":/?&=#%")
     headers = {"User-Agent": USER_AGENT, "Accept": "text/html,application/xhtml+xml,application/json"}
     headers.update(extra_headers or {})
     request = Request(url, headers=headers)
@@ -283,7 +287,7 @@ def fetch_url(url: str, allowed_domains: Sequence[str], extra_headers: Optional[
         if "CERTIFICATE_VERIFY_FAILED" in str(exc):
             return fetch_url_with_curl(url, allowed_domains)
         raise SourceError("could not read official source {}: {}".format(url, exc)) from exc
-    except TimeoutError as exc:
+    except (OSError, HTTPException) as exc:
         raise SourceError("could not read official source {}: {}".format(url, exc)) from exc
 
 
@@ -364,6 +368,8 @@ def fetch_pdf_url(url: str, allowed_domains: Sequence[str], preserve_layout: boo
     except URLError as exc:
         if "CERTIFICATE_VERIFY_FAILED" not in str(exc):
             raise SourceError("could not read official timetable PDF {}: {}".format(url, exc)) from exc
+    except (OSError, HTTPException) as exc:
+        raise SourceError("could not read official timetable PDF {}: {}".format(url, exc)) from exc
     marker = b"\nRACEDAY_FINAL_URL:"
     try:
         result = subprocess.run(
@@ -2433,6 +2439,8 @@ def proposal_base(series_cfg: dict, filename: str, event: dict, source: FetchRes
             "title": source.title,
             "checkedAt": checked_at,
             "lastModified": source.last_modified,
+            **({"confirmationPolicy": "bsb-official-pdf-v1"}
+               if series_cfg.get("sourceKind") == "bsb-timetable" and source.title == "Official timetable PDF" else {}),
             **({"confirmationPolicy": "f1-published-schedule-v1"}
                if series_cfg.get("sourceKind") == "formula1-jsonld" else {}),
         },
@@ -2653,7 +2661,8 @@ def merge_proposals(previous: Sequence[dict], current: Sequence[dict], generated
             last_reliable = next(
                 (old_item for old_item in reversed(previous_identity)
                  if old_item.get("proposed") and old_item.get("status") in {"open", "accepted", "rejected"}
-                 and (old_item.get("seriesId") != "f1" or old_item.get("source", {}).get("confirmationPolicy") == "f1-published-schedule-v1")),
+                 and (old_item.get("seriesId") != "f1" or old_item.get("source", {}).get("confirmationPolicy") == "f1-published-schedule-v1")
+                 and (old_item.get("seriesId") != "bsb" or old_item.get("source", {}).get("confirmationPolicy") == "bsb-official-pdf-v1")),
                 None,
             )
             if last_reliable:
@@ -3034,7 +3043,12 @@ def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Opti
                 calendar_url = cfg["calendarUrl"]
                 if calendar_url not in calendar_cache:
                     calendar_cache[calendar_url] = fetch_url(calendar_url, cfg["allowedDomains"])
-                sessions = parse_bsb_schedule(source, calendar_cache[calendar_url], event, event_year)
+                pdf_url = discover_timetable_pdf(source)
+                if not pdf_url:
+                    raise SourceError("BSB: official timetable PDF is not published; HTML corrections are not safe")
+                document = fetch_pdf_url(pdf_url, cfg["allowedDomains"], preserve_layout=True)
+                sessions = parse_bsb_pdf(document, calendar_cache[calendar_url], event, event_year, source.final_url)
+                source = document
             elif cfg["sourceKind"] == "fd-timetable":
                 sessions = parse_fd_schedule(source, event, event_year, source_tz)
             elif cfg["sourceKind"] == "supercars-embedded-schedule":
