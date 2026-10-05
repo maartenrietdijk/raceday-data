@@ -43,11 +43,12 @@
         "sessionId": "elms-2026-r06-s1"
       },
       "dateChanged": false,
-      "status": "open",
+      "status": "accepted",
       "reason": "De ingevulde sessie wordt vervangen door de nieuwste officiële tijd.",
       "debug": false,
       "fingerprint": "c45e5f50194326893cb6d9c5fc177d4fc5c31c89f54f3f932577c23b94e62629",
-      "id": "schedule-c45e5f5019432689"
+      "id": "schedule-c45e5f5019432689",
+      "decisionAt": "2026-10-05T18:16:41.205Z"
     },
     {
       "seriesId": "supercars",
@@ -327,11 +328,12 @@
         "sessionId": "elms-2026-r06-s2"
       },
       "dateChanged": false,
-      "status": "open",
+      "status": "accepted",
       "reason": "De ingevulde sessie wordt vervangen door de nieuwste officiële tijd.",
       "debug": false,
       "fingerprint": "c63ca2c52cfaa3f23775789d72126f4f22519395d697673ea3ad87140d9efa63",
-      "id": "schedule-c63ca2c52cfaa3f2"
+      "id": "schedule-c63ca2c52cfaa3f2",
+      "decisionAt": "2026-10-05T18:16:41.205Z"
     },
     {
       "seriesId": "dtm",
@@ -422,7 +424,7 @@
         "sessionId": "dtm-2026-r08-s1"
       },
       "dateChanged": false,
-      "status": "superseded",
+      "status": "rejected",
       "reason": "De ingevulde sessie wordt vervangen door de nieuwste officiële tijd.",
       "debug": false,
       "fingerprint": "a0f95d7cb4085c09e509a4b36e6a4d6d322e345abcc9e7e3cea68a99256bc79f",
@@ -567,7 +569,7 @@
         "sessionId": "dtm-2026-r08-s2"
       },
       "dateChanged": false,
-      "status": "superseded",
+      "status": "rejected",
       "reason": "De ingevulde sessie wordt vervangen door de nieuwste officiële tijd.",
       "debug": false,
       "fingerprint": "e86381348ae4d95a49d72bdf03622d243d14908e4afb5c09471993928d93bf65",
@@ -664,11 +666,12 @@
         "sessionId": "elms-2026-r06-s3"
       },
       "dateChanged": false,
-      "status": "open",
+      "status": "accepted",
       "reason": "De ingevulde sessie wordt vervangen door de nieuwste officiële tijd.",
       "debug": false,
       "fingerprint": "a311d0b94cf0ce13c331e1edb9f7cb4f2a4a64ceee2afe56fe603138522f3d72",
-      "id": "schedule-a311d0b94cf0ce13"
+      "id": "schedule-a311d0b94cf0ce13",
+      "decisionAt": "2026-10-05T18:16:41.205Z"
     },
     {
       "seriesId": "sf",
@@ -995,11 +998,12 @@
         "sessionId": "elms-2026-r06-s4"
       },
       "dateChanged": false,
-      "status": "open",
+      "status": "accepted",
       "reason": "De ingevulde sessie wordt vervangen door de nieuwste officiële tijd.",
       "debug": false,
       "fingerprint": "61a1d39ac15cbde62cfe5695115870c7ba7fda309b5b5bab912c8d4ad0b9c557",
-      "id": "schedule-61a1d39ac15cbde6"
+      "id": "schedule-61a1d39ac15cbde6",
+      "decisionAt": "2026-10-05T18:16:41.205Z"
     },
     {
       "seriesId": "supercars",
@@ -1090,7 +1094,7 @@
         "sessionId": "supercars-2026-11-official-cf3d873c0999"
       },
       "dateChanged": false,
-      "status": "superseded",
+      "status": "rejected",
       "reason": "Official session time is available.",
       "debug": false,
       "fingerprint": "f98b52fcab992446966d1adb7615e26ff420798133d5a79483c5d7d289bd6bc9",
@@ -1379,7 +1383,7 @@
         "sessionId": "supercars-2026-11-s03"
       },
       "dateChanged": false,
-      "status": "superseded",
+      "status": "rejected",
       "reason": "De ingevulde sessie wordt vervangen door de nieuwste officiële tijd.",
       "debug": false,
       "fingerprint": "0284e552bac228189290a280e288b7fb789e11200ca8c14c6d2365e21e5b6a1a",
@@ -1770,11 +1774,12 @@
         "sessionId": "supergt-2026-r07-fp"
       },
       "dateChanged": false,
-      "status": "open",
+      "status": "accepted",
       "reason": "Official session time is available.",
       "debug": false,
       "fingerprint": "6ebc3728d762f2f8b0a7de8253df90398948b10a534c3a1df7037fe4be819889",
-      "id": "schedule-6ebc3728d762f2f8"
+      "id": "schedule-6ebc3728d762f2f8",
+      "decisionAt": "2026-10-05T18:18:45.364Z"
     },
     {
       "seriesId": "supergt",
@@ -1817,11 +1822,12 @@
         "sessionId": "supergt-2026-r07-q"
       },
       "dateChanged": false,
-      "status": "open",
+      "status": "accepted",
       "reason": "Official session time is available.",
       "debug": false,
       "fingerprint": "be28548bcf0b5349328b63e1e1fc4f4e0a16486a939cb4c1ea5cd709679af5d7",
-      "id": "schedule-be28548bcf0b5349"
+      "id": "schedule-be28548bcf0b5349",
+      "decisionAt": "2026-10-05T18:18:45.364Z"
     },
     {
       "seriesId": "bsb",
@@ -2256,11 +2262,12 @@
         "sessionId": "supergt-2026-r07-wu"
       },
       "dateChanged": false,
-      "status": "open",
+      "status": "accepted",
       "reason": "Official session time is available.",
       "debug": false,
       "fingerprint": "272331799fec101885774b612a15e4ce3115fb04ca402fe5b6501cd1cc41ab6a",
-      "id": "schedule-272331799fec1018"
+      "id": "schedule-272331799fec1018",
+      "decisionAt": "2026-10-05T18:18:45.364Z"
     },
     {
       "seriesId": "supergt",
@@ -2303,11 +2310,12 @@
         "sessionId": "supergt-2026-r07-r"
       },
       "dateChanged": false,
-      "status": "open",
+      "status": "accepted",
       "reason": "Official session time is available.",
       "debug": false,
       "fingerprint": "8095ef22e5e5eb95f53b2450426e073fcd317c1095c06811db68da623d15ebd0",
-      "id": "schedule-8095ef22e5e5eb95"
+      "id": "schedule-8095ef22e5e5eb95",
+      "decisionAt": "2026-10-05T18:18:45.364Z"
     },
     {
       "seriesId": "bsb",
