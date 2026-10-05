@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-05T18:51:24Z",
+  "generatedAt": "2026-10-05T18:55:38Z",
   "proposals": [
     {
       "seriesId": "elms",
@@ -3414,6 +3414,319 @@
       "debug": true,
       "fingerprint": "f4234dad4ed277097b48164500cd638b28f28c1a9f6954adf8ec6ca32d3a0b23",
       "id": "schedule-f4234dad4ed27709"
+    },
+    {
+      "seriesId": "indycar",
+      "seriesName": "NTT INDYCAR SERIES",
+      "calendarFile": "indycar_2026.json",
+      "eventId": "indycar-2026-r07",
+      "eventName": "Indianapolis 500",
+      "roundNumber": 7,
+      "source": {
+        "stableUrl": "https://www.indycar.com/-/media/Files/2026/NICS/07-500/indycar-weekendschedule-v4-26I500.pdf",
+        "finalUrl": "https://www.indycar.com/-/media/Files/2026/NICS/07-500/indycar-weekendschedule-v4-26I500.pdf",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-10-05T18:55:38Z",
+        "lastModified": "Sat, 16 May 2026 20:59:15 GMT"
+      },
+      "proposalType": "verification",
+      "sessionId": "indycar-2026-r07-s3",
+      "sessionName": "Practice 1",
+      "current": {
+        "name": "Practice 1",
+        "kind": "practice",
+        "date": "2026-05-12",
+        "timeLocal": "12:00",
+        "durationMinutes": 240
+      },
+      "sourceSessionName": "PRACTICE 1",
+      "sourceTime": {
+        "date": "2026-05-12",
+        "time": "12:00",
+        "timeZone": "America/New_York"
+      },
+      "editorTimeZone": "America/New_York",
+      "proposed": {
+        "date": "2026-05-12",
+        "timeLocal": "12:00",
+        "durationMinutes": 360,
+        "name": "Practice 1",
+        "kind": "practice",
+        "utcInstant": "2026-05-12T16:00:00Z",
+        "sessionId": "indycar-2026-r07-s3"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "598036a6c39bf445459bf5fbc2af43d06b9ebc63c6614d9b216c47a656c25d14",
+      "id": "schedule-598036a6c39bf445"
+    },
+    {
+      "seriesId": "indycar",
+      "seriesName": "NTT INDYCAR SERIES",
+      "calendarFile": "indycar_2026.json",
+      "eventId": "indycar-2026-r07",
+      "eventName": "Indianapolis 500",
+      "roundNumber": 7,
+      "source": {
+        "stableUrl": "https://www.indycar.com/-/media/Files/2026/NICS/07-500/indycar-weekendschedule-v4-26I500.pdf",
+        "finalUrl": "https://www.indycar.com/-/media/Files/2026/NICS/07-500/indycar-weekendschedule-v4-26I500.pdf",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-10-05T18:55:38Z",
+        "lastModified": "Sat, 16 May 2026 20:59:15 GMT"
+      },
+      "proposalType": "verification",
+      "sessionId": "indycar-2026-r07-s1778503981594",
+      "sessionName": "Practice 2",
+      "current": {
+        "name": "Practice 2",
+        "kind": "practice",
+        "date": "2026-05-13",
+        "timeLocal": "12:00",
+        "durationMinutes": 360
+      },
+      "sourceSessionName": "PRACTICE 2",
+      "sourceTime": {
+        "date": "2026-05-13",
+        "time": "12:00",
+        "timeZone": "America/New_York"
+      },
+      "editorTimeZone": "America/New_York",
+      "proposed": {
+        "date": "2026-05-13",
+        "timeLocal": "12:00",
+        "durationMinutes": 360,
+        "name": "Practice 2",
+        "kind": "practice",
+        "utcInstant": "2026-05-13T16:00:00Z",
+        "sessionId": "indycar-2026-r07-s1778503981594"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "1ff2f7641d1ec67c54200796e3cfd3712f390858b6c3ea03771749662cf9c35d",
+      "id": "schedule-1ff2f7641d1ec67c"
+    },
+    {
+      "seriesId": "indycar",
+      "seriesName": "NTT INDYCAR SERIES",
+      "calendarFile": "indycar_2026.json",
+      "eventId": "indycar-2026-r07",
+      "eventName": "Indianapolis 500",
+      "roundNumber": 7,
+      "source": {
+        "stableUrl": "https://www.indycar.com/-/media/Files/2026/NICS/07-500/indycar-weekendschedule-v4-26I500.pdf",
+        "finalUrl": "https://www.indycar.com/-/media/Files/2026/NICS/07-500/indycar-weekendschedule-v4-26I500.pdf",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-10-05T18:55:38Z",
+        "lastModified": "Sat, 16 May 2026 20:59:15 GMT"
+      },
+      "proposalType": "verification",
+      "sessionId": "indycar-2026-r07-s1778503976420",
+      "sessionName": "Practice 3",
+      "current": {
+        "name": "Practice 3",
+        "kind": "practice",
+        "date": "2026-05-14",
+        "timeLocal": "12:00",
+        "durationMinutes": 360
+      },
+      "sourceSessionName": "PRACTICE 3",
+      "sourceTime": {
+        "date": "2026-05-14",
+        "time": "12:00",
+        "timeZone": "America/New_York"
+      },
+      "editorTimeZone": "America/New_York",
+      "proposed": {
+        "date": "2026-05-14",
+        "timeLocal": "12:00",
+        "durationMinutes": 360,
+        "name": "Practice 3",
+        "kind": "practice",
+        "utcInstant": "2026-05-14T16:00:00Z",
+        "sessionId": "indycar-2026-r07-s1778503976420"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "8a36e6252515834c338d7651bb10671a844c7c3a53b2b413a31724e7346f1e0e",
+      "id": "schedule-8a36e6252515834c"
+    },
+    {
+      "seriesId": "indycar",
+      "seriesName": "NTT INDYCAR SERIES",
+      "calendarFile": "indycar_2026.json",
+      "eventId": "indycar-2026-r07",
+      "eventName": "Indianapolis 500",
+      "roundNumber": 7,
+      "source": {
+        "stableUrl": "https://www.indycar.com/-/media/Files/2026/NICS/07-500/indycar-weekendschedule-v4-26I500.pdf",
+        "finalUrl": "https://www.indycar.com/-/media/Files/2026/NICS/07-500/indycar-weekendschedule-v4-26I500.pdf",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-10-05T18:55:38Z",
+        "lastModified": "Sat, 16 May 2026 20:59:15 GMT"
+      },
+      "proposalType": "conflict",
+      "sessionId": null,
+      "sessionName": "PRACTICE 4",
+      "current": {
+        "name": null,
+        "kind": null,
+        "date": null,
+        "timeLocal": null,
+        "durationMinutes": null
+      },
+      "sourceSessionName": "PRACTICE 4",
+      "sourceTime": {
+        "date": "2026-05-15",
+        "time": "12:00",
+        "timeZone": "America/New_York"
+      },
+      "editorTimeZone": "America/New_York",
+      "proposed": null,
+      "dateChanged": false,
+      "status": "requires_review",
+      "reason": "The matching calendar session is cancelled; review its status manually.",
+      "debug": false,
+      "fingerprint": "47dbd5417ad14d1d15daa03a2d0c9018c0e0e5986c8afd41c660c5824118c08b",
+      "id": "schedule-47dbd5417ad14d1d"
+    },
+    {
+      "seriesId": "indycar",
+      "seriesName": "NTT INDYCAR SERIES",
+      "calendarFile": "indycar_2026.json",
+      "eventId": "indycar-2026-r07",
+      "eventName": "Indianapolis 500",
+      "roundNumber": 7,
+      "source": {
+        "stableUrl": "https://www.indycar.com/-/media/Files/2026/NICS/07-500/indycar-weekendschedule-v4-26I500.pdf",
+        "finalUrl": "https://www.indycar.com/-/media/Files/2026/NICS/07-500/indycar-weekendschedule-v4-26I500.pdf",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-10-05T18:55:38Z",
+        "lastModified": "Sat, 16 May 2026 20:59:15 GMT"
+      },
+      "proposalType": "verification",
+      "sessionId": "indycar-2026-r07-s1778504131012",
+      "sessionName": "Practice 7",
+      "current": {
+        "name": "Practice 7",
+        "kind": "practice",
+        "date": "2026-05-18",
+        "timeLocal": "13:00",
+        "durationMinutes": 120
+      },
+      "sourceSessionName": "PRACTICE 7",
+      "sourceTime": {
+        "date": "2026-05-17",
+        "time": "01:00",
+        "timeZone": "America/New_York"
+      },
+      "editorTimeZone": "America/New_York",
+      "proposed": {
+        "date": "2026-05-17",
+        "timeLocal": "01:00",
+        "durationMinutes": 840,
+        "name": "Practice 7",
+        "kind": "practice",
+        "utcInstant": "2026-05-17T05:00:00Z",
+        "sessionId": "indycar-2026-r07-s1778504131012"
+      },
+      "dateChanged": true,
+      "status": "mismatch",
+      "reason": "Debugcontrole: de ingevulde sessie wijkt af van de officiële bron.",
+      "debug": true,
+      "fingerprint": "68b6413d1dbcfa82f3ba2651534cbe3930eb49be0f3cc8730978a0f1be6d2b07",
+      "id": "schedule-68b6413d1dbcfa82"
+    },
+    {
+      "seriesId": "indycar",
+      "seriesName": "NTT INDYCAR SERIES",
+      "calendarFile": "indycar_2026.json",
+      "eventId": "indycar-2026-r07",
+      "eventName": "Indianapolis 500",
+      "roundNumber": 7,
+      "source": {
+        "stableUrl": "https://www.indycar.com/-/media/Files/2026/NICS/07-500/indycar-weekendschedule-v4-26I500.pdf",
+        "finalUrl": "https://www.indycar.com/-/media/Files/2026/NICS/07-500/indycar-weekendschedule-v4-26I500.pdf",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-10-05T18:55:38Z",
+        "lastModified": "Sat, 16 May 2026 20:59:15 GMT"
+      },
+      "proposalType": "conflict",
+      "sessionId": null,
+      "sessionName": "QUALIFYING 4",
+      "current": {
+        "name": null,
+        "kind": null,
+        "date": null,
+        "timeLocal": null,
+        "durationMinutes": null
+      },
+      "sourceSessionName": "QUALIFYING 4",
+      "sourceTime": {
+        "date": "2026-05-17",
+        "time": "04:30",
+        "timeZone": "America/New_York"
+      },
+      "editorTimeZone": "America/New_York",
+      "proposed": null,
+      "dateChanged": false,
+      "status": "requires_review",
+      "reason": "multiple or incompatible qualifying sessions make automatic matching ambiguous",
+      "debug": false,
+      "fingerprint": "6e05d0093ffefca895c4252777a1f93f1a57ba9b58d612b536922a01fdde9562",
+      "id": "schedule-6e05d0093ffefca8"
+    },
+    {
+      "seriesId": "indycar",
+      "seriesName": "NTT INDYCAR SERIES",
+      "calendarFile": "indycar_2026.json",
+      "eventId": "indycar-2026-r07",
+      "eventName": "Indianapolis 500",
+      "roundNumber": 7,
+      "source": {
+        "stableUrl": "https://www.indycar.com/-/media/Files/2026/NICS/07-500/indycar-weekendschedule-v4-26I500.pdf",
+        "finalUrl": "https://www.indycar.com/-/media/Files/2026/NICS/07-500/indycar-weekendschedule-v4-26I500.pdf",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-10-05T18:55:38Z",
+        "lastModified": "Sat, 16 May 2026 20:59:15 GMT"
+      },
+      "proposalType": "verification",
+      "sessionId": "indycar-2026-r07-s1778504161971",
+      "sessionName": "Practice 8",
+      "current": {
+        "name": "Practice 8",
+        "kind": "practice",
+        "date": "2026-05-22",
+        "timeLocal": "11:00",
+        "durationMinutes": 120
+      },
+      "sourceSessionName": "PRACTICE 8",
+      "sourceTime": {
+        "date": "2026-05-17",
+        "time": "11:00",
+        "timeZone": "America/New_York"
+      },
+      "editorTimeZone": "America/New_York",
+      "proposed": {
+        "date": "2026-05-17",
+        "timeLocal": "11:00",
+        "durationMinutes": 120,
+        "name": "Practice 8",
+        "kind": "practice",
+        "utcInstant": "2026-05-17T15:00:00Z",
+        "sessionId": "indycar-2026-r07-s1778504161971"
+      },
+      "dateChanged": true,
+      "status": "mismatch",
+      "reason": "Debugcontrole: de ingevulde sessie wijkt af van de officiële bron.",
+      "debug": true,
+      "fingerprint": "ca34930d7dd14b4219fe8365270b62705ac7faca0921e5521d7a23a2c5a593e7",
+      "id": "schedule-ca34930d7dd14b42"
     }
   ],
   "sourcesUsed": [
@@ -6720,6 +7033,20 @@
       "lastModified": "Sat, 14 Mar 2026 21:51:14 GMT",
       "status": "ok",
       "reason": ""
+    },
+    {
+      "seriesId": "indycar",
+      "eventId": "indycar-2026-r07",
+      "eventName": "Indianapolis 500",
+      "calendarFile": "indycar_2026.json",
+      "manualUrl": "",
+      "stableUrl": "https://www.indycar.com/Schedule.aspx",
+      "finalUrl": "https://www.indycar.com/-/media/Files/2026/NICS/07-500/indycar-weekendschedule-v4-26I500.pdf",
+      "title": "Official timetable PDF",
+      "checkedAt": "2026-10-05T18:55:38Z",
+      "lastModified": "Sat, 16 May 2026 20:59:15 GMT",
+      "status": "requires_review",
+      "reason": "De koppeling van een of meer sessies is onzeker. Beoordeel de conflicten bij Voorstellen."
     }
   ]
 }
