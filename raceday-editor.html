@@ -2301,8 +2301,8 @@ function renderProposalRow(proposal) {
     <div class="proposal-detail">
       <div class="proposal-value-grid">
         <div class="proposal-value">Huidig<strong>${esc(proposalDateTime(proposal.current))}</strong></div>
-        <span class="proposal-arrow" aria-hidden="true">→</span>
-        <div class="proposal-value">Voorstel<strong>${esc(proposalDateTime(proposal.proposed))}</strong></div>
+        ${proposal.proposed ? `<span class="proposal-arrow" aria-hidden="true">→</span>
+        <div class="proposal-value">Voorstel<strong>${esc(proposalDateTime(proposal.proposed))}</strong></div>` : `<div class="proposal-value">Broncontrole<strong>Geen nieuwe tijd gevonden</strong></div>`}
       </div>
       ${proposal.dateChanged ? '<div class="proposal-warning">Let op: het voorstel wijzigt de datum in je agenda.</div>' : ''}
       ${proposal.proposed ? `<div style="margin-top:8px">Editorzone: <strong>${esc(proposal.editorTimeZone)}</strong> · UTC: <span style="font-family:var(--mono)">${esc(proposal.proposed.utcInstant)}</span></div>` : ''}

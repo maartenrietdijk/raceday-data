@@ -487,7 +487,7 @@
     {
       "seriesId": "indycar",
       "name": "NTT INDYCAR SERIES",
-      "startUrl": "https://www.indycar.com/Schedule.aspx",
+      "startUrl": "https://www.indycar.com/Schedule?year={year}",
       "eventUrlTemplate": "https://www.indycar.com/Schedule/{year}/{slug}",
       "eventSlugAliases": {
         "firestone grand prix of st petersburg": "St-Petersburg",
@@ -512,14 +512,14 @@
         "indycar.com",
         "www.indycar.com"
       ],
-      "sourceKind": "official-schedule-document",
+      "sourceKind": "indycar-html",
       "documentCategories": [
         "NTT INDYCAR SERIES",
         "INDYCAR SERIES"
       ],
-      "eventDiscovery": "Prefer the official weekend or track-activity schedule PDF; fall back to the official event schedule.",
+      "eventDiscovery": "Read championship schedule cards from the official event HTML. TBD remains unpublished; never substitute a PDF or a previous season.",
       "sourceTimeZone": "track",
-      "notes": "Session times must be explicitly labelled local or resolved through the registered event timezone."
+      "notes": "HTML schedule clocks explicitly labelled ET/EST/EDT are America/New_York, including western venues. Editor clocks stay America/New_York."
     },
     {
       "seriesId": "indynxt",

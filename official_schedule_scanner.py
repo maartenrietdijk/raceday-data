@@ -2200,6 +2200,56 @@ def parse_24hseries_schedule(fetch: FetchResult, event: dict, year: int, source_
     return sorted(set(sessions), key=lambda x: (x.date, x.local_time, x.name))
 
 
+def parse_indycar_html(fetch: FetchResult, event: dict, year: int) -> List[SourceSession]:
+    """Read the official championship HTML cards; ET is always Eastern time."""
+    from bsb_fd_schedule import tree, nodes
+    path = urlparse(fetch.final_url).path
+    if not path.startswith("/Schedule/{}/".format(year)):
+        raise SourceError("INDYCAR: event page does not confirm the selected season")
+    tables = [n for n in tree(fetch.body) if "schedule-table" in n.attrs.get("class", "").split()]
+    sessions = []
+    for table in tables:
+        current_date = None
+        for node in nodes(table):
+            if node.tag == "h3":
+                try:
+                    day = datetime.strptime(node.text() + " " + str(year), "%A, %b %d %Y")
+                except ValueError as exc:
+                    raise SourceError("INDYCAR: invalid HTML schedule date") from exc
+                if day.strftime("%A") != node.text().split(",")[0]:
+                    raise SourceError("INDYCAR: weekday differs from selected season")
+                current_date = day.date().isoformat()
+            if "schedule-entry" not in node.attrs.get("class", "").split():
+                continue
+            labels = [n.text() for n in nodes(node) if "schedule-description" in n.attrs.get("class", "").split()]
+            clocks = [n.text() for n in nodes(node) if "schedule-time" in n.attrs.get("class", "").split()]
+            if len(labels) != 1 or not labels[0].startswith("NTT INDYCAR SERIES - "):
+                continue
+            if len(clocks) != 1 or not current_date:
+                raise SourceError("INDYCAR: ambiguous HTML schedule row")
+            if re.search(r"\b(?:TBD|TBC)\b", clocks[0], re.I):
+                continue
+            name = labels[0].split(" - ", 1)[1].strip()
+            name = re.sub(r"\bQualifications\b", "Qualifying", name, flags=re.I)
+            if not normalize_kind(name):
+                continue
+            # Both Milwaukee pages publish the two races; keep each race in its own round.
+            url_slug = path.rstrip("/").rsplit("/",1)[-1]
+            if url_slug in {"Milwaukee-Race1", "Milwaukee-Race2"}:
+                if re.match(r"Race [12]$",name) and name[-1] != url_slug[-1]:
+                    continue
+                if url_slug == "Milwaukee-Race2" and not name.startswith("Race"):
+                    continue
+            match = re.fullmatch(r"(\d{1,2}:\d{2}\s*[AP]M)\s+(ET|EST|EDT)",clocks[0],re.I)
+            if not match:
+                raise SourceError("INDYCAR: HTML clock has no confirmed Eastern timezone")
+            sessions.append(SourceSession(name,current_date,parse_clock(match[1]),"America/New_York"))
+    unique = {(item.name,item.date):item for item in sessions}
+    if len(unique) != len(sessions):
+        raise SourceError("INDYCAR: duplicate or conflicting HTML schedule rows")
+    return sessions
+
+
 def parse_dtm_api(fetch: FetchResult, year: int, source_timezone: str) -> List[SourceSession]:
     """Parse the public official DTM event API.
 
@@ -3026,6 +3076,8 @@ def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Opti
                 sessions = parse_british_gt_pdf(source, event_year, source_tz)
             elif cfg["sourceKind"] == "24hseries-timetable":
                 sessions = parse_24hseries_schedule(source, event, event_year, source_tz)
+            elif cfg["sourceKind"] == "indycar-html":
+                sessions = parse_indycar_html(source, event, event_year)
             elif cfg["sourceKind"] == "dtm-api":
                 sessions = parse_dtm_api(source, event_year, source_tz)
                 calendar_dates = {item.get("date") for item in event.get("sessions", []) if item.get("date")}
