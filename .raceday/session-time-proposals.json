@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-05T18:26:06Z",
+  "generatedAt": "2026-10-05T18:51:24Z",
   "proposals": [
     {
       "seriesId": "elms",
@@ -3179,6 +3179,241 @@
       "fingerprint": "1f58b3f67c1077612a0a81fbebca42fb53f7f60f2349dfe801b557857e88ebb9",
       "id": "schedule-1f58b3f67c107761",
       "decisionAt": "2026-10-05T09:36:24.163Z"
+    },
+    {
+      "seriesId": "indycar",
+      "seriesName": "NTT INDYCAR SERIES",
+      "calendarFile": "indycar_2026.json",
+      "eventId": "indycar-2026-r03",
+      "eventName": "Java House Grand Prix of Arlington",
+      "roundNumber": 3,
+      "source": {
+        "stableUrl": "https://www.indycar.com/-/media/Files/2026/NICS/03-ARL/indycar-weekendschedule-V2-ARL26.pdf",
+        "finalUrl": "https://www.indycar.com/-/media/Files/2026/NICS/03-ARL/indycar-weekendschedule-V2-ARL26.pdf",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-10-05T18:51:24Z",
+        "lastModified": "Sat, 14 Mar 2026 21:51:14 GMT"
+      },
+      "proposalType": "verification",
+      "sessionId": "indycar-2026-r03-s1",
+      "sessionName": "Practice 1",
+      "current": {
+        "name": "Practice 1",
+        "kind": "practice",
+        "date": "2026-03-13",
+        "timeLocal": "16:30",
+        "durationMinutes": 60
+      },
+      "sourceSessionName": "PRACTICE 1",
+      "sourceTime": {
+        "date": "2026-03-13",
+        "time": "15:00",
+        "timeZone": "America/Chicago"
+      },
+      "editorTimeZone": "America/New_York",
+      "proposed": {
+        "date": "2026-03-13",
+        "timeLocal": "16:00",
+        "durationMinutes": 60,
+        "name": "Practice 1",
+        "kind": "practice",
+        "utcInstant": "2026-03-13T20:00:00Z",
+        "sessionId": "indycar-2026-r03-s1"
+      },
+      "dateChanged": false,
+      "status": "mismatch",
+      "reason": "Debugcontrole: de ingevulde sessie wijkt af van de officiële bron.",
+      "debug": true,
+      "fingerprint": "477f74b037eae4f48d0d3d061c1eb0df416f96c85275ea19999f9a9d46160494",
+      "id": "schedule-477f74b037eae4f4"
+    },
+    {
+      "seriesId": "indycar",
+      "seriesName": "NTT INDYCAR SERIES",
+      "calendarFile": "indycar_2026.json",
+      "eventId": "indycar-2026-r03",
+      "eventName": "Java House Grand Prix of Arlington",
+      "roundNumber": 3,
+      "source": {
+        "stableUrl": "https://www.indycar.com/-/media/Files/2026/NICS/03-ARL/indycar-weekendschedule-V2-ARL26.pdf",
+        "finalUrl": "https://www.indycar.com/-/media/Files/2026/NICS/03-ARL/indycar-weekendschedule-V2-ARL26.pdf",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-10-05T18:51:24Z",
+        "lastModified": "Sat, 14 Mar 2026 21:51:14 GMT"
+      },
+      "proposalType": "verification",
+      "sessionId": "indycar-2026-r03-s1775253885662",
+      "sessionName": "Practice 2",
+      "current": {
+        "name": "Practice 2",
+        "kind": "practice",
+        "date": "2026-03-14",
+        "timeLocal": "09:30",
+        "durationMinutes": 60
+      },
+      "sourceSessionName": "PRACTICE 2",
+      "sourceTime": {
+        "date": "2026-03-14",
+        "time": "08:30",
+        "timeZone": "America/Chicago"
+      },
+      "editorTimeZone": "America/New_York",
+      "proposed": {
+        "date": "2026-03-14",
+        "timeLocal": "09:30",
+        "durationMinutes": 60,
+        "name": "Practice 2",
+        "kind": "practice",
+        "utcInstant": "2026-03-14T13:30:00Z",
+        "sessionId": "indycar-2026-r03-s1775253885662"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "901b6a1ba328cff7ae2cea79226f7a33b0bdff08888b8af36810f007263739d2",
+      "id": "schedule-901b6a1ba328cff7"
+    },
+    {
+      "seriesId": "indycar",
+      "seriesName": "NTT INDYCAR SERIES",
+      "calendarFile": "indycar_2026.json",
+      "eventId": "indycar-2026-r03",
+      "eventName": "Java House Grand Prix of Arlington",
+      "roundNumber": 3,
+      "source": {
+        "stableUrl": "https://www.indycar.com/-/media/Files/2026/NICS/03-ARL/indycar-weekendschedule-V2-ARL26.pdf",
+        "finalUrl": "https://www.indycar.com/-/media/Files/2026/NICS/03-ARL/indycar-weekendschedule-V2-ARL26.pdf",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-10-05T18:51:24Z",
+        "lastModified": "Sat, 14 Mar 2026 21:51:14 GMT"
+      },
+      "proposalType": "verification",
+      "sessionId": "indycar-2026-r03-s1775253884376",
+      "sessionName": "Qualifying",
+      "current": {
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-03-15",
+        "timeLocal": "14:30",
+        "durationMinutes": 60
+      },
+      "sourceSessionName": "QUALIFICATIONS",
+      "sourceTime": {
+        "date": "2026-03-14",
+        "time": "13:30",
+        "timeZone": "America/Chicago"
+      },
+      "editorTimeZone": "America/New_York",
+      "proposed": {
+        "date": "2026-03-14",
+        "timeLocal": "14:30",
+        "durationMinutes": 60,
+        "name": "QUALIFICATIONS",
+        "kind": "qualifying",
+        "utcInstant": "2026-03-14T18:30:00Z",
+        "sessionId": "indycar-2026-r03-s1775253884376"
+      },
+      "dateChanged": true,
+      "status": "mismatch",
+      "reason": "Debugcontrole: de ingevulde sessie wijkt af van de officiële bron.",
+      "debug": true,
+      "fingerprint": "c04084fa0bd2b624d5f32f740d12fc598b8b2de60ff844152cf6fa57d779c953",
+      "id": "schedule-c04084fa0bd2b624"
+    },
+    {
+      "seriesId": "indycar",
+      "seriesName": "NTT INDYCAR SERIES",
+      "calendarFile": "indycar_2026.json",
+      "eventId": "indycar-2026-r03",
+      "eventName": "Java House Grand Prix of Arlington",
+      "roundNumber": 3,
+      "source": {
+        "stableUrl": "https://www.indycar.com/-/media/Files/2026/NICS/03-ARL/indycar-weekendschedule-V2-ARL26.pdf",
+        "finalUrl": "https://www.indycar.com/-/media/Files/2026/NICS/03-ARL/indycar-weekendschedule-V2-ARL26.pdf",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-10-05T18:51:24Z",
+        "lastModified": "Sat, 14 Mar 2026 21:51:14 GMT"
+      },
+      "proposalType": "verification",
+      "sessionId": "indycar-2026-r03-s1775253882701",
+      "sessionName": "Warmup",
+      "current": {
+        "name": "Warmup",
+        "kind": "practice",
+        "date": "2026-03-15",
+        "timeLocal": "09:30",
+        "durationMinutes": 60
+      },
+      "sourceSessionName": "WARMUP",
+      "sourceTime": {
+        "date": "2026-03-15",
+        "time": "08:30",
+        "timeZone": "America/Chicago"
+      },
+      "editorTimeZone": "America/New_York",
+      "proposed": {
+        "date": "2026-03-15",
+        "timeLocal": "09:30",
+        "durationMinutes": 60,
+        "name": "Warmup",
+        "kind": "practice",
+        "utcInstant": "2026-03-15T13:30:00Z",
+        "sessionId": "indycar-2026-r03-s1775253882701"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "478cfb3aed10ef2b3581d6b37cd9959bd8b06ef3a061780a9c92ffa120d97f49",
+      "id": "schedule-478cfb3aed10ef2b"
+    },
+    {
+      "seriesId": "indycar",
+      "seriesName": "NTT INDYCAR SERIES",
+      "calendarFile": "indycar_2026.json",
+      "eventId": "indycar-2026-r03",
+      "eventName": "Java House Grand Prix of Arlington",
+      "roundNumber": 3,
+      "source": {
+        "stableUrl": "https://www.indycar.com/-/media/Files/2026/NICS/03-ARL/indycar-weekendschedule-V2-ARL26.pdf",
+        "finalUrl": "https://www.indycar.com/-/media/Files/2026/NICS/03-ARL/indycar-weekendschedule-V2-ARL26.pdf",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-10-05T18:51:24Z",
+        "lastModified": "Sat, 14 Mar 2026 21:51:14 GMT"
+      },
+      "proposalType": "verification",
+      "sessionId": "indycar-2026-r03-s1775253879785",
+      "sessionName": "Race",
+      "current": {
+        "name": "Race",
+        "kind": "race",
+        "date": "2026-03-15",
+        "timeLocal": "11:30",
+        "durationMinutes": 120
+      },
+      "sourceSessionName": "Race",
+      "sourceTime": {
+        "date": "2026-03-15",
+        "time": "10:30",
+        "timeZone": "America/Chicago"
+      },
+      "editorTimeZone": "America/New_York",
+      "proposed": {
+        "date": "2026-03-15",
+        "timeLocal": "11:30",
+        "durationMinutes": 120,
+        "name": "Race",
+        "kind": "race",
+        "utcInstant": "2026-03-15T15:30:00Z",
+        "sessionId": "indycar-2026-r03-s1775253879785"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "f4234dad4ed277097b48164500cd638b28f28c1a9f6954adf8ec6ca32d3a0b23",
+      "id": "schedule-f4234dad4ed27709"
     }
   ],
   "sourcesUsed": [
@@ -6471,6 +6706,20 @@
       "lastModified": null,
       "status": "unresolved",
       "reason": "could not identify one official WorldSBK round"
+    },
+    {
+      "seriesId": "indycar",
+      "eventId": "indycar-2026-r03",
+      "eventName": "Java House Grand Prix of Arlington",
+      "calendarFile": "indycar_2026.json",
+      "manualUrl": "",
+      "stableUrl": "https://www.indycar.com/Schedule.aspx",
+      "finalUrl": "https://www.indycar.com/-/media/Files/2026/NICS/03-ARL/indycar-weekendschedule-V2-ARL26.pdf",
+      "title": "Official timetable PDF",
+      "checkedAt": "2026-10-05T18:51:24Z",
+      "lastModified": "Sat, 14 Mar 2026 21:51:14 GMT",
+      "status": "ok",
+      "reason": ""
     }
   ]
 }
