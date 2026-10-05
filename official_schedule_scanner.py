@@ -3074,8 +3074,11 @@ def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Opti
                         if parsed:
                             source, sessions = itinerary, parsed
             elif cfg["sourceKind"] == "sro-event-timetable":
-                sessions = []
-                pdf_url = discover_timetable_pdf(source)
+                sessions = (
+                    parse_official_tables(source, event_year, source_tz)
+                    if cfg.get("preferHtmlTimetable") else []
+                )
+                pdf_url = discover_timetable_pdf(source) if not sessions else None
                 if pdf_url:
                     try:
                         document = fetch_pdf_url(pdf_url, cfg["allowedDomains"])

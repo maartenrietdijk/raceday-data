@@ -369,6 +369,20 @@
       "notes": "The editor stores this series in Europe/Amsterdam."
     },
     {
+      "seriesId": "igtc",
+      "name": "Intercontinental GT Challenge",
+      "startUrl": "https://www.intercontinentalgtchallenge.com/calendar",
+      "allowedDomains": [
+        "intercontinentalgtchallenge.com",
+        "www.intercontinentalgtchallenge.com"
+      ],
+      "sourceKind": "sro-event-timetable",
+      "preferHtmlTimetable": true,
+      "eventDiscovery": "Follow Event Info and read the official HTML timetable; use the linked official PDF only when no HTML sessions are published.",
+      "sourceTimeZone": "track",
+      "notes": "Use Local Time and GMT from the official timetable. The editor stores this series in Europe/Amsterdam."
+    },
+    {
       "seriesId": "british_gt",
       "name": "British GT Championship",
       "startUrl": "https://www.britishgt.com/calendar",
