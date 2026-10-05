@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-05T18:58:11Z",
+  "generatedAt": "2026-10-05T18:59:53Z",
   "proposals": [
     {
       "seriesId": "elms",
@@ -4189,6 +4189,194 @@
       "debug": true,
       "fingerprint": "ab5d0c2a0c77865fffbfa266602e7e530e42bb08c66da16d24ab28c3df443f34",
       "id": "schedule-ab5d0c2a0c77865f"
+    },
+    {
+      "seriesId": "indycar",
+      "seriesName": "NTT INDYCAR SERIES",
+      "calendarFile": "indycar_2026.json",
+      "eventId": "indycar-2026-r14",
+      "eventName": "Ontario Honda Dealers Indy at Markham",
+      "roundNumber": 14,
+      "source": {
+        "stableUrl": "https://www.indycar.com/-/media/Files/2026/NICS/14-MRKM/indycar-weekendschedule-v3-MRKM26.pdf",
+        "finalUrl": "https://www.indycar.com/-/media/Files/2026/NICS/14-MRKM/indycar-weekendschedule-v3-MRKM26.pdf",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-10-05T18:59:53Z",
+        "lastModified": "Fri, 14 Aug 2026 21:34:57 GMT"
+      },
+      "proposalType": "verification",
+      "sessionId": "indycar-2026-r14-s2",
+      "sessionName": "Practice 1",
+      "current": {
+        "name": "Practice 1",
+        "kind": "practice",
+        "date": "2026-08-15",
+        "timeLocal": "10:00",
+        "durationMinutes": 90
+      },
+      "sourceSessionName": "PRACTICE 1",
+      "sourceTime": {
+        "date": "2026-08-15",
+        "time": "10:00",
+        "timeZone": "America/Toronto"
+      },
+      "editorTimeZone": "America/New_York",
+      "proposed": {
+        "date": "2026-08-15",
+        "timeLocal": "10:00",
+        "durationMinutes": 90,
+        "name": "Practice 1",
+        "kind": "practice",
+        "utcInstant": "2026-08-15T14:00:00Z",
+        "sessionId": "indycar-2026-r14-s2"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "708fcc8c3b4185cb56ed7ccf34b0efbd90f17fda981640f91d3bd622b5e7ffaf",
+      "id": "schedule-708fcc8c3b4185cb"
+    },
+    {
+      "seriesId": "indycar",
+      "seriesName": "NTT INDYCAR SERIES",
+      "calendarFile": "indycar_2026.json",
+      "eventId": "indycar-2026-r14",
+      "eventName": "Ontario Honda Dealers Indy at Markham",
+      "roundNumber": 14,
+      "source": {
+        "stableUrl": "https://www.indycar.com/-/media/Files/2026/NICS/14-MRKM/indycar-weekendschedule-v3-MRKM26.pdf",
+        "finalUrl": "https://www.indycar.com/-/media/Files/2026/NICS/14-MRKM/indycar-weekendschedule-v3-MRKM26.pdf",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-10-05T18:59:53Z",
+        "lastModified": "Fri, 14 Aug 2026 21:34:57 GMT"
+      },
+      "proposalType": "verification",
+      "sessionId": "indycar-2026-r14-s1784048567454",
+      "sessionName": "Practice 2",
+      "current": {
+        "name": "Practice 2",
+        "kind": "practice",
+        "date": "2026-08-15",
+        "timeLocal": "14:30",
+        "durationMinutes": 90
+      },
+      "sourceSessionName": "PRACTICE 2",
+      "sourceTime": {
+        "date": "2026-08-15",
+        "time": "14:30",
+        "timeZone": "America/Toronto"
+      },
+      "editorTimeZone": "America/New_York",
+      "proposed": {
+        "date": "2026-08-15",
+        "timeLocal": "14:30",
+        "durationMinutes": 90,
+        "name": "Practice 2",
+        "kind": "practice",
+        "utcInstant": "2026-08-15T18:30:00Z",
+        "sessionId": "indycar-2026-r14-s1784048567454"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "1f46793fedfe0143af751a10cd02b7b1c32208b749132007363135989ca5ea8c",
+      "id": "schedule-1f46793fedfe0143"
+    },
+    {
+      "seriesId": "indycar",
+      "seriesName": "NTT INDYCAR SERIES",
+      "calendarFile": "indycar_2026.json",
+      "eventId": "indycar-2026-r14",
+      "eventName": "Ontario Honda Dealers Indy at Markham",
+      "roundNumber": 14,
+      "source": {
+        "stableUrl": "https://www.indycar.com/-/media/Files/2026/NICS/14-MRKM/indycar-weekendschedule-v3-MRKM26.pdf",
+        "finalUrl": "https://www.indycar.com/-/media/Files/2026/NICS/14-MRKM/indycar-weekendschedule-v3-MRKM26.pdf",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-10-05T18:59:53Z",
+        "lastModified": "Fri, 14 Aug 2026 21:34:57 GMT"
+      },
+      "proposalType": "verification",
+      "sessionId": "indycar-2026-r14-s1784048601997",
+      "sessionName": "Warmup",
+      "current": {
+        "name": "Warmup",
+        "kind": "practice",
+        "date": "2026-08-16",
+        "timeLocal": "08:30",
+        "durationMinutes": 30
+      },
+      "sourceSessionName": "WARMUP",
+      "sourceTime": {
+        "date": "2026-08-16",
+        "time": "08:30",
+        "timeZone": "America/Toronto"
+      },
+      "editorTimeZone": "America/New_York",
+      "proposed": {
+        "date": "2026-08-16",
+        "timeLocal": "08:30",
+        "durationMinutes": 30,
+        "name": "Warmup",
+        "kind": "practice",
+        "utcInstant": "2026-08-16T12:30:00Z",
+        "sessionId": "indycar-2026-r14-s1784048601997"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "57056c096105a92913ca45d392626d5b6c63571213a03e0ee77a55d5bc60802b",
+      "id": "schedule-57056c096105a929"
+    },
+    {
+      "seriesId": "indycar",
+      "seriesName": "NTT INDYCAR SERIES",
+      "calendarFile": "indycar_2026.json",
+      "eventId": "indycar-2026-r14",
+      "eventName": "Ontario Honda Dealers Indy at Markham",
+      "roundNumber": 14,
+      "source": {
+        "stableUrl": "https://www.indycar.com/-/media/Files/2026/NICS/14-MRKM/indycar-weekendschedule-v3-MRKM26.pdf",
+        "finalUrl": "https://www.indycar.com/-/media/Files/2026/NICS/14-MRKM/indycar-weekendschedule-v3-MRKM26.pdf",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-10-05T18:59:53Z",
+        "lastModified": "Fri, 14 Aug 2026 21:34:57 GMT"
+      },
+      "proposalType": "verification",
+      "sessionId": "indycar-2026-r14-s1",
+      "sessionName": "Race",
+      "current": {
+        "name": "Race",
+        "kind": "race",
+        "date": "2026-08-16",
+        "timeLocal": "12:00",
+        "durationMinutes": 120
+      },
+      "sourceSessionName": "Race",
+      "sourceTime": {
+        "date": "2026-08-16",
+        "time": "12:00",
+        "timeZone": "America/Toronto"
+      },
+      "editorTimeZone": "America/New_York",
+      "proposed": {
+        "date": "2026-08-16",
+        "timeLocal": "12:00",
+        "durationMinutes": 120,
+        "name": "Race",
+        "kind": "race",
+        "utcInstant": "2026-08-16T16:00:00Z",
+        "sessionId": "indycar-2026-r14-s1"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "0428eafd41babd151fa8990ede4c3ec32fd953faf995165de632c8d9a5cc0302",
+      "id": "schedule-0428eafd41babd15"
     }
   ],
   "sourcesUsed": [
@@ -7537,6 +7725,20 @@
       "lastModified": "Thu, 25 Jun 2026 15:30:13 GMT",
       "status": "requires_review",
       "reason": "De koppeling van een of meer sessies is onzeker. Beoordeel de conflicten bij Voorstellen."
+    },
+    {
+      "seriesId": "indycar",
+      "eventId": "indycar-2026-r14",
+      "eventName": "Ontario Honda Dealers Indy at Markham",
+      "calendarFile": "indycar_2026.json",
+      "manualUrl": "",
+      "stableUrl": "https://www.indycar.com/Schedule.aspx",
+      "finalUrl": "https://www.indycar.com/-/media/Files/2026/NICS/14-MRKM/indycar-weekendschedule-v3-MRKM26.pdf",
+      "title": "Official timetable PDF",
+      "checkedAt": "2026-10-05T18:59:53Z",
+      "lastModified": "Fri, 14 Aug 2026 21:34:57 GMT",
+      "status": "ok",
+      "reason": ""
     }
   ]
 }
