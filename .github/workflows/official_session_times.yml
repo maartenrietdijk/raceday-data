@@ -71,10 +71,13 @@ jobs:
         run: |
           python - <<'PY_CHECK'
           from pathlib import Path
-          required = ['tests/fixtures/calendars/bsb_2026.json', 'tests/fixtures/calendars/fd_2026.json', 'tests/fixtures/calendars/elms_2026.json', 'tests/fixtures/calendars/elms_2027.json', 'tests/fixtures/calendars/24hseries_2026.json', 'tests/fixtures/calendars/24hseries_2027.json', 'tests/fixtures/calendars/dtm_2026.json', 'tests/fixtures/calendars/supercars_2026.json', 'bsb_fd_schedule.py', 'tests/test_bsb_fd_schedule.py', 'tests/fixtures/bsb_fd/bsb-calendar.html', 'tests/fixtures/bsb_fd/long-beach2-proposals.json', 'tests/test_elms_schedule.py', 'tests/fixtures/elms/sources.json', 'tests/fixtures/elms/barcelona.pdf', 'tests/fixtures/elms/2491.txt', 'tests/test_24hseries_schedule.py', 'tests/fixtures/24hseries/michelin-24h-kyalami-2027.html', '24hseries_2027.json', 'tests/test_schedule_reliability.py', 'tests/test_session_aliases.py', 'tests/test_editor_reliability.cjs', 'tests/test_editor_proposals.cjs', 'tests/test_editor_cancelled.cjs', 'tests/test_japanese_schedules.py', 'tests/test_f1academy_schedule.py', 'tests/test_formula1_schedule.py', 'tests/fixtures/japanese/sources.json', 'tests/fixtures/f1academy/sources.json', 'tests/fixtures/formula1/bahrain.html', 'tests/fixtures/calendars/sf_2026.json', 'tests/fixtures/calendars/supergt_2026.json', 'tests/fixtures/calendars/f1academy_2026.json']
+          required = ['tests/__init__.py', 'tests/fixtures/calendars/bsb_2026.json', 'tests/fixtures/calendars/fd_2026.json', 'tests/fixtures/calendars/elms_2026.json', 'tests/fixtures/calendars/elms_2027.json', 'tests/fixtures/calendars/24hseries_2026.json', 'tests/fixtures/calendars/24hseries_2027.json', 'tests/fixtures/calendars/dtm_2026.json', 'tests/fixtures/calendars/supercars_2026.json', 'bsb_fd_schedule.py', 'tests/test_bsb_fd_schedule.py', 'tests/fixtures/bsb_fd/bsb-calendar.html', 'tests/fixtures/bsb_fd/long-beach2-proposals.json', 'tests/test_elms_schedule.py', 'tests/fixtures/elms/sources.json', 'tests/fixtures/elms/barcelona.pdf', 'tests/fixtures/elms/2491.txt', 'tests/test_24hseries_schedule.py', 'tests/fixtures/24hseries/michelin-24h-kyalami-2027.html', '24hseries_2027.json', 'tests/test_schedule_reliability.py', 'tests/test_session_aliases.py', 'tests/test_editor_reliability.cjs', 'tests/test_editor_proposals.cjs', 'tests/test_editor_cancelled.cjs', 'tests/test_japanese_schedules.py', 'tests/test_f1academy_schedule.py', 'tests/test_formula1_schedule.py', 'tests/fixtures/japanese/sources.json', 'tests/fixtures/f1academy/sources.json', 'tests/fixtures/formula1/bahrain.html', 'tests/fixtures/calendars/sf_2026.json', 'tests/fixtures/calendars/supergt_2026.json', 'tests/fixtures/calendars/f1academy_2026.json']
           missing = [name for name in required if not Path(name).is_file()]
           if missing:
               raise SystemExit('Upload the complete tests folder at repository root. Missing: ' + ', '.join(missing))
+          misplaced = sorted(str(path) for path in Path('.').glob('test_*.py'))
+          if misplaced:
+              print('Test files belong under tests/. Root copies can be removed: ' + ', '.join(misplaced))
           PY_CHECK
 
       - name: Set up Node for editor tests
@@ -84,7 +87,7 @@ jobs:
 
       - name: Test schedule readers and proposal safety
         run: |
-          python -m unittest discover -s tests -p 'test_*.py' -v
+          python -m unittest discover -s tests -t . -p 'test_*.py' -v
           node tests/test_editor_proposals.cjs
           node tests/test_editor_reliability.cjs
           node tests/test_editor_cancelled.cjs
