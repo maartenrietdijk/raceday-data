@@ -2256,7 +2256,9 @@ function renderInlineEventProposals(round) {
   const hasLocalDecision = state.proposals.some(item => item.calendarFile === activeCalendarFilename() && item.eventId === round?.id &&
     ['accepted', 'rejected'].includes(item.status) && item.decisionAt);
   const dirty = hasLocalDecision && (state.dirtyProposalFiles.includes(activeCalendarFilename()) || state.proposalDecisionsDirty);
-  if (!progress && !proposals.length && !dirty) return '';
+  const reviewable = proposals.filter(item => ['open', 'requires_review'].includes(item.status));
+  const scanBusy = progress && !['completed', 'error'].includes(progress.status);
+  if (!reviewable.length) return scanBusy ? officialScanStatusView(round.id) : '';
   const acceptable = proposals.filter(item => item.status === 'open' && item.proposed && !proposalIsStale(item));
   const statusClass = progress?.status === 'error' ? ' is-error' : progress?.status === 'completed' ? ' is-complete' : '';
   return `<section class="official-scan-panel${statusClass}" id="officialScanPanel_${esc(round.id)}">
@@ -2273,8 +2275,21 @@ function renderInlineEventProposals(round) {
 }
 
 function renderProposalSurfaces() {
+  // Keep the user's expanded events and details across proposal decisions.
+  const expanded = new Map(Array.from(document.querySelectorAll('.round-card.open'), card => [
+    card.dataset.eventId,
+    Array.from(card.querySelectorAll('details'), detail => detail.open),
+  ]));
   renderSidebar();
   renderMain();
+  for (const card of document.querySelectorAll('.round-card')) {
+    const details = expanded.get(card.dataset.eventId);
+    if (!details) continue;
+    card.classList.add('open');
+    Array.from(card.querySelectorAll('details')).forEach((detail, index) => {
+      detail.open = Boolean(details[index]);
+    });
+  }
 }
 
 function renderProposalRow(proposal) {
