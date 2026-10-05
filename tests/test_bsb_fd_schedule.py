@@ -6,15 +6,15 @@ import unittest
 import subprocess
 import tempfile
 from unittest.mock import patch
-sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 import official_schedule_scanner as s
 from bsb_fd_schedule import parse_bsb_schedule, parse_fd_schedule
 ROOT=Path(__file__).resolve().parents[1]
 FIX=ROOT/'tests/fixtures/bsb_fd'
+CAL=ROOT/'tests/fixtures/calendars'
 REG=json.loads((ROOT/'session-time-sources.json').read_text())
 
 class BsbFdTests(unittest.TestCase):
-    def events(self,series): return json.loads((ROOT/f'{series}_2026.json').read_text())
+    def events(self,series): return json.loads((CAL/f'{series}_2026.json').read_text())
     def cfg(self,series): return next(x for x in REG['series'] if x['seriesId']==series)
     def source(self,event):
         url=event['officialScheduleUrl'];series=event['seriesId']
@@ -100,8 +100,9 @@ class BsbFdTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as folder:
             folder=Path(folder)
             (folder/'fd__fd-2026-r02.html').write_text((FIX/'fd-atlanta.html').read_text())
+            (folder/'fd_2026.json').write_text(json.dumps(self.events('fd')))
             output=folder/'proposals.json'
-            run=subprocess.run([sys.executable,str(ROOT/'official_schedule_scanner.py'),'--root',str(ROOT),'--series','fd','--event','fd-2026-r02','--fixtures-dir',str(folder),'--fixtures-only','--output',str(output)],capture_output=True,text=True)
+            run=subprocess.run([sys.executable,str(ROOT/'official_schedule_scanner.py'),'--root',str(folder),'--registry',str(ROOT/'session-time-sources.json'),'--series','fd','--event','fd-2026-r02','--fixtures-dir',str(folder),'--fixtures-only','--output',str(output)],capture_output=True,text=True)
             self.assertEqual(run.returncode,0,run.stderr)
             result=json.loads(output.read_text())
             self.assertEqual(result['sourcesUsed'][0]['status'],'unresolved')
@@ -110,14 +111,18 @@ class BsbFdTests(unittest.TestCase):
         events=[self.events('bsb')[-1]]+[self.events('fd')[i] for i in [0,3,4,5,6,7]]
         def fetch(url,domains):
             return self.calendar() if url.endswith('/calendar') else self.source(next(e for e in events if e['officialScheduleUrl']==url))
-        before=[(ROOT/f'{series}_2026.json').read_bytes() for series in ['bsb','fd']]
-        with patch.object(s,'fetch_url',side_effect=fetch):
-            a=s.scan(ROOT,REG,None,{'bsb','fd'},'2026-10-05T10:00:00Z',only_events={e['id'] for e in events},include_filled=True)
-            b=s.scan(ROOT,REG,None,{'bsb','fd'},'2026-10-05T10:00:00Z',only_events={e['id'] for e in events},include_filled=True)
-        self.assertEqual(a,b)
-        self.assertTrue(all(x['status']=='ok' for x in a['sourcesUsed']))
-        self.assertEqual(len(a['proposals']),45)
-        self.assertFalse(any(p['status'] in {'requires_review','unresolved'} for p in a['proposals']))
-        self.assertEqual(before,[(ROOT/f'{series}_2026.json').read_bytes() for series in ['bsb','fd']])
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder)
+            for series in ['bsb','fd']:
+                (root/f'{series}_2026.json').write_text(json.dumps(self.events(series)))
+            before=[(root/f'{series}_2026.json').read_bytes() for series in ['bsb','fd']]
+            with patch.object(s,'fetch_url',side_effect=fetch):
+                a=s.scan(root,REG,None,{'bsb','fd'},'2026-10-05T10:00:00Z',only_events={e['id'] for e in events},include_filled=True)
+                b=s.scan(root,REG,None,{'bsb','fd'},'2026-10-05T10:00:00Z',only_events={e['id'] for e in events},include_filled=True)
+            self.assertEqual(a,b)
+            self.assertTrue(all(x['status']=='ok' for x in a['sourcesUsed']))
+            self.assertEqual(len(a['proposals']),45)
+            self.assertFalse(any(p['status'] in {'requires_review','unresolved'} for p in a['proposals']))
+            self.assertEqual(before,[(root/f'{series}_2026.json').read_bytes() for series in ['bsb','fd']])
 
 if __name__=='__main__': unittest.main()
