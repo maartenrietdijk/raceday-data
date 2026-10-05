@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-05T18:57:10Z",
+  "generatedAt": "2026-10-05T18:58:11Z",
   "proposals": [
     {
       "seriesId": "elms",
@@ -3962,6 +3962,233 @@
       "debug": true,
       "fingerprint": "d5ef52347283ff4ee7ee727b61309f2a985cdfa2f44ff61f1192daadf146a680",
       "id": "schedule-d5ef52347283ff4e"
+    },
+    {
+      "seriesId": "indycar",
+      "seriesName": "NTT INDYCAR SERIES",
+      "calendarFile": "indycar_2026.json",
+      "eventId": "indycar-2026-r13",
+      "eventName": "BITNILE.com Grand Prix of Portland",
+      "roundNumber": 13,
+      "source": {
+        "stableUrl": "https://www.indycar.com/-/media/Files/2026/NICS/13-POR/indycar-weekendschedule-POR26.pdf",
+        "finalUrl": "https://www.indycar.com/-/media/Files/2026/NICS/13-POR/indycar-weekendschedule-POR26.pdf",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-10-05T18:58:11Z",
+        "lastModified": "Thu, 25 Jun 2026 15:30:13 GMT"
+      },
+      "proposalType": "verification",
+      "sessionId": "indycar-2026-r13-s1",
+      "sessionName": "Practice 1",
+      "current": {
+        "name": "Practice 1",
+        "kind": "practice",
+        "date": "2026-08-07",
+        "timeLocal": "17:30",
+        "durationMinutes": 90
+      },
+      "sourceSessionName": "PRACTICE 1",
+      "sourceTime": {
+        "date": "2026-08-07",
+        "time": "14:30",
+        "timeZone": "America/Los_Angeles"
+      },
+      "editorTimeZone": "America/New_York",
+      "proposed": {
+        "date": "2026-08-07",
+        "timeLocal": "17:30",
+        "durationMinutes": 90,
+        "name": "Practice 1",
+        "kind": "practice",
+        "utcInstant": "2026-08-07T21:30:00Z",
+        "sessionId": "indycar-2026-r13-s1"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "7cc4868bbe3f6071c59501866509ffe22d90c4afcb424ff961d92271749f6bef",
+      "id": "schedule-7cc4868bbe3f6071"
+    },
+    {
+      "seriesId": "indycar",
+      "seriesName": "NTT INDYCAR SERIES",
+      "calendarFile": "indycar_2026.json",
+      "eventId": "indycar-2026-r13",
+      "eventName": "BITNILE.com Grand Prix of Portland",
+      "roundNumber": 13,
+      "source": {
+        "stableUrl": "https://www.indycar.com/-/media/Files/2026/NICS/13-POR/indycar-weekendschedule-POR26.pdf",
+        "finalUrl": "https://www.indycar.com/-/media/Files/2026/NICS/13-POR/indycar-weekendschedule-POR26.pdf",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-10-05T18:58:11Z",
+        "lastModified": "Thu, 25 Jun 2026 15:30:13 GMT"
+      },
+      "proposalType": "verification",
+      "sessionId": "indycar-2026-r13-s1784048473791",
+      "sessionName": "Practice 2",
+      "current": {
+        "name": "Practice 2",
+        "kind": "practice",
+        "date": "2026-08-08",
+        "timeLocal": "13:00",
+        "durationMinutes": 90
+      },
+      "sourceSessionName": "PRACTICE 2",
+      "sourceTime": {
+        "date": "2026-08-08",
+        "time": "10:00",
+        "timeZone": "America/Los_Angeles"
+      },
+      "editorTimeZone": "America/New_York",
+      "proposed": {
+        "date": "2026-08-08",
+        "timeLocal": "13:00",
+        "durationMinutes": 90,
+        "name": "Practice 2",
+        "kind": "practice",
+        "utcInstant": "2026-08-08T17:00:00Z",
+        "sessionId": "indycar-2026-r13-s1784048473791"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "33c33fe71ed94566b4ac9c210bab9bcf7ca4891cb79a2e3f8f0c251fa2d8f4bb",
+      "id": "schedule-33c33fe71ed94566"
+    },
+    {
+      "seriesId": "indycar",
+      "seriesName": "NTT INDYCAR SERIES",
+      "calendarFile": "indycar_2026.json",
+      "eventId": "indycar-2026-r13",
+      "eventName": "BITNILE.com Grand Prix of Portland",
+      "roundNumber": 13,
+      "source": {
+        "stableUrl": "https://www.indycar.com/-/media/Files/2026/NICS/13-POR/indycar-weekendschedule-POR26.pdf",
+        "finalUrl": "https://www.indycar.com/-/media/Files/2026/NICS/13-POR/indycar-weekendschedule-POR26.pdf",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-10-05T18:58:11Z",
+        "lastModified": "Thu, 25 Jun 2026 15:30:13 GMT"
+      },
+      "proposalType": "conflict",
+      "sessionId": null,
+      "sessionName": "QUALIFYING 4",
+      "current": {
+        "name": null,
+        "kind": null,
+        "date": null,
+        "timeLocal": null,
+        "durationMinutes": null
+      },
+      "sourceSessionName": "QUALIFYING 4",
+      "sourceTime": {
+        "date": "2026-08-08",
+        "time": "16:00",
+        "timeZone": "America/Los_Angeles"
+      },
+      "editorTimeZone": "America/New_York",
+      "proposed": null,
+      "dateChanged": false,
+      "status": "requires_review",
+      "reason": "multiple or incompatible qualifying sessions make automatic matching ambiguous",
+      "debug": false,
+      "fingerprint": "8a865cdb6791c92d1d2a4ad3b0c6b06b1c7cb65102abcb55bac1b0a1d83b14d2",
+      "id": "schedule-8a865cdb6791c92d"
+    },
+    {
+      "seriesId": "indycar",
+      "seriesName": "NTT INDYCAR SERIES",
+      "calendarFile": "indycar_2026.json",
+      "eventId": "indycar-2026-r13",
+      "eventName": "BITNILE.com Grand Prix of Portland",
+      "roundNumber": 13,
+      "source": {
+        "stableUrl": "https://www.indycar.com/-/media/Files/2026/NICS/13-POR/indycar-weekendschedule-POR26.pdf",
+        "finalUrl": "https://www.indycar.com/-/media/Files/2026/NICS/13-POR/indycar-weekendschedule-POR26.pdf",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-10-05T18:58:11Z",
+        "lastModified": "Thu, 25 Jun 2026 15:30:13 GMT"
+      },
+      "proposalType": "verification",
+      "sessionId": "indycar-2026-r13-s1784048448338",
+      "sessionName": "Warmup",
+      "current": {
+        "name": "Warmup",
+        "kind": "practice",
+        "date": "2026-08-09",
+        "timeLocal": "13:00",
+        "durationMinutes": 30
+      },
+      "sourceSessionName": "WARMUP",
+      "sourceTime": {
+        "date": "2026-08-09",
+        "time": "10:00",
+        "timeZone": "America/Los_Angeles"
+      },
+      "editorTimeZone": "America/New_York",
+      "proposed": {
+        "date": "2026-08-09",
+        "timeLocal": "13:00",
+        "durationMinutes": 30,
+        "name": "Warmup",
+        "kind": "practice",
+        "utcInstant": "2026-08-09T17:00:00Z",
+        "sessionId": "indycar-2026-r13-s1784048448338"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "45fd51b45fc357cde757ef3bfc086ae717b086b186737438eb21eff8db4a6dba",
+      "id": "schedule-45fd51b45fc357cd"
+    },
+    {
+      "seriesId": "indycar",
+      "seriesName": "NTT INDYCAR SERIES",
+      "calendarFile": "indycar_2026.json",
+      "eventId": "indycar-2026-r13",
+      "eventName": "BITNILE.com Grand Prix of Portland",
+      "roundNumber": 13,
+      "source": {
+        "stableUrl": "https://www.indycar.com/-/media/Files/2026/NICS/13-POR/indycar-weekendschedule-POR26.pdf",
+        "finalUrl": "https://www.indycar.com/-/media/Files/2026/NICS/13-POR/indycar-weekendschedule-POR26.pdf",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-10-05T18:58:11Z",
+        "lastModified": "Thu, 25 Jun 2026 15:30:13 GMT"
+      },
+      "proposalType": "verification",
+      "sessionId": "indycar-2026-r13-s1784048448051",
+      "sessionName": "Race",
+      "current": {
+        "name": "Race",
+        "kind": "race",
+        "date": "2026-08-09",
+        "timeLocal": "16:00",
+        "durationMinutes": 120
+      },
+      "sourceSessionName": "Race",
+      "sourceTime": {
+        "date": "2026-08-09",
+        "time": "13:00",
+        "timeZone": "America/Los_Angeles"
+      },
+      "editorTimeZone": "America/New_York",
+      "proposed": {
+        "date": "2026-08-09",
+        "timeLocal": "16:00",
+        "durationMinutes": 120,
+        "name": "Race",
+        "kind": "race",
+        "utcInstant": "2026-08-09T20:00:00Z",
+        "sessionId": "indycar-2026-r13-s1784048448051"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "ab5d0c2a0c77865fffbfa266602e7e530e42bb08c66da16d24ab28c3df443f34",
+      "id": "schedule-ab5d0c2a0c77865f"
     }
   ],
   "sourcesUsed": [
@@ -7296,6 +7523,20 @@
       "lastModified": "Thu, 11 Jun 2026 13:57:48 GMT",
       "status": "ok",
       "reason": ""
+    },
+    {
+      "seriesId": "indycar",
+      "eventId": "indycar-2026-r13",
+      "eventName": "BITNILE.com Grand Prix of Portland",
+      "calendarFile": "indycar_2026.json",
+      "manualUrl": "",
+      "stableUrl": "https://www.indycar.com/Schedule.aspx",
+      "finalUrl": "https://www.indycar.com/-/media/Files/2026/NICS/13-POR/indycar-weekendschedule-POR26.pdf",
+      "title": "Official timetable PDF",
+      "checkedAt": "2026-10-05T18:58:11Z",
+      "lastModified": "Thu, 25 Jun 2026 15:30:13 GMT",
+      "status": "requires_review",
+      "reason": "De koppeling van een of meer sessies is onzeker. Beoordeel de conflicten bij Voorstellen."
     }
   ]
 }
