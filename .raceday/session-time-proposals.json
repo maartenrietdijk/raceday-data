@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-05T18:55:38Z",
+  "generatedAt": "2026-10-05T18:57:10Z",
   "proposals": [
     {
       "seriesId": "elms",
@@ -3727,6 +3727,241 @@
       "debug": true,
       "fingerprint": "ca34930d7dd14b4219fe8365270b62705ac7faca0921e5521d7a23a2c5a593e7",
       "id": "schedule-ca34930d7dd14b42"
+    },
+    {
+      "seriesId": "indycar",
+      "seriesName": "NTT INDYCAR SERIES",
+      "calendarFile": "indycar_2026.json",
+      "eventId": "indycar-2026-r10",
+      "eventName": "XPEL Grand Prix at Road America",
+      "roundNumber": 10,
+      "source": {
+        "stableUrl": "https://www.indycar.com/-/media/Files/2026/NICS/10-RA/indycar-weekendschedule-v2-RA26.pdf",
+        "finalUrl": "https://www.indycar.com/-/media/Files/2026/NICS/10-RA/indycar-weekendschedule-v2-RA26.pdf",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-10-05T18:57:10Z",
+        "lastModified": "Thu, 11 Jun 2026 13:57:48 GMT"
+      },
+      "proposalType": "verification",
+      "sessionId": "indycar-2026-r10-s1",
+      "sessionName": "Practice 1",
+      "current": {
+        "name": "Practice 1",
+        "kind": "practice",
+        "date": "2026-06-19",
+        "timeLocal": "16:00",
+        "durationMinutes": 120
+      },
+      "sourceSessionName": "PRACTICE 1",
+      "sourceTime": {
+        "date": "2026-06-19",
+        "time": "15:00",
+        "timeZone": "America/Chicago"
+      },
+      "editorTimeZone": "America/New_York",
+      "proposed": {
+        "date": "2026-06-19",
+        "timeLocal": "16:00",
+        "durationMinutes": 120,
+        "name": "Practice 1",
+        "kind": "practice",
+        "utcInstant": "2026-06-19T20:00:00Z",
+        "sessionId": "indycar-2026-r10-s1"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "00ee75e27277c62a1ece90ec95c1a6c2b16dc7ec895290cb110ee576357991a6",
+      "id": "schedule-00ee75e27277c62a"
+    },
+    {
+      "seriesId": "indycar",
+      "seriesName": "NTT INDYCAR SERIES",
+      "calendarFile": "indycar_2026.json",
+      "eventId": "indycar-2026-r10",
+      "eventName": "XPEL Grand Prix at Road America",
+      "roundNumber": 10,
+      "source": {
+        "stableUrl": "https://www.indycar.com/-/media/Files/2026/NICS/10-RA/indycar-weekendschedule-v2-RA26.pdf",
+        "finalUrl": "https://www.indycar.com/-/media/Files/2026/NICS/10-RA/indycar-weekendschedule-v2-RA26.pdf",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-10-05T18:57:10Z",
+        "lastModified": "Thu, 11 Jun 2026 13:57:48 GMT"
+      },
+      "proposalType": "verification",
+      "sessionId": "indycar-2026-r10-s1781435445912",
+      "sessionName": "Practice 2",
+      "current": {
+        "name": "Practice 2",
+        "kind": "practice",
+        "date": "2026-06-20",
+        "timeLocal": "11:00",
+        "durationMinutes": 120
+      },
+      "sourceSessionName": "PRACTICE 2",
+      "sourceTime": {
+        "date": "2026-06-20",
+        "time": "10:00",
+        "timeZone": "America/Chicago"
+      },
+      "editorTimeZone": "America/New_York",
+      "proposed": {
+        "date": "2026-06-20",
+        "timeLocal": "11:00",
+        "durationMinutes": 120,
+        "name": "Practice 2",
+        "kind": "practice",
+        "utcInstant": "2026-06-20T15:00:00Z",
+        "sessionId": "indycar-2026-r10-s1781435445912"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "08afe7c341ed71cec948ba22c9635a698ff48436ed053cbe9b4ddf33dbed3ec3",
+      "id": "schedule-08afe7c341ed71ce"
+    },
+    {
+      "seriesId": "indycar",
+      "seriesName": "NTT INDYCAR SERIES",
+      "calendarFile": "indycar_2026.json",
+      "eventId": "indycar-2026-r10",
+      "eventName": "XPEL Grand Prix at Road America",
+      "roundNumber": 10,
+      "source": {
+        "stableUrl": "https://www.indycar.com/-/media/Files/2026/NICS/10-RA/indycar-weekendschedule-v2-RA26.pdf",
+        "finalUrl": "https://www.indycar.com/-/media/Files/2026/NICS/10-RA/indycar-weekendschedule-v2-RA26.pdf",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-10-05T18:57:10Z",
+        "lastModified": "Thu, 11 Jun 2026 13:57:48 GMT"
+      },
+      "proposalType": "verification",
+      "sessionId": "indycar-2026-r10-s1781435444274",
+      "sessionName": "Qualifying",
+      "current": {
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-06-20",
+        "timeLocal": "14:00",
+        "durationMinutes": 90
+      },
+      "sourceSessionName": "QUALIFYING 1",
+      "sourceTime": {
+        "date": "2026-06-20",
+        "time": "13:00",
+        "timeZone": "America/Chicago"
+      },
+      "editorTimeZone": "America/New_York",
+      "proposed": {
+        "date": "2026-06-20",
+        "timeLocal": "14:00",
+        "durationMinutes": 90,
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "utcInstant": "2026-06-20T18:00:00Z",
+        "sessionId": "indycar-2026-r10-s1781435444274"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "dcb2527a6dc133cc01c13b06938ce81e77f37ef225d7a760c0a5f7f0a6dbe77f",
+      "id": "schedule-dcb2527a6dc133cc"
+    },
+    {
+      "seriesId": "indycar",
+      "seriesName": "NTT INDYCAR SERIES",
+      "calendarFile": "indycar_2026.json",
+      "eventId": "indycar-2026-r10",
+      "eventName": "XPEL Grand Prix at Road America",
+      "roundNumber": 10,
+      "source": {
+        "stableUrl": "https://www.indycar.com/-/media/Files/2026/NICS/10-RA/indycar-weekendschedule-v2-RA26.pdf",
+        "finalUrl": "https://www.indycar.com/-/media/Files/2026/NICS/10-RA/indycar-weekendschedule-v2-RA26.pdf",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-10-05T18:57:10Z",
+        "lastModified": "Thu, 11 Jun 2026 13:57:48 GMT"
+      },
+      "proposalType": "verification",
+      "sessionId": "indycar-2026-r10-s1781435442468",
+      "sessionName": "Warmup",
+      "current": {
+        "name": "Warmup",
+        "kind": "practice",
+        "date": "2026-06-21",
+        "timeLocal": "11:00",
+        "durationMinutes": 60
+      },
+      "sourceSessionName": "WARMUP",
+      "sourceTime": {
+        "date": "2026-06-21",
+        "time": "10:00",
+        "timeZone": "America/Chicago"
+      },
+      "editorTimeZone": "America/New_York",
+      "proposed": {
+        "date": "2026-06-21",
+        "timeLocal": "11:00",
+        "durationMinutes": 60,
+        "name": "Warmup",
+        "kind": "practice",
+        "utcInstant": "2026-06-21T15:00:00Z",
+        "sessionId": "indycar-2026-r10-s1781435442468"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "a42e1e958458cf62262240ca53655bde19b0d7876df37977cec20c5b710497e2",
+      "id": "schedule-a42e1e958458cf62"
+    },
+    {
+      "seriesId": "indycar",
+      "seriesName": "NTT INDYCAR SERIES",
+      "calendarFile": "indycar_2026.json",
+      "eventId": "indycar-2026-r10",
+      "eventName": "XPEL Grand Prix at Road America",
+      "roundNumber": 10,
+      "source": {
+        "stableUrl": "https://www.indycar.com/-/media/Files/2026/NICS/10-RA/indycar-weekendschedule-v2-RA26.pdf",
+        "finalUrl": "https://www.indycar.com/-/media/Files/2026/NICS/10-RA/indycar-weekendschedule-v2-RA26.pdf",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-10-05T18:57:10Z",
+        "lastModified": "Thu, 11 Jun 2026 13:57:48 GMT"
+      },
+      "proposalType": "verification",
+      "sessionId": "indycar-2026-r10-s1781435439591",
+      "sessionName": "Race",
+      "current": {
+        "name": "Race",
+        "kind": "race",
+        "date": "2026-06-21",
+        "timeLocal": "14:00",
+        "durationMinutes": 120
+      },
+      "sourceSessionName": "Race",
+      "sourceTime": {
+        "date": "2026-06-21",
+        "time": "13:00",
+        "timeZone": "America/Chicago"
+      },
+      "editorTimeZone": "America/New_York",
+      "proposed": {
+        "date": "2026-06-21",
+        "timeLocal": "14:00",
+        "durationMinutes": 120,
+        "name": "Race",
+        "kind": "race",
+        "utcInstant": "2026-06-21T18:00:00Z",
+        "sessionId": "indycar-2026-r10-s1781435439591"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "d5ef52347283ff4ee7ee727b61309f2a985cdfa2f44ff61f1192daadf146a680",
+      "id": "schedule-d5ef52347283ff4e"
     }
   ],
   "sourcesUsed": [
@@ -7047,6 +7282,20 @@
       "lastModified": "Sat, 16 May 2026 20:59:15 GMT",
       "status": "requires_review",
       "reason": "De koppeling van een of meer sessies is onzeker. Beoordeel de conflicten bij Voorstellen."
+    },
+    {
+      "seriesId": "indycar",
+      "eventId": "indycar-2026-r10",
+      "eventName": "XPEL Grand Prix at Road America",
+      "calendarFile": "indycar_2026.json",
+      "manualUrl": "",
+      "stableUrl": "https://www.indycar.com/Schedule.aspx",
+      "finalUrl": "https://www.indycar.com/-/media/Files/2026/NICS/10-RA/indycar-weekendschedule-v2-RA26.pdf",
+      "title": "Official timetable PDF",
+      "checkedAt": "2026-10-05T18:57:10Z",
+      "lastModified": "Thu, 11 Jun 2026 13:57:48 GMT",
+      "status": "ok",
+      "reason": ""
     }
   ]
 }
