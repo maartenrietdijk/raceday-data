@@ -1441,8 +1441,8 @@ def document_lines(body: str) -> List[str]:
 
 def parse_document_date(line: str, year: int) -> Optional[str]:
     month_names = "January|February|March|April|May|June|July|August|September|October|November|December"
-    month_first = re.search(r"\b(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)?[,]?\s*(%s)\s+(\d{1,2})(?:[,]?\s+(20\d{2}))?\b" % month_names, line, re.I)
-    day_first = re.search(r"\b(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)?[,]?\s*(\d{1,2})\s+(%s)(?:\s+(20\d{2}))?\b" % month_names, line, re.I)
+    month_first = re.search(r"\b(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)?[,]?\s*(%s)\s+(\d{1,2})(?:st|nd|rd|th)?(?:[,]?\s+(20\d{2}))?\b" % month_names, line, re.I)
+    day_first = re.search(r"\b(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)?[,]?\s*(\d{1,2})(?:st|nd|rd|th)?\s+(%s)(?:\s+(20\d{2}))?\b" % month_names, line, re.I)
     numeric = re.search(r"\b(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun)[a-z]*[,]?\s+(\d{1,2})/(\d{1,2})(?:/(20\d{2}))?\b", line, re.I)
     dotted = re.search(r"\b(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun)[a-z]*[,]?\s+(\d{1,2})[.-](\d{1,2})[.-](20\d{2})\b", line, re.I)
     if month_first:
@@ -1804,7 +1804,8 @@ def parse_official_schedule_document(fetch: FetchResult, year: int, source_timez
             (index, value) for index, value in dated
             if re.match(r"^(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\b", page_lines[index], re.I)
         ]
-        first_clock = next((index for index, line in enumerate(page_lines) if re.search(r"\b\d{1,2}:\d{2}", line)), None)
+        first_clock = next((index for index, line in enumerate(page_lines)
+                            if re.match(r"^(?:(?:LIVE TV|LIVE|TV)\s+)?\d{1,2}:\d{2}\b", line, re.I)), None)
         # SRO's multi-column PDFs are extracted row-first and put the column
         # date headings at the end of each page. Their repeated Broadcast
         # header reliably marks the start of each day's column. A page may
@@ -3147,7 +3148,7 @@ def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Opti
                 pdf_url = discover_timetable_pdf(source) if not sessions else None
                 if pdf_url:
                     try:
-                        document = fetch_pdf_url(pdf_url, cfg["allowedDomains"])
+                        document = fetch_pdf_url(pdf_url, cfg["allowedDomains"], preserve_layout=bool(cfg.get("preservePdfLayout")))
                         categories = cfg.get("eventDocumentCategories", {}).get(
                             event.get("id"), cfg.get("documentCategories", [cfg["name"]])
                         )
@@ -3157,6 +3158,8 @@ def scan(root: Path, registry: dict, fixtures: Optional[Path], only_series: Opti
                     except SourceError as exc:
                         LOG.info("Official SRO PDF could not be used for %s: %s", event.get("id"), exc)
                 if not sessions:
+                    if cfg.get("requirePdfTimetable"):
+                        raise SourceError("Het officiële PDF-tijdschema ontbreekt of kon niet betrouwbaar worden gelezen. Controleer de eventlink en de PDF.")
                     sessions = parse_official_tables(source, event_year, source_tz)
             elif cfg["sourceKind"] == "official-schedule-document":
                 sessions = []

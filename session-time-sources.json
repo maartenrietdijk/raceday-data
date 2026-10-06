@@ -317,6 +317,9 @@
         "www.gt-world-challenge-europe.com"
       ],
       "sourceKind": "sro-event-timetable",
+      "documentCategories": ["GT World Challenge powered by AWS", "GT World Challenge Europe"],
+      "preservePdfLayout": true,
+      "requirePdfTimetable": true,
       "eventDiscovery": "Follow Event Info and prefer the event timetable or linked official PDF.",
       "sourceTimeZone": "track",
       "notes": "The editor stores this series in Europe/Amsterdam."
