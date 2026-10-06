@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-05T21:26:18Z",
+  "generatedAt": "2026-10-06T11:37:21Z",
   "proposals": [
     {
       "seriesId": "elms",
@@ -2199,6 +2199,246 @@
       "fingerprint": "1f58b3f67c1077612a0a81fbebca42fb53f7f60f2349dfe801b557857e88ebb9",
       "id": "schedule-1f58b3f67c107761",
       "decisionAt": "2026-10-05T09:36:24.163Z"
+    },
+    {
+      "seriesId": "f1",
+      "seriesName": "Formula 1",
+      "calendarFile": "f1_2026.json",
+      "eventId": "f1-2026-r23",
+      "eventName": "Bahrain Grand Prix in Malaysia",
+      "roundNumber": 16,
+      "source": {
+        "stableUrl": "https://www.formula1.com/en/racing/2026",
+        "finalUrl": "https://www.formula1.com/en/racing/2026/bahrain",
+        "title": "Bahrain Grand Prix in Malaysia 2026 - F1 Race",
+        "checkedAt": "2026-10-06T11:37:21Z",
+        "lastModified": null,
+        "confirmationPolicy": "f1-published-schedule-v1"
+      },
+      "proposalType": "verification",
+      "sessionId": "f1-2026-r23-s1",
+      "sessionName": "Practice 1",
+      "current": {
+        "name": "Practice 1",
+        "kind": "practice",
+        "date": "2026-10-02",
+        "timeLocal": "06:30",
+        "durationMinutes": 60
+      },
+      "sourceSessionName": "Practice 1",
+      "sourceTime": {
+        "date": "2026-10-02",
+        "time": "04:30",
+        "timeZone": "UTC"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-10-02",
+        "timeLocal": "06:30",
+        "durationMinutes": 60,
+        "name": "Practice 1",
+        "kind": "practice",
+        "utcInstant": "2026-10-02T04:30:00Z",
+        "sessionId": "f1-2026-r23-s1"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "872b90a063c2becdc83ffcb5e97440d10eab50e4ddb5615ef4b8eb5e54cc514d",
+      "id": "schedule-872b90a063c2becd"
+    },
+    {
+      "seriesId": "f1",
+      "seriesName": "Formula 1",
+      "calendarFile": "f1_2026.json",
+      "eventId": "f1-2026-r23",
+      "eventName": "Bahrain Grand Prix in Malaysia",
+      "roundNumber": 16,
+      "source": {
+        "stableUrl": "https://www.formula1.com/en/racing/2026",
+        "finalUrl": "https://www.formula1.com/en/racing/2026/bahrain",
+        "title": "Bahrain Grand Prix in Malaysia 2026 - F1 Race",
+        "checkedAt": "2026-10-06T11:37:21Z",
+        "lastModified": null,
+        "confirmationPolicy": "f1-published-schedule-v1"
+      },
+      "proposalType": "verification",
+      "sessionId": "f1-2026-r23-s1785083550672",
+      "sessionName": "Practice 2",
+      "current": {
+        "name": "Practice 2",
+        "kind": "practice",
+        "date": "2026-10-02",
+        "timeLocal": "10:00",
+        "durationMinutes": 60
+      },
+      "sourceSessionName": "Practice 2",
+      "sourceTime": {
+        "date": "2026-10-02",
+        "time": "08:00",
+        "timeZone": "UTC"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-10-02",
+        "timeLocal": "10:00",
+        "durationMinutes": 60,
+        "name": "Practice 2",
+        "kind": "practice",
+        "utcInstant": "2026-10-02T08:00:00Z",
+        "sessionId": "f1-2026-r23-s1785083550672"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "63ae9bb23ed11f1984425fff4b117e28ca21a73816c6d3259e06846bb0343dda",
+      "id": "schedule-63ae9bb23ed11f19"
+    },
+    {
+      "seriesId": "f1",
+      "seriesName": "Formula 1",
+      "calendarFile": "f1_2026.json",
+      "eventId": "f1-2026-r23",
+      "eventName": "Bahrain Grand Prix in Malaysia",
+      "roundNumber": 16,
+      "source": {
+        "stableUrl": "https://www.formula1.com/en/racing/2026",
+        "finalUrl": "https://www.formula1.com/en/racing/2026/bahrain",
+        "title": "Bahrain Grand Prix in Malaysia 2026 - F1 Race",
+        "checkedAt": "2026-10-06T11:37:21Z",
+        "lastModified": null,
+        "confirmationPolicy": "f1-published-schedule-v1"
+      },
+      "proposalType": "verification",
+      "sessionId": "f1-2026-r23-s1785083556606",
+      "sessionName": "Practice 3",
+      "current": {
+        "name": "Practice 3",
+        "kind": "practice",
+        "date": "2026-10-03",
+        "timeLocal": "06:30",
+        "durationMinutes": 60
+      },
+      "sourceSessionName": "Practice 3",
+      "sourceTime": {
+        "date": "2026-10-03",
+        "time": "04:30",
+        "timeZone": "UTC"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-10-03",
+        "timeLocal": "06:30",
+        "durationMinutes": 60,
+        "name": "Practice 3",
+        "kind": "practice",
+        "utcInstant": "2026-10-03T04:30:00Z",
+        "sessionId": "f1-2026-r23-s1785083556606"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "6d0a0bc16a43d29003bc8a5fbf67d6ac87235b81f53ac88b18db973aa1b41b20",
+      "id": "schedule-6d0a0bc16a43d290"
+    },
+    {
+      "seriesId": "f1",
+      "seriesName": "Formula 1",
+      "calendarFile": "f1_2026.json",
+      "eventId": "f1-2026-r23",
+      "eventName": "Bahrain Grand Prix in Malaysia",
+      "roundNumber": 16,
+      "source": {
+        "stableUrl": "https://www.formula1.com/en/racing/2026",
+        "finalUrl": "https://www.formula1.com/en/racing/2026/bahrain",
+        "title": "Bahrain Grand Prix in Malaysia 2026 - F1 Race",
+        "checkedAt": "2026-10-06T11:37:21Z",
+        "lastModified": null,
+        "confirmationPolicy": "f1-published-schedule-v1"
+      },
+      "proposalType": "verification",
+      "sessionId": "f1-2026-r23-s1785083574164",
+      "sessionName": "Qualifying",
+      "current": {
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-10-03",
+        "timeLocal": "10:00",
+        "durationMinutes": 60
+      },
+      "sourceSessionName": "Qualifying",
+      "sourceTime": {
+        "date": "2026-10-03",
+        "time": "08:00",
+        "timeZone": "UTC"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-10-03",
+        "timeLocal": "10:00",
+        "durationMinutes": 60,
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "utcInstant": "2026-10-03T08:00:00Z",
+        "sessionId": "f1-2026-r23-s1785083574164"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "fd5767d22183cdab5c54697d690981cf9fbf79debfd21b1c0674b77d4fdc5ef6",
+      "id": "schedule-fd5767d22183cdab"
+    },
+    {
+      "seriesId": "f1",
+      "seriesName": "Formula 1",
+      "calendarFile": "f1_2026.json",
+      "eventId": "f1-2026-r23",
+      "eventName": "Bahrain Grand Prix in Malaysia",
+      "roundNumber": 16,
+      "source": {
+        "stableUrl": "https://www.formula1.com/en/racing/2026",
+        "finalUrl": "https://www.formula1.com/en/racing/2026/bahrain",
+        "title": "Bahrain Grand Prix in Malaysia 2026 - F1 Race",
+        "checkedAt": "2026-10-06T11:37:21Z",
+        "lastModified": null,
+        "confirmationPolicy": "f1-published-schedule-v1"
+      },
+      "proposalType": "verification",
+      "sessionId": "f1-2026-r23-s1785083583391",
+      "sessionName": "Race",
+      "current": {
+        "name": "Race",
+        "kind": "race",
+        "date": "2026-10-04",
+        "timeLocal": "09:00",
+        "durationMinutes": 200
+      },
+      "sourceSessionName": "Race",
+      "sourceTime": {
+        "date": "2026-10-04",
+        "time": "07:00",
+        "timeZone": "UTC"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-10-04",
+        "timeLocal": "09:00",
+        "durationMinutes": 120,
+        "name": "Race",
+        "kind": "race",
+        "utcInstant": "2026-10-04T07:00:00Z",
+        "sessionId": "f1-2026-r23-s1785083583391"
+      },
+      "dateChanged": false,
+      "status": "verified",
+      "reason": "Debugcontrole: de ingevulde sessie komt overeen met de officiële bron.",
+      "debug": true,
+      "fingerprint": "836fae97b427ea510d19f5572c7a5997de76785ce44bbbcc39f0c0881192f98d",
+      "id": "schedule-836fae97b427ea51"
     }
   ],
   "sourcesUsed": [
@@ -5729,6 +5969,20 @@
       "lastModified": null,
       "status": "unresolved",
       "reason": "could not identify one official WorldSBK round"
+    },
+    {
+      "seriesId": "f1",
+      "eventId": "f1-2026-r23",
+      "eventName": "Bahrain Grand Prix in Malaysia",
+      "calendarFile": "f1_2026.json",
+      "manualUrl": "",
+      "stableUrl": "https://www.formula1.com/en/racing/2026",
+      "finalUrl": "https://www.formula1.com/en/racing/2026/bahrain",
+      "title": "Bahrain Grand Prix in Malaysia 2026 - F1 Race",
+      "checkedAt": "2026-10-06T11:37:21Z",
+      "lastModified": null,
+      "status": "ok",
+      "reason": ""
     }
   ]
 }
