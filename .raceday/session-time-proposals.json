@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-06T11:59:17Z",
+  "generatedAt": "2026-10-06T12:03:02Z",
   "proposals": [
     {
       "seriesId": "elms",
@@ -3224,6 +3224,256 @@
       "fingerprint": "1f58b3f67c1077612a0a81fbebca42fb53f7f60f2349dfe801b557857e88ebb9",
       "id": "schedule-1f58b3f67c107761",
       "decisionAt": "2026-10-05T09:36:24.163Z"
+    },
+    {
+      "seriesId": "gtwce",
+      "seriesName": "GT World Challenge Europe",
+      "calendarFile": "gtwce_2026.json",
+      "eventId": "gtwce-2026-r09",
+      "eventName": "Barcelona",
+      "roundNumber": 9,
+      "source": {
+        "stableUrl": "https://www.gt-world-challenge-europe.com/images/results/246/2026%20GT%20World%20Challenge%20-%20Paul%20Ricard%20Official%20Detailed%20Timetable%20V1.pdf",
+        "finalUrl": "https://www.gt-world-challenge-europe.com/images/results/246/2026%20GT%20World%20Challenge%20-%20Paul%20Ricard%20Official%20Detailed%20Timetable%20V1.pdf",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-10-06T12:03:02Z",
+        "lastModified": "Thu, 09 Apr 2026 13:58:55 GMT"
+      },
+      "proposalType": "conflict",
+      "sessionId": "gtwce-2026-r09-s2",
+      "sessionName": "Qualifying 1",
+      "current": {
+        "name": "Qualifying 1",
+        "kind": "qualifying",
+        "date": "2026-10-03",
+        "timeLocal": "09:45",
+        "durationMinutes": 30
+      },
+      "sourceSessionName": "Qualifying 1",
+      "sourceTime": {
+        "date": "2026-04-11",
+        "time": "12:05",
+        "timeZone": "Europe/Madrid"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": null,
+      "dateChanged": true,
+      "status": "requires_review",
+      "reason": "Conflicting official rows for the same session; review the source timetable.",
+      "debug": true,
+      "fingerprint": "40e8eeafd9cb0c5f2c5ed932ed3fb143545711e087f5fa3579c47a1960a74fe0",
+      "id": "schedule-40e8eeafd9cb0c5f"
+    },
+    {
+      "seriesId": "gtwce",
+      "seriesName": "GT World Challenge Europe",
+      "calendarFile": "gtwce_2026.json",
+      "eventId": "gtwce-2026-r09",
+      "eventName": "Barcelona",
+      "roundNumber": 9,
+      "source": {
+        "stableUrl": "https://www.gt-world-challenge-europe.com/images/results/246/2026%20GT%20World%20Challenge%20-%20Paul%20Ricard%20Official%20Detailed%20Timetable%20V1.pdf",
+        "finalUrl": "https://www.gt-world-challenge-europe.com/images/results/246/2026%20GT%20World%20Challenge%20-%20Paul%20Ricard%20Official%20Detailed%20Timetable%20V1.pdf",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-10-06T12:03:02Z",
+        "lastModified": "Thu, 09 Apr 2026 13:58:55 GMT"
+      },
+      "proposalType": "conflict",
+      "sessionId": null,
+      "sessionName": "Qualifying 1",
+      "current": {
+        "name": null,
+        "kind": null,
+        "date": null,
+        "timeLocal": null,
+        "durationMinutes": null
+      },
+      "sourceSessionName": "Qualifying 1",
+      "sourceTime": {
+        "date": "2026-04-11",
+        "time": "12:15",
+        "timeZone": "Europe/Madrid"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": null,
+      "dateChanged": false,
+      "status": "requires_review",
+      "reason": "Conflicting official rows for the same session; review the source timetable.",
+      "debug": false,
+      "fingerprint": "a4d400710e29b18cd6ac24acd1ab65d7c550f64e2e0a067f29d6aac3c33f1d4f",
+      "id": "schedule-a4d400710e29b18c"
+    },
+    {
+      "seriesId": "gtwce",
+      "seriesName": "GT World Challenge Europe",
+      "calendarFile": "gtwce_2026.json",
+      "eventId": "gtwce-2026-r09",
+      "eventName": "Barcelona",
+      "roundNumber": 9,
+      "source": {
+        "stableUrl": "https://www.gt-world-challenge-europe.com/images/results/246/2026%20GT%20World%20Challenge%20-%20Paul%20Ricard%20Official%20Detailed%20Timetable%20V1.pdf",
+        "finalUrl": "https://www.gt-world-challenge-europe.com/images/results/246/2026%20GT%20World%20Challenge%20-%20Paul%20Ricard%20Official%20Detailed%20Timetable%20V1.pdf",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-10-06T12:03:02Z",
+        "lastModified": "Thu, 09 Apr 2026 13:58:55 GMT"
+      },
+      "proposalType": "conflict",
+      "sessionId": null,
+      "sessionName": "Qualifying 2",
+      "current": {
+        "name": null,
+        "kind": null,
+        "date": null,
+        "timeLocal": null,
+        "durationMinutes": null
+      },
+      "sourceSessionName": "Qualifying 2",
+      "sourceTime": {
+        "date": "2026-04-11",
+        "time": "12:30",
+        "timeZone": "Europe/Madrid"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": null,
+      "dateChanged": false,
+      "status": "requires_review",
+      "reason": "Conflicting official rows for the same session; review the source timetable.",
+      "debug": false,
+      "fingerprint": "688bfa154dcc841ae94f467723f992ac9b3f98a675b7e3686a6a31da3c8f7ca9",
+      "id": "schedule-688bfa154dcc841a"
+    },
+    {
+      "seriesId": "gtwce",
+      "seriesName": "GT World Challenge Europe",
+      "calendarFile": "gtwce_2026.json",
+      "eventId": "gtwce-2026-r09",
+      "eventName": "Barcelona",
+      "roundNumber": 9,
+      "source": {
+        "stableUrl": "https://www.gt-world-challenge-europe.com/images/results/246/2026%20GT%20World%20Challenge%20-%20Paul%20Ricard%20Official%20Detailed%20Timetable%20V1.pdf",
+        "finalUrl": "https://www.gt-world-challenge-europe.com/images/results/246/2026%20GT%20World%20Challenge%20-%20Paul%20Ricard%20Official%20Detailed%20Timetable%20V1.pdf",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-10-06T12:03:02Z",
+        "lastModified": "Thu, 09 Apr 2026 13:58:55 GMT"
+      },
+      "proposalType": "conflict",
+      "sessionId": null,
+      "sessionName": "Qualifying 2",
+      "current": {
+        "name": null,
+        "kind": null,
+        "date": null,
+        "timeLocal": null,
+        "durationMinutes": null
+      },
+      "sourceSessionName": "Qualifying 2",
+      "sourceTime": {
+        "date": "2026-04-11",
+        "time": "12:40",
+        "timeZone": "Europe/Madrid"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": null,
+      "dateChanged": false,
+      "status": "requires_review",
+      "reason": "Conflicting official rows for the same session; review the source timetable.",
+      "debug": false,
+      "fingerprint": "c3b7bb83fab2860631ec3ff058b59890f7195235945d4a7118d8e3addb478467",
+      "id": "schedule-c3b7bb83fab28606"
+    },
+    {
+      "seriesId": "gtwce",
+      "seriesName": "GT World Challenge Europe",
+      "calendarFile": "gtwce_2026.json",
+      "eventId": "gtwce-2026-r09",
+      "eventName": "Barcelona",
+      "roundNumber": 9,
+      "source": {
+        "stableUrl": "https://www.gt-world-challenge-europe.com/images/results/246/2026%20GT%20World%20Challenge%20-%20Paul%20Ricard%20Official%20Detailed%20Timetable%20V1.pdf",
+        "finalUrl": "https://www.gt-world-challenge-europe.com/images/results/246/2026%20GT%20World%20Challenge%20-%20Paul%20Ricard%20Official%20Detailed%20Timetable%20V1.pdf",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-10-06T12:03:02Z",
+        "lastModified": "Thu, 09 Apr 2026 13:58:55 GMT"
+      },
+      "proposalType": "new-session",
+      "sessionId": null,
+      "sessionName": "Qualifying 3",
+      "current": {
+        "name": null,
+        "kind": null,
+        "date": null,
+        "timeLocal": null,
+        "durationMinutes": null
+      },
+      "sourceSessionName": "Qualifying 3",
+      "sourceTime": {
+        "date": "2026-04-11",
+        "time": "13:05",
+        "timeZone": "Europe/Madrid"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-04-11",
+        "timeLocal": "13:05",
+        "durationMinutes": 10,
+        "name": "Qualifying 3",
+        "kind": "qualifying",
+        "utcInstant": "2026-04-11T11:05:00Z",
+        "sessionId": "gtwce-2026-r09-official-580ad04a3ee7"
+      },
+      "dateChanged": false,
+      "status": "open",
+      "reason": "Official session time is available.",
+      "debug": false,
+      "fingerprint": "df447cc30f121de5a5d2c1374bbccae9dcc70728e8bc8fa6c63f05a1e2e07af4",
+      "id": "schedule-df447cc30f121de5"
+    },
+    {
+      "seriesId": "gtwce",
+      "seriesName": "GT World Challenge Europe",
+      "calendarFile": "gtwce_2026.json",
+      "eventId": "gtwce-2026-r09",
+      "eventName": "Barcelona",
+      "roundNumber": 9,
+      "source": {
+        "stableUrl": "https://www.gt-world-challenge-europe.com/images/results/246/2026%20GT%20World%20Challenge%20-%20Paul%20Ricard%20Official%20Detailed%20Timetable%20V1.pdf",
+        "finalUrl": "https://www.gt-world-challenge-europe.com/images/results/246/2026%20GT%20World%20Challenge%20-%20Paul%20Ricard%20Official%20Detailed%20Timetable%20V1.pdf",
+        "title": "Official timetable PDF",
+        "checkedAt": "2026-10-06T12:03:02Z",
+        "lastModified": "Thu, 09 Apr 2026 13:58:55 GMT"
+      },
+      "proposalType": "verification",
+      "sessionId": "gtwce-2026-r09-s3",
+      "sessionName": "Race 1",
+      "current": {
+        "name": "Race 1",
+        "kind": "race",
+        "date": "2026-10-03",
+        "timeLocal": "14:00",
+        "durationMinutes": 60
+      },
+      "sourceSessionName": "Race",
+      "sourceTime": {
+        "date": "2026-04-11",
+        "time": "18:00",
+        "timeZone": "Europe/Madrid"
+      },
+      "editorTimeZone": "Europe/Amsterdam",
+      "proposed": {
+        "date": "2026-04-11",
+        "timeLocal": "18:00",
+        "durationMinutes": 360,
+        "name": "Race 1",
+        "kind": "race",
+        "utcInstant": "2026-04-11T16:00:00Z",
+        "sessionId": "gtwce-2026-r09-s3"
+      },
+      "dateChanged": true,
+      "status": "mismatch",
+      "reason": "Debugcontrole: de ingevulde sessie wijkt af van de officiële bron.",
+      "debug": true,
+      "fingerprint": "1908008b2d8e91ff5e274b6c21cc7101bc56146ed5406bb716b5343e3db417a8",
+      "id": "schedule-1908008b2d8e91ff"
     }
   ],
   "sourcesUsed": [
@@ -6768,6 +7018,20 @@
       "lastModified": null,
       "status": "unresolved",
       "reason": "could not identify one official WorldSBK round"
+    },
+    {
+      "seriesId": "gtwce",
+      "eventId": "gtwce-2026-r09",
+      "eventName": "Barcelona",
+      "calendarFile": "gtwce_2026.json",
+      "manualUrl": "",
+      "stableUrl": "https://www.gt-world-challenge-europe.com/calendar",
+      "finalUrl": "https://www.gt-world-challenge-europe.com/images/results/246/2026%20GT%20World%20Challenge%20-%20Paul%20Ricard%20Official%20Detailed%20Timetable%20V1.pdf",
+      "title": "Official timetable PDF",
+      "checkedAt": "2026-10-06T12:03:02Z",
+      "lastModified": "Thu, 09 Apr 2026 13:58:55 GMT",
+      "status": "requires_review",
+      "reason": "De koppeling van een of meer sessies is onzeker. Beoordeel de conflicten bij Voorstellen."
     }
   ]
 }
