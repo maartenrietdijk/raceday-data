@@ -424,7 +424,7 @@
         "sessionId": "dtm-2026-r08-s1"
       },
       "dateChanged": false,
-      "status": "superseded",
+      "status": "rejected",
       "reason": "De ingevulde sessie wordt vervangen door de nieuwste officiële tijd.",
       "debug": false,
       "fingerprint": "a0f95d7cb4085c09e509a4b36e6a4d6d322e345abcc9e7e3cea68a99256bc79f",
@@ -569,7 +569,7 @@
         "sessionId": "dtm-2026-r08-s2"
       },
       "dateChanged": false,
-      "status": "superseded",
+      "status": "rejected",
       "reason": "De ingevulde sessie wordt vervangen door de nieuwste officiële tijd.",
       "debug": false,
       "fingerprint": "e86381348ae4d95a49d72bdf03622d243d14908e4afb5c09471993928d93bf65",
@@ -1094,7 +1094,7 @@
         "sessionId": "supercars-2026-11-official-cf3d873c0999"
       },
       "dateChanged": false,
-      "status": "superseded",
+      "status": "rejected",
       "reason": "Official session time is available.",
       "debug": false,
       "fingerprint": "f98b52fcab992446966d1adb7615e26ff420798133d5a79483c5d7d289bd6bc9",
@@ -1383,7 +1383,7 @@
         "sessionId": "supercars-2026-11-s03"
       },
       "dateChanged": false,
-      "status": "superseded",
+      "status": "rejected",
       "reason": "De ingevulde sessie wordt vervangen door de nieuwste officiële tijd.",
       "debug": false,
       "fingerprint": "0284e552bac228189290a280e288b7fb789e11200ca8c14c6d2365e21e5b6a1a",
@@ -3258,11 +3258,12 @@
       "editorTimeZone": "Europe/Amsterdam",
       "proposed": null,
       "dateChanged": true,
-      "status": "requires_review",
+      "status": "rejected",
       "reason": "Conflicting official rows for the same session; review the source timetable.",
       "debug": true,
       "fingerprint": "40e8eeafd9cb0c5f2c5ed932ed3fb143545711e087f5fa3579c47a1960a74fe0",
-      "id": "schedule-40e8eeafd9cb0c5f"
+      "id": "schedule-40e8eeafd9cb0c5f",
+      "decisionAt": "2026-10-06T12:07:50.450Z"
     },
     {
       "seriesId": "gtwce",
@@ -3297,11 +3298,12 @@
       "editorTimeZone": "Europe/Amsterdam",
       "proposed": null,
       "dateChanged": false,
-      "status": "requires_review",
+      "status": "rejected",
       "reason": "Conflicting official rows for the same session; review the source timetable.",
       "debug": false,
       "fingerprint": "a4d400710e29b18cd6ac24acd1ab65d7c550f64e2e0a067f29d6aac3c33f1d4f",
-      "id": "schedule-a4d400710e29b18c"
+      "id": "schedule-a4d400710e29b18c",
+      "decisionAt": "2026-10-06T12:07:51.383Z"
     },
     {
       "seriesId": "gtwce",
@@ -3375,11 +3377,12 @@
       "editorTimeZone": "Europe/Amsterdam",
       "proposed": null,
       "dateChanged": false,
-      "status": "requires_review",
+      "status": "rejected",
       "reason": "Conflicting official rows for the same session; review the source timetable.",
       "debug": false,
       "fingerprint": "c3b7bb83fab2860631ec3ff058b59890f7195235945d4a7118d8e3addb478467",
-      "id": "schedule-c3b7bb83fab28606"
+      "id": "schedule-c3b7bb83fab28606",
+      "decisionAt": "2026-10-06T12:07:52.889Z"
     },
     {
       "seriesId": "gtwce",
@@ -3422,11 +3425,12 @@
         "sessionId": "gtwce-2026-r09-official-580ad04a3ee7"
       },
       "dateChanged": false,
-      "status": "open",
+      "status": "rejected",
       "reason": "Official session time is available.",
       "debug": false,
       "fingerprint": "df447cc30f121de5a5d2c1374bbccae9dcc70728e8bc8fa6c63f05a1e2e07af4",
-      "id": "schedule-df447cc30f121de5"
+      "id": "schedule-df447cc30f121de5",
+      "decisionAt": "2026-10-06T12:07:54.226Z"
     },
     {
       "seriesId": "gtwce",
