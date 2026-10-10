@@ -441,3 +441,21 @@ body, button, input, select, textarea { font-family: 'Inter', sans-serif; }
   flex-shrink: 0;
   accent-color: #ff3045;
 }
+
+.instagram-header-logo-size { display: flex; align-items: center; gap: 12px; }
+.instagram-format-controls .instagram-header-logo-size input {
+  flex: 1;
+  min-width: 0;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  accent-color: #ff3045;
+}
+.instagram-header-logo-size output {
+  min-width: 44px;
+  color: #c4c4ce;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}

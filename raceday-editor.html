@@ -984,7 +984,7 @@
     *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
   }
 </style>
-<link rel="stylesheet" href="instagram-generator.css?v=20261010-2">
+<link rel="stylesheet" href="instagram-generator.css?v=20261010-3">
 <link rel="stylesheet" href="editor-ux.css?v=20261001-1">
 <link rel="stylesheet" href="dashboard-design.css?v=20261001-3">
 <link rel="stylesheet" href="editor-links.css?v=20260930-1">
@@ -1214,6 +1214,11 @@
             <select id="instagramSeries" onchange="setInstagramSeries(this.value)"></select>
             <label for="instagramEvent">Kies een event</label>
             <select id="instagramEvent" onchange="setInstagramEvent(this.value)"></select>
+            <label for="instagramHeaderLogoSize">Formaat van logo bovenaan</label>
+            <div class="instagram-header-logo-size">
+              <input id="instagramHeaderLogoSize" type="range" min="50" max="200" step="5" value="100" oninput="setInstagramHeaderLogoSize(this.value)">
+              <output id="instagramHeaderLogoSizeValue" for="instagramHeaderLogoSize">100%</output>
+            </div>
           </div>
           <div id="instagramTimeZoneControls" class="instagram-picker-group" hidden>
             <label for="instagramTimeZone">Tijdzone in de post</label>
@@ -1237,6 +1242,10 @@
               <option value="center" selected>Midden</option>
               <option value="bottom">Onder</option>
             </select>
+            <label class="instagram-footer-toggle" for="instagramRowLogoVisibility">
+              <input id="instagramRowLogoVisibility" type="checkbox" checked onchange="setInstagramLayout('showRowLogos', this.checked)">
+              <span>Logo’s in de sessierijen tonen</span>
+            </label>
             <label class="instagram-footer-toggle" for="instagramFooterVisibility">
               <input id="instagramFooterVisibility" type="checkbox" checked onchange="setInstagramLayout('showFooter', this.checked)">
               <span>Footer met RaceDay en appstores tonen</span>
@@ -4373,7 +4382,7 @@ if (state.github.token && state.github.repo) {
 <script src="instagram-assets/logo-overrides.js?v=20261001-2"></script>
 <script src="instagram-assets/flag-bundle.js?v=20260826-2"></script>
 <script src="instagram-assets/timezone-bundle.js?v=20261010-1"></script>
-<script src="instagram-generator.js?v=20261010-2"></script>
+<script src="instagram-generator.js?v=20261010-3"></script>
 <script src="statistics.js?v=20261001-2"></script>
 </body>
 </html>

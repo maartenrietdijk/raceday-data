@@ -1,16 +1,11 @@
-# Instagram-generator: indelingsopties
+# Instagram-generator: vlag en logo-opties
 
-In de generator kun je nu kiezen:
+In een weekendschema van één serie staat de landvlag achter de grote eventtitel. De afstand tussen titel en datum is kleiner.
 
-- **Plaats van de tijdzonevermelding**: in elk dagblok of één keer boven de blokken. Bij een serieoverzicht staat de vermelding rechts naast de eventtitel.
-- **Uitlijning titel en datum**: links, midden of rechts.
-- **Plaatsing van het schema**: boven, midden of onder.
-- **Footer met RaceDay en appstores tonen**: zet deze optie uit om de complete footer te verbergen. De vrijgekomen ruimte wordt voor het schema gebruikt.
+**Formaat van logo bovenaan** past het grote logo apart aan van 50% tot 200%. Titel en datum schuiven mee zonder groter te worden; bij een hoog logo wordt ook extra ruimte boven de dagblokken gereserveerd.
 
-Lokale tijd van het circuit en Mijn lokale tijd gebruiken **Local time (tijdzone)**, bijvoorbeeld Local time (GMT+8). Een gekozen vaste tijdzone gebruikt **All times are tijdzone**. Ontbreekt de circuittijdzone, dan blijft een waarschuwing zichtbaar en wordt de feitelijk gebruikte kalendertijdzone vermeld.
+Zet **Logo’s in de sessierijen tonen** uit om alleen het grote serielogo bovenaan te tonen. De sessietekst schuift naar links, terwijl de tijdkolom op zijn plek blijft. De instelling voor rijlogo’s werkt ook in de andere overzichtstypen.
 
-Het zichtbare serielogo staat gelijk met de linkerzijde van de dagblokken. Onder de eventtitel staat het volledige datumbereik van het event in de gekozen tijdzone, bijvoorbeeld **9–11 October 2026**.
+De bestaande tijdzone-, footer- en uitlijningsopties blijven beschikbaar. De bestanden zijn al aangepast in raceday-data-main. Deze ZIP bevat de complete bijgewerkte generator inclusief de eerdere tijdzonebundel. Herlaad de editor na uploaden.
 
-De bestanden zijn al bijgewerkt in raceday-data-main. De ZIP bevat ook de tijdzonebundel uit de vorige update, zodat je de complete generator kunt uploaden. Herlaad de editor na uploaden.
-
-Gecontroleerd op desktop en mobiel: beide tijdzoneplaatsingen, lokale tekst, datum, logo-uitlijning, uitlijningsopties, footer aan/uit, sessieselectie behouden, paginering, bestaande overzichtstypen en PNG-export op 1080 × 1350.
+Gecontroleerd: 50%, 100% en 200%, landvlag, titel/datumafstand, meeschuivende tekst en gelijke lettergrootte, rijlogo’s aan/uit, sessieselectie en tijdkolom, lange eventnamen, grotere logo’s, desktop en mobiel, overige overzichtstypen en 1080 × 1350 PNG-export.

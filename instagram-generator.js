@@ -59,6 +59,7 @@
     seriesOrder: [], draggedSeriesId: '', logoScales: {}, controlTab: 'sessions',
     timeZone: DISPLAY_ZONE, selectedSeries: '', selectedEvent: '',
     timeZonePlacement: 'groups', titleAlignment: 'left', scheduleAlignment: 'center', showFooter: true,
+    headerLogoScale: 1, showRowLogos: true,
   };
 
   function loadLogoScales() {
@@ -381,7 +382,7 @@
   }
 
   function contentTop() {
-    if (instagramState.mode === 'seriesWeekend') return 200;
+    if (instagramState.mode === 'seriesWeekend') return Math.max(200, 52 + seriesHeaderHeight());
     const base = hasMinimalHeader()
       ? MINIMAL_CONTENT_TOP
       : instagramState.showTopMeta ? DEFAULT_CONTENT_TOP : COMPACT_CONTENT_TOP;
@@ -757,19 +758,20 @@
     const rowX = x + 20, rowWidth = width - 40;
     fillRoundRect(ctx, rowX, y + 6, rowWidth, rowHeight - 12, PANEL_RADIUS, '#202023');
     const logoW = 122, logoH = 60, logoX = rowX + 20, logoY = y + (rowHeight - logoH) / 2;
-    drawLogo(ctx, item, logoX, logoY, logoW, logoH);
-    const copyX = rowX + 162;
+    if (instagramState.showRowLogos) drawLogo(ctx, item, logoX, logoY, logoW, logoH);
+    const copyX = rowX + (instagramState.showRowLogos ? 162 : 20);
+    const extraCopyWidth = instagramState.showRowLogos ? 0 : 142;
     ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic';
     const textOffset = (rowHeight - ROW_HEIGHT) / 2;
     const seriesWeekend = instagramState.mode === 'seriesWeekend';
     ctx.fillStyle = '#f7f7f8'; ctx.font = `650 ${item.overview ? 28 : 24}px Inter, sans-serif`;
     // Reserve the flag and gap before the fixed date/session column.
-    const eventTitle = truncateText(ctx, seriesWeekend ? sessionTitle(item) : item.eventName, seriesWeekend ? 570 : item.overview ? 542 : 338);
+    const eventTitle = truncateText(ctx, seriesWeekend ? sessionTitle(item) : item.eventName, (seriesWeekend ? 570 : item.overview ? 542 : 338) + extraCopyWidth);
     ctx.fillText(eventTitle, copyX, y + 44 + textOffset);
     if (!seriesWeekend) drawFlag(ctx, item.countryCode, copyX + ctx.measureText(eventTitle).width + 12, y + 23 + textOffset, 32, 24);
     ctx.fillStyle = '#b5b5bd'; ctx.font = `500 ${item.overview ? 20 : 18}px Inter, sans-serif`;
     const subline = item.circuitName && item.circuitName !== item.eventName ? `${item.seriesName} · ${item.circuitName}` : item.seriesName;
-    ctx.fillText(truncateText(ctx, subline, seriesWeekend ? 570 : item.overview ? 580 : 390), copyX, y + 72 + textOffset);
+    ctx.fillText(truncateText(ctx, subline, (seriesWeekend ? 570 : item.overview ? 580 : 390) + extraCopyWidth), copyX, y + 72 + textOffset);
     const label = item.overview ? '' : sessionLabel(item), labelX = x + 592, labelW = 178, labelH = 48;
     const labelY = y + (rowHeight - labelH) / 2;
     const dayWithoutTimes = instagramState.mode === 'dayNoTimes';
@@ -802,10 +804,12 @@
   function inkBounds(image) {
     if (logoInkBounds.has(image)) return logoInkBounds.get(image);
     const canvas = document.createElement('canvas');
-    canvas.width = image.naturalWidth || image.width;
-    canvas.height = image.naturalHeight || image.height;
+    const width = image.naturalWidth || image.width, height = image.naturalHeight || image.height;
+    const rasterScale = Math.max(1, 512 / Math.max(width, height));
+    canvas.width = Math.round(width * rasterScale);
+    canvas.height = Math.round(height * rasterScale);
     const ctx = canvas.getContext('2d', { willReadFrequently: true });
-    ctx.drawImage(image, 0, 0);
+    ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
     let bounds = { x: 0, y: 0, width: canvas.width, height: canvas.height };
     try {
       const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
@@ -823,16 +827,32 @@
     return bounds;
   }
 
-  function drawEventLogo(ctx, item, y) {
-    const config = logoConfigFor(item);
+  function eventLogoSize(item) {
+    const config = item ? logoConfigFor(item) : null;
     const image = config ? instagramState.images.get(config.src) : null;
-    if (!image) { drawLogo(ctx, item, 52, y + 10, 142, 86); return; }
+    const multiplier = instagramState.headerLogoScale;
+    if (!image) return { width: 132 * multiplier, height: 76 * multiplier };
     const bounds = inkBounds(image);
-    const scale = Math.min(132 / bounds.width, 76 / bounds.height) * Math.min(1, logoScaleFor(item.seriesId));
-    const width = bounds.width * scale, height = bounds.height * scale;
-    // Crop transparent asset padding so the visible mark starts at the panel edge.
-    ctx.drawImage(config.mono ? whiteLogo(image) : bounds.bitmap, bounds.x, bounds.y, bounds.width, bounds.height,
-      52, y + 48 - height / 2, width, height);
+    const scale = Math.min(132 / bounds.width, 76 / bounds.height) * multiplier;
+    return { width: bounds.width * scale, height: bounds.height * scale, config, image, bounds };
+  }
+
+  function seriesHeaderHeight() {
+    const item = instagramState.displayItems.find(item => instagramState.selectedIds.has(item.uid)) || instagramState.displayItems[0];
+    return Math.max(138, eventLogoSize(item).height + 32);
+  }
+
+  function drawEventLogo(ctx, item, centerY) {
+    const size = eventLogoSize(item);
+    if (!size.image) {
+      drawLogo(ctx, item, 52, centerY - size.height / 2, size.width, size.height);
+    } else {
+      const { config, image, bounds, width, height } = size;
+      // Crop asset padding so the visible mark stays on the panel's left edge.
+      ctx.drawImage(config.mono ? whiteLogo(bounds.bitmap) : bounds.bitmap, bounds.x, bounds.y, bounds.width, bounds.height,
+        52, centerY - height / 2, width, height);
+    }
+    return size.width;
   }
 
   function timeZoneText(items) {
@@ -851,26 +871,42 @@
 
   function drawSeriesEventHeader(ctx, item, items, y) {
     ctx.save();
-    drawEventLogo(ctx, item, y);
+    const centerY = y + (seriesHeaderHeight() - 32) / 2;
+    const logoWidth = drawEventLogo(ctx, item, centerY);
     const headerBadge = instagramState.timeZonePlacement === 'header';
     const badgeWidth = headerBadge ? timeZoneBadgeWidth(ctx, items) : 0;
-    const left = 214, right = 1028 - (headerBadge ? badgeWidth + 24 : 0), width = right - left;
+    const left = 52 + logoWidth + 30, right = 1028 - (headerBadge ? badgeWidth + 24 : 0), width = right - left;
+    const flagWidth = 40, flagHeight = 30, flagGap = 12, flagSpace = flagWidth + flagGap;
     ctx.fillStyle = '#fff'; ctx.font = '700 34px Inter, sans-serif';
     ctx.textBaseline = 'middle';
     const words = item.eventName.split(/\s+/);
     let first = '';
-    while (words.length && ctx.measureText(`${first} ${words[0]}`.trim()).width <= width) {
+    while (words.length && ctx.measureText(`${first} ${words[0]}`.trim()).width <= width - flagSpace) {
       first = `${first} ${words.shift()}`.trim();
     }
     if (!first) first = words.shift();
+    const lines = [truncateText(ctx, first, width - flagSpace)];
+    if (words.length) lines.push(truncateText(ctx, words.join(' '), width - flagSpace));
+    const firstY = centerY - (lines.length > 1 ? 34 : 15);
     ctx.textAlign = instagramState.titleAlignment;
-    const x = ctx.textAlign === 'center' ? (left + right) / 2 : ctx.textAlign === 'right' ? right : left;
-    ctx.fillText(truncateText(ctx, first, width), x, y + 25);
-    if (words.length) ctx.fillText(truncateText(ctx, words.join(' '), width), x, y + 63);
+    const alignment = ctx.textAlign;
+    lines.forEach((line, index) => {
+      const isLast = index === lines.length - 1;
+      const reserve = isLast ? flagSpace : 0;
+      const textWidth = ctx.measureText(line).width;
+      const x = alignment === 'center' ? (left + right - reserve) / 2 : alignment === 'right' ? right - reserve : left;
+      const lineY = firstY + index * 38;
+      ctx.fillText(line, x, lineY);
+      if (isLast) {
+        const textEnd = alignment === 'center' ? x + textWidth / 2 : alignment === 'right' ? x : x + textWidth;
+        drawFlag(ctx, item.countryCode, textEnd + flagGap, lineY - flagHeight / 2, flagWidth, flagHeight);
+      }
+    });
     ctx.fillStyle = '#b5b5bd'; ctx.font = '500 21px Inter, sans-serif';
+    const x = alignment === 'center' ? (left + right) / 2 : alignment === 'right' ? right : left;
     const range = { start: item.eventStart, end: item.eventEnd };
-    ctx.fillText(truncateText(ctx, formatHeaderDates(range), width), x, y + (words.length ? 99 : 65));
-    if (headerBadge) drawTimeZoneBadge(ctx, items, 1028, y + 25);
+    ctx.fillText(truncateText(ctx, formatHeaderDates(range), width), x, firstY + (lines.length - 1) * 38 + 30);
+    if (headerBadge) drawTimeZoneBadge(ctx, items, 1028, firstY);
     ctx.restore();
   }
 
@@ -969,7 +1005,7 @@
         + (index ? GROUP_GAP : 0), 0);
       let y = scheduleTop(totalHeight);
       const items = slide.groups.flatMap(group => group.items);
-      if (instagramState.mode === 'seriesWeekend') drawSeriesEventHeader(ctx, items[0], items, y - 138);
+      if (instagramState.mode === 'seriesWeekend') drawSeriesEventHeader(ctx, items[0], items, y - seriesHeaderHeight());
       else if (showsTimes() && instagramState.timeZonePlacement === 'header') drawTimeZoneBadge(ctx, items, 1028, contentTop() - 30);
       slide.groups.forEach((group, index) => {
         if (index) y += GROUP_GAP;
@@ -1291,7 +1327,7 @@
       timeZonePlacement: ['groups', 'header'], titleAlignment: ['left', 'center', 'right'],
       scheduleAlignment: ['top', 'center', 'bottom'],
     };
-    if (part === 'showFooter') instagramState.showFooter = Boolean(value);
+    if (['showFooter', 'showRowLogos'].includes(part)) instagramState[part] = Boolean(value);
     else if (options[part]?.includes(value)) instagramState[part] = value;
     else return;
     updateLayoutControls();
@@ -1306,6 +1342,20 @@
     });
     const footer = document.getElementById('instagramFooterVisibility');
     if (footer) footer.checked = instagramState.showFooter;
+    const rowLogos = document.getElementById('instagramRowLogoVisibility');
+    if (rowLogos) rowLogos.checked = instagramState.showRowLogos;
+    const headerLogoSize = document.getElementById('instagramHeaderLogoSize');
+    if (headerLogoSize) headerLogoSize.value = Math.round(instagramState.headerLogoScale * 100);
+    const output = document.getElementById('instagramHeaderLogoSizeValue');
+    if (output) output.value = `${Math.round(instagramState.headerLogoScale * 100)}%`;
+  }
+
+  function setInstagramHeaderLogoSize(percent) {
+    const value = Number(percent);
+    if (!Number.isFinite(value)) return;
+    instagramState.headerLogoScale = Math.max(.5, Math.min(2, value / 100));
+    updateLayoutControls();
+    rebuildSlides();
   }
 
   function setInstagramDay(dayKey) {
@@ -1520,6 +1570,7 @@
   window.setInstagramEvent = setInstagramEvent;
   window.setInstagramTimeZone = setInstagramTimeZone;
   window.setInstagramLayout = setInstagramLayout;
+  window.setInstagramHeaderLogoSize = setInstagramHeaderLogoSize;
   window.setInstagramMonth = setInstagramMonth;
   window.setInstagramWeekend = setInstagramWeekend;
   window.toggleInstagramWeek = toggleInstagramWeek;
