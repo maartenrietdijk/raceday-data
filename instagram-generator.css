@@ -418,3 +418,26 @@ body, button, input, select, textarea { font-family: 'Inter', sans-serif; }
   .instagram-modal-actions { gap: 4px; flex-wrap: nowrap; }
   .instagram-modal-actions .btn { padding-inline: 10px; }
 }
+
+/* Keep dependent selectors together and honor their hidden state. */
+.instagram-general-header-controls,
+.instagram-picker-group { display: grid; gap: 8px; }
+.instagram-modal [hidden] { display: none !important; }
+
+.instagram-format-controls .instagram-footer-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  cursor: pointer;
+  line-height: 1.4;
+}
+.instagram-format-controls .instagram-footer-toggle input {
+  width: 18px;
+  min-height: 18px;
+  height: 18px;
+  margin: 0;
+  padding: 0;
+  flex-shrink: 0;
+  accent-color: #ff3045;
+}

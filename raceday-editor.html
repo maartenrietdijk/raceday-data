@@ -984,7 +984,7 @@
     *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
   }
 </style>
-<link rel="stylesheet" href="instagram-generator.css?v=20260928-2">
+<link rel="stylesheet" href="instagram-generator.css?v=20261010-2">
 <link rel="stylesheet" href="editor-ux.css?v=20261001-1">
 <link rel="stylesheet" href="dashboard-design.css?v=20261001-3">
 <link rel="stylesheet" href="editor-links.css?v=20260930-1">
@@ -1173,7 +1173,7 @@
     <div class="instagram-modal-header">
       <div class="instagram-modal-title">
         <h2 id="instagramModalTitle">Instagram-weekendschema</h2>
-        <p>Vaste RaceDay-template · 1080 × 1350 px · Europe/Amsterdam</p>
+        <p>Vaste RaceDay-template · 1080 × 1350 px · Kies je eigen tijdzone</p>
       </div>
       <div class="instagram-modal-actions">
         <button class="btn btn-ghost btn-sm" id="instagramDownloadAll" onclick="downloadInstagramPng(true)" aria-label="Download alle PNG’s">Alle PNG’s</button>
@@ -1184,6 +1184,7 @@
     <div class="instagram-workspace">
       <aside class="instagram-controls" aria-label="Sessieselectie">
         <div class="instagram-format-controls">
+          <div class="instagram-general-header-controls" id="instagramGeneralHeaderControls">
           <label for="instagramPostTitle">Titel in de post</label>
           <input id="instagramPostTitle" type="text" value="Upcoming races" maxlength="42" autocomplete="off" oninput="setInstagramTitle(this.value)" placeholder="Upcoming races">
           <div class="instagram-visibility-controls" role="group" aria-label="Zichtbare koponderdelen">
@@ -1192,9 +1193,11 @@
             <button class="active" id="instagramDateVisibility" type="button" aria-pressed="true" onclick="toggleInstagramHeaderPart('date')">Datum</button>
             <button class="active" id="instagramTopMetaVisibility" type="button" aria-pressed="true" onclick="toggleInstagramHeaderPart('topMeta')">Raceweek + pagina</button>
           </div>
+          </div>
           <label for="instagramMode">Type overzicht</label>
           <select id="instagramMode" onchange="setInstagramMode(this.value)">
             <option value="sessions">Weekendschema met tijden</option>
+            <option value="seriesWeekend">Weekendschema van één serie</option>
             <option value="day">Schema voor één dag</option>
             <option value="dayNoTimes">Eén dag zonder tijden</option>
             <option value="overview">Weekendoverzicht zonder tijden</option>
@@ -1205,6 +1208,39 @@
           <div id="instagramWeekendControls">
             <label for="instagramWeekend">Kies een weekend</label>
             <select id="instagramWeekend" onchange="setInstagramWeekend(this.value)"></select>
+          </div>
+          <div id="instagramSeriesEventControls" class="instagram-picker-group" hidden>
+            <label for="instagramSeries">Kies een serie</label>
+            <select id="instagramSeries" onchange="setInstagramSeries(this.value)"></select>
+            <label for="instagramEvent">Kies een event</label>
+            <select id="instagramEvent" onchange="setInstagramEvent(this.value)"></select>
+          </div>
+          <div id="instagramTimeZoneControls" class="instagram-picker-group" hidden>
+            <label for="instagramTimeZone">Tijdzone in de post</label>
+            <select id="instagramTimeZone" onchange="setInstagramTimeZone(this.value)"></select>
+            <label for="instagramTimeZonePlacement">Plaats van de tijdzonevermelding</label>
+            <select id="instagramTimeZonePlacement" onchange="setInstagramLayout('timeZonePlacement', this.value)">
+              <option value="groups">In elk dagblok</option>
+              <option value="header">Boven de blokken, naast de eventtitel</option>
+            </select>
+          </div>
+          <div class="instagram-picker-group">
+            <label for="instagramTitleAlignment">Uitlijning titel en datum</label>
+            <select id="instagramTitleAlignment" onchange="setInstagramLayout('titleAlignment', this.value)">
+              <option value="left">Links</option>
+              <option value="center">Midden</option>
+              <option value="right">Rechts</option>
+            </select>
+            <label for="instagramScheduleAlignment">Plaatsing van het schema</label>
+            <select id="instagramScheduleAlignment" onchange="setInstagramLayout('scheduleAlignment', this.value)">
+              <option value="top">Boven</option>
+              <option value="center" selected>Midden</option>
+              <option value="bottom">Onder</option>
+            </select>
+            <label class="instagram-footer-toggle" for="instagramFooterVisibility">
+              <input id="instagramFooterVisibility" type="checkbox" checked onchange="setInstagramLayout('showFooter', this.checked)">
+              <span>Footer met RaceDay en appstores tonen</span>
+            </label>
           </div>
           <div id="instagramWeekList" role="group" aria-label="Weken in de export" hidden></div>
           <label class="instagram-day-picker" id="instagramDayPicker" for="instagramDay">Kies een dag</label>
@@ -4336,7 +4372,8 @@ if (state.github.token && state.github.repo) {
 <script src="instagram-assets/logo-bundle.js?v=20260914-6"></script>
 <script src="instagram-assets/logo-overrides.js?v=20261001-2"></script>
 <script src="instagram-assets/flag-bundle.js?v=20260826-2"></script>
-<script src="instagram-generator.js?v=20261001-2"></script>
+<script src="instagram-assets/timezone-bundle.js?v=20261010-1"></script>
+<script src="instagram-generator.js?v=20261010-2"></script>
 <script src="statistics.js?v=20261001-2"></script>
 </body>
 </html>
