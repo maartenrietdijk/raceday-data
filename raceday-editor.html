@@ -1342,6 +1342,7 @@
 </div>
 
 <script src="proposal-logic.js?v=20261003-1"></script>
+<script src="calendar-updates.js?v=20261011-1"></script>
 <script src="editor-links.js?v=20260930-1"></script>
 <script>
 function editorIcon(name) {
@@ -4060,6 +4061,18 @@ function importJSON() {
     try {
       const text = await file.text();
       const data = JSON.parse(text);
+      if (data?.format === 'raceday-session-update') {
+        const plan = RaceDayUpdates.plan(state.calendarFiles, data, seriesTimeZone);
+        if (!plan.changes.length) return showStatus('Dit updatebestand is al toegepast; geen wijzigingen.', 'success');
+        if (!confirm(`Updatebestand: ${file.name}\n\n${plan.changes.join('\n')}${data.source?.notes ? '\n\n' + data.source.notes : ''}\n\nDeze wijzigingen lokaal toepassen?`)) return;
+        const previous = state.calendarFiles;
+        state.calendarFiles = plan.calendars;
+        if (!save()) { state.calendarFiles = previous; rebuildCombinedData(); renderMain(); return; }
+        renderMain(); renderSidebar();
+        showStatus(`${data.updates.length} event(s) bijgewerkt en lokaal opgeslagen`, 'success');
+        return;
+      }
+      if (!Array.isArray(data)) throw new Error('Verwacht een kalender of RaceDay-updatebestand.');
       const parsedFile = parseCalendarFilename(file.name);
       const filename = parsedFile?.seriesId === state.activeSeries
         ? parsedFile.filename
@@ -4072,8 +4085,8 @@ function importJSON() {
       renderMain();
       renderSidebar();
       showStatus(`${data.length} rondes geïmporteerd`, 'success');
-    } catch {
-      showStatus('Ongeldig JSON-bestand', 'error');
+    } catch (error) {
+      showStatus(error.message || 'Ongeldig JSON-bestand', 'error');
     }
   };
   input.click();
