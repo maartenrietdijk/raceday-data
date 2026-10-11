@@ -1,13 +1,21 @@
 [
   {
     "id": "motogp-2026-01",
+    "seriesId": "motogp",
+    "roundNumber": 1,
+    "raceName": "Grand Prix of Thailand",
+    "circuitName": "Chang International Circuit",
+    "city": "Buriram",
+    "country": "Thailand",
+    "countryCode": "TH",
     "sessions": [
       {
-        "timeLocal": "04:45",
-        "kind": "practice",
+        "id": "motogp-2026-01-fp1",
         "name": "Free Practice 1",
-        "durationMinutes": 60,
+        "kind": "practice",
         "date": "2026-02-27",
+        "timeLocal": "04:45",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "72",
@@ -206,15 +214,15 @@
             "driver": "M. Pirro",
             "laps": "19"
           }
-        ],
-        "id": "motogp-2026-01-fp1"
+        ]
       },
       {
-        "timeLocal": "09:00",
-        "kind": "practice",
+        "id": "motogp-2026-01-prac",
         "name": "Practice",
-        "durationMinutes": 60,
+        "kind": "practice",
         "date": "2026-02-27",
+        "timeLocal": "09:00",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "72",
@@ -413,15 +421,15 @@
             "driver": "M. Pirro",
             "laps": "23"
           }
-        ],
-        "id": "motogp-2026-01-prac"
+        ]
       },
       {
-        "timeLocal": "04:10",
-        "kind": "practice",
+        "id": "motogp-2026-01-fp2",
         "name": "Free Practice 2",
-        "durationMinutes": 60,
+        "kind": "practice",
         "date": "2026-02-28",
+        "timeLocal": "04:10",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "72",
@@ -620,15 +628,15 @@
             "driver": "M. Pirro",
             "laps": "12"
           }
-        ],
-        "id": "motogp-2026-01-fp2"
+        ]
       },
       {
-        "timeLocal": "04:50",
-        "kind": "qualifying",
+        "id": "motogp-2026-01-q1",
         "name": "Qualifying 1",
-        "durationMinutes": 60,
+        "kind": "qualifying",
         "date": "2026-02-28",
+        "timeLocal": "04:50",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "25",
@@ -737,15 +745,15 @@
             "driver": "M. Pirro",
             "laps": "8"
           }
-        ],
-        "id": "motogp-2026-01-q1"
+        ]
       },
       {
-        "timeLocal": "05:15",
-        "kind": "qualifying",
+        "id": "motogp-2026-01-q2",
         "name": "Qualifying 2",
-        "durationMinutes": 60,
+        "kind": "qualifying",
         "date": "2026-02-28",
+        "timeLocal": "05:15",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "72",
@@ -854,15 +862,15 @@
             "driver": "J. Zarco",
             "laps": "8"
           }
-        ],
-        "id": "motogp-2026-01-q2"
+        ]
       },
       {
-        "timeLocal": "09:00",
-        "kind": "sprintRace",
+        "id": "motogp-2026-01-sprint",
         "name": "Sprint",
-        "durationMinutes": 60,
+        "kind": "sprintRace",
         "date": "2026-02-28",
+        "timeLocal": "09:00",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "37",
@@ -1059,15 +1067,15 @@
             "driver": "M. Bezzecchi",
             "laps": "1"
           }
-        ],
-        "id": "motogp-2026-01-sprint"
+        ]
       },
       {
-        "timeLocal": "04:40",
-        "kind": "practice",
+        "id": "motogp-2026-01-wu",
         "name": "Warm Up",
-        "durationMinutes": 60,
+        "kind": "practice",
         "date": "2026-03-01",
+        "timeLocal": "04:40",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "25",
@@ -1266,15 +1274,15 @@
             "driver": "M. Pirro",
             "laps": "7"
           }
-        ],
-        "id": "motogp-2026-01-wu"
+        ]
       },
       {
-        "timeLocal": "09:00",
-        "kind": "race",
+        "id": "motogp-2026-01-race",
         "name": "Race",
-        "durationMinutes": 60,
+        "kind": "race",
         "date": "2026-03-01",
+        "timeLocal": "09:00",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "72",
@@ -1467,27 +1475,27 @@
             "driver": "M. Marquez",
             "laps": "20"
           }
-        ],
-        "id": "motogp-2026-01-race"
+        ]
       }
-    ],
-    "seriesId": "motogp",
-    "country": "Thailand",
-    "countryCode": "TH",
-    "roundNumber": 1,
-    "circuitName": "Chang International Circuit",
-    "raceName": "Grand Prix of Thailand",
-    "city": "Buriram"
+    ]
   },
   {
     "id": "motogp-2026-02",
+    "seriesId": "motogp",
+    "roundNumber": 2,
+    "raceName": "Grand Prix of Brazil",
+    "circuitName": "Autódromo Internacional Ayrton Senna",
+    "city": "Goiânia",
+    "country": "Brazil",
+    "countryCode": "BR",
     "sessions": [
       {
-        "timeLocal": "12:05",
-        "kind": "practice",
+        "id": "motogp-2026-02-fp1",
         "name": "Free Practice 1",
-        "durationMinutes": 60,
+        "kind": "practice",
         "date": "2026-03-20",
+        "timeLocal": "12:05",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "37",
@@ -1686,15 +1694,15 @@
             "driver": "F. Quartararo",
             "laps": "22"
           }
-        ],
-        "id": "motogp-2026-02-fp1"
+        ]
       },
       {
-        "timeLocal": "16:20",
-        "kind": "practice",
+        "id": "motogp-2026-02-prac",
         "name": "Practice",
-        "durationMinutes": 60,
+        "kind": "practice",
         "date": "2026-03-20",
+        "timeLocal": "16:20",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "5",
@@ -1893,15 +1901,15 @@
             "driver": "E. Bastianini",
             "laps": "13"
           }
-        ],
-        "id": "motogp-2026-02-prac"
+        ]
       },
       {
-        "timeLocal": "11:10",
-        "kind": "practice",
+        "id": "motogp-2026-02-fp2",
         "name": "Free Practice 2",
-        "durationMinutes": 60,
+        "kind": "practice",
         "date": "2026-03-21",
+        "timeLocal": "11:10",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "79",
@@ -2100,15 +2108,15 @@
             "driver": "F. Aldeguer",
             "laps": "13"
           }
-        ],
-        "id": "motogp-2026-02-fp2"
+        ]
       },
       {
-        "timeLocal": "11:50",
-        "kind": "qualifying",
+        "id": "motogp-2026-02-q1",
         "name": "Qualifying 1",
-        "durationMinutes": 60,
+        "kind": "qualifying",
         "date": "2026-03-21",
+        "timeLocal": "11:50",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "72",
@@ -2217,15 +2225,15 @@
             "driver": "E. Bastianini",
             "laps": "9"
           }
-        ],
-        "id": "motogp-2026-02-q1"
+        ]
       },
       {
-        "timeLocal": "12:15",
-        "kind": "qualifying",
+        "id": "motogp-2026-02-q2",
         "name": "Qualifying 2",
-        "durationMinutes": 60,
+        "kind": "qualifying",
         "date": "2026-03-21",
+        "timeLocal": "12:15",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "49",
@@ -2334,15 +2342,15 @@
             "driver": "T. Razgatlioglu",
             "laps": "8"
           }
-        ],
-        "id": "motogp-2026-02-q2"
+        ]
       },
       {
-        "timeLocal": "16:00",
-        "kind": "sprintRace",
+        "id": "motogp-2026-02-sprint",
         "name": "Sprint",
-        "durationMinutes": 60,
+        "kind": "sprintRace",
         "date": "2026-03-21",
+        "timeLocal": "16:00",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "93",
@@ -2535,15 +2543,15 @@
             "driver": "J. Mir",
             "laps": "1"
           }
-        ],
-        "id": "motogp-2026-02-sprint"
+        ]
       },
       {
-        "timeLocal": "11:40",
-        "kind": "practice",
+        "id": "motogp-2026-02-wu",
         "name": "Warm Up",
-        "durationMinutes": 60,
+        "kind": "practice",
         "date": "2026-03-22",
+        "timeLocal": "11:40",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "72",
@@ -2742,15 +2750,15 @@
             "driver": "B. Binder",
             "laps": "8"
           }
-        ],
-        "id": "motogp-2026-02-wu"
+        ]
       },
       {
-        "timeLocal": "16:00",
-        "kind": "race",
+        "id": "motogp-2026-02-race",
         "name": "Race",
-        "durationMinutes": 60,
+        "kind": "race",
         "date": "2026-03-22",
+        "timeLocal": "16:00",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "72",
@@ -2941,27 +2949,27 @@
             "driver": "J. Miller",
             "laps": "1"
           }
-        ],
-        "id": "motogp-2026-02-race"
+        ]
       }
-    ],
-    "seriesId": "motogp",
-    "country": "Brazil",
-    "countryCode": "BR",
-    "roundNumber": 2,
-    "circuitName": "Autódromo Internacional Ayrton Senna",
-    "raceName": "Grand Prix of Brazil",
-    "city": "Goiânia"
+    ]
   },
   {
     "id": "motogp-2026-03",
+    "seriesId": "motogp",
+    "roundNumber": 3,
+    "raceName": "Grand Prix of the Americas",
+    "circuitName": "Circuit of the Americas",
+    "city": "Austin",
+    "country": "United States",
+    "countryCode": "US",
     "sessions": [
       {
-        "timeLocal": "16:45",
-        "kind": "practice",
+        "id": "motogp-2026-03-fp1",
         "name": "Free Practice 1",
-        "durationMinutes": 60,
+        "kind": "practice",
         "date": "2026-03-27",
+        "timeLocal": "16:45",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "37",
@@ -3160,15 +3168,15 @@
             "driver": "F. Aldeguer",
             "laps": "15"
           }
-        ],
-        "id": "motogp-2026-03-fp1"
+        ]
       },
       {
-        "timeLocal": "21:00",
-        "kind": "practice",
+        "id": "motogp-2026-03-prac",
         "name": "Practice",
-        "durationMinutes": 60,
+        "kind": "practice",
         "date": "2026-03-27",
+        "timeLocal": "21:00",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "93",
@@ -3358,15 +3366,15 @@
             "driver": "A. Rins",
             "laps": "14"
           }
-        ],
-        "id": "motogp-2026-03-prac"
+        ]
       },
       {
-        "timeLocal": "16:00",
-        "kind": "practice",
+        "id": "motogp-2026-03-fp2",
         "name": "Free Practice 2",
-        "durationMinutes": 60,
+        "kind": "practice",
         "date": "2026-03-28",
+        "timeLocal": "16:00",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "89",
@@ -3556,15 +3564,15 @@
             "driver": "J. Miller",
             "laps": "11"
           }
-        ],
-        "id": "motogp-2026-03-fp2"
+        ]
       },
       {
-        "timeLocal": "16:40",
-        "kind": "qualifying",
+        "id": "motogp-2026-03-q1",
         "name": "Qualifying 1",
-        "durationMinutes": 60,
+        "kind": "qualifying",
         "date": "2026-03-28",
+        "timeLocal": "16:40",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "54",
@@ -3664,15 +3672,15 @@
             "driver": "A. Rins",
             "laps": "6"
           }
-        ],
-        "id": "motogp-2026-03-q1"
+        ]
       },
       {
-        "timeLocal": "17:05",
-        "kind": "qualifying",
+        "id": "motogp-2026-03-q2",
         "name": "Qualifying 2",
-        "durationMinutes": 60,
+        "kind": "qualifying",
         "date": "2026-03-28",
+        "timeLocal": "17:05",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "49",
@@ -3781,15 +3789,15 @@
             "driver": "E. Bastianini",
             "laps": "6"
           }
-        ],
-        "id": "motogp-2026-03-q2"
+        ]
       },
       {
-        "timeLocal": "21:00",
-        "kind": "sprintRace",
+        "id": "motogp-2026-03-sprint",
         "name": "Sprint",
-        "durationMinutes": 60,
+        "kind": "sprintRace",
         "date": "2026-03-28",
+        "timeLocal": "21:00",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "89",
@@ -3971,15 +3979,15 @@
             "driver": "D. Moreira",
             "laps": "3"
           }
-        ],
-        "id": "motogp-2026-03-sprint"
+        ]
       },
       {
-        "timeLocal": "17:40",
-        "kind": "practice",
+        "id": "motogp-2026-03-wu",
         "name": "Warm Up",
-        "durationMinutes": 60,
+        "kind": "practice",
         "date": "2026-03-29",
+        "timeLocal": "17:40",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "72",
@@ -4169,15 +4177,15 @@
             "driver": "P. Acosta",
             "laps": "2"
           }
-        ],
-        "id": "motogp-2026-03-wu"
+        ]
       },
       {
-        "timeLocal": "22:00",
-        "kind": "race",
+        "id": "motogp-2026-03-race",
         "name": "Race",
-        "durationMinutes": 60,
+        "kind": "race",
         "date": "2026-03-29",
+        "timeLocal": "22:00",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "72",
@@ -4361,27 +4369,27 @@
             "driver": "J. Mir",
             "laps": "5"
           }
-        ],
-        "id": "motogp-2026-03-race"
+        ]
       }
-    ],
-    "seriesId": "motogp",
-    "country": "United States",
-    "countryCode": "US",
-    "roundNumber": 3,
-    "circuitName": "Circuit of the Americas",
-    "raceName": "Grand Prix of the Americas",
-    "city": "Austin"
+    ]
   },
   {
     "id": "motogp-2026-04",
+    "seriesId": "motogp",
+    "roundNumber": 4,
+    "raceName": "Grand Prix of Spain",
+    "circuitName": "Circuito de Jerez",
+    "city": "Jerez de la Frontera",
+    "country": "Spain",
+    "countryCode": "ES",
     "sessions": [
       {
-        "timeLocal": "10:45",
-        "kind": "race",
+        "id": "motogp-2026-04-fp1",
         "name": "Free Practice 1",
-        "durationMinutes": 60,
+        "kind": "race",
         "date": "2026-04-24",
+        "timeLocal": "10:45",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "49",
@@ -4589,15 +4597,15 @@
             "driver": "A. Fernandez",
             "laps": "18"
           }
-        ],
-        "id": "motogp-2026-04-fp1"
+        ]
       },
       {
-        "timeLocal": "15:00",
-        "kind": "race",
+        "id": "motogp-2026-04-prac",
         "name": "Practice",
-        "durationMinutes": 60,
+        "kind": "race",
         "date": "2026-04-24",
+        "timeLocal": "15:00",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "73",
@@ -4805,15 +4813,15 @@
             "driver": "A. Fernandez",
             "laps": "22"
           }
-        ],
-        "id": "motogp-2026-04-prac"
+        ]
       },
       {
-        "timeLocal": "10:10",
-        "kind": "race",
+        "id": "motogp-2026-04-fp2",
         "name": "Free Practice 2",
-        "durationMinutes": 60,
+        "kind": "race",
         "date": "2026-04-25",
+        "timeLocal": "10:10",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "37",
@@ -5021,15 +5029,15 @@
             "driver": "L. Savadori",
             "laps": "10"
           }
-        ],
-        "id": "motogp-2026-04-fp2"
+        ]
       },
       {
-        "timeLocal": "10:50",
-        "kind": "race",
+        "id": "motogp-2026-04-q1",
         "name": "Qualifying 1",
-        "durationMinutes": 60,
+        "kind": "race",
         "date": "2026-04-25",
+        "timeLocal": "10:50",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "5",
@@ -5145,15 +5153,15 @@
             "driver": "D. Moreira",
             "laps": "3"
           }
-        ],
-        "id": "motogp-2026-04-q1"
+        ]
       },
       {
-        "timeLocal": "11:15",
-        "kind": "race",
+        "id": "motogp-2026-04-q2",
         "name": "Qualifying 2",
-        "durationMinutes": 60,
+        "kind": "race",
         "date": "2026-04-25",
+        "timeLocal": "11:15",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "93",
@@ -5262,15 +5270,15 @@
             "driver": "F. Aldeguer",
             "laps": "6"
           }
-        ],
-        "id": "motogp-2026-04-q2"
+        ]
       },
       {
-        "timeLocal": "15:00",
-        "kind": "race",
+        "id": "motogp-2026-04-sprint",
         "name": "Sprint",
-        "durationMinutes": 60,
+        "kind": "race",
         "date": "2026-04-25",
+        "timeLocal": "15:00",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "93",
@@ -5466,15 +5474,15 @@
             "driver": "J. Martin",
             "laps": "1"
           }
-        ],
-        "id": "motogp-2026-04-sprint"
+        ]
       },
       {
-        "timeLocal": "09:40",
-        "kind": "race",
+        "id": "motogp-2026-04-wu",
         "name": "Warm Up",
-        "durationMinutes": 60,
+        "kind": "race",
         "date": "2026-04-26",
+        "timeLocal": "09:40",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "73",
@@ -5682,15 +5690,15 @@
             "driver": "A. Fernandez",
             "laps": "6"
           }
-        ],
-        "id": "motogp-2026-04-wu"
+        ]
       },
       {
-        "timeLocal": "14:00",
-        "kind": "race",
+        "id": "motogp-2026-04-race",
         "name": "Race",
-        "durationMinutes": 60,
+        "kind": "race",
         "date": "2026-04-26",
+        "timeLocal": "14:00",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "73",
@@ -5892,27 +5900,27 @@
             "driver": "M. Marquez",
             "laps": "1"
           }
-        ],
-        "id": "motogp-2026-04-race"
+        ]
       }
-    ],
-    "seriesId": "motogp",
-    "country": "Spain",
-    "countryCode": "ES",
-    "roundNumber": 4,
-    "circuitName": "Circuito de Jerez",
-    "raceName": "Grand Prix of Spain",
-    "city": "Jerez de la Frontera"
+    ]
   },
   {
     "id": "motogp-2026-05",
+    "seriesId": "motogp",
+    "roundNumber": 5,
+    "raceName": "Grand Prix of France",
+    "circuitName": "Le Mans Circuit Bugatti",
+    "city": "Le Mans",
+    "country": "France",
+    "countryCode": "FR",
     "sessions": [
       {
-        "timeLocal": "10:45",
-        "kind": "practice",
+        "id": "motogp-2026-05-fp1",
         "name": "Free Practice 1",
-        "durationMinutes": 60,
+        "kind": "practice",
         "date": "2026-05-08",
+        "timeLocal": "10:45",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "10",
@@ -6111,15 +6119,15 @@
             "driver": "J. Folger",
             "laps": "18"
           }
-        ],
-        "id": "motogp-2026-05-fp1"
+        ]
       },
       {
-        "timeLocal": "15:00",
-        "kind": "practice",
+        "id": "motogp-2026-05-prac",
         "name": "Practice",
-        "durationMinutes": 60,
+        "kind": "practice",
         "date": "2026-05-08",
+        "timeLocal": "15:00",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "5",
@@ -6318,15 +6326,15 @@
             "driver": "J. Folger",
             "laps": "21"
           }
-        ],
-        "id": "motogp-2026-05-prac"
+        ]
       },
       {
-        "timeLocal": "10:10",
-        "kind": "practice",
+        "id": "motogp-2026-05-fp2",
         "name": "Free Practice 2",
-        "durationMinutes": 60,
+        "kind": "practice",
         "date": "2026-05-09",
+        "timeLocal": "10:10",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "20",
@@ -6525,15 +6533,15 @@
             "driver": "J. Folger",
             "laps": "14"
           }
-        ],
-        "id": "motogp-2026-05-fp2"
+        ]
       },
       {
-        "timeLocal": "10:50",
-        "kind": "qualifying",
+        "id": "motogp-2026-05-q1",
         "name": "Qualifying 1",
-        "durationMinutes": 60,
+        "kind": "qualifying",
         "date": "2026-05-09",
+        "timeLocal": "10:50",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "93",
@@ -6642,15 +6650,15 @@
             "driver": "J. Folger",
             "laps": "8"
           }
-        ],
-        "id": "motogp-2026-05-q1"
+        ]
       },
       {
-        "timeLocal": "11:15",
-        "kind": "qualifying",
+        "id": "motogp-2026-05-q2",
         "name": "Qualifying 2",
-        "durationMinutes": 60,
+        "kind": "qualifying",
         "date": "2026-05-09",
+        "timeLocal": "11:15",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "63",
@@ -6759,15 +6767,15 @@
             "driver": "A. Rins",
             "laps": "9"
           }
-        ],
-        "id": "motogp-2026-05-q2"
+        ]
       },
       {
-        "timeLocal": "15:00",
-        "kind": "sprintRace",
+        "id": "motogp-2026-05-sprint",
         "name": "Sprint",
-        "durationMinutes": 60,
+        "kind": "sprintRace",
         "date": "2026-05-09",
+        "timeLocal": "15:00",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "89",
@@ -6954,15 +6962,15 @@
             "driver": "J. Folger",
             "laps": "1"
           }
-        ],
-        "id": "motogp-2026-05-sprint"
+        ]
       },
       {
-        "timeLocal": "09:40",
-        "kind": "practice",
+        "id": "motogp-2026-05-wu",
         "name": "Warm Up",
-        "durationMinutes": 60,
+        "kind": "practice",
         "date": "2026-05-10",
+        "timeLocal": "09:40",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "89",
@@ -7152,15 +7160,15 @@
             "driver": "J. Folger",
             "laps": "7"
           }
-        ],
-        "id": "motogp-2026-05-wu"
+        ]
       },
       {
-        "timeLocal": "14:00",
-        "kind": "race",
+        "id": "motogp-2026-05-race",
         "name": "Race",
-        "durationMinutes": 60,
+        "kind": "race",
         "date": "2026-05-10",
+        "timeLocal": "14:00",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "89",
@@ -7340,27 +7348,27 @@
             "driver": "A. Marquez",
             "laps": "1"
           }
-        ],
-        "id": "motogp-2026-05-race"
+        ]
       }
-    ],
-    "seriesId": "motogp",
-    "country": "France",
-    "countryCode": "FR",
-    "roundNumber": 5,
-    "circuitName": "Le Mans Circuit Bugatti",
-    "raceName": "Grand Prix of France",
-    "city": "Le Mans"
+    ]
   },
   {
     "id": "motogp-2026-06",
+    "seriesId": "motogp",
+    "roundNumber": 6,
+    "raceName": "Grand Prix of Catalonia",
+    "circuitName": "Circuit de Barcelona-Catalunya",
+    "city": "Barcelona",
+    "country": "Spain",
+    "countryCode": "ES",
     "sessions": [
       {
-        "timeLocal": "10:45",
-        "kind": "practice",
+        "id": "motogp-2026-06-fp1",
         "name": "Free Practice 1",
-        "durationMinutes": 60,
+        "kind": "practice",
         "date": "2026-05-15",
+        "timeLocal": "10:45",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "73",
@@ -7559,15 +7567,15 @@
             "driver": "T. Razgatlioglu",
             "laps": "18"
           }
-        ],
-        "id": "motogp-2026-06-fp1"
+        ]
       },
       {
-        "timeLocal": "15:00",
-        "kind": "practice",
+        "id": "motogp-2026-06-prac",
         "name": "Practice",
-        "durationMinutes": 60,
+        "kind": "practice",
         "date": "2026-05-15",
+        "timeLocal": "15:00",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "37",
@@ -7766,15 +7774,15 @@
             "driver": "A. Fernandez",
             "laps": "22"
           }
-        ],
-        "id": "motogp-2026-06-prac"
+        ]
       },
       {
-        "timeLocal": "10:10",
-        "kind": "practice",
+        "id": "motogp-2026-06-fp2",
         "name": "Free Practice 2",
-        "durationMinutes": 60,
+        "kind": "practice",
         "date": "2026-05-16",
+        "timeLocal": "10:10",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "36",
@@ -7973,15 +7981,15 @@
             "driver": "A. Rins",
             "laps": "8"
           }
-        ],
-        "id": "motogp-2026-06-fp2"
+        ]
       },
       {
-        "timeLocal": "10:50",
-        "kind": "qualifying",
+        "id": "motogp-2026-06-q1",
         "name": "Qualifying 1",
-        "durationMinutes": 60,
+        "kind": "qualifying",
         "date": "2026-05-16",
+        "timeLocal": "10:50",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "21",
@@ -8090,15 +8098,15 @@
             "driver": "T. Razgatlioglu",
             "laps": "5"
           }
-        ],
-        "id": "motogp-2026-06-q1"
+        ]
       },
       {
-        "timeLocal": "11:15",
-        "kind": "qualifying",
+        "id": "motogp-2026-06-q2",
         "name": "Qualifying 2",
-        "durationMinutes": 60,
+        "kind": "qualifying",
         "date": "2026-05-16",
+        "timeLocal": "11:15",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "37",
@@ -8207,15 +8215,15 @@
             "driver": "M. Bezzecchi",
             "laps": "5"
           }
-        ],
-        "id": "motogp-2026-06-q2"
+        ]
       },
       {
-        "timeLocal": "15:00",
-        "kind": "sprintRace",
+        "id": "motogp-2026-06-sprint",
         "name": "Sprint",
-        "durationMinutes": 60,
+        "kind": "sprintRace",
         "date": "2026-05-16",
+        "timeLocal": "15:00",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "73",
@@ -8406,15 +8414,15 @@
             "driver": "J. Mir",
             "laps": "0"
           }
-        ],
-        "id": "motogp-2026-06-sprint"
+        ]
       },
       {
-        "timeLocal": "09:40",
-        "kind": "practice",
+        "id": "motogp-2026-06-wu",
         "name": "Warm Up",
-        "durationMinutes": 60,
+        "kind": "practice",
         "date": "2026-05-17",
+        "timeLocal": "09:40",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "36",
@@ -8613,15 +8621,15 @@
             "driver": "F. Morbidelli",
             "laps": "4"
           }
-        ],
-        "id": "motogp-2026-06-wu"
+        ]
       },
       {
-        "timeLocal": "14:00",
-        "kind": "race",
+        "id": "motogp-2026-06-race",
         "name": "Race",
-        "durationMinutes": 60,
+        "kind": "race",
         "date": "2026-05-17",
+        "timeLocal": "14:00",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "49",
@@ -8810,27 +8818,27 @@
             "driver": "E. Bastianini",
             "laps": "0"
           }
-        ],
-        "id": "motogp-2026-06-race"
+        ]
       }
-    ],
-    "seriesId": "motogp",
-    "country": "Spain",
-    "countryCode": "ES",
-    "roundNumber": 6,
-    "circuitName": "Circuit de Barcelona-Catalunya",
-    "raceName": "Grand Prix of Catalonia",
-    "city": "Barcelona"
+    ]
   },
   {
     "id": "motogp-2026-07",
+    "seriesId": "motogp",
+    "roundNumber": 7,
+    "raceName": "Grand Prix of Italy",
+    "circuitName": "Autodromo del Mugello",
+    "city": "Mugello",
+    "country": "Italy",
+    "countryCode": "IT",
     "sessions": [
       {
-        "timeLocal": "10:45",
-        "kind": "practice",
+        "id": "motogp-2026-07-fp1",
         "name": "Free Practice 1",
-        "durationMinutes": 60,
+        "kind": "practice",
         "date": "2026-05-29",
+        "timeLocal": "10:45",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "49",
@@ -9029,15 +9037,15 @@
             "driver": "C. Crutchlow",
             "laps": "16"
           }
-        ],
-        "id": "motogp-2026-07-fp1"
+        ]
       },
       {
-        "timeLocal": "15:00",
-        "kind": "practice",
+        "id": "motogp-2026-07-prac",
         "name": "Practice",
-        "durationMinutes": 60,
+        "kind": "practice",
         "date": "2026-05-29",
+        "timeLocal": "15:00",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "37",
@@ -9236,15 +9244,15 @@
             "driver": "C. Crutchlow",
             "laps": "24"
           }
-        ],
-        "id": "motogp-2026-07-prac"
+        ]
       },
       {
-        "timeLocal": "10:10",
-        "kind": "practice",
+        "id": "motogp-2026-07-fp2",
         "name": "Free Practice 2",
-        "durationMinutes": 60,
+        "kind": "practice",
         "date": "2026-05-30",
+        "timeLocal": "10:10",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "49",
@@ -9443,15 +9451,15 @@
             "driver": "C. Crutchlow",
             "laps": "11"
           }
-        ],
-        "id": "motogp-2026-07-fp2"
+        ]
       },
       {
-        "timeLocal": "10:50",
-        "kind": "qualifying",
+        "id": "motogp-2026-07-q1",
         "name": "Qualifying 1",
-        "durationMinutes": 60,
+        "kind": "qualifying",
         "date": "2026-05-30",
+        "timeLocal": "10:50",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "25",
@@ -9560,15 +9568,15 @@
             "driver": "C. Crutchlow",
             "laps": "6"
           }
-        ],
-        "id": "motogp-2026-07-q1"
+        ]
       },
       {
-        "timeLocal": "11:15",
-        "kind": "qualifying",
+        "id": "motogp-2026-07-q2",
         "name": "Qualifying 2",
-        "durationMinutes": 60,
+        "kind": "qualifying",
         "date": "2026-05-30",
+        "timeLocal": "11:15",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "72",
@@ -9677,15 +9685,15 @@
             "driver": "A. Rins",
             "laps": "7"
           }
-        ],
-        "id": "motogp-2026-07-q2"
+        ]
       },
       {
-        "timeLocal": "15:00",
-        "kind": "sprintRace",
+        "id": "motogp-2026-07-sprint",
         "name": "Sprint",
-        "durationMinutes": 60,
+        "kind": "sprintRace",
         "date": "2026-05-30",
+        "timeLocal": "15:00",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "25",
@@ -9878,15 +9886,15 @@
             "driver": "F. Morbidelli",
             "laps": "4"
           }
-        ],
-        "id": "motogp-2026-07-sprint"
+        ]
       },
       {
-        "timeLocal": "09:40",
-        "kind": "practice",
+        "id": "motogp-2026-07-wu",
         "name": "Warm Up",
-        "durationMinutes": 60,
+        "kind": "practice",
         "date": "2026-05-31",
+        "timeLocal": "09:40",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "72",
@@ -10085,15 +10093,15 @@
             "driver": "C. Crutchlow",
             "laps": "6"
           }
-        ],
-        "id": "motogp-2026-07-wu"
+        ]
       },
       {
-        "timeLocal": "14:00",
-        "kind": "race",
+        "id": "motogp-2026-07-race",
         "name": "Race",
-        "durationMinutes": 60,
+        "kind": "race",
         "date": "2026-05-31",
+        "timeLocal": "14:00",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "72",
@@ -10286,27 +10294,27 @@
             "driver": "A. Rins",
             "laps": "10"
           }
-        ],
-        "id": "motogp-2026-07-race"
+        ]
       }
-    ],
-    "seriesId": "motogp",
-    "country": "Italy",
-    "countryCode": "IT",
-    "roundNumber": 7,
-    "circuitName": "Autodromo del Mugello",
-    "raceName": "Grand Prix of Italy",
-    "city": "Mugello"
+    ]
   },
   {
     "id": "motogp-2026-08",
+    "seriesId": "motogp",
+    "roundNumber": 8,
+    "raceName": "Grand Prix of Hungary",
+    "circuitName": "Balaton Park Circuit",
+    "city": "Nagyvázsony",
+    "country": "Hungary",
+    "countryCode": "HU",
     "sessions": [
       {
-        "timeLocal": "10:45",
-        "kind": "practice",
+        "id": "motogp-2026-08-fp1",
         "name": "Free Practice 1",
-        "durationMinutes": 60,
+        "kind": "practice",
         "date": "2026-06-05",
+        "timeLocal": "10:45",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "93",
@@ -10505,15 +10513,15 @@
             "driver": "C. Crutchlow",
             "laps": "18"
           }
-        ],
-        "id": "motogp-2026-08-fp1"
+        ]
       },
       {
-        "timeLocal": "15:00",
-        "kind": "practice",
+        "id": "motogp-2026-08-prac",
         "name": "Practice",
-        "durationMinutes": 60,
+        "kind": "practice",
         "date": "2026-06-05",
+        "timeLocal": "15:00",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "37",
@@ -10712,15 +10720,15 @@
             "driver": "C. Crutchlow",
             "laps": "24"
           }
-        ],
-        "id": "motogp-2026-08-prac"
+        ]
       },
       {
-        "timeLocal": "10:10",
-        "kind": "practice",
+        "id": "motogp-2026-08-fp2",
         "name": "Free Practice 2",
-        "durationMinutes": 60,
+        "kind": "practice",
         "date": "2026-06-06",
+        "timeLocal": "10:10",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "93",
@@ -10919,15 +10927,15 @@
             "driver": "C. Crutchlow",
             "laps": "13"
           }
-        ],
-        "id": "motogp-2026-08-fp2"
+        ]
       },
       {
-        "timeLocal": "10:50",
-        "kind": "qualifying",
+        "id": "motogp-2026-08-q1",
         "name": "Qualifying 1",
-        "durationMinutes": 60,
+        "kind": "qualifying",
         "date": "2026-06-06",
+        "timeLocal": "10:50",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "63",
@@ -11036,15 +11044,15 @@
             "driver": "C. Crutchlow",
             "laps": "8"
           }
-        ],
-        "id": "motogp-2026-08-q1"
+        ]
       },
       {
-        "timeLocal": "11:15",
-        "kind": "qualifying",
+        "id": "motogp-2026-08-q2",
         "name": "Qualifying 2",
-        "durationMinutes": 60,
+        "kind": "qualifying",
         "date": "2026-06-06",
+        "timeLocal": "11:15",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "93",
@@ -11153,15 +11161,15 @@
             "driver": "J. Miller",
             "laps": "8"
           }
-        ],
-        "id": "motogp-2026-08-q2"
+        ]
       },
       {
-        "timeLocal": "15:00",
-        "kind": "sprintRace",
+        "id": "motogp-2026-08-sprint",
         "name": "Sprint",
-        "durationMinutes": 60,
+        "kind": "sprintRace",
         "date": "2026-06-06",
+        "timeLocal": "15:00",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "93",
@@ -11360,15 +11368,15 @@
             "driver": "C. Crutchlow",
             "laps": "13"
           }
-        ],
-        "id": "motogp-2026-08-sprint"
+        ]
       },
       {
-        "timeLocal": "09:40",
-        "kind": "practice",
+        "id": "motogp-2026-08-wu",
         "name": "Warm Up",
-        "durationMinutes": 60,
+        "kind": "practice",
         "date": "2026-06-07",
+        "timeLocal": "09:40",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "54",
@@ -11567,15 +11575,15 @@
             "driver": "J. Mir",
             "laps": "2"
           }
-        ],
-        "id": "motogp-2026-08-wu"
+        ]
       },
       {
-        "timeLocal": "14:00",
-        "kind": "race",
+        "id": "motogp-2026-08-race",
         "name": "Race",
-        "durationMinutes": 60,
+        "kind": "race",
         "date": "2026-06-07",
+        "timeLocal": "14:00",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "93",
@@ -11762,27 +11770,27 @@
             "driver": "J. Martin",
             "laps": "0"
           }
-        ],
-        "id": "motogp-2026-08-race"
+        ]
       }
-    ],
-    "seriesId": "motogp",
-    "country": "Hungary",
-    "countryCode": "HU",
-    "roundNumber": 8,
-    "circuitName": "Balaton Park Circuit",
-    "raceName": "Grand Prix of Hungary",
-    "city": "Nagyvázsony"
+    ]
   },
   {
     "id": "motogp-2026-09",
+    "seriesId": "motogp",
+    "roundNumber": 9,
+    "raceName": "Grand Prix of Czechia",
+    "circuitName": "Automotodrom Brno",
+    "city": "Brno",
+    "country": "Czech Republic",
+    "countryCode": "CZ",
     "sessions": [
       {
-        "timeLocal": "10:45",
-        "kind": "practice",
+        "id": "motogp-2026-09-fp1",
         "name": "Free Practice 1",
-        "durationMinutes": 60,
+        "kind": "practice",
         "date": "2026-06-19",
+        "timeLocal": "10:45",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "93",
@@ -11981,15 +11989,15 @@
             "driver": "C. Crutchlow",
             "laps": "15"
           }
-        ],
-        "id": "motogp-2026-09-fp1"
+        ]
       },
       {
-        "timeLocal": "15:00",
-        "kind": "practice",
+        "id": "motogp-2026-09-prac",
         "name": "Practice",
-        "durationMinutes": 60,
+        "kind": "practice",
         "date": "2026-06-19",
+        "timeLocal": "15:00",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "79",
@@ -12188,15 +12196,15 @@
             "driver": "C. Crutchlow",
             "laps": "19"
           }
-        ],
-        "id": "motogp-2026-09-prac"
+        ]
       },
       {
-        "timeLocal": "10:10",
-        "kind": "practice",
+        "id": "motogp-2026-09-fp2",
         "name": "Free Practice 2",
-        "durationMinutes": 60,
+        "kind": "practice",
         "date": "2026-06-20",
+        "timeLocal": "10:10",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "25",
@@ -12395,15 +12403,15 @@
             "driver": "C. Crutchlow",
             "laps": "11"
           }
-        ],
-        "id": "motogp-2026-09-fp2"
+        ]
       },
       {
-        "timeLocal": "10:50",
-        "kind": "qualifying",
+        "id": "motogp-2026-09-q1",
         "name": "Qualifying 1",
-        "durationMinutes": 60,
+        "kind": "qualifying",
         "date": "2026-06-20",
+        "timeLocal": "10:50",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "89",
@@ -12512,15 +12520,15 @@
             "driver": "C. Crutchlow",
             "laps": "6"
           }
-        ],
-        "id": "motogp-2026-09-q1"
+        ]
       },
       {
-        "timeLocal": "11:15",
-        "kind": "qualifying",
+        "id": "motogp-2026-09-q2",
         "name": "Qualifying 2",
-        "durationMinutes": 60,
+        "kind": "qualifying",
         "date": "2026-06-20",
+        "timeLocal": "11:15",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "79",
@@ -12629,15 +12637,15 @@
             "driver": "J. Mir",
             "laps": "6"
           }
-        ],
-        "id": "motogp-2026-09-q2"
+        ]
       },
       {
-        "timeLocal": "15:00",
-        "kind": "sprintRace",
+        "id": "motogp-2026-09-sprint",
         "name": "Sprint",
-        "durationMinutes": 60,
+        "kind": "sprintRace",
         "date": "2026-06-20",
+        "timeLocal": "15:00",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "63",
@@ -12815,15 +12823,15 @@
             "driver": "M. Viñales",
             "laps": "0"
           }
-        ],
-        "id": "motogp-2026-09-sprint"
+        ]
       },
       {
-        "timeLocal": "09:40",
-        "kind": "practice",
+        "id": "motogp-2026-09-wu",
         "name": "Warm Up",
-        "durationMinutes": 60,
+        "kind": "practice",
         "date": "2026-06-21",
+        "timeLocal": "09:40",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "54",
@@ -13004,15 +13012,15 @@
             "driver": "C. Crutchlow",
             "laps": "5"
           }
-        ],
-        "id": "motogp-2026-09-wu"
+        ]
       },
       {
-        "timeLocal": "14:00",
-        "kind": "race",
+        "id": "motogp-2026-09-race",
         "name": "Race",
-        "durationMinutes": 60,
+        "kind": "race",
         "date": "2026-06-21",
+        "timeLocal": "14:00",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "93",
@@ -13187,27 +13195,27 @@
             "driver": "F. Quartararo",
             "laps": "1"
           }
-        ],
-        "id": "motogp-2026-09-race"
+        ]
       }
-    ],
-    "seriesId": "motogp",
-    "country": "Czech Republic",
-    "countryCode": "CZ",
-    "roundNumber": 9,
-    "circuitName": "Automotodrom Brno",
-    "raceName": "Grand Prix of Czechia",
-    "city": "Brno"
+    ]
   },
   {
     "id": "motogp-2026-10",
+    "seriesId": "motogp",
+    "roundNumber": 10,
+    "raceName": "Grand Prix of the Netherlands",
+    "circuitName": "TT Circuit Assen",
+    "city": "Assen",
+    "country": "Netherlands",
+    "countryCode": "NL",
     "sessions": [
       {
-        "timeLocal": "10:45",
-        "kind": "practice",
+        "id": "motogp-2026-10-fp1",
         "name": "Free Practice 1",
-        "durationMinutes": 60,
+        "kind": "practice",
         "date": "2026-06-26",
+        "timeLocal": "10:45",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "72",
@@ -13415,15 +13423,15 @@
             "driver": "C. Crutchlow",
             "laps": "16"
           }
-        ],
-        "id": "motogp-2026-10-fp1"
+        ]
       },
       {
-        "timeLocal": "15:00",
-        "kind": "practice",
+        "id": "motogp-2026-10-prac",
         "name": "Practice",
-        "durationMinutes": 60,
+        "kind": "practice",
         "date": "2026-06-26",
+        "timeLocal": "15:00",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "72",
@@ -13631,15 +13639,15 @@
             "driver": "C. Crutchlow",
             "laps": "22"
           }
-        ],
-        "id": "motogp-2026-10-prac"
+        ]
       },
       {
-        "timeLocal": "10:10",
-        "kind": "practice",
+        "id": "motogp-2026-10-fp2",
         "name": "Free Practice 2",
-        "durationMinutes": 60,
+        "kind": "practice",
         "date": "2026-06-27",
+        "timeLocal": "10:10",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "72",
@@ -13838,15 +13846,15 @@
             "driver": "C. Crutchlow",
             "laps": "12"
           }
-        ],
-        "id": "motogp-2026-10-fp2"
+        ]
       },
       {
-        "timeLocal": "10:50",
-        "kind": "qualifying",
+        "id": "motogp-2026-10-q1",
         "name": "Qualifying 1",
-        "durationMinutes": 60,
+        "kind": "qualifying",
         "date": "2026-06-27",
+        "timeLocal": "10:50",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "20",
@@ -13955,15 +13963,15 @@
             "driver": "T. Razgatlioglu",
             "laps": "6"
           }
-        ],
-        "id": "motogp-2026-10-q1"
+        ]
       },
       {
-        "timeLocal": "11:15",
-        "kind": "qualifying",
+        "id": "motogp-2026-10-q2",
         "name": "Qualifying 2",
-        "durationMinutes": 60,
+        "kind": "qualifying",
         "date": "2026-06-27",
+        "timeLocal": "11:15",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "89",
@@ -14070,15 +14078,15 @@
             "driver": "A. Marquez",
             "laps": "0"
           }
-        ],
-        "id": "motogp-2026-10-q2"
+        ]
       },
       {
-        "timeLocal": "15:00",
-        "kind": "sprintRace",
+        "id": "motogp-2026-10-sprint",
         "name": "Sprint",
-        "durationMinutes": 60,
+        "kind": "sprintRace",
         "date": "2026-06-27",
+        "timeLocal": "15:00",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "25",
@@ -14271,15 +14279,15 @@
             "driver": "J. Mir",
             "laps": "0"
           }
-        ],
-        "id": "motogp-2026-10-sprint"
+        ]
       },
       {
-        "timeLocal": "09:40",
-        "kind": "practice",
+        "id": "motogp-2026-10-wu",
         "name": "Warm Up",
-        "durationMinutes": 60,
+        "kind": "practice",
         "date": "2026-06-28",
+        "timeLocal": "09:40",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "72",
@@ -14478,15 +14486,15 @@
             "driver": "C. Crutchlow",
             "laps": "6"
           }
-        ],
-        "id": "motogp-2026-10-wu"
+        ]
       },
       {
-        "timeLocal": "14:00",
-        "kind": "race",
+        "id": "motogp-2026-10-race",
         "name": "Race",
-        "durationMinutes": 60,
+        "kind": "race",
         "date": "2026-06-28",
+        "timeLocal": "14:00",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "79",
@@ -14673,27 +14681,27 @@
             "driver": "J. Mir",
             "laps": "0"
           }
-        ],
-        "id": "motogp-2026-10-race"
+        ]
       }
-    ],
-    "seriesId": "motogp",
-    "country": "Netherlands",
-    "countryCode": "NL",
-    "roundNumber": 10,
-    "circuitName": "TT Circuit Assen",
-    "raceName": "Grand Prix of the Netherlands",
-    "city": "Assen"
+    ]
   },
   {
     "id": "motogp-2026-11",
+    "seriesId": "motogp",
+    "roundNumber": 11,
+    "raceName": "Grand Prix of Germany",
+    "circuitName": "Sachsenring",
+    "city": "Hohenstein-Ernstthal",
+    "country": "Germany",
+    "countryCode": "DE",
     "sessions": [
       {
-        "timeLocal": "10:45",
-        "kind": "practice",
+        "id": "motogp-2026-11-fp1",
         "name": "Free Practice 1",
-        "durationMinutes": 60,
+        "kind": "practice",
         "date": "2026-07-10",
+        "timeLocal": "10:45",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "25",
@@ -14883,15 +14891,15 @@
             "driver": "C. Crutchlow",
             "laps": "18"
           }
-        ],
-        "id": "motogp-2026-11-fp1"
+        ]
       },
       {
-        "timeLocal": "15:00",
-        "kind": "practice",
+        "id": "motogp-2026-11-prac",
         "name": "Practice",
-        "durationMinutes": 60,
+        "kind": "practice",
         "date": "2026-07-10",
+        "timeLocal": "15:00",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "93",
@@ -15081,15 +15089,15 @@
             "driver": "C. Crutchlow",
             "laps": "25"
           }
-        ],
-        "id": "motogp-2026-11-prac"
+        ]
       },
       {
-        "timeLocal": "10:10",
-        "kind": "practice",
+        "id": "motogp-2026-11-fp2",
         "name": "Free Practice 2",
-        "durationMinutes": 60,
+        "kind": "practice",
         "date": "2026-07-11",
+        "timeLocal": "10:10",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "73",
@@ -15279,15 +15287,15 @@
             "driver": "M. Viñales",
             "laps": "12"
           }
-        ],
-        "id": "motogp-2026-11-fp2"
+        ]
       },
       {
-        "timeLocal": "10:50",
-        "kind": "qualifying",
+        "id": "motogp-2026-11-q1",
         "name": "Qualifying 1",
-        "durationMinutes": 60,
+        "kind": "qualifying",
         "date": "2026-07-11",
+        "timeLocal": "10:50",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "63",
@@ -15387,15 +15395,15 @@
             "driver": "C. Crutchlow",
             "laps": "8"
           }
-        ],
-        "id": "motogp-2026-11-q1"
+        ]
       },
       {
-        "timeLocal": "11:15",
-        "kind": "qualifying",
+        "id": "motogp-2026-11-q2",
         "name": "Qualifying 2",
-        "durationMinutes": 60,
+        "kind": "qualifying",
         "date": "2026-07-11",
+        "timeLocal": "11:15",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "93",
@@ -15504,15 +15512,15 @@
             "driver": "J. Miller",
             "laps": "7"
           }
-        ],
-        "id": "motogp-2026-11-q2"
+        ]
       },
       {
-        "timeLocal": "15:00",
-        "kind": "sprintRace",
+        "id": "motogp-2026-11-sprint",
         "name": "Sprint",
-        "durationMinutes": 60,
+        "kind": "sprintRace",
         "date": "2026-07-11",
+        "timeLocal": "15:00",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "93",
@@ -15691,15 +15699,15 @@
             "driver": "F. Morbidelli",
             "laps": "5"
           }
-        ],
-        "id": "motogp-2026-11-sprint"
+        ]
       },
       {
-        "timeLocal": "09:40",
-        "kind": "practice",
+        "id": "motogp-2026-11-wu",
         "name": "Warm Up",
-        "durationMinutes": 60,
+        "kind": "practice",
         "date": "2026-07-12",
+        "timeLocal": "09:40",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "93",
@@ -15880,15 +15888,15 @@
             "driver": "C. Crutchlow",
             "laps": "7"
           }
-        ],
-        "id": "motogp-2026-11-wu"
+        ]
       },
       {
-        "timeLocal": "14:00",
-        "kind": "race",
+        "id": "motogp-2026-11-race",
         "name": "Race",
-        "durationMinutes": 60,
+        "kind": "race",
         "date": "2026-07-12",
+        "timeLocal": "14:00",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "93",
@@ -16059,27 +16067,27 @@
             "driver": "F. Di Giannantonio",
             "laps": "3"
           }
-        ],
-        "id": "motogp-2026-11-race"
+        ]
       }
-    ],
-    "seriesId": "motogp",
-    "country": "Germany",
-    "countryCode": "DE",
-    "roundNumber": 11,
-    "circuitName": "Sachsenring",
-    "raceName": "Grand Prix of Germany",
-    "city": "Hohenstein-Ernstthal"
+    ]
   },
   {
     "id": "motogp-2026-12",
+    "seriesId": "motogp",
+    "roundNumber": 12,
+    "raceName": "Grand Prix of Great Britain",
+    "circuitName": "Silverstone Circuit",
+    "city": "Silverstone",
+    "country": "Great Britain",
+    "countryCode": "GB",
     "sessions": [
       {
-        "timeLocal": "12:45",
-        "kind": "practice",
+        "id": "motogp-2026-12-fp1",
         "name": "Free Practice 1",
-        "durationMinutes": 60,
+        "kind": "practice",
         "date": "2026-08-07",
+        "timeLocal": "12:45",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "73",
@@ -16287,15 +16295,15 @@
             "driver": "T. Razgatlioglu",
             "laps": "15"
           }
-        ],
-        "id": "motogp-2026-12-fp1"
+        ]
       },
       {
-        "timeLocal": "17:00",
-        "kind": "practice",
+        "id": "motogp-2026-12-prac",
         "name": "Practice",
-        "durationMinutes": 60,
+        "kind": "practice",
         "date": "2026-08-07",
+        "timeLocal": "17:00",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "72",
@@ -16503,15 +16511,15 @@
             "driver": "A. Fernandez",
             "laps": "19"
           }
-        ],
-        "id": "motogp-2026-12-prac"
+        ]
       },
       {
-        "timeLocal": "12:10",
-        "kind": "practice",
+        "id": "motogp-2026-12-fp2",
         "name": "Free Practice 2",
-        "durationMinutes": 30,
+        "kind": "practice",
         "date": "2026-08-08",
+        "timeLocal": "12:10",
+        "durationMinutes": 30,
         "results": [
           {
             "number": "49",
@@ -16719,15 +16727,15 @@
             "driver": "A. Rins",
             "laps": "10"
           }
-        ],
-        "id": "motogp-2026-12-fp2"
+        ]
       },
       {
-        "timeLocal": "12:50",
-        "kind": "qualifying",
+        "id": "motogp-2026-12-q1",
         "name": "Qualifying 1",
-        "durationMinutes": 20,
+        "kind": "qualifying",
         "date": "2026-08-08",
+        "timeLocal": "12:50",
+        "durationMinutes": 20,
         "results": [
           {
             "number": "21",
@@ -16845,15 +16853,15 @@
             "driver": "A. Fernandez",
             "laps": "7"
           }
-        ],
-        "id": "motogp-2026-12-q1"
+        ]
       },
       {
-        "timeLocal": "13:15",
-        "kind": "qualifying",
+        "id": "motogp-2026-12-q2",
         "name": "Qualifying 2",
-        "durationMinutes": 20,
+        "kind": "qualifying",
         "date": "2026-08-08",
+        "timeLocal": "13:15",
+        "durationMinutes": 20,
         "results": [
           {
             "number": "89",
@@ -16962,15 +16970,15 @@
             "driver": "J. Mir",
             "laps": "6"
           }
-        ],
-        "id": "motogp-2026-12-q2"
+        ]
       },
       {
-        "timeLocal": "17:00",
-        "kind": "sprintRace",
+        "id": "motogp-2026-12-sprint",
         "name": "Sprint",
-        "durationMinutes": 45,
+        "kind": "sprintRace",
         "date": "2026-08-08",
+        "timeLocal": "17:00",
+        "durationMinutes": 45,
         "results": [
           {
             "number": "89",
@@ -17172,15 +17180,15 @@
             "driver": "I. Lecuona",
             "laps": "0"
           }
-        ],
-        "id": "motogp-2026-12-sprint"
+        ]
       },
       {
-        "timeLocal": "10:40",
-        "kind": "practice",
+        "id": "motogp-2026-12-wu",
         "name": "Warm Up",
-        "durationMinutes": 60,
+        "kind": "practice",
         "date": "2026-08-09",
+        "timeLocal": "10:40",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "73",
@@ -17388,15 +17396,15 @@
             "driver": "C. Crutchlow",
             "laps": "5"
           }
-        ],
-        "id": "motogp-2026-12-wu"
+        ]
       },
       {
-        "timeLocal": "14:00",
-        "kind": "race",
+        "id": "motogp-2026-12-race",
         "name": "Race",
-        "durationMinutes": 60,
+        "kind": "race",
         "date": "2026-08-09",
+        "timeLocal": "14:00",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "25",
@@ -17590,27 +17598,27 @@
             "driver": "J. Mir",
             "laps": "0"
           }
-        ],
-        "id": "motogp-2026-12-race"
+        ]
       }
-    ],
-    "seriesId": "motogp",
-    "country": "Great Britain",
-    "countryCode": "GB",
-    "roundNumber": 12,
-    "circuitName": "Silverstone Circuit",
-    "raceName": "Grand Prix of Great Britain",
-    "city": "Silverstone"
+    ]
   },
   {
     "id": "motogp-2026-13",
+    "seriesId": "motogp",
+    "roundNumber": 13,
+    "raceName": "Grand Prix of Aragon",
+    "circuitName": "MotorLand Aragon",
+    "city": "Alcaniz",
+    "country": "Spain",
+    "countryCode": "ES",
     "sessions": [
       {
-        "timeLocal": "10:45",
-        "kind": "practice",
+        "id": "motogp-2026-13-fp1",
         "name": "Free Practice 1",
-        "durationMinutes": 60,
+        "kind": "practice",
         "date": "2026-08-28",
+        "timeLocal": "10:45",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "93",
@@ -17809,15 +17817,15 @@
             "driver": "L. Savadori",
             "laps": "19"
           }
-        ],
-        "id": "motogp-2026-13-fp1"
+        ]
       },
       {
-        "timeLocal": "15:00",
-        "kind": "practice",
+        "id": "motogp-2026-13-prac",
         "name": "Practice",
-        "durationMinutes": 60,
+        "kind": "practice",
         "date": "2026-08-28",
+        "timeLocal": "15:00",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "72",
@@ -18016,15 +18024,15 @@
             "driver": "L. Savadori",
             "laps": "21"
           }
-        ],
-        "id": "motogp-2026-13-prac"
+        ]
       },
       {
-        "timeLocal": "10:10",
-        "kind": "practice",
+        "id": "motogp-2026-13-fp2",
         "name": "Free Practice 2",
-        "durationMinutes": 60,
+        "kind": "practice",
         "date": "2026-08-29",
+        "timeLocal": "10:10",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "72",
@@ -18223,15 +18231,15 @@
             "driver": "L. Savadori",
             "laps": "12"
           }
-        ],
-        "id": "motogp-2026-13-fp2"
+        ]
       },
       {
-        "timeLocal": "10:50",
-        "kind": "qualifying",
+        "id": "motogp-2026-13-q1",
         "name": "Qualifying 1",
-        "durationMinutes": 60,
+        "kind": "qualifying",
         "date": "2026-08-29",
+        "timeLocal": "10:50",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "63",
@@ -18340,15 +18348,15 @@
             "driver": "L. Savadori",
             "laps": "6"
           }
-        ],
-        "id": "motogp-2026-13-q1"
+        ]
       },
       {
-        "timeLocal": "11:15",
-        "kind": "qualifying",
+        "id": "motogp-2026-13-q2",
         "name": "Qualifying 2",
-        "durationMinutes": 60,
+        "kind": "qualifying",
         "date": "2026-08-29",
+        "timeLocal": "11:15",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "72",
@@ -18457,15 +18465,15 @@
             "driver": "F. Morbidelli",
             "laps": "7"
           }
-        ],
-        "id": "motogp-2026-13-q2"
+        ]
       },
       {
-        "timeLocal": "15:00",
-        "kind": "sprintRace",
+        "id": "motogp-2026-13-sprint",
         "name": "Sprint",
-        "durationMinutes": 60,
+        "kind": "sprintRace",
         "date": "2026-08-29",
+        "timeLocal": "15:00",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "93",
@@ -18658,15 +18666,15 @@
             "driver": "L. Marini",
             "laps": "0"
           }
-        ],
-        "id": "motogp-2026-13-sprint"
+        ]
       },
       {
-        "timeLocal": "09:40",
-        "kind": "practice",
+        "id": "motogp-2026-13-wu",
         "name": "Warm Up",
-        "durationMinutes": 60,
+        "kind": "practice",
         "date": "2026-08-30",
+        "timeLocal": "09:40",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "72",
@@ -18865,15 +18873,15 @@
             "driver": "L. Savadori",
             "laps": "6"
           }
-        ],
-        "id": "motogp-2026-13-wu"
+        ]
       },
       {
-        "timeLocal": "14:00",
-        "kind": "race",
+        "id": "motogp-2026-13-race",
         "name": "Race",
-        "durationMinutes": 60,
+        "kind": "race",
         "date": "2026-08-30",
+        "timeLocal": "14:00",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "93",
@@ -19064,27 +19072,27 @@
             "driver": "F. Morbidelli",
             "laps": "5"
           }
-        ],
-        "id": "motogp-2026-13-race"
+        ]
       }
-    ],
-    "seriesId": "motogp",
-    "country": "Spain",
-    "countryCode": "ES",
-    "roundNumber": 13,
-    "circuitName": "MotorLand Aragon",
-    "raceName": "Grand Prix of Aragon",
-    "city": "Alcaniz"
+    ]
   },
   {
     "id": "motogp-2026-14",
+    "seriesId": "motogp",
+    "roundNumber": 14,
+    "raceName": "Grand Prix of San Marino",
+    "circuitName": "Misano World Circuit",
+    "city": "Misano Adriatico",
+    "country": "San Marino",
+    "countryCode": "SM",
     "sessions": [
       {
-        "timeLocal": "10:45",
-        "kind": "practice",
+        "id": "motogp-2026-14-fp1",
         "name": "Free Practice 1",
-        "durationMinutes": 60,
+        "kind": "practice",
         "date": "2026-09-11",
+        "timeLocal": "10:45",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "93",
@@ -19274,15 +19282,15 @@
             "driver": "A. Rins",
             "laps": "11"
           }
-        ],
-        "id": "motogp-2026-14-fp1"
+        ]
       },
       {
-        "timeLocal": "15:00",
-        "kind": "practice",
+        "id": "motogp-2026-14-prac",
         "name": "Practice",
-        "durationMinutes": 60,
+        "kind": "practice",
         "date": "2026-09-11",
+        "timeLocal": "15:00",
+        "durationMinutes": 60,
         "results": [
           {
             "number": "72",
@@ -19472,15 +19480,15 @@
             "driver": "T. Razgatlioglu",
             "laps": "19"
           }
-        ],
-        "id": "motogp-2026-14-prac"
+        ]
       },
       {
-        "timeLocal": "10:10",
-        "kind": "practice",
+        "id": "motogp-2026-14-fp2",
         "name": "Free Practice 2",
-        "durationMinutes": 60,
+        "kind": "practice",
         "date": "2026-09-12",
+        "timeLocal": "10:10",
+        "durationMinutes": 60,
         "results": [
           {
             "position": 1,
@@ -19670,15 +19678,15 @@
             "interval": "+1.790",
             "speed": "1'32.830"
           }
-        ],
-        "id": "motogp-2026-14-fp2"
+        ]
       },
       {
-        "timeLocal": "10:50",
-        "kind": "qualifying",
+        "id": "motogp-2026-14-q1",
         "name": "Qualifying 1",
-        "durationMinutes": 60,
+        "kind": "qualifying",
         "date": "2026-09-12",
+        "timeLocal": "10:50",
+        "durationMinutes": 60,
         "results": [
           {
             "position": 1,
@@ -19778,15 +19786,15 @@
             "interval": "+1.729",
             "speed": "1'32.264"
           }
-        ],
-        "id": "motogp-2026-14-q1"
+        ]
       },
       {
-        "timeLocal": "11:15",
-        "kind": "qualifying",
+        "id": "motogp-2026-14-q2",
         "name": "Qualifying 2",
-        "durationMinutes": 60,
+        "kind": "qualifying",
         "date": "2026-09-12",
+        "timeLocal": "11:15",
+        "durationMinutes": 60,
         "results": [
           {
             "position": 1,
@@ -19895,16 +19903,15 @@
             "interval": "+1.198",
             "speed": "1'31.180"
           }
-        ],
-        "id": "motogp-2026-14-q2"
+        ]
       },
       {
-        "timeLocal": "15:00",
+        "id": "motogp-2026-14-sprint",
+        "name": "Sprint",
         "kind": "sprintRace",
         "date": "2026-09-12",
-        "id": "motogp-2026-14-sprint",
+        "timeLocal": "15:00",
         "durationMinutes": 60,
-        "name": "Sprint",
         "results": [
           {
             "position": 1,
@@ -20097,12 +20104,12 @@
         ]
       },
       {
-        "timeLocal": "09:40",
+        "id": "motogp-2026-14-wu",
+        "name": "Warm Up",
         "kind": "practice",
         "date": "2026-09-13",
-        "id": "motogp-2026-14-wu",
+        "timeLocal": "09:40",
         "durationMinutes": 60,
-        "name": "Warm Up",
         "results": [
           {
             "position": 1,
@@ -20295,12 +20302,12 @@
         ]
       },
       {
-        "timeLocal": "14:00",
+        "id": "motogp-2026-14-race",
+        "name": "Race",
         "kind": "race",
         "date": "2026-09-13",
-        "id": "motogp-2026-14-race",
+        "timeLocal": "14:00",
         "durationMinutes": 60,
-        "name": "Race",
         "results": [
           {
             "position": 1,
@@ -20478,25 +20485,25 @@
           }
         ]
       }
-    ],
-    "seriesId": "motogp",
-    "country": "San Marino",
-    "countryCode": "SM",
-    "roundNumber": 14,
-    "circuitName": "Misano World Circuit",
-    "raceName": "Grand Prix of San Marino",
-    "city": "Misano Adriatico"
+    ]
   },
   {
     "id": "motogp-2026-15",
+    "seriesId": "motogp",
+    "roundNumber": 15,
+    "raceName": "Grand Prix of Austria",
+    "circuitName": "Red Bull Ring",
+    "city": "Spielberg",
+    "country": "Austria",
+    "countryCode": "AT",
     "sessions": [
       {
-        "timeLocal": "10:45",
+        "id": "motogp-2026-15-fp1",
+        "name": "Free Practice 1",
         "kind": "practice",
         "date": "2026-09-18",
-        "id": "motogp-2026-15-fp1",
+        "timeLocal": "10:45",
         "durationMinutes": 60,
-        "name": "Free Practice 1",
         "results": [
           {
             "position": 1,
@@ -20698,12 +20705,12 @@
         ]
       },
       {
-        "timeLocal": "15:00",
+        "id": "motogp-2026-15-prac",
+        "name": "Practice",
         "kind": "practice",
         "date": "2026-09-18",
-        "id": "motogp-2026-15-prac",
+        "timeLocal": "15:00",
         "durationMinutes": 60,
-        "name": "Practice",
         "results": [
           {
             "position": 1,
@@ -20905,12 +20912,12 @@
         ]
       },
       {
-        "timeLocal": "10:10",
+        "id": "motogp-2026-15-fp2",
+        "name": "Free Practice 2",
         "kind": "practice",
         "date": "2026-09-19",
-        "id": "motogp-2026-15-fp2",
+        "timeLocal": "10:10",
         "durationMinutes": 60,
-        "name": "Free Practice 2",
         "results": [
           {
             "position": 1,
@@ -21112,12 +21119,12 @@
         ]
       },
       {
-        "timeLocal": "10:50",
+        "id": "motogp-2026-15-q1",
+        "name": "Qualifying 1",
         "kind": "qualifying",
         "date": "2026-09-19",
-        "id": "motogp-2026-15-q1",
+        "timeLocal": "10:50",
         "durationMinutes": 60,
-        "name": "Qualifying 1",
         "results": [
           {
             "position": 1,
@@ -21229,12 +21236,12 @@
         ]
       },
       {
-        "timeLocal": "11:15",
+        "id": "motogp-2026-15-q2",
+        "name": "Qualifying 2",
         "kind": "qualifying",
         "date": "2026-09-19",
-        "id": "motogp-2026-15-q2",
+        "timeLocal": "11:15",
         "durationMinutes": 60,
-        "name": "Qualifying 2",
         "results": [
           {
             "position": 1,
@@ -21346,12 +21353,12 @@
         ]
       },
       {
-        "timeLocal": "15:00",
+        "id": "motogp-2026-15-sprint",
+        "name": "Sprint",
         "kind": "sprintRace",
         "date": "2026-09-19",
-        "id": "motogp-2026-15-sprint",
+        "timeLocal": "15:00",
         "durationMinutes": 60,
-        "name": "Sprint",
         "results": [
           {
             "position": 1,
@@ -21549,12 +21556,12 @@
         ]
       },
       {
-        "timeLocal": "09:40",
+        "id": "motogp-2026-15-wu",
+        "name": "Warm Up",
         "kind": "practice",
         "date": "2026-09-20",
-        "id": "motogp-2026-15-wu",
+        "timeLocal": "09:40",
         "durationMinutes": 60,
-        "name": "Warm Up",
         "results": [
           {
             "position": 1,
@@ -21754,12 +21761,12 @@
         ]
       },
       {
-        "timeLocal": "14:00",
+        "id": "motogp-2026-15-race",
+        "name": "Race",
         "kind": "race",
         "date": "2026-09-20",
-        "id": "motogp-2026-15-race",
+        "timeLocal": "14:00",
         "durationMinutes": 60,
-        "name": "Race",
         "results": [
           {
             "position": 1,
@@ -21958,25 +21965,25 @@
           }
         ]
       }
-    ],
-    "seriesId": "motogp",
-    "country": "Austria",
-    "countryCode": "AT",
-    "roundNumber": 15,
-    "circuitName": "Red Bull Ring",
-    "raceName": "Grand Prix of Austria",
-    "city": "Spielberg"
+    ]
   },
   {
     "id": "motogp-2026-16",
+    "seriesId": "motogp",
+    "roundNumber": 16,
+    "raceName": "Grand Prix of Japan",
+    "circuitName": "Mobility Resort Motegi",
+    "city": "Motegi",
+    "country": "Japan",
+    "countryCode": "JP",
     "sessions": [
       {
-        "timeLocal": "03:45",
+        "id": "motogp-2026-16-fp1",
+        "name": "Free Practice 1",
         "kind": "practice",
         "date": "2026-10-02",
-        "id": "motogp-2026-16-fp1",
+        "timeLocal": "03:45",
         "durationMinutes": 60,
-        "name": "Free Practice 1",
         "results": [
           {
             "position": 1,
@@ -22185,12 +22192,12 @@
         ]
       },
       {
-        "timeLocal": "08:00",
+        "id": "motogp-2026-16-prac",
+        "name": "Practice",
         "kind": "practice",
         "date": "2026-10-02",
-        "id": "motogp-2026-16-prac",
+        "timeLocal": "08:00",
         "durationMinutes": 60,
-        "name": "Practice",
         "results": [
           {
             "position": 1,
@@ -22392,12 +22399,12 @@
         ]
       },
       {
-        "timeLocal": "03:10",
+        "id": "motogp-2026-16-fp2",
+        "name": "Free Practice 2",
         "kind": "practice",
         "date": "2026-10-03",
-        "id": "motogp-2026-16-fp2",
+        "timeLocal": "03:10",
         "durationMinutes": 60,
-        "name": "Free Practice 2",
         "results": [
           {
             "position": 1,
@@ -22599,12 +22606,12 @@
         ]
       },
       {
-        "timeLocal": "03:50",
+        "id": "motogp-2026-16-q1",
+        "name": "Qualifying 1",
         "kind": "qualifying",
         "date": "2026-10-03",
-        "id": "motogp-2026-16-q1",
+        "timeLocal": "03:50",
         "durationMinutes": 60,
-        "name": "Qualifying 1",
         "results": [
           {
             "position": 1,
@@ -22716,12 +22723,12 @@
         ]
       },
       {
-        "timeLocal": "04:15",
+        "id": "motogp-2026-16-q2",
+        "name": "Qualifying 2",
         "kind": "qualifying",
         "date": "2026-10-03",
-        "id": "motogp-2026-16-q2",
+        "timeLocal": "04:15",
         "durationMinutes": 60,
-        "name": "Qualifying 2",
         "results": [
           {
             "position": 1,
@@ -22833,12 +22840,12 @@
         ]
       },
       {
-        "timeLocal": "08:00",
+        "id": "motogp-2026-16-sprint",
+        "name": "Sprint",
         "kind": "sprintRace",
         "date": "2026-10-03",
-        "id": "motogp-2026-16-sprint",
+        "timeLocal": "08:00",
         "durationMinutes": 60,
-        "name": "Sprint",
         "results": [
           {
             "position": 1,
@@ -23032,12 +23039,12 @@
         ]
       },
       {
-        "timeLocal": "05:40",
+        "id": "motogp-2026-16-wu",
+        "name": "Warm Up",
         "kind": "practice",
         "date": "2026-10-04",
-        "id": "motogp-2026-16-wu",
+        "timeLocal": "05:40",
         "durationMinutes": 60,
-        "name": "Warm Up",
         "results": [
           {
             "position": 1,
@@ -23239,12 +23246,12 @@
         ]
       },
       {
-        "timeLocal": "07:00",
+        "id": "motogp-2026-16-race",
+        "name": "Race",
         "kind": "race",
         "date": "2026-10-04",
-        "id": "motogp-2026-16-race",
+        "timeLocal": "07:00",
         "durationMinutes": 60,
-        "name": "Race",
         "results": [
           {
             "position": 1,
@@ -23441,25 +23448,25 @@
           }
         ]
       }
-    ],
-    "seriesId": "motogp",
-    "country": "Japan",
-    "countryCode": "JP",
-    "roundNumber": 16,
-    "circuitName": "Mobility Resort Motegi",
-    "raceName": "Grand Prix of Japan",
-    "city": "Motegi"
+    ]
   },
   {
     "id": "motogp-2026-17",
+    "seriesId": "motogp",
+    "roundNumber": 17,
+    "raceName": "Grand Prix of Indonesia",
+    "circuitName": "Mandalika International Circuit",
+    "city": "Lombok",
+    "country": "Indonesia",
+    "countryCode": "ID",
     "sessions": [
       {
-        "timeLocal": "04:45",
+        "id": "motogp-2026-17-fp1",
+        "name": "Free Practice 1",
         "kind": "practice",
         "date": "2026-10-09",
-        "id": "motogp-2026-17-fp1",
+        "timeLocal": "04:45",
         "durationMinutes": 60,
-        "name": "Free Practice 1",
         "results": [
           {
             "position": 1,
@@ -23661,12 +23668,12 @@
         ]
       },
       {
-        "timeLocal": "09:00",
+        "id": "motogp-2026-17-prac",
+        "name": "Practice",
         "kind": "practice",
         "date": "2026-10-09",
-        "id": "motogp-2026-17-prac",
+        "timeLocal": "09:00",
         "durationMinutes": 60,
-        "name": "Practice",
         "results": [
           {
             "position": 1,
@@ -23868,12 +23875,12 @@
         ]
       },
       {
-        "timeLocal": "04:10",
+        "id": "motogp-2026-17-fp2",
+        "name": "Free Practice 2",
         "kind": "practice",
         "date": "2026-10-10",
-        "id": "motogp-2026-17-fp2",
+        "timeLocal": "04:10",
         "durationMinutes": 60,
-        "name": "Free Practice 2",
         "results": [
           {
             "position": 1,
@@ -24075,12 +24082,12 @@
         ]
       },
       {
-        "timeLocal": "04:50",
+        "id": "motogp-2026-17-q1",
+        "name": "Qualifying 1",
         "kind": "qualifying",
         "date": "2026-10-10",
-        "id": "motogp-2026-17-q1",
+        "timeLocal": "04:50",
         "durationMinutes": 60,
-        "name": "Qualifying 1",
         "results": [
           {
             "position": 1,
@@ -24192,12 +24199,12 @@
         ]
       },
       {
-        "timeLocal": "05:15",
+        "id": "motogp-2026-17-q2",
+        "name": "Qualifying 2",
         "kind": "qualifying",
         "date": "2026-10-10",
-        "id": "motogp-2026-17-q2",
+        "timeLocal": "05:15",
         "durationMinutes": 60,
-        "name": "Qualifying 2",
         "results": [
           {
             "position": 1,
@@ -24309,12 +24316,12 @@
         ]
       },
       {
-        "timeLocal": "09:00",
+        "id": "motogp-2026-17-sprint",
+        "name": "Sprint",
         "kind": "sprintRace",
         "date": "2026-10-10",
-        "id": "motogp-2026-17-sprint",
+        "timeLocal": "09:00",
         "durationMinutes": 60,
-        "name": "Sprint",
         "results": [
           {
             "position": 1,
@@ -24512,12 +24519,12 @@
         ]
       },
       {
-        "timeLocal": "06:40",
+        "id": "motogp-2026-17-wu",
+        "name": "Warm Up",
         "kind": "practice",
         "date": "2026-10-11",
-        "id": "motogp-2026-17-wu",
+        "timeLocal": "06:40",
         "durationMinutes": 60,
-        "name": "Warm Up",
         "results": [
           {
             "position": 1,
@@ -24710,400 +24717,393 @@
         ]
       },
       {
-        "timeLocal": "08:00",
+        "id": "motogp-2026-17-race",
+        "name": "Race",
         "kind": "race",
         "date": "2026-10-11",
-        "id": "motogp-2026-17-race",
-        "durationMinutes": 60,
-        "name": "Race"
+        "timeLocal": "09:00",
+        "durationMinutes": 60
       }
-    ],
-    "seriesId": "motogp",
-    "country": "Indonesia",
-    "countryCode": "ID",
-    "roundNumber": 17,
-    "circuitName": "Mandalika International Circuit",
-    "raceName": "Grand Prix of Indonesia",
-    "city": "Lombok"
+    ]
   },
   {
     "id": "motogp-2026-18",
-    "sessions": [
-      {
-        "timeLocal": "01:45",
-        "kind": "practice",
-        "date": "2026-10-23",
-        "id": "motogp-2026-18-fp1",
-        "durationMinutes": 60,
-        "name": "Free Practice 1"
-      },
-      {
-        "timeLocal": "06:00",
-        "kind": "practice",
-        "date": "2026-10-23",
-        "id": "motogp-2026-18-prac",
-        "durationMinutes": 60,
-        "name": "Practice"
-      },
-      {
-        "timeLocal": "01:10",
-        "kind": "practice",
-        "date": "2026-10-23",
-        "id": "motogp-2026-18-fp2",
-        "durationMinutes": 60,
-        "name": "Free Practice 2"
-      },
-      {
-        "timeLocal": "01:50",
-        "kind": "qualifying",
-        "date": "2026-10-25",
-        "id": "motogp-2026-18-q1",
-        "durationMinutes": 60,
-        "name": "Qualifying 1"
-      },
-      {
-        "timeLocal": "02:15",
-        "kind": "qualifying",
-        "date": "2026-10-24",
-        "id": "motogp-2026-18-q2",
-        "durationMinutes": 60,
-        "name": "Qualifying 2"
-      },
-      {
-        "timeLocal": "06:00",
-        "kind": "sprintRace",
-        "date": "2026-10-24",
-        "id": "motogp-2026-18-sprint",
-        "durationMinutes": 60,
-        "name": "Sprint"
-      },
-      {
-        "timeLocal": "22:40",
-        "kind": "practice",
-        "date": "2026-10-25",
-        "id": "motogp-2026-18-wu",
-        "durationMinutes": 60,
-        "name": "Warm Up"
-      },
-      {
-        "timeLocal": "04:00",
-        "kind": "race",
-        "date": "2026-10-25",
-        "id": "motogp-2026-18-race",
-        "durationMinutes": 60,
-        "name": "Race"
-      }
-    ],
     "seriesId": "motogp",
+    "roundNumber": 18,
+    "raceName": "Grand Prix of Australia",
+    "circuitName": "Phillip Island Circuit",
+    "city": "Phillip Island",
     "country": "Australia",
     "countryCode": "AU",
-    "roundNumber": 18,
-    "circuitName": "Phillip Island Circuit",
-    "raceName": "Grand Prix of Australia",
-    "city": "Phillip Island"
+    "sessions": [
+      {
+        "id": "motogp-2026-18-fp1",
+        "name": "Free Practice 1",
+        "kind": "practice",
+        "date": "2026-10-23",
+        "timeLocal": "01:45",
+        "durationMinutes": 60
+      },
+      {
+        "id": "motogp-2026-18-prac",
+        "name": "Practice",
+        "kind": "practice",
+        "date": "2026-10-23",
+        "timeLocal": "06:00",
+        "durationMinutes": 60
+      },
+      {
+        "id": "motogp-2026-18-fp2",
+        "name": "Free Practice 2",
+        "kind": "practice",
+        "date": "2026-10-23",
+        "timeLocal": "01:10",
+        "durationMinutes": 60
+      },
+      {
+        "id": "motogp-2026-18-q1",
+        "name": "Qualifying 1",
+        "kind": "qualifying",
+        "date": "2026-10-25",
+        "timeLocal": "01:50",
+        "durationMinutes": 60
+      },
+      {
+        "id": "motogp-2026-18-q2",
+        "name": "Qualifying 2",
+        "kind": "qualifying",
+        "date": "2026-10-24",
+        "timeLocal": "02:15",
+        "durationMinutes": 60
+      },
+      {
+        "id": "motogp-2026-18-sprint",
+        "name": "Sprint",
+        "kind": "sprintRace",
+        "date": "2026-10-24",
+        "timeLocal": "06:00",
+        "durationMinutes": 60
+      },
+      {
+        "id": "motogp-2026-18-wu",
+        "name": "Warm Up",
+        "kind": "practice",
+        "date": "2026-10-25",
+        "timeLocal": "22:40",
+        "durationMinutes": 60
+      },
+      {
+        "id": "motogp-2026-18-race",
+        "name": "Race",
+        "kind": "race",
+        "date": "2026-10-25",
+        "timeLocal": "04:00",
+        "durationMinutes": 60
+      }
+    ]
   },
   {
     "id": "motogp-2026-19",
-    "sessions": [
-      {
-        "timeLocal": "03:45",
-        "kind": "practice",
-        "date": "2026-10-30",
-        "id": "motogp-2026-19-fp1",
-        "durationMinutes": 60,
-        "name": "Free Practice 1"
-      },
-      {
-        "timeLocal": "08:00",
-        "kind": "practice",
-        "date": "2026-10-30",
-        "id": "motogp-2026-19-prac",
-        "durationMinutes": 60,
-        "name": "Practice"
-      },
-      {
-        "timeLocal": "03:10",
-        "kind": "practice",
-        "date": "2026-10-31",
-        "id": "motogp-2026-19-fp2",
-        "durationMinutes": 60,
-        "name": "Free Practice 2"
-      },
-      {
-        "timeLocal": "03:50",
-        "kind": "qualifying",
-        "date": "2026-10-31",
-        "id": "motogp-2026-19-q1",
-        "durationMinutes": 60,
-        "name": "Qualifying 1"
-      },
-      {
-        "timeLocal": "04:15",
-        "kind": "qualifying",
-        "date": "2026-10-31",
-        "id": "motogp-2026-19-q2",
-        "durationMinutes": 60,
-        "name": "Qualifying 2"
-      },
-      {
-        "timeLocal": "08:00",
-        "kind": "sprintRace",
-        "date": "2026-10-31",
-        "id": "motogp-2026-19-sprint",
-        "durationMinutes": 60,
-        "name": "Sprint"
-      },
-      {
-        "timeLocal": "06:40",
-        "kind": "practice",
-        "date": "2026-11-01",
-        "id": "motogp-2026-19-wu",
-        "durationMinutes": 60,
-        "name": "Warm Up"
-      },
-      {
-        "timeLocal": "08:00",
-        "kind": "race",
-        "date": "2026-11-01",
-        "id": "motogp-2026-19-race",
-        "durationMinutes": 60,
-        "name": "Race"
-      }
-    ],
     "seriesId": "motogp",
+    "roundNumber": 19,
+    "raceName": "Grand Prix of Malaysia",
+    "circuitName": "Sepang International Circuit",
+    "city": "Sepang",
     "country": "Malaysia",
     "countryCode": "MY",
-    "roundNumber": 19,
-    "circuitName": "Sepang International Circuit",
-    "raceName": "Grand Prix of Malaysia",
-    "city": "Sepang"
+    "sessions": [
+      {
+        "id": "motogp-2026-19-fp1",
+        "name": "Free Practice 1",
+        "kind": "practice",
+        "date": "2026-10-30",
+        "timeLocal": "03:45",
+        "durationMinutes": 60
+      },
+      {
+        "id": "motogp-2026-19-prac",
+        "name": "Practice",
+        "kind": "practice",
+        "date": "2026-10-30",
+        "timeLocal": "08:00",
+        "durationMinutes": 60
+      },
+      {
+        "id": "motogp-2026-19-fp2",
+        "name": "Free Practice 2",
+        "kind": "practice",
+        "date": "2026-10-31",
+        "timeLocal": "03:10",
+        "durationMinutes": 60
+      },
+      {
+        "id": "motogp-2026-19-q1",
+        "name": "Qualifying 1",
+        "kind": "qualifying",
+        "date": "2026-10-31",
+        "timeLocal": "03:50",
+        "durationMinutes": 60
+      },
+      {
+        "id": "motogp-2026-19-q2",
+        "name": "Qualifying 2",
+        "kind": "qualifying",
+        "date": "2026-10-31",
+        "timeLocal": "04:15",
+        "durationMinutes": 60
+      },
+      {
+        "id": "motogp-2026-19-sprint",
+        "name": "Sprint",
+        "kind": "sprintRace",
+        "date": "2026-10-31",
+        "timeLocal": "08:00",
+        "durationMinutes": 60
+      },
+      {
+        "id": "motogp-2026-19-wu",
+        "name": "Warm Up",
+        "kind": "practice",
+        "date": "2026-11-01",
+        "timeLocal": "06:40",
+        "durationMinutes": 60
+      },
+      {
+        "id": "motogp-2026-19-race",
+        "name": "Race",
+        "kind": "race",
+        "date": "2026-11-01",
+        "timeLocal": "08:00",
+        "durationMinutes": 60
+      }
+    ]
   },
   {
     "id": "motogp-2026-20",
-    "sessions": [
-      {
-        "timeLocal": "12:50",
-        "kind": "practice",
-        "date": "2026-11-06",
-        "id": "motogp-2026-20-fp1",
-        "durationMinutes": 60,
-        "name": "Free Practice 1"
-      },
-      {
-        "timeLocal": "17:05",
-        "kind": "practice",
-        "date": "2026-11-06",
-        "id": "motogp-2026-20-prac",
-        "durationMinutes": 60,
-        "name": "Practice"
-      },
-      {
-        "timeLocal": "12:15",
-        "kind": "practice",
-        "date": "2026-11-07",
-        "id": "motogp-2026-20-fp2",
-        "durationMinutes": 60,
-        "name": "Free Practice 2"
-      },
-      {
-        "timeLocal": "16:40",
-        "kind": "qualifying",
-        "date": "2026-11-07",
-        "id": "motogp-2026-20-q1",
-        "durationMinutes": 60,
-        "name": "Qualifying 1"
-      },
-      {
-        "timeLocal": "17:05",
-        "kind": "qualifying",
-        "date": "2026-11-07",
-        "id": "motogp-2026-20-q2",
-        "durationMinutes": 60,
-        "name": "Qualifying 2"
-      },
-      {
-        "timeLocal": "18:00",
-        "kind": "sprintRace",
-        "date": "2026-11-07",
-        "id": "motogp-2026-20-sprint",
-        "durationMinutes": 60,
-        "name": "Sprint"
-      },
-      {
-        "timeLocal": "12:40",
-        "kind": "practice",
-        "date": "2026-11-08",
-        "id": "motogp-2026-20-wu",
-        "durationMinutes": 60,
-        "name": "Warm Up"
-      },
-      {
-        "timeLocal": "16:15",
-        "kind": "race",
-        "date": "2026-11-08",
-        "id": "motogp-2026-20-race",
-        "durationMinutes": 60,
-        "name": "Race"
-      }
-    ],
     "seriesId": "motogp",
+    "roundNumber": 20,
+    "raceName": "Grand Prix of Qatar",
+    "circuitName": "Lusail International Circuit",
+    "city": "Lusail",
     "country": "Qatar",
     "countryCode": "QA",
-    "roundNumber": 20,
-    "circuitName": "Lusail International Circuit",
-    "raceName": "Grand Prix of Qatar",
-    "city": "Lusail"
+    "sessions": [
+      {
+        "id": "motogp-2026-20-fp1",
+        "name": "Free Practice 1",
+        "kind": "practice",
+        "date": "2026-11-06",
+        "timeLocal": "12:50",
+        "durationMinutes": 60
+      },
+      {
+        "id": "motogp-2026-20-prac",
+        "name": "Practice",
+        "kind": "practice",
+        "date": "2026-11-06",
+        "timeLocal": "17:05",
+        "durationMinutes": 60
+      },
+      {
+        "id": "motogp-2026-20-fp2",
+        "name": "Free Practice 2",
+        "kind": "practice",
+        "date": "2026-11-07",
+        "timeLocal": "12:15",
+        "durationMinutes": 60
+      },
+      {
+        "id": "motogp-2026-20-q1",
+        "name": "Qualifying 1",
+        "kind": "qualifying",
+        "date": "2026-11-07",
+        "timeLocal": "16:40",
+        "durationMinutes": 60
+      },
+      {
+        "id": "motogp-2026-20-q2",
+        "name": "Qualifying 2",
+        "kind": "qualifying",
+        "date": "2026-11-07",
+        "timeLocal": "17:05",
+        "durationMinutes": 60
+      },
+      {
+        "id": "motogp-2026-20-sprint",
+        "name": "Sprint",
+        "kind": "sprintRace",
+        "date": "2026-11-07",
+        "timeLocal": "18:00",
+        "durationMinutes": 60
+      },
+      {
+        "id": "motogp-2026-20-wu",
+        "name": "Warm Up",
+        "kind": "practice",
+        "date": "2026-11-08",
+        "timeLocal": "12:40",
+        "durationMinutes": 60
+      },
+      {
+        "id": "motogp-2026-20-race",
+        "name": "Race",
+        "kind": "race",
+        "date": "2026-11-08",
+        "timeLocal": "16:15",
+        "durationMinutes": 60
+      }
+    ]
   },
   {
     "id": "motogp-2026-21",
-    "sessions": [
-      {
-        "timeLocal": "10:45",
-        "kind": "practice",
-        "date": "2026-11-13",
-        "id": "motogp-2026-21-fp1",
-        "durationMinutes": 60,
-        "name": "Free Practice 1"
-      },
-      {
-        "timeLocal": "15:00",
-        "kind": "practice",
-        "date": "2026-11-13",
-        "id": "motogp-2026-21-prac",
-        "durationMinutes": 60,
-        "name": "Practice"
-      },
-      {
-        "timeLocal": "10:10",
-        "kind": "practice",
-        "date": "2026-11-14",
-        "id": "motogp-2026-21-fp2",
-        "durationMinutes": 60,
-        "name": "Free Practice 2"
-      },
-      {
-        "timeLocal": "10:50",
-        "kind": "qualifying",
-        "date": "2026-11-14",
-        "id": "motogp-2026-21-q1",
-        "durationMinutes": 60,
-        "name": "Qualifying 1"
-      },
-      {
-        "timeLocal": "11:15",
-        "kind": "qualifying",
-        "date": "2026-11-14",
-        "id": "motogp-2026-21-q2",
-        "durationMinutes": 60,
-        "name": "Qualifying 2"
-      },
-      {
-        "timeLocal": "15:00",
-        "kind": "sprintRace",
-        "date": "2026-11-14",
-        "id": "motogp-2026-21-sprint",
-        "durationMinutes": 60,
-        "name": "Sprint"
-      },
-      {
-        "timeLocal": "09:40",
-        "kind": "practice",
-        "date": "2026-11-15",
-        "id": "motogp-2026-21-wu",
-        "durationMinutes": 60,
-        "name": "Warm Up"
-      },
-      {
-        "timeLocal": "14:00",
-        "kind": "race",
-        "date": "2026-11-15",
-        "id": "motogp-2026-21-race",
-        "durationMinutes": 60,
-        "name": "Race"
-      }
-    ],
     "seriesId": "motogp",
+    "roundNumber": 21,
+    "raceName": "Grand Prix of Portugal",
+    "circuitName": "Algarve International Circuit",
+    "city": "Portimão",
     "country": "Portugal",
     "countryCode": "PT",
-    "roundNumber": 21,
-    "circuitName": "Algarve International Circuit",
-    "raceName": "Grand Prix of Portugal",
-    "city": "Portimão"
+    "sessions": [
+      {
+        "id": "motogp-2026-21-fp1",
+        "name": "Free Practice 1",
+        "kind": "practice",
+        "date": "2026-11-13",
+        "timeLocal": "10:45",
+        "durationMinutes": 60
+      },
+      {
+        "id": "motogp-2026-21-prac",
+        "name": "Practice",
+        "kind": "practice",
+        "date": "2026-11-13",
+        "timeLocal": "15:00",
+        "durationMinutes": 60
+      },
+      {
+        "id": "motogp-2026-21-fp2",
+        "name": "Free Practice 2",
+        "kind": "practice",
+        "date": "2026-11-14",
+        "timeLocal": "10:10",
+        "durationMinutes": 60
+      },
+      {
+        "id": "motogp-2026-21-q1",
+        "name": "Qualifying 1",
+        "kind": "qualifying",
+        "date": "2026-11-14",
+        "timeLocal": "10:50",
+        "durationMinutes": 60
+      },
+      {
+        "id": "motogp-2026-21-q2",
+        "name": "Qualifying 2",
+        "kind": "qualifying",
+        "date": "2026-11-14",
+        "timeLocal": "11:15",
+        "durationMinutes": 60
+      },
+      {
+        "id": "motogp-2026-21-sprint",
+        "name": "Sprint",
+        "kind": "sprintRace",
+        "date": "2026-11-14",
+        "timeLocal": "15:00",
+        "durationMinutes": 60
+      },
+      {
+        "id": "motogp-2026-21-wu",
+        "name": "Warm Up",
+        "kind": "practice",
+        "date": "2026-11-15",
+        "timeLocal": "09:40",
+        "durationMinutes": 60
+      },
+      {
+        "id": "motogp-2026-21-race",
+        "name": "Race",
+        "kind": "race",
+        "date": "2026-11-15",
+        "timeLocal": "14:00",
+        "durationMinutes": 60
+      }
+    ]
   },
   {
     "id": "motogp-2026-22",
-    "sessions": [
-      {
-        "timeLocal": "10:45",
-        "kind": "practice",
-        "date": "2026-11-20",
-        "id": "motogp-2026-22-fp1",
-        "durationMinutes": 60,
-        "name": "Free Practice 1"
-      },
-      {
-        "timeLocal": "15:00",
-        "kind": "practice",
-        "date": "2026-11-20",
-        "id": "motogp-2026-22-prac",
-        "durationMinutes": 60,
-        "name": "Practice"
-      },
-      {
-        "timeLocal": "10:10",
-        "kind": "practice",
-        "date": "2026-11-21",
-        "id": "motogp-2026-22-fp2",
-        "durationMinutes": 60,
-        "name": "Free Practice 2"
-      },
-      {
-        "timeLocal": "10:50",
-        "kind": "qualifying",
-        "date": "2026-11-21",
-        "id": "motogp-2026-22-q1",
-        "durationMinutes": 60,
-        "name": "Qualifying 1"
-      },
-      {
-        "timeLocal": "11:15",
-        "kind": "qualifying",
-        "date": "2026-11-21",
-        "id": "motogp-2026-22-q2",
-        "durationMinutes": 60,
-        "name": "Qualifying 2"
-      },
-      {
-        "timeLocal": "15:00",
-        "kind": "sprintRace",
-        "date": "2026-11-21",
-        "id": "motogp-2026-22-sprint",
-        "durationMinutes": 60,
-        "name": "Sprint"
-      },
-      {
-        "timeLocal": "09:40",
-        "kind": "practice",
-        "date": "2026-11-22",
-        "id": "motogp-2026-22-wu",
-        "durationMinutes": 60,
-        "name": "Warm Up"
-      },
-      {
-        "timeLocal": "14:00",
-        "kind": "race",
-        "date": "2026-11-22",
-        "id": "motogp-2026-22-race",
-        "durationMinutes": 60,
-        "name": "Race"
-      }
-    ],
     "seriesId": "motogp",
+    "roundNumber": 22,
+    "raceName": "Grand Prix of Valencia",
+    "circuitName": "Circuit Ricardo Tormo",
+    "city": "Valencia",
     "country": "Spain",
     "countryCode": "ES",
-    "roundNumber": 22,
-    "circuitName": "Circuit Ricardo Tormo",
-    "raceName": "Grand Prix of Valencia",
-    "city": "Valencia"
+    "sessions": [
+      {
+        "id": "motogp-2026-22-fp1",
+        "name": "Free Practice 1",
+        "kind": "practice",
+        "date": "2026-11-20",
+        "timeLocal": "10:45",
+        "durationMinutes": 60
+      },
+      {
+        "id": "motogp-2026-22-prac",
+        "name": "Practice",
+        "kind": "practice",
+        "date": "2026-11-20",
+        "timeLocal": "15:00",
+        "durationMinutes": 60
+      },
+      {
+        "id": "motogp-2026-22-fp2",
+        "name": "Free Practice 2",
+        "kind": "practice",
+        "date": "2026-11-21",
+        "timeLocal": "10:10",
+        "durationMinutes": 60
+      },
+      {
+        "id": "motogp-2026-22-q1",
+        "name": "Qualifying 1",
+        "kind": "qualifying",
+        "date": "2026-11-21",
+        "timeLocal": "10:50",
+        "durationMinutes": 60
+      },
+      {
+        "id": "motogp-2026-22-q2",
+        "name": "Qualifying 2",
+        "kind": "qualifying",
+        "date": "2026-11-21",
+        "timeLocal": "11:15",
+        "durationMinutes": 60
+      },
+      {
+        "id": "motogp-2026-22-sprint",
+        "name": "Sprint",
+        "kind": "sprintRace",
+        "date": "2026-11-21",
+        "timeLocal": "15:00",
+        "durationMinutes": 60
+      },
+      {
+        "id": "motogp-2026-22-wu",
+        "name": "Warm Up",
+        "kind": "practice",
+        "date": "2026-11-22",
+        "timeLocal": "09:40",
+        "durationMinutes": 60
+      },
+      {
+        "id": "motogp-2026-22-race",
+        "name": "Race",
+        "kind": "race",
+        "date": "2026-11-22",
+        "timeLocal": "14:00",
+        "durationMinutes": 60
+      }
+    ]
   }
 ]
