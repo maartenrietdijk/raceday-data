@@ -59,7 +59,7 @@
     seriesOrder: [], draggedSeriesId: '', logoScales: {}, controlTab: 'sessions',
     timeZone: DISPLAY_ZONE, selectedSeries: '', selectedEvent: '',
     timeZonePlacement: 'groups', titleAlignment: 'left', scheduleAlignment: 'center', showFooter: true,
-    headerLogoScale: 1, showRowLogos: true,
+    headerLogoScale: 1, showRowLogos: true, titleDateSpacing: 30,
   };
 
   function loadLogoScales() {
@@ -839,7 +839,7 @@
 
   function seriesHeaderHeight() {
     const item = instagramState.displayItems.find(item => instagramState.selectedIds.has(item.uid)) || instagramState.displayItems[0];
-    return Math.max(138, eventLogoSize(item).height + 32);
+    return Math.max(138, eventLogoSize(item).height + 32) + Math.max(0, instagramState.titleDateSpacing - 30);
   }
 
   function drawEventLogo(ctx, item, centerY) {
@@ -887,7 +887,7 @@
     if (!first) first = words.shift();
     const lines = [truncateText(ctx, first, width - flagSpace)];
     if (words.length) lines.push(truncateText(ctx, words.join(' '), width - flagSpace));
-    const firstY = centerY - (lines.length > 1 ? 34 : 15);
+    const firstY = centerY - (lines.length > 1 ? 34 : 15) - (instagramState.titleDateSpacing - 30) / 2;
     ctx.textAlign = instagramState.titleAlignment;
     const alignment = ctx.textAlign;
     lines.forEach((line, index) => {
@@ -905,7 +905,7 @@
     ctx.fillStyle = '#b5b5bd'; ctx.font = '500 21px Inter, sans-serif';
     const x = alignment === 'center' ? (left + right) / 2 : alignment === 'right' ? right : left;
     const range = { start: item.eventStart, end: item.eventEnd };
-    ctx.fillText(truncateText(ctx, formatHeaderDates(range), width), x, firstY + (lines.length - 1) * 38 + 30);
+    ctx.fillText(truncateText(ctx, formatHeaderDates(range), width), x, firstY + (lines.length - 1) * 38 + instagramState.titleDateSpacing);
     if (headerBadge) drawTimeZoneBadge(ctx, items, 1028, firstY);
     ctx.restore();
   }
@@ -1348,12 +1348,24 @@
     if (headerLogoSize) headerLogoSize.value = Math.round(instagramState.headerLogoScale * 100);
     const output = document.getElementById('instagramHeaderLogoSizeValue');
     if (output) output.value = `${Math.round(instagramState.headerLogoScale * 100)}%`;
+    const spacing = document.getElementById('instagramTitleDateSpacing');
+    if (spacing) spacing.value = instagramState.titleDateSpacing;
+    const spacingOutput = document.getElementById('instagramTitleDateSpacingValue');
+    if (spacingOutput) spacingOutput.value = `${instagramState.titleDateSpacing} px`;
   }
 
   function setInstagramHeaderLogoSize(percent) {
     const value = Number(percent);
     if (!Number.isFinite(value)) return;
     instagramState.headerLogoScale = Math.max(.5, Math.min(2, value / 100));
+    updateLayoutControls();
+    rebuildSlides();
+  }
+
+  function setInstagramTitleDateSpacing(pixels) {
+    const value = Number(pixels);
+    if (!Number.isFinite(value)) return;
+    instagramState.titleDateSpacing = Math.max(24, Math.min(80, value));
     updateLayoutControls();
     rebuildSlides();
   }
@@ -1571,6 +1583,7 @@
   window.setInstagramTimeZone = setInstagramTimeZone;
   window.setInstagramLayout = setInstagramLayout;
   window.setInstagramHeaderLogoSize = setInstagramHeaderLogoSize;
+  window.setInstagramTitleDateSpacing = setInstagramTitleDateSpacing;
   window.setInstagramMonth = setInstagramMonth;
   window.setInstagramWeekend = setInstagramWeekend;
   window.toggleInstagramWeek = toggleInstagramWeek;

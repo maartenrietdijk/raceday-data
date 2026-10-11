@@ -1219,6 +1219,11 @@
               <input id="instagramHeaderLogoSize" type="range" min="50" max="200" step="5" value="100" oninput="setInstagramHeaderLogoSize(this.value)">
               <output id="instagramHeaderLogoSizeValue" for="instagramHeaderLogoSize">100%</output>
             </div>
+            <label for="instagramTitleDateSpacing">Afstand tussen eventtitel en datum</label>
+            <div class="instagram-header-logo-size">
+              <input id="instagramTitleDateSpacing" type="range" min="24" max="80" step="2" value="30" oninput="setInstagramTitleDateSpacing(this.value)">
+              <output id="instagramTitleDateSpacingValue" for="instagramTitleDateSpacing">30 px</output>
+            </div>
           </div>
           <div id="instagramTimeZoneControls" class="instagram-picker-group" hidden>
             <label for="instagramTimeZone">Tijdzone in de post</label>
@@ -4382,7 +4387,7 @@ if (state.github.token && state.github.repo) {
 <script src="instagram-assets/logo-overrides.js?v=20261001-2"></script>
 <script src="instagram-assets/flag-bundle.js?v=20260826-2"></script>
 <script src="instagram-assets/timezone-bundle.js?v=20261010-1"></script>
-<script src="instagram-generator.js?v=20261010-3"></script>
+<script src="instagram-generator.js?v=20261010-4"></script>
 <script src="statistics.js?v=20261001-2"></script>
 </body>
 </html>
