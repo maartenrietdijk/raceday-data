@@ -6915,12 +6915,21 @@
     "countryCode": "US",
     "sessions": [
       {
+        "id": "nascar_trucks-2026-23-qualifying",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-10-23",
+        "timeLocal": "12:30",
+        "durationMinutes": 60,
+        "isOval": true
+      },
+      {
         "id": "nascar_trucks-2026-23-race",
         "name": "Race",
         "kind": "race",
         "date": "2026-10-23",
         "timeLocal": "16:00",
-        "durationMinutes": 60
+        "durationMinutes": 130
       }
     ]
   },
