@@ -10099,12 +10099,21 @@
     "countryCode": "US",
     "sessions": [
       {
+        "id": "nascar_oreilly-2026-31-qualifying",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-10-24",
+        "timeLocal": "11:00",
+        "durationMinutes": 60,
+        "isOval": true
+      },
+      {
         "id": "nascar_oreilly-2026-31-race",
         "name": "Race",
         "kind": "race",
         "date": "2026-10-24",
         "timeLocal": "15:30",
-        "durationMinutes": 60
+        "durationMinutes": 180
       }
     ]
   },
