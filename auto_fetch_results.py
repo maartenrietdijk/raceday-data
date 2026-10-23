@@ -259,6 +259,41 @@ def choose_event(candidates: list[EventCandidate], round_data: dict[str, Any]) -
     return None
 
 
+def choose_nascar_event(
+    candidates: list[EventCandidate],
+    round_data: dict[str, Any],
+    rounds: list[dict[str, Any]],
+) -> EventCandidate | None:
+    """Match the circuit visit, including Motorsport.com's II/III suffixes."""
+    circuit = normalize(round_data.get("circuitName"))
+    visits = sorted(
+        (item for item in rounds if normalize(item.get("circuitName")) == circuit),
+        key=lambda item: int(item.get("roundNumber") or 0),
+    )
+    visit = next((i + 1 for i, item in enumerate(visits)
+                  if item.get("id") == round_data.get("id")), 1)
+    if not circuit or len(visits) < 2:
+        return choose_event(candidates, round_data)
+
+    eligible = []
+    for candidate in candidates:
+        # Use the URL alias where available; the label can be a sponsor name.
+        name = event_alias_from_url(candidate.url or "") or normalize(candidate.alias or candidate.label)
+        suffix = re.search(r" (iii|ii|i|[123])$", name)
+        occurrence = {"i": 1, "ii": 2, "iii": 3}.get(suffix.group(1), 0) if suffix else 1
+        if suffix and not occurrence:
+            occurrence = int(suffix.group(1))
+        if occurrence == visit:
+            eligible.append(candidate)
+    # Score the circuit name without its visit suffix.
+    ranked = []
+    for candidate in eligible:
+        base = lambda value: re.sub(r" (iii|ii|i|[123])$", "", normalize(value))
+        comparable = EventCandidate(base(candidate.label), base(candidate.alias), candidate.value, candidate.url)
+        ranked.append((event_score(comparable, round_data), candidate))
+    return max(ranked, key=lambda item: item[0])[1] if ranked and max(item[0] for item in ranked) >= 0.52 else None
+
+
 def event_alias_from_url(url: str) -> str:
     match = re.search(
         r"/results/20\d{2}/([^/?]+?)(?:-\d+)?/?$",
@@ -1015,7 +1050,11 @@ def run(args: argparse.Namespace) -> int:
                         except requests.RequestException as error:
                             print(f"⚠️ {series}: season page unavailable: {error}")
                             season_cache[series] = ([], season_url)
-                    candidate = choose_event(season_cache[series][0], round_data)
+                    candidate = (
+                        choose_nascar_event(season_cache[series][0], round_data, rounds)
+                        if series in {"nascar", "nascar_oreilly", "nascar_trucks"}
+                        else choose_event(season_cache[series][0], round_data)
+                    )
                     if not candidate:
                         print(f"⏳ {series}/{round_data.get('raceName')}: event results link not published yet")
                         continue
