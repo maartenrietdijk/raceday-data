@@ -7272,8 +7272,10 @@
     },
     "nascar_trucks-2026-23-race": {
       "foundAt": "2026-10-23T22:40:21.185555+00:00",
-      "completedChecks": [],
-      "lastCheckedAt": "2026-10-23T22:40:21.185555+00:00",
+      "completedChecks": [
+        "60m"
+      ],
+      "lastCheckedAt": "2026-10-23T23:40:21.783536+00:00",
       "lastResultHash": "8debdd957dc943a5554c225d9b3feaac9b4524073c9709a6c4c896f6c9e67c18",
       "sourceUrl": "https://www.motorsport.com/nascar-truck/results/2026/talladega-665617/?st=RACE"
     },
@@ -7283,6 +7285,13 @@
       "lastCheckedAt": "2026-10-23T23:00:25.223661+00:00",
       "lastResultHash": "21e4af7e3ffd354e8ab44799487e95ac4358a70df91a10150f5a9cd1e5afafbc",
       "sourceUrl": "https://www.motorsport.com/moto2/results/2026/phillip-island-667463/?st=FP2"
+    },
+    "f1academy-2026-r05-s3": {
+      "foundAt": "2026-10-23T23:40:21.783536+00:00",
+      "completedChecks": [],
+      "lastCheckedAt": "2026-10-23T23:40:21.783536+00:00",
+      "lastResultHash": "8b6098cccc307ab9ff86beb9e2a57343fd915da55693868c06533ed534ba3f8f",
+      "sourceUrl": "https://www.motorsport.com/f1-academy/results/2026/cota-665383/?st=RACE1"
     }
   }
 }
