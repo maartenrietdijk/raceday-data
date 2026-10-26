@@ -22492,11 +22492,29 @@
     "countryCode": "US",
     "sessions": [
       {
+        "id": "nascar-2026-r35-practice",
+        "name": "Practice",
+        "kind": "practice",
+        "date": "2026-10-31",
+        "timeLocal": "13:00",
+        "durationMinutes": 60,
+        "isOval": true
+      },
+      {
+        "id": "nascar-2026-r35-qualifying",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-10-31",
+        "timeLocal": "14:05",
+        "durationMinutes": 60,
+        "isOval": true
+      },
+      {
         "id": "nascar-2026-r35-s1",
         "name": "Race",
         "kind": "race",
         "date": "2026-11-01",
-        "timeLocal": null,
+        "timeLocal": "14:00",
         "durationMinutes": 240
       }
     ]
