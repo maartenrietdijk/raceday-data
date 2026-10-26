@@ -10793,12 +10793,30 @@
     "id": "nascar_oreilly-2026-32",
     "seriesId": "nascar_oreilly",
     "roundNumber": 32,
-    "raceName": "O'Reilly Auto Parts Series Race at Martinsville",
+    "raceName": "National Debt Relief 250",
     "circuitName": "Martinsville Speedway",
     "city": "Martinsville",
     "country": "United States",
     "countryCode": "US",
     "sessions": [
+      {
+        "id": "nascar_oreilly-2026-32-practice",
+        "name": "Practice",
+        "kind": "practice",
+        "date": "2026-10-30",
+        "timeLocal": "15:00",
+        "durationMinutes": 60,
+        "isOval": true
+      },
+      {
+        "id": "nascar_oreilly-2026-32-qualifying",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-10-30",
+        "timeLocal": "16:05",
+        "durationMinutes": 60,
+        "isOval": true
+      },
       {
         "id": "nascar_oreilly-2026-32-race",
         "name": "Race",
