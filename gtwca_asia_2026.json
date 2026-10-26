@@ -1,97 +1,5 @@
 [
   {
-    "id": "gtwca-asia-2026-r03",
-    "seriesId": "gtwca_asia",
-    "roundNumber": 3,
-    "raceName": "Shanghai International Circuit",
-    "circuitName": "Shanghai International Circuit",
-    "city": "Shanghai",
-    "country": "China",
-    "countryCode": "CN",
-    "sessions": [
-      {
-        "id": "gtwca-asia-2026-r03-s6",
-        "name": "Test Session 1",
-        "kind": "testing",
-        "date": "2026-04-02",
-        "timeLocal": "06:30",
-        "durationMinutes": 60
-      },
-      {
-        "id": "gtwca-asia-2026-r03-s7",
-        "name": "Test Session 2",
-        "kind": "testing",
-        "date": "2026-04-02",
-        "timeLocal": "07:45",
-        "durationMinutes": 60
-      },
-      {
-        "id": "gtwca-asia-2026-r03-s8",
-        "name": "Test Session 3",
-        "kind": "testing",
-        "date": "2026-04-02",
-        "timeLocal": "09:00",
-        "durationMinutes": 60
-      },
-      {
-        "id": "gtwca-asia-2026-r03-s9",
-        "name": "Test Session 4",
-        "kind": "testing",
-        "date": "2026-04-02",
-        "timeLocal": "10:15",
-        "durationMinutes": 60
-      },
-      {
-        "id": "gtwca-asia-2026-r03-s1",
-        "name": "Practice",
-        "kind": "practice",
-        "date": "2026-04-03",
-        "timeLocal": "05:00",
-        "durationMinutes": 60
-      },
-      {
-        "id": "gtwca-asia-2026-r03-s11",
-        "name": "Pre-Qualifying",
-        "kind": "practice",
-        "date": "2026-04-03",
-        "timeLocal": "09:40",
-        "durationMinutes": 60
-      },
-      {
-        "id": "gtwca-asia-2026-r03-s2",
-        "name": "Qualifying 1",
-        "kind": "qualifying",
-        "date": "2026-04-04",
-        "timeLocal": "04:25",
-        "durationMinutes": 20
-      },
-      {
-        "id": "gtwca-asia-2026-r03-s4",
-        "name": "Qualifying 2",
-        "kind": "qualifying",
-        "date": "2026-04-04",
-        "timeLocal": "04:47",
-        "durationMinutes": 20
-      },
-      {
-        "id": "gtwca-asia-2026-r03-s3",
-        "name": "Race 1",
-        "kind": "race",
-        "date": "2026-04-04",
-        "timeLocal": "08:15",
-        "durationMinutes": 60
-      },
-      {
-        "id": "gtwca-asia-2026-r03-s5",
-        "name": "Race 2",
-        "kind": "race",
-        "date": "2026-04-05",
-        "timeLocal": "05:30",
-        "durationMinutes": 60
-      }
-    ]
-  },
-  {
     "id": "gtwca-asia-2026-r01",
     "seriesId": "gtwca_asia",
     "roundNumber": 1,
@@ -191,6 +99,98 @@
         "kind": "race",
         "date": "2026-05-03",
         "timeLocal": "03:30",
+        "durationMinutes": 60
+      }
+    ]
+  },
+  {
+    "id": "gtwca-asia-2026-r03",
+    "seriesId": "gtwca_asia",
+    "roundNumber": 3,
+    "raceName": "Shanghai International Circuit",
+    "circuitName": "Shanghai International Circuit",
+    "city": "Shanghai",
+    "country": "China",
+    "countryCode": "CN",
+    "sessions": [
+      {
+        "id": "gtwca-asia-2026-r03-s6",
+        "name": "Test Session 1",
+        "kind": "testing",
+        "date": "2026-04-02",
+        "timeLocal": "06:30",
+        "durationMinutes": 60
+      },
+      {
+        "id": "gtwca-asia-2026-r03-s7",
+        "name": "Test Session 2",
+        "kind": "testing",
+        "date": "2026-04-02",
+        "timeLocal": "07:45",
+        "durationMinutes": 60
+      },
+      {
+        "id": "gtwca-asia-2026-r03-s8",
+        "name": "Test Session 3",
+        "kind": "testing",
+        "date": "2026-04-02",
+        "timeLocal": "09:00",
+        "durationMinutes": 60
+      },
+      {
+        "id": "gtwca-asia-2026-r03-s9",
+        "name": "Test Session 4",
+        "kind": "testing",
+        "date": "2026-04-02",
+        "timeLocal": "10:15",
+        "durationMinutes": 60
+      },
+      {
+        "id": "gtwca-asia-2026-r03-s1",
+        "name": "Practice",
+        "kind": "practice",
+        "date": "2026-04-03",
+        "timeLocal": "05:00",
+        "durationMinutes": 60
+      },
+      {
+        "id": "gtwca-asia-2026-r03-s11",
+        "name": "Pre-Qualifying",
+        "kind": "practice",
+        "date": "2026-04-03",
+        "timeLocal": "09:40",
+        "durationMinutes": 60
+      },
+      {
+        "id": "gtwca-asia-2026-r03-s2",
+        "name": "Qualifying 1",
+        "kind": "qualifying",
+        "date": "2026-04-04",
+        "timeLocal": "04:25",
+        "durationMinutes": 20
+      },
+      {
+        "id": "gtwca-asia-2026-r03-s4",
+        "name": "Qualifying 2",
+        "kind": "qualifying",
+        "date": "2026-04-04",
+        "timeLocal": "04:47",
+        "durationMinutes": 20
+      },
+      {
+        "id": "gtwca-asia-2026-r03-s3",
+        "name": "Race 1",
+        "kind": "race",
+        "date": "2026-04-04",
+        "timeLocal": "08:15",
+        "durationMinutes": 60
+      },
+      {
+        "id": "gtwca-asia-2026-r03-s5",
+        "name": "Race 2",
+        "kind": "race",
+        "date": "2026-04-05",
+        "timeLocal": "05:30",
         "durationMinutes": 60
       }
     ]
@@ -1732,19 +1732,415 @@
     "id": "gtwca-asia-2026-r06",
     "seriesId": "gtwca_asia",
     "roundNumber": 6,
-    "raceName": "Shanghai International Circuit",
-    "circuitName": "Shanghai International Circuit",
-    "city": "Shanghai",
+    "raceName": "Beijing Street Circuit",
+    "circuitName": "Beijing Street Circuit",
+    "city": "Beijing",
     "country": "China",
     "countryCode": "CN",
     "sessions": [
       {
+        "id": "gtwca-asia-2026-r06-s6",
+        "name": "Test Session 1",
+        "kind": "testing",
+        "date": "2026-10-02",
+        "timeLocal": "04:25",
+        "durationMinutes": 60,
+        "results": [
+          {
+            "position": 1,
+            "drivers": [
+              "Wei LU",
+              "Loek HARTOG"
+            ],
+            "team": "Origine Motorsport",
+            "time": "1:45.625"
+          },
+          {
+            "position": 2,
+            "drivers": [
+              "Ruohan HUANG",
+              "Alessandro GHIRETTI"
+            ],
+            "team": "Absolute Racing",
+            "interval": "+0.222",
+            "speed": "1:45.847"
+          },
+          {
+            "position": 3,
+            "drivers": [
+              "Kerong LI",
+              "Joel STURM"
+            ],
+            "team": "Absolute Racing",
+            "interval": "+0.466",
+            "speed": "1:46.091"
+          },
+          {
+            "position": 4,
+            "drivers": [
+              "Sandy STUVIK",
+              "Akash NANDY"
+            ],
+            "team": "Absolute Racing",
+            "interval": "+0.469",
+            "speed": "1:46.094"
+          },
+          {
+            "position": 5,
+            "drivers": [
+              "Brian LEE",
+              "Maxime OOSTEN"
+            ],
+            "team": "GTO with KRC",
+            "interval": "+0.696",
+            "speed": "1:46.321"
+          },
+          {
+            "position": 6,
+            "drivers": [
+              "Lichao LI",
+              "Elias SEPPANEN"
+            ],
+            "team": "Climax Racing",
+            "interval": "+1.229",
+            "speed": "1:46.854"
+          },
+          {
+            "position": 7,
+            "drivers": [
+              "Congfu CHENG",
+              "Kuai YU"
+            ],
+            "team": "FAW Audi Sport Asia Team Phantom",
+            "interval": "+1.240",
+            "speed": "1:46.865"
+          },
+          {
+            "position": 8,
+            "drivers": [
+              "Anthony LIU",
+              "Ayhancan GUVEN"
+            ],
+            "team": "Phantom Global Racing",
+            "interval": "+1.384",
+            "speed": "1:47.009"
+          },
+          {
+            "position": 9,
+            "drivers": [
+              "Takayuki AOKI",
+              "Atsushi MIYAKE"
+            ],
+            "team": "TEAM 5ZIGEN",
+            "interval": "+1.606",
+            "speed": "1:47.231"
+          },
+          {
+            "position": 10,
+            "drivers": [
+              "Dean Yu Hao CHEN",
+              "Jiatong LIANG"
+            ],
+            "team": "Craft-Bamboo Racing",
+            "interval": "+1.732",
+            "speed": "1:47.357"
+          },
+          {
+            "position": 11,
+            "drivers": [
+              "Takuro SHINOHARA",
+              "Kaishun LIU"
+            ],
+            "team": "Harmony Racing",
+            "interval": "+1.835",
+            "speed": "1:47.460"
+          },
+          {
+            "position": 12,
+            "drivers": [
+              "Cunfan RUAN",
+              "Jesse KROHN"
+            ],
+            "team": "TEAM KRC",
+            "interval": "+1.841",
+            "speed": "1:47.466"
+          },
+          {
+            "position": 13,
+            "drivers": [
+              "Jiajun SONG",
+              "Brendon LEITCH"
+            ],
+            "team": "Apex Predator Harmony Racing",
+            "interval": "+1.901",
+            "speed": "1:47.526"
+          },
+          {
+            "position": 14,
+            "drivers": [
+              "Andrés PATO",
+              "Jaxon EVANS"
+            ],
+            "team": "Audi Sport Asia Team Phantom",
+            "interval": "+1.919",
+            "speed": "1:47.544"
+          },
+          {
+            "position": 15,
+            "drivers": [
+              "Andrew MACPHERSON",
+              "William Ben PORTER"
+            ],
+            "team": "AMAC Motorsport",
+            "interval": "+2.085",
+            "speed": "1:47.710"
+          },
+          {
+            "position": 16,
+            "drivers": [
+              "Hiroaki NAGAI",
+              "Kazuto KOTAKA"
+            ],
+            "team": "Porsche Center Okazaki",
+            "interval": "+2.618",
+            "speed": "1:48.243"
+          },
+          {
+            "position": 17,
+            "drivers": [
+              "Hangcheng LIU",
+              "Zhongwei WANG"
+            ],
+            "team": "Origine Motorsport",
+            "interval": "+4.921",
+            "speed": "1:50.546"
+          },
+          {
+            "position": 18,
+            "drivers": [
+              "Haziq Zairel OH",
+              "Aaron Lim Say JOON"
+            ],
+            "team": "HZO Fortis Racing by Absolute Racing",
+            "interval": "+5.646",
+            "speed": "1:51.271"
+          },
+          {
+            "position": 19,
+            "drivers": [
+              "Setiawan SANTOSO",
+              "Bi Huang ZHOU"
+            ],
+            "team": "Climax Racing",
+            "interval": "+7.838",
+            "speed": "1:53.463"
+          }
+        ]
+      },
+      {
+        "id": "gtwca-asia-2026-r06-s7",
+        "name": "Test Session 2",
+        "kind": "testing",
+        "date": "2026-10-02",
+        "timeLocal": "07:05",
+        "durationMinutes": 60,
+        "results": [
+          {
+            "position": 1,
+            "drivers": [
+              "Kerong LI",
+              "Joel STURM"
+            ],
+            "team": "Absolute Racing",
+            "time": "1:44.632"
+          },
+          {
+            "position": 2,
+            "drivers": [
+              "Congfu CHENG",
+              "Kuai YU"
+            ],
+            "team": "FAW Audi Sport Asia Team Phantom",
+            "interval": "+0.014",
+            "speed": "1:44.646"
+          },
+          {
+            "position": 3,
+            "drivers": [
+              "Takayuki AOKI",
+              "Atsushi MIYAKE"
+            ],
+            "team": "TEAM 5ZIGEN",
+            "interval": "+0.322",
+            "speed": "1:44.954"
+          },
+          {
+            "position": 4,
+            "drivers": [
+              "Anthony LIU",
+              "Ayhancan GUVEN"
+            ],
+            "team": "Phantom Global Racing",
+            "interval": "+0.380",
+            "speed": "1:45.012"
+          },
+          {
+            "position": 5,
+            "drivers": [
+              "Wei LU",
+              "Loek HARTOG"
+            ],
+            "team": "Origine Motorsport",
+            "interval": "+0.383",
+            "speed": "1:45.015"
+          },
+          {
+            "position": 6,
+            "drivers": [
+              "Sandy STUVIK",
+              "Akash NANDY"
+            ],
+            "team": "Absolute Racing",
+            "interval": "+0.456",
+            "speed": "1:45.088"
+          },
+          {
+            "position": 7,
+            "drivers": [
+              "Ruohan HUANG",
+              "Alessandro GHIRETTI"
+            ],
+            "team": "Absolute Racing",
+            "interval": "+0.785",
+            "speed": "1:45.417"
+          },
+          {
+            "position": 8,
+            "drivers": [
+              "Brian LEE",
+              "Maxime OOSTEN"
+            ],
+            "team": "GTO with KRC",
+            "interval": "+0.908",
+            "speed": "1:45.540"
+          },
+          {
+            "position": 9,
+            "drivers": [
+              "Jiajun SONG",
+              "Brendon LEITCH"
+            ],
+            "team": "Apex Predator Harmony Racing",
+            "interval": "+0.944",
+            "speed": "1:45.576"
+          },
+          {
+            "position": 10,
+            "drivers": [
+              "Lichao LI",
+              "Elias SEPPANEN"
+            ],
+            "team": "Climax Racing",
+            "interval": "+1.101",
+            "speed": "1:45.733"
+          },
+          {
+            "position": 11,
+            "drivers": [
+              "Cunfan RUAN",
+              "Jesse KROHN"
+            ],
+            "team": "TEAM KRC",
+            "interval": "+1.121",
+            "speed": "1:45.753"
+          },
+          {
+            "position": 12,
+            "drivers": [
+              "Dean Yu Hao CHEN",
+              "Jiatong LIANG"
+            ],
+            "team": "Craft-Bamboo Racing",
+            "interval": "+1.163",
+            "speed": "1:45.795"
+          },
+          {
+            "position": 13,
+            "drivers": [
+              "Hiroaki NAGAI",
+              "Kazuto KOTAKA"
+            ],
+            "team": "Porsche Center Okazaki",
+            "interval": "+1.438",
+            "speed": "1:46.070"
+          },
+          {
+            "position": 14,
+            "drivers": [
+              "Andrés PATO",
+              "Jaxon EVANS"
+            ],
+            "team": "Audi Sport Asia Team Phantom",
+            "interval": "+1.625",
+            "speed": "1:46.257"
+          },
+          {
+            "position": 15,
+            "drivers": [
+              "Andrew MACPHERSON",
+              "William Ben PORTER"
+            ],
+            "team": "AMAC Motorsport",
+            "interval": "+2.318",
+            "speed": "1:46.950"
+          },
+          {
+            "position": 16,
+            "drivers": [
+              "Haziq Zairel OH",
+              "Aaron Lim Say JOON"
+            ],
+            "team": "HZO Fortis Racing by Absolute Racing",
+            "interval": "+3.073",
+            "speed": "1:47.705"
+          },
+          {
+            "position": 17,
+            "drivers": [
+              "Hangcheng LIU",
+              "Zhongwei WANG"
+            ],
+            "team": "Origine Motorsport",
+            "interval": "+3.690",
+            "speed": "1:48.322"
+          },
+          {
+            "position": 18,
+            "drivers": [
+              "Setiawan SANTOSO",
+              "Bi Huang ZHOU"
+            ],
+            "team": "Climax Racing",
+            "interval": "+4.493",
+            "speed": "1:49.125"
+          },
+          {
+            "position": "DNF",
+            "drivers": [
+              "Takuro SHINOHARA",
+              "Kaishun LIU"
+            ],
+            "team": "Harmony Racing"
+          }
+        ]
+      },
+      {
         "id": "gtwca-asia-2026-r06-s1",
         "name": "Practice",
         "kind": "practice",
-        "date": "2026-10-31",
-        "timeLocal": "03:38",
-        "durationMinutes": 96,
+        "date": "2026-10-02",
+        "timeLocal": "09:55",
+        "durationMinutes": 60,
         "results": [
           {
             "position": 1,
@@ -1940,9 +2336,9 @@
       {
         "id": "gtwca-asia-2026-r06-s9",
         "name": "Pre-Qualifying",
-        "kind": "qualifying",
-        "date": "2026-10-31",
-        "timeLocal": "07:55",
+        "kind": "practice",
+        "date": "2026-10-03",
+        "timeLocal": "02:30",
         "durationMinutes": 60,
         "results": [
           {
@@ -2140,8 +2536,8 @@
         "id": "gtwca-asia-2026-r06-s2",
         "name": "Qualifying 1",
         "kind": "qualifying",
-        "date": "2026-10-31",
-        "timeLocal": "02:35",
+        "date": "2026-10-03",
+        "timeLocal": "05:50",
         "durationMinutes": 20,
         "results": [
           {
@@ -2339,8 +2735,8 @@
         "id": "gtwca-asia-2026-r06-s4",
         "name": "Qualifying 2",
         "kind": "qualifying",
-        "date": "2026-10-31",
-        "timeLocal": "02:57",
+        "date": "2026-10-03",
+        "timeLocal": "06:12",
         "durationMinutes": 20,
         "results": [
           {
@@ -2538,8 +2934,8 @@
         "id": "gtwca-asia-2026-r06-s3",
         "name": "Race 1",
         "kind": "race",
-        "date": "2026-10-31",
-        "timeLocal": "05:50",
+        "date": "2026-10-03",
+        "timeLocal": "09:45",
         "durationMinutes": 60,
         "results": [
           {
@@ -2737,8 +3133,8 @@
         "id": "gtwca-asia-2026-r06-s5",
         "name": "Race 2",
         "kind": "race",
-        "date": "2026-11-01",
-        "timeLocal": "06:05",
+        "date": "2026-10-04",
+        "timeLocal": "07:00",
         "durationMinutes": 60,
         "results": [
           {
