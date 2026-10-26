@@ -7344,12 +7344,30 @@
     "id": "nascar_trucks-2026-24",
     "seriesId": "nascar_trucks",
     "roundNumber": 24,
-    "raceName": "Truck Series Race at Martinsville",
+    "raceName": "Black's Tire 200",
     "circuitName": "Martinsville Speedway",
     "city": "Martinsville",
     "country": "United States",
     "countryCode": "US",
     "sessions": [
+      {
+        "id": "nascar_trucks-2026-24-practice",
+        "name": "Practice",
+        "kind": "practice",
+        "date": "2026-10-30",
+        "timeLocal": "12:30",
+        "durationMinutes": 60,
+        "isOval": true
+      },
+      {
+        "id": "nascar_trucks-2026-24-qualifying",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2026-10-30",
+        "timeLocal": "13:35",
+        "durationMinutes": 60,
+        "isOval": true
+      },
       {
         "id": "nascar_trucks-2026-24-race",
         "name": "Race",
