@@ -26,6 +26,7 @@ from zoneinfo import ZoneInfo
 
 import requests
 from bs4 import BeautifulSoup
+from fetch_results import validate_motorsport_page
 
 
 BASE_URL = "https://www.motorsport.com"
@@ -132,6 +133,8 @@ def normalize_event(value: Any) -> str:
         "portugal gp": "portuguese gp",
         "catalonia gp": "catalan gp",
         "the americas gp": "americas gp",
+        "mexico city gp": "mexican gp",
+        "mexico gp": "mexican gp",
     }
     return replacements.get(text, text)
 
@@ -179,6 +182,7 @@ def get_html(url: str, session: requests.Session | None = None) -> tuple[str, st
     client = session or requests.Session()
     response = client.get(url, headers=HEADERS, timeout=30, allow_redirects=True)
     response.raise_for_status()
+    validate_motorsport_page(response.text, url, response.url)
     return response.text, response.url
 
 
@@ -490,6 +494,14 @@ def extract_session_candidates(html: str, event_url: str) -> list[SessionCandida
     seen: set[str] = set()
     for link in soup.find_all("a", href=True):
         url = urljoin(event_url, link["href"])
+        # Session codes recur at every GP. Only accept links within this event;
+        # an earlier unrelated FP1 link must not shadow this event's FP1.
+        parsed = urlparse(url)
+        expected = urlparse(event_url)
+        if (parsed.netloc.lower(), parsed.path.rstrip("/")) != (
+            expected.netloc.lower(), expected.path.rstrip("/")
+        ):
+            continue
         query = parse_qs(urlparse(url).query)
         code = (query.get("st") or [""])[0].strip().upper()
         if not code or code in seen:
@@ -798,6 +810,25 @@ def should_refresh_session_link(series: str, session_data: dict[str, Any]) -> bo
     return "qual" in name or "qual" in kind
 
 
+def motorsport_url_matches_session(
+    url: str, round_data: dict[str, Any], session_data: dict[str, Any], series: str,
+) -> bool:
+    """Check manual/cached sources against the target rather than trusting st alone."""
+    parsed = urlparse(url)
+    expected_series = MOTORSPORT_SERIES.get(series)
+    if expected_series and not parsed.path.startswith(f"/{expected_series}/results/"):
+        return False
+    alias = event_alias_from_url(url)
+    if not alias or event_score(EventCandidate(alias, alias, "", url), round_data) < 0.52:
+        return False
+    year = str(session_data.get("date") or "")[:4]
+    if year and f"/results/{year}/" not in parsed.path:
+        return False
+    code = (parse_qs(parsed.query).get("st") or [""])[0].upper()
+    preferred = preferred_session_codes(series, session_data)
+    return not code or not preferred or code in {item.upper() for item in preferred}
+
+
 def first_fetch_at(session_data: dict[str, Any], timezone: ZoneInfo) -> datetime | None:
     date = session_data.get("date")
     time = session_data.get("timeLocal")
@@ -973,6 +1004,11 @@ def run(args: argparse.Namespace) -> int:
                 source_url = "" if should_refresh_session_link(series, session_data) else (
                     session_data.get("resultsUrl") or entry.get("sourceUrl") or ""
                 ).strip()
+                if source_url and "motorsport.com" in (urlparse(source_url).hostname or ""):
+                    matching_session = session_for_matching(series, round_sessions, session_index)
+                    if not motorsport_url_matches_session(source_url, round_data, matching_session, series):
+                        print(f"⚠️ Ignoring source for another event/session: {source_url}")
+                        source_url = ""
                 if not source_url:
                     if sro_base_url:
                         if series not in sro_season_cache:
@@ -1021,7 +1057,7 @@ def run(args: argparse.Namespace) -> int:
                                         candidate.value,
                                     ),
                                 )
-                            except requests.RequestException as error:
+                            except (requests.RequestException, ValueError) as error:
                                 print(f"⚠️ {series}/{candidate.label}: event page unavailable: {error}")
                                 continue
                         session_candidate = choose_sro_session(
@@ -1047,7 +1083,7 @@ def run(args: argparse.Namespace) -> int:
                         try:
                             season_html, final_url = get_html(season_url, http)
                             season_cache[series] = (extract_event_candidates(season_html, final_url), final_url)
-                        except requests.RequestException as error:
+                        except (requests.RequestException, ValueError) as error:
                             print(f"⚠️ {series}: season page unavailable: {error}")
                             season_cache[series] = ([], season_url)
                     candidate = (
@@ -1069,7 +1105,7 @@ def run(args: argparse.Namespace) -> int:
                                     season_url,
                                     http,
                                 )
-                            except requests.RequestException as error:
+                            except (requests.RequestException, ValueError) as error:
                                 print(f"⚠️ {series}/{candidate.label}: event lookup unavailable: {error}")
                                 event_resolution_cache[resolution_key] = None
                         event_url = event_resolution_cache[resolution_key]
@@ -1083,7 +1119,7 @@ def run(args: argparse.Namespace) -> int:
                                 final_event_url,
                                 extract_session_candidates(event_html, final_event_url),
                             )
-                        except requests.RequestException as error:
+                        except (requests.RequestException, ValueError) as error:
                             print(f"⚠️ {series}/{candidate.label}: event page unavailable: {error}")
                             continue
                     matching_session = session_for_matching(series, round_sessions, session_index)

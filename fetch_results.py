@@ -10,12 +10,14 @@ Usage:
     --series "wec"
 """
 
+from __future__ import annotations
+
 import argparse
 import json
 import re
 import sys
 from pathlib import Path
-from urllib.parse import parse_qs, urlsplit, urlunsplit
+from urllib.parse import parse_qs, urljoin, urlsplit, urlunsplit
 
 import requests
 from bs4 import BeautifulSoup
@@ -132,6 +134,58 @@ def validate_gtwc_filter_selection(html: str, url: str) -> None:
             f"GTWC returned session {actual or 'none'} instead of requested session {expected}"
         )
 
+def motorsport_event_key(url: str) -> tuple | None:
+    """Identify an event by host, series, year and complete event slug/id."""
+    parsed = urlsplit(url)
+    host = (parsed.hostname or "").lower()
+    if host != "motorsport.com" and not host.endswith(".motorsport.com"):
+        return None
+    match = re.fullmatch(r"/([^/]+)/results/(20\d{2})/([^/]+)/?", parsed.path)
+    if not match:
+        return None
+    return (host.removeprefix("www."), *match.groups())
+
+
+def validate_motorsport_page(html: str, requested_url: str, final_url: str) -> None:
+    """Reject another event/session even when it contains a valid table."""
+    expected = motorsport_event_key(requested_url)
+    if expected is None:
+        return
+    if motorsport_event_key(final_url) != expected:
+        raise ValueError(f"Motorsport redirected to another event: {final_url}")
+
+    soup = BeautifulSoup(html, "html.parser")
+    identity_found = False
+    for node in soup.select('link[rel~="canonical"][href], meta[property="og:url"][content]'):
+        page_url = urljoin(final_url, node.get("href") or node.get("content") or "")
+        if motorsport_event_key(page_url) != expected:
+            raise ValueError(f"Motorsport returned another event page: {page_url}")
+        identity_found = True
+
+    expected_alias = re.sub(r"-\d+$", "", expected[-1])
+    normalize_alias = lambda value: re.sub(r"[^a-z0-9]", "", str(value).lower())
+    for node in soup.select('[data-event-alias][selected], [data-event-alias].active, '
+                            '[data-event-alias].selected, [data-event-alias][aria-selected="true"]'):
+        if normalize_alias(node.get("data-event-alias")) != normalize_alias(expected_alias):
+            raise ValueError("Motorsport selected another event in the results filter")
+        identity_found = True
+    if not identity_found:
+        raise ValueError("Motorsport event identity could not be verified; waiting for results")
+
+    expected_code = (parse_qs(urlsplit(requested_url).query).get("st") or [""])[0].upper()
+    if not expected_code:
+        return
+    actual_code = (parse_qs(urlsplit(final_url).query).get("st") or [""])[0].upper()
+    if actual_code != expected_code:
+        raise ValueError(f"Motorsport did not retain requested session {expected_code}: {final_url}")
+    for node in soup.select('a.active[href], a.selected[href], a[aria-current="page"][href], '
+                            'a[aria-selected="true"][href]'):
+        selected_url = urljoin(final_url, node["href"])
+        selected_code = (parse_qs(urlsplit(selected_url).query).get("st") or [""])[0].upper()
+        if selected_code and (selected_code != expected_code or motorsport_event_key(selected_url) != expected):
+            raise ValueError(f"Motorsport selected another session: {selected_url}")
+
+
 def fetch_page(url: str) -> str:
     import time
     for attempt in range(3):
@@ -161,6 +215,7 @@ def fetch_page(url: str) -> str:
                     print(f"⚠️ BTCC fallback unavailable: {error}")
         resp.raise_for_status()
         html = resp.text
+        validate_motorsport_page(html, url, resp.url)
         # Check if we got a real page
         if "<table" in html:
             return html
@@ -817,10 +872,6 @@ def main():
 
     url = normalize_results_url(args.url)
 
-    print(f"🔍 Fetching: {url}")
-    html = fetch_page(url)
-
-    print("📊 Parsing results...")
     # Check if session is oval from JSON
     is_oval = False
     is_race_session = False
@@ -830,6 +881,20 @@ def main():
     for round_data in rounds_check:
         for s in round_data.get("sessions", []):
             if s.get("id") == args.session_id:
+                if motorsport_event_key(url):
+                    # Also protect manual imports and previously cached sourceUrl
+                    # values: a valid USA page is still invalid for Mexico.
+                    from auto_fetch_results import (
+                        motorsport_url_matches_session, direct_motorsport_session_url,
+                    )
+                    if not motorsport_url_matches_session(url, round_data, s, args.series):
+                        raise ValueError(
+                            f"Results URL does not match {round_data.get('raceName')}/{s.get('name')}: {url}"
+                        )
+                    if not parse_qs(urlsplit(url).query).get("st"):
+                        url = direct_motorsport_session_url(args.series, url, s)
+                        if not url:
+                            raise ValueError("An explicit matching session URL is required")
                 is_oval = s.get("isOval", False)
                 kind = s.get("kind", "").lower()
                 name = s.get("name", "").lower()
@@ -837,6 +902,11 @@ def main():
                 is_race_session = kind in ("race", "feature_race") or "race" in name
                 break
 
+    if not session_name:
+        raise ValueError(f"Session not found: {args.session_id}")
+    print(f"🔍 Fetching: {url}")
+    html = fetch_page(url)
+    print("📊 Parsing results...")
     print(f"📋 Is oval: {is_oval}, is_race: {is_race_session}")
     # Route to the correct parser based on URL
     gtwc_domains = [
@@ -856,7 +926,7 @@ def main():
         print(f'🏁 Using BTCC parser for {session_name or args.session_id}')
         results = parse_btcc(html, session_name)
     else:
-        results = parse_results(html, args.url, args.series, is_oval, is_race_session)
+        results = parse_results(html, url, args.series, is_oval, is_race_session)
 
     if not results_are_usable(results):
         print("❌ No usable classification found, aborting")
