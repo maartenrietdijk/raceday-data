@@ -23452,7 +23452,7 @@
     "id": "nascar-2026-r36",
     "seriesId": "nascar",
     "roundNumber": 36,
-    "raceName": "Straight Talk Wireless 400",
+    "raceName": "NASCAR Cup Series Championship Race",
     "circuitName": "Homestead-Miami Speedway",
     "city": "Homestead",
     "country": "United States",
@@ -23463,16 +23463,18 @@
         "name": "Practice",
         "kind": "practice",
         "date": "2026-11-06",
-        "timeLocal": null,
-        "durationMinutes": 50
+        "timeLocal": "17:30",
+        "durationMinutes": 50,
+        "isOval": true
       },
       {
         "id": "nascar-2026-r36-qualifying",
         "name": "Qualifying",
         "kind": "qualifying",
         "date": "2026-11-07",
-        "timeLocal": null,
-        "durationMinutes": 60
+        "timeLocal": "14:30",
+        "durationMinutes": 60,
+        "isOval": true
       },
       {
         "id": "nascar-2026-r36-s1",
