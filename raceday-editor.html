@@ -1365,7 +1365,36 @@ const KIND_OPTIONS = [
   { value: 'race',            label: 'Race' },
 ];
 
+const MACAU_CATEGORIES = [
+  { id: 'fr', name: 'FIA FR World Cup' },
+  { id: 'f4', name: 'FIA F4 World Cup' },
+  { id: 'gt', name: 'FIA GT World Cup' },
+  { id: 'tcr', name: 'FIA TCR World Tour Event of Macau' },
+  { id: 'motorcycle', name: 'Macau Motorcycle Grand Prix' },
+  { id: 'gt4', name: 'Macau GT Cup (GT4)' },
+  { id: 'roadsport', name: 'Macau Roadsport Challenge' },
+];
+
+function ensureMacauSeries() {
+  if (!state.series.some(series => series.id === 'macau')) {
+    state.series = [...state.series, { ...DEFAULT_SERIES.find(series => series.id === 'macau') }];
+  }
+}
+
+function renderMacauCategoryField(round, index, seriesId) {
+  if (seriesId !== 'macau') return '';
+  return `<div class="field">
+    <label for="macauCategory_${index}">Macau onderdeel</label>
+    <select id="macauCategory_${index}" onchange="updateRound(${index},'categoryId',this.value)">
+      <option value="">Kies een onderdeel</option>
+      ${MACAU_CATEGORIES.map(category => `<option value="${category.id}" ${round.categoryId === category.id ? 'selected' : ''}>${esc(category.name)}</option>`).join('')}
+    </select>
+    <small>Alle sessies in dit event horen bij dit onderdeel. Voeg voor een ander onderdeel een apart event toe.</small>
+  </div>`;
+}
+
 const DEFAULT_SERIES = [
+  { id: 'macau', name: 'Macau Grand Prix', color: '#f8b72a' },
   { id: 'f1',            name: 'Formula 1',        color: '#e8001a' },
   { id: 'f2',            name: 'Formula 2',        color: '#0065ff' },
   { id: 'f3',            name: 'Formula 3',        color: '#00b0ff' },
@@ -1521,6 +1550,7 @@ function seriesTimeZone(seriesId = state.activeSeries) {
   if (['nascar','nascar_oreilly','nascar_trucks','indycar','indynxt','imsa'].includes(seriesId)) {
     return 'America/New_York';
   }
+  if (seriesId === 'macau') return 'Asia/Macau';
   if (seriesId === 'supercars') return 'Australia/Sydney';
   return 'Europe/Amsterdam';
 }
@@ -1603,6 +1633,7 @@ function load() {
       state.series = DEFAULT_SERIES;
     }
   } catch { state.series = DEFAULT_SERIES; }
+  ensureMacauSeries();
   rebuildCombinedData();
   const statusBefore = JSON.stringify((state.proposals || []).map(item => [item.fingerprint, item.status]));
   RaceDayProposals.reconcile(state.proposals, state.calendarFiles);
@@ -1655,6 +1686,7 @@ async function loadFromGitHub() {
     if (discoveredSeries.length > 0) {
       state.series = discoveredSeries;
     }
+    ensureMacauSeries();
 
     // Load each calendar file. Files for the same series remain independently
     // editable, while state.data is rebuilt as a combined read-only view.
@@ -2825,6 +2857,7 @@ function renderRound(r, i, series, highlighted = false) {
         <span class="round-chevron">▶</span>
       </div>
       <div class="round-body">
+        ${series.id === 'macau' ? renderMacauCategoryField(r, i, series.id) : ''}
         <details class="event-details" ${(r.sessions || []).length ? '' : 'open'}>
           <summary>Eventgegevens <span>Naam, circuit, locatie en seizoen</span></summary>
         <div class="round-fields">
@@ -3042,6 +3075,7 @@ function renderSession(s, ri, si) {
 
 function updateRound(i, key, val) {
   const rounds = editableRounds();
+  if (key === 'categoryId' && (state.activeSeries !== 'macau' || !MACAU_CATEGORIES.some(category => category.id === val))) return;
   rounds[i][key] = val;
   // Auto-generate ID if empty
   if (key === 'roundNumber' && !rounds[i].id) {
@@ -3681,9 +3715,14 @@ function buildJSON(seriesId) {
 }
 
 function buildCalendarFileJSON(sourceRounds, seriesId) {
+  if (seriesId === 'macau') {
+    const invalid = (sourceRounds || []).find(round => !MACAU_CATEGORIES.some(category => category.id === round.categoryId));
+    if (invalid) throw new Error(`Kies een Macau onderdeel voor ${invalid.raceName || invalid.id || 'het event'} voordat je exporteert of publiceert.`);
+  }
   const rounds = (sourceRounds || []).map(r => ({
     id: r.id,
     seriesId: r.seriesId || seriesId,
+    ...(seriesId === 'macau' ? { categoryId: r.categoryId } : {}),
     ...(r.seasonId ? { seasonId: r.seasonId } : {}),
     roundNumber: r.roundNumber,
     raceName: r.raceName,
@@ -4042,7 +4081,9 @@ async function debugOfficialTimes() {
 
 function exportJSON() {
   if (!state.activeSeries) return showStatus('Open eerst een serie', 'error');
-  const json = buildJSON(state.activeSeries);
+  let json;
+  try { json = buildJSON(state.activeSeries); }
+  catch (error) { showStatus(error.message, 'error'); return; }
   const blob = new Blob([json], { type: 'application/json' });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
@@ -4149,7 +4190,9 @@ async function publishToGitHub() {
 
   const filename = activeCalendarFilename();
   const filePath = path ? `${path.replace(/\/$/,'')}/${filename}` : filename;
-  const content = buildJSON(state.activeSeries);
+  let content;
+  try { content = buildJSON(state.activeSeries); }
+  catch (error) { showStatus(error.message, 'error'); return false; }
   const encoded = btoa(unescape(encodeURIComponent(content)));
 
   // Validate inputs before trying
