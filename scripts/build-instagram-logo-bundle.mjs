@@ -10,6 +10,8 @@ const brandIconFile = path.join(root, 'instagram-assets', 'branding', 'app-icon.
 // Every correction is optical: source SVGs all use a 500×500 viewBox, but the
 // visible marks occupy very different portions of that square.
 const logoMap = {
+  macau:            { file: 'macau-dark.svg', scale: 1.08, maxWidth: 158, x: 0, y: 0 },
+  gtopen:           { file: 'gtopen-wit.svg', scale: 1.08, maxWidth: 158, x: 0, y: 0 },
   f1:               { file: 'f1-wit.svg', scale: 1.16, maxWidth: 164, x: 0, y: 0 },
   f2:               { file: 'f2-wit.svg', scale: 1.12, maxWidth: 154, x: 0, y: 0 },
   f3:               { file: 'f3-wit.svg', scale: 1.12, maxWidth: 154, x: 0, y: 0 },
@@ -64,7 +66,15 @@ const fileMetadata = Object.fromEntries(files.map(file => {
 }));
 
 const logos = Object.fromEntries(Object.entries(logoMap).map(([seriesId, config]) => {
-  const raw = fs.readFileSync(path.join(sourceDir, config.file), 'utf8');
+  let raw = fs.readFileSync(path.join(sourceDir, config.file), 'utf8');
+  // Safari canvas needs intrinsic dimensions on embedded SVG images.
+  if (seriesId === 'macau' || seriesId === 'gtopen') {
+    const viewBox = raw.match(/viewBox=["']([^"']+)["']/i)?.[1]?.split(/\s+/).map(Number);
+    if (!viewBox || viewBox.length !== 4 || !(viewBox[2] > 0 && viewBox[3] > 0)) throw new Error(`Invalid SVG dimensions: ${config.file}`);
+    raw = raw.replace(/<svg\b[^>]*>/i, tag => tag
+      .replace(/\s(?:width|height)=["'][^"']*["']/gi, '')
+      .replace('<svg', `<svg width="${viewBox[2]}" height="${viewBox[3]}"`));
+  }
   return [seriesId, {
     ...config,
     src: `data:image/svg+xml;base64,${Buffer.from(raw).toString('base64')}`,
