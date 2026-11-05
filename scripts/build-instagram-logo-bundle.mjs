@@ -68,7 +68,7 @@ const fileMetadata = Object.fromEntries(files.map(file => {
 const logos = Object.fromEntries(Object.entries(logoMap).map(([seriesId, config]) => {
   let raw = fs.readFileSync(path.join(sourceDir, config.file), 'utf8');
   // Safari canvas needs intrinsic dimensions on embedded SVG images.
-  if (seriesId === 'macau' || seriesId === 'gtopen') {
+  if (seriesId === 'macau' || seriesId === 'gtopen' || seriesId === 'alms') {
     const viewBox = raw.match(/viewBox=["']([^"']+)["']/i)?.[1]?.split(/\s+/).map(Number);
     if (!viewBox || viewBox.length !== 4 || !(viewBox[2] > 0 && viewBox[3] > 0)) throw new Error(`Invalid SVG dimensions: ${config.file}`);
     raw = raw.replace(/<svg\b[^>]*>/i, tag => tag
