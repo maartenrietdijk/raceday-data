@@ -8,7 +8,10 @@
   const clone = value => JSON.parse(JSON.stringify(value));
   function fail(message) { throw new Error(message); }
   function object(value) { return value && typeof value === 'object' && !Array.isArray(value); }
-  function validate(values, season) {
+  function validate(values, season, seasonId) {
+    const winter = typeof seasonId === 'string' && /^(\d{4})-(\d{4})$/.exec(seasonId);
+    const validWinter = winter && Number(winter[2]) === season && Number(winter[1]) === season - 1;
+    const years = validWinter ? [season - 1, season] : [season];
     if (!object(values) || !Object.keys(values).length) fail('Een sessie-update moet velden bevatten.');
     for (const [key, value] of Object.entries(values)) {
       if (!fields.has(key)) fail(`Onbekend sessieveld: ${key}`);
@@ -16,7 +19,7 @@
       if (key === 'kind' && !kinds.has(value)) fail(`Onbekend sessietype: ${value}`);
       if (key === 'durationMinutes' && (!Number.isInteger(value) || value < 1 || value > 1440)) fail('Duur moet 1–1440 minuten zijn.');
       if (key === 'timeLocal' && value !== null && (typeof value !== 'string' || !/^([01]\d|2[0-3]):[0-5]\d$/.test(value))) fail('Ongeldige starttijd.');
-      if (key === 'date' && (typeof value !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(value) || !Number.isFinite(Date.parse(value)) || new Date(value).toISOString().slice(0,10) !== value || Number(value.slice(0,4)) !== season)) fail('Ongeldige datum of verkeerd seizoen.');
+      if (key === 'date' && (typeof value !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(value) || !Number.isFinite(Date.parse(value)) || new Date(value).toISOString().slice(0,10) !== value || !years.includes(Number(value.slice(0,4))))) fail('Ongeldige datum of verkeerd seizoen.');
     }
   }
   // Pure planning: validation of the whole file completes before editor state changes.
@@ -38,7 +41,7 @@
         const target = `${filename}:${patch.id}`;
         if (targets.has(target)) fail(`Dubbele sessie-update: ${patch.id}`);
         targets.add(target);
-        validate(patch.set, update.season);
+        validate(patch.set, update.season, round.seasonId);
         const existing = round.sessions.filter(session => session.id === patch.id);
         if (existing.length > 1) fail(`Dubbele sessie-ID: ${patch.id}`);
         let session = existing[0];
