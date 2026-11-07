@@ -8365,9 +8365,10 @@
         "60m",
         "120m",
         "180m",
-        "240m"
+        "240m",
+        "300m"
       ],
-      "lastCheckedAt": "2026-11-07T14:20:55.425407+00:00",
+      "lastCheckedAt": "2026-11-07T15:11:02.601728+00:00",
       "lastResultHash": "55b1f4f448e71fdcfa76070c7ecf3e5e38e31d3bd3019c8bb77c5f0fc67f75b0",
       "sourceUrl": "https://www.motorsport.com/moto3/results/2026/lusail-667355/?st=FP2"
     },
@@ -8410,9 +8411,10 @@
       "foundAt": "2026-11-07T12:10:55.405041+00:00",
       "completedChecks": [
         "60m",
-        "120m"
+        "120m",
+        "180m"
       ],
-      "lastCheckedAt": "2026-11-07T14:10:56.479533+00:00",
+      "lastCheckedAt": "2026-11-07T15:11:02.601728+00:00",
       "lastResultHash": "40286cc5cf3d92ff8181002b976d75af0fcf53835f4160afc3a5681d96cb5b4e",
       "sourceUrl": "https://www.motorsport.com/motogp/results/2026/qatar-gp-662264/?st=Q1"
     },
@@ -8428,8 +8430,10 @@
     },
     "moto3-2026-20-qual": {
       "foundAt": "2026-11-07T14:10:56.479533+00:00",
-      "completedChecks": [],
-      "lastCheckedAt": "2026-11-07T14:10:56.479533+00:00",
+      "completedChecks": [
+        "60m"
+      ],
+      "lastCheckedAt": "2026-11-07T15:11:02.601728+00:00",
       "lastResultHash": "aa9855a31594a452da04a20903f6cb3d504ac4dc69548af84f2ca3bfc7b6a588",
       "sourceUrl": "https://www.motorsport.com/moto3/results/2026/lusail-667355/?st=Q1"
     },
@@ -8439,6 +8443,13 @@
       "lastCheckedAt": "2026-11-07T14:40:56.081215+00:00",
       "lastResultHash": "cdc4c574aaf585b69e0563ea1d455f24a2c4877b8c21bf981e9f0b8c70477f37",
       "sourceUrl": "https://www.motorsport.com/moto3/results/2026/lusail-667355/?st=Q2"
+    },
+    "moto2-2026-20-qual": {
+      "foundAt": "2026-11-07T15:11:02.601728+00:00",
+      "completedChecks": [],
+      "lastCheckedAt": "2026-11-07T15:11:02.601728+00:00",
+      "lastResultHash": "018681390de3e960aff21d31eefd4d9941064471974049044a7648dd48a12a60",
+      "sourceUrl": "https://www.motorsport.com/moto2/results/2026/lusail-667418/?st=Q1"
     }
   }
 }
