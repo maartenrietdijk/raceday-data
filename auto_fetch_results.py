@@ -716,7 +716,12 @@ def preferred_session_codes(series: str, session_data: dict[str, Any]) -> list[s
         if role == "practice":
             session_number = ordinal or number or 1
             return [f"FP{session_number}", "FIP", "FP"]
-        if role in {"qualifying", "shootout"}:
+        if role == "shootout":
+            # SO is the first event-local shootout, not qualifying or the race
+            # number embedded in names such as “Top Ten Shootout – Race 33”.
+            session_number = ordinal or 1
+            return ["SO", "SO1"] if session_number == 1 else [f"SO{session_number}"]
+        if role == "qualifying":
             session_number = session_data.get("_eventQualifyingOrdinal") or ordinal or number or 1
             return [f"Q{session_number}", "Q"]
         if role == "race":
@@ -825,8 +830,15 @@ def motorsport_url_matches_session(
     if year and f"/results/{year}/" not in parsed.path:
         return False
     code = (parse_qs(parsed.query).get("st") or [""])[0].upper()
+    if series == "supercars":
+        sessions = round_data.get("sessions", [])
+        matches = [index for index, item in enumerate(sessions)
+                   if item.get("id") and item.get("id") == session_data.get("id")]
+        if len(matches) != 1:
+            return False  # An event-local ordinal must not be guessed.
+        session_data = session_for_matching(series, sessions, matches[0])
     preferred = preferred_session_codes(series, session_data)
-    return not code or not preferred or code in {item.upper() for item in preferred}
+    return not code or preferred is None or code in {item.upper() for item in preferred}
 
 
 def first_fetch_at(session_data: dict[str, Any], timezone: ZoneInfo) -> datetime | None:

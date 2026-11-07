@@ -886,20 +886,27 @@ def main():
                     # values: a valid USA page is still invalid for Mexico.
                     from auto_fetch_results import (
                         motorsport_url_matches_session, direct_motorsport_session_url,
+                        session_for_matching,
                     )
-                    if not motorsport_url_matches_session(url, round_data, s, args.series):
+                    index = round_data.get("sessions", []).index(s)
+                    matching_session = session_for_matching(args.series, round_data["sessions"], index)
+                    if not motorsport_url_matches_session(url, round_data, matching_session, args.series):
                         raise ValueError(
                             f"Results URL does not match {round_data.get('raceName')}/{s.get('name')}: {url}"
                         )
                     if not parse_qs(urlsplit(url).query).get("st"):
-                        url = direct_motorsport_session_url(args.series, url, s)
+                        url = direct_motorsport_session_url(args.series, url, matching_session)
                         if not url:
                             raise ValueError("An explicit matching session URL is required")
                 is_oval = s.get("isOval", False)
                 kind = s.get("kind", "").lower()
                 name = s.get("name", "").lower()
                 session_name = s.get("name", "")
-                is_race_session = kind in ("race", "feature_race") or "race" in name
+                if args.series == "supercars":
+                    from auto_fetch_results import supercars_session_role
+                    is_race_session = supercars_session_role(s) == "race"
+                else:
+                    is_race_session = kind in ("race", "feature_race") or "race" in name
                 break
 
     if not session_name:
