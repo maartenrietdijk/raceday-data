@@ -1,87 +1,5 @@
 [
   {
-    "id": "formulae-2026-27-r01",
-    "seriesId": "formulae",
-    "seasonId": "2026-2027",
-    "roundNumber": 1,
-    "raceName": "Jeddah E-Prix 1",
-    "circuitName": "Jeddah Corniche Circuit",
-    "city": "Jeddah",
-    "country": "Saudi Arabia",
-    "countryCode": "SA",
-    "sessions": [
-      {
-        "id": "formulae-2026-27-r01-s1",
-        "name": "Practice 1",
-        "kind": "practice",
-        "date": "2026-12-17",
-        "timeLocal": null,
-        "durationMinutes": 45
-      },
-      {
-        "id": "formulae-2026-27-r01-s2",
-        "name": "Practice 2",
-        "kind": "practice",
-        "date": "2026-12-18",
-        "timeLocal": null,
-        "durationMinutes": 45
-      },
-      {
-        "id": "formulae-2026-27-r01-s3",
-        "name": "Qualifying",
-        "kind": "qualifying",
-        "date": "2026-12-18",
-        "timeLocal": null,
-        "durationMinutes": 70
-      },
-      {
-        "id": "formulae-2026-27-r01-s4",
-        "name": "Race",
-        "kind": "race",
-        "date": "2026-12-18",
-        "timeLocal": null,
-        "durationMinutes": 55
-      }
-    ]
-  },
-  {
-    "id": "formulae-2026-27-r02",
-    "seriesId": "formulae",
-    "seasonId": "2026-2027",
-    "roundNumber": 2,
-    "raceName": "Jeddah E-Prix 2",
-    "circuitName": "Jeddah Corniche Circuit",
-    "city": "Jeddah",
-    "country": "Saudi Arabia",
-    "countryCode": "SA",
-    "sessions": [
-      {
-        "id": "formulae-2026-27-r02-s1",
-        "name": "Practice 3",
-        "kind": "practice",
-        "date": "2026-12-19",
-        "timeLocal": null,
-        "durationMinutes": 45
-      },
-      {
-        "id": "formulae-2026-27-r02-s2",
-        "name": "Qualifying",
-        "kind": "qualifying",
-        "date": "2026-12-19",
-        "timeLocal": null,
-        "durationMinutes": 70
-      },
-      {
-        "id": "formulae-2026-27-r02-s3",
-        "name": "Race",
-        "kind": "race",
-        "date": "2026-12-19",
-        "timeLocal": null,
-        "durationMinutes": 55
-      }
-    ]
-  },
-  {
     "id": "formulae-2026-27-r03",
     "seriesId": "formulae",
     "seasonId": "2026-2027",
@@ -276,7 +194,7 @@
         "id": "formulae-2026-27-r07-s1",
         "name": "Practice 1",
         "kind": "practice",
-        "date": "2027-04-16",
+        "date": "2027-04-02",
         "timeLocal": null,
         "durationMinutes": 45
       },
@@ -284,7 +202,7 @@
         "id": "formulae-2026-27-r07-s2",
         "name": "Practice 2",
         "kind": "practice",
-        "date": "2027-04-17",
+        "date": "2027-04-03",
         "timeLocal": null,
         "durationMinutes": 45
       },
@@ -292,12 +210,94 @@
         "id": "formulae-2026-27-r07-s3",
         "name": "Qualifying",
         "kind": "qualifying",
-        "date": "2027-04-17",
+        "date": "2027-04-03",
         "timeLocal": null,
         "durationMinutes": 70
       },
       {
         "id": "formulae-2026-27-r07-s4",
+        "name": "Race",
+        "kind": "race",
+        "date": "2027-04-03",
+        "timeLocal": null,
+        "durationMinutes": 55
+      }
+    ]
+  },
+  {
+    "id": "formulae-2026-27-r01",
+    "seriesId": "formulae",
+    "seasonId": "2026-2027",
+    "roundNumber": 1,
+    "raceName": "Jeddah E-Prix 1",
+    "circuitName": "Jeddah Corniche Circuit",
+    "city": "Jeddah",
+    "country": "Saudi Arabia",
+    "countryCode": "SA",
+    "sessions": [
+      {
+        "id": "formulae-2026-27-r01-s1",
+        "name": "Practice 1",
+        "kind": "practice",
+        "date": "2027-04-15",
+        "timeLocal": null,
+        "durationMinutes": 45
+      },
+      {
+        "id": "formulae-2026-27-r01-s2",
+        "name": "Practice 2",
+        "kind": "practice",
+        "date": "2027-04-16",
+        "timeLocal": null,
+        "durationMinutes": 45
+      },
+      {
+        "id": "formulae-2026-27-r01-s3",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2027-04-16",
+        "timeLocal": null,
+        "durationMinutes": 70
+      },
+      {
+        "id": "formulae-2026-27-r01-s4",
+        "name": "Race",
+        "kind": "race",
+        "date": "2027-04-16",
+        "timeLocal": null,
+        "durationMinutes": 55
+      }
+    ]
+  },
+  {
+    "id": "formulae-2026-27-r02",
+    "seriesId": "formulae",
+    "seasonId": "2026-2027",
+    "roundNumber": 2,
+    "raceName": "Jeddah E-Prix 2",
+    "circuitName": "Jeddah Corniche Circuit",
+    "city": "Jeddah",
+    "country": "Saudi Arabia",
+    "countryCode": "SA",
+    "sessions": [
+      {
+        "id": "formulae-2026-27-r02-s1",
+        "name": "Practice 3",
+        "kind": "practice",
+        "date": "2027-04-17",
+        "timeLocal": null,
+        "durationMinutes": 45
+      },
+      {
+        "id": "formulae-2026-27-r02-s2",
+        "name": "Qualifying",
+        "kind": "qualifying",
+        "date": "2027-04-17",
+        "timeLocal": null,
+        "durationMinutes": 70
+      },
+      {
+        "id": "formulae-2026-27-r02-s3",
         "name": "Race",
         "kind": "race",
         "date": "2027-04-17",
