@@ -4390,7 +4390,7 @@ function esc(s) {
 }
 
 function formatSeriesName(id) {
-  const special = { alms: 'Asian Le Mans Series', btcc: 'BTCC', igtc: 'IGTC', indynxt: 'Indy NXT',
+  const special = { almc: 'Asian Le Mans Cup', alms: 'Asian Le Mans Series', btcc: 'BTCC', igtc: 'IGTC', indynxt: 'Indy NXT',
     lemanscup: 'Le Mans Cup', nascareuro: 'NASCAR Euro Series', rx: 'Rallycross', tcr: 'TCR', wsbk: 'WorldSBK' };
   return special[id] || id.split('_').map(part => part.length <= 3 ? part.toUpperCase() : part.charAt(0).toUpperCase() + part.slice(1)).join(' ');
 }
@@ -4439,7 +4439,7 @@ if (state.github.token && state.github.repo) {
   loadFromGitHub();
 }
 </script>
-<script src="instagram-assets/logo-bundle.js?v=20261105-alms-refresh-1"></script>
+<script src="instagram-assets/logo-bundle.js?v=20261113-almc-1"></script>
 <script src="instagram-assets/logo-overrides.js?v=20261001-2"></script>
 <script src="instagram-assets/flag-bundle.js?v=20260826-2"></script>
 <script src="instagram-assets/timezone-bundle.js?v=20261010-1"></script>
