@@ -36,16 +36,25 @@
     nascar: 'America/New_York', nascar_oreilly: 'America/New_York',
     nascar_trucks: 'America/New_York', indycar: 'America/New_York',
     indynxt: 'America/New_York', imsa: 'America/New_York',
-    supercars: 'Australia/Sydney',
+    supercars: 'Australia/Sydney', macau: 'Asia/Macau',
   };
   // Supplement the scanner registry for venues whose calendar needs no source scan.
   const ADDITIONAL_EVENT_TIME_ZONES = {
+    macau: 'Asia/Macau', 'guia circuit': 'Asia/Macau',
     'marina bay': 'Asia/Singapore', singapore: 'Asia/Singapore',
     mandalika: 'Asia/Makassar', 'phillip island': 'Australia/Melbourne',
     buriram: 'Asia/Bangkok', 'chang international': 'Asia/Bangkok',
     zandvoort: 'Europe/Amsterdam', catalunya: 'Europe/Madrid', barcelona: 'Europe/Madrid',
     portimao: 'Europe/Lisbon', valencia: 'Europe/Madrid', sakhir: 'Asia/Bahrain',
   };
+  // Etc/GMT identifiers use the opposite sign from the displayed UTC offset.
+  const FIXED_UTC_ZONES = new Map([['UTC', 'UTC']]);
+  for (let offset = -12; offset <= 14; offset++) {
+    if (offset === 0) continue;
+    const hours = Math.abs(offset);
+    FIXED_UTC_ZONES.set(`Etc/GMT${offset > 0 ? '-' : '+'}${hours}`, `UTC${offset > 0 ? '+' : '-'}${hours}`);
+  }
+
   const FLAG_ROOT = 'instagram-assets/flags/4x3';
   const FLAG_DATA_URL_CACHE = new Map();
   const LOGO_SCALE_STORAGE_KEY = 'raceday_instagram_logo_scales';
@@ -292,6 +301,7 @@
     const time = new Intl.DateTimeFormat('en-GB', {
       timeZone, hour: '2-digit', minute: '2-digit', hour12: false,
     }).format(date);
+    if (FIXED_UTC_ZONES.has(timeZone)) return { time, zone: FIXED_UTC_ZONES.get(timeZone) };
     const zoneName = new Intl.DateTimeFormat('en-GB', {
       timeZone, timeZoneName: 'short',
     }).formatToParts(date).find(part => part.type === 'timeZoneName')?.value || '';
@@ -1303,12 +1313,14 @@
     const picker = document.getElementById('instagramTimeZone');
     if (!picker) return;
     const deviceZone = Intl.DateTimeFormat().resolvedOptions().timeZone || DISPLAY_ZONE;
-    const zones = [...new Set([DISPLAY_ZONE, deviceZone, 'UTC', ...(Intl.supportedValuesOf?.('timeZone') || [
+    const zones = [...new Set([DISPLAY_ZONE, deviceZone, ...(Intl.supportedValuesOf?.('timeZone') || [
       'Europe/London', 'America/New_York', 'America/Chicago', 'America/Los_Angeles', 'Asia/Tokyo', 'Australia/Sydney',
-    ])])];
+    ])])].filter(zone => !FIXED_UTC_ZONES.has(zone));
     picker.innerHTML = `<option value="eventLocal">Lokale tijd van het circuit</option><option value="deviceLocal">Mijn lokale tijd · ${esc(deviceZone)}</option>` + zones.map(zone =>
       `<option value="${esc(zone)}">${esc(zone)}</option>`
-    ).join('');
+    ).join('') + '<optgroup label="Vaste UTC-offset">' + [...FIXED_UTC_ZONES].map(([zone, label]) =>
+      `<option value="${esc(zone)}">${esc(label)}</option>`
+    ).join('') + '</optgroup>';
     picker.value = instagramState.timeZone;
   }
 
