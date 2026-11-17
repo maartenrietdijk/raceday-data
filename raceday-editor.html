@@ -1228,6 +1228,7 @@
           <div id="instagramTimeZoneControls" class="instagram-picker-group" hidden>
             <label for="instagramTimeZone">Tijdzone in de post</label>
             <select id="instagramTimeZone" onchange="setInstagramTimeZone(this.value)"></select>
+            <label for="instagramUseUtcLabel"><input id="instagramUseUtcLabel" type="checkbox" checked onchange="setInstagramLayout('useUtcLabel', this.checked)"> UTC-vermelding gebruiken (uit = GMT)</label>
             <label for="instagramTimeZonePlacement">Plaats van de tijdzonevermelding</label>
             <select id="instagramTimeZonePlacement" onchange="setInstagramLayout('timeZonePlacement', this.value)">
               <option value="groups">In elk dagblok</option>
@@ -4443,7 +4444,7 @@ if (state.github.token && state.github.repo) {
 <script src="instagram-assets/logo-overrides.js?v=20261001-2"></script>
 <script src="instagram-assets/flag-bundle.js?v=20260826-2"></script>
 <script src="instagram-assets/timezone-bundle.js?v=20261010-1"></script>
-<script src="instagram-generator.js?v=20261117-1"></script>
+<script src="instagram-generator.js?v=20261117-3"></script>
 <script src="statistics.js?v=20261001-2"></script>
 </body>
 </html>

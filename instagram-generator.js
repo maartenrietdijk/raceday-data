@@ -66,7 +66,7 @@
     assetLoadComplete: false, mode: 'overview', selectedDay: '', displayItems: [],
     title: 'Upcoming races', showLogo: false, showTitle: false, showDate: false, showTopMeta: false,
     seriesOrder: [], draggedSeriesId: '', logoScales: {}, controlTab: 'sessions',
-    timeZone: DISPLAY_ZONE, selectedSeries: '', selectedEvent: '',
+    useUtcLabel: true, timeZone: DISPLAY_ZONE, selectedSeries: '', selectedEvent: '',
     timeZonePlacement: 'groups', titleAlignment: 'left', scheduleAlignment: 'center', showFooter: true,
     headerLogoScale: 1, showRowLogos: true, titleDateSpacing: 30,
   };
@@ -306,7 +306,7 @@
       timeZone, timeZoneName: 'short',
     }).formatToParts(date).find(part => part.type === 'timeZoneName')?.value || '';
     const amsterdam = timeZone === DISPLAY_ZONE;
-    return { time, zone: amsterdam && /GMT\+2|CEST/i.test(zoneName) ? 'CEST' : amsterdam && /GMT\+1|CET/i.test(zoneName) ? 'CET' : zoneName };
+    return { time, zone: amsterdam && /GMT\+2|CEST/i.test(zoneName) ? 'CEST' : amsterdam && /GMT\+1|CET/i.test(zoneName) ? 'CET' : zoneName.replace(/^GMT/, 'UTC').replace('−', '-') };
   }
 
   function defaultEnabled(kind) {
@@ -868,7 +868,8 @@
   function timeZoneText(items) {
     const zones = [...new Set(items.filter(item => !item.isTbc && item.zone).map(item => item.zone))];
     const first = items[0];
-    const zone = zones.join(' / ') || localTimeInfo(new Date(`${first?.dayKey || instagramState.weekend.start}T12:00:00Z`), first?.timeZone || DISPLAY_ZONE).zone;
+    const zoneLabel = zones.join(' / ') || localTimeInfo(new Date(`${first?.dayKey || instagramState.weekend.start}T12:00:00Z`), first?.timeZone || DISPLAY_ZONE).zone;
+    const zone = instagramState.useUtcLabel ? zoneLabel.replace(/GMT/g, 'UTC') : zoneLabel.replace(/UTC/g, 'GMT');
     const local = instagramState.timeZone === 'deviceLocal' ||
       (instagramState.timeZone === 'eventLocal' && items.every(item => !item.missingEventZone));
     return local ? `Local time (${zone})` : `All times are ${zone}`;
@@ -1339,7 +1340,7 @@
       timeZonePlacement: ['groups', 'header'], titleAlignment: ['left', 'center', 'right'],
       scheduleAlignment: ['top', 'center', 'bottom'],
     };
-    if (['showFooter', 'showRowLogos'].includes(part)) instagramState[part] = Boolean(value);
+    if (['showFooter', 'showRowLogos', 'useUtcLabel'].includes(part)) instagramState[part] = Boolean(value);
     else if (options[part]?.includes(value)) instagramState[part] = value;
     else return;
     updateLayoutControls();
@@ -1352,6 +1353,8 @@
       const input = document.getElementById(id);
       if (input) input.value = instagramState[part];
     });
+    const utcLabel = document.getElementById('instagramUseUtcLabel');
+    if (utcLabel) utcLabel.checked = instagramState.useUtcLabel;
     const footer = document.getElementById('instagramFooterVisibility');
     if (footer) footer.checked = instagramState.showFooter;
     const rowLogos = document.getElementById('instagramRowLogoVisibility');
