@@ -13,12 +13,39 @@
     let preference = 'system';
     try { preference = localStorage.getItem('raceday_theme') || 'system'; } catch (_) {}
     if (!['system', 'light', 'dark'].includes(preference)) preference = 'system';
+    const palettes = { studio: '', ocean: '#4374a3', forest: '#467e61', plum: '#94618c' };
+    let roleColors = {};
+    try { roleColors = JSON.parse(localStorage.getItem('raceday_role_colors')) || {}; } catch (_) {}
+    let palette = 'studio', customColor = '#587cac';
+    try {
+      palette = localStorage.getItem('raceday_palette') || palette;
+      customColor = localStorage.getItem('raceday_custom_color') || customColor;
+    } catch (_) {}
+    if (!Object.hasOwn(palettes, palette) && palette !== 'custom') palette = 'studio';
+    if (!/^#[0-9a-f]{6}$/i.test(customColor)) customColor = '#587cac';
     const applyTheme = () => {
       let freeze = document.getElementById('themeTransitionFreeze');
       if (!freeze) { freeze = document.createElement('style'); freeze.id = 'themeTransitionFreeze'; freeze.textContent = '*,*::before,*::after{transition:none!important}'; document.head.appendChild(freeze); }
       const theme = preference === 'system' ? (media.matches ? 'dark' : 'light') : preference;
       document.documentElement.setAttribute('data-theme', theme);
-      document.getElementById('editorThemeColor').setAttribute('content', theme === 'dark' ? '#202020' : '#f2f0eb');
+      const root = document.documentElement;
+      root.dataset.palette = palette;
+      root.style.setProperty('--palette-color', palettes[palette] || customColor);
+      const select = document.getElementById('editorPalette');
+      const picker = document.getElementById('editorCustomColor');
+      if (select && picker) {
+        select.value = palette;
+        picker.value = customColor;
+        picker.parentElement.hidden = palette !== 'custom';
+      }
+      document.querySelectorAll('[data-color-role]').forEach(input => {
+        const role = input.dataset.colorRole;
+        const color = roleColors[role] || customColor;
+        root.style.setProperty('--palette-' + role, palette === 'custom' ? color : 'var(--palette-color)');
+        input.value = color;
+        input.parentElement.hidden = palette !== 'custom';
+      });
+      if (document.body) document.getElementById('editorThemeColor').content = getComputedStyle(document.body).backgroundColor;
       document.querySelectorAll('[data-theme-choice]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.themeChoice === preference)));
       void document.documentElement.offsetHeight;
       requestAnimationFrame(() => requestAnimationFrame(() => freeze.remove()));
@@ -29,6 +56,22 @@
       try { localStorage.setItem('raceday_theme', preference); }
       catch (_) { window.showStatus?.('Thema gewijzigd, maar kon niet op dit apparaat worden onthouden.', 'error'); }
     };
+    window.setEditorPalette = (choice, color = customColor) => {
+      palette = choice;
+      customColor = color;
+      applyTheme();
+      try {
+        localStorage.setItem('raceday_palette', palette);
+        localStorage.setItem('raceday_custom_color', customColor);
+      } catch (_) { window.showStatus?.('Kleur kon niet worden bewaard.', 'error'); }
+    };
+    window.setRoleColor = input => {
+      roleColors[input.dataset.colorRole] = input.value;
+      applyTheme();
+      try { localStorage.setItem('raceday_role_colors', JSON.stringify(roleColors)); }
+      catch (_) { window.showStatus?.('Kleur kon niet worden bewaard.', 'error'); }
+    };
+    document.addEventListener('DOMContentLoaded', applyTheme);
     window.refreshEditorTheme = applyTheme;
     applyTheme();
     media.addEventListener?.('change', applyTheme);
@@ -184,9 +227,6 @@
     width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
   }
   .series-name { font-weight: 500; font-size: 13px; flex: 1; }
-  .series-count {
-    font-family: var(--mono); font-size: 11px; color: var(--muted);
-  }
 
   /* Main */
   .main { flex: 1; overflow-y: auto; }
@@ -594,7 +634,6 @@
   .series-item.dragging { opacity: .35; }
   .series-dot { width: 7px; height: 7px; }
   .series-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 13.5px; }
-  .series-count { color: inherit; opacity: .6; font: 500 10px var(--sans); }
   .series-grip { color: inherit; opacity: .35; cursor: grab; font-size: 13px; user-select: none; }
   .series-grip:active { cursor: grabbing; }
   .sidebar-dashboard { margin: 0 10px 8px; }
@@ -893,7 +932,7 @@
     .sidebar-overlay { z-index: 180; background: rgba(0,0,0,.48); backdrop-filter: blur(3px); }
     .sidebar-close { display: inline-flex; }
     .sidebar-brand { display: flex; align-items: flex-start; justify-content: space-between; padding-top: 20px; }
-    .series-count, .series-grip { display: none; }
+    .series-grip { display: none; }
     .series-item { min-height: 54px; touch-action: manipulation; }
     .series-item:active { background: var(--bg2); }
     .main { margin-left: 0; }
@@ -984,11 +1023,177 @@
     *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
   }
 </style>
-<link rel="stylesheet" href="instagram-generator.css?v=20261010-3">
+<link rel="stylesheet" href="instagram-generator.css?v=sf-20261010-3">
 <link rel="stylesheet" href="editor-ux.css?v=20261001-1">
 <link rel="stylesheet" href="dashboard-design.css?v=20261001-3">
 <link rel="stylesheet" href="editor-links.css?v=20260930-1">
 <link rel="stylesheet" href="statistics.css?v=20261001-1">
+<style>
+  .series-heading, .series-toolbar, .series-tools {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .series-heading, .series-toolbar { justify-content: space-between; }
+  .series-heading { margin-bottom: 20px; }
+  .series-heading-copy { min-width: 0; overflow-wrap: anywhere; }
+  .series-heading h1 { margin: 0; }
+  .series-heading .series-season-controls { flex-wrap: wrap; margin: 0; }
+  .series-heading label { font-size: 13px; font-weight: 600; color: var(--text2); }
+  .series-heading select { min-width: 0; }
+  .series-management { position: relative; }
+  .series-management summary { cursor: pointer; list-style: none; }
+  .series-management summary::-webkit-details-marker { display: none; }
+  .management-menu {
+    position: absolute; top: calc(100% + 4px); right: 0; z-index: 5;
+    padding: 4px; width: max-content; background: var(--card);
+    border: 1px solid var(--border); border-radius: 6px;
+    box-shadow: 0 6px 16px rgb(0 0 0 / .12);
+  }
+  .management-menu button {
+    display: block; width: 100%; padding: 12px; text-align: left;
+    background: transparent; border: 0; color: var(--text); font: inherit; cursor: pointer;
+  }
+  .management-menu button:hover, .management-menu button:focus-visible { background: var(--bg3); }
+  .series-toolbar { border-block: 1px solid var(--border); padding: 12px 0; margin-bottom: 18px; }
+  .series-tools { gap: 6px; }
+  .reset-series-search { display: block; margin: 0 auto; }
+  @media (max-width: 760px) {
+    .series-toolbar { align-items: stretch; flex-direction: column; }
+    .series-toolbar .tab-btn { flex: 1; padding-inline: 6px; }
+    .series-tools { row-gap: 8px; }
+  }
+  .series-mark { flex: 0 0 32px; height: 28px; display: flex; align-items: center; justify-content: center; }
+  .series-mark img { width: 32px; height: 32px; display: block; flex: none; object-fit: contain; }
+  .series-mark img + .series-dot { display: none; }
+  .series-list .series-item { gap: 7px; padding-block: 6px; }
+  .session-block { margin-block: 12px 0; }
+  .session-summary {
+    display: grid; grid-template-columns: minmax(64px, auto) minmax(0,1fr) 10px; align-items: center;
+    gap: 16px; padding: 16px 22px; min-height: 64px; list-style: none; cursor: pointer;
+  }
+  .session-block:not([open]) > :not(summary) { display: none; }
+  .session-summary > span { pointer-events: none; }
+  .session-summary::-webkit-details-marker { display: none; }
+  .session-summary::after {
+    content: ''; width: 7px; height: 7px; justify-self: center;
+    border-right: 1.5px solid var(--text2); border-bottom: 1.5px solid var(--text2);
+    transform: rotate(-45deg);
+  }
+  .session-block[open] > .session-summary::after { transform: rotate(45deg); }
+  .session-block[open] > .session-summary { box-shadow: inset 0 -1px var(--border2); }
+  .session-start { padding: 8px 12px; border-radius: 5px; background: var(--bg3); font-size: 18px; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .session-caption { min-width: 0; overflow-wrap: anywhere; }
+  .session-caption strong, .session-caption small { display: block; }
+  .session-caption strong { font-size: 15px; line-height: 1.3; }
+  .session-caption small { margin-top: 4px; line-height: 1.3; color: var(--text2); font-size: 12px; }
+  .session-block.drag-over { outline: 2px dashed var(--text2); }
+  .session-block.dragging { opacity: .5; }
+  @media (hover:hover) { .session-summary:hover { background: var(--bg2); } }
+  @media (max-width:760px) {
+    .session-block { margin-top: 8px; }
+    .session-summary { grid-template-columns: minmax(64px, auto) minmax(0,1fr) 9px; gap: 10px; padding: 12px 14px; min-height: 56px; }
+    .session-caption small { margin-top: 3px; }
+  }
+
+  .series-detail-logo { display: block; width: min(148px, 100%); height: 74px; object-fit: contain; object-position: left center; }
+  .mono-light { filter: brightness(.35); }
+  [data-theme="light"] .logo-dark, [data-theme="dark"] .logo-light { display: none; }
+  .palette-settings { display: flex; align-items: end; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+  :root[data-palette="custom"] {
+    --accent: color-mix(in srgb, var(--palette-buttons) 52%, #121212);
+    --accent-fg: white;
+    --primary-hover: color-mix(in srgb, var(--accent) 86%, black);
+  }
+  .palette-settings label:not([hidden]) { display: grid; gap: 4px; font-size: 13px; color: var(--text2); }
+  .palette-settings select, .palette-settings input { min-height: 40px; background: var(--bg2); color: var(--text); border: 1px solid var(--border); border-radius: 5px; padding: 4px 8px; }
+  :root[data-theme="light"][data-palette]:not([data-palette="studio"]) {
+    --bg: color-mix(in srgb, var(--palette-color) 16%, #f3f4f6);
+    --surface: color-mix(in srgb, var(--palette-panels, var(--palette-color)) 16%, #f8f9fa);
+    --card: color-mix(in srgb, var(--palette-panels, var(--palette-color)) 16%, #ffffff);
+    --bg2: color-mix(in srgb, var(--palette-fields, var(--palette-color)) 16%, #ededf0);
+    --bg3: color-mix(in srgb, var(--palette-buttons, var(--palette-color)) 16%, #e1e2e5);
+    --border: color-mix(in srgb, var(--palette-color) 16%, #c4c6ca);
+    --border2: color-mix(in srgb, var(--palette-color) 16%, #d8dade);
+    --studio-shell: var(--bg); --studio-selected: var(--bg2); --input-bg: var(--bg2);
+    --button-bg: var(--bg3); --button-hover: var(--border); --row-hover: var(--bg2);
+  }
+  :root[data-theme="dark"][data-palette]:not([data-palette="studio"]) {
+    --bg: color-mix(in srgb, var(--palette-color) 16%, #202124);
+    --surface: color-mix(in srgb, var(--palette-panels, var(--palette-color)) 16%, #27282b);
+    --card: color-mix(in srgb, var(--palette-panels, var(--palette-color)) 16%, #303135);
+    --bg2: color-mix(in srgb, var(--palette-fields, var(--palette-color)) 16%, #37383c);
+    --bg3: color-mix(in srgb, var(--palette-buttons, var(--palette-color)) 16%, #424348);
+    --border: color-mix(in srgb, var(--palette-color) 16%, #5d5e63);
+    --border2: color-mix(in srgb, var(--palette-color) 16%, #47484d);
+    --studio-shell: var(--bg); --studio-selected: var(--bg2); --input-bg: var(--bg2);
+    --button-bg: var(--bg3); --button-hover: var(--border); --row-hover: var(--bg2);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .session-summary, .event-details > summary, .session-results > summary {
+      transition: background-color 120ms ease-out;
+    }
+    .session-summary::after { transition: transform 160ms ease-out; }
+    .series-management[open] .management-menu { animation: reveal 140ms ease-out; }
+    :where(button, .series-management summary):not(:disabled):active { scale: .98; }
+    :where(button, .series-management summary) { transition-property: background-color, color, scale; transition-duration: 120ms; }
+    @supports (interpolate-size: allow-keywords) and selector(details::details-content) {
+      :is(.session-block, .session-results, .event-details)::details-content {
+        interpolate-size: allow-keywords;
+        block-size: 0;
+        overflow: clip;
+        transition: block-size 180ms cubic-bezier(.2,.75,.25,1), content-visibility 180ms allow-discrete;
+      }
+      :is(.session-block, .session-results, .event-details)[open]::details-content { block-size: auto; }
+      .session-block:not([open]) > .session-row { display: grid; }
+      .session-block:not([open]) > .session-results { display: block; }
+      :is(.session-block, .session-results, .event-details):has(> summary:focus-visible)::details-content { transition: none; }
+    }
+  }
+  /* Shared field metrics. Native pickers and sliders keep their own geometry. */
+  :root { --entry-size: 15px; }
+  @media (max-width: 760px), (pointer: coarse) { :root { --entry-size: 16px; } }
+  body :is(.main, .sidebar, .modal) :is(input[type=text], input[type=url], input[type=password], input[type=search], input[type=number], input[type=date], input[type=time], select, textarea) {
+    box-sizing: border-box; min-width: 0; max-width: 100%; min-height: 44px;
+    padding-inline: 12px; font-size: var(--entry-size);
+  }
+  body :is(.main, .modal) select:not([multiple]) {
+    appearance: none; display: inline-block; padding-inline-end: 36px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23777780' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m4 6 4 4 4-4'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 12px center; background-size: 14px;
+  }
+  @media (forced-colors: active) {
+    body :is(.main, .modal) select:not([multiple]) { appearance: auto; background-image: none; padding-inline-end: 8px; }
+  }
+  body .sidebar .series-search input { padding-inline-start: 40px; }
+  .series-search-wrap > .rd-icon { left: 12px; top: 50%; transform: translateY(-50%); }
+  body .main .standing-row input[type=number] { padding-inline: 7px; font-variant-numeric: tabular-nums; }
+  @media (min-width: 761px) {
+    .standing-row .standing-pos { width: 68px; flex-shrink: 0; }
+    .standing-row .standing-pts { width: 88px; flex-shrink: 0; }
+  }
+  .field { gap: 7px; min-width: 0; }
+  .field label, .session-field > label, .session-when-grid label, .session-flags .tbc-label,
+  .instagram-format-controls label, .results-url-row .results-label { font-size: 13px; line-height: 1.4; letter-spacing: 0; text-transform: none; }
+  .session-row .tbc-check, .instagram-format-controls input[type=checkbox] {
+    box-sizing: border-box; width: 18px; height: 18px; min-height: 18px; flex: 0 0 18px; margin: 0; padding: 0;
+  }
+  .instagram-format-controls label:has(> input[type=checkbox]) { display: flex; align-items: center; gap: 9px; min-height: 44px; }
+  .session-caption small, .session-help, .event-series, .statistics-hint, .statistics-muted,
+  .instagram-session-copy span { font-size: 13px; }
+  .sidebar .series-name, .main .tab-btn { font-size: 14px; }
+  .event-month, .event-range { font-size: 12px; }
+  .session-block { container-type: inline-size; }
+  @container (max-width: 570px) {
+    .session-when-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+    .session-when-grid .tbc-wrap { grid-column: 1 / -1; }
+  }
+  @container (max-width: 355px) {
+    .session-row .session-when-grid { grid-template-columns: minmax(0,1fr); }
+    .session-row { grid-template-columns: minmax(0,1fr) 84px; grid-template-areas: "name name" "kind kind" "duration duration" "when when" "flags flags" "actions actions"; }
+  }
+</style>
 </head>
 <body>
 
@@ -1005,7 +1210,6 @@
   </div>
   <div class="header-actions">
     <button class="btn btn-ghost btn-sm editor-settings-button" onclick="showGitHubSettings()" aria-label="Instellingen"><svg class="rd-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m10 3-.5 2a7 7 0 0 0-2 1L5.5 5.5l-2 3L5 10a7 7 0 0 0 0 4l-1.5 1.5 2 3 2-.5a7 7 0 0 0 2 1L10 21h4l.5-2a7 7 0 0 0 2-1l2 .5 2-3L19 14a7 7 0 0 0 0-4l1.5-1.5-2-3-2 .5a7 7 0 0 0-2-1L14 3Z"/><circle cx="12" cy="12" r="3"/></svg><span>Instellingen</span></button>
-    <button class="btn btn-ghost btn-sm desktop-secondary" onclick="exportJSON()"><svg class="rd-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 16v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4"/></svg>Exporteer</button>
     <button class="btn btn-primary btn-sm" onclick="publishCurrentView()">
       <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
       Publiceer
@@ -1063,7 +1267,7 @@
 </div>
 
 <!-- Status bar -->
-<div class="status-bar" id="statusBar"></div>
+<div class="status-bar" id="statusBar" role="status" aria-live="polite"></div>
 
 <!-- Add Series Modal -->
 <div class="modal-backdrop" id="addSeriesModal">
@@ -1308,10 +1512,20 @@
     <div class="settings-heading"><h2 id="settingsTitle">Instellingen</h2><button class="btn-icon" onclick="closeModal('githubModal')" aria-label="Sluit instellingen">×</button></div>
     <section class="appearance-settings" aria-labelledby="appearanceTitle">
       <h3 id="appearanceTitle">Weergave</h3>
-      <div class="theme-choices" role="group" aria-label="Kleurenthema">
+      <div class="theme-choices" role="group" aria-label="Licht of donker">
         <button type="button" data-theme-choice="system" onclick="setEditorTheme('system')">Systeem</button>
         <button type="button" data-theme-choice="light" onclick="setEditorTheme('light')">Licht</button>
         <button type="button" data-theme-choice="dark" onclick="setEditorTheme('dark')">Donker</button>
+      </div>
+      <div class="palette-settings">
+        <label>Achtergrondthema <select id="editorPalette" onchange="setEditorPalette(this.value)">
+          <option value="studio">RaceDay Studio</option><option value="ocean">Oceaan</option>
+          <option value="forest">Bosgroen</option><option value="plum">Pruim</option><option value="custom">Eigen kleur</option>
+        </select></label>
+        <label hidden>Pagina <input id="editorCustomColor" type="color" oninput="setEditorPalette('custom', this.value)"></label>
+        <label hidden>Panelen <input type="color" data-color-role="panels" oninput="setRoleColor(this)"></label>
+        <label hidden>Invoervelden <input type="color" data-color-role="fields" oninput="setRoleColor(this)"></label>
+        <label hidden>Knoppen <input type="color" data-color-role="buttons" oninput="setRoleColor(this)"></label>
       </div>
       <p>Je keuze wordt direct bewaard op dit apparaat. Licht en donker blijven actief, ongeacht je systeeminstelling.</p>
     </section>
@@ -1342,6 +1556,8 @@
   </div>
 </div>
 
+<script src="instagram-assets/logo-bundle.js?v=20261113-alms-3"></script>
+<script src="instagram-assets/logo-overrides.js?v=20261001-2"></script>
 <script src="proposal-logic.js?v=20261003-1"></script>
 <script src="calendar-updates.js?v=20261105-winter-season-1"></script>
 <script src="editor-links.js?v=20260930-1"></script>
@@ -1834,6 +2050,158 @@ function save() {
 
 // ── Render Sidebar ─────────────────────────────────────────────────────────────
 
+function seriesLogoFile(series) {
+  const logos = window.RACEDAY_INSTAGRAM_LOGOS;
+  const key = series.id === 'fd' ? 'formula_drift' : series.id;
+  return logos?.[key]?.file;
+}
+
+const DETAIL_LOGO_VARIANTS = {
+  "24series-dark.svg": "24series.svg",
+  "almc-dark.svg": "almc.svg",
+  "alms-dark.svg": "alms.svg",
+  "britishgt-dark.svg": "britishgt.svg",
+  "btcc-dark.svg": "btcc.svg",
+  "btcc-wit.svg": "btcc.svg",
+  "elms-dark.svg": "elms.svg",
+  "erc-dark.svg": "erc.svg",
+  "f1-wit.svg": "f1.svg",
+  "f1a-wit.svg": "f1a.svg",
+  "f2-wit.svg": "f2.svg",
+  "f3-wit.svg": "f3.svg",
+  "fd-dark.svg": "fd.svg",
+  "fe-wit.svg": "fe.svg",
+  "gtopen-wit.svg": "gtopen.svg",
+  "gtwasia-dark.svg": "gtwasia.svg",
+  "gtwaustralia-dark.svg": "gtwaustralia.svg",
+  "gtweu-dark.svg": "gtweu.svg",
+  "imsa-wit.svg": "imsa.svg",
+  "indycar-2-dark.svg": "indycar-2.svg",
+  "indynxt-dark.svg": "indynxt.svg",
+  "indynxt-wit.svg": "indynxt.svg",
+  "lemanscup-dark.svg": "lemanscup.svg",
+  "macau-dark.svg": "macau.svg",
+  "moto2-dark.svg": "moto2.svg",
+  "moto3-dark.svg": "moto3.svg",
+  "motogp-dark.svg": "motogp.svg",
+  "nls-dark.svg": "nls.svg",
+  "porschesupercup-donker.svg": "porschesupercup.svg",
+  "porschesupercup-wit.svg": "porschesupercup.svg",
+  "rx-dark.svg": "rx.svg",
+  "rx-wit.svg": "rx.svg",
+  "supercars-dark.svg": "supercars.svg",
+  "supercars-wit.svg": "supercars.svg",
+  "tcr-dark.svg": "tcr.svg",
+  "tcr-wit.svg": "tcr.svg",
+  "wec-wit.svg": "wec.svg",
+  "wrc-wit.svg": "wrc.svg",
+  "wsbk-dark.svg": "wsbk.svg"
+};
+const DETAIL_LOGO_CROPS = {
+  "24series-dark.svg": "#svgView(viewBox(105,174,286,154))",
+  "24series.svg": "#svgView(viewBox(105,174,286,154))",
+  "almc-dark.svg": "#svgView(viewBox(104,148,291,203))",
+  "almc.svg": "#svgView(viewBox(104,148,291,203))",
+  "alms-dark.svg": "#svgView(viewBox(57,189,386,131))",
+  "alms.svg": "#svgView(viewBox(57,189,386,131))",
+  "britishgt-dark.svg": "#svgView(viewBox(27,177,446,146))",
+  "britishgt.svg": "#svgView(viewBox(27,177,446,146))",
+  "bsb-dark.svg": "#svgView(viewBox(79,185,342,130))",
+  "btcc-dark.svg": "#svgView(viewBox(82,194,336,110))",
+  "btcc-wit.svg": "#svgView(viewBox(82,194,336,110))",
+  "btcc.svg": "#svgView(viewBox(82,194,336,110))",
+  "dtm.svg": "#svgView(viewBox(62,172,376,155))",
+  "elms-dark.svg": "#svgView(viewBox(57,180,386,148))",
+  "elms.svg": "#svgView(viewBox(57,180,386,148))",
+  "erc-dark.svg": "#svgView(viewBox(36,118,427,203))",
+  "erc.svg": "#svgView(viewBox(36,118,427,203))",
+  "ewc-dark-01.svg": "#svgView(viewBox(80,153,342,193))",
+  "f1-wit.svg": "#svgView(viewBox(58,200,383,99))",
+  "f1.svg": "#svgView(viewBox(58,200,388,100))",
+  "f1a-wit.svg": "#svgView(viewBox(24,186,451,128))",
+  "f1a.svg": "#svgView(viewBox(24,186,451,128))",
+  "f2-wit.svg": "#svgView(viewBox(98,197,312,106))",
+  "f2.svg": "#svgView(viewBox(98,197,312,106))",
+  "f3-wit.svg": "#svgView(viewBox(98,197,311,106))",
+  "f3.svg": "#svgView(viewBox(98,197,311,106))",
+  "fd-dark.svg": "#svgView(viewBox(6,198,497,103))",
+  "fd.svg": "#svgView(viewBox(6,198,497,103))",
+  "fe-wit.svg": "#svgView(viewBox(-1,197,501,105))",
+  "fe.svg": "#svgView(viewBox(-1,197,501,105))",
+  "gtopen-wit.svg": "#svgView(viewBox(8,194,484,111))",
+  "gtopen.svg": "#svgView(viewBox(8,194,484,111))",
+  "gtwa.svg": "#svgView(viewBox(48,167,413,165))",
+  "gtwasia-dark.svg": "#svgView(viewBox(48,167,413,165))",
+  "gtwasia.svg": "#svgView(viewBox(48,167,413,165))",
+  "gtwaustralia-dark.svg": "#svgView(viewBox(48,167,413,165))",
+  "gtwaustralia.svg": "#svgView(viewBox(48,167,413,165))",
+  "gtwea-dark.svg": "#svgView(viewBox(48,167,413,165))",
+  "gtweu-dark.svg": "#svgView(viewBox(48,167,413,165))",
+  "gtweu.svg": "#svgView(viewBox(48,167,413,165))",
+  "igtc.svg": "#svgView(viewBox(109,158,281,184))",
+  "imsa-wit.svg": "#svgView(viewBox(-2,196,503,107))",
+  "imsa.svg": "#svgView(viewBox(-2,196,503,107))",
+  "indycar-2-dark.svg": "#svgView(viewBox(58,133,382,234))",
+  "indycar-2.svg": "#svgView(viewBox(58,133,382,234))",
+  "indycar.svg": "#svgView(viewBox(126,152,247,179))",
+  "indynxt-dark.svg": "#svgView(viewBox(59,133,382,233))",
+  "indynxt-wit.svg": "#svgView(viewBox(59,133,382,233))",
+  "indynxt.svg": "#svgView(viewBox(59,133,382,233))",
+  "lemanscup-dark.svg": "#svgView(viewBox(34,179,431,142))",
+  "lemanscup.svg": "#svgView(viewBox(34,179,431,142))",
+  "macau-dark.svg": "#svgView(viewBox(103,163,294,174))",
+  "macau.svg": "#svgView(viewBox(103,163,294,174))",
+  "moto2-dark.svg": "#svgView(viewBox(32,209,435,83))",
+  "moto2.svg": "#svgView(viewBox(32,209,435,83))",
+  "moto3-dark.svg": "#svgView(viewBox(30,209,439,83))",
+  "moto3.svg": "#svgView(viewBox(30,209,439,83))",
+  "motogp-dark.svg": "#svgView(viewBox(0,208,501,84))",
+  "motogp.svg": "#svgView(viewBox(0,208,501,84))",
+  "nascarcup.svg": "#svgView(viewBox(62,158,376,184))",
+  "nascareuro.svg": "#svgView(viewBox(62,158,376,184))",
+  "nascaroreilly.svg": "#svgView(viewBox(62,158,376,184))",
+  "nascartrucks.svg": "#svgView(viewBox(62,158,375,183))",
+  "nls-dark.svg": "#svgView(viewBox(-1,161,501,178))",
+  "nls.svg": "#svgView(viewBox(-1,161,501,178))",
+  "porschesupercup-donker.svg": "#svgView(viewBox(24,185,451,128))",
+  "porschesupercup-wit.svg": "#svgView(viewBox(24,185,451,128))",
+  "porschesupercup.svg": "#svgView(viewBox(24,185,451,128))",
+  "rx-dark.svg": "#svgView(viewBox(132,184,236,132))",
+  "rx-wit.svg": "#svgView(viewBox(126,180,248,139))",
+  "rx.svg": "#svgView(viewBox(132,184,236,132))",
+  "sf-dark.svg": "#svgView(viewBox(48,185,404,130))",
+  "supercars-dark.svg": "#svgView(viewBox(-1,203,502,104))",
+  "supercars-wit.svg": "#svgView(viewBox(-1,203,502,104))",
+  "supercars.svg": "#svgView(viewBox(-1,203,502,104))",
+  "supergt-dark.svg": "#svgView(viewBox(78,166,344,167))",
+  "tcr-dark.svg": "#svgView(viewBox(83,195,333,110))",
+  "tcr-wit.svg": "#svgView(viewBox(83,195,333,110))",
+  "tcr.svg": "#svgView(viewBox(83,195,333,110))",
+  "wec-wit.svg": "#svgView(viewBox(59,202,382,95))",
+  "wec.svg": "#svgView(viewBox(59,202,382,95))",
+  "wrc-wit.svg": "#svgView(viewBox(86,183,327,138))",
+  "wrc.svg": "#svgView(viewBox(86,183,327,138))",
+  "wsbk-dark.svg": "#svgView(viewBox(78,174,343,151))",
+  "wsbk.svg": "#svgView(viewBox(78,174,343,151))"
+};
+
+function detailSeriesLogo(series) {
+  const dark = seriesLogoFile(series);
+  if (!dark) return esc(series.name);
+  const variants = DETAIL_LOGO_VARIANTS;
+  const light = variants[dark] || dark;
+  const image = (file, mode) => `<img class="series-detail-logo logo-${mode}" src="instagram-assets/logos/source/${encodeURIComponent(file)}${DETAIL_LOGO_CROPS[file] || ''}" alt="${esc(series.name)}" onerror="this.replaceWith(this.alt)">`;
+  return image(light, light === dark && dark.includes('-dark') ? 'light mono-light' : 'light') + image(dark, 'dark');
+}
+
+function sidebarSeriesMark(series) {
+  const file = seriesLogoFile(series);
+  return `<span class="series-mark" aria-hidden="true">
+    ${file ? `<img src="instagram-assets/logos/source/${encodeURIComponent(file)}" alt="" draggable="false" onerror="this.remove()">` : ''}
+    <span class="series-dot" style="background:${esc(series.color)}"></span>
+  </span>`;
+}
+
 function renderSidebar() {
   const list = document.getElementById('seriesList');
   const query = seriesQuery.trim().toLowerCase();
@@ -1842,7 +2210,6 @@ function renderSidebar() {
     .filter(({ series }) => !query || `${series.name} ${series.id}`.toLowerCase().includes(query));
 
   list.innerHTML = filtered.map(({ series: s, index: i }) => {
-    const rounds = (state.data[s.id] || []).length;
     const active = s.id === state.activeSeries ? ' active' : '';
     return `
       <button type="button" class="series-item${active}" onclick="selectSeries('${s.id}')"
@@ -1850,13 +2217,21 @@ function renderSidebar() {
         ondragover="dragSeriesOver(event)" ondrop="dragSeriesDrop(event,${i})">
         <span class="series-grip" draggable="${editorDragEnabled()}" title="Sleep om te sorteren"
           onclick="event.stopPropagation()" ondragstart="dragSeriesStart(event,${i})" ondragend="dragSeriesEnd()">⠿</span>
-        <div class="series-dot" style="background:${s.color}"></div>
+        ${sidebarSeriesMark(s)}
         <span class="series-name">${esc(s.name)}</span>
-        <span class="series-count">${rounds}</span>
       </button>`;
   }).join('');
   if (!filtered.length) list.innerHTML = '<div class="empty compact"><p>Geen series gevonden.</p></div>';
-  document.getElementById('seriesTotal').textContent = `${state.series.length} series`;
+  if (query && !filtered.length) {
+    list.innerHTML += '<button type="button" class="btn btn-ghost btn-sm reset-series-search">Wis zoekopdracht</button>';
+    list.querySelector('button').onclick = () => {
+      const search = document.getElementById('seriesSearch');
+      search.value = '';
+      filterSeries('');
+      search.focus();
+    };
+  }
+  document.getElementById('seriesTotal').textContent = query ? `${filtered.length} van ${state.series.length} series` : `${state.series.length} series`;
   document.querySelector('#dashboardNav .series-item')?.classList.toggle('active', state.activeView === 'dashboard');
   document.getElementById('proposalsNav')?.classList.toggle('active', state.activeView === 'proposals');
   document.getElementById('statisticsNav')?.classList.toggle('active', state.activeView === 'statistics');
@@ -1951,6 +2326,7 @@ function selectProposals() {
 function switchTab(tab) {
   state.activeTab = tab;
   renderMain();
+  document.querySelector('.series-toolbar [aria-pressed="true"]')?.focus({ preventScroll: true });
 }
 
 function renderMain() {
@@ -1982,30 +2358,37 @@ function renderMain() {
 
   const content = document.getElementById('mainContent');
   content.innerHTML = `
-    <!-- Section heading + tab switcher -->
-    <div class="section-heading">
-      <div>
-        <div class="section-title">${esc(series.name)}</div>
-        <div class="section-meta">${rounds.length} rondes · ${esc(selectedFilename)}</div>
-        <div class="series-season-controls">
-          <select class="btn btn-ghost btn-sm" aria-label="Kalenderseizoen"
-            onchange="selectCalendarFile(this.value)">
-            ${calendarFiles.map(file => `<option value="${esc(file.filename)}" ${file.filename === selectedFilename ? 'selected' : ''}>${esc(calendarSeasonLabel(file.filename))}</option>`).join('')}
-          </select>
-          <button class="btn btn-ghost btn-sm" onclick="showAddCalendarSeason()">+ Seizoen</button>
-        </div>
+    <!-- Series and season -->
+    <div class="series-heading">
+      <div class="series-heading-copy">
+        <h1 class="section-title">${detailSeriesLogo(series)}</h1>
+        <div class="section-meta">${rounds.length} ${rounds.length === 1 ? 'ronde' : 'rondes'} · ${esc(selectedFilename)}</div>
       </div>
-      <div class="section-actions">
-        <button class="btn btn-ghost btn-sm" onclick="showRenameSeries('${series.id}')">Naam wijzigen</button>
+      <div class="series-season-controls">
+        <label for="seriesSeason">Seizoen</label>
+        <select id="seriesSeason" class="btn btn-ghost btn-sm" onchange="selectCalendarFile(this.value)">
+          ${calendarFiles.map(file => `<option value="${esc(file.filename)}" ${file.filename === selectedFilename ? 'selected' : ''}>${esc(calendarSeasonLabel(file.filename))}</option>`).join('')}
+        </select>
+        <details class="series-management">
+          <summary class="btn btn-ghost btn-sm">Seriebeheer ▾</summary>
+          <div class="management-menu">
+            <button type="button" onclick="this.closest('details').open=false; showAddCalendarSeason()">Seizoen toevoegen</button>
+            <button type="button" onclick="this.closest('details').open=false; showRenameSeries('${series.id}')">Naam wijzigen</button>
+          </div>
+        </details>
+      </div>
+    </div>
+    <div class="series-toolbar">
         <div class="tab-switcher" role="group" aria-label="Serieweergave">
           <button class="tab-btn ${tab==='calendar'?'active':''}" aria-pressed="${tab==='calendar'}" onclick="switchTab('calendar')">Agenda</button>
           <button class="tab-btn ${tab==='standings'?'active':''}" aria-pressed="${tab==='standings'}" onclick="switchTab('standings')">Klassement</button>
-          <button class="tab-btn ${tab==='links'?'active':''}" aria-pressed="${tab==='links'}" onclick="switchTab('links')">Links</button>
+          <button class="tab-btn ${tab==='links'?'active':''}" aria-pressed="${tab==='links'}" onclick="switchTab('links')">Bronlinks</button>
         </div>
+      <div class="series-tools">
         ${tab === 'calendar' ? `
-          <button class="btn btn-ghost btn-sm" onclick="importJSON()">Importeer</button>
-          <button class="btn btn-ghost btn-sm" onclick="exportJSON()">Exporteer</button>
           <button class="btn btn-primary btn-sm" onclick="addRound()">+ Nieuwe ronde</button>
+          <button class="btn btn-ghost btn-sm" onclick="importJSON()">Importeer JSON</button>
+          <button class="btn btn-ghost btn-sm" onclick="exportJSON()">Exporteer JSON</button>
         ` : tab === 'links' ? `<button class="btn btn-primary btn-sm" onclick="publishEventLinks()">Publiceer links</button>` : `
           <button class="btn btn-ghost btn-sm" onclick="publishStandingsToGitHub()">Publiceer klassement</button>
           <button class="btn btn-primary btn-sm" onclick="addStandingRow()">+ ${state.standingsKind === 'teams' ? 'Team' : 'Rijder'}</button>
@@ -2013,7 +2396,7 @@ function renderMain() {
       </div>
     </div>
 
-    <div class="series-timezone" id="seriesTimeZoneInfo">${renderSeriesTimeZone(series.id)}</div>
+    ${tab === 'calendar' ? `<div class="series-timezone" id="seriesTimeZoneInfo">${renderSeriesTimeZone(series.id)}</div>` : ''}
     <!-- Tab content -->
     <div id="tabContent">
       ${tab === 'calendar' ? `
@@ -2836,9 +3219,6 @@ async function publishStandingsToGitHub() {
 function renderRound(r, i, series, highlighted = false) {
   const sessionRows = (r.sessions || []).map((s, si) => renderSession(s, i, si)).join('');
   const supportsAutoResults = AUTO_RESULTS_SERIES.has(state.activeSeries);
-  const supportsOfficialTimes = OFFICIAL_TIME_SERIES.has(state.activeSeries);
-  const scanProgress = officialScanProgress[r.id];
-  const scanBusy = scanProgress && !['completed', 'error'].includes(scanProgress.status);
   return `
     <div class="round-card${highlighted ? ' is-next' : ''}" id="round_${i}" data-round-index="${i}"
       data-event-id="${esc(r.id || '')}"
@@ -2908,17 +3288,10 @@ function renderRound(r, i, series, highlighted = false) {
         <div class="sessions-wrap">
           <p class="session-help">Tijden in <strong>${esc(seriesTimeZone())}</strong>. Wijzigingen worden lokaal bewaard; gebruik Publiceer om ze online te zetten.</p>
           <div class="sessions-label">
-            Sessies
-            <span style="display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end">
-              <button class="btn btn-surface btn-sm" id="scanOfficialBtn_${i}" onclick="scanOfficialEvent(${i})"
-                title="Zoek officiële sessietijden voor alleen dit event"
-                ${supportsOfficialTimes && !scanBusy ? '' : 'disabled'}>${scanBusy ? 'Officiële tijden zoeken…' : 'Zoek officiële tijden'}</button>
-              <button class="btn btn-primary btn-sm" id="fetchEventBtn_${i}" onclick="fetchEventResults(${i})"
-                title="${supportsAutoResults ? 'Haal alle vindbare sessieresultaten op via Motorsport.com' : 'Automatisch ophalen is voor deze serie nog niet beschikbaar'}"
-                ${supportsAutoResults ? '' : 'disabled'}>Resultaten ophalen</button>
-              <button class="btn btn-surface btn-sm" onclick="openScreenshotImport(${i})">▣ Screenshots</button>
-              <button class="btn btn-surface btn-sm" onclick="addSession(${i})">+ Sessie</button>
-            </span>
+            Sessies (${r.sessions?.length || 0})
+            <button class="btn btn-surface btn-sm" id="fetchEventBtn_${i}" onclick="fetchEventResults(${i})"
+              title="${supportsAutoResults ? 'Haal alle vindbare sessieresultaten op via Motorsport.com' : 'Automatisch ophalen is voor deze serie nog niet beschikbaar'}"
+              ${supportsAutoResults ? '' : 'disabled'}>Resultaten ophalen</button>
           </div>
           ${renderInlineEventProposals(r)}
           <div class="session-columns">
@@ -2967,6 +3340,35 @@ function toggleCancelled(ri, si, cancelled) {
   save();
 }
 
+const openSessionEditors = new WeakSet();
+const shortSessionDate = new Intl.DateTimeFormat('nl-NL', { weekday: 'short', day: 'numeric', month: 'short', timeZone: 'UTC' });
+
+function sessionSummary(name, date, time, duration) {
+  const day = date ? new Date(date + 'T00:00:00Z') : null;
+  const label = day && Number.isFinite(day.getTime()) ? shortSessionDate.format(day) : 'Datum onbekend';
+  return `<span class="session-start">${esc(time || 'Tijd onbekend')}</span>
+    <span class="session-caption"><strong>${esc(name || 'Naamloze sessie')}</strong>
+      <small>${esc(label)}${duration ? ' · ' + esc(String(duration)) + ' min' : ''}</small></span>`;
+}
+
+function refreshSessionSummary(row) {
+  const markup = sessionSummary(
+    row.querySelector('.session-name input').value,
+    row.querySelector('input[type="date"]').value,
+    row.querySelector('input[type="time"]').value,
+    row.querySelector('.session-duration input').value);
+  const summary = row.previousElementSibling;
+  if (summary.innerHTML !== markup) summary.innerHTML = markup;
+}
+
+function rememberSessionEditor(block, ri, si) {
+  if (!block.isConnected) return;
+  const session = editableRounds()?.[ri]?.sessions?.[si];
+  if (!session) return;
+  if (block.open) openSessionEditors.add(session);
+  else openSessionEditors.delete(session);
+}
+
 function renderSession(s, ri, si) {
   const isTBC = Boolean(s._tbcMode ?? (s.dateUTC === null ||
     (typeof s.dateUTC === 'string' && s.dateUTC.endsWith('TBC')) ||
@@ -3001,20 +3403,21 @@ function renderSession(s, ri, si) {
   const total = editableRounds()?.[ri]?.sessions?.length || 0;
   const supportsOval = ['indycar','nascar','nascar_oreilly','nascar_trucks'].includes(state.activeSeries);
   return `
-    <div class="session-block">
-      <div class="session-row" id="session_${ri}_${si}" data-round-index="${ri}" data-session-index="${si}"
+    <details class="session-block" ${openSessionEditors.has(s) ? 'open' : ''} ontoggle="rememberSessionEditor(this,${ri},${si})" id="session_${ri}_${si}" data-round-index="${ri}" data-session-index="${si}"
         ondragover="dragSessionOver(event,${ri},${si})" ondrop="dragSessionDrop(event,${ri},${si})">
+      <summary class="session-summary">${sessionSummary(s.name, dateVal, isTBC ? '' : timeVal, s.durationMinutes)}</summary>
+      <div class="session-row" onchange="refreshSessionSummary(this)" oninput="refreshSessionSummary(this)">
         <div class="session-drag"><span class="drag-handle" draggable="${editorDragEnabled()}" title="Sleep sessie om te verplaatsen"
           ondragstart="dragSessionStart(event,${ri},${si})" ondragend="dragSessionEnd()"
           onpointerdown="startPointerReorder(event,'session',${ri},${si})">⠿</span></div>
         <div class="session-field session-name">
           <label for="sessionName_${ri}_${si}">Naam</label>
           <input id="sessionName_${ri}_${si}" type="text" value="${esc(s.name||'')}" placeholder="Vrije training 1"
-            oninput="updateSession(${ri},${si},'name',this.value)"/>
+            oninput="updateSessionName(${ri},${si},this.value)"/>
         </div>
         <div class="session-field session-kind">
           <label for="sessionKind_${ri}_${si}">Type</label>
-          <select id="sessionKind_${ri}_${si}" onchange="updateSession(${ri},${si},'kind',this.value)">
+          <select id="sessionKind_${ri}_${si}" onchange="editableRounds()[${ri}].sessions[${si}]._manualKind = true; updateSession(${ri},${si},'kind',this.value)">
             <option value="">— Kies type —</option>
             ${kindOptions}
           </select>
@@ -3043,7 +3446,7 @@ function renderSession(s, ri, si) {
           <div class="tbc-wrap">
             <input type="checkbox" class="tbc-check" id="cancelled_${ri}_${si}" ${sessionIsCancelled(s) ? 'checked' : ''}
               onchange="toggleCancelled(${ri},${si},this.checked)"/>
-            <label class="tbc-label" for="cancelled_${ri}_${si}">Cancelled</label>
+            <label class="tbc-label" for="cancelled_${ri}_${si}">Geannuleerd</label>
           </div>
           ${supportsOval ? `<div class="tbc-wrap">
             <input type="checkbox" class="tbc-check" id="oval_${ri}_${si}" ${s.isOval ? 'checked' : ''}
@@ -3069,7 +3472,7 @@ function renderSession(s, ri, si) {
         <button class="btn-fetch" id="fetchBtn_${ri}_${si}" onclick="fetchResults(${ri},${si})">Ophalen</button>
       </div>
       </details>
-    </div>`;
+    </details>`;
 }
 
 // ── Data mutations ─────────────────────────────────────────────────────────────
@@ -3088,6 +3491,16 @@ function updateRound(i, key, val) {
   if (header && key === 'raceName') header.textContent = val || 'Naamloze ronde';
   const num = document.querySelector(`#round_${i} .round-num`);
   if (num && key === 'roundNumber') num.textContent = `R${val}`;
+}
+
+function updateSessionName(ri, si, name) {
+  const session = editableRounds()[ri].sessions[si];
+  const kind = detectSessionKind(name, '');
+  if (!session._manualKind && kind) {
+    session.kind = kind;
+    document.getElementById(`sessionKind_${ri}_${si}`).value = kind;
+  }
+  updateSession(ri, si, 'name', name);
 }
 
 function updateSession(ri, si, key, val) {
@@ -3223,6 +3636,7 @@ function addSession(ri) {
   let id = baseId, suffix = 1;
   while (rounds[ri].sessions.some(session => session.id === id)) id = `${baseId}-${suffix++}`;
   rounds[ri].sessions.push({ id, name: '', kind: 'practice', date: date || null, timeLocal: null, _tbcMode: false, durationMinutes: 60 });
+  openSessionEditors.add(rounds[ri].sessions[si]);
   save();
   renderMain();
   requestAnimationFrame(() => {
@@ -3400,18 +3814,19 @@ function cleanOcrSessionName(text) {
   return value.length >= 3 && value.length <= 80 ? value : '';
 }
 
-function detectSessionKind(name) {
+function detectSessionKind(name, fallback = 'race') {
   const value = name.toLowerCase();
   if (value.includes('shakedown')) return 'shakedown';
   if (/\b(ss|stage)\s*\d+/.test(value)) return 'stage';
-  if (value.includes('sprint qual')) return 'sprintQualifying';
+  if (/sprint[ -]*(qual|kwal|shootout)|\bsq[123]?\b/.test(value)) return 'sprintQualifying';
   if (value.includes('sprint') && value.includes('race')) return 'sprintRace';
   if (value.includes('hyperpole')) return 'hyperpole';
-  if (value.includes('qual')) return 'qualifying';
-  if (value.includes('feature')) return 'featureRace';
+  if (/qual|kwalificatie|\bq[123]\b/.test(value)) return 'qualifying';
+  if (/feature|hoofdrace/.test(value)) return 'featureRace';
   if (value.includes('test')) return 'testing';
-  if (value.includes('practice') || value.includes('training')) return 'practice';
-  return 'race';
+  if (/practice|training|\bfp\s*\d+\b/.test(value)) return 'practice';
+  if (value.trim() === 'sprint') return 'sprintRace';
+  return /\brace\b/.test(value) ? 'race' : fallback;
 }
 
 function parseScreenshotText(text, year, sourceIndex) {
@@ -3601,6 +4016,7 @@ function duplicateSession(ri, si) {
   copy.id = `${rounds[ri].id}-s${Date.now()}`;
   copy.name = orig.name ? orig.name + ' (copy)' : '';
   rounds[ri].sessions.splice(newSi, 0, copy);
+  openSessionEditors.add(copy);
   save();
   const openCards = [...document.querySelectorAll('.round-card.open')].map(el => el.id);
   renderMain();
@@ -3630,14 +4046,14 @@ function dragSessionStart(e, ri, si) {
   dragSrc = { ri, si };
   e.dataTransfer.effectAllowed = 'move';
   e.dataTransfer.setData('text/plain', `session:${ri}:${si}`);
-  e.currentTarget.closest('.session-row')?.classList.add('dragging');
+  e.currentTarget.closest('.session-block')?.classList.add('dragging');
 }
 
 function dragSessionOver(e, ri, si) {
   if (!dragSrc || dragSrc.ri !== ri) return;
   e.preventDefault();
   e.dataTransfer.dropEffect = 'move';
-  document.querySelectorAll('.session-row').forEach(r => r.classList.remove('drag-over'));
+  document.querySelectorAll('.session-block').forEach(r => r.classList.remove('drag-over'));
   document.getElementById(`session_${ri}_${si}`)?.classList.add('drag-over');
 }
 
@@ -3650,7 +4066,7 @@ function dragSessionDrop(e, ri, si) {
 }
 
 function dragSessionEnd() {
-  document.querySelectorAll('.session-row').forEach(r => {
+  document.querySelectorAll('.session-block').forEach(r => {
     r.classList.remove('drag-over');
     r.classList.remove('dragging');
   });
@@ -3675,7 +4091,7 @@ function startPointerReorder(event, type, group, index) {
 function pointerReorderMove(event) {
   if (!pointerDrag) return;
   event.preventDefault();
-  const selector = pointerDrag.type === 'round' ? '.round-card' : '.session-row';
+  const selector = pointerDrag.type === 'round' ? '.round-card' : '.session-block';
   const target = document.elementFromPoint(event.clientX, event.clientY)?.closest(selector);
   if (!target) return;
 
@@ -3685,7 +4101,7 @@ function pointerReorderMove(event) {
   } else {
     if (Number(target.dataset.roundIndex) !== pointerDrag.group) return;
     pointerDrag.to = Number(target.dataset.sessionIndex);
-    document.querySelectorAll('.session-row').forEach(row => row.classList.remove('drag-over'));
+    document.querySelectorAll('.session-block').forEach(row => row.classList.remove('drag-over'));
   }
   target.classList.add('drag-over');
 }
@@ -3696,7 +4112,7 @@ function pointerReorderEnd() {
   document.removeEventListener('pointermove', pointerReorderMove);
   document.removeEventListener('pointerup', pointerReorderEnd);
   document.removeEventListener('pointercancel', pointerReorderEnd);
-  document.querySelectorAll('.round-card, .session-row').forEach(item => item.classList.remove('drag-over', 'dragging'));
+  document.querySelectorAll('.round-card, .session-block').forEach(item => item.classList.remove('drag-over', 'dragging'));
   if (!completed || completed.from === completed.to) return;
   if (completed.type === 'round') moveRound(completed.from, completed.to);
   else moveSession(completed.group, completed.from, completed.to);
@@ -4414,6 +4830,11 @@ function showStatus(msg, type = 'success') {
   if (type !== 'loading') statusTimer = setTimeout(() => bar.classList.remove('show'), 3500);
 }
 
+document.addEventListener('click', event => {
+  const menu = document.querySelector('.series-management[open]');
+  if (menu && !menu.contains(event.target)) menu.open = false;
+});
+
 // Close modals on backdrop click
 document.querySelectorAll('.modal-backdrop').forEach(el => {
   el.addEventListener('click', e => {
@@ -4424,6 +4845,12 @@ document.querySelectorAll('.modal-backdrop').forEach(el => {
 });
 document.addEventListener('keydown', event => {
   if (event.key !== 'Escape') return;
+  const menu = document.querySelector('.series-management[open]');
+  if (menu) {
+    menu.open = false;
+    menu.querySelector('summary').focus();
+    return;
+  }
   document.querySelectorAll('.modal-backdrop.show').forEach(modal => {
     if (modal.id === 'screenshotImportModal') closeScreenshotImport();
     else modal.classList.remove('show');
@@ -4440,8 +4867,6 @@ if (state.github.token && state.github.repo) {
   loadFromGitHub();
 }
 </script>
-<script src="instagram-assets/logo-bundle.js?v=20261113-alms-3"></script>
-<script src="instagram-assets/logo-overrides.js?v=20261001-2"></script>
 <script src="instagram-assets/flag-bundle.js?v=20260826-2"></script>
 <script src="instagram-assets/timezone-bundle.js?v=20261010-1"></script>
 <script src="instagram-generator.js?v=20261117-3"></script>

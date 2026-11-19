@@ -7,12 +7,12 @@
 }
 
 :root {
-  --sans: 'Inter', sans-serif;
-  --display: 'Inter', sans-serif;
-  --mono: 'Inter', sans-serif;
+  --sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif;
+  --display: var(--sans);
+  --mono: var(--sans);
 }
 
-body, button, input, select, textarea { font-family: 'Inter', sans-serif; }
+body, button, input, select, textarea { font-family: var(--sans); }
 
 .instagram-modal-backdrop {
   align-items: stretch;
@@ -94,7 +94,7 @@ body, button, input, select, textarea { font-family: 'Inter', sans-serif; }
   border-radius: 10px;
   background: #202024;
   color: #f4f4f6;
-  font: 600 12px 'Inter', sans-serif;
+  font: 600 12px var(--sans);
   color-scheme: dark;
 }
 .instagram-format-controls select { padding-right: 34px; }
@@ -120,7 +120,7 @@ body, button, input, select, textarea { font-family: 'Inter', sans-serif; }
   background: transparent;
   color: #777781;
   padding: 0 6px;
-  font: 650 10px 'Inter', sans-serif;
+  font: 650 10px var(--sans);
   cursor: pointer;
 }
 .instagram-visibility-controls button.active {
@@ -204,7 +204,7 @@ body, button, input, select, textarea { font-family: 'Inter', sans-serif; }
   border-radius: 9px;
   background: transparent;
   color: #777781;
-  font: 650 11px 'Inter', sans-serif;
+  font: 650 11px var(--sans);
   cursor: pointer;
 }
 .instagram-control-tabs button.active {
@@ -226,7 +226,7 @@ body, button, input, select, textarea { font-family: 'Inter', sans-serif; }
 }
 .instagram-logo-scale-title { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 .instagram-logo-scale-title strong { overflow: hidden; color: #e8e8ec; font-size: 12px; text-overflow: ellipsis; white-space: nowrap; }
-.instagram-logo-scale-title output { color: #a5a5ae; font: 600 10px 'Inter', sans-serif; }
+.instagram-logo-scale-title output { color: #a5a5ae; font: 600 10px var(--sans); }
 .instagram-logo-scale-control {
   display: grid;
   grid-template-columns: minmax(0,1fr) 28px;
