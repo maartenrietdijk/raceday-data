@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>RaceDay Calendar Editor</title>
 <meta name="color-scheme" content="light dark">
-<meta name="theme-color" content="#f2f0eb" id="editorThemeColor">
+<meta name="theme-color" content="#e8e8ed" id="editorThemeColor">
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js" defer></script>
 <script>
   (() => {
@@ -1071,7 +1071,7 @@
   .session-block { margin-block: 12px 0; }
   .session-summary {
     display: grid; grid-template-columns: minmax(64px, auto) minmax(0,1fr) 10px; align-items: center;
-    gap: 16px; padding: 16px 22px; min-height: 64px; list-style: none; cursor: pointer;
+    gap: 16px; padding: 16px 30px 16px 22px; min-height: 64px; list-style: none; cursor: pointer;
   }
   .session-block:not([open]) > :not(summary) { display: none; }
   .session-summary > span { pointer-events: none; }
@@ -1093,7 +1093,7 @@
   @media (hover:hover) { .session-summary:hover { background: var(--bg2); } }
   @media (max-width:760px) {
     .session-block { margin-top: 8px; }
-    .session-summary { grid-template-columns: minmax(64px, auto) minmax(0,1fr) 9px; gap: 10px; padding: 12px 14px; min-height: 56px; }
+    .session-summary { grid-template-columns: minmax(64px, auto) minmax(0,1fr) 9px; gap: 10px; padding: 12px 22px 12px 14px; min-height: 56px; }
     .session-caption small { margin-top: 3px; }
   }
 
@@ -1109,7 +1109,7 @@
   .palette-settings label:not([hidden]) { display: grid; gap: 4px; font-size: 13px; color: var(--text2); }
   .palette-settings select, .palette-settings input { min-height: 40px; background: var(--bg2); color: var(--text); border: 1px solid var(--border); border-radius: 5px; padding: 4px 8px; }
   :root[data-theme="light"][data-palette]:not([data-palette="studio"]) {
-    --bg: color-mix(in srgb, var(--palette-color) 16%, #f3f4f6);
+    --bg: color-mix(in srgb, var(--palette-color) 16%, #e4e6ea);
     --surface: color-mix(in srgb, var(--palette-panels, var(--palette-color)) 16%, #f8f9fa);
     --card: color-mix(in srgb, var(--palette-panels, var(--palette-color)) 16%, #ffffff);
     --bg2: color-mix(in srgb, var(--palette-fields, var(--palette-color)) 16%, #ededf0);
@@ -1193,6 +1193,108 @@
     .session-row .session-when-grid { grid-template-columns: minmax(0,1fr); }
     .session-row { grid-template-columns: minmax(0,1fr) 84px; grid-template-areas: "name name" "kind kind" "duration duration" "when when" "flags flags" "actions actions"; }
   }
+  .round-footer-actions { display: flex; align-items: center; gap: 4px; border-top: 1px solid var(--border2); margin-top: 16px; padding-top: 8px; }
+  .round-footer-actions > span { margin-right: auto; font-size: 13px; font-weight: 600; }
+  .round-footer-actions > button { width: 44px; height: 44px; }
+  .mobile-item-actions, .management-menu .mobile-file-action { display: none; }
+  .time-zone-details { margin-bottom: 16px; }
+  .time-zone-details > summary { cursor: pointer; padding: 10px 0; font-size: 14px; font-weight: 600; }
+  @media (max-width: 760px) {
+    .round-header .desktop-item-actions, .session-row .desktop-item-actions, .series-tools .toolbar-file-action { display: none; }
+    .management-menu .mobile-file-action { display: block; }
+    .round-header { grid-template-areas: "number name chevron"; min-height: 56px; }
+    .mobile-item-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 2px; padding-top: 8px; margin-top: 12px; border-top: 1px solid var(--border2); }
+    .mobile-item-actions > span { margin-right: auto; font-size: 13px; font-weight: 600; }
+    .mobile-item-actions > button { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; }
+    .session-block > .mobile-item-actions { padding: 6px 12px; margin: 0; }
+    .session-block:not([open]) > .mobile-item-actions { display: none; }
+    .series-toolbar { gap: 10px; margin-bottom: 4px; }
+    .series-heading { gap: 12px; margin-bottom: 12px; }
+    .series-tools > button:only-child, .series-tools > button:first-child:nth-last-child(3) { width: 100%; }
+    .series-season-controls { width: 100%; }
+    .series-management { margin-left: auto; }
+    .time-zone-details > summary { min-height: 44px; padding-block: 12px; }
+    .time-zone-details .series-timezone { gap: 6px; padding-bottom: 12px; margin: 0; }
+    .sessions-label { gap: 8px; }
+  }
+  @media (max-width: 760px) {
+    .sidebar { width: min(calc(100vw - 24px), 360px); padding-left: env(safe-area-inset-left); }
+    .sidebar-brand { align-items: center; flex: none; min-height: 0; padding: max(10px, env(safe-area-inset-top)) 16px 32px; }
+    .sidebar-shortcuts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2px 4px; margin: 0 12px 8px; }
+    .sidebar-shortcuts > div { display: contents; }
+    .sidebar-shortcuts .series-item { min-width: 0; min-height: 44px; padding: 7px 8px; gap: 7px; }
+    .sidebar-shortcuts .series-name { white-space: normal; line-height: 1.2; }
+    .sidebar-shortcuts .rd-icon { width: 17px; height: 17px; }
+    .series-search { padding: 8px 16px 0; }
+    .sidebar-header { padding: 0 12px 0 16px; }
+    .sidebar-title { padding: 0; font-size: 14px; font-weight: 600; }
+    .sidebar .btn-icon { width: 44px; height: 44px; }
+    .series-list { min-height: 0; padding: 0 8px max(8px, env(safe-area-inset-bottom)); }
+    .series-list .series-item { gap: 10px; padding-inline: 8px; }
+  }
+  @media (max-width: 760px) and (max-height: 500px) {
+    .sidebar { overflow-y: auto; overscroll-behavior: contain; }
+    .sidebar > * { flex-shrink: 0; }
+    .sidebar .series-list { flex: none; overflow: visible; }
+  }
+  @media (max-width: 760px) {
+    .series-season-controls label[for="seriesSeason"] { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    header .github-publish { transition: translate 150ms ease-out, scale 120ms ease-out, box-shadow 150ms ease-out, background-color 150ms ease-out; }
+    header .github-publish svg { transition: transform 180ms cubic-bezier(.2,.8,.2,1); }
+    @media (hover: hover) and (pointer: fine) {
+      header .github-publish:hover { translate: 0 -1px; box-shadow: 0 3px 8px rgb(0 0 0 / .16); }
+      header .github-publish:hover svg { transform: rotate(-9deg) scale(1.08); }
+    }
+    header .github-publish:active { translate: 0 0; scale: .97; box-shadow: none; }
+    header .github-publish:active svg { transform: scale(.94); }
+  }
+  .sidebar-resizer { display: none; }
+  @media (min-width: 761px) {
+    .sidebar-resizer {
+      display: block; position: fixed; top: 0; bottom: 0; left: calc(var(--sidebar-width) - 4px);
+      width: 8px; z-index: 201; cursor: col-resize; touch-action: none;
+    }
+    .sidebar-resizer::after { content: ''; position: absolute; inset: 0 3px; }
+    .sidebar-resizer:is(:hover, :focus-visible, [data-dragging])::after { background: #85858e; }
+    html:has(.sidebar-resizer[data-dragging]) { user-select: none; cursor: col-resize; }
+  }
+  body > header .header-actions .btn { height: 44px; min-height: 44px; box-sizing: border-box; align-items: center; justify-content: center; }
+  body > header .header-actions svg { width: 20px; height: 20px; flex: none; }
+  @media (max-width: 760px) {
+    body > header .header-actions .btn { display: inline-flex; width: 44px; padding: 0; gap: 0; }
+    .header-actions .github-publish span { display: none; }
+    .header-actions { gap: 8px; }
+  }
+  @media (hover: hover) and (pointer: fine) {
+    :root[data-theme="light"] {
+      --hover-surface: #f5f5f7;
+    }
+    :root[data-theme="light"][data-palette]:not([data-palette="studio"]) {
+      --hover-surface: color-mix(in srgb, var(--card) 84%, var(--palette-panels, var(--palette-color)));
+    }
+    [data-theme="light"] :is(.round-header, .session-summary, .event-row, .standing-row, .event-details > summary, .session-results > summary, .management-menu button):hover {
+      background-color: var(--hover-surface);
+    }
+    [data-theme="light"] :is(.main, .modal:not(.instagram-modal), header) :is(.btn-ghost, .btn-surface):hover:not(:disabled) {
+      background-color: color-mix(in srgb, var(--button-bg) 92%, var(--text));
+    }
+    [data-theme="light"] :is(.main, .modal:not(.instagram-modal)) :is(input:not([type=checkbox],[type=radio],[type=range],[type=color],[type=file]), select, textarea):hover:not(:disabled) {
+      background-color: color-mix(in srgb, var(--input-bg) 94%, var(--text));
+    }
+  }
+  :root[data-theme="light"][data-palette="studio"] {
+    --bg: #e8e8ed; --surface: #f5f5f7; --card: #ffffff;
+    --bg2: #efeff3; --bg3: #e3e3e8;
+    --text: #1d1d1f; --text2: #3a3a3c; --muted: #636366; --subtle: #6c6c70;
+    --border: #c7c7cc; --border2: #dcdce1;
+    --accent: #1d1d1f; --primary-hover: #3a3a3c; --primary-pressed: #101012;
+    --studio-shell: var(--bg); --studio-selected: #f0f0f5;
+    --studio-shadow: 0 1px 2px rgb(0 0 0 / .06), 0 3px 12px rgb(0 0 0 / .035);
+    --input-bg: #efeff3; --button-bg: #e4e4ea;
+    --button-hover: #d8d8df; --button-pressed: #d1d1d8;
+  }
 </style>
 </head>
 <body>
@@ -1210,9 +1312,9 @@
   </div>
   <div class="header-actions">
     <button class="btn btn-ghost btn-sm editor-settings-button" onclick="showGitHubSettings()" aria-label="Instellingen"><svg class="rd-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m10 3-.5 2a7 7 0 0 0-2 1L5.5 5.5l-2 3L5 10a7 7 0 0 0 0 4l-1.5 1.5 2 3 2-.5a7 7 0 0 0 2 1L10 21h4l.5-2a7 7 0 0 0 2-1l2 .5 2-3L19 14a7 7 0 0 0 0-4l1.5-1.5-2-3-2 .5a7 7 0 0 0-2-1L14 3Z"/><circle cx="12" cy="12" r="3"/></svg><span>Instellingen</span></button>
-    <button class="btn btn-primary btn-sm" onclick="publishCurrentView()">
+    <button class="btn btn-primary btn-sm github-publish" aria-label="Publiceer naar GitHub" title="Publiceer naar GitHub" onclick="publishCurrentView()">
       <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-      Publiceer
+      <span>Publiceer</span>
     </button>
   </div>
 </header>
@@ -1226,22 +1328,24 @@
       <div class="sidebar-identity"><img src="instagram-assets/branding/app-icon.png" alt="" width="36" height="36"><div><strong>RaceDay</strong><span>Calendar studio</span></div></div>
       <button class="btn-icon sidebar-close" onclick="toggleSidebar()" aria-label="Sluit seriesmenu"><svg class="rd-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
     </div>
-    <div class="sidebar-dashboard" id="dashboardNav">
-      <button type="button" class="series-item active" onclick="selectDashboard()">
-        <svg class="rd-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
-        <span class="series-name">Overzicht</span>
-      </button>
-      <button type="button" class="series-item" id="statisticsNav" onclick="RaceDayStatistics.select()">
-        <svg class="rd-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4v16h16M8 16v-4m5 4V8m5 8V5"/></svg>
-        <span class="series-name">Statistieken</span>
-      </button>
-      <button type="button" class="series-item" id="proposalsNav" onclick="selectProposals()">
-        <svg class="rd-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h13a2 2 0 0 0 2-2v-4M9 15l1-4L18 3a2.1 2.1 0 0 1 3 3l-8 8-4 1Zm7-10 3 3"/></svg>
-        <span class="series-name">Voorstellen</span>
-        <span class="proposal-count" id="proposalCount" aria-label="0 openstaande voorstellen">0</span>
-      </button>
-    </div>
-    <div class="sidebar-quick-action"><button type="button" class="series-item" onclick="openInstagramGenerator()"><svg class="rd-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg><span class="series-name">Instagram-post</span></button></div>
+    <nav class="sidebar-shortcuts" aria-label="Werkruimte">
+      <div class="sidebar-dashboard" id="dashboardNav">
+        <button type="button" class="series-item active" onclick="selectDashboard()">
+          <svg class="rd-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+          <span class="series-name">Overzicht</span>
+        </button>
+        <button type="button" class="series-item" id="statisticsNav" onclick="RaceDayStatistics.select()">
+          <svg class="rd-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4v16h16M8 16v-4m5 4V8m5 8V5"/></svg>
+          <span class="series-name">Statistieken</span>
+        </button>
+        <button type="button" class="series-item" id="proposalsNav" onclick="selectProposals()">
+          <svg class="rd-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h13a2 2 0 0 0 2-2v-4M9 15l1-4L18 3a2.1 2.1 0 0 1 3 3l-8 8-4 1Zm7-10 3 3"/></svg>
+          <span class="series-name">Voorstellen</span>
+          <span class="proposal-count" id="proposalCount" aria-label="0 openstaande voorstellen">0</span>
+        </button>
+      </div>
+      <div class="sidebar-quick-action"><button type="button" class="series-item" onclick="openInstagramGenerator()"><svg class="rd-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg><span class="series-name">Instagram-post</span></button></div>
+    </nav>
     <div class="series-search">
       <div class="series-search-wrap"><svg class="rd-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/></svg>
         <input type="search" id="seriesSearch" placeholder="Zoek serie" autocomplete="off" oninput="filterSeries(this.value)" aria-label="Zoek serie">
@@ -1252,11 +1356,10 @@
       <button class="btn-icon" onclick="showAddSeries()" title="Serie toevoegen" aria-label="Serie toevoegen"><svg class="rd-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
     </div>
     <div class="series-list" id="seriesList"></div>
-    <div class="sidebar-footer">
-      <span id="seriesTotal">0 series</span>
-      <button class="btn-icon" onclick="showGitHubSettings()" title="Instellingen" aria-label="Instellingen"><svg class="rd-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m10 3-.5 2a7 7 0 0 0-2 1L5.5 5.5l-2 3L5 10a7 7 0 0 0 0 4l-1.5 1.5 2 3 2-.5a7 7 0 0 0 2 1L10 21h4l.5-2a7 7 0 0 0 2-1l2 .5 2-3L19 14a7 7 0 0 0 0-4l1.5-1.5-2-3-2 .5a7 7 0 0 0-2-1L14 3Z"/><circle cx="12" cy="12" r="3"/></svg></button>
-    </div>
   </aside>
+  <div class="sidebar-resizer" id="sidebarResizer" role="separator" tabindex="0"
+    aria-label="Breedte van de zijbalk" aria-orientation="vertical" aria-controls="seriesSidebar"
+    aria-valuemin="200" aria-valuemax="440" aria-valuenow="248"></div>
 
   <!-- Main -->
   <main class="main">
@@ -1665,7 +1768,7 @@ let state = {
   standingsMeta: {},    // {seriesId: {updatedAt, updatedAfterRoundId, updatedAfterRoundName}}
   standingsUrls: {},    // {seriesId: url}
   eventLinkDrafts: {},
-  activeTab: 'calendar', // 'calendar' | 'standings' | 'links'
+  activeTab: 'calendar', // 'calendar' | 'standings'
   activeView: 'dashboard', // 'dashboard' | 'series' | 'proposals'
   activeSeries: null,
   proposals: [],
@@ -2231,7 +2334,6 @@ function renderSidebar() {
       search.focus();
     };
   }
-  document.getElementById('seriesTotal').textContent = query ? `${filtered.length} van ${state.series.length} series` : `${state.series.length} series`;
   document.querySelector('#dashboardNav .series-item')?.classList.toggle('active', state.activeView === 'dashboard');
   document.getElementById('proposalsNav')?.classList.toggle('active', state.activeView === 'proposals');
   document.getElementById('statisticsNav')?.classList.toggle('active', state.activeView === 'statistics');
@@ -2286,6 +2388,55 @@ function dragSeriesEnd() {
 
 // ── Select Series ──────────────────────────────────────────────────────────────
 
+function setupSidebarResize() {
+  const handle = document.getElementById('sidebarResizer');
+  const root = document.documentElement;
+  const storageKey = 'raceday_sidebar_width';
+  let preferred = 248;
+  try {
+    const saved = Number(localStorage.getItem(storageKey));
+    if (saved >= 200 && saved <= 440) preferred = saved;
+  } catch (_) {}
+  const limit = () => Math.max(200, Math.min(440, window.innerWidth - 540));
+  function apply() {
+    const width = Math.min(preferred, limit());
+    root.style.setProperty('--sidebar-width', width + 'px');
+    handle.setAttribute('aria-valuenow', width);
+    handle.setAttribute('aria-valuemax', limit());
+  }
+  function persist() {
+    try { localStorage.setItem(storageKey, String(preferred)); } catch (_) {}
+  }
+  let offset = 0;
+  handle.addEventListener('pointerdown', event => {
+    if (event.button !== 0 || !event.isPrimary) return;
+    offset = event.clientX - Number(handle.getAttribute('aria-valuenow'));
+    handle.setPointerCapture(event.pointerId);
+    handle.dataset.dragging = '';
+  });
+  handle.addEventListener('pointermove', event => {
+    if (!handle.hasPointerCapture(event.pointerId)) return;
+    preferred = Math.round(Math.max(200, Math.min(limit(), event.clientX - offset)));
+    apply();
+  });
+  handle.addEventListener('lostpointercapture', () => {
+    delete handle.dataset.dragging;
+    persist();
+  });
+  handle.addEventListener('keydown', event => {
+    const width = Number(handle.getAttribute('aria-valuenow'));
+    const widths = { ArrowLeft: width - 12, ArrowRight: width + 12, Home: 200, End: limit() };
+    if (!Object.hasOwn(widths, event.key)) return;
+    event.preventDefault();
+    preferred = Math.max(200, Math.min(limit(), widths[event.key]));
+    apply();
+    persist();
+  });
+  window.addEventListener('resize', apply);
+  apply();
+}
+setupSidebarResize();
+
 function toggleSidebar() {
   const sidebar = document.querySelector('.sidebar');
   const overlay = document.getElementById('sidebarOverlay');
@@ -2324,9 +2475,24 @@ function selectProposals() {
 // ── Render Main ────────────────────────────────────────────────────────────────
 
 function switchTab(tab) {
+  const previous = state.activeTab || 'calendar';
+  if (tab === previous) return;
   state.activeTab = tab;
   renderMain();
-  document.querySelector('.series-toolbar [aria-pressed="true"]')?.focus({ preventScroll: true });
+  const active = document.querySelector('.series-toolbar [aria-pressed="true"]');
+  active?.focus({ preventScroll: true });
+  if (!active || matchMedia('(prefers-reduced-motion: reduce)').matches || !active.animate) return;
+
+  const tabs = ['calendar', 'standings'];
+  const direction = Math.sign(tabs.indexOf(tab) - tabs.indexOf(previous));
+  active.animate([
+    { transform: 'scale(.96)' },
+    { transform: 'scale(1)' }
+  ], { duration: 150, easing: 'ease-out' });
+  document.getElementById('tabContent')?.animate([
+    { opacity: .55, transform: `translateX(${direction * 8}px)` },
+    { opacity: 1, transform: 'translateX(0)' }
+  ], { duration: 180, easing: 'cubic-bezier(.2,.75,.25,1)' });
 }
 
 function renderMain() {
@@ -2354,7 +2520,7 @@ function renderMain() {
   const nextRoundIndex = nextUpcomingRoundIndex(rounds);
   const selectedFilename = activeCalendarFilename(series.id);
   const calendarFiles = calendarFilesForSeries(series.id);
-  const tab = state.activeTab || 'calendar';
+  const tab = state.activeTab === 'standings' ? 'standings' : 'calendar';
 
   const content = document.getElementById('mainContent');
   content.innerHTML = `
@@ -2372,6 +2538,8 @@ function renderMain() {
         <details class="series-management">
           <summary class="btn btn-ghost btn-sm">Seriebeheer ▾</summary>
           <div class="management-menu">
+            ${tab === 'calendar' ? `<button class="mobile-file-action" onclick="this.closest('details').open=false; importJSON()">Importeer JSON</button>
+            <button class="mobile-file-action" onclick="this.closest('details').open=false; exportJSON()">Exporteer JSON</button>` : ''}
             <button type="button" onclick="this.closest('details').open=false; showAddCalendarSeason()">Seizoen toevoegen</button>
             <button type="button" onclick="this.closest('details').open=false; showRenameSeries('${series.id}')">Naam wijzigen</button>
           </div>
@@ -2382,21 +2550,20 @@ function renderMain() {
         <div class="tab-switcher" role="group" aria-label="Serieweergave">
           <button class="tab-btn ${tab==='calendar'?'active':''}" aria-pressed="${tab==='calendar'}" onclick="switchTab('calendar')">Agenda</button>
           <button class="tab-btn ${tab==='standings'?'active':''}" aria-pressed="${tab==='standings'}" onclick="switchTab('standings')">Klassement</button>
-          <button class="tab-btn ${tab==='links'?'active':''}" aria-pressed="${tab==='links'}" onclick="switchTab('links')">Bronlinks</button>
         </div>
       <div class="series-tools">
         ${tab === 'calendar' ? `
           <button class="btn btn-primary btn-sm" onclick="addRound()">+ Nieuwe ronde</button>
-          <button class="btn btn-ghost btn-sm" onclick="importJSON()">Importeer JSON</button>
-          <button class="btn btn-ghost btn-sm" onclick="exportJSON()">Exporteer JSON</button>
-        ` : tab === 'links' ? `<button class="btn btn-primary btn-sm" onclick="publishEventLinks()">Publiceer links</button>` : `
+          <button class="btn btn-ghost btn-sm toolbar-file-action" onclick="importJSON()">Importeer JSON</button>
+          <button class="btn btn-ghost btn-sm toolbar-file-action" onclick="exportJSON()">Exporteer JSON</button>
+        ` : `
           <button class="btn btn-ghost btn-sm" onclick="publishStandingsToGitHub()">Publiceer klassement</button>
           <button class="btn btn-primary btn-sm" onclick="addStandingRow()">+ ${state.standingsKind === 'teams' ? 'Team' : 'Rijder'}</button>
         `}
       </div>
     </div>
 
-    ${tab === 'calendar' ? `<div class="series-timezone" id="seriesTimeZoneInfo">${renderSeriesTimeZone(series.id)}</div>` : ''}
+    ${tab === 'calendar' ? `<details class="time-zone-details" ${matchMedia('(min-width: 761px)').matches ? 'open' : ''}><summary>Invoertijdzone · ${esc(seriesTimeZone(series.id))}</summary><div class="series-timezone" id="seriesTimeZoneInfo">${renderSeriesTimeZone(series.id)}</div></details>` : ''}
     <!-- Tab content -->
     <div id="tabContent">
       ${tab === 'calendar' ? `
@@ -2408,14 +2575,14 @@ function renderMain() {
                </div>`
             : rounds.map((r, i) => renderRound(r, i, series, i === nextRoundIndex)).join('')}
         </div>
-      ` : tab === 'links' ? renderEventLinks(series) : renderStandingsTab(series)}
+      ` : renderStandingsTab(series)}
     </div>
   `;
 }
 
 function renderSeriesTimeZone(seriesId) {
   const info = RaceDayLinks.timezoneInfo(seriesTimeZone(seriesId));
-  return `<strong>Invoertijdzone: ${esc(info.zone)}</strong><span>Nu ${esc(info.localTime)} · Nederland ${esc(info.nlTime)} · ${esc(info.difference)}</span><small>Het verschil geldt nu. Rond de wissel van zomer- en wintertijd kan het op de racedatum anders zijn.</small>`;
+  return `<span>Nu ${esc(info.localTime)} · Nederland ${esc(info.nlTime)} · ${esc(info.difference)}</span><small>Het verschil geldt nu. Rond de wissel van zomer- en wintertijd kan het op de racedatum anders zijn.</small>`;
 }
 setInterval(() => {
   const el = document.getElementById('seriesTimeZoneInfo');
@@ -3219,6 +3386,9 @@ async function publishStandingsToGitHub() {
 function renderRound(r, i, series, highlighted = false) {
   const sessionRows = (r.sessions || []).map((s, si) => renderSession(s, i, si)).join('');
   const supportsAutoResults = AUTO_RESULTS_SERIES.has(state.activeSeries);
+  const actionButtons = `<button class="btn-icon" onclick="event.stopPropagation();moveRound(${i},${i-1})" title="Ronde omhoog" ${i === 0 ? 'disabled' : ''}>↑</button>
+          <button class="btn-icon" onclick="event.stopPropagation();moveRound(${i},${i+1})" title="Ronde omlaag" ${i === editableRounds().length - 1 ? 'disabled' : ''}>↓</button>
+          <button class="btn-icon danger" onclick="event.stopPropagation();deleteRound(${i})" title="Ronde verwijderen">×</button>`;
   return `
     <div class="round-card${highlighted ? ' is-next' : ''}" id="round_${i}" data-round-index="${i}"
       data-event-id="${esc(r.id || '')}"
@@ -3230,11 +3400,6 @@ function renderRound(r, i, series, highlighted = false) {
         <span class="round-num">R${r.roundNumber || i+1}</span>
         <span class="round-name">${esc(r.raceName || 'Naamloze ronde')}</span>
         <span class="round-meta">${r.city ? `${esc(r.city)}, ${esc(r.country || '')}` : ''}</span>
-        <div class="round-order-actions" style="display:flex;gap:2px;margin-left:8px">
-          <button class="btn-icon" onclick="event.stopPropagation();moveRound(${i},${i-1})" title="Ronde omhoog" ${i === 0 ? 'disabled' : ''}>↑</button>
-          <button class="btn-icon" onclick="event.stopPropagation();moveRound(${i},${i+1})" title="Ronde omlaag" ${i === editableRounds().length - 1 ? 'disabled' : ''}>↓</button>
-          <button class="btn-icon danger" onclick="event.stopPropagation();deleteRound(${i})" title="Ronde verwijderen">×</button>
-        </div>
         <span class="round-chevron">▶</span>
       </div>
       <div class="round-body">
@@ -3305,6 +3470,7 @@ function renderRound(r, i, series, highlighted = false) {
           </div>
           <div id="sessions_${i}">${sessionRows || '<p class="session-help">Nog geen sessies. Voeg de eerste training, kwalificatie of race toe.</p>'}</div>
           <button class="btn btn-surface add-session-bottom" onclick="addSession(${i})">+ Sessie toevoegen</button>
+        <div class="round-footer-actions" role="group" aria-label="Ronde beheren"><span>Ronde beheren</span>${actionButtons}</div>
         </div>
       </div>
     </div>`;
@@ -3402,6 +3568,10 @@ function renderSession(s, ri, si) {
 
   const total = editableRounds()?.[ri]?.sessions?.length || 0;
   const supportsOval = ['indycar','nascar','nascar_oreilly','nascar_trucks'].includes(state.activeSeries);
+  const actionButtons = `<button class="btn-icon touch-order" onclick="moveSession(${ri},${si},${si-1})" title="Sessie omhoog" aria-label="Sessie omhoog" ${si === 0 ? 'disabled' : ''}>↑</button>
+          <button class="btn-icon touch-order" onclick="moveSession(${ri},${si},${si+1})" title="Sessie omlaag" aria-label="Sessie omlaag" ${si === total-1 ? 'disabled' : ''}>↓</button>
+          <button class="btn-icon" onclick="duplicateSession(${ri},${si})" title="Sessie dupliceren" aria-label="Sessie dupliceren">⎘</button>
+          <button class="btn-icon danger" onclick="deleteSession(${ri},${si})" title="Sessie verwijderen" aria-label="Sessie verwijderen">×</button>`;
   return `
     <details class="session-block" ${openSessionEditors.has(s) ? 'open' : ''} ontoggle="rememberSessionEditor(this,${ri},${si})" id="session_${ri}_${si}" data-round-index="${ri}" data-session-index="${si}"
         ondragover="dragSessionOver(event,${ri},${si})" ondrop="dragSessionDrop(event,${ri},${si})">
@@ -3454,12 +3624,7 @@ function renderSession(s, ri, si) {
             <label class="tbc-label" for="oval_${ri}_${si}">Oval</label>
           </div>` : ''}
         </div>
-        <div class="session-actions">
-          <button class="btn-icon touch-order" onclick="moveSession(${ri},${si},${si-1})" title="Sessie omhoog" aria-label="Sessie omhoog" ${si === 0 ? 'disabled' : ''}>↑</button>
-          <button class="btn-icon touch-order" onclick="moveSession(${ri},${si},${si+1})" title="Sessie omlaag" aria-label="Sessie omlaag" ${si === total-1 ? 'disabled' : ''}>↓</button>
-          <button class="btn-icon" onclick="duplicateSession(${ri},${si})" title="Sessie dupliceren" aria-label="Sessie dupliceren">⎘</button>
-          <button class="btn-icon danger" onclick="deleteSession(${ri},${si})" title="Sessie verwijderen" aria-label="Sessie verwijderen">×</button>
-        </div>
+        <div class="session-actions desktop-item-actions">${actionButtons}</div>
       </div>
       <details class="session-results">
         <summary>Resultaten <span>${s.results?.length ? `${s.results.length} beschikbaar` : s.resultsUrl ? 'URL ingevuld' : 'URL en import'}</span></summary>
@@ -3472,6 +3637,7 @@ function renderSession(s, ri, si) {
         <button class="btn-fetch" id="fetchBtn_${ri}_${si}" onclick="fetchResults(${ri},${si})">Ophalen</button>
       </div>
       </details>
+        <div class="mobile-item-actions" role="group" aria-label="Sessie beheren"><span>Sessie beheren</span>${actionButtons}</div>
     </details>`;
 }
 
@@ -4683,7 +4849,6 @@ async function publishToGitHub() {
 }
 
 function publishCurrentView() {
-  if (state.activeView === 'series' && state.activeTab === 'links') return publishEventLinks();
   return state.activeView === 'proposals' || state.proposalDecisionsDirty || state.dirtyProposalFiles.length
     ? publishProposalChanges()
     : publishToGitHub();
