@@ -414,13 +414,13 @@ def parse_results(html: str, url: str = "", series: str = "", is_oval: bool = Fa
                             team_span = link.find("span", class_="team")
                             if team_span:
                                 team = team_span.get_text(strip=True)
+                            elif not team and ("/team/" in href or "/constructor/" in href):
+                                team = link.get_text(strip=True)
 
                             # Fallback if no specific spans found
                             if not drivers and not team:
                                 if "/driver/" in href or "/rider/" in href:
                                     drivers.append(link.get_text(strip=True))
-                                elif "/team/" in href or "/constructor/" in href:
-                                    team = link.get_text(strip=True)
                                 else:
                                     text = link.get_text(strip=True)
                                     if any(k in text.lower() for k in team_keywords):
