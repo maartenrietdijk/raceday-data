@@ -489,6 +489,10 @@
   #instagramWeekendControls[hidden], #instagramWeekList[hidden] { display: none; }
   #instagramWeekList .instagram-session-toggle input { width: 16px; min-height: 16px; height: 16px; padding: 0; }
 
+  .watch-list { display: grid; gap: 16px; }
+  .watch-list fieldset { margin: 12px 0; border: 1px solid var(--border); }
+  .watch-check { display: inline-flex; align-items: center; gap: 6px; padding: 6px; }
+  .watch-check input { width: auto; }
 </style>
 <style>
   /* Wedding Studio design system */
@@ -1768,7 +1772,8 @@ let state = {
   standingsMeta: {},    // {seriesId: {updatedAt, updatedAfterRoundId, updatedAfterRoundName}}
   standingsUrls: {},    // {seriesId: url}
   eventLinkDrafts: {},
-  activeTab: 'calendar', // 'calendar' | 'standings'
+  watchDrafts: {},
+  activeTab: 'calendar', // 'calendar' | 'standings' | 'watch'
   activeView: 'dashboard', // 'dashboard' | 'series' | 'proposals'
   activeSeries: null,
   proposals: [],
@@ -1941,6 +1946,7 @@ function load() {
       state.teamStandings = parsed.teamStandings || {};
       state.standingsMeta = parsed.standingsMeta || {};
       state.standingsUrls = parsed.standingsUrls || {};
+      state.watchDrafts = parsed.watchDrafts || {};
       state.eventLinkDrafts = parsed.eventLinkDrafts || {};
       state.proposals     = parsed.proposals || [];
       state.proposalSources = parsed.proposalSources || [];
@@ -2127,6 +2133,7 @@ function save() {
     teamStandings: state.teamStandings,
     standingsMeta: state.standingsMeta,
     standingsUrls: state.standingsUrls,
+    watchDrafts: state.watchDrafts,
     eventLinkDrafts: state.eventLinkDrafts,
     proposals: state.proposals,
     proposalSources: state.proposalSources,
@@ -2483,7 +2490,7 @@ function switchTab(tab) {
   active?.focus({ preventScroll: true });
   if (!active || matchMedia('(prefers-reduced-motion: reduce)').matches || !active.animate) return;
 
-  const tabs = ['calendar', 'standings'];
+  const tabs = ['calendar', 'standings', 'watch'];
   const direction = Math.sign(tabs.indexOf(tab) - tabs.indexOf(previous));
   active.animate([
     { transform: 'scale(.96)' },
@@ -2520,7 +2527,7 @@ function renderMain() {
   const nextRoundIndex = nextUpcomingRoundIndex(rounds);
   const selectedFilename = activeCalendarFilename(series.id);
   const calendarFiles = calendarFilesForSeries(series.id);
-  const tab = state.activeTab === 'standings' ? 'standings' : 'calendar';
+  const tab = state.activeTab;
 
   const content = document.getElementById('mainContent');
   content.innerHTML = `
@@ -2550,12 +2557,19 @@ function renderMain() {
         <div class="tab-switcher" role="group" aria-label="Serieweergave">
           <button class="tab-btn ${tab==='calendar'?'active':''}" aria-pressed="${tab==='calendar'}" onclick="switchTab('calendar')">Agenda</button>
           <button class="tab-btn ${tab==='standings'?'active':''}" aria-pressed="${tab==='standings'}" onclick="switchTab('standings')">Klassement</button>
+          <button class="tab-btn ${tab==='watch'?'active':''}" aria-pressed="${tab==='watch'}" onclick="switchTab('watch')">Watch</button>
         </div>
       <div class="series-tools">
         ${tab === 'calendar' ? `
           <button class="btn btn-primary btn-sm" onclick="addRound()">+ Nieuwe ronde</button>
           <button class="btn btn-ghost btn-sm toolbar-file-action" onclick="importJSON()">Importeer JSON</button>
           <button class="btn btn-ghost btn-sm toolbar-file-action" onclick="exportJSON()">Exporteer JSON</button>
+        ` : tab === 'watch' ? `
+          <input id="watchImportFile" type="file" hidden accept=".json,application/json" onchange="importWatchFile(this)">
+          <button class="btn btn-ghost btn-sm" onclick="document.getElementById('watchImportFile').click()">Importeer Watch</button>
+          <button class="btn btn-ghost btn-sm" onclick="reloadWatch()">Herladen</button>
+          <button class="btn btn-ghost btn-sm" onclick="publishWatch()">Publiceer Watch</button>
+          <button class="btn btn-primary btn-sm" onclick="addWatchRow()">+ Aanbieder</button>
         ` : `
           <button class="btn btn-ghost btn-sm" onclick="publishStandingsToGitHub()">Publiceer klassement</button>
           <button class="btn btn-primary btn-sm" onclick="addStandingRow()">+ ${state.standingsKind === 'teams' ? 'Team' : 'Rijder'}</button>
@@ -2575,7 +2589,7 @@ function renderMain() {
                </div>`
             : rounds.map((r, i) => renderRound(r, i, series, i === nextRoundIndex)).join('')}
         </div>
-      ` : renderStandingsTab(series)}
+      ` : tab === 'watch' ? renderWatchTab() : renderStandingsTab(series)}
     </div>
   `;
 }
@@ -3136,6 +3150,229 @@ function standingStore() {
 function switchStandingsKind(kind) {
   state.standingsKind = kind === 'teams' ? 'teams' : 'drivers';
   renderMain();
+}
+
+// Watch uses calendar filenames in a separate directory so calendar discovery
+// and publication remain independent from broadcast rights.
+function watchLocation() {
+  const {repo, branch, path} = state.github;
+  const filename = activeCalendarFilename();
+  const file = [path, 'watch', filename].filter(Boolean).join('/').replace(/\/{2,}/g, '/');
+  return {filename, file, key: JSON.stringify([repo, branch || 'main', file])};
+}
+
+const watchLoads = new Map();
+
+async function loadWatch(location) {
+  const {token, repo, branch} = state.github;
+  let rows = [], sha = null;
+  if (repo && token) {
+    const response = await fetch(`https://api.github.com/repos/${repo}/contents/${location.file}?ref=${encodeURIComponent(branch || 'main')}`, {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+    if (response.ok) {
+      const file = await response.json();
+      const bytes = Uint8Array.from(atob(file.content), c => c.charCodeAt(0));
+      rows = JSON.parse(new TextDecoder().decode(bytes));
+      sha = file.sha;
+    } else if (response.status !== 404) throw new Error(`GitHub ${response.status}`);
+  }
+  if (!sha && window.location.protocol !== 'file:') {
+    const response = await fetch(`watch/${encodeURIComponent(location.filename)}`);
+    if (response.ok && !response.headers.get('content-type')?.includes('text/html')) rows = await response.json();
+    else if (!response.ok && response.status !== 404) throw new Error(`Watch ${response.status}`);
+  }
+  if (!Array.isArray(rows)) throw new Error('Ongeldig Watch-bestand');
+  return {rows, sha};
+}
+
+function renderWatchTab() {
+  const location = watchLocation();
+  const draft = state.watchDrafts[location.key];
+  if (!draft) {
+    if (!watchLoads.has(location.key)) {
+      watchLoads.set(location.key, loadWatch(location).then(result => {
+        state.watchDrafts[location.key] = result;
+        if (state.activeView === 'series' && state.activeTab === 'watch' && watchLocation().key === location.key) renderMain();
+      }).catch(error => {
+        watchLoads.delete(location.key);
+        showStatus(`Watch laden mislukt: ${error.message}`, 'error');
+        if (state.activeView === 'series' && state.activeTab === 'watch' && watchLocation().key === location.key)
+          document.getElementById('tabContent').innerHTML = '<button class="btn btn-ghost" onclick="renderMain()">Opnieuw laden</button>';
+      }));
+    }
+    return '<p>Watch laden…</p>';
+  }
+  const rounds = editableRounds();
+  return `<div class="watch-list">
+    <details class="standings-fetch-card"><summary>JSON maken met AI</summary>
+      <p>Kopieer de opdracht, geef aan voor welke landen je aanbieders zoekt en importeer het JSON-bestand via Importeer Watch.</p>
+      <textarea id="watchPrompt" aria-label="AI-opdracht" rows="7" style="width:100%" readonly>${esc(watchImportPrompt(rounds))}</textarea>
+      <button class="btn btn-ghost btn-sm" onclick="copyWatchPrompt()">Kopieer AI-opdracht</button>
+    </details>${draft.rows.map((row,i) => {
+    const field = (label, key, type = 'text') => `<label class="field">${label}<input type="${type}" value="${esc(row[key])}" onchange="setWatchField(${i},'${key}',this.value)"></label>`;
+    return `<div class="standings-fetch-card"><div class="round-fields">
+      ${field('Landcode (bijv. NL of US)', 'country')}
+      ${field('Zender of dienst', 'name')}
+      ${field('Vereist abonnement (bij F1 TV: Pro of Premium)', 'plan')}
+      ${field('Kijklink', 'website','url')}
+      ${field('Bron voor live-uitzendrechten', 'source','url')}
+      <label class="field">Uitzendrechten<select onchange="setWatchField(${i},'scope',this.value);renderMain()">
+        <option value="rounds" ${row.scope==='rounds'?'selected':''}>Geselecteerde races</option>
+        <option value="season" ${row.scope==='season'?'selected':''}>Hele seizoen</option>
+      </select></label></div>
+      ${row.scope === 'rounds' ? `<fieldset><legend>Races</legend>${rounds.map((r,j) => `<label class="watch-check"><input type="checkbox" ${row.roundIDs.includes(r.id)?'checked':''} onchange="toggleWatchRound(${i},${j},this.checked)"> R${esc(r.roundNumber || j+1)} · ${esc(r.raceName)}</label>`).join('')}</fieldset>` : ''}
+      <label class="watch-check"><input id="watch-verified-${i}" type="checkbox" ${row.verifiedOn?'checked':''} onchange="confirmWatchRow(${i}, this.checked)"> Live kijken bevestigd voor dit land, abonnement en deze races <span id="watch-date-${i}">${esc(row.verifiedOn)}</span></label>
+      <button class="btn btn-ghost btn-sm" onclick="removeWatchRow(${i})">Verwijder aanbieder</button></div>`;
+  }).join('') || '<p>Nog geen live-aanbieders voor dit seizoen.</p>'}</div>`;
+}
+
+function watchDraft() { return state.watchDrafts[watchLocation().key]; }
+
+function addWatchRow() {
+  if (!watchDraft()) return;
+  watchDraft().rows.push({country:'', name:'', plan:'', website:'', source:'', scope:'rounds', roundIDs:[], verifiedOn:''});
+  save(); renderMain();
+}
+
+function removeWatchRow(i) {
+  watchDraft().rows.splice(i,1);
+  save(); renderMain();
+}
+
+function confirmWatchRow(i, confirmed) {
+  const date = confirmed ? new Date().toISOString().slice(0,10) : '';
+  watchDraft().rows[i].verifiedOn = date;
+  document.getElementById(`watch-verified-${i}`).checked = confirmed;
+  document.getElementById(`watch-date-${i}`).textContent = date;
+  save();
+}
+
+function setWatchField(i,key,value) {
+  const row = watchDraft().rows[i];
+  if (key === 'scope' && value === 'season') row.roundIDs = [];
+  row[key] = key === 'country' ? value.trim().toUpperCase() : value.trim();
+  confirmWatchRow(i,false);
+}
+
+function toggleWatchRound(i,j,selected) {
+  const row = watchDraft().rows[i], id = editableRounds()[j].id;
+  row.roundIDs = row.roundIDs.filter(saved => saved !== id);
+  if (selected) row.roundIDs.push(id);
+  confirmWatchRow(i,false);
+}
+
+function watchProblem(rows, rounds, requireConfirmation = true) {
+  const ids = new Set(rounds.map(r => r.id));
+  const https = value => { try { return new URL(value).protocol === 'https:'; } catch { return false; } };
+  const seen = new Map();
+  for (const [i,row] of rows.entries()) {
+    const prefix = `Aanbieder ${i+1}: `;
+    if (!/^[A-Z]{2}$/.test(row.country) || !row.name || !https(row.website) || !https(row.source))
+      return prefix + 'vul landcode, naam, HTTPS-kijklink en bron in.';
+    if ((/^f1\s*tv/i.test(row.name) || new URL(row.website).hostname === 'f1tv.formula1.com') &&
+        !(row.name === 'F1 TV' && ['Pro','Premium'].includes(row.plan)))
+      return prefix + 'gebruik F1 TV met het bevestigde live-abonnement Pro of Premium.';
+    if (row.scope === 'season' && row.roundIDs.length) return prefix + 'gebruik een lege roundIDs-lijst voor het hele seizoen.';
+    if (row.scope !== 'season' && !(row.scope === 'rounds' && row.roundIDs.length && row.roundIDs.every(id => ids.has(id))))
+      return prefix + 'controleer de geselecteerde races.';
+    if (requireConfirmation && !/^\d{4}-\d{2}-\d{2}$/.test(row.verifiedOn)) return prefix + 'bevestig de live-uitzendrechten.';
+    const key = JSON.stringify([row.country,row.name,row.plan,row.website]);
+    const covered = seen.get(key) || new Set();
+    if (covered.has('*') || (row.scope === 'season' && covered.size) || row.roundIDs.some(id => covered.has(id)))
+      return prefix + 'dezelfde kijkoptie is al gekoppeld aan deze race.';
+    if (row.scope === 'season') covered.add('*');
+    else row.roundIDs.forEach(id => covered.add(id));
+    seen.set(key,covered);
+  }
+}
+
+function watchImportPrompt(rounds) {
+  const calendar = activeCalendarFilename();
+  const format = {calendar, providers:[{country:"NL", name:"NAAM", plan:"", website:"HTTPS-KIJKLINK",
+    source:"HTTPS-BRON", scope:"rounds", roundIDs:[rounds[0]?.id || "RACE-ID"]}]};
+  return [
+    `Zoek voor de landen die ik opgeef de live-uitzenders van ${calendar}. Lever één JSON-bestand in dit formaat:`,
+    JSON.stringify(format,null,2),
+    'Gebruik officiële bronnen die de live-uitzending bevestigen voor het land, de serie, het seizoen en de race. Laat onbevestigde opties, samenvattingen en replays weg.',
+    'Gebruik de tweeletterige landcode in hoofdletters. Vul bij plan het vereiste abonnement in, of een lege tekst als er geen specifiek abonnement nodig is. Gebruik bij F1 TV als naam "F1 TV" en als plan "Pro" of "Premium" op basis van lokale bevestiging.',
+    'Gebruik scope "rounds" voor specifieke races en neem de bijbehorende ID’s letterlijk over. Gebruik scope "season" met roundIDs: [] alleen bij bevestigde rechten voor het hele seizoen.',
+    'Voeg alleen nieuwe kijkopties toe. Geef een lege providers-lijst als je geen rechten kunt bevestigen.',
+    'Kalender (ID en race):', ...rounds.map(r => JSON.stringify([r.id,r.raceName]))
+  ].join('\n');
+}
+
+async function copyWatchPrompt() {
+  const field = document.getElementById('watchPrompt');
+  try { await navigator.clipboard.writeText(field.value); showStatus('AI-opdracht gekopieerd','success'); }
+  catch { field.focus(); field.select(); showStatus('De opdracht is geselecteerd. Kopieer de tekst.'); }
+}
+
+async function importWatchFile(input) {
+  const file = input.files[0], location = watchLocation(), draft = watchDraft();
+  input.value = '';
+  if (!file) return;
+  if (!draft) return showStatus('Wacht tot Watch geladen is.', 'error');
+  try {
+    const data = JSON.parse((await file.text()).replace(/^\uFEFF/, ''));
+    if (!state.activeSeries || watchLocation().key !== location.key || watchDraft() !== draft) return;
+    const replace = Array.isArray(data);
+    if ((replace ? file.name : data?.calendar) !== location.filename)
+      throw new Error(`Verwacht kalender ${location.filename} voor deze serie en dit seizoen.`);
+    const rows = replace ? data : data.providers;
+    if (!Array.isArray(rows)) throw new Error('Verwacht een JSON-lijst in providers.');
+    const incoming = rows.map((row,i) => {
+      if (!row || ['country','name','plan','website','source','scope'].some(key => typeof row[key] !== 'string')
+          || !Array.isArray(row.roundIDs) || row.roundIDs.some(id => typeof id !== 'string'))
+        throw new Error(`Aanbieder ${i+1}: controleer de velden en de lijst roundIDs in het voorbeeld.`);
+      const {country,name,plan,website,source,scope,roundIDs} = row;
+      return {country:country.trim().toUpperCase(), name:name.trim(), plan:plan.trim(),
+        website:website.trim(), source:source.trim(), scope, roundIDs, verifiedOn:''};
+    });
+    const rounds = editableRounds();
+    const problem = watchProblem(incoming,rounds,false);
+    if (problem) throw new Error(problem);
+    if (!replace && !incoming.length) return showStatus('Geen nieuwe aanbieders in het bestand.');
+    if (!replace) {
+      for (const [i,row] of incoming.entries()) {
+        const overlap = draft.rows.some(old => old.country === row.country && old.name === row.name &&
+          old.plan === row.plan && old.website === row.website &&
+          (old.scope === 'season' || row.scope === 'season' || row.roundIDs.some(id => old.roundIDs.includes(id))));
+        if (overlap) throw new Error(`Aanbieder ${i+1} (${row.name}) bestaat al voor deze races. Pas de bestaande vermelding aan.`);
+      }
+    }
+    if (replace && draft.rows.length && !confirm(`De ${draft.rows.length} bestaande vermeldingen vervangen door ${incoming.length} geïmporteerde vermeldingen?`)) return;
+    draft.rows = replace ? incoming : [...draft.rows,...incoming];
+    const saved = save();
+    renderMain();
+    if (saved) showStatus(`${incoming.length} vermeldingen geïmporteerd. Controleer de bronnen vóór publicatie.`,'success');
+  } catch (error) { showStatus(error.message,'error'); }
+}
+
+async function publishWatch() {
+  const {token, repo, branch} = state.github, draft = watchDraft();
+  if (!draft) return;
+  if (!repo || !token) return showStatus('Koppel eerst GitHub.', 'error');
+  const problem = watchProblem(draft.rows, editableRounds());
+  if (problem) return showStatus(problem,'error');
+  const {file} = watchLocation();
+  const content = JSON.stringify(draft.rows,null,2) + '\n';
+  try {
+    const result = await fetch(`https://api.github.com/repos/${repo}/contents/${file}`, {
+      method: 'PUT', headers: {Authorization:`Bearer ${token}`, 'Content-Type':'application/json'},
+      body: JSON.stringify({message:`Update ${file}`, branch:branch || 'main',
+        content:btoa(unescape(encodeURIComponent(content))), ...(draft.sha ? {sha:draft.sha} : {})})
+    });
+    if (!result.ok) throw new Error((await result.json()).message || String(result.status));
+    draft.sha = (await result.json()).content.sha;
+    save(); showStatus(`✓ ${file} gepubliceerd`,'success');
+  } catch (error) { showStatus(`Publiceren mislukt: ${error.message}`, 'error'); }
+}
+
+function reloadWatch() {
+  if (!confirm('De gepubliceerde gegevens opnieuw laden en de lokale Watch-wijzigingen voor dit seizoen vervangen?')) return;
+  const {key} = watchLocation();
+  delete state.watchDrafts[key]; watchLoads.delete(key); save(); renderMain();
 }
 
 function renderStandingsTab(series) {
@@ -4849,6 +5086,7 @@ async function publishToGitHub() {
 }
 
 function publishCurrentView() {
+  if (state.activeView === 'series' && state.activeTab === 'watch') return publishWatch();
   return state.activeView === 'proposals' || state.proposalDecisionsDirty || state.dirtyProposalFiles.length
     ? publishProposalChanges()
     : publishToGitHub();
