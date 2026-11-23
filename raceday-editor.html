@@ -3262,6 +3262,12 @@ function toggleWatchRound(i,j,selected) {
   confirmWatchRow(i,false);
 }
 
+function validWatchConfirmationDate(value) {
+  if (typeof value !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+  const date = new Date(value + 'T00:00:00Z');
+  return Number.isFinite(date.getTime()) && date.toISOString().slice(0,10) === value;
+}
+
 function watchProblem(rows, rounds, requireConfirmation = true) {
   const ids = new Set(rounds.map(r => r.id));
   const https = value => { try { return new URL(value).protocol === 'https:'; } catch { return false; } };
@@ -3276,7 +3282,7 @@ function watchProblem(rows, rounds, requireConfirmation = true) {
     if (row.scope === 'season' && row.roundIDs.length) return prefix + 'gebruik een lege roundIDs-lijst voor het hele seizoen.';
     if (row.scope !== 'season' && !(row.scope === 'rounds' && row.roundIDs.length && row.roundIDs.every(id => ids.has(id))))
       return prefix + 'controleer de geselecteerde races.';
-    if (requireConfirmation && !/^\d{4}-\d{2}-\d{2}$/.test(row.verifiedOn)) return prefix + 'bevestig de live-uitzendrechten.';
+    if (requireConfirmation && !validWatchConfirmationDate(row.verifiedOn)) return prefix + 'bevestig de live-uitzendrechten.';
     const key = JSON.stringify([row.country,row.name,row.plan,row.website]);
     const covered = seen.get(key) || new Set();
     if (covered.has('*') || (row.scope === 'season' && covered.size) || row.roundIDs.some(id => covered.has(id)))
@@ -3290,11 +3296,12 @@ function watchProblem(rows, rounds, requireConfirmation = true) {
 function watchImportPrompt(rounds) {
   const calendar = activeCalendarFilename();
   const format = {calendar, providers:[{country:"NL", name:"NAAM", plan:"", website:"HTTPS-KIJKLINK",
-    source:"HTTPS-BRON", scope:"rounds", roundIDs:[rounds[0]?.id || "RACE-ID"]}]};
+    source:"HTTPS-BRON", verifiedOn:"", scope:"rounds", roundIDs:[rounds[0]?.id || "RACE-ID"]}]};
   return [
     `Zoek voor de landen die ik opgeef de live-uitzenders van ${calendar}. Lever één JSON-bestand in dit formaat:`,
     JSON.stringify(format,null,2),
     'Gebruik officiële bronnen die de live-uitzending bevestigen voor het land, de serie, het seizoen en de race. Laat onbevestigde opties, samenvattingen en replays weg.',
+    'Vul verifiedOn in als JJJJ-MM-DD met de datum waarop je de officiële bron hebt gecontroleerd op live-dekking voor deze vermelding. Gebruik anders een lege tekst.',
     'Gebruik de tweeletterige landcode in hoofdletters. Vul bij plan het vereiste abonnement in, of een lege tekst als er geen specifiek abonnement nodig is. Gebruik bij F1 TV als naam "F1 TV" en als plan "Pro" of "Premium" op basis van lokale bevestiging.',
     'Gebruik scope "rounds" voor specifieke races en neem de bijbehorende ID’s letterlijk over. Gebruik scope "season" met roundIDs: [] alleen bij bevestigde rechten voor het hele seizoen.',
     'Voeg alleen nieuwe kijkopties toe. Geef een lege providers-lijst als je geen rechten kunt bevestigen.',
@@ -3327,7 +3334,8 @@ async function importWatchFile(input) {
         throw new Error(`Aanbieder ${i+1}: controleer de velden en de lijst roundIDs in het voorbeeld.`);
       const {country,name,plan,website,source,scope,roundIDs} = row;
       return {country:country.trim().toUpperCase(), name:name.trim(), plan:plan.trim(),
-        website:website.trim(), source:source.trim(), scope, roundIDs, verifiedOn:''};
+        website:website.trim(), source:source.trim(), scope, roundIDs,
+        verifiedOn:validWatchConfirmationDate(row.verifiedOn) ? row.verifiedOn : ''};
     });
     const rounds = editableRounds();
     const problem = watchProblem(incoming,rounds,false);
@@ -3345,7 +3353,8 @@ async function importWatchFile(input) {
     draft.rows = replace ? incoming : [...draft.rows,...incoming];
     const saved = save();
     renderMain();
-    if (saved) showStatus(`${incoming.length} vermeldingen geïmporteerd. Controleer de bronnen vóór publicatie.`,'success');
+    const confirmed = incoming.filter(row => row.verifiedOn).length;
+    if (saved) showStatus(`${incoming.length} vermeldingen geïmporteerd · ${confirmed} live bevestigd.`,'success');
   } catch (error) { showStatus(error.message,'error'); }
 }
 
