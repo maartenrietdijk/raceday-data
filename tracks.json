@@ -699,7 +699,8 @@
             ]
           ]
         },
-        "firstFormula1GrandPrix": "1996"
+        "firstFormula1GrandPrix": "1996",
+        "elevationChange": "~6.4 m"
       }
     },
     {
@@ -2855,7 +2856,8 @@
             ]
           ]
         },
-        "firstFormula1GrandPrix": "1980"
+        "firstFormula1GrandPrix": "1980",
+        "elevationChange": "~34.7 m"
       },
       "aliases": [
         "Imola",
@@ -10292,7 +10294,8 @@
             ]
           ]
         },
-        "firstFormula1GrandPrix": "1991"
+        "firstFormula1GrandPrix": "1991",
+        "elevationChange": "~28 m"
       }
     },
     {
@@ -15775,7 +15778,8 @@
             ]
           ]
         },
-        "firstFormula1GrandPrix": "1952"
+        "firstFormula1GrandPrix": "1952",
+        "elevationChange": "~7.4 m"
       }
     },
     {
@@ -19724,7 +19728,8 @@
             ]
           ]
         },
-        "firstFormula1GrandPrix": "2021"
+        "firstFormula1GrandPrix": "2021",
+        "elevationChange": "~4.8 m"
       },
       "aliases": [
         "Jeddah Street Circuit"
@@ -20297,7 +20302,8 @@
             ]
           ]
         },
-        "firstFormula1GrandPrix": "2023"
+        "firstFormula1GrandPrix": "2023",
+        "elevationChange": "~20.5 m"
       }
     },
     {
@@ -22345,7 +22351,8 @@
             ]
           ]
         },
-        "firstFormula1GrandPrix": "2021"
+        "firstFormula1GrandPrix": "2021",
+        "elevationChange": "~4.4 m"
       },
       "aliases": [
         "Losail International Circuit",
@@ -23576,7 +23583,8 @@
             ]
           ]
         },
-        "firstFormula1GrandPrix": "2008"
+        "firstFormula1GrandPrix": "2008",
+        "elevationChange": "~18.2 m"
       }
     },
     {
@@ -24133,7 +24141,8 @@
             ]
           ]
         },
-        "firstFormula1GrandPrix": "2022"
+        "firstFormula1GrandPrix": "2022",
+        "elevationChange": "~3.6 m"
       }
     },
     {
@@ -28484,7 +28493,8 @@
           "value": 0.53
         },
         "timeZoneIdentifier": "Europe/Berlin",
-        "firstFormula1GrandPrix": "1984"
+        "firstFormula1GrandPrix": "1984",
+        "elevationChange": "~55.5 m"
       }
     },
     {
@@ -35558,7 +35568,8 @@
             ]
           ]
         },
-        "firstFormula1GrandPrix": "2009"
+        "firstFormula1GrandPrix": "2009",
+        "elevationChange": "~10.1 m"
       }
     },
     {
@@ -39342,7 +39353,8 @@
         "coordinates": [
           "https://github.com/bacinger/f1-circuits",
           "https://github.com/tobi/track-atlas"
-        ]
+        ],
+        "elevation": "https://overcut.gg/tracks/albert-park"
       },
       "shanghai-international-circuit": {
         "race": "https://www.formula1.com/en/racing/2026/china",
@@ -39351,7 +39363,10 @@
           "https://github.com/bacinger/f1-circuits",
           "https://github.com/tobi/track-atlas"
         ],
-        "elevation": "https://www.formula1.com/en/latest/article/highs-and-lows-which-f1-track-has-the-most-elevation-changes-.7I9JEcBw3R2AqXbnJ6hyvc"
+        "elevation": "https://www.formula1.com/en/latest/article/highs-and-lows-which-f1-track-has-the-most-elevation-changes-.7I9JEcBw3R2AqXbnJ6hyvc",
+        "additionalSources": [
+          "https://overcut.gg/tracks/shanghai"
+        ]
       },
       "suzuka-international-racing-course": {
         "race": "https://www.formula1.com/en/racing/2026/japan",
@@ -39360,7 +39375,10 @@
           "https://github.com/bacinger/f1-circuits",
           "https://github.com/tobi/track-atlas"
         ],
-        "elevation": "https://www.formula1.com/en/latest/article/highs-and-lows-which-f1-track-has-the-most-elevation-changes-.7I9JEcBw3R2AqXbnJ6hyvc"
+        "elevation": "https://www.formula1.com/en/latest/article/highs-and-lows-which-f1-track-has-the-most-elevation-changes-.7I9JEcBw3R2AqXbnJ6hyvc",
+        "additionalSources": [
+          "https://overcut.gg/tracks/suzuka"
+        ]
       },
       "miami-international-autodrome": {
         "race": "https://www.formula1.com/en/racing/2026/miami",
@@ -39368,7 +39386,8 @@
         "coordinates": [
           "https://github.com/bacinger/f1-circuits",
           "https://github.com/tobi/track-atlas"
-        ]
+        ],
+        "elevation": "https://overcut.gg/tracks/miami"
       },
       "circuit-gilles-villeneuve": {
         "race": "https://www.formula1.com/en/racing/2026/canada",
@@ -39377,7 +39396,10 @@
           "https://github.com/bacinger/f1-circuits",
           "https://github.com/tobi/track-atlas"
         ],
-        "elevation": "https://www.formula1.com/en/latest/article/highs-and-lows-which-f1-track-has-the-most-elevation-changes-.7I9JEcBw3R2AqXbnJ6hyvc"
+        "elevation": "https://www.formula1.com/en/latest/article/highs-and-lows-which-f1-track-has-the-most-elevation-changes-.7I9JEcBw3R2AqXbnJ6hyvc",
+        "additionalSources": [
+          "https://overcut.gg/tracks/circuit-gilles-villeneuve"
+        ]
       },
       "monaco": {
         "race": "https://www.formula1.com/en/racing/2026/monaco",
@@ -39394,7 +39416,8 @@
         "coordinates": [
           "https://github.com/bacinger/f1-circuits",
           "https://github.com/tobi/track-atlas"
-        ]
+        ],
+        "elevation": "https://overcut.gg/tracks/barcelona"
       },
       "red-bull-ring": {
         "race": "https://www.formula1.com/en/racing/2026/austria",
@@ -39404,7 +39427,8 @@
           "https://github.com/tobi/track-atlas"
         ],
         "additionalSources": [
-          "https://www.formula1.com/en/results/2020/awards/fastest-laps"
+          "https://www.formula1.com/en/results/2020/awards/fastest-laps",
+          "https://overcut.gg/tracks/red-bull-ring"
         ],
         "elevation": "https://www.fia.com/sites/default/files/media_kit_-_2026_austrian_grand_prix.pdf"
       },
@@ -39415,7 +39439,10 @@
           "https://github.com/bacinger/f1-circuits",
           "https://github.com/tobi/track-atlas"
         ],
-        "elevation": "https://www.formula1.com/en/latest/article/highs-and-lows-which-f1-track-has-the-most-elevation-changes-.7I9JEcBw3R2AqXbnJ6hyvc"
+        "elevation": "https://www.formula1.com/en/latest/article/highs-and-lows-which-f1-track-has-the-most-elevation-changes-.7I9JEcBw3R2AqXbnJ6hyvc",
+        "additionalSources": [
+          "https://overcut.gg/tracks/silverstone"
+        ]
       },
       "circuit-de-spa-francorchamps": {
         "race": "https://www.formula1.com/en/racing/2026/belgium",
@@ -39424,7 +39451,10 @@
           "https://github.com/bacinger/f1-circuits",
           "https://github.com/tobi/track-atlas"
         ],
-        "elevation": "https://www.formula1.com/en/latest/article/highs-and-lows-which-f1-track-has-the-most-elevation-changes-.7I9JEcBw3R2AqXbnJ6hyvc"
+        "elevation": "https://www.formula1.com/en/latest/article/highs-and-lows-which-f1-track-has-the-most-elevation-changes-.7I9JEcBw3R2AqXbnJ6hyvc",
+        "additionalSources": [
+          "https://overcut.gg/tracks/spa"
+        ]
       },
       "hungaroring": {
         "race": "https://www.formula1.com/en/racing/2026/hungary",
@@ -39433,7 +39463,10 @@
           "https://github.com/bacinger/f1-circuits",
           "https://github.com/tobi/track-atlas"
         ],
-        "elevation": "https://www.formula1.com/en/latest/article/highs-and-lows-which-f1-track-has-the-most-elevation-changes-.7I9JEcBw3R2AqXbnJ6hyvc"
+        "elevation": "https://www.formula1.com/en/latest/article/highs-and-lows-which-f1-track-has-the-most-elevation-changes-.7I9JEcBw3R2AqXbnJ6hyvc",
+        "additionalSources": [
+          "https://overcut.gg/tracks/hungaroring"
+        ]
       },
       "circuit-zandvoort": {
         "race": "https://www.formula1.com/en/racing/2026/netherlands",
@@ -39441,7 +39474,8 @@
         "coordinates": [
           "https://github.com/bacinger/f1-circuits",
           "https://github.com/tobi/track-atlas"
-        ]
+        ],
+        "elevation": "https://overcut.gg/tracks/zandvoort"
       },
       "autodromo-nazionale-monza": {
         "race": "https://www.formula1.com/en/racing/2026/italy",
@@ -39450,7 +39484,10 @@
           "https://github.com/bacinger/f1-circuits",
           "https://github.com/tobi/track-atlas"
         ],
-        "elevation": "https://www.formula1.com/en/latest/article/highs-and-lows-which-f1-track-has-the-most-elevation-changes-.7I9JEcBw3R2AqXbnJ6hyvc"
+        "elevation": "https://www.formula1.com/en/latest/article/highs-and-lows-which-f1-track-has-the-most-elevation-changes-.7I9JEcBw3R2AqXbnJ6hyvc",
+        "additionalSources": [
+          "https://overcut.gg/tracks/monza"
+        ]
       },
       "madring-street-circuit": {
         "race": "https://www.formula1.com/en/racing/2026/spain",
@@ -39489,7 +39526,8 @@
         "coordinates": [
           "https://github.com/bacinger/f1-circuits",
           "https://github.com/tobi/track-atlas"
-        ]
+        ],
+        "elevation": "https://overcut.gg/tracks/marina-bay"
       },
       "circuit-of-the-americas": {
         "race": "https://www.formula1.com/en/racing/2026/united-states",
@@ -39498,7 +39536,10 @@
           "https://github.com/bacinger/f1-circuits",
           "https://github.com/tobi/track-atlas"
         ],
-        "elevation": "https://circuitoftheamericas.com/about/"
+        "elevation": "https://circuitoftheamericas.com/about/",
+        "additionalSources": [
+          "https://overcut.gg/tracks/cota"
+        ]
       },
       "autodromo-hermanos-rodriguez": {
         "race": "https://www.formula1.com/en/racing/2026/mexico",
@@ -39507,7 +39548,10 @@
           "https://github.com/bacinger/f1-circuits",
           "https://github.com/tobi/track-atlas"
         ],
-        "elevation": "https://www.formula1.com/en/latest/article/highs-and-lows-which-f1-track-has-the-most-elevation-changes-.7I9JEcBw3R2AqXbnJ6hyvc"
+        "elevation": "https://www.formula1.com/en/latest/article/highs-and-lows-which-f1-track-has-the-most-elevation-changes-.7I9JEcBw3R2AqXbnJ6hyvc",
+        "additionalSources": [
+          "https://overcut.gg/tracks/hermanos-rodriguez"
+        ]
       },
       "autodromo-jose-carlos-pace": {
         "race": "https://www.formula1.com/en/racing/2026/brazil",
@@ -39516,7 +39560,10 @@
           "https://github.com/bacinger/f1-circuits",
           "https://github.com/tobi/track-atlas"
         ],
-        "elevation": "https://www.formula1.com/en/latest/article/5-reasons-we-love-the-brazilian-grand-prix.37v8PT899Wnp7v6y51sUMf"
+        "elevation": "https://www.formula1.com/en/latest/article/5-reasons-we-love-the-brazilian-grand-prix.37v8PT899Wnp7v6y51sUMf",
+        "additionalSources": [
+          "https://overcut.gg/tracks/interlagos"
+        ]
       },
       "las-vegas-strip-circuit": {
         "race": "https://www.formula1.com/en/racing/2026/las-vegas",
@@ -39524,7 +39571,8 @@
         "coordinates": [
           "https://github.com/bacinger/f1-circuits",
           "https://github.com/tobi/track-atlas"
-        ]
+        ],
+        "elevation": "https://overcut.gg/tracks/las-vegas"
       },
       "lusail": {
         "race": "https://www.formula1.com/en/racing/2026/qatar",
@@ -39532,7 +39580,8 @@
         "coordinates": [
           "https://github.com/bacinger/f1-circuits",
           "https://github.com/tobi/track-atlas"
-        ]
+        ],
+        "elevation": "https://overcut.gg/tracks/lusail"
       },
       "yas-marina-circuit": {
         "race": "https://www.formula1.com/en/racing/2026/united-arab-emirates",
@@ -39540,7 +39589,8 @@
         "coordinates": [
           "https://github.com/bacinger/f1-circuits",
           "https://github.com/tobi/track-atlas"
-        ]
+        ],
+        "elevation": "https://overcut.gg/tracks/yasmarina"
       },
       "bahrain-international-circuit": {
         "race": "https://www.formula1.com/en/racing/2025/bahrain",
@@ -39551,7 +39601,8 @@
         ],
         "additionalSources": [
           "https://www.fia.com/news/2014-bahrain-grand-prix-preview-1",
-          "https://global.honda/en/F1/circuit/bahrain-international-circuit/records/"
+          "https://global.honda/en/F1/circuit/bahrain-international-circuit/records/",
+          "https://overcut.gg/tracks/bahrain"
         ],
         "elevation": "https://www.formula1.com/en/latest/article/highs-and-lows-which-f1-track-has-the-most-elevation-changes-.7I9JEcBw3R2AqXbnJ6hyvc"
       },
@@ -39565,7 +39616,8 @@
         "additionalSources": [
           "https://www.fia.com/sites/default/files/pdf_saudi_media_kit-2025-english.pdf",
           "https://www.saudi.gp/en/practical-28"
-        ]
+        ],
+        "elevation": "https://overcut.gg/tracks/jeddah"
       },
       "algarve-international-circuit": {
         "race": "https://www.formula1.com/en/racing/2021/portugal",
@@ -39588,7 +39640,8 @@
         "coordinates": [
           "https://github.com/bacinger/f1-circuits",
           "https://github.com/tobi/track-atlas"
-        ]
+        ],
+        "elevation": "https://overcut.gg/tracks/imola"
       },
       "mugello-circuit": {
         "race": "https://www.formula1.com/en/racing/2020/tuscany",
@@ -39618,7 +39671,8 @@
         "additionalSources": [
           "https://www.formula1.com/en/results/2020/awards/fastest-laps",
           "https://www.formula1.com/en/latest/article/nurburgring-all-you-need-to-know-about-the-german-circuit.2TAWIELS2BSX3KhWmSBCAc"
-        ]
+        ],
+        "elevation": "https://overcut.gg/tracks/nurburgring"
       },
       "magny-cours": {
         "race": "https://www.formula1.com/en/results/2004/races/762/france/fastest-laps",
@@ -39637,6 +39691,11 @@
           "https://github.com/f1db/f1db"
         ]
       }
+    },
+    "overcut": {
+      "atlas": "https://overcut.gg/tracks",
+      "methodology": "https://overcut.gg/sources",
+      "note": "Approximate relief sampled by Overcut from Copernicus WorldDEM-30. FIA corner counts and existing published elevation figures take precedence."
     }
   }
 }
