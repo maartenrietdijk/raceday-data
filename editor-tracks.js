@@ -172,7 +172,7 @@ const RaceDayTracks = (() => {
     const profileField = ([key, label]) => {
       if (key === 'circuitType') {
         return input(key, label, p[key], 'text', 'list="trackCircuitTypes"') +
-          '<datalist id="trackCircuitTypes"><option value="Permanent circuit"><option value="Semi-permanent circuit"><option value="Temporary circuit"><option value="Street circuit"><option value="Oval" label="Ovaal"></datalist>';
+          '<datalist id="trackCircuitTypes"><option value="Permanent circuit"><option value="Semi-permanent circuit"><option value="Temporary circuit"><option value="Street circuit"><option value="Oval"></datalist>';
       }
       if (key === 'elevationChange') {
         return `<div id="trackElevationField">${input(key, label, p[key])}</div>
