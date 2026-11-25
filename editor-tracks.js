@@ -35,7 +35,7 @@ const RaceDayTracks = (() => {
         p[0] >= 0 && p[0] <= g.width && p[1] >= 0 && p[1] <= g.height);
   }
 
-  function validate(data) {
+  function validate(data, {partial = false} = {}) {
     if (data?.schemaVersion !== 1 || !Array.isArray(data.tracks) || !data.tracks.length) throw new Error('Kies een geldige tracks.json.');
     const ids = new Set();
     const names = new Set();
@@ -84,6 +84,15 @@ const RaceDayTracks = (() => {
       }
     }
     for (const name of names) if (aliases.has(name.toLowerCase())) throw new Error('Alias komt overeen met een aparte baan: ' + name);
+    const byId = new Map(data.tracks.map(track => [track.id, track]));
+    for (const track of data.tracks) {
+      if (track.layoutGroup == null) continue;
+      const parent = byId.get(track.layoutGroup);
+      if (typeof track.layoutGroup !== 'string' || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(track.layoutGroup) ||
+          parent?.layoutGroup != null || (!partial && !parent)) {
+        throw new Error(track.circuitName + ' · Controleer de hoofdbaan.');
+      }
+    }
     return data;
   }
 
@@ -141,6 +150,12 @@ const RaceDayTracks = (() => {
   const input = (name, label, value, type = 'text', extra = '') =>
     `<label class="field"><span>${esc(label)}</span><input name="${name}" value="${esc(value)}" type="${type}" ${extra}></label>`;
 
+  function showTrack(id) {
+    activeId = id;
+    renderTracks();
+    renderForm();
+  }
+
   function renderForm() {
     const container = document.getElementById('trackLibraryForm');
     if (!container) return;
@@ -149,6 +164,8 @@ const RaceDayTracks = (() => {
       container.innerHTML = '<p class="muted">Selecteer een baan of voeg er een toe.</p>';
       return;
     }
+    const parent = track.layoutGroup ? draft.data.tracks.find(t => t.id === track.layoutGroup) : track;
+    const variants = draft.data.tracks.filter(t => t.layoutGroup === parent.id);
     const p = track.profile || {};
     const rating = (key, label) =>
       input(key + 'Label', label, p[key]?.label) + input(key + 'Value', label + ' · score (0–1)', p[key]?.value, 'number', 'min="0" max="1" step=".01"');
@@ -165,6 +182,11 @@ const RaceDayTracks = (() => {
     };
     container.innerHTML = `<form class="config-card track-form" id="trackForm">
       <h2>${esc(track.circuitName)}</h2>
+      ${variants.length ? `<label class="field">Lay-out
+        <select id="trackLayout" name="layout">
+          ${[parent, ...variants].map(t => `<option value="${esc(t.id)}"${t.id === track.id ? ' selected' : ''}>${esc(t.circuitName)}</option>`).join('')}
+        </select>
+      </label>` : ''}
       <div id="trackPreview">${preview(p.geometry, track.orientationAngle)}</div>
       <div class="track-fields">
         ${input('circuitName', 'Circuitnaam', track.circuitName, 'text', 'required')}
@@ -187,6 +209,11 @@ const RaceDayTracks = (() => {
       <button class="btn btn-primary" type="submit">Baan opslaan</button>
     </form>`;
     const form = document.getElementById('trackForm');
+    const layout = document.getElementById('trackLayout');
+    if (layout) layout.onchange = () => {
+      showTrack(layout.value);
+      document.getElementById('trackLayout')?.focus();
+    };
     const updateOvalFields = () => {
       const oval = isOval(form.elements.circuitType.value);
       document.getElementById('trackElevationField').hidden = oval;
@@ -208,6 +235,7 @@ const RaceDayTracks = (() => {
         const values = new FormData(form);
         const field = key => String(values.get(key) ?? '').trim();
         const edited = {id: field('id'), circuitName: field('circuitName'), orientationAngle: Number(field('orientationAngle'))};
+        if (track.layoutGroup) edited.layoutGroup = track.layoutGroup;
         if (field('aliases')) edited.aliases = field('aliases').split(',').map(x => x.trim()).filter(Boolean);
         for (const key of ['latitude', 'longitude']) if (field(key)) edited[key] = Number(field(key));
         if (values.has('showProfile')) {
@@ -226,7 +254,9 @@ const RaceDayTracks = (() => {
           edited.profile = profile;
         }
         draft.data = validate({...draft.data, tracks: [
-          ...draft.data.tracks.filter(t => t.id !== activeId), edited
+          ...draft.data.tracks.filter(t => t.id !== activeId).map(t =>
+            t.layoutGroup === activeId && activeId !== edited.id ? {...t, layoutGroup: edited.id} : t
+          ), edited
         ]});
         activeId = edited.id;
         store();
@@ -238,20 +268,25 @@ const RaceDayTracks = (() => {
 
   function renderTracks() {
     const list = document.getElementById('trackLibraryList');
+    const searchKey = name => name.normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase();
+    const term = searchKey(query.trim());
+    const matches = new Set(draft.data.tracks.filter(t =>
+      [t.circuitName, ...(t.aliases ?? [])].some(name => searchKey(name).includes(term))
+    ).map(t => t.layoutGroup ?? t.id));
+    const selected = draft.data.tracks.find(t => t.id === activeId);
+    const selectedGroup = selected?.layoutGroup ?? activeId;
     const tracks = draft.data.tracks.filter(t =>
-      [t.circuitName, ...(t.aliases ?? [])].some(name => name.toLowerCase().includes(query.toLowerCase()))
+      !t.layoutGroup && matches.has(t.id)
     ).sort((a, b) => a.circuitName.localeCompare(b.circuitName, 'nl'));
     if (!tracks.length) {
       list.innerHTML = '<p>Geen banen gevonden.</p>';
       return;
     }
-    list.innerHTML = tracks.map(t => `<button type="button" class="series-item ${t.id === activeId ? 'active' : ''}" data-track="${esc(t.id)}">${esc(t.circuitName)}</button>`).join('');
+    list.innerHTML = tracks.map(t => `<button type="button" class="series-item${t.id === selectedGroup ? ' active" aria-current="true' : ''}" data-track="${esc(t.id)}">${esc(t.circuitName)}</button>`).join('');
     list.onclick = event => {
       const id = event.target.closest('[data-track]')?.dataset.track;
       if (!id) return;
-      activeId = id;
-      renderTracks();
-      renderForm();
+      showTrack(id);
     };
   }
 
@@ -272,7 +307,7 @@ const RaceDayTracks = (() => {
         <summary>Welke informatie heeft Tracks nodig?</summary>
         <p>Per baan zijn een unieke Track-ID, de circuitnaam uit de kalender en de oriëntatiehoek nodig. Gebruik 0° voor de aangeleverde oriëntatie en −90° voor Lusail. Voeg alternatieve kalendernamen toe als aliassen.</p>
         <p>Coördinaten zijn optioneel en worden gebruikt voor het weer. Voor een detailsheet voeg je lengte, bochten, rijrichting, eerste race, circuittype, ronderecord, tijdzone en de twee beoordelingen toe. Voor de kaart kies je vectorgeometrie met sectorgrenzen en bochtposities, of de naam van een meegeleverd app-asset.</p>
-        <p>Importeer een geëxporteerde tracks.json, een lijst met banen of één baanobject. Bij een bestaande bibliotheek worden banen op Track-ID bijgewerkt. Exporteer een baanbibliotheek om de veldnamen en structuur te zien.</p>
+        <p>Importeer een geëxporteerde tracks.json, een lijst met banen of één baanobject. Bij een bestaande bibliotheek worden banen op Track-ID bijgewerkt. Een wedstrijdvariant kan met <code>layoutGroup</code> verwijzen naar de Track-ID van de hoofdbaan.</p>
       </details>
       ${draft ? `<div class="track-layout"><aside class="config-card"><label class="field">Zoek baan<input type="search" id="trackSearch" value="${esc(query)}"></label><div id="trackLibraryList"></div></aside><div id="trackLibraryForm"></div></div>` : ''}
     </div>`;
@@ -284,7 +319,7 @@ const RaceDayTracks = (() => {
         const fullLibrary = payload?.schemaVersion != null;
         if (!draft && !fullLibrary) throw new Error('Laad eerst de trackbibliotheek of importeer een volledige tracks.json.');
         const incoming = fullLibrary ? validate(payload) :
-          validate({schemaVersion: 1, tracks: Array.isArray(payload) ? payload : [payload]});
+          validate({schemaVersion: 1, tracks: Array.isArray(payload) ? payload : [payload]}, {partial: true});
         const existing = new Map((draft?.data.tracks ?? []).map(track => [track.id, track]));
         const updates = incoming.tracks.filter(track => existing.has(track.id)).length;
         if (updates && !confirm(`${updates} bestaande banen met dezelfde Track-ID bijwerken?`)) return;
