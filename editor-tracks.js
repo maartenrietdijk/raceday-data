@@ -63,7 +63,7 @@ const RaceDayTracks = (() => {
           if (key === 'turns') continue;
           if ((p[key] != null || !optional.has(key)) && (typeof p[key] !== 'string' || !p[key].trim())) throw new Error(name + ' · Controleer ' + fields[key] + '.');
         }
-        if (!Number.isInteger(p.turns) || p.turns < 1 || p.turns > 100) throw new Error(name + ' · Vul het aantal bochten in.');
+        if (!Number.isInteger(p.turns) || p.turns < 1 || p.turns > 200) throw new Error(name + ' · Vul het aantal bochten in.');
         try { new Intl.DateTimeFormat('nl', { timeZone: p.timeZoneIdentifier }); }
         catch { throw new Error(name + ' · Gebruik een geldige IANA-tijdzone.'); }
         for (const rating of [p.tyreStress, p.overtakingDifficulty]) {
@@ -159,7 +159,7 @@ const RaceDayTracks = (() => {
       <label class="track-check"><input type="checkbox" name="showProfile" ${track.profile ? 'checked' : ''}> Circuitgegevens tonen in de app</label>
       <div id="trackProfileFields" ${track.profile ? '' : 'hidden'}>
         <div class="track-fields">
-          ${Object.entries(fields).map(([key, label]) => input(key, label, p[key], key === 'turns' ? 'number' : 'text', key === 'turns' ? 'min="1" max="100"' : '')).join('')}
+          ${Object.entries(fields).map(([key, label]) => input(key, label, p[key], key === 'turns' ? 'number' : 'text', key === 'turns' ? 'min="1" max="200"' : '')).join('')}
           ${rating('tyreStress', 'Bandenbelasting')}${rating('overtakingDifficulty', 'Inhalen')}
         </div>
         <label class="field track-geometry">Baangeometrie (JSON)
