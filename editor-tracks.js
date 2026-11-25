@@ -8,6 +8,7 @@ const RaceDayTracks = (() => {
     assetName: 'Naam app-asset (optioneel)', darkAssetName: 'Naam donker app-asset (optioneel)'
   };
   const optional = new Set(['elevationChange', 'typicalTemperature', 'typicalRainChance', 'assetName', 'darkAssetName']);
+  const isOval = type => typeof type === 'string' && type.trim().toLowerCase() === 'oval';
   const storageKey = () => 'raceday_tracks_v1:' + [state.github.repo, state.github.branch, state.github.path].join('/');
   const encoded = text => btoa(Array.from(new TextEncoder().encode(text), byte => String.fromCharCode(byte)).join(''));
   const decoded = base64 => new TextDecoder().decode(Uint8Array.from(atob(base64), byte => byte.charCodeAt(0)));
@@ -64,6 +65,9 @@ const RaceDayTracks = (() => {
           if ((p[key] != null || !optional.has(key)) && (typeof p[key] !== 'string' || !p[key].trim())) throw new Error(name + ' · Controleer ' + fields[key] + '.');
         }
         if (!Number.isInteger(p.turns) || p.turns < 1 || p.turns > 200) throw new Error(name + ' · Vul het aantal bochten in.');
+        if (p.bankingDegrees != null && (!Number.isFinite(p.bankingDegrees) || p.bankingDegrees < 0 || p.bankingDegrees > 90)) {
+          throw new Error(name + ' · Vul een banking tussen 0 en 90 graden in.');
+        }
         try { new Intl.DateTimeFormat('nl', { timeZone: p.timeZoneIdentifier }); }
         catch { throw new Error(name + ' · Gebruik een geldige IANA-tijdzone.'); }
         for (const rating of [p.tyreStress, p.overtakingDifficulty]) {
@@ -145,6 +149,17 @@ const RaceDayTracks = (() => {
     const p = track.profile || {};
     const rating = (key, label) =>
       input(key + 'Label', label, p[key]?.label) + input(key + 'Value', label + ' · score (0–1)', p[key]?.value, 'number', 'min="0" max="1" step=".01"');
+    const profileField = ([key, label]) => {
+      if (key === 'circuitType') {
+        return input(key, label, p[key], 'text', 'list="trackCircuitTypes"') +
+          '<datalist id="trackCircuitTypes"><option value="Permanent circuit"><option value="Semi-permanent circuit"><option value="Street circuit"><option value="Oval" label="Ovaal"></datalist>';
+      }
+      if (key === 'elevationChange') {
+        return `<div id="trackElevationField">${input(key, label, p[key])}</div>
+          <div id="trackBankingField">${input('bankingDegrees', 'Maximale banking (°)', p.bankingDegrees, 'number', 'min="0" max="90" step="any"')}</div>`;
+      }
+      return input(key, label, p[key], key === 'turns' ? 'number' : 'text', key === 'turns' ? 'min="1" max="200"' : '');
+    };
     container.innerHTML = `<form class="config-card track-form" id="trackForm">
       <h2>${esc(track.circuitName)}</h2>
       <div id="trackPreview">${preview(p.geometry, track.orientationAngle)}</div>
@@ -159,7 +174,7 @@ const RaceDayTracks = (() => {
       <label class="track-check"><input type="checkbox" name="showProfile" ${track.profile ? 'checked' : ''}> Circuitgegevens tonen in de app</label>
       <div id="trackProfileFields" ${track.profile ? '' : 'hidden'}>
         <div class="track-fields">
-          ${Object.entries(fields).map(([key, label]) => input(key, label, p[key], key === 'turns' ? 'number' : 'text', key === 'turns' ? 'min="1" max="200"' : '')).join('')}
+          ${Object.entries(fields).map(profileField).join('')}
           ${rating('tyreStress', 'Bandenbelasting')}${rating('overtakingDifficulty', 'Inhalen')}
         </div>
         <label class="field track-geometry">Baangeometrie (JSON)
@@ -169,6 +184,15 @@ const RaceDayTracks = (() => {
       <button class="btn btn-primary" type="submit">Baan opslaan</button>
     </form>`;
     const form = document.getElementById('trackForm');
+    const updateOvalFields = () => {
+      const oval = isOval(form.elements.circuitType.value);
+      document.getElementById('trackElevationField').hidden = oval;
+      document.getElementById('trackBankingField').hidden = !oval;
+      form.elements.elevationChange.disabled = oval;
+      form.elements.bankingDegrees.disabled = !oval;
+    };
+    form.elements.circuitType.oninput = updateOvalFields;
+    updateOvalFields();
     form.elements.showProfile.onchange = () => {
       document.getElementById('trackProfileFields').hidden = !form.elements.showProfile.checked;
     };
@@ -187,6 +211,10 @@ const RaceDayTracks = (() => {
           const profile = {};
           for (const key of Object.keys(fields)) {
             if (!optional.has(key) || field(key)) profile[key] = key === 'turns' ? Number(field(key)) : field(key);
+          }
+          if (isOval(profile.circuitType)) {
+            profile.circuitType = 'Oval';
+            if (field('bankingDegrees')) profile.bankingDegrees = Number(field('bankingDegrees'));
           }
           for (const key of ['tyreStress', 'overtakingDifficulty']) {
             profile[key] = {label: field(key + 'Label'), value: field(key + 'Value') ? Number(field(key + 'Value')) : NaN};
