@@ -58,8 +58,7 @@ const RaceDayTracks = (() => {
         if (aliases.has(folded)) throw new Error('Alias meer dan één keer gebruikt: ' + alias);
         aliases.add(folded);
       }
-      if (t.profile) {
-        const p = t.profile;
+      for (const p of [t.profile, t.motoGPProfile].filter(p => p != null)) {
         for (const key of Object.keys(fields)) {
           if (key === 'turns') continue;
           if ((p[key] != null || !optional.has(key)) && (typeof p[key] !== 'string' || !p[key].trim())) throw new Error(name + ' · Controleer ' + fields[key] + '.');
@@ -86,11 +85,19 @@ const RaceDayTracks = (() => {
     for (const name of names) if (aliases.has(name.toLowerCase())) throw new Error('Alias komt overeen met een aparte baan: ' + name);
     const byId = new Map(data.tracks.map(track => [track.id, track]));
     for (const track of data.tracks) {
-      if (track.layoutGroup == null) continue;
-      const parent = byId.get(track.layoutGroup);
-      if (typeof track.layoutGroup !== 'string' || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(track.layoutGroup) ||
-          parent?.layoutGroup != null || (!partial && !parent)) {
-        throw new Error(track.circuitName + ' · Controleer de hoofdbaan.');
+      if (track.layoutGroup != null) {
+        const parent = byId.get(track.layoutGroup);
+        if (typeof track.layoutGroup !== 'string' || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(track.layoutGroup) ||
+            parent?.layoutGroup != null || (!partial && !parent)) {
+          throw new Error(track.circuitName + ' · Controleer de hoofdbaan.');
+        }
+      }
+      if (track.motoGPLayoutID != null) {
+        const layout = byId.get(track.motoGPLayoutID);
+        if (typeof track.motoGPLayoutID !== 'string' || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(track.motoGPLayoutID) ||
+            (layout ? layout.layoutGroup !== track.id : !partial)) {
+          throw new Error(track.circuitName + ' · Controleer de MotoGP-layout.');
+        }
       }
     }
     return data;
@@ -236,6 +243,8 @@ const RaceDayTracks = (() => {
         const field = key => String(values.get(key) ?? '').trim();
         const edited = {id: field('id'), circuitName: field('circuitName'), orientationAngle: Number(field('orientationAngle'))};
         if (track.layoutGroup) edited.layoutGroup = track.layoutGroup;
+        if (track.motoGPLayoutID) edited.motoGPLayoutID = track.motoGPLayoutID;
+        if (track.motoGPProfile) edited.motoGPProfile = track.motoGPProfile;
         if (field('aliases')) edited.aliases = field('aliases').split(',').map(x => x.trim()).filter(Boolean);
         for (const key of ['latitude', 'longitude']) if (field(key)) edited[key] = Number(field(key));
         if (values.has('showProfile')) {
@@ -254,9 +263,12 @@ const RaceDayTracks = (() => {
           edited.profile = profile;
         }
         draft.data = validate({...draft.data, tracks: [
-          ...draft.data.tracks.filter(t => t.id !== activeId).map(t =>
-            t.layoutGroup === activeId && activeId !== edited.id ? {...t, layoutGroup: edited.id} : t
-          ), edited
+          ...draft.data.tracks.filter(t => t.id !== activeId).map(t => {
+            if (activeId === edited.id) return t;
+            if (t.layoutGroup === activeId) return {...t, layoutGroup: edited.id};
+            if (t.motoGPLayoutID === activeId) return {...t, motoGPLayoutID: edited.id};
+            return t;
+          }), edited
         ]});
         activeId = edited.id;
         store();
