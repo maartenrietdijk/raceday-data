@@ -1,0 +1,16 @@
+.track-library { max-width: 1160px; margin-inline: auto; }
+.track-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+.track-file { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.track-actions label { position: relative; cursor: pointer; }
+.track-actions label:focus-within { outline: 2px solid currentColor; outline-offset: 2px; }
+.track-layout { display: grid; grid-template-columns: minmax(200px, 1fr) minmax(0, 2.5fr); gap: 16px; align-items: start; }
+.track-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+#trackLibraryList { max-height: 60vh; overflow: auto; margin-top: 10px; }
+#trackLibraryList button { display: block; text-align: start; width: 100%; overflow-wrap: anywhere; }
+.track-form h2 { margin: 0 0 14px; }
+.track-form > button { margin-top: 16px; }
+.track-check { display: flex; gap: 8px; align-items: center; margin-block: 18px; }
+.track-geometry { margin-top: 14px; }
+.track-geometry textarea { resize: vertical; width: 100%; padding: 8px; background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: var(--radius-sm); }
+.track-preview { display: block; width: 100%; height: 150px; margin-block: 10px 16px; }
+@media (max-width: 650px) { .track-layout, .track-fields { grid-template-columns: minmax(0, 1fr); } #trackLibraryList { max-height: 32vh; } }
