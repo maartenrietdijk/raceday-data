@@ -4,10 +4,10 @@ const RaceDayTracks = (() => {
     length: 'Lengte', turns: 'Aantal bochten', direction: 'Rijrichting',
     openedYear: 'Eerste race', circuitType: 'Soort circuit', elevationChange: 'Hoogteverschil',
     lapRecord: 'Ronderecord', lapRecordHolder: 'Recordhouder', timeZoneIdentifier: 'Tijdzone',
-    typicalTemperature: 'Gemiddelde temperatuur', typicalRainChance: 'Gemiddelde regenkans',
+    firstFormula1GrandPrix: 'Eerste F1-Grand Prix (jaar)',
     assetName: 'Naam app-asset (optioneel)', darkAssetName: 'Naam donker app-asset (optioneel)'
   };
-  const optional = new Set(['elevationChange', 'typicalTemperature', 'typicalRainChance', 'assetName', 'darkAssetName']);
+  const optional = new Set(['elevationChange', 'firstFormula1GrandPrix', 'assetName', 'darkAssetName']);
   const isOval = type => typeof type === 'string' && type.trim().toLowerCase() === 'oval';
   const storageKey = () => 'raceday_tracks_v1:' + [state.github.repo, state.github.branch, state.github.path].join('/');
   const encoded = text => btoa(Array.from(new TextEncoder().encode(text), byte => String.fromCharCode(byte)).join(''));
@@ -63,6 +63,9 @@ const RaceDayTracks = (() => {
         for (const key of Object.keys(fields)) {
           if (key === 'turns') continue;
           if ((p[key] != null || !optional.has(key)) && (typeof p[key] !== 'string' || !p[key].trim())) throw new Error(name + ' · Controleer ' + fields[key] + '.');
+        }
+        if (p.firstFormula1GrandPrix != null && !/^[0-9]{4}$/.test(p.firstFormula1GrandPrix)) {
+          throw new Error(name + ' · Vul het jaar van de eerste F1-Grand Prix in.');
         }
         if (!Number.isInteger(p.turns) || p.turns < 1 || p.turns > 200) throw new Error(name + ' · Vul het aantal bochten in.');
         if (p.bankingDegrees != null && (!Number.isFinite(p.bankingDegrees) || p.bankingDegrees < 0 || p.bankingDegrees > 90)) {
@@ -152,7 +155,7 @@ const RaceDayTracks = (() => {
     const profileField = ([key, label]) => {
       if (key === 'circuitType') {
         return input(key, label, p[key], 'text', 'list="trackCircuitTypes"') +
-          '<datalist id="trackCircuitTypes"><option value="Permanent circuit"><option value="Semi-permanent circuit"><option value="Street circuit"><option value="Oval" label="Ovaal"></datalist>';
+          '<datalist id="trackCircuitTypes"><option value="Permanent circuit"><option value="Semi-permanent circuit"><option value="Temporary circuit"><option value="Street circuit"><option value="Oval" label="Ovaal"></datalist>';
       }
       if (key === 'elevationChange') {
         return `<div id="trackElevationField">${input(key, label, p[key])}</div>
@@ -175,7 +178,7 @@ const RaceDayTracks = (() => {
       <div id="trackProfileFields" ${track.profile ? '' : 'hidden'}>
         <div class="track-fields">
           ${Object.entries(fields).map(profileField).join('')}
-          ${rating('tyreStress', 'Bandenbelasting')}${rating('overtakingDifficulty', 'Inhalen')}
+          ${rating('tyreStress', 'Bandendegradatie')}${rating('overtakingDifficulty', 'Inhalen')}
         </div>
         <label class="field track-geometry">Baangeometrie (JSON)
           <textarea name="geometry" rows="6" spellcheck="false" placeholder='{"width": 290, "height": 290, "points": [], "sectorEnds": [], "turnLabels": []}'>${p.geometry ? esc(JSON.stringify(p.geometry, null, 2)) : ''}</textarea>
