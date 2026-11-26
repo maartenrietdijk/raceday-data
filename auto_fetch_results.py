@@ -76,7 +76,7 @@ SRO_SERIES = {
     "gtwce": "https://www.gt-world-challenge-europe.com",
     "gtwca_am": "https://www.gt-world-challenge-america.com",
     "gtwca_asia": "https://www.gt-world-challenge-asia.com",
-    "gtwca_aus": "https://www.gt-world-challenge-australia.com",
+    # gtwca_aus is written by a dedicated bot and must not be auto-fetched here.
 }
 
 HEADERS = {
