@@ -97,6 +97,13 @@ const RaceDayTracks = (() => {
           throw new Error(track.circuitName + ' · Controleer de hoofdbaan.');
         }
       }
+      if (track.formulaELayoutID != null) {
+        const layout = byId.get(track.formulaELayoutID);
+        if (typeof track.formulaELayoutID !== 'string' || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(track.formulaELayoutID) ||
+            (layout ? layout.layoutGroup !== track.id : !partial)) {
+          throw new Error(track.circuitName + ' · Controleer de Formula E-layout.');
+        }
+      }
       if (track.motoGPLayoutID != null) {
         const layout = byId.get(track.motoGPLayoutID);
         if (typeof track.motoGPLayoutID !== 'string' || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(track.motoGPLayoutID) ||
@@ -249,6 +256,7 @@ const RaceDayTracks = (() => {
         const edited = {id: field('id'), circuitName: field('circuitName'), orientationAngle: Number(field('orientationAngle'))};
         if (track.layoutGroup) edited.layoutGroup = track.layoutGroup;
         if (track.motoGPLayoutID) edited.motoGPLayoutID = track.motoGPLayoutID;
+        if (track.formulaELayoutID) edited.formulaELayoutID = track.formulaELayoutID;
         if (track.motoGPProfile) edited.motoGPProfile = track.motoGPProfile;
         if (field('aliases')) edited.aliases = field('aliases').split(',').map(x => x.trim()).filter(Boolean);
         for (const key of ['latitude', 'longitude']) if (field(key)) edited[key] = Number(field(key));
@@ -271,6 +279,7 @@ const RaceDayTracks = (() => {
           ...draft.data.tracks.filter(t => t.id !== activeId).map(t => {
             if (activeId === edited.id) return t;
             if (t.layoutGroup === activeId) return {...t, layoutGroup: edited.id};
+            if (t.formulaELayoutID === activeId) return {...t, formulaELayoutID: edited.id};
             if (t.motoGPLayoutID === activeId) return {...t, motoGPLayoutID: edited.id};
             return t;
           }), edited
