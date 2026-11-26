@@ -63,7 +63,7 @@ const RaceDayTracks = (() => {
         if (aliases.has(folded)) throw new Error('Alias meer dan één keer gebruikt: ' + alias);
         aliases.add(folded);
       }
-      for (const p of [t.profile, t.motoGPProfile].filter(p => p != null)) {
+      for (const p of [t.profile, t.motoGPProfile, t.nascarEuroProfile].filter(p => p != null)) {
         for (const key of Object.keys(fields)) {
           if (key === 'turns') continue;
           if ((p[key] != null || !optional.has(key)) && (typeof p[key] !== 'string' || !p[key].trim())) throw new Error(name + ' · Controleer ' + fields[key] + '.');
@@ -267,6 +267,7 @@ const RaceDayTracks = (() => {
         if (track.motoGPLayoutID) edited.motoGPLayoutID = track.motoGPLayoutID;
         if (track.formulaELayoutID) edited.formulaELayoutID = track.formulaELayoutID;
         if (track.motoGPProfile) edited.motoGPProfile = track.motoGPProfile;
+        if (track.nascarEuroProfile) edited.nascarEuroProfile = track.nascarEuroProfile;
         if (field('aliases')) edited.aliases = field('aliases').split(',').map(x => x.trim()).filter(Boolean);
         for (const key of ['latitude', 'longitude']) if (field(key)) edited[key] = Number(field(key));
         if (values.has('showProfile')) {
