@@ -40,6 +40,8 @@ const RaceDayTracks = (() => {
         p[0] >= 0 && p[0] <= g.width && p[1] >= 0 && p[1] <= g.height);
   }
 
+  const commaLength = value => value.replace(/(\d)\.(?=\d)/g, '$1,');
+
   function validate(data, {partial = false} = {}) {
     if (data?.schemaVersion !== 1 || !Array.isArray(data.tracks) || !data.tracks.length) throw new Error('Kies een geldige tracks.json.');
     const ids = new Set();
@@ -64,6 +66,7 @@ const RaceDayTracks = (() => {
         aliases.add(folded);
       }
       for (const p of [t.profile, t.motoGPProfile, t.nascarEuroProfile].filter(p => p != null)) {
+        if (typeof p.length === 'string') p.length = commaLength(p.length);
         for (const key of Object.keys(fields)) {
           if (key === 'turns') continue;
           if ((p[key] != null || !optional.has(key)) && (typeof p[key] !== 'string' || !p[key].trim())) throw new Error(name + ' · Controleer ' + fields[key] + '.');
