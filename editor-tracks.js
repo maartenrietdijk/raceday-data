@@ -302,6 +302,11 @@ const RaceDayTracks = (() => {
     };
   }
 
+  const hasTrackLine = track => [track.profile, track.motoGPProfile, track.nascarEuroProfile]
+    .some(profile => checkGeometry(profile?.geometry));
+
+  const groupsWithLines = tracks => new Set(tracks.filter(hasTrackLine).map(track => track.layoutGroup ?? track.id));
+
   function renderTracks() {
     const list = document.getElementById('trackLibraryList');
     const searchKey = name => name.normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase();
@@ -311,18 +316,21 @@ const RaceDayTracks = (() => {
     ).map(t => t.layoutGroup ?? t.id));
     const selected = draft.data.tracks.find(t => t.id === activeId);
     const selectedGroup = selected?.layoutGroup ?? activeId;
+    const linedGroups = groupsWithLines(draft.data.tracks);
     const tracks = draft.data.tracks.filter(t =>
-      !t.layoutGroup && matches.has(t.id)
+      !t.layoutGroup && matches.has(t.id) && linedGroups.has(t.id)
     ).sort((a, b) => a.circuitName.localeCompare(b.circuitName, 'nl'));
     if (!tracks.length) {
-      list.innerHTML = '<p>Geen banen gevonden.</p>';
+      list.innerHTML = '<p>Geen banen met een lijnkaart gevonden.</p>';
       return;
     }
     list.innerHTML = tracks.map(t => `<button type="button" class="series-item${t.id === selectedGroup ? ' active" aria-current="true' : ''}" data-track="${esc(t.id)}">${esc(t.circuitName)}</button>`).join('');
     list.onclick = event => {
       const id = event.target.closest('[data-track]')?.dataset.track;
       if (!id) return;
-      showTrack(id);
+      const parent = draft.data.tracks.find(track => track.id === id);
+      const target = hasTrackLine(parent) ? parent : draft.data.tracks.find(track => track.layoutGroup === id && hasTrackLine(track));
+      if (target) showTrack(target.id);
     };
   }
 
@@ -375,7 +383,7 @@ const RaceDayTracks = (() => {
       startLoad(false);
     };
     if (!draft) { if (!loading || loadingKey !== storageKey()) startLoad(); return; }
-    if (!draft.data.tracks.some(t => t.id === activeId)) activeId = draft.data.tracks[0]?.id;
+    if (!draft.data.tracks.some(t => t.id === activeId)) activeId = draft.data.tracks.find(hasTrackLine)?.id;
     document.getElementById('trackSearch').oninput = event => { query = event.target.value; renderTracks(); };
     document.getElementById('addTrack').onclick = () => {
       let number = 1;
