@@ -200,12 +200,14 @@ const RaceDayTracks = (() => {
       return input(key, label, p[key], key === 'turns' ? 'number' : 'text', key === 'turns' ? 'min="1" max="200"' : '');
     };
     container.innerHTML = `<form class="config-card track-form" id="trackForm">
-      <h2>${esc(track.circuitName)}</h2>
-      ${variants.length ? `<label class="field">Lay-out
+      <div class="track-detail-header">
+      <h2>${esc(parent.circuitName)}</h2>
+      ${variants.length ? `<label class="field track-layout-picker"><span>Lay-out</span>
         <select id="trackLayout" name="layout">
           ${[parent, ...variants].map(t => `<option value="${esc(t.id)}"${t.id === track.id ? ' selected' : ''}>${esc(t.circuitName)}</option>`).join('')}
         </select>
       </label>` : ''}
+      </div>
       <div id="trackPreview">${preview(p.geometry, track.orientationAngle)}</div>
       <div class="track-fields">
         ${input('circuitName', 'Circuitnaam', track.circuitName, 'text', 'required')}
@@ -229,7 +231,13 @@ const RaceDayTracks = (() => {
     </form>`;
     const form = document.getElementById('trackForm');
     const layout = document.getElementById('trackLayout');
+    const formSnapshot = () => JSON.stringify([...new FormData(form)].filter(([key]) => key !== 'layout'));
+    let savedForm;
     if (layout) layout.onchange = () => {
+      if (formSnapshot() !== savedForm && !window.confirm('Je hebt niet-opgeslagen wijzigingen. Wil je van lay-out wisselen en deze wijzigingen weggooien?')) {
+        layout.value = track.id;
+        return;
+      }
       showTrack(layout.value);
       document.getElementById('trackLayout')?.focus();
     };
@@ -242,6 +250,7 @@ const RaceDayTracks = (() => {
     };
     form.elements.circuitType.oninput = updateOvalFields;
     updateOvalFields();
+    savedForm = formSnapshot();
     form.elements.showProfile.onchange = () => {
       document.getElementById('trackProfileFields').hidden = !form.elements.showProfile.checked;
     };

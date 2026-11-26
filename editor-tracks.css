@@ -14,3 +14,12 @@
 .track-geometry textarea { resize: vertical; width: 100%; padding: 8px; background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: var(--radius-sm); }
 .track-preview { display: block; width: 100%; height: 150px; margin-block: 10px 16px; }
 @media (max-width: 650px) { .track-layout, .track-fields { grid-template-columns: minmax(0, 1fr); } #trackLibraryList { max-height: 32vh; } }
+
+.track-detail-header { display: flex; align-items: start; justify-content: space-between; gap: 16px; margin-bottom: 14px; }
+.track-detail-header h2 { margin: 0; min-width: 0; }
+.track-layout-picker { flex: 0 1 300px; min-width: 180px; margin: 0; }
+.track-layout-picker select { width: 100%; }
+@media (max-width: 650px) {
+  .track-detail-header { flex-wrap: wrap; }
+  .track-layout-picker { flex-basis: 100%; min-width: 0; }
+}
