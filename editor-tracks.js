@@ -27,13 +27,14 @@ const RaceDayTracks = (() => {
     if (!g || ![g.width, g.height].every(n => Number.isFinite(n) && n >= 1 && n <= 10000) ||
         !Array.isArray(g.points) || g.points.length < 4 || g.points.length > 2000 ||
         !Array.isArray(g.turnLabels) || g.turnLabels.length > 100 || !Array.isArray(g.sectorEnds)) return false;
-    const validEnds = (ends, count) => Array.isArray(ends) && ends.length === count &&
+    const validEnds = (ends, count) => Array.isArray(ends) &&
+      (count == null ? ends.length >= 1 && ends.length <= 11 : ends.length === count) &&
       ends.every((end, i) => Number.isInteger(end) && end > (ends[i - 1] ?? 0) && end < g.points.length - 1);
     const validNumbers = g.turnNumbers == null || (Array.isArray(g.turnNumbers) &&
       g.turnNumbers.length === g.turnLabels.length && new Set(g.turnNumbers).size === g.turnNumbers.length &&
       g.turnNumbers.every(number => typeof number === 'string' && /^[1-9][0-9]?[A-Z]?$/.test(number)));
     const key = point => JSON.stringify(point);
-    return validEnds(g.sectorEnds, 2) && (g.timingSectorEnds == null || validEnds(g.timingSectorEnds, 3)) && validNumbers &&
+    return validEnds(g.sectorEnds) && (g.timingSectorEnds == null || validEnds(g.timingSectorEnds)) && validNumbers &&
       key(g.points[0]) === key(g.points.at(-1)) && key(g.points[0]) !== key(g.points[1]) &&
       [...g.points, ...g.turnLabels].every(p => Array.isArray(p) && p.length === 2 && p.every(Number.isFinite) &&
         p[0] >= 0 && p[0] <= g.width && p[1] >= 0 && p[1] <= g.height);

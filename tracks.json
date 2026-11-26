@@ -11756,20 +11756,24 @@
               145.85
             ],
             [
-              162.84,
-              248.08
+              163.95,
+              246.52
             ],
             [
               160.33,
               250.96
             ],
             [
-              158.79,
-              252.09
+              155.34,
+              253.74
             ],
             [
-              43.41,
-              299.6
+              61.18,
+              292.32
+            ],
+            [
+              41.62,
+              300.25
             ],
             [
               39.78,
@@ -11780,32 +11784,28 @@
               299.78
             ],
             [
-              36.95,
-              298.34
+              35.98,
+              296.69
             ],
             [
-              27.46,
-              281.65
+              26.56,
+              279.96
             ],
             [
               26.0,
               278.18
             ],
             [
-              26.15,
-              276.33
+              26.84,
+              274.55
             ],
             [
-              27.71,
-              272.84
+              37.94,
+              256.6
             ],
             [
-              35.84,
-              259.82
-            ],
-            [
-              39.14,
-              255.11
+              40.48,
+              253.75
             ],
             [
               53.24,
@@ -11816,16 +11816,16 @@
               237.9
             ],
             [
-              72.49,
-              215.87
+              71.22,
+              217.29
             ],
             [
               75.54,
               213.56
             ],
             [
-              82.4,
-              210.15
+              84.05,
+              209.16
             ],
             [
               87.2,
@@ -11856,20 +11856,24 @@
               191.51
             ],
             [
-              93.27,
-              191.37
+              95.18,
+              191.6
             ],
             [
               100.87,
               192.44
             ],
             [
+              110.04,
+              195.27
+            ],
+            [
               122.73,
               199.67
             ],
             [
-              126.49,
-              199.85
+              124.6,
+              199.98
             ],
             [
               128.29,
@@ -11880,8 +11884,12 @@
               198.24
             ],
             [
-              132.11,
-              195.2
+              131.18,
+              196.85
+            ],
+            [
+              132.7,
+              193.38
             ],
             [
               135.87,
@@ -11944,24 +11952,20 @@
               125.28
             ],
             [
-              183.08,
-              123.49
-            ],
-            [
-              183.18,
-              119.73
+              182.91,
+              121.61
             ],
             [
               185.24,
               110.37
             ],
             [
-              183.87,
-              97.03
+              184.88,
+              104.64
             ],
             [
-              182.81,
-              93.37
+              183.47,
+              95.16
             ],
             [
               180.46,
@@ -12004,12 +12008,8 @@
               58.32
             ],
             [
-              213.93,
-              57.29
-            ],
-            [
-              223.96,
-              51.64
+              215.67,
+              56.48
             ],
             [
               225.42,
@@ -12032,16 +12032,16 @@
               43.81
             ],
             [
-              223.35,
-              43.02
+              221.51,
+              42.5
             ],
             [
               217.75,
               41.77
             ],
             [
-              204.32,
-              41.62
+              206.24,
+              41.56
             ],
             [
               194.86,
@@ -12092,16 +12092,16 @@
               26.57
             ],
             [
+              289.11,
+              27.44
+            ],
+            [
               290.58,
               28.65
             ],
             [
-              291.75,
-              30.14
-            ],
-            [
-              293.2,
-              33.67
+              292.6,
+              31.85
             ],
             [
               315.66,
@@ -12129,11 +12129,17 @@
             ]
           ],
           "sectorEnds": [
-            15,
+            32,
             64
           ],
           "turnLabels": [],
-          "hasTimingSectors": false
+          "hasTimingSectors": false,
+          "timingSectorEnds": [
+            7,
+            31,
+            58,
+            83
+          ]
         }
       }
     },
@@ -35584,7 +35590,7 @@
       "map": "https://cdn.macau.grandprix.gov.mo/uploads/attachment/2025-11/392c8d606c0f8ccd061e6beca474a063.pdf",
       "centerline": "https://www.openstreetmap.org/relation/8877949",
       "license": "OpenStreetMap contributors, ODbL 1.0",
-      "method": "Connected road centerline checked against official Guia layout. Turn badges omitted pending exact geographic numbering verification. Five official timing sectors are not represented as three sectors."
+      "method": "Connected road centerline checked against official Guia layout. Turn badges omitted pending exact geographic numbering verification. Five official timing sectors: 1.600, 1.116, 1.010, 0.945 and 1.449 km. Extended timingSectorEnds preserves a legacy outline without showing fabricated three-sector timing."
     }
   }
 }
