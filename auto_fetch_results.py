@@ -65,7 +65,7 @@ MOTORSPORT_SERIES = {
     "formulae": "formula-e",
     "wrc": "wrc",
     "dtm": "dtm",
-    "supercars": "v8supercars",
+    # supercars is written by a dedicated bot and must not be auto-fetched here.
     "elms": "elms",
     "wsbk": "wsbk",
 }
