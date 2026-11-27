@@ -49,7 +49,6 @@ MAX_FETCHES_PER_RUN = 8
 # RaceDay series id -> Motorsport.com URL segment. Unsupported/offical-source
 # series are deliberately omitted so they are never guessed or fetched.
 MOTORSPORT_SERIES = {
-    "f1": "f1",
     "f3": "fia-f3",
     "f1academy": "f1-academy",
     "wec": "wec",
